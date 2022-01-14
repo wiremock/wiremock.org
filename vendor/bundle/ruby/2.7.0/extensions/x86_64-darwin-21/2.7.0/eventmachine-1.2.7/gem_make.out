@@ -1,0 +1,17 @@
+current directory: /Users/neimelezi/Desktop/projects/wiremock.org-sources/vendor/bundle/ruby/2.7.0/gems/eventmachine-1.2.7/ext/fastfilereader
+/usr/local/opt/ruby@2.7/bin/ruby -I /usr/local/Cellar/ruby@2.7/2.7.5/lib/ruby/2.7.0 -r ./siteconf20220113-25831-1fojv5v.rb extconf.rb
+creating Makefile
+
+current directory: /Users/neimelezi/Desktop/projects/wiremock.org-sources/vendor/bundle/ruby/2.7.0/gems/eventmachine-1.2.7/ext/fastfilereader
+make DESTDIR\= clean
+
+current directory: /Users/neimelezi/Desktop/projects/wiremock.org-sources/vendor/bundle/ruby/2.7.0/gems/eventmachine-1.2.7/ext/fastfilereader
+make DESTDIR\=
+compiling mapper.cpp
+compiling rubymain.cpp
+linking shared-object fastfilereaderext.bundle
+ld: warning: dylib (/usr/local/Cellar/ruby@2.7/2.7.5/lib/libruby.2.7.dylib) was built for newer macOS version (12.0) than being linked (11.3)
+
+current directory: /Users/neimelezi/Desktop/projects/wiremock.org-sources/vendor/bundle/ruby/2.7.0/gems/eventmachine-1.2.7/ext/fastfilereader
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 fastfilereaderext.bundle ./.gem.20220113-25831-1uhmpsi

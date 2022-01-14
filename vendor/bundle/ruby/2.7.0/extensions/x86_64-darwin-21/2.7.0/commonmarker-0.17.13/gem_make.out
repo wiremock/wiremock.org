@@ -1,0 +1,58 @@
+current directory: /Users/neimelezi/Desktop/projects/wiremock.org-sources/vendor/bundle/ruby/2.7.0/gems/commonmarker-0.17.13/ext/commonmarker
+/usr/local/opt/ruby@2.7/bin/ruby -I /usr/local/Cellar/ruby@2.7/2.7.5/lib/ruby/2.7.0 -r ./siteconf20220113-25831-1ouzpss.rb extconf.rb
+creating Makefile
+
+current directory: /Users/neimelezi/Desktop/projects/wiremock.org-sources/vendor/bundle/ruby/2.7.0/gems/commonmarker-0.17.13/ext/commonmarker
+make DESTDIR\= clean
+
+current directory: /Users/neimelezi/Desktop/projects/wiremock.org-sources/vendor/bundle/ruby/2.7.0/gems/commonmarker-0.17.13/ext/commonmarker
+make DESTDIR\=
+compiling arena.c
+compiling autolink.c
+compiling blocks.c
+compiling buffer.c
+compiling cmark.c
+compiling cmark_ctype.c
+compiling commonmark.c
+compiling commonmarker.c
+In file included from commonmarker.c:3:
+In file included from ./houdini.h:9:
+./config.h:8:9: warning: 'HAVE_STDBOOL_H' macro redefined [-Wmacro-redefined]
+#define HAVE_STDBOOL_H
+        ^
+/usr/local/Cellar/ruby@2.7/2.7.5/include/ruby-2.7.0/x86_64-darwin21/ruby/config.h:27:9: note: previous definition is here
+#define HAVE_STDBOOL_H 1
+        ^
+1 warning generated.
+compiling core-extensions.c
+compiling ext_scanners.c
+compiling footnotes.c
+compiling houdini_href_e.c
+compiling houdini_html_e.c
+compiling houdini_html_u.c
+compiling html.c
+compiling inlines.c
+compiling iterator.c
+compiling latex.c
+compiling linked_list.c
+compiling man.c
+compiling map.c
+compiling node.c
+compiling plaintext.c
+compiling plugin.c
+compiling references.c
+compiling registry.c
+compiling render.c
+compiling scanners.c
+compiling strikethrough.c
+compiling syntax_extension.c
+compiling table.c
+compiling tagfilter.c
+compiling utf8.c
+compiling xml.c
+linking shared-object commonmarker/commonmarker.bundle
+ld: warning: dylib (/usr/local/Cellar/ruby@2.7/2.7.5/lib/libruby.2.7.dylib) was built for newer macOS version (12.0) than being linked (11.3)
+
+current directory: /Users/neimelezi/Desktop/projects/wiremock.org-sources/vendor/bundle/ruby/2.7.0/gems/commonmarker-0.17.13/ext/commonmarker
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 commonmarker.bundle ./.gem.20220113-25831-38ilic/commonmarker

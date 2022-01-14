@@ -1,0 +1,16 @@
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+.jekyll-metadata
+.jekyll-cache
+.sass-cache
+_asset_bundler_cache
+_site
+codekit-config.json
+node_modules
+npm-debug.log*
+notes.txt
+main.min.js
+main.css
+
+**/.DS_Store
