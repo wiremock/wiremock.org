@@ -3,52 +3,52 @@
    ========================================================================== */
 
 .masthead {
-  background-color: $dark-blue;
-  position: relative;
-  animation: intro 0.3s both;
-  animation-delay: 0.15s;
-  z-index: 20;
+    background-color: $dark-blue;
+    position: relative;
+    animation: intro 0.3s both;
+    animation-delay: 0.15s;
+    z-index: 20;
 
-  &__inner-wrap {
-    @include container;
-    @include clearfix;
-    padding: 1em 1em 1em;
-    font-family: $sans-serif-narrow;
+    &__inner-wrap {
+        @include container;
+        @include clearfix;
+        padding: 1em 1em 1em;
+        font-family: $sans-serif-narrow;
 
-    @include breakpoint($x-large) {
-      max-width: $x-large;
+        @include breakpoint($x-large) {
+            max-width: $x-large;
+        }
+
+        nav {
+            z-index: 10;
+        }
+
+        a {
+            text-decoration: none;
+        }
     }
-
-    nav {
-      z-index: 10;
-    }
-
-    a {
-      text-decoration: none;
-    }
-  }
 }
 
 .masthead__menu {
-
-  ul {
-    margin: 0;
-    padding: 0;
-    clear: both;
-    list-style-type: none;
-  }
+    ul {
+        margin: 0;
+        padding: 0;
+        clear: both;
+        list-style-type: none;
+    }
 }
 
 .masthead__menu-item {
-  display: block;
-  list-style-type: none;
-  white-space: nowrap;
-  font-size: 16px;
+    display: block;
+    list-style-type: none;
+    white-space: nowrap;
+    font-size: 16px;
 
-  &--lg {
-    font-family: "McLaren", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
-    font-size: $type-size-4;
-    padding-right: 2em;
-    font-weight: 700;
-  }
+    &--lg {
+        font-family: "McLaren", "Segoe UI", "Helvetica Neue", "Lucida Grande",
+            Arial, sans-serif;
+        font-size: $type-size-4;
+        padding-right: 2em;
+        font-weight: 700;
+    }
 }
