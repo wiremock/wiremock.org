@@ -29,9 +29,8 @@
     "build:css": "npm run scss && npm run autoprefixer",
     "build:js": "npm run uglify",
     "build:all": "npm run build:css && npm run build:js",
-    "swaggerui": "shx cp -rf node_modules/swagger-ui-dist/ ../src/main/resources/assets/swagger-ui/",
-    "swaggerjson": "swagger-cli bundle -r -t json ../src/main/resources/swagger/wiremock-admin-api.yaml > ../src/main/resources/swagger/wiremock-admin-api.json",
+    "swaggerjson": "swagger-cli bundle -r -t json swagger/wiremock-admin-api.yaml > assets/js/wiremock-admin-api.json",
     "redoc": "shx cp node_modules/redoc/bundles/redoc.standalone.js assets/js",
-    "apidocs": "npm-run-all swaggerui swaggerjson redoc && shx cp ../src/main/resources/swagger/wiremock-admin-api.json assets/js"
+    "apidocs": "npm-run-all swaggerjson redoc"
   }
 }
