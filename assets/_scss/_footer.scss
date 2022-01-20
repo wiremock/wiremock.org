@@ -263,8 +263,8 @@
     .webinarFooterBanner {
         height: 200px !important;
     }
-    .FooterContainer .webinarFooterBanner::before,
-    .FooterContainer .webinarFooterBanner::after {
+    .webinarFooterBanner::before,
+    .webinarFooterBanner::after {
         background-image: unset;
     }
     .webinarBannerLecturer {
