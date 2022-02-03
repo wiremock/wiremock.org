@@ -19,12 +19,12 @@ version to use, however we've tested it on Java 17 and this also works fine exce
 if you try to enable and use HTTPS browser proxying.
 
 After ensuring you've got a suitable Java version installed, download the
-<a href="http://wiremock-studio.s3-website-us-east-1.amazonaws.com/wiremock-studio-2.32.0-7.jar" id="wiremock-studio-download">WireMock Studio standalone JAR</a>.
+<a href="http://wiremock-studio.s3-website-us-east-1.amazonaws.com/wiremock-studio-{{site.data.misc.wiremock_studio_version}}.jar" id="wiremock-studio-download">WireMock Studio standalone JAR</a>.
 
 Then open a terminal in the directory containing the JAR file and run:
 
 ```bash
-java -jar wiremock-studio-2.32.0-7.jar
+java -jar wiremock-studio-{{site.data.misc.wiremock_studio_version}}.jar
 ```
 
 You should see something like the following in the console:
@@ -43,7 +43,7 @@ docker run -it \
   -p 9000:9000 \
   -p 8000:8000 \
   -p 8001:8001 \
-  up9inc/wiremock-studio:2.32.0-7
+  up9inc/wiremock-studio:{{site.data.misc.wiremock_studio_version}}
 ```
 
 Note that ports 8000 and 8001 that are exposed in this case are ports we expect
@@ -77,7 +77,7 @@ spec:
     spec:
       containers:
       - name: wiremock-studio
-        image: up9inc/wiremock-studio:2.32.0-7
+        image: up9inc/wiremock-studio:{{site.data.misc.wiremock_studio_version}}
         ports:
         - containerPort: 9000
         livenessProbe:
@@ -144,7 +144,7 @@ docker run -it \
   -p 9000:9000 \
   -p 8000:8000 \
   -v $PWD/wiremock:/home/wiremock \
-  up9inc/wiremock-studio:2.32.0-7
+  up9inc/wiremock-studio:{{site.data.misc.wiremock_studio_version}}
 ```
 
 This will mount the `wiremock` subdirectory under the current directory as the root.
