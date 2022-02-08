@@ -3,12 +3,11 @@
 <div class="masthead">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
+      <a href="{{ base_path }}/"><img src="{{ base_path}}/images/wireMockLogo.png" style="width: 160px; height: 20px" /></a>
       <nav id="site-nav" class="greedy-nav">
-        <button><div class="navicon"></div></button>
+        <!-- <button><div class="navicon"></div></button> -->
         <ul class="visible-links">
-          <li class="masthead__menu-item masthead__menu-item--lg">
-            <a href="{{ base_path }}/"><img src="{{ base_path}}/images/wiremock-concept-icon-01.png" style="width: 80px; height: 37px" /></a>
-          </li>
+          
           {% for link in site.data.navigation.main %}
             {% if link.url contains 'http' %}
               {% assign domain = '' %}
@@ -24,15 +23,22 @@
 
           {% endfor %}
 
-          <li class="masthead__menu-item">
-            <a href="http://get.mocklab.io/?utm_source=wiremock.org&utm_medium=primary-nav&utm_campaign=mocklab" title="MockLab" target="_blank">
-              <img src="{{ base_path}}/images/mocklab_logo_transparent.png" style="height: 23px; width: auto; margin-right: 5px; vertical-align: top;" />
-              MockLab
-            </a>
-          </li>
+          
         </ul>
-        <ul class="hidden-links hidden"></ul>
+        <!-- <ul class="hidden-links hidden"></ul> -->
       </nav>
+      <ul class="social-links">
+        <li>
+          <img src="{{ base_path}}/images/githubIcon.svg" />
+        </li>
+        <li>
+          <img src="{{ base_path}}/images/slackIcon.svg" />
+        </li>
+        
+        <li>
+          <img src="{{ base_path}}/images/twitterIcon.svg" />
+        </li>
+      </ul>
     </div>
   </div>
 </div>

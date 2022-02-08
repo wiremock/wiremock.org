@@ -3,11 +3,12 @@
    ========================================================================== */
 
 .masthead {
-    background-color: $dark-blue;
+    background-color: #fff;
     position: relative;
     animation: intro 0.3s both;
     animation-delay: 0.15s;
     z-index: 20;
+    border-bottom: 1px solid $head-border-bottom;
 
     &__inner-wrap {
         @include container;
@@ -30,6 +31,10 @@
 }
 
 .masthead__menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
     ul {
         margin: 0;
         padding: 0;
@@ -50,5 +55,17 @@
         font-size: $type-size-4;
         padding-right: 2em;
         font-weight: 700;
+    }
+}
+
+.social-links {
+    display: flex;
+    align-items: center;
+
+    li {
+        margin: 0 0 0 15px;
+        &:first-child {
+            margin-left: 0;
+        }
     }
 }
