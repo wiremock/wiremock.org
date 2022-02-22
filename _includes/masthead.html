@@ -29,7 +29,9 @@
       </nav>
       <ul class="social-links">
         <li>
-          <img src="{{ base_path}}/images/githubIcon.svg" />
+          <a href="http://github.com/{{ site.author.github }}" target="_blank">
+            <img src="{{ base_path}}/images/githubIcon.svg" />
+          </a>
         </li>
         <li>
           <img src="{{ base_path}}/images/slackIcon.svg" />
@@ -39,6 +41,29 @@
           <img src="{{ base_path}}/images/twitterIcon.svg" />
         </li>
       </ul>
+      <img id="hamburgerMenuIcon" class="hamburgerMenuIcon" src="{{ base_path}}/images/hamburgerMenuIcon.svg" />
+      <div id="overlay-menu" class="overlay-menu"></div>
+      <div class="mobile-menu-wrapper">
+        <img id="closeMenuIcon" class="closeMenuIcon" src="{{ base_path}}/images/closeMenuIcon.svg" />
+        <ul>
+          <li>link 1</li>
+          <li>test</li>
+        </ul>
+        <ul class="mobile-social-links">
+          <li>
+            <a href="http://github.com/{{ site.author.github }}" target="_blank">
+              <img src="{{ base_path}}/images/githubIcon.svg" />
+            </a>
+          </li>
+          <li>
+            <img src="{{ base_path}}/images/slackIcon.svg" />
+          </li>
+          
+          <li>
+            <img src="{{ base_path}}/images/twitterIcon.svg" />
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

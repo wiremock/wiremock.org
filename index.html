@@ -4,99 +4,302 @@ title: WireMock
 description: WireMock is a flexible API mocking tool for fast, robust and comprehensive testing.
 ---
 
-<div style="display: flex; justify-content: space-between; flex-wrap: wrap; margin-top: 3em; margin-bottom: -2em;">
-  <section class="homepage-section" style="margin-right: 2em; flex: 1; border-bottom: none;">
+<style>
+  #main {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+</style>
 
-    <h1 class="page__title homepage__title">WireMock</h1>
-    <h2 class="homepage__subtitle">Mock your APIs for fast, robust and comprehensive testing</h2>
-    <p>WireMock is a simulator for HTTP-based APIs. Some might consider it a <strong>service virtualization</strong> tool or a <strong>mock server</strong>.<br><br>
-      It enables you to <strong>stay productive</strong> when an API you depend on <strong>doesn't exist</strong> or isn't complete.
-      It supports testing of <strong>edge cases and failure modes</strong> that the real API won't reliably produce.
-      And because it's fast it can <strong>reduce your build time</strong> from hours down to minutes.<p>
-
-  </section>
-  <img class="code-shots__code-shot" src="/images/small-json-idea-shot.png" style="position: relative; top: -48px; height: 460px; width: auto;"/>
-</div>
-
-<section class="mocklab-section">
-  <div class="mocklab-section__screenshot-chrome">
-    <div style="margin-top: -8px; margin-left: 3px;">
-      <i class="fa fa-circle mocklab-section__screenshot-chrome-control" aria-hidden="true" style="color: #FF6259"></i>
-      <i class="fa fa-circle mocklab-section__screenshot-chrome-control" aria-hidden="true" style="color: #FFBD2E"></i>
-      <i class="fa fa-circle mocklab-section__screenshot-chrome-control" aria-hidden="true" style="color: #2AD043"></i>
+<div class="home-header-wrapper">
+  <div class="container">
+    <div class="home-header-title-wrapper">
+      <h2>Flexible mocking for HTTP APIs</h2>
     </div>
-
-    <img src="/images/mocklab/stub-form-screenshot-5.png" title="Stub form" class="mocklab-section__screenshot"/>
-  </div>
-
-  <div class="mocklab-section__copy">
-    <img src="/images/mocklab/Mocklab_Logo_4x.png" title="MockLab Logo" class="mocklab-section__logo" />
-
-    <p class="mocklab-section__copy-paragraph">
-      MockLab is a <strong>hosted API simulator</strong> built on WireMock, with an intuitive web UI, team collaboration and nothing to install.
-    </p>
-
-    <p class="mocklab-section__copy-paragraph">
-      The 100% compatible API supports drop-in replacement of the WireMock server with a single line of code.
-    </p>
-
-    <div class="mocklab-section__cta">
-      <a id="mocklab-callout-learn-more" href="http://get.mocklab.io/?utm_source=wiremock.org&utm_medium=homepage-callout_learn-more&utm_campaign=homepage_baseline" class="mocklab-cta mocklab-cta--secondary">Learn more</a>
-      <a id="mocklab-callout-try-it-now" href="https://app.mocklab.io/login?for=signup&utm_source=wiremock.org&utm_medium=homepage-callout_try-it-now&utm_campaign=homepage_baseline" class="mocklab-cta mocklab-cta--primary">Try it now</a>
+    <div class="home-header-description-wrapper">
+      <p>
+        <b>WireMock</b> is a tool for mocking HTTP-based APIs that runs in your unit tests, on your desktop or in your test environment.
+      </p>
     </div>
-
-  </div>
-
-</section>
-
-<div class="feature__wrapper">
-  <div class="feature__item">
-    <div class="archive__item">
-
-      <div class="archive__item-body"><h2 class="archive__item-title">Flexible Deployment</h2>
-        <div class="archive__item-excerpt">
-          <p>Run WireMock from within your Java application, JUnit test, Servlet container or as a standalone process.</p>
+    <div class="home-header-footer">
+        <div class="wiremock-card-info">
+          <div>
+            <img src="{{ base_path}}/images/wiremockTypeExample.svg" />
+            <h2>Open Source</h2>
+          </div>
+         
+          <p>
+            The core WireMock engine. Embed in your unit tests, or run as a standalone server anywhere there's Java or Docker available
+          </p>
+          <a class="btn-card-info">Download</a>
         </div>
-        <p><a href="/docs/getting-started/" class="btn">Learn More</a></p></div>
-    </div>
-  </div>
-  <div class="feature__item">
-    <div class="archive__item">
-
-      <div class="archive__item-body"><h2 class="archive__item-title">Powerful Request Matching</h2>
-        <div class="archive__item-excerpt">
-          <p>Match request URLs, methods, headers cookies and bodies using a wide variety of strategies. First class support for JSON and XML.</p>
+        <div class="wiremock-card-info">
+          <div>
+            <img src="{{ base_path}}/images/wiremockTypeExample.svg" />
+            <h2>Studio</h2>
+          </div>
+          <p>
+            A full UI for WireMock supporting multiple mock APIs, Swagger, OpenAPI and Postman imports. Run on your desktop or in your Kubernetes cluster.
+          </p>
+          <a class="btn-card-info btnDownload">Download</a>
         </div>
-        <p><a href="/docs/request-matching/" class="btn ">Learn More</a></p></div>
-    </div>
-  </div>
-  <div class="feature__item">
-    <div class="archive__item">
-
-      <div class="archive__item-body"><h2 class="archive__item-title">Record and Playback</h2>
-        <div class="archive__item-excerpt">
-          <p>Get up and running quickly by capturing traffic to and from an existing API.<br><br></p>
+        <div class="wiremock-card-info">
+          <div>
+            <img src="{{ base_path}}/images/wiremockTypeExample.svg" />
+            <h2>Cloud</h2>
+          </div>
+          <p>
+            Run your mock APIs in the cloud zero installation or deployment required. Share and collaborate with your team or partner organisations. Performance testing options available.
+          </p>
+          <a class="btn-card-info btnGetStarted">Get Started</a>
         </div>
-        <p><a href="/docs/record-playback/" class="btn ">Learn More</a></p></div>
     </div>
   </div>
 </div>
-
-<section class="homepage-section">
-  <h2 class="homepage-section__heading homepage-section__heading--centred">Who uses WireMock?</h2>
-  <div class="users-of">
-    <img src="/images/logos/Pivotal_WhiteOnTeal.png" alt="Pivotal" class="users-of__logo"/>
-    <img src="/images/logos/softwire-logo.jpg" alt="Softwire" class="users-of__logo"/>
-    <img src="/images/logos/Yenlo_logo_trans.png" alt="Yenlo" class="users-of__logo"/>
-    <img src="/images/logos/EW-logo.png" alt="Energized Work" class="users-of__logo"/>
-    <img src="/images/logos/sky-logo.png" alt="Sky" class="users-of__logo"/>
-    <img src="/images/logos/The_Guardian_logo.png" alt="The Guardian" class="users-of__logo"/>
-    <img src="/images/logos/FT-Logo.jpg" alt="The Financial Times" class="users-of__logo"/>
-    <img src="/images/logos/intuit_blue.gif" alt="Intuit" class="users-of__logo" style="height: 70px;"/>
-    <img src="/images/logos/Piksel_master.png" alt="Piksel" class="users-of__logo" style="height: 70px;"/>
-
+<div class="main-wrapper">
+  <div class="container clients-wrapper">
+    <div class="client-wrapper">
+      <img src="{{base_path}}/images/clients/pivotal.png" />
+    </div>
+    <div class="client-wrapper">
+      <img src="{{base_path}}/images/clients/softwire.jpg" />
+    </div>
+    <div class="client-wrapper">
+      <img src="{{base_path}}/images/clients/yenlo.png" />
+    </div>
+    <div class="client-wrapper">
+      <img src="{{base_path}}/images/clients/em.png" />
+    </div>
+    <div class="client-wrapper">
+      <img src="{{base_path}}/images/clients/sky.png" />
+    </div>
+    <div class="client-wrapper">
+      <img src="{{base_path}}/images/clients/theguardian.png" />
+    </div>
+    <div class="client-wrapper">
+      <img src="{{base_path}}/images/clients/ft.png" />
+    </div>
+    <div class="client-wrapper">
+      <img src="{{base_path}}/images/clients/intuit.png" />
+    </div>
+    <div class="client-wrapper">
+      <img src="{{base_path}}/images/clients/piksel.png" />
+    </div>
   </div>
-</section>
+  <div class="container code-tabs-wrapper">
+    <div class="code-tabs-row">
+      <div class="code-tabs-sidebar-wrapper">
+        <div class="code-tabs-sidebar">
+          <div class="code-tabs-example-card">
+            <img src="{{base_path}}/images/maven.png" />
+          </div>
+          <div class="code-tabs-example-card">
+            <img src="{{base_path}}/images/elephantIcon.png" />
+          </div>
+          <div class="code-tabs-example-card">
+            <img src="{{base_path}}/images/kotlin.png" />
+          </div>
+          <div class="code-tabs-example-card">
+            <img src="{{base_path}}/images/ivy.png" />
+          </div>
+          <div class="code-tabs-example-card">
+            <img src="{{base_path}}/images/sbt.png" />
+          </div>
+          <div class="code-tabs-example-card">
+            <img src="{{base_path}}/images/groovy.png" />
+          </div>
+        </div>
+      </div>
+      <div class="code-tabs-main">
+        <div class="code-tabs-main-wrapper">
+          <ul>
+            <li class="">Maven</li>
+            <li>Gradle</li>
+            <li class="">Kotlin</li>
+            <li class="">Scala SBT</li>
+            <li class="">Apache Ivy</li>
+            <li class="active-tab-example">Groovy Grape</li>
+          </ul>
+          <div class="code-tabs-main-example">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="code-tabs-footer">
+      <div class="ctIMGWrapper">
+        <img src="{{base_path}}/images/codeTabsFootergithubIcon.svg" width="27" height="26" />
+      </div>
+      <div class="ct-github-info-wrapper">
+
+        <div class="github-card-info-wrapper">
+          <div class="github-card-info">
+            <img src="{{base_path}}/images/ctStarIcon.svg"/>
+            <span>Star</span>
+          </div>
+          <div class="github-card-info-right">
+            <span>4.8</span>
+          </div>
+        </div>
+        <div class="github-card-info-wrapper">
+          <div class="github-card-info">
+            <img src="{{base_path}}/images/ctUserIcon.svg"/>
+            <span>Users</span>
+          </div>
+          <div class="github-card-info-right">
+            <span>5k+</span>
+          </div>
+        </div>
+        <div class="github-card-info-wrapper">
+          <div class="github-card-info">
+            <img src="{{base_path}}/images/ctDownloadIcon.svg"/>
+            <span>Downloads</span>
+          </div>
+          <div class="github-card-info-right">
+            <span>1.2k</span>
+          </div>
+        </div>
+
+      </div>
+      <a href="#" class="ctDownloadBTN">
+        <img src="{{base_path}}/images/ctGithubDownloadIcon.svg" />
+        <span>Download on Github</span>
+      </a>
+    </div>
+  </div>
+  <div class="container wiremock-studio-wrapper">
+      <div class="wiremock-studio-img-wrapper">
+        <img class="wiremock-studio-img" src="{{base_path}}/images/wiremockDashboard.png" />
+      </div>
+      <div class="wiremock-studio-vLine"></div>
+      <div class="wiremock-studio-details">
+        <img src="{{ base_path}}/images/wiremockTypeExample.svg" />
+        <h3>Studio</h3>
+        <p class="p-margin-studio p-width-studio">
+          WireMock Studio is tool built on top of the core WireMock engine, bringing a full web UI, management of multiple mock APIs and support for OpenAPI and Postman.
+        </p>
+        <p class="p-width-studio">
+          It can run on your laptop, in Docker or in your test environment, and has exactly the same data format as the underlying WireMock engine, so it's easy to reuse mock APIs or test code you've already created.
+        </p>
+        <div class="wiremock-studio-links-wrapper">
+          <a class="btn-card-info btnDownload">Download</a>
+          <a class="btn-card-info btnLearnMore">Learn More</a>
+        </div>
+        
+    </div>
+  </div> 
+</div>
+<div class="key-features-wrapper">
+    <h2 class="keyFeaturesTXT">Key Features</h2>
+    <div class="container key-features-grid">
+      <div class="key-features-card">
+        <img src="{{ base_path}}/images/requestIcon.svg" />
+        <p>
+          Advanced request
+        </p>
+        <p>
+          matching
+        </p>
+      </div>
+      <div class="key-features-card">
+        <img src="{{ base_path}}/images/responseIcon.svg" />
+        <p>
+          Dynamic response
+        </p>
+        <p>
+          templating
+        </p>
+      </div>
+      <div class="key-features-card">
+        <img src="{{ base_path}}/images/unitTestIcon.svg" />
+        <p>
+          Run in your unit tests, on your
+        </p>
+        <p>
+          laptop or in your test environment.
+        </p>
+      </div>
+      <div class="key-features-card">
+        <img src="{{ base_path}}/images/faultIcon.svg" />
+        <p>
+          Fault and latency
+        </p>
+        <p>
+          injection
+        </p>
+      </div>
+      <div class="key-features-card">
+        <img src="{{ base_path}}/images/recordIcon.svg" />
+        <p>
+          Record / Playback
+        </p>
+      </div>
+      <div class="key-features-card">
+        <img src="{{ base_path}}/images/httpIcon.svg" />
+        <p>
+          Java, Python, HTTP and
+        </p>
+        <p>
+          JSON file APIs
+        </p>
+      </div>
+    </div>
+    <div class="container key-features-btn-full">
+      <a class="btn-card-info btnGetStarted">Full Documentation</a>
+    </div>
+</div>
+<div class="container apis-wrapper">
+  <h2 class="apisTxt">APIs</h2>
+  <span class="apisDescription">Common use cases library</span>
+  <div class="apis-card-wrapper">
+    <div class="apis-card">
+      <div class="apis-card-img-wrapper">
+        <img src="{{ base_path}}/images/paypalIcon.png" />
+      </div>
+      <h4><b>PayPal</b> API</h4>
+      <p>
+        Lorem ipsum dolor sit amet, ipsum  consectetur adipiscing elit vlout set ipsum lorem
+      </p>
+    </div>
+    <div class="apis-card">
+      <div class="apis-card-img-wrapper">
+        <img src="{{ base_path}}/images/paypalIcon.png" />
+      </div>
+      <h4><b>PayPal</b> API</h4>
+      <p>
+        Lorem ipsum dolor sit amet, ipsum  consectetur adipiscing elit vlout set ipsum lorem
+      </p>
+    </div>
+    <div class="apis-card">
+      <div class="apis-card-img-wrapper">
+        <img src="{{ base_path}}/images/paypalIcon.png" />
+      </div>
+      <h4><b>PayPal</b> API</h4>
+      <p>
+        Lorem ipsum dolor sit amet, ipsum  consectetur adipiscing elit vlout set ipsum lorem
+      </p>
+    </div>
+    <div class="apis-card">
+      <div class="apis-card-img-wrapper">
+        <img src="{{ base_path}}/images/paypalIcon.png" />
+      </div>
+      <h4><b>PayPal</b> API</h4>
+      <p>
+        Lorem ipsum dolor sit amet, ipsum  consectetur adipiscing elit vlout set ipsum lorem
+      </p>
+    </div>
+    <div class="apis-card">
+      <div class="apis-card-img-wrapper">
+        <img src="{{ base_path}}/images/paypalIcon.png" />
+      </div>
+      <h4><b>PayPal</b> API</h4>
+      <p>
+        Lorem ipsum dolor sit amet, ipsum  consectetur adipiscing elit vlout set ipsum lorem
+      </p>
+    </div>
+  </div>
+</div>
 
 <script type="text/javascript">
   window.suppressMockLabPopover = true;
