@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+(cd ../wiremock.org-preview && git pull origin gh-pages)
+
 bundle exec jekyll build
 cp -rf _site/* ../wiremock.org-preview/
 
