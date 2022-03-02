@@ -10,6 +10,48 @@ description: WireMock is a flexible API mocking tool for fast, robust and compre
     margin: 0 !important;
     padding: 0 !important;
 }
+
+.codeTabDescription {
+    margin: 0px !important;
+    padding: 0px !important;
+    font-family: "Ubuntu";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: #000;
+}
+
+.code-tabs-main-example {
+  padding: 30px;
+}
+
+.code-tabs-main-example .highlight {
+  background: #F0F5FF;
+  border: 1px solid #D2DFF9;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.codeSnippet {
+  display: none;
+  width: 100%;
+  position: relative;
+}
+
+.codeSnippet.activeCodeSnippet {
+  display: block;
+}
+
+.code-tabs-main {
+  width: 1018px;
+}
+
+@media (max-width:670px) {
+  .code-tabs-main {
+    width: 100% !important;
+  }
+}
+
 </style>
 
 <div class="home-header-wrapper">
@@ -114,16 +156,42 @@ description: WireMock is a flexible API mocking tool for fast, robust and compre
       <div class="code-tabs-main">
         <div class="code-tabs-main-wrapper">
           <ul>
-            <li class="">Maven</li>
-            <li>Gradle</li>
-            <li class="">Kotlin</li>
-            <li class="">Scala SBT</li>
-            <li class="">Apache Ivy</li>
-            <li class="active-tab-example">Groovy Grape</li>
+            <li class="active-tab-example">Maven</li>
+            <li>Gradle Groovy</li>
+            <li>Gradle Kotlin</li>
+            <li>Scala SBT</li>
           </ul>
           <div class="code-tabs-main-example">
-
+            <div class="codeSnippet activeCodeSnippet" data-snippettab="maven">
+              <h4 class="codeTabDescription">Add the following to your project's pom.xml dependencies:</h4>
+{% highlight xml %}
+<dependency>
+  <groupId>com.github.tomakehurst</groupId>
+  <artifactId>wiremock-jre8</artifactId>
+  <version>2.32.0</version>
+  <scope>test</scope>
+</dependency>
+{% endhighlight %}
           </div>
+          <div class="codeSnippet" data-snippettab="gradle groovy">
+            <h4 class="codeTabDescription">Add the following to your project's build.gradle:</h4>
+{% highlight groovy %}
+testImplementation "com.github.tomakehurst:wiremock-jre8:2.32.0"
+{% endhighlight %}
+          </div>
+          <div class="codeSnippet" data-snippettab="gradle kotlin">
+            <h4 class="codeTabDescription">Add the following to your project's build.gradle.kts:</h4>
+{% highlight kotlin %}
+testImplementation("com.github.tomakehurst:wiremock-jre8:2.32.0")
+{% endhighlight %}
+          </div>
+          <div class="codeSnippet" data-snippettab="scala sbt">
+            <h4 class="codeTabDescription">Add the following to your project’s build.sbt:</h4>
+{% highlight scala %}
+libraryDependencies += "com.github.tomakehurst" % "wiremock-jre8" % "2.32.0" % Test
+{% endhighlight %}
+          </div>
+            </div> 
         </div>
       </div>
     </div>

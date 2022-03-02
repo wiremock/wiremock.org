@@ -1,21 +1,35 @@
 # main links links
 main:
-    - title: "Docs"
+    - title: "Products"
+      subnav: "products"
+      subnavLinks:
+          - name: "Wiremock Studio"
+            subnavLink: /studio
+          - name: "Wiremock Cloud"
+            subnavLink: "https://mocklab.io"
+
+    - title: "Support"
+
+    - title: "Community"
+      subnav: "community"
+      subnavLinks:
+          - name: "Github"
+            subnavLink: "https://github.com/wiremock/wiremock"
+          - name: "Contributing"
+            subnavLink: "https://github.com/wiremock/wiremock/blob/master/CONTRIBUTING.md"
+          - name: "Resources"
+            subnavLink: /resources
+
+    - title: "Documentation"
       url: /docs/
 
-    - title: "News"
-      url: /news/
+    # - title: "GitHub"
+    #   url: "https://github.com/tomakehurst/wiremock"
+    #   new_window: true
 
-    - title: "About"
-      url: /about/
+    # - title: "Mailing List"
+    #   url: "https://groups.google.com/forum/#!forum/wiremock-user"
+    #   new_window: true
 
-    - title: "GitHub"
-      url: "https://github.com/tomakehurst/wiremock"
-      new_window: true
-
-    - title: "Mailing List"
-      url: "https://groups.google.com/forum/#!forum/wiremock-user"
-      new_window: true
-
-    - title: "External Resources"
-      url: /external-resources/
+    # - title: "External Resources"
+    #   url: /external-resources/

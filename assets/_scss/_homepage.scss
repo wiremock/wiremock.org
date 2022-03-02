@@ -181,7 +181,7 @@
 
     .code-tabs-main {
         border-top-right-radius: 50px;
-        width: 100%;
+        width: 1018px;
         background-color: #f8fafe;
 
         .code-tabs-main-wrapper {
@@ -226,10 +226,11 @@
                 border: 1px solid #d2dff9;
                 border-radius: 0px 7px 7px 7px;
                 background-color: #fff;
-                height: 420px;
+                min-height: 420px;
             }
         }
     }
+
     .code-tabs-footer {
         display: flex;
         align-items: center;

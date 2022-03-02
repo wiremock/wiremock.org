@@ -1,5 +1,64 @@
 {% include base_path %}
 
+<style>
+  .navlink {
+    position: relative !important;
+    color: #7d93bd;
+    padding-bottom: 0.7rem;
+    cursor: pointer;
+  }
+
+  .divSubNav {
+    position: relative;
+    cursor: default;
+    padding: 10px 15px;
+    display: none;
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 32px;
+    width: fit-content;
+    background: #FFFFFF;
+    box-shadow: 0px -5px 20px rgba(210, 223, 249, 0.5);
+  }
+
+  .divSubNav::before {
+    position: absolute;
+    content: "";
+    left: 15px;
+    width: 0; 
+    height: 0; 
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 7px solid #fff;
+    top: -7px;
+  }
+
+  .divSubNav a {
+    padding: 0 !important;
+    margin: 0 0 5px 0;
+    width: fit-content !important;
+  }
+
+  .divSubNav a:last-child {
+    margin-bottom: 0;
+  }
+
+  .divSubNav a::before {
+    background: none !important;
+    
+  }
+
+  .navlink:hover > .divSubNav {
+    display: block;
+  }
+
+  .navlink::before {
+    background: unset !important;
+  }
+  
+</style>
+
 <div class="masthead">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
@@ -15,15 +74,45 @@
               {% assign domain = base_path %}
             {% endif %}
 
+            {% if link.subnav %} 
+              {% assign subnavLink = "navlink" %}
+              {% assign subnav = link.subnav %} 
+              {% else %}
+              {% assign subnavLink = "base_path" %}
+              {% assign subnav = "" %} 
+            {% endif %}
+
             {% if link.new_window %}
             <li class="masthead__menu-item"><a href="{{ domain }}{{ link.url }}" title="{{ link.title }}" target="_blank">{{ link.title }}</a></li>
             {% else %}
-            <li class="masthead__menu-item"><a href="{{ domain }}{{ link.url }}" title="{{ link.title }}">{{ link.title }}</a></li>
+            
+            <li class="masthead__menu-item">
+              {% if link.subnav %}
+                <span class="{{subnavLink}}">
+                  {{ link.title }}
+
+                  {% if link.subnav %}
+                  <div class="divSubNav">
+                    {% for subnavigation in link.subnavLinks %}
+                      <a href="{{ subnavigation.subnavLink }}">
+                        {{ subnavigation.name }}
+                      </a>
+                    {% endfor %}
+                  </div>
+                  {% endif %}
+                </span>
+              {% else %}
+                <a class="{{subnavLink}}" href="{{ domain }}{{ link.url }}" title="{{ link.title }}">
+                  {{ link.title }}
+                </a>
+              {% endif %}
+              
+            </li>
+            
             {% endif %}
 
           {% endfor %}
 
-          
         </ul>
         <!-- <ul class="hidden-links hidden"></ul> -->
       </nav>
@@ -46,8 +135,12 @@
       <div class="mobile-menu-wrapper">
         <img id="closeMenuIcon" class="closeMenuIcon" src="{{ base_path}}/images/closeMenuIcon.svg" />
         <ul>
-          <li>link 1</li>
-          <li>test</li>
+          <li><a href="/studio">Wiremock Studio</a></li>
+          <li><a href="https://mocklab.io" target="_blank">Wiremock Cloud</a></li>
+          <li><a href="https://github.com/wiremock/wiremock" target="_blank">Github</a></li>
+          <li><a href="https://github.com/wiremock/wiremock/blob/master/CONTRIBUTING.md" target="_blank">Contributing</a></li>
+          <li><a href="/resources">Resources</a></li>
+          <li><a href="/docs">Documentation</a></li>
         </ul>
         <ul class="mobile-social-links">
           <li>
