@@ -9,6 +9,7 @@ main:
             subnavLink: "https://mocklab.io"
 
     - title: "Support"
+      url: /support
 
     - title: "Community"
       subnav: "community"
@@ -22,14 +23,3 @@ main:
 
     - title: "Documentation"
       url: /docs/
-
-    # - title: "GitHub"
-    #   url: "https://github.com/tomakehurst/wiremock"
-    #   new_window: true
-
-    # - title: "Mailing List"
-    #   url: "https://groups.google.com/forum/#!forum/wiremock-user"
-    #   new_window: true
-
-    # - title: "External Resources"
-    #   url: /external-resources/

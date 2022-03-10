@@ -1,3 +1,4 @@
+.splash,
 .resources-container {
     h1,
     h2,
@@ -15,13 +16,27 @@
     margin-right: auto;
     padding: 50px 0;
 
-    h2 {
+    h1 {
         font-family: "Ubuntu";
         font-style: normal;
         font-weight: bold;
         font-size: 2.8rem;
         color: #18253d;
         border: none !important;
+
+        &:hover {
+            border: none !important;
+        }
+    }
+
+    h2 {
+        font-family: "Ubuntu";
+        font-style: normal;
+        font-weight: bold;
+        font-size: 2rem;
+        color: #18253d;
+        border: none !important;
+        margin-top: 30px !important;
 
         &:hover {
             border: none !important;
