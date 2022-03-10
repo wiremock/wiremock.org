@@ -19,7 +19,7 @@ main:
           - name: "Contributing"
             subnavLink: "https://github.com/wiremock/wiremock/blob/master/CONTRIBUTING.md"
           - name: "Resources"
-            subnavLink: /resources
+            subnavLink: /external-resources
 
     - title: "Documentation"
       url: /docs/
