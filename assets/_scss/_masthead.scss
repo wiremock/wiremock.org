@@ -47,7 +47,11 @@
     display: block;
     list-style-type: none;
     white-space: nowrap;
-    font-size: 16px;
+    font-family: "Ubuntu";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    // font-size: 16px;
 
     &--lg {
         font-family: "McLaren", "Segoe UI", "Helvetica Neue", "Lucida Grande",
@@ -63,7 +67,7 @@
     align-items: center;
 
     li {
-        margin: 0 0 0 15px;
+        margin: 0 0 0 20px;
         &:first-child {
             margin-left: 0;
         }

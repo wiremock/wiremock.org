@@ -174,8 +174,8 @@
 
     a {
         display: block;
-        margin: 0 1rem;
-        padding: 0.5rem 0;
+        margin: 0 3rem;
+        padding: 0 0;
         color: $head-nav-links;
         text-decoration: none;
 
@@ -201,7 +201,8 @@
 
         li {
             display: table-cell;
-            vertical-align: middle;
+            // vertical-align: middle;
+            // margin-top: 2px;
 
             &:first-child {
                 font-weight: bold;

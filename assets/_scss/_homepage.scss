@@ -9,7 +9,76 @@
         padding: 0 !important;
         border: none !important;
     }
-    background: $general-background;
+    background: linear-gradient(#fff 100%, rgba(210, 223, 249, 0));
+
+    .home-header-container {
+        position: relative;
+    }
+    .home-header-leftHeaderHP {
+        background: url(../../images/leftHeaderHP.png);
+        position: absolute;
+        left: 0;
+        width: 45%;
+        height: 615px;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        -webkit-transform: translateY(0%);
+        transform: translateY(0%);
+        mix-blend-mode: luminosity;
+        -webkit-filter: blur(5px);
+        filter: blur(5px);
+        opacity: 0.8;
+        -webkit-transition: -webkit-transform 0.7s;
+        transition: -webkit-transform 0.7s;
+        transition: transform 0.7s;
+        transition: transform 0.7s, -webkit-transform 0.7s;
+    }
+
+    .home-header-rightHeaderHP {
+        background: url(../../images/rightHeaderHP.png);
+        position: absolute;
+        right: 0;
+        width: 45%;
+        height: 615px;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        -webkit-transform: translateY(0%);
+        transform: translateY(0%);
+        mix-blend-mode: luminosity;
+        -webkit-filter: blur(5px);
+        filter: blur(5px);
+        opacity: 0.5;
+        -webkit-transition: -webkit-transform 0.5s;
+        transition: -webkit-transform 0.5s;
+        transition: transform 0.5s;
+        transition: transform 0.5s, -webkit-transform 0.5s;
+    }
+    .headerHoverCard {
+        opacity: 1;
+        -webkit-filter: blur(0px);
+        filter: blur(0px);
+        mix-blend-mode: unset;
+        -webkit-transform: scale(0.7);
+        transform: scale(0.7);
+    }
+    .headerHoverCardOpenStuio {
+        box-shadow: inset -100px 0px 20px 20px rgba(255, 255, 255, 0.9);
+    }
+    .headerHoverCardStudio {
+        box-shadow: inset 223px 0px 20px 0px rgba(255, 255, 255, 0.6);
+    }
+}
+
+.wiremockIMGwidth {
+    width: 123px;
+}
+
+#openSourceCard:hover {
+    border: 1px solid #18253d;
+}
+
+#studioCard:hover {
+    border: 1px solid #f59121;
 }
 
 .container {
@@ -26,7 +95,7 @@
     border-radius: 4px;
     font-family: "Ubuntu";
     font-style: normal;
-    font-weight: 600;
+    font-weight: normal;
     font-size: 16px;
     color: #fff;
     padding: 5px 10px;
@@ -52,13 +121,13 @@
 }
 
 .home-header-title-wrapper {
-    padding-top: 3rem;
+    padding-top: 2.5rem;
 
     h2 {
         font-family: "Ubuntu";
         font-style: normal;
         font-weight: bold;
-        font-size: 2.8rem;
+        font-size: 60px;
         color: #18253d;
         text-align: center;
     }
@@ -67,7 +136,7 @@
 .home-header-description-wrapper {
     display: flex;
     justify-content: center;
-    padding-top: 3.2rem;
+    padding-top: 2.5rem;
 
     p {
         width: 540px;
@@ -82,14 +151,15 @@
 .home-header-footer {
     display: flex;
     justify-content: center;
-    padding: 3.2rem 0;
+    padding: 2.5rem 0;
 
     .wiremock-card-info {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        align-items: center;
         width: 267px;
-        height: 250px;
+        height: 230px;
         background-color: #fff;
         border: 1px solid #d2dff9;
         border-radius: 8px;
@@ -97,15 +167,47 @@
         margin-left: 30px;
         filter: drop-shadow(0px 10px 0px rgba(210, 223, 249, 0.3));
 
+        .wiremock-card-info-header {
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+
+        .link-card-info {
+            display: flex;
+            a {
+                margin-right: 5px;
+                cursor: pointer;
+                font-family: "Ubuntu";
+                font-style: normal;
+                font-weight: 600;
+                font-size: 16px;
+                color: #18253d;
+                border-bottom: 1px solid #18253d;
+                padding-bottom: 1px;
+
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+
         h2 {
             font-family: "Ubuntu";
             font-style: normal;
             font-weight: bold;
             color: #000000;
+            padding-top: 10px !important;
         }
 
         p {
-            height: 90px;
+            text-align: center;
+            min-height: 74px;
             font-family: "Ubuntu";
             font-style: normal;
             font-weight: normal;
@@ -115,6 +217,12 @@
 
         &:first-child {
             margin-left: 0;
+        }
+
+        &:last-of-type {
+            a {
+                color: #f59121;
+            }
         }
     }
 }
@@ -267,7 +375,7 @@
         }
         .ct-github-info-wrapper {
             display: flex;
-            margin: 0 20px;
+            margin: 0 40px;
         }
 
         .github-card-info-wrapper {
@@ -290,12 +398,29 @@
             img {
                 padding-right: 5px;
             }
+
+            span {
+                font-family: SF_Pro;
+                font-style: normal;
+                font-weight: 600;
+                font-size: 12px;
+                padding: 5px 0;
+            }
         }
         .github-card-info-right {
             border-left: 1px solid rgba(27, 31, 35, 0.15);
             background-color: #fff;
             border-radius: 0px 6px 6px 0px;
             padding: 0 10px;
+            display: flex;
+
+            span {
+                font-family: SF_Pro;
+                font-style: normal;
+                font-weight: 600;
+                font-size: 12px;
+                padding: 5px 0;
+            }
         }
     }
 }
@@ -311,7 +436,7 @@
 
     .wiremock-studio-img-wrapper {
         width: 536px;
-        padding: 40px 0;
+        padding: 65px 0;
     }
 
     .wiremock-studio-img {
@@ -324,7 +449,10 @@
 
     .wiremock-studio-details {
         width: 536px;
-        padding: 40px 0;
+        padding: 65px 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
 
         h3 {
             margin: 0;
@@ -332,7 +460,7 @@
             font-family: "Ubuntu";
             font-style: normal;
             font-weight: bold;
-            font-size: 45px;
+            font-size: 50px;
             color: #18253d;
         }
 
@@ -349,7 +477,10 @@
         }
 
         .p-width-studio {
-            width: 80%;
+            width: 65%;
+            &:last-of-type {
+                margin-bottom: 0;
+            }
         }
         .wiremock-studio-links-wrapper {
             display: flex;
@@ -363,20 +494,20 @@
     padding: 70px 0;
     .keyFeaturesTXT {
         margin: 0;
-        padding-bottom: 50px;
+        padding-bottom: 90px;
         text-align: center;
         font-family: "Ubuntu";
         font-style: normal;
         font-weight: bold;
         color: #18253d;
-        font-size: 2rem;
+        font-size: 50px;
         border-bottom: none;
     }
     .key-features-grid {
         display: grid;
         grid-template-columns: auto auto auto;
         justify-items: center;
-        row-gap: 50px;
+        row-gap: 90px;
     }
     .padding-grid-top {
         padding-top: 50px !important;
@@ -394,9 +525,9 @@
         filter: drop-shadow(0px 10px 0px rgba(210, 223, 249, 0.3));
 
         img {
-            width: 41px;
-            height: 41px;
-            padding-bottom: 10px;
+            width: 40px;
+            height: 40px;
+            margin-bottom: 20px;
         }
 
         p {
@@ -413,7 +544,7 @@
     .key-features-btn-full {
         display: flex;
         justify-content: center;
-        padding-top: 50px;
+        padding-top: 90px;
     }
 }
 
@@ -593,6 +724,11 @@
                     margin-top: 0;
                 }
             }
+        }
+    }
+    .p-width-studio {
+        &:last-of-type {
+            margin-bottom: 20px !important;
         }
     }
 }

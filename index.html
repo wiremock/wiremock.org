@@ -55,9 +55,12 @@ description: WireMock is a flexible API mocking tool for fast, robust and compre
 </style>
 
 <div class="home-header-wrapper">
-  <div class="container">
+  <div class="home-header-leftHeaderHP"></div>
+  <div class="home-header-rightHeaderHP"></div>
+  <div class="container home-header-container">
     <div class="home-header-title-wrapper">
-      <h2>Flexible mocking for HTTP APIs</h2>
+      <h2>Flexible mocking for</h2>
+      <h2>HTTP APIs</h2>
     </div>
     <div class="home-header-description-wrapper">
       <p>
@@ -65,37 +68,38 @@ description: WireMock is a flexible API mocking tool for fast, robust and compre
       </p>
     </div>
     <div class="home-header-footer">
-        <div class="wiremock-card-info">
-          <div>
-            <img src="{{ base_path}}/images/wiremockTypeExample.svg" />
+        <div id="openSourceCard" class="wiremock-card-info">
+          <div class="wiremock-card-info-header">
+            <img  src="/images/wiremockTypeExample.svg">
             <h2>Open Source</h2>
           </div>
          
           <p>
             The core WireMock engine. Embed in your unit tests, or run as a standalone server anywhere there's Java or Docker available
           </p>
-          <a class="btn-card-info">Download</a>
+          <div class="link-card-info">
+            <a>
+              Get Started
+            </a>
+            <img src="/images/openSourceRightIcon.svg" />
+          </div>
         </div>
-        <div class="wiremock-card-info">
-          <div>
-            <img src="{{ base_path}}/images/wiremockTypeExample.svg" />
+        <div id="studioCard" class="wiremock-card-info">
+          <div class="wiremock-card-info-header">
+            <img src="/images/wiremockTypeExample.svg">
             <h2>Studio</h2>
           </div>
           <p>
             A full UI for WireMock supporting multiple mock APIs, Swagger, OpenAPI and Postman imports. Run on your desktop or in your Kubernetes cluster.
           </p>
-          <a class="btn-card-info btnDownload">Download</a>
-        </div>
-        <div class="wiremock-card-info">
-          <div>
-            <img src="{{ base_path}}/images/wiremockTypeExample.svg" />
-            <h2>Cloud</h2>
+          <div class="link-card-info">
+            <a>
+              Get Started
+            </a>
+            <img src="/images/studioRightIcon.svg" />
           </div>
-          <p>
-            Run your mock APIs in the cloud zero installation or deployment required. Share and collaborate with your team or partner organisations. Performance testing options available.
-          </p>
-          <a class="btn-card-info btnGetStarted">Get Started</a>
         </div>
+        
     </div>
   </div>
 </div>
@@ -242,7 +246,7 @@ libraryDependencies += "com.github.tomakehurst" % "wiremock-jre8" % "2.32.0" % T
       </div>
       <div class="wiremock-studio-vLine"></div>
       <div class="wiremock-studio-details">
-        <img src="{{ base_path}}/images/wiremockTypeExample.svg" />
+        <img class="wiremockIMGwidth" src="{{ base_path}}/images/wiremockTypeExample.svg" />
         <h3>Studio</h3>
         <p class="p-margin-studio p-width-studio">
           WireMock Studio is tool built on top of the core WireMock engine, bringing a full web UI, management of multiple mock APIs and support for OpenAPI and Postman.
@@ -317,7 +321,7 @@ libraryDependencies += "com.github.tomakehurst" % "wiremock-jre8" % "2.32.0" % T
       <a class="btn-card-info btnGetStarted">Full Documentation</a>
     </div>
 </div>
-<div class="container apis-wrapper">
+<!-- <div class="container apis-wrapper">
   <h2 class="apisTxt">APIs</h2>
   <span class="apisDescription">Common use cases library</span>
   <div class="apis-card-wrapper">
@@ -367,7 +371,7 @@ libraryDependencies += "com.github.tomakehurst" % "wiremock-jre8" % "2.32.0" % T
       </p>
     </div>
   </div>
-</div>
+</div> -->
 
 <script type="text/javascript">
   window.suppressMockLabPopover = true;

@@ -3,6 +3,10 @@
    ========================================================================== */
 
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap");
+@font-face {
+    font-family: SF_Pro;
+    src: url(../onts/SF_Pro.ttf);
+}
 
 .page__footer {
     @include full();
@@ -50,6 +54,10 @@
 
     .footer-copyright-description {
         margin-top: 0.8rem;
+        font-size: 14px;
+        font-family: "Ubuntu";
+        font-style: normal;
+        font-weight: 400;
     }
 
     .footer-social-links {
@@ -60,7 +68,7 @@
         padding: 0;
 
         li {
-            margin: 0 0 0 30px !important;
+            margin: 0 0 0 15px !important;
 
             &:first-child {
                 margin-left: 0 !important;
