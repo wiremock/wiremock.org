@@ -1,8 +1,9 @@
 ---
 layout: docs
 title: Multi-domain Mocking
+meta_title: Multi-domain Mocking | WireMock
 toc_rank: 66
-description: Using proxying to mock multiple domains in a single WireMock instance.
+description: A typical usage pattern is to run a WireMock instance per API you need to mock and configure your app to treat these instances as endpoints.
 ---
 
 A typical usage pattern is to run a WireMock instance per API you need to mock and configure your app to treat these instances
@@ -19,13 +20,15 @@ The key steps to enabling this configuration are:
 
 The following sections detail how to achieve this in various deployment contexts.
 
-
 ## Configuring for JUnit Jupiter
+
 The simplest way to enable this mode if you're using JUnit Jupiter it to toggle it on via the `WireMockExtension`. See the
 [Junit Jupiter Proxy Mode](/docs/junit-jupiter/#proxy-mode) for details.
 
 ## Configuring for JUnit 4.x
+
 To use this mode with the JUnit 4.x rule we:
+
 1. Create the rule as usual with browser proxying enabled.
 2. Ensure our HTTP client (the one used by our app to talk to the API we're mocking) honours the system properties relating to proxy servers.
 3. Set the proxy properties using `JvmProxyConfigurer` before each test case and unset them afterwards.
@@ -39,7 +42,7 @@ public class MultiDomainJUnit4Test {
         .dynamicPort()
         .enableBrowserProxying(true)
   );
-  
+
   HttpClient httpClient = HttpClientBuilder.create()
     .useSystemProperties() // This must be enabled for auto proxy config
     .build();
@@ -53,7 +56,7 @@ public class MultiDomainJUnit4Test {
   public void cleanup() {
     JvmProxyConfigurer.restorePrevious();
   }
-  
+
   @Test
   public void testViaProxy() throws Exception {
       wm.stubFor(get("/things")
@@ -63,11 +66,11 @@ public class MultiDomainJUnit4Test {
       wm.stubFor(get("/things")
         .withHost(equalTo("my.second.domain"))
         .willReturn(ok("Domain 2")));
-      
+
       HttpResponse response = httpClient.execute(new HttpGet("http://my.first.domain/things"));
       String responseBody = EntityUtils.toString(response.getEntity());
       assertEquals("Domain 1", responseBody);
-      
+
       response = httpClient.execute(new HttpGet("http://my.second.domain/things"));
       responseBody = EntityUtils.toString(response.getEntity());
       assertEquals("Domain 2", responseBody);
@@ -76,7 +79,9 @@ public class MultiDomainJUnit4Test {
 ```
 
 ## Configuring for other Java
+
 To use this mode from Java code we:
+
 1. Create and start a `WireMockServer` instance with browser proxying enabled.
 2. Ensure our HTTP client (the one used by our app to talk to the API we're mocking) honours the system properties relating to proxy servers
 3. Set the proxy properties using `JvmProxyConfigurer` before each bit of work and unset them afterwards.
@@ -93,7 +98,7 @@ public void testViaProxyUsingServer() throws Exception {
   HttpClient httpClient = HttpClientBuilder.create()
     .useSystemProperties() // This must be enabled for auto proxy config
     .build();
-  
+
   JvmProxyConfigurer.configureFor(wireMockServer);
 
   wireMockServer.stubFor(get("/things")

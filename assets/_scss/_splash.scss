@@ -36,7 +36,7 @@
         font-size: 2rem;
         color: #18253d;
         border: none !important;
-        margin-top: 30px !important;
+        margin-top: 30px;
 
         &:hover {
             border: none !important;
@@ -60,6 +60,15 @@
         color: #18253d;
         margin-top: 30px !important;
     }
+}
+
+.splash {
+    height: 100vh;
+    padding: 0;
+}
+
+.margin-top-zero {
+    margin-top: 0 !important;
 }
 
 @media (max-width: 1000px) {

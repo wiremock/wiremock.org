@@ -11,16 +11,25 @@
     }
     background: linear-gradient(#fff 100%, rgba(210, 223, 249, 0));
 
+    @media (min-width: 2000px) {
+        width: 1280px;
+    }
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+
     .home-header-container {
         position: relative;
     }
     .home-header-leftHeaderHP {
+        transform-origin: left;
+        overflow: hidden;
         background: url(../../images/leftHeaderHP.png);
         position: absolute;
-        left: 0;
-        width: 45%;
-        height: 615px;
-        background-size: 100% 100%;
+        left: 0%;
+        width: 40%;
+        height: 613px;
+        // background-size: 100% 100%;
         background-repeat: no-repeat;
         -webkit-transform: translateY(0%);
         transform: translateY(0%);
@@ -35,12 +44,14 @@
     }
 
     .home-header-rightHeaderHP {
+        transform-origin: right;
+        overflow: hidden;
         background: url(../../images/rightHeaderHP.png);
         position: absolute;
-        right: 0;
-        width: 45%;
-        height: 615px;
-        background-size: 100% 100%;
+        right: 0%;
+        width: 40%;
+        height: 613px;
+        // background-size: 100% 100%;
         background-repeat: no-repeat;
         -webkit-transform: translateY(0%);
         transform: translateY(0%);
@@ -139,7 +150,7 @@
     padding-top: 2.5rem;
 
     p {
-        width: 540px;
+        width: 430px;
         text-align: center;
         font-family: "Ubuntu";
         font-style: normal;
@@ -237,7 +248,7 @@
         height: 60px;
         align-items: center;
         justify-content: center;
-        margin-left: 25px;
+        margin-left: 30px;
 
         img {
             height: 70%;
@@ -363,6 +374,7 @@
             background: #18253d;
             border-radius: 4px;
             padding: 5px 10px;
+            text-decoration: none;
 
             span {
                 margin-left: 10px;
@@ -621,6 +633,7 @@
 }
 
 @media (max-width: 1280px) {
+    // .home-header-wrapper,
     .container {
         width: 1024px;
     }
@@ -652,6 +665,7 @@
 }
 
 @media (max-width: 1023px) {
+    // .home-header-wrapper,
     .container {
         width: 90%;
     }
@@ -730,6 +744,10 @@
         &:last-of-type {
             margin-bottom: 20px !important;
         }
+    }
+    .home-header-rightHeaderHP,
+    .home-header-leftHeaderHP {
+        display: none;
     }
 }
 

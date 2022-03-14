@@ -1,13 +1,13 @@
 ---
 layout: docs
 title: Extending WireMock
+meta_title: Extending WireMock via custom code | WireMock
 toc_rank: 110
 redirect_from: "/extending-wiremock.html"
-description: Extending WireMock via custom code.
+description: You can register the extension programmatically via its class name, class or an instance
 ---
 
 ## Registering Extensions
-
 
 You can register the extension programmatically via its class name,
 class or an instance:
@@ -26,7 +26,6 @@ new WireMockServer(wireMockConfig()
 See [Running as a Standalone Process](/docs/running-standalone/) for details on running with extensions from the command line.
 
 ## Transforming Responses
-
 
 Sometimes, returning wholly static responses to stub requests isn't
 practical e.g. when there are transaction IDs being passed between
@@ -49,8 +48,7 @@ process when writing an extension, meaning you can either transform the
 `ResponseDefinition` prior to rendering, or the rendered `Response`
 afterwards.
 
-Parameters
-----------
+## Parameters
 
 Transformer extensions can have parameters passed to them on a per-stub
 basis via a `Parameters` object passed to their primary method.
@@ -58,8 +56,7 @@ basis via a `Parameters` object passed to their primary method.
 deeply nested. Only types compatible with JSON (strings, numbers,
 booleans, maps and lists) can be used.
 
-Response definition transformation
-----------------------------------
+## Response definition transformation
 
 To transform `ResponseDefinition`, extend the
 `ResponseDefinitionTransformer` class:
@@ -88,7 +85,6 @@ intend to register them via an instance as described below.
 
 ### Supplying parameters
 
-
 Parameters are supplied on a per stub mapping basis:
 
 ```java
@@ -102,16 +98,16 @@ or:
 
 ```json
 {
-    "request" : {
-        "url" : "/transform",
-        "method" : "GET"
+    "request": {
+        "url": "/transform",
+        "method": "GET"
     },
-    "response" : {
-        "status" : 200,
-        "transformerParameters" : {
-            "newValue" : 66,
-            "inner" : {
-                "thing" : "value"
+    "response": {
+        "status": 200,
+        "transformerParameters": {
+            "newValue": 66,
+            "inner": {
+                "thing": "value"
             }
         }
     }
@@ -167,7 +163,6 @@ stubFor(get(urlEqualTo("/transform")).willReturn(
 
 ### Response transformation
 
-
 A response transformer extension class is identical to
 `ResponseDefinitionTransformer` with the exception that it takes a
 `Response` in its transform method's parameter list and returns a
@@ -218,8 +213,8 @@ wireMockServer.stubFor(requestMatching(new RequestMatcherExtension() {
 }).willReturn(aResponse().withStatus(422)));
 ```
 
-
 To use it in a verification :
+
 ```java
 verify(2, requestMadeFor(new ValueMatcher<Request>() {
     @Override
@@ -228,7 +223,6 @@ verify(2, requestMadeFor(new ValueMatcher<Request>() {
     }
 }));
 ```
-
 
 In Java 8 and above this can be achieved using a lambda:
 
@@ -269,16 +263,16 @@ or via JSON:
 
 ```json
 {
-    "request" : {
-        "customMatcher" : {
-            "name" : "body-too-long",
-            "parameters" : {
-                "maxLength" : 2048
+    "request": {
+        "customMatcher": {
+            "name": "body-too-long",
+            "parameters": {
+                "maxLength": 2048
             }
         }
     },
-    "response" : {
-        "status" : 422
+    "response": {
+        "status": 422
     }
 }
 ```
@@ -296,7 +290,6 @@ stubFor(get(urlPathMatching("/the/.*/one"))
 Note that inline matchers of this form can only be used from Java, and only when `stubFor` is being called against a local
 WireMock server. An exception will be thrown if attempting to use an inline custom matcher against a remote instance.
 
-
 Custom matchers defined as extensions can also be combined with standard matchers.
 
 Java:
@@ -311,19 +304,19 @@ JSON:
 
 ```json
 {
-  "request" : {
-    "urlPathPattern" : "/the/.*/one",
-    "method" : "GET",
-    "customMatcher" : {
-      "name" : "path-contains-param",
-      "parameters" : {
-        "path" : "correct"
-      }
+    "request": {
+        "urlPathPattern": "/the/.*/one",
+        "method": "GET",
+        "customMatcher": {
+            "name": "path-contains-param",
+            "parameters": {
+                "path": "correct"
+            }
+        }
+    },
+    "response": {
+        "status": 200
     }
-  },
-  "response" : {
-    "status" : 200
-  }
 }
 ```
 
@@ -334,12 +327,10 @@ as an extension (see above for details).
 
 `PostServeAction` has two template methods either or both of which can be overridden depending on desired behaviour.
 To add per-stub behaviour override `doAction(...)`. Overriding `doGlobalAction(...)` will add the behaviour globally.
-   
 
 ## Admin API extensions
 
 Additional API routes under WireMock's `/__admin` endpoint can be configured by implementing `AdminApiExtension`.
-
 
 ## Listening for requests
 
@@ -365,26 +356,25 @@ for (Request request: requests) {
 
 ## Listening for raw traffic
 
-If you would like to observe raw HTTP traffic to and from Jetty 
-for debugging purposes you can use a ```WiremockNetworkTrafficListener```.
- 
-One scenario where it can be useful is where Jetty 
+If you would like to observe raw HTTP traffic to and from Jetty
+for debugging purposes you can use a `WiremockNetworkTrafficListener`.
+
+One scenario where it can be useful is where Jetty
 alters the response from Wiremock before sending it to the client.
 (An example of that is where Jetty appends a --gzip postfix to the ETag response header
-if the response is gzipped.) 
-Using a ```RequestListener``` in this case would not show those alterations. 
+if the response is gzipped.)
+Using a `RequestListener` in this case would not show those alterations.
 
-To output all raw traffic to console use ```ConsoleNotifyingWiremockNetworkTrafficListener```, for example: 
+To output all raw traffic to console use `ConsoleNotifyingWiremockNetworkTrafficListener`, for example:
 
 ```java
 new WireMockServer(wireMockConfig()
     .networkTrafficListener(new ConsoleNotifyingWiremockNetworkTrafficListener()));
 ```
 
-If you would like to collect the traffic 
-and for example add it to your acceptance test's output, 
-you can use the ```CollectingNetworkTrafficListener```.
-
+If you would like to collect the traffic
+and for example add it to your acceptance test's output,
+you can use the `CollectingNetworkTrafficListener`.
 
 ## Intercepting and modifying requests
 
@@ -401,7 +391,7 @@ public class SimpleAuthRequestFilter extends StubRequestFilter {
         if (request.header("Authorization").firstValue().equals("Basic abc123")) {
             return RequestFilterAction.continueWith(request);
         }
-        
+
         return RequestFilterAction.stopWith(ResponseDefinition.notAuthorised());
     }
 
@@ -418,7 +408,6 @@ Then add it as an extension as usual e.g.
 new WireMockRule(wireMockConfig().extensions(new SimpleAuthRequestFilter()));
 ```
 
-
 To intercept admin API follow the same process, but extend `AdminRequestFilter`.
 
 ### Modifying the request during interception
@@ -434,7 +423,7 @@ public static class UrlAndHeadersModifyingFilter extends StubRequestFilter {
                 .transformAbsoluteUrl(url -> url + "?extraQueryParam=123")
                 .addHeader("X-Custom-Header", "headerval")
                 .wrap(request);
-        
+
         return RequestFilterAction.continueWith(wrappedRequest);
     }
 
@@ -447,10 +436,10 @@ public static class UrlAndHeadersModifyingFilter extends StubRequestFilter {
 
 `RequestWrapper` is a builder pattern and allows any number of changes to the request. It supports the following changes:
 
-* Transformation of the URL. `transformAbsoluteUrl` takes a `FieldTransformer` as a parameter (or equivalent lambda) which maps
-from the old to the new URL. Note that the URL passed in is absolute, and the returned URL must also be.
-* Addition, removal and transformation (via `FieldTransformer`) of headers.
-* Addition, removal and transformation of cookies.
-* Changing the HTTP method.
-* Transformation of the request body.
-* Transformation of body parts (if a multipart encoded request).
+-   Transformation of the URL. `transformAbsoluteUrl` takes a `FieldTransformer` as a parameter (or equivalent lambda) which maps
+    from the old to the new URL. Note that the URL passed in is absolute, and the returned URL must also be.
+-   Addition, removal and transformation (via `FieldTransformer`) of headers.
+-   Addition, removal and transformation of cookies.
+-   Changing the HTTP method.
+-   Transformation of the request body.
+-   Transformation of body parts (if a multipart encoded request).

@@ -1,9 +1,10 @@
 ---
 layout: docs
 title: Running as a Standalone Process
+meta_title: Running as a Standalone Process | WireMock
 toc_rank: 41
 redirect_from: "/running-standalone.html"
-description: Running WireMock as a standalone mock server.
+description: The WireMock server can be run in its own process, and configured via the Java API, JSON over HTTP or JSON files.
 ---
 
 <div class="mocklab-callout"> 
@@ -46,7 +47,7 @@ certificate.
 `--keystore-password`: Password to the keystore, if something other than
 "password".
 Note: the behaviour of this changed in version 2.27.0. Previously this set Jetty's key manager password, whereas now it
-sets the keystore password value. The key manager password can be set with the (new) parameter below. 
+sets the keystore password value. The key manager password can be set with the (new) parameter below.
 
 `--key-manager-password`: The password used by Jetty to access individual keys in the store, if something other than
 "password".
@@ -144,10 +145,10 @@ e.g. `--jetty-header-request-size 16384`, defaults to 8192K.
 `--jetty-header-response-size`: The Jetty buffer size for response headers,
 e.g. `--jetty-header-response-size 16384`, defaults to 8192K.
 
-`--async-response-enabled`: Enable asynchronous request processing in Jetty. 
+`--async-response-enabled`: Enable asynchronous request processing in Jetty.
 Recommended when using WireMock for performance testing with delays, as it allows much more efficient use of container threads and therefore higher throughput. Defaults to `false`.
 
-`--async-response-threads`: Set the number of asynchronous (background) response threads. 
+`--async-response-threads`: Set the number of asynchronous (background) response threads.
 Effective only with `asynchronousResponseEnabled=true`. Defaults to 10.
 
 `--extensions`: Extension class names e.g.
@@ -161,14 +162,14 @@ com.mycorp.HeaderTransformer,com.mycorp.BodyTransformer. See extending-wiremock.
 
 `--max-template-cache-entries`: Set the maximum number of compiled template fragments to cache. Only has any effect when response templating is enabled. Defaults to no limit.
 
-`--use-chunked-encoding`: Set the policy for sending responses with `Transfer-Encoding: chunked`. Valid values are `always`, `never` and `body_file`. 
+`--use-chunked-encoding`: Set the policy for sending responses with `Transfer-Encoding: chunked`. Valid values are `always`, `never` and `body_file`.
 The last of these will cause chunked encoding to be used only when a stub defines its response body from a file.
 
-`--disable-gzip`: Prevent response bodies from being gzipped. 
+`--disable-gzip`: Prevent response bodies from being gzipped.
 
-`--disable-request-logging`: Prevent requests and responses from being sent to the notifier. Use this when performance testing as it will save memory and CPU even when info/verbose logging is not enabled. 
+`--disable-request-logging`: Prevent requests and responses from being sent to the notifier. Use this when performance testing as it will save memory and CPU even when info/verbose logging is not enabled.
 
-`--disable-banner`: Prevent WireMock logo from being printed on startup 
+`--disable-banner`: Prevent WireMock logo from being printed on startup
 
 `--permitted-system-keys`: Comma-separated list of regular expressions for names of permitted environment variables and system properties accessible from response templates. Only has any effect when templating is enabled. Defaults to `wiremock.*`.
 
@@ -244,42 +245,41 @@ More content
 
 See [stubbing](/docs/stubbing/) and [verifying](/docs/verifying/) for more on the JSON API.
 
-
 ### Multi-stub JSON files
 
 JSON files containing multiple stub mappings can also be used. These are of the form:
 
 ```json
 {
-  "mappings": [
-    {
-      "request": {
-        "method": "GET",
-        "url": "/one"
-      },
-      "response": {
-        "status": 200
-      }
-    },
-    {
-      "id": "8c5db8b0-2db4-4ad7-a99f-38c9b00da3f7",
-      "request": {
-        "url": "/two"
-      },
-      "response": {
-        "body": "Updated"
-      }
-    }
-  ]
+    "mappings": [
+        {
+            "request": {
+                "method": "GET",
+                "url": "/one"
+            },
+            "response": {
+                "status": 200
+            }
+        },
+        {
+            "id": "8c5db8b0-2db4-4ad7-a99f-38c9b00da3f7",
+            "request": {
+                "url": "/two"
+            },
+            "response": {
+                "body": "Updated"
+            }
+        }
+    ]
 }
 ```
 
 > **note**
 >
-> Stubs loaded from multi-mapping files are read-only, so any attempt to update or remove (including remove all) will cause an error to be thrown. 
-
+> Stubs loaded from multi-mapping files are read-only, so any attempt to update or remove (including remove all) will cause an error to be thrown.
 
 ## Pushing JSON files to a remote WireMock instance
+
 You can push a collection of stub mappings and associated files to a remote WireMock or MockLab instance via the
 Java API as follows:
 
@@ -292,8 +292,7 @@ WireMock wireMock = WireMock.create()
 
 // The root directory of the WireMock project, under which the mappings and __files directories should be found
 wireMock.loadMappingsFrom("/wiremock-stuff");
-``` 
-
+```
 
 ## File serving
 

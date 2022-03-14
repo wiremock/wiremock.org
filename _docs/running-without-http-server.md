@@ -1,10 +1,12 @@
 ---
 layout: docs
 title: Running without the HTTP Server
+meta_title: Running without the HTTP Server | WireMock
 toc_rank: 42
 redirect_from: "/running-without-http-server.html"
 description: Running WireMock inside a Java process, without running the inbuilt HTTP layer.
 ---
+
 If you want to run Wiremock inside another process, such as wrapping it in a serverless function such as on AWS Lambda, or using it as part of an application's integration tests, you previously would need to resort to [Running as a Standalone Process](/docs/running-standalone/).
 
 This works well, but has the overhead of a full HTTP server and HTTP calls back and forth that in some cases may not be relevant, and adds a fair bit of overhead to each call, and the memory footprint of the application.

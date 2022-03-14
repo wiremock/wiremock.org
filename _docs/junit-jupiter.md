@@ -1,8 +1,9 @@
 ---
 layout: docs
-title: 'JUnit 5+ Jupiter Usage'
+title: "JUnit 5+ Jupiter Usage"
+meta_title: The JUnit 4.x Rule | WireMock
 toc_rank: 21
-description: Running WireMock with the JUnit 5 Jupiter test framework. 
+description: WireMock includes a JUnit rule, compatible with JUnit 4.x and JUnit 5 Vintage. This provides a convenient way to manage one or more WireMock instances in your test cases
 ---
 
 The JUnit Jupiter extension simplifies running of one or more WireMock instances in a Jupiter test class.
@@ -11,7 +12,8 @@ It supports two modes of operation - declarative (simple, limited configuration 
 These are both explained in detail below.
 
 ## Basic usage - declarative
-The extension can be applied to your test class declaratively by annotating it with `@WireMockTest`. This will run a single 
+
+The extension can be applied to your test class declaratively by annotating it with `@WireMockTest`. This will run a single
 WireMock server, defaulting to a random port, HTTP only (no HTTPS).
 
 To get the running port number, base URL or a DSL instance you can declare a parameter of type `WireMockRuntimeInfo`
@@ -25,27 +27,28 @@ public class DeclarativeWireMockTest {
     void test_something_with_wiremock(WireMockRuntimeInfo wmRuntimeInfo) {
         // The static DSL will be automatically configured for you
         stubFor(get("/static-dsl").willReturn(ok()));
-      
+
         // Instance DSL can be obtained from the runtime info parameter
         WireMock wireMock = wmRuntimeInfo.getWireMock();
         wireMock.register(get("/instance-dsl").willReturn(ok()));
-       
+
         // Info such as port numbers is also available
         int port = wmRuntimeInfo.getHttpPort();
-        
+
         // Do some testing...
     }
 }
 ```
 
 ### WireMock server lifecycle
+
 In the above example a WireMock server will be started before the first test method in the test class and stopped after the
 last test method has completed.
 
 Stub mappings and requests will be reset before each test method.
 
-
 ### Fixing the port number
+
 If you need to run WireMock on a fixed port you can pass this via the `httpPort` parameter to the extension annotation:
 
 ```java
@@ -56,6 +59,7 @@ public class FixedPortDeclarativeWireMockTest {
 ```
 
 ### Enabling HTTPS
+
 You can also enable HTTPS via the `httpsEnabled` annotation parameter. By default a random port will be assigned:
 
 ```java
@@ -65,7 +69,7 @@ public class HttpsRandomPortDeclarativeWireMockTest {
 }
 ```
 
-But like with the HTTP port you can also fix the HTTPS port number via the `httpsPort` parameter: 
+But like with the HTTP port you can also fix the HTTPS port number via the `httpsPort` parameter:
 
 ```java
 @WireMockTest(httpsEnabled = true, httpsPort = 8443)
@@ -74,9 +78,8 @@ public class HttpsFixedPortDeclarativeWireMockTest {
 }
 ```
 
-
-
 ## Advanced usage - programmatic
+
 Invoking the extension programmatically with `@RegisterExtension` allows you to run any number of WireMock instances and provides full control
 over configuration.
 
@@ -100,28 +103,28 @@ public class ProgrammaticWireMockTest {
         // You can get ports, base URL etc. via WireMockRuntimeInfo
         WireMockRuntimeInfo wm1RuntimeInfo = wm1.getRuntimeInfo();
         int httpsPort = wm1RuntimeInfo.getHttpsPort();
-        
+
         // or directly via the extension field
-        int httpPort = wm1.port();  
-      
+        int httpPort = wm1.port();
+
         // You can use the DSL directly from the extension field
         wm1.stubFor(get("/api-1-thing").willReturn(ok()));
-        
+
         wm2.stubFor(get("/api-2-stuff").willReturn(ok()));
     }
 }
 ```
 
-
 ### Static vs. instance
+
 In the above example, as with the declarative form, each WireMock server will be started before the first test method in the test class and stopped after the
 last test method has completed, with a call to reset before each test method.
 
 However, if the extension fields are declared at the instance scope (without the `static` modifier) each WireMock server will
 be created and started before each test method and stopped after the end of the test method.
 
-
 ### Configuring the static DSL
+
 If you want to use the static DSL with one of the instances you have registered programmatically you can declare
 this by calling `configureStaticDsl(true)` on the extension builder. The configuration will be automatically applied when the server is started:
 
@@ -143,25 +146,26 @@ public class AutomaticStaticDslConfigTest {
     void test_something_with_wiremock() {
         // Will communicate with the instance called wm1
         stubFor(get("/static-dsl").willReturn(ok()));
-        
+
         // Do test stuff...
     }
 }
 ```
 
-
 ## Unmatched request behaviour
+
 By default, in either the declarative or programmatic form, if the WireMock instance receives unmatched requests during a
 test run an assertion error will be thrown and the test will fail.
 
 This behavior can be changed by calling `.failOnUnmatchedRequests(false)` on the extension builder when using the programmatic form.
 
-
 ## Proxy mode
+
 The JUnit Jupiter extension can be configured to enable "proxy mode" which simplifies configuration and supports
 [multi-domain mocking](/docs/multi-domain-mocking/).
 
 ### Declarative
+
 In declarative mode this is done by setting the `proxyMode = true` in the annotation declaration. Then, provided your app's
 HTTP client honours the JVM's proxy system properties, you can specify different domain (host) names when creating stubs:
 
@@ -201,6 +205,7 @@ public class JUnitJupiterExtensionJvmProxyDeclarativeTest {
 ```
 
 ### Programmatic
+
 Proxy mode can be enabled via the extension builder when using the programmatic form:
 
 ```java
