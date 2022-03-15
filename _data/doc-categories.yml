@@ -1,0 +1,52 @@
+setup:
+  title: Setup
+  pages:
+    - getting-started
+    - download-and-installation
+    - running-standalone
+    - docker
+    - spring-boot
+    - android
+
+configuration:
+  title: Configuration
+  pages:
+    - https
+    - multi-domain-mocking
+
+java:
+  title: Java Usage
+  pages:
+    - junit-jupiter
+    - junit-extensions
+    - java-usage
+    - configuration
+    - running-without-http-server
+
+stubbing-and-verifying:
+  title: Stubbing & Verifying
+  pages:
+    - stubbing
+    - request-matching
+    - response-templating
+    - simulating-faults
+    - stateful-behaviour
+    - proxying
+    - verifying
+
+record-playback:
+  title: Record & Playback
+  pages:
+    - record-playback
+
+extensibility:
+  title: Extensibility
+  pages:
+    - extending-wiremock
+    - stub-metadata
+    - webhooks-and-callbacks
+
+reference:
+  title: Reference
+  pages:
+    - api
