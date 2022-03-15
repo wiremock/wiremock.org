@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-bundle exec jekyll build
+bundle exec jekyll build --baseurl https://wiremock.org
 cp -rf _site/* ../wiremock-gh-pages/
 
 pushd ../wiremock-gh-pages
