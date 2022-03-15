@@ -5,8 +5,8 @@ setup:
     - download-and-installation
     - running-standalone
     - docker
-    - spring-boot
     - android
+    - spring-boot
 
 configuration:
   title: Configuration
