@@ -5,7 +5,14 @@ layout: default
 {% include base_path %}
 
 <div id="main" role="main">
-  {% include docs-sidebar.html %}
+
+  {% if page.collection == 'studio_docs' %}
+    {% include studio-docs-sidebar.html %}
+  {% else %}
+    {% include docs-sidebar.html %}
+  {% endif %}
+
+  
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     {% if page.seo_title %}<meta itemprop="headline" content="{{ page.seo_title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}

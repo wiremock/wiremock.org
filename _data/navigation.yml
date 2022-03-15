@@ -21,5 +21,11 @@ main:
           - name: "Resources"
             subnavLink: /external-resources
 
-    - title: "Documentation"
-      url: /docs/
+    - title: "Docs"
+      subnav: "docs"
+      subnavLinks:
+        - name: "WireMock Open Source"
+          subnavLink: "/docs/"
+        - name: "WireMock Studio"
+          subnavLink: "/studio/docs/"
+      
