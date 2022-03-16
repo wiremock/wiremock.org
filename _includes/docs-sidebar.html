@@ -5,7 +5,11 @@
   <nav class="nav__list">
 
     <ul>
-      {% assign sorted_docs = (site.docs | sort: 'toc_rank' | pop ) %}
+      {% if page.collection == 'docs' %}
+        {% assign sorted_docs = (site.docs | sort: 'toc_rank' | pop ) %}
+      {% else %}
+        {% assign sorted_docs = (site.studio_docs | sort: 'toc_rank' | pop ) %}
+      {% endif %}
 
       {% for doc in sorted_docs %}
       <li>
