@@ -15,7 +15,7 @@
                 {% if doc.url == page.url %}<a href="{{ doc.url }}" class="nav__list-item--selected">
                 {% else %}<a href="{{ base_path }}{{ doc.url }}">{% endif %}
 
-                {% assign doc_title = doc.title | remove: doc_category[1].title | remove: " - " | remove: " [Tutorial]" %}
+                {% assign doc_title = doc.title | remove: doc_category[1].title | remove: " - " | remove: "WireMock Studio" | remove: " [Tutorial]" %}
                 {{ doc_title }}
                 </a>
               </li>

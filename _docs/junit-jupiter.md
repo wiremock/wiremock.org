@@ -1,9 +1,8 @@
 ---
 layout: docs
-title: "JUnit 5+ Jupiter Usage"
-meta_title: The JUnit 4.x Rule | WireMock
-toc_rank: 21
-description: WireMock includes a JUnit rule, compatible with JUnit 4.x and JUnit 5 Vintage. This provides a convenient way to manage one or more WireMock instances in your test cases
+title: "JUnit 5+ Jupiter"
+meta_title: Using WireMock's JUnit Jupiter extension | WireMock
+description: WireMock includes a JUnit Jupiter extension which is used to manage the lifecycle and configuration of one or more WireMock instances in your test case.
 ---
 
 The JUnit Jupiter extension simplifies running of one or more WireMock instances in a Jupiter test class.

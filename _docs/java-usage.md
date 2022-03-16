@@ -1,8 +1,7 @@
 ---
 layout: docs
-title: "Java (Non-JUnit) Usage"
-meta_title: Java (Non-JUnit) Usage | WireMock
-toc_rank: 30
+title: Plain Java
+meta_title: Plain Java | WireMock
 redirect_from: "/java-usage.html"
 description: If you want to use WireMock from Java (or any other JVM language) outside of JUnit you can programmatically create, start and stop the server.
 ---
