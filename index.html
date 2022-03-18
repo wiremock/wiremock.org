@@ -163,10 +163,12 @@ description: WireMock is a simulator for HTTP-based APIs. It enables you to stay
             <li>Gradle Groovy</li>
             <li>Gradle Kotlin</li>
             <li>Scala SBT</li>
+            <li>Standalone</li>
+            <li>Docker</li>
           </ul>
           <div class="code-tabs-main-example">
             <div class="codeSnippet activeCodeSnippet" data-snippettab="maven">
-              <h4 class="codeTabDescription">Add the following to your project's pom.xml dependencies:</h4>
+              <h4 class="codeTabDescription">Add the following to your project's <strong>pom.xml</strong> dependencies:</h4>
 {% highlight xml %}
 <dependency>
   <groupId>com.github.tomakehurst</groupId>
@@ -177,24 +179,43 @@ description: WireMock is a simulator for HTTP-based APIs. It enables you to stay
 {% endhighlight %}
           </div>
           <div class="codeSnippet" data-snippettab="gradle groovy">
-            <h4 class="codeTabDescription">Add the following to your project's build.gradle:</h4>
+            <h4 class="codeTabDescription">Add the following to your project's <strong>build.gradle</strong>:</h4>
 {% highlight groovy %}
 testImplementation "com.github.tomakehurst:wiremock-jre8:2.32.0"
 {% endhighlight %}
           </div>
           <div class="codeSnippet" data-snippettab="gradle kotlin">
-            <h4 class="codeTabDescription">Add the following to your project's build.gradle.kts:</h4>
+            <h4 class="codeTabDescription">Add the following to your project's <strong>build.gradle.kts</strong>:</h4>
 {% highlight kotlin %}
 testImplementation("com.github.tomakehurst:wiremock-jre8:2.32.0")
 {% endhighlight %}
           </div>
           <div class="codeSnippet" data-snippettab="scala sbt">
-            <h4 class="codeTabDescription">Add the following to your project’s build.sbt:</h4>
+            <h4 class="codeTabDescription">Add the following to your project’s <strong>build.sbt</strong>:</h4>
 {% highlight scala %}
-libraryDependencies += "com.github.tomakehurst" % "wiremock-jre8" % "2.32.0" % Test
+libraryDependencies +=
+  "com.github.tomakehurst" % "wiremock-jre8" % "2.32.0" % Test
 {% endhighlight %}
           </div>
-            </div> 
+          <div class="codeSnippet" data-snippettab="standalone">
+            <h4 class="codeTabDescription">
+              Download the <a href="https://repo1.maven.org/maven2/com/github/tomakehurst/wiremock-jre8-standalone/{{ site.wiremock_version }}/wiremock-jre8-standalone-{{ site.wiremock_version }}.jar">latest standalone JAR</a>
+              then run the following in a terminal:
+            </h4>
+{% highlight bash %}
+java -jar wiremock-jre8-standalone-{{ site.wiremock_version }}.jar
+{% endhighlight %}
+          </div>
+          <div class="codeSnippet" data-snippettab="docker">
+            <h4 class="codeTabDescription">Run the following in a terminal:</h4>
+{% highlight bash %}
+docker run -it --rm \
+  -p 8080:8080 \
+  --name wiremock \
+  wiremock/wiremock:2.32.0
+{% endhighlight %}
+          </div>
+        </div> 
         </div>
       </div>
     </div>
