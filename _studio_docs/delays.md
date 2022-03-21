@@ -17,7 +17,7 @@ MockLab stubs can be served with a fixed or random delay, or can be "dribbled" b
 
 A fixed delay straightforwardly adds a pause for the specified number of milliseconds before serving the stub's response.
   
-<img src="/images/screenshots/fixed-delay.png" title="Fixed delay" style="width: 50%" />
+<img src="/images/screenshots/fixed-delay.png" title="Fixed delay" style="width: 30%" />
 
 
 ## Random delay
