@@ -24,9 +24,14 @@ To implement the above case, you would declare that the stub returning the empty
 while the stub returning the list with one item is only matched when the scenario state is "First item added".
 
 
-Start by creating the empty list stub, which is matched only when the scenario named "To do list" is in the "Started" state:
+Start by creating the stub for the starting state - matched only when the scenario named "To do list" is in the "Started" state. This is configured in the Request
+section of the stub form:
 
-<img title="Empty to-do list stub" src="/images/screenshots/scenarios-empty-list-stub.png" />
+<img title="Empty to-do list stub request" src="/images/screenshots/scenarios-empty-list-stub-request.png" />
+
+Since this is the starting state the to do list returned should be empty:
+
+<img title="Empty to-do list stub response" src="/images/screenshots/scenarios-empty-list-stub-response.png" />
 
 
 Then create a stub to handle posting of the first list item. When triggered this stub will move the scenario state to "First item added":
@@ -36,7 +41,8 @@ Then create a stub to handle posting of the first list item. When triggered this
 
 Finally, create a stub to return the list containing one item, which is matched only then the scenario is in the "First item added" state:
 
-<img title="Single item to-to list stub" src="/images/screenshots/scenario-single-item-stub.png" />
+<img title="Single item to-to list stub" src="/images/screenshots/scenario-single-item-stub-request.png" />
+<img title="Single item to-to list stub" src="/images/screenshots/scenario-single-item-stub-response.png" />
 
 
 ## Testing
@@ -74,4 +80,4 @@ $ curl http://example.mocklab.io/todo-items
 ## Scenario reset
 
 All scenarios can be reset to their
-"Started" state by clicking <img src="/images/screenshots/scenario-reset-button.png" title="Scenario reset button" style="border: none; height: 50px;" />.
+"Started" state by clicking <img src="/images/screenshots/scenario-reset-button.png" title="Scenario reset button" style="border: none; height: 35px;" />.
