@@ -61,7 +61,7 @@ In addition to choosing the URL part(s) you wish to match, you can also choose w
 to check for exact equality or a regular expression match. By default MockLab uses
 an equality check, but this can be changed in the Advanced section.
 
-<img src="/images/screenshots/url-match-type-screenshot.png" title="URL match types" style="height: 150px"/>
+<img src="/images/screenshots/url-match-type.png" title="URL match types" style="height: 150px"/>
 
 Choosing the the `Path regex` match type can be particularly useful in cases where
 the API you're mocking uses path parameters and you wish to provide a meaningful response
