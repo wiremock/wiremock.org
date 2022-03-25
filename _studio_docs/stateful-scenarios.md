@@ -11,10 +11,10 @@ with no to-do list items, post a new item, then see the item appear in the list.
 
 Assuming there is a "list to-do items" API call used to fetch the list, this must be called twice during the above test,
 returning no items on the first invocation, and the newly added item on the second. Since both of these requests will be
-identical (same URL, method, request headers), something additional is required for MockLab to differentiate the first and
+identical (same URL, method, request headers), something additional is required for WireMock to differentiate the first and
 second cases.
 
-MockLab's Scenarios solve this problem by providing finite state machines that can be used as additional stub matching conditions.
+WireMock's Scenarios solve this problem by providing finite state machines that can be used as additional stub matching conditions.
 They allow more than one definition of an otherwise identical stub with different responses based on the current state of the machine.
 
 
@@ -51,7 +51,7 @@ First, make a `GET` request to fetch the list, which should be empty. You should
 without the result changing:
 
 ```
-$ curl http://example.mocklab.io/todo-items
+$ curl http://localhost:8000/todo-items
 {
   "items": []
 }
@@ -60,13 +60,13 @@ $ curl http://example.mocklab.io/todo-items
 Now `POST` a new item (it actually doesn't matter what the request body contains, since we didn't specify a body matcher in the stub):
 
 ```
-$ curl http://example.mocklab.io/todo-items -X POST
+$ curl http://localhost:8000/todo-items -X POST
 ```
 
 This should now have moved the scenario state to "First item added". Getting the list of items again should now return one item:
 
 ```
-$ curl http://example.mocklab.io/todo-items
+$ curl http://localhost:8000/todo-items
 {
   "items": [
     {

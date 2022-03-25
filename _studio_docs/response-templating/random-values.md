@@ -4,7 +4,7 @@ title: Response Templating - Random Values
 description: Generating random values
 ---
 
-MockLab provides two random value helpers - `randomValue` and `pickRandom`.
+WireMock provides two random value helpers - `randomValue` and `pickRandom`.
 
 ## Random strings
 

@@ -14,7 +14,7 @@ The WireMock mailing list has existed for many years and is searchable so is a g
 
 ## Slack
 
-You can get real-time chat support from the WireMock community and core team by signing up to the [UP9 Slack](https://up9.com/slack) and joining the [#06-oss-wiremock](https://up9.slack.com/archives/C02V3EGV3U3) channel.
+You can get real-time chat support from the WireMock community and core team by signing up to the [UP9 Slack](https://up9.com/slack?utm_source=wiremock.org&utm_medium=site&utm_campaign=wiremock.org-header) and joining the [#06-oss-wiremock](https://up9.slack.com/archives/C02V3EGV3U3) channel.
 
 ## Priority support
 

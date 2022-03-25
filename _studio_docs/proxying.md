@@ -27,7 +27,7 @@ or will override the existing value if present.
 <img src="/images/screenshots/plain-proxy-response.png" title="Proxy response"/>
  
 The relative part of a request's URL will be appended onto the base URL, so given a proxy base URL of `http://my-site.com/base`, a
- request made to `http://my-mock-api.mocklab.io/things/1` would result in a proxy request to `http://my-site.com/base/things/1`.
+ request made to `http://localhost:8000/things/1` would result in a proxy request to `http://my-site.com/base/things/1`.
 
 
 ## Templating the base URL

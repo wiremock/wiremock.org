@@ -5,7 +5,7 @@ description: Matching JSON
 ---
 
 When stubbing API functions that accept JSON request bodies we may want to
-return different responses based on the JSON sent. MockLab provides two match types
+return different responses based on the JSON sent. WireMock provides two match types
 to supports this case - `equalToJson` and `matchesJsonPath`, which are described
 in detail in this article.
 
@@ -32,7 +32,7 @@ You would need to send in the request body for the stub to match exactly that JS
 in order for the stub to be matched:
 
 ```
-$ curl https://example.mocklab.io/json -d '{
+$ curl http://localhost:8000/json -d '{
   "itemId": 102938,
   "sizes": ["S", "M", "L"]
 }'
@@ -43,7 +43,7 @@ $ curl https://example.mocklab.io/json -d '{
 Changing the `sizes` order would cause a non-match:
 
 ```
-$ curl https://example.mocklab.io/json -d '{
+$ curl http://localhost:8000/json -d '{
   "itemId": 102938,
   "sizes": ["L", "M", "S"]
 }'
@@ -71,7 +71,7 @@ POST                                                       | POST
 Adding an extra attribute would also cause a non-match:
 
 ```
-$ curl https://example.mocklab.io/json -d '{
+$ curl http://localhost:8000/json -d '{
   "itemId": 102938,
   "sizes": ["S", "M", "L"],
   "tag": "essentials"
@@ -109,7 +109,7 @@ due to array order, so to remedy this you can simply tick "Ignore array order".
 This will allow requests like the following to succeed:
 
 ```
-$ curl https://example.mocklab.io/json -d '{
+$ curl http://localhost:8000/json -d '{
   "itemId": 102938,
   "sizes": ["S", "L", "M"]
 }'                   
@@ -127,7 +127,7 @@ if additional elements are present you can tick "Ignore extra elements".
 This would permit the following to match:
 
 ```
-$ curl https://example.mocklab.io/json -d '{
+$ curl http://localhost:8000/json -d '{
   "itemId": 102938,
   "sizes": ["S", "M", "L"],
   "tag": "essentials"
@@ -149,7 +149,7 @@ For instance, given the following configuration:
 This would permit the the following to match:
 
 ```
-$ curl https://example.mocklab.io/json -d '{
+$ curl http://localhost:8000/json -d '{
   "itemId": 8888888888,
   "sizes": ["S", "M", "L"],
   "tag": "essentials"
@@ -174,8 +174,8 @@ you can use one of the following placeholders:
 similar in concept to XPath that permits elements or collections of elements
 to be queried from a JSON document.
 
-MockLab supports stub matching using JSONPath expressions, optionally sub-matching
-the result using MockLab's own operators (`equalTo`, `matches` etc.).
+WireMock supports stub matching using JSONPath expressions, optionally sub-matching
+the result using WireMock's own operators (`equalTo`, `matches` etc.).
 
 Given the following configration:
 
@@ -184,7 +184,7 @@ Given the following configration:
 The following JSON will be matched:
 
 ```
-$ curl https://example.mocklab.io/json -d '{
+$ curl http://localhost:8000/json -d '{
   "itemId": 102938,
   "itemName": "Socks"
 }'

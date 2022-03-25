@@ -1,16 +1,16 @@
 ---
 layout: docs
 title: Import & Export - WireMock
-description: Importing and exporting mock APIs between WireMock and MockLab.
+description: Importing and exporting mock APIs between WireMock and WireMock Studio.
 ---
 
-MockLab and WireMock share the same native JSON format for stubs, so mock APIs
+WireMock core and Studio share the same native JSON format for stubs, so mock APIs
 can be imported and exported between the two.
 
 JSON exports can also be stored in source control, and used to clone or move stubs
-between MockLab APIs.
+between WireMock APIs.
 
-## Importing a mock API into MockLab from WireMock
+## Importing a mock API into WireMock Studio from WireMock
 
 Assuming you're running a WireMock instance on port 8080, you can export all the
 stubs currently defined via the admin API:
@@ -19,7 +19,7 @@ stubs currently defined via the admin API:
 curl --output example-stubs.json http://localhost:8080/__admin/mappings
 ```
 
-Then to import into MockLab, open the Import dialog and drop or upload the `example-stubs.json`:
+Then to import into WireMock Studio, open the Import dialog and drop or upload the `example-stubs.json`:
 
 <img alt="Import file" src="/images/screenshots/import-file.png" style="width: 80%"/>
 
@@ -28,9 +28,9 @@ Then to import into MockLab, open the Import dialog and drop or upload the `exam
 > A current limitation of this approach is that response bodies represented as
 > files under the `__files` directory will not be imported.
 > See how this can be worked around by [uploading a WireMock project folder](#uploading-a-wiremock-folder)
-> and via the [WireMock Java API](#pushing-stubs-to-mocklab-using-wiremocks-java-api).
+> and via the [WireMock Java API](#pushing-stubs-to-wiremock-studio-using-wiremocks-java-api).
 
-## Importing a mock API into WireMock from MockLab
+## Importing a mock API into WireMock from WireMock Studio
 
 First, export the stubs via the Export dialog in the Stubs page:
 
@@ -73,19 +73,16 @@ response bodies under `__files` to be inlined.
 <img alt="Import file" src="/images/screenshots/wiremock-folder-drop.png" style="width: 80%"/>
 
 
-## Pushing stubs to MockLab using WireMock's Java API
+## Pushing stubs to WireMock Studio using WireMock's Java API
 
 Another way to import a WireMock project that has a `__files` directory is to push it using WireMock's Java API.
-This method also inlines response bodies before sending them to MockLab:
+This method also inlines response bodies before sending them to WireMock Studio:
 
 ```java
 WireMock wireMock = WireMock.create()
-    .scheme("https")
-    // The domain name of the mock API you wish to import into
-    .host("my-api.mocklab.io")
-    .port(443)
-    // API token from https://app.mocklab.io/account/api
-    .authenticator(new ClientTokenAuthenticator("mytokenabc123"))
+    // Change this if you're running WireMock Studio somewhere else
+    .host("localhost")
+    .port(8000)
     .build();
 
 // The root directory of the WireMock project, under which the mappings and __files directories should be found

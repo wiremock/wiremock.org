@@ -4,7 +4,7 @@ title: Response Templating - Dates and Times
 description: Working with dates and times
 ---
 
-MockLab has two helpers for manipulating dates - `now` and `date`.
+WireMock has two helpers for manipulating dates - `now` and `date`.
 
 ## Current date/time
 

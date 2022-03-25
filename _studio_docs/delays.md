@@ -11,7 +11,7 @@ when conditions aren't optimal.
 
 In particular it is important to check that timeouts work as configured, and that your end user's experience is maintained.
 
-MockLab stubs can be served with a fixed or random delay, or can be "dribbled" back in chunks over a defined time period.
+WireMock stubs can be served with a fixed or random delay, or can be "dribbled" back in chunks over a defined time period.
 
 ## Fixed delay
 

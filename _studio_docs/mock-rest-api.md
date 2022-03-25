@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: How to build a mock REST API [Tutorial]
-description: How to build an online mock REST API in MockLab for functional, integration and performance testing
+description: How to build an online mock REST API in WireMock Studio for functional, integration and performance testing
 categories: ['API Mocking', 'Mock API', 'REST', 'Mock REST API', 'JSON']
 ---
 
@@ -30,9 +30,7 @@ this is not esssential as it'll be explained in the places it's used.
 
 ## Setting up
 
-Firstly, you'll need to [sign up for a MockLab account](https://app.mocklab.io/login?for=signup){:target="{{site.data.misc.blank}}"} if you don't already have one.
-
-Once you've signed up or logged back in, create a blank mock API by hitting <img style="padding:0;vertical-align: middle; border: none; height: 30px" src="/images/screenshots/new-mock-api-button.png" alt="New mock API"/>
+Create a blank mock API by hitting <img style="padding:0;vertical-align: middle; border: none; height: 30px" src="/images/screenshots/new-mock-api-button.png" alt="New mock API"/>
 in the app. Make sure you choose the "blank" template on the new API form.
 
 <div style="width:80%;border:1px solid #bbc3cd;padding:10px;margin-left:auto;margin-right:auto;margin-bottom:1rem">
@@ -106,7 +104,7 @@ we'll also send a `Content-Type: application/json` header:
 
 <img alt="Contact list stub response" src="/images/screenshots/mock-rest-api/contact-list-response.png" style="width: 80%;border:none;"/>
 
-After hitting Save, you can now test the stub using MockLab's Test Requester or
+After hitting Save, you can now test the stub using WireMock's Test Requester or
 your preferred HTTP client:
 
 <img alt="Contact list test request" src="/images/screenshots/mock-rest-api/contact-list-test-request.png" style="width: 60%;border:none;"/>
@@ -284,7 +282,7 @@ store any state, so making a request to add a new contact will have no effect on
 the data returned later.
 
 For most testing scenarios this isn't an issue, but in cases where more realistic
-behaviour is required MockLab supports the concept of "stateful scenarios" whereby
+behaviour is required WireMock supports the concept of "stateful scenarios" whereby
 the state of a scenario can be used to determine which stub to match.
 
 If we wanted to, for instance, create a test case in which posting a new company
@@ -403,13 +401,13 @@ Now we can send a test request and see the error response returned:
 
 > **note**
 >
-> The message in the red text in this case indicates that MockLab couldn't
+> The message in the red text in this case indicates that WireMock couldn't
 > automatically generate a valid request body to match our JSONPath expression.
 > This can be safely ignored as we've created our own request body.
 
 ### Other types of error
 
-You can also simulate lower-level errors with MockLab such as dropped network
+You can also simulate lower-level errors with WireMock such as dropped network
 connections and delays. You can [learn more about faults here](/docs/simulating-faults/).
 
 

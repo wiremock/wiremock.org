@@ -150,15 +150,6 @@ docker run -it \
 This will mount the `wiremock` subdirectory under the current directory as the root.
 This directory and its contents can be committed to source control.
 
-
-## More info on WireMock Studio features
-
-We're still in the process of producing new documentation, but since WireMock Studio's
-UI is very similar to MockLab's we invite you in the meantime to browse [MockLab's documentation](https://www.mocklab.io/docs/){:target="{{site.data.misc.blank}}"}.
-Most things will work identically in both products.
-
-
 ## Getting help and support
 
-Please join our [community Slack](https://up9.com/slack?utm_source=wiremock.org&utm_medium=docs&utm_campaign=studio-beta-docs){:target="{{site.data.misc.blank}}"}
-for help from the WireMock + UP9 team, and other community members.
+Check out the [support page](/support/) for the ways you can get help with WireMock Studio.

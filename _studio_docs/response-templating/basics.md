@@ -6,7 +6,7 @@ redirect_from:
 description: Returning dynamic responses using Handlebars templates
 ---
 
-Some elements of MockLab stub responses can be configured generated dynamically, via the use of [Handlebars templates](https://github.com/jknack/handlebars.java){:target="{{site.data.misc.blank}}"}.
+Some elements of WireMock stub responses can be configured generated dynamically, via the use of [Handlebars templates](https://github.com/jknack/handlebars.java){:target="{{site.data.misc.blank}}"}.
 
 Most commonly this is used in the response body but response header values can also
 be templated. For proxy responses, the target URL can be a template.
@@ -198,7 +198,7 @@ For instance, given a request URL like `/multi-query?things=1&things=2&things=3`
 
 ## Handlebars helpers
 
-MockLab provides a set of Handlebars helpers that perform a variety of logical functions and transformations inside templates. These include all of the standard helpers from the [Java Handlebars implementation by jknack](https://github.com/jknack/handlebars.java){:target="{{site.data.misc.blank}}"}.
+WireMock provides a set of Handlebars helpers that perform a variety of logical functions and transformations inside templates. These include all of the standard helpers from the [Java Handlebars implementation by jknack](https://github.com/jknack/handlebars.java){:target="{{site.data.misc.blank}}"}.
 
 All of the available helpers are described in detail in these articles:
 

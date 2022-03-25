@@ -5,7 +5,7 @@ toc_rank: 51
 description: Serving default responses when no specific match is found
 ---
 
-By default MockLab will serve a generic 404 page if an incoming HTTP request is not matched to any stub mapping.
+By default WireMock will serve a generic 404 page if an incoming HTTP request is not matched to any stub mapping.
 Often this is not a problem, but in some instances it is desirable to serve your own response.
 
 This can be achieved using the Priority parameter when creating stubs. By creating a stub which has loose (non-specific)
@@ -31,10 +31,10 @@ Create a second stub with the method set to `GET`, the URL to `/examples/12` and
 Now if you make a request that matches the specific stub you will see a response with a `200` status and the success message:
 
 ```
-$ curl -v http://example.mocklab.io/examples/12
+$ curl -v http://localhost:8000/examples/12
 
 > GET /examples/12 HTTP/1.1
-> Host: example.mocklab.io
+> Host: localhost:8000
 > User-Agent: curl/7.54.0
 > Accept: */*
 >
@@ -48,10 +48,10 @@ Example 12 body
 Whereas if you make a request to a URL with no stub to match you will see the default `403` response.
 
 ```
-$ curl -v http://example.mocklab.io/examples/12222222
+$ curl -v http://localhost:8000/examples/12222222
 
 > GET /examples/12222222 HTTP/1.1
-> Host: example.mocklab.io
+> Host: localhost:8000
 > User-Agent: curl/7.54.0
 > Accept: */*
 >

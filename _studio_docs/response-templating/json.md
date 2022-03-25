@@ -4,7 +4,7 @@ title: Response Templating - Working with JSON
 description: Working with JSON and JSONPath
 ---
 
-MockLab provides the `jsonPath` helper which will extract values from a JSON document
+WireMock provides the `jsonPath` helper which will extract values from a JSON document
 using the [JSONPath](https://github.com/json-path/JsonPath){:target="{{site.data.misc.blank}}"} expression language.
 
 Similar in concept to XPath, JSONPath permits selection of individual values or sub-documents

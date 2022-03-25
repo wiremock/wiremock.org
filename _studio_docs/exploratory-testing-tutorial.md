@@ -2,15 +2,15 @@
 layout: docs
 title: "Exploratory Testing a Spring Boot App"
 toc_rank: 55
-description: Exploratory testing a Spring Boot app with MockLab
+description: Exploratory testing a Spring Boot app with WireMock Studio
 ---
 
-This tutorial demonstrates how MockLab can be used to perform a manual exploratory test of an application with an API back-end.
+This tutorial demonstrates how WireMock Studio can be used to perform a manual exploratory test of an application with an API back-end.
 The app is a simple to-do list based on Java and Spring Boot, supporting listing of to-do items and posting new ones.
 
 ## Mock API setup
 
-If you haven't yet created a mock API in MockLab, start by doing this. See [Getting Started](/docs/getting-started/) for how to do this.
+If you haven't yet created a mock API in WireMock Studio, start by doing this. See [Getting Started](/docs/getting-started/) for how to do this.
 Make a note of the base URL from the Settings page (any of them will do).
 
 ## App setup
@@ -32,7 +32,7 @@ Run the app:
 ./gradlew bootRun
 ```
 
-This should start the app locally on port `9000`.
+This should start the app locally on port `7100`.
 
 ## Step 1 - show a list of to do items
 
@@ -65,12 +65,12 @@ Your stub should look something like this:
 
 <img title="To do list stub" src="/images/screenshots/to-do-stub.png"/>
 
-Once you've saved the stub, point your browser to [http://localhost:9000](http://localhost:9000).
+Once you've saved the stub, point your browser to [http://localhost:7100](http://localhost:7100).
 You should see the to-do items in your response body listed in the page:
 
 <img title="To do list" src="/images/screenshots/to-do-list-app.png" style="width: 80%"/>
 
-What has happened here is that the Spring Boot app has made a REST request to MockLab, which was matched by the stub you just created.
+What has happened here is that the Spring Boot app has made a REST request to WireMock, which was matched by the stub you just created.
 The stub returned a JSON response which the app parsed and rendered into an HTML page.
 
 Now try modifying one or more of the item descriptions in the stub response and saving it, then refreshing the page. You should
@@ -102,8 +102,8 @@ You should now see the success message you put in the stub response:
 <img title="Success message" src="/images/screenshots/to-do-list-success-message.png" style="width: 80%"/>
 
 
-You'll notice that the contents of the list hasn't changed. This is because MockLab stubs aren't stateful - the app will load whatever is
-in the `GET /todo-items` stub you created at the start until you change it. However, if you visit the request log in the MockLab UI you can confirm that
+You'll notice that the contents of the list hasn't changed. This is because WireMock stubs aren't stateful - the app will load whatever is
+in the `GET /todo-items` stub you created at the start until you change it. However, if you visit the request log in the WireMock Studio UI you can confirm that
 the request you expected actually arrived:
 
 <img title="To do post request log" src="/images/screenshots/to-do-request-log.png" />

@@ -2,16 +2,16 @@
 layout: docs
 title: Automated Testing with Java
 toc_rank: 40
-description: Creating automated tests in Java and MockLab
+description: Creating automated tests in Java and WireMock Studio
 ---
 
-Everything that can be done with MockLab's web UI can also be done via its APIs. This can be useful when automating
+Everything that can be done with WireMock Studio's web UI can also be done via its APIs. This can be useful when automating
 testing, as it allows stubs to be configured and torn down on-demans by individual test cases rather than it being
 necessary to configure an entire test suite's stubs manually up-front. Working this way can make your tests a lot more
 readable as it makes their preconditions expicit.
 
-MockLab's API is 100% compatible with [WireMock's](http://wiremock.org/docs/api/). This means that WireMock
-can be used as a Java client for MockLab.
+WireMock's API is 100% compatible with [WireMock's](http://wiremock.org/docs/api/). This means that WireMock
+can be used as a Java client for WireMock Studio.
 
 ## Adding WireMock to your project
 
@@ -23,8 +23,8 @@ Picking the standalone version generally avoids these problems but at the cost o
 If you're using Gradle you can add WireMock to your build file's dependencies as follows:
 
 ```
-testCompile 'com.github.tomakehurst:wiremock-jre8:2.27.0' // thin JAR
-testCompile 'com.github.tomakehurst:wiremock-jre8-standalone:2.27.0' // standalone JAR
+testCompile 'com.github.tomakehurst:wiremock-jre8:2.32.0' // thin JAR
+testCompile 'com.github.tomakehurst:wiremock-jre8-standalone:2.32.0' // standalone JAR
 ```
 
 Or if you're using Maven:
@@ -34,7 +34,7 @@ Or if you're using Maven:
 <dependency>
   <groupId>com.github.tomakehurst</groupId>
   <artifactId>wiremock-jre8</artifactId>
-  <version>2.27.0</version>
+  <version>2.32.0</version>
   <scope>test</scope>
 </dependency>
 
@@ -42,30 +42,21 @@ Or if you're using Maven:
 <dependency>
   <groupId>com.github.tomakehurst</groupId>
   <artifactId>wiremock-jre8-standalone</artifactId>
-  <version>2.27.0</version>
+  <version>2.32.0</version>
   <scope>test</scope>
 </dependency>
 ```
 
 ## Configuring your test
 
-After you've created a mock API in the MockLab UI, setting up a WireMock client to it is a one-line task (you can copy-paste this from
+After you've created a mock API in the WireMock Studio UI, setting up a WireMock client to it is a one-line task (you can copy-paste this from
 your mock API's Settings page):
 
 ```java
-// If admin API security disabled
-WireMock paymentGatewayMock = new WireMock("https", "payments-example.mocklab.io", 443);
-
-// If admin API security enabled
-WireMock paymentGatewayMock = new WireMockBuilder()
-    .scheme("https")
-    .host("payments-example.mocklab.io")
-    .port(443)
-    .authenticator(new ClientTokenAuthenticator("lksdr91283rsdjkfh981"))
-    .build();
+WireMock paymentGatewayMock = new WireMock("localhost", 8000);
 ```
 
-Then in your test cases you can create stubs as [documented on the WireMock site](http://wiremock.org/docs/stubbing/):
+Then in your test cases you can create stubs as [documented here](/docs/stubbing/):
 
 ```java
 paymentGatewayMock.register(post("/send-payment").willReturn(created()));
@@ -93,7 +84,3 @@ myMockApi.register(get(urlPathEqualTo("/persist-this"))
     .willReturn(ok("Some body content"))
 );
 ```
-
-## Example project
-
-For a complete, working example of a Java web project using MockLab with automated tests see [the mocklab demo app](https://github.com/mocklab/mocklab-demo-app).
