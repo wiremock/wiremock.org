@@ -70,7 +70,7 @@ you can import this by dragging and dropping the project folder into the dialog.
 Unlike the method involving a single JSON file described above, this will cause the
 response bodies under `__files` to be inlined.
 
-<img alt="Import file" src="/images/screenshots/wiremock-folder-drop.png" style="width: 80%"/>
+<img alt="Import file" src="/images/screenshots/wiremock-folder-drop.png" />
 
 
 ## Pushing stubs to WireMock Studio using WireMock's Java API
@@ -85,6 +85,7 @@ WireMock wireMock = WireMock.create()
     .port(8000)
     .build();
 
-// The root directory of the WireMock project, under which the mappings and __files directories should be found
+// The root directory of the WireMock project,
+// under which the mappings and __files directories should be found
 wireMock.loadMappingsFrom("/wiremock");
 ```
