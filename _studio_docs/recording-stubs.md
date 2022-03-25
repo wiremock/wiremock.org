@@ -13,20 +13,20 @@ representing the resources you'd like to stub.
 
 Start by navigating to the Stubs page in your mock API (creating one first if necessary).
 
-Then hit the <img src="/images/screenshots/record-button-screenshot.png" title="Record" style="height: 42px; border: none"/> button,
-enter `http://ip-api.com` as the target URL and hit <img src="/images/screenshots/start-button-screenshot.png" title="Start" style="height: 46px; border: none"/>.
+Then hit the <img src="/images/screenshots/record-button-screenshot.png" title="Record" style="height: 35px"/> button,
+enter `https://api.github.com` as the target URL and hit <img src="/images/screenshots/start-button-screenshot.png" title="Start" style="height: 35px"/>.
 
-<img src="/images/screenshots/record-dialog-screenshot-3.png" title="Record dialog" style="width: 80%"/>
+<img src="/images/screenshots/record-dialog-screenshot-3.png" title="Record dialog" class="boxed-image" style="width:80%"/>
 
-Now make a request to your mock API (substituting `my-mock-api` for your own sub domain name):
+Now make a request to your mock API:
 
 ```bash
-$ curl -v http://localhost:8000/json
+$ curl -v http://localhost:8000/users
 ```
 
-This request will be proxied through WireMock, so that a `GET` request will be made to `http://ip-api.com/json` and the result captured.
+This request will be proxied through WireMock, so that a `GET` request will be made to `https://api.github.com/users` and the result captured.
 
-Now hit <img src="/images/screenshots/stop-button-screenshot.png" title="Stop" style="height: 46px; border: none"/>, and you should see that an extra stub has been added to the list.
+Now hit <img src="/images/screenshots/stop-button-screenshot.png" title="Stop" style="height: 35px; border: none"/>, and you should see that an extra stub has been added to the list.
 
 
 ## Request matching rules when recording
