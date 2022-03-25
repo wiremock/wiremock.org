@@ -21,4 +21,4 @@ These are configured per stub, so it is possible to respond to specific requests
 
 Faults are configured when creating or editing a stub by selecting the Fault tab in the response and choosing the fault type:
 
-<img src="/images/screenshots/fault-response.png" title="Fault response"/>
+<img src="/images/screenshots/fault-response.png" title="Fault response" style="width:75%"/>

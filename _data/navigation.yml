@@ -1,12 +1,13 @@
 # main links links
 main:
-    - title: "Products"
-      subnav: "products"
+    
+    - title: "Docs"
+      subnav: "docs"
       subnavLinks:
-          - name: "Wiremock Studio"
-            subnavLink: /studio
-          - name: "Wiremock Cloud"
-            subnavLink: "https://mocklab.io"
+        - name: "WireMock Open Source"
+          subnavLink: "/docs/"
+        - name: "WireMock Studio"
+          subnavLink: "/studio/docs/"
 
     - title: "Support"
       url: /support
@@ -21,11 +22,5 @@ main:
           - name: "Resources"
             subnavLink: /external-resources
 
-    - title: "Docs"
-      subnav: "docs"
-      subnavLinks:
-        - name: "WireMock Open Source"
-          subnavLink: "/docs/"
-        - name: "WireMock Studio"
-          subnavLink: "/studio/docs/"
+    
       

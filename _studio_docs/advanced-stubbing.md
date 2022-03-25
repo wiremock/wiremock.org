@@ -11,7 +11,7 @@ necessary to return different responses depending on the post body (since the UR
 
 We can do this by adding a body matching clause in the Advanced portion of the Request section.
 
-Click the <img style="margin-bottom: 0.8rem; vertical-align: middle; border: none; height: 45px" src="/images/screenshots/new-body-pattern-button.png" title="New body pattern"/> button to add the clause,
+Click the <img style="margin-bottom: 0.8rem; vertical-align: middle; border: none; height: 30px" src="/images/screenshots/new-body-pattern-button.png" title="New body pattern"/> button to add the clause,
 select the match type from the drop-down, then write (or paste) the expected value or expression into the text area.
 
 If your API uses JSON as its serialisation format you might want to match using `equalToJson`:
@@ -43,7 +43,7 @@ Determines how the URL will be matched. The options are:
 * **Path regex** - matches the path part of the URL against a regular expression
 * **Any URL** - matches any URL
 
-<img src="/images/screenshots/url-match-type-screenshot.png" title="URL match types" style="height: 150px"/>
+<img src="/images/screenshots/url-match-type.png" title="URL match types" style="height: 150px"/>
 
 
 ## Advanced request parameter matching
@@ -55,7 +55,7 @@ In addition to the URL and body, requests can be matched on:
 
 Parameter match clauses can use the same set of match operations as body clauses:
 
-![Request parameters](/images/screenshots/request-parameters-screenshot.png)
+![Request parameters](/images/screenshots/request-parameters.png)
 
 It's usually a good idea to use path only URL matching with query parameter matches.
 
@@ -158,7 +158,7 @@ expected to receive an XML request body containing a transaction ID that changed
 
 To use XML placeholders you must enable them by ticking the box:
 
-<img src="/images/screenshots/enable-xml-placeholders.png" title="Enable XML placeholders" style="width:300px"/>
+<img src="/images/screenshots/enable-xml-placeholders.png" title="Enable XML placeholders" />
 
 
 ### XPath
@@ -186,7 +186,7 @@ The HTTP status code to be sent with the response.
 ## Sending response headers
 Headers can be set on the response:
 
-![Response headers](/images/screenshots/response-headers-screenshot.png)
+<img alt="Response headers" src="/images/screenshots/response-headers.png" width="500px"/>
 
 
 ## Response body

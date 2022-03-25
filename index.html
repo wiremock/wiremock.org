@@ -78,7 +78,7 @@ description: WireMock is a simulator for HTTP-based APIs. It enables you to stay
             The core WireMock engine. Embed in your unit tests, or run as a standalone server anywhere there's Java or Docker available
           </p>
           <div class="link-card-info">
-            <a>
+            <a href="#open-source-get-started">
               Get Started
             </a>
             <img src="/images/openSourceRightIcon.svg" alt="Wiremock Open Source" />
@@ -93,8 +93,8 @@ description: WireMock is a simulator for HTTP-based APIs. It enables you to stay
             A full UI for WireMock supporting multiple mock APIs, Swagger, OpenAPI and Postman imports. Run on your desktop or in your Kubernetes cluster.
           </p>
           <div class="link-card-info">
-            <a>
-              Get Started
+            <a href="#studio-learn-more">
+              Learn More
             </a>
             <img src="/images/studioRightIcon.svg" alt="Wiremock Get Started"/>
           </div>
@@ -115,10 +115,7 @@ description: WireMock is a simulator for HTTP-based APIs. It enables you to stay
       <img src="{{base_path}}/images/clients/yenlo.jpg" alt="wiremock yenlo"/>
     </div>
     <div class="client-wrapper">
-      <img src="{{base_path}}/images/clients/em.jpg" alt="wiremock em"/>
-    </div>
-    <div class="client-wrapper">
-      <img src="{{base_path}}/images/clients/sky.jpg" alt="wiremock sky"/>
+      <img src="{{base_path}}/images/clients/sky.jpg" />
     </div>
     <div class="client-wrapper">
       <img src="{{base_path}}/images/clients/theguardian.jpg" alt="wiremock theguardian"/>
@@ -133,7 +130,9 @@ description: WireMock is a simulator for HTTP-based APIs. It enables you to stay
       <img src="{{base_path}}/images/clients/piksel.jpg" alt="wiremock piksel"/>
     </div>
   </div>
-  <div class="container code-tabs-wrapper">
+
+
+  <div id="open-source-get-started" class="container code-tabs-wrapper">
     <div class="code-tabs-row">
       <div class="code-tabs-sidebar-wrapper">
         <div class="code-tabs-sidebar">
@@ -164,10 +163,12 @@ description: WireMock is a simulator for HTTP-based APIs. It enables you to stay
             <li>Gradle Groovy</li>
             <li>Gradle Kotlin</li>
             <li>Scala SBT</li>
+            <li>Standalone</li>
+            <li>Docker</li>
           </ul>
           <div class="code-tabs-main-example">
             <div class="codeSnippet activeCodeSnippet" data-snippettab="maven">
-              <h4 class="codeTabDescription">Add the following to your project's pom.xml dependencies:</h4>
+              <h4 class="codeTabDescription">Add the following to your project's <strong>pom.xml</strong> dependencies:</h4>
 {% highlight xml %}
 <dependency>
   <groupId>com.github.tomakehurst</groupId>
@@ -178,24 +179,43 @@ description: WireMock is a simulator for HTTP-based APIs. It enables you to stay
 {% endhighlight %}
           </div>
           <div class="codeSnippet" data-snippettab="gradle groovy">
-            <h4 class="codeTabDescription">Add the following to your project's build.gradle:</h4>
+            <h4 class="codeTabDescription">Add the following to your project's <strong>build.gradle</strong>:</h4>
 {% highlight groovy %}
 testImplementation "com.github.tomakehurst:wiremock-jre8:2.32.0"
 {% endhighlight %}
           </div>
           <div class="codeSnippet" data-snippettab="gradle kotlin">
-            <h4 class="codeTabDescription">Add the following to your project's build.gradle.kts:</h4>
+            <h4 class="codeTabDescription">Add the following to your project's <strong>build.gradle.kts</strong>:</h4>
 {% highlight kotlin %}
 testImplementation("com.github.tomakehurst:wiremock-jre8:2.32.0")
 {% endhighlight %}
           </div>
           <div class="codeSnippet" data-snippettab="scala sbt">
-            <h4 class="codeTabDescription">Add the following to your project’s build.sbt:</h4>
+            <h4 class="codeTabDescription">Add the following to your project’s <strong>build.sbt</strong>:</h4>
 {% highlight scala %}
-libraryDependencies += "com.github.tomakehurst" % "wiremock-jre8" % "2.32.0" % Test
+libraryDependencies +=
+  "com.github.tomakehurst" % "wiremock-jre8" % "2.32.0" % Test
 {% endhighlight %}
           </div>
-            </div> 
+          <div class="codeSnippet" data-snippettab="standalone">
+            <h4 class="codeTabDescription">
+              Download the <a href="https://repo1.maven.org/maven2/com/github/tomakehurst/wiremock-jre8-standalone/{{ site.wiremock_version }}/wiremock-jre8-standalone-{{ site.wiremock_version }}.jar">latest standalone JAR</a>
+              then run the following in a terminal:
+            </h4>
+{% highlight bash %}
+java -jar wiremock-jre8-standalone-{{ site.wiremock_version }}.jar
+{% endhighlight %}
+          </div>
+          <div class="codeSnippet" data-snippettab="docker">
+            <h4 class="codeTabDescription">Run the following in a terminal:</h4>
+{% highlight bash %}
+docker run -it --rm \
+  -p 8080:8080 \
+  --name wiremock \
+  wiremock/wiremock:2.32.0
+{% endhighlight %}
+          </div>
+        </div> 
         </div>
       </div>
     </div>
@@ -240,7 +260,9 @@ libraryDependencies += "com.github.tomakehurst" % "wiremock-jre8" % "2.32.0" % T
       </a>
     </div>
   </div>
-  <div class="container wiremock-studio-wrapper">
+
+
+  <div id="studio-learn-more" class="container wiremock-studio-wrapper">
       <div class="wiremock-studio-img-wrapper">
         <img class="wiremock-studio-img" src="{{base_path}}/images/wiremockDashboard.png" alt="wiremock mock server"/>
       </div>
@@ -255,8 +277,8 @@ libraryDependencies += "com.github.tomakehurst" % "wiremock-jre8" % "2.32.0" % T
           It can run on your laptop, in Docker or in your test environment, and has exactly the same data format as the underlying WireMock engine, so it's easy to reuse mock APIs or test code you've already created.
         </p>
         <div class="wiremock-studio-links-wrapper">
-          <a class="btn-card-info btnDownload">Download</a>
-          <a class="btn-card-info btnLearnMore">Learn More</a>
+          <a class="btn-card-info btnDownload" href="/studio/docs/getting-started/">Get Started</a>
+          <a class="btn-card-info btnLearnMore" href="/studio/">Learn More</a>
         </div>
         
     </div>
@@ -318,7 +340,7 @@ libraryDependencies += "com.github.tomakehurst" % "wiremock-jre8" % "2.32.0" % T
       </div>
     </div>
     <div class="container key-features-btn-full">
-      <a class="btn-card-info btnGetStarted">Full Documentation</a>
+      <a class="btn-card-info btnGetStarted" href="/docs/">Full Documentation</a>
     </div>
 </div>
 <!-- <div class="container apis-wrapper">

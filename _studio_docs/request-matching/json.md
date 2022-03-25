@@ -104,7 +104,7 @@ Sometimes the order of elements in an array is unimportant and can change arbitr
 between multiple requests. In this case it's undesirable for your stub match to fail
 due to array order, so to remedy this you can simply tick "Ignore array order".
 
-<img src="/images/screenshots/ignore-array-order.png" title="Equal to JSON ignoring array order" />
+<img src="/images/screenshots/ignore-array-order.png" title="Equal to JSON ignoring array order" class="boxed-image" style="width:200px" />
 
 This will allow requests like the following to succeed:
 
@@ -122,7 +122,7 @@ $ curl https://example.mocklab.io/json -d '{
 If you're only interested in matching a specific set of JSON elements and don't mind
 if additional elements are present you can tick "Ignore extra elements".
 
-<img src="/images/screenshots/ignore-extra-elements.png" title="Equal to JSON ignoring extra elements" />
+<img src="/images/screenshots/ignore-extra-elements.png" title="Equal to JSON ignoring extra elements" class="boxed-image" style="width:230px" />
 
 This would permit the following to match:
 

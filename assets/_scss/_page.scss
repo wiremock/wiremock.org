@@ -319,3 +319,10 @@
     font-size: $type-size-6;
     text-transform: uppercase;
 }
+
+.boxed-image {
+    border: solid 1px $lighter-gray;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
