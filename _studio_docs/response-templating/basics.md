@@ -15,15 +15,15 @@ be templated. For proxy responses, the target URL can be a template.
 
 Enable templating for a stub by ticking the "Enable templating" box in the Response section:
 
-<img src="/images/screenshots/enable-response-templating-screenshot.png" title="Enable templating" style="height: 70px"/>
+<img src="/images/screenshots/enable-response-templating-screenshot.png" title="Enable templating" style="height: 60px" class="boxed-image"/>
 
 Ticking this box means that header values can be templated e.g.
 
-<img src="/images/screenshots/header-template-screenshot.png" title="Header template" style="height: 70px"/>
+<img src="/images/screenshots/header-template-screenshot.png" title="Header template" style="height: 60px"/>
 
 And also the response body e.g.
 
-<img src="/images/screenshots/body-template-screenshot.png" title="Body template" style="height: 130px"/>
+<img src="/images/screenshots/body-template-screenshot.png" title="Body template" />
 
 ## Handlebars overview
 
