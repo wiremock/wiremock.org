@@ -4,7 +4,7 @@ title: Import & Export - Postman
 description: Importing Postman collections into WireMock Studio.
 ---
 
-<img alt="Postman" src="/images/screenshots/postman.png" style="width: 80%;border:none;"/>
+<img alt="Postman" src="/images/screenshots/postman.png" />
 
 Postman is one of the most widely used tools for testing HTTP services, and its
 collection format has become a de-facto standard for representing request and response examples.
