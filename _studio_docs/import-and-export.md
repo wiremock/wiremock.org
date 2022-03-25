@@ -21,11 +21,11 @@ mock API you'd like to import into, then click the Import button.
 
 Then either paste the content to be imported:
 
-<img alt="Import text" src="/images/screenshots/import-text.png" style="width: 80%"/>
+<img alt="Import text" src="/images/screenshots/import-text.png" class="boxed-image" />
 
 Or upload it as a file:
 
-<img alt="Import file" src="/images/screenshots/import-file.png" style="width: 80%"/>
+<img alt="Import file" src="/images/screenshots/import-file.png" class="boxed-image"/>
 
 The WireMock JSON format is also WireMock's native format, so when a file of this type is imported
 it the stubs created correspond exactly to the file contents.
@@ -44,4 +44,4 @@ To export the current mock API's stubs in WireMock JSON format, click the Export
 
 Then click the download link:
 
-<img alt="Export dialog" src="/images/screenshots/export-stubs.png" style="width: 60%"/>
+<img alt="Export dialog" src="/images/screenshots/export-stubs.png" class="boxed-image" width="75%"/>
