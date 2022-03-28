@@ -1,7 +1,6 @@
 ---
 layout: docs
 title: "Serving a Default Response"
-toc_rank: 51
 description: Serving default responses when no specific match is found
 ---
 
@@ -60,3 +59,9 @@ $ curl -v http://localhost:8000/examples/12222222
 <
 Sorry, you can't do that
 ```
+
+
+## Proxying by default
+
+A common use of default responses is to proxy all requests that don't match any specific stubs to another endpoint.
+See the [Proxying doc](/studio/docs/#the-proxyintercept-pattern-proxy-by-default) for more details on this approach.
