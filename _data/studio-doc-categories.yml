@@ -1,7 +1,9 @@
 setup-config:
-  title: Setup & Configuration
+  title: Getting Started
   pages:
-    - getting-started
+    - getting-started/desktop
+    - getting-started/docker
+    - getting-started/kubernetes
 
 stubbing:
   title: Stubbing
