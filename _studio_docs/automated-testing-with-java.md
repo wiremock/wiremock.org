@@ -1,56 +1,25 @@
 ---
 layout: docs
 title: Automated Testing with Java
-toc_rank: 40
 description: Creating automated tests in Java and WireMock Studio
 ---
 
 Everything that can be done with WireMock Studio's web UI can also be done via its APIs. This can be useful when automating
-testing, as it allows stubs to be configured and torn down on-demans by individual test cases rather than it being
+testing, as it allows stubs to be configured and torn down on-demand by individual test cases rather than it being
 necessary to configure an entire test suite's stubs manually up-front. Working this way can make your tests a lot more
 readable as it makes their preconditions expicit.
 
-WireMock's API is 100% compatible with [WireMock's](http://wiremock.org/docs/api/). This means that WireMock
+WireMock Studio's API is 100% compatible with [WireMock's](http://wiremock.org/docs/api/). This means that WireMock
 can be used as a Java client for WireMock Studio.
 
-## Adding WireMock to your project
+## Setup
 
-WireMock is distributed in two different types of JAR - a standard "thin" JAR, and a "fat" standalone JAR. The latter of these
-contains all of WireMock's dependencies and repackages (shades) most of these. Either can be used as a dependency in your
-project and which you choose depends primarily on whether you have dependencies already present that conflict with WireMock's.
-Picking the standalone version generally avoids these problems but at the cost of a larger JAR download.
-
-If you're using Gradle you can add WireMock to your build file's dependencies as follows:
-
-```
-testCompile 'com.github.tomakehurst:wiremock-jre8:2.32.0' // thin JAR
-testCompile 'com.github.tomakehurst:wiremock-jre8-standalone:2.32.0' // standalone JAR
-```
-
-Or if you're using Maven:
-
-```xml
-<!-- Thin JAR -->
-<dependency>
-  <groupId>com.github.tomakehurst</groupId>
-  <artifactId>wiremock-jre8</artifactId>
-  <version>2.32.0</version>
-  <scope>test</scope>
-</dependency>
-
-<!-- Standalone JAR -->
-<dependency>
-  <groupId>com.github.tomakehurst</groupId>
-  <artifactId>wiremock-jre8-standalone</artifactId>
-  <version>2.32.0</version>
-  <scope>test</scope>
-</dependency>
-```
+To follow this guide you first need to add WireMock open source as a dependency to your project. See the [download and installation](/docs/download-and-installation/) page for details on how to do this.
 
 ## Configuring your test
 
 After you've created a mock API in the WireMock Studio UI, setting up a WireMock client to it is a one-line task (you can copy-paste this from
-your mock API's Settings page):
+your mock API's Settings page). Use the port number you allocated when creating the mock API (which you can also find on the top bar in the base URL):
 
 ```java
 WireMock paymentGatewayMock = new WireMock("localhost", 8000);
@@ -84,3 +53,7 @@ myMockApi.register(get(urlPathEqualTo("/persist-this"))
     .willReturn(ok("Some body content"))
 );
 ```
+
+
+## Further reading
+You can see a more detailed example of this kind of test automation in action in the [MockLab demo app](https://github.com/mocklab/mocklab-demo-app/blob/master/src/test/java/mocklab/demo/ToDoWebTest.java){:target="{{site.data.misc.blank}}"}.
