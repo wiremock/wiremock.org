@@ -1,8 +1,20 @@
 ---
 layout: docs
-title: WireMock Studio Documentation
+title: WireMock Studio Documentation - Home
 permalink: /studio/docs/
 description: Welcome to the WireMock Studio documentation
 ---
 
-Hello!
+Welcome to the documentation for WireMock Studio!
+
+<img src="{{ base_path }}/images/wiremockStudioDashboard.png" alt="WireMock Studio UI" />
+
+
+
+WireMock Studio is the IDE for your API mocks that you can run as a Java app, in Docker or in your Kubernetes cluster.
+
+Follow these guides to get started in your preferred environment:
+
+* [Getting Started - Desktop](/studio/docs/getting-started/desktop/)
+* [Getting Started - Docker](/studio/docs/getting-started/docker/)
+* [Getting Started - Kubernetes](/studio/docs/getting-started/kubernetes/)

@@ -1,56 +1,8 @@
 ---
 layout: docs
-title: WireMock Studio - Getting Started
-description: How to download, run and use WireMock Studio.
+title: WireMock Studio - Getting Started - Kubernetes
+description: How to instlled and run WireMock Studio in your Kubernetes cluster.
 ---
-
-<br>
-
-<img src="{{ base_path }}/images/wiremockStudioDashboard.png" alt="WireMock Studio UI" />
-
-WireMock Studio is currently released as a standalone JAR and a Docker image, making
-it straightforward to run on your own machine or in your test environment.
-
-
-## Running the standalone JAR
-
-The standalone JAR requires a minimum of **Java 11**, and this is the best
-version to use, however we've tested it on Java 17 and this also works fine except
-if you try to enable and use HTTPS browser proxying.
-
-After ensuring you've got a suitable Java version installed, download the
-<a href="http://wiremock-studio.s3-website-us-east-1.amazonaws.com/wiremock-studio-{{site.data.misc.wiremock_studio_version}}.jar" id="wiremock-studio-download">WireMock Studio standalone JAR</a>.
-
-Then open a terminal in the directory containing the JAR file and run:
-
-```bash
-java -jar wiremock-studio-{{site.data.misc.wiremock_studio_version}}.jar
-```
-
-You should see something like the following in the console:
-
-<img src="{{ base_path}}/images/wiremockBYUP9.png"  alt="WireMock Studio console" />
-
-You can now visit the console URL shown, which defaults to [http://localhost:9000](http://localhost:9000){:target="{{site.data.misc.blank}}"}.
-
-
-## Running in Docker
-
-To start WireMock Studio in Docker locally, run the following in a shell:
-
-```bash
-docker run -it \
-  -p 9000:9000 \
-  -p 8000:8000 \
-  -p 8001:8001 \
-  up9inc/wiremock-studio:{{site.data.misc.wiremock_studio_version}}
-```
-
-Note that ports 8000 and 8001 that are exposed in this case are ports we expect
-to assign new mock APIs to when we create them. You'll need to add more (or fewer)
-of these per your requirements.
-
-Port 9000 is the UI and management port so should always be exposed.
 
 ## Deploying to Kubernetes
 
@@ -150,15 +102,6 @@ docker run -it \
 This will mount the `wiremock` subdirectory under the current directory as the root.
 This directory and its contents can be committed to source control.
 
-
-## More info on WireMock Studio features
-
-We're still in the process of producing new documentation, but since WireMock Studio's
-UI is very similar to MockLab's we invite you in the meantime to browse [MockLab's documentation](https://www.mocklab.io/docs/){:target="{{site.data.misc.blank}}"}.
-Most things will work identically in both products.
-
-
 ## Getting help and support
 
-Please join our [community Slack](https://up9.com/slack?utm_source=wiremock.org&utm_medium=docs&utm_campaign=studio-beta-docs){:target="{{site.data.misc.blank}}"}
-for help from the WireMock + UP9 team, and other community members.
+Check out the [support page](/support/) for the ways you can get help with WireMock Studio.

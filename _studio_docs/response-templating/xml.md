@@ -4,7 +4,7 @@ title: Response Templating - Working with XML
 description: Working with XML
 ---
 
-This article describes MockLab's helpers for processing and manipulating XML.
+This article describes WireMock's helpers for processing and manipulating XML.
 
 ## XPath
 

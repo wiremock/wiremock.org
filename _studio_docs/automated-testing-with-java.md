@@ -1,71 +1,31 @@
 ---
 layout: docs
 title: Automated Testing with Java
-toc_rank: 40
-description: Creating automated tests in Java and MockLab
+description: Creating automated tests in Java and WireMock Studio
 ---
 
-Everything that can be done with MockLab's web UI can also be done via its APIs. This can be useful when automating
-testing, as it allows stubs to be configured and torn down on-demans by individual test cases rather than it being
+Everything that can be done with WireMock Studio's web UI can also be done via its APIs. This can be useful when automating
+testing, as it allows stubs to be configured and torn down on-demand by individual test cases rather than it being
 necessary to configure an entire test suite's stubs manually up-front. Working this way can make your tests a lot more
 readable as it makes their preconditions expicit.
 
-MockLab's API is 100% compatible with [WireMock's](http://wiremock.org/docs/api/). This means that WireMock
-can be used as a Java client for MockLab.
+WireMock Studio's API is 100% compatible with [WireMock's](http://wiremock.org/docs/api/). This means that WireMock
+can be used as a Java client for WireMock Studio.
 
-## Adding WireMock to your project
+## Setup
 
-WireMock is distributed in two different types of JAR - a standard "thin" JAR, and a "fat" standalone JAR. The latter of these
-contains all of WireMock's dependencies and repackages (shades) most of these. Either can be used as a dependency in your
-project and which you choose depends primarily on whether you have dependencies already present that conflict with WireMock's.
-Picking the standalone version generally avoids these problems but at the cost of a larger JAR download.
-
-If you're using Gradle you can add WireMock to your build file's dependencies as follows:
-
-```
-testCompile 'com.github.tomakehurst:wiremock-jre8:2.27.0' // thin JAR
-testCompile 'com.github.tomakehurst:wiremock-jre8-standalone:2.27.0' // standalone JAR
-```
-
-Or if you're using Maven:
-
-```xml
-<!-- Thin JAR -->
-<dependency>
-  <groupId>com.github.tomakehurst</groupId>
-  <artifactId>wiremock-jre8</artifactId>
-  <version>2.27.0</version>
-  <scope>test</scope>
-</dependency>
-
-<!-- Standalone JAR -->
-<dependency>
-  <groupId>com.github.tomakehurst</groupId>
-  <artifactId>wiremock-jre8-standalone</artifactId>
-  <version>2.27.0</version>
-  <scope>test</scope>
-</dependency>
-```
+To follow this guide you first need to add WireMock open source as a dependency to your project. See the [download and installation](/docs/download-and-installation/) page for details on how to do this.
 
 ## Configuring your test
 
-After you've created a mock API in the MockLab UI, setting up a WireMock client to it is a one-line task (you can copy-paste this from
-your mock API's Settings page):
+After you've created a mock API in the WireMock Studio UI, setting up a WireMock client to it is a one-line task (you can copy-paste this from
+your mock API's Settings page). Use the port number you allocated when creating the mock API (which you can also find on the top bar in the base URL):
 
 ```java
-// If admin API security disabled
-WireMock paymentGatewayMock = new WireMock("https", "payments-example.mocklab.io", 443);
-
-// If admin API security enabled
-WireMock paymentGatewayMock = new WireMockBuilder()
-    .scheme("https")
-    .host("payments-example.mocklab.io")
-    .port(443)
-    .authenticator(new ClientTokenAuthenticator("lksdr91283rsdjkfh981"))
-    .build();
+WireMock paymentGatewayMock = new WireMock("localhost", 8000);
 ```
 
-Then in your test cases you can create stubs as [documented on the WireMock site](http://wiremock.org/docs/stubbing/):
+Then in your test cases you can create stubs as [documented here](/docs/stubbing/):
 
 ```java
 paymentGatewayMock.register(post("/send-payment").willReturn(created()));
@@ -94,6 +54,6 @@ myMockApi.register(get(urlPathEqualTo("/persist-this"))
 );
 ```
 
-## Example project
 
-For a complete, working example of a Java web project using MockLab with automated tests see [the mocklab demo app](https://github.com/mocklab/mocklab-demo-app).
+## Further reading
+You can see a more detailed example of this kind of test automation in action in the [MockLab demo app](https://github.com/mocklab/mocklab-demo-app/blob/master/src/test/java/mocklab/demo/ToDoWebTest.java){:target="{{site.data.misc.blank}}"}.

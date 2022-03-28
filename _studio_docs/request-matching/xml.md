@@ -5,7 +5,7 @@ description: Matching XML
 ---
 
 When stubbing API functions that accept XML request bodies we may want to
-return different responses based on the XML sent. MockLab provides two match types
+return different responses based on the XML sent. WireMock provides two match types
 to supports this case - `equalToXml` and `matchesXPath`, which are described
 in detail in this article.
 
@@ -61,7 +61,7 @@ The following XML will match:
 
 ## Matching via XPath - `matchesXPath`
 
-MockLab supports matching incoming XML using XPath 1.0 expressions. The most common
+WireMock supports matching incoming XML using XPath 1.0 expressions. The most common
 use case for this is when accepting XML request bodies, although it can be used
 with other request fields such as headers.
 

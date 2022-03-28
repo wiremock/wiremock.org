@@ -1,14 +1,14 @@
 ---
 layout: docs
 title: Request Matching - Overview of Matcher Types
-description: Overview of the match operations supported by MockLab
+description: Overview of the match operations supported by WireMock
 ---
 
-MockLab (via WireMock) supports a set of match operations that can be used against
+WireMock supports a set of match operations that can be used against
 the request's query, headers, cookies and body.
 
 This article provides an overview of these matchers. The names shown are the exact
-keys used in the WireMock/MockLab JSON API.
+keys used in the WireMock JSON API.
 
 ## `equalTo`
 

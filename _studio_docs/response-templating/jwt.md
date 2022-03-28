@@ -15,13 +15,10 @@ be simply be generated using ordinary templating primitives. Signing can be via
 one of a number of algorithms, but by far the two most common are `HS256` (shared secret)
 and `RS256` (public/private key).
 
-In order to enable creation of valid JWTs MockLab provides a pair of template helpers
+In order to enable creation of valid JWTs WireMock Studio provides a pair of template helpers
 specifically for this purpose: `jwt` and `jwks`.
 
 Both `HS256` and `RS256` signed tokens are supported.
-
-If you'd like to see these features in action, take a look at the [OAuth2 mock](/docs/oauth2-mock/)
-hosted by MockLab, which is also available to use as an template when creating your own mock API.
 
 ## Generating a token
 
@@ -71,7 +68,7 @@ Issuer:
 
 {% raw %}
 ```handlebars
-{{{jwt iss='https://jwt-example.mocklab.io/'}}}
+{{{jwt iss='http://my-issuer.example.com/'}}}
 ```
 {% endraw %}
 
@@ -79,7 +76,7 @@ Audience:
 
 {% raw %}
 ```handlebars
-{{{jwt aud='https://jwt-target.mocklab.io/'}}}
+{{{jwt aud='https://jwt-target.example.com/'}}}
 ```
 {% endraw %}
 
@@ -101,7 +98,7 @@ You can also set any custom claim you wish via named parameters e.g.
     isAdmin=true
     quota=23
     score=0.96
-    email='jonsmith@example.mocklab.io'
+    email='jonsmith@example.com'
     signupDate=(parseDate '2017-01-02T03:04:05Z')
 }}}
 ```
@@ -129,7 +126,7 @@ The keys used to sign tokens for a particular mock API can be retrieved via the
 settings admin API resource. To fetch these via curl, you can do the following:
 
 ```
-curl -H 'Authorization:Token <your MockLab API token>' https://your-mock-api.mocklab.io/__admin/settings
+curl http://localhost:8000/__admin/settings
 ```
 
 This will return a JSON document like this, from which you can retrieve the any of the

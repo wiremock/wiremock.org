@@ -8,7 +8,7 @@ description: Responding with network and HTTP faults
 Real-world APIs and the networks used to communicate with them can fail in ways that can destabilise your application,
 and are hard to test.
 
-MockLab supports responding to requests with four different fault types:
+WireMock supports responding to requests with four different fault types:
   
 * Server closes connection before response sent
 * Corrupt data sent, then connection closed

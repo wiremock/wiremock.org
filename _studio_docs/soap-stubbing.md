@@ -42,10 +42,10 @@ $ curl -X POST -d '<?xml version="1.0"?>
       </m:AddToDoItem>
    </soap-env:Body>
 
-</soap-env:Envelope>' -H 'SOAPAction: "http://example.company/todo/AddToDoItem"' http://example.mocklab.io/soap-example -v
+</soap-env:Envelope>' -H 'SOAPAction: "http://example.company/todo/AddToDoItem"' http://localhost:8000/soap-example -v
 
 > POST /soap-example HTTP/1.1
-> Host: example.mocklab.io
+> Host: localhost:8000
 > User-Agent: curl/7.54.0
 > Accept: */*
 > SOAPAction: "http://example.company/todo/AddToDoItem"

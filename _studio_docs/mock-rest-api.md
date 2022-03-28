@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: How to build a mock REST API [Tutorial]
-description: How to build an online mock REST API in MockLab for functional, integration and performance testing
+description: How to build an online mock REST API in WireMock Studio for functional, integration and performance testing
 categories: ['API Mocking', 'Mock API', 'REST', 'Mock REST API', 'JSON']
 ---
 
@@ -30,13 +30,11 @@ this is not esssential as it'll be explained in the places it's used.
 
 ## Setting up
 
-Firstly, you'll need to [sign up for a MockLab account](https://app.mocklab.io/login?for=signup){:target="{{site.data.misc.blank}}"} if you don't already have one.
-
-Once you've signed up or logged back in, create a blank mock API by hitting <img style="padding:0;vertical-align: middle; border: none; height: 30px" src="/images/screenshots/new-mock-api-button.png" alt="New mock API"/>
+Create a blank mock API by hitting <img style="padding:0;vertical-align: middle; border: none; height: 27px" src="/images/screenshots/new-mock-api-button.png" alt="New mock API"/>
 in the app. Make sure you choose the "blank" template on the new API form.
 
 <div style="width:80%;border:1px solid #bbc3cd;padding:10px;margin-left:auto;margin-right:auto;margin-bottom:1rem">
-  <h3 style="margin-top:-1rem">tl;dr</h3>
+  <h3 style="margin-top:0">tl;dr</h3>
 
   If you just want to take a look at the end result of this tutorial you can select
   the <strong>"rest-example"</strong> API template instead of "blank" when when creating a new mock API.
@@ -47,7 +45,7 @@ in the app. Make sure you choose the "blank" template on the new API form.
 After creating a new mock API you'll be taken to the Settings page where you can find
 its base URLs (one for HTTP one for HTTPS):
 
-<img alt="Base URL" src="/images/screenshots/base-url-box.png" style="width: 60%;border:none;"/>
+<img alt="Base URL" src="/images/screenshots/base-url.png" style="width: 60%;border:none;"/>
 
 You can check that your new API is live by copying the base URL by clicking the icon
 to the right of the box and making a request from your HTTP client (e.g. Postman):
@@ -99,17 +97,17 @@ new stub button:
 Then in the request section, set the method to `GET`, the URL to `/v1/contacts`
 and the URL match type to `Path`:
 
-<img alt="Contact list stub request" src="/images/screenshots/mock-rest-api/contact-list-request.png" style="width: 80%;border:none;"/>
+<img alt="Contact list stub request" src="/images/screenshots/mock-rest-api/contact-list-request.png" />
 
 In the response section put the JSON in the body field, and for good measure
 we'll also send a `Content-Type: application/json` header:
 
-<img alt="Contact list stub response" src="/images/screenshots/mock-rest-api/contact-list-response.png" style="width: 80%;border:none;"/>
+<img alt="Contact list stub response" src="/images/screenshots/mock-rest-api/contact-list-response.png" />
 
-After hitting Save, you can now test the stub using MockLab's Test Requester or
+After hitting Save, you can now test the stub using WireMock's Test Requester or
 your preferred HTTP client:
 
-<img alt="Contact list test request" src="/images/screenshots/mock-rest-api/contact-list-test-request.png" style="width: 60%;border:none;"/>
+<img alt="Contact list test request" src="/images/screenshots/mock-rest-api/contact-list-test-request.png" />
 
 
 ## Filtering via query parameters
@@ -151,11 +149,11 @@ clicking <img style="padding:0;vertical-align: middle; border: none; height: 30p
 
 Then we add a query parameter match for `companyId` equalling `123`:
 
-<img alt="Query parameter matching" src="/images/screenshots/mock-rest-api/query-parameter-match.png" style="width: 80%;border:none;"/>
+<img alt="Query parameter matching" src="/images/screenshots/mock-rest-api/query-parameter-match.png" />
 
 And finally paste the filtered JSON in the body field:
 
-<img alt="Query parameter matching" src="/images/screenshots/mock-rest-api/filtered-contacts-response.png" style="width: 80%;border:none;"/>
+<img alt="Query parameter matching" src="/images/screenshots/mock-rest-api/filtered-contacts-response.png" />
 
 You can find more detail on [matching different parts of incoming requests here](/docs/advanced-stubbing/#advanced-request-parameter-matching).
 
@@ -171,9 +169,9 @@ individual contact via a `GET` to `/v1/contacts/22222`.
 We can stub a single data item in a very similar manner to the contact list we
 created first, relying on exact URL path equality to match the request:
 
-<img alt="Single contact request" src="/images/screenshots/mock-rest-api/single-contact-request.png" style="width: 80%;border:none;"/>
+<img alt="Single contact request" src="/images/screenshots/mock-rest-api/single-contact-request.png" />
 
-<img alt="Single contact response" src="/images/screenshots/mock-rest-api/single-contact-response.png" style="width: 80%;border:none;"/>
+<img alt="Single contact response" src="/images/screenshots/mock-rest-api/single-contact-response.png" />
 
 
 ## Using URL regex matching and response templating to simulate many data records
@@ -191,7 +189,7 @@ a looser URL match using the `Path regex` URL match type with the regular expres
 This will match any URL path starting with `/v1/contacts` and ending with any
 numeric ID between 1 and 10 characters long:
 
-<img alt="Templated contact request" src="/images/screenshots/mock-rest-api/templated-contact-request.png" style="width: 80%;border:none;"/>
+<img alt="Templated contact request" src="/images/screenshots/mock-rest-api/templated-contact-request.png" />
 
 Then we'll enable templating in the response by ticking "Enable templating" and
 make the response body more dynamic by replacing some elements with template helpers, giving us:
@@ -266,13 +264,13 @@ as wildcards:
 ```
 {% endraw %}
 
-<img alt="New contact body pattern" src="/images/screenshots/mock-rest-api/new-contact-body-pattern.png" style="width: 80%;border:none;"/>
+<img alt="New contact body pattern" src="/images/screenshots/mock-rest-api/new-contact-body-pattern.png" />
 
 Now if we make a request containing an incorrect JSON field (`name` instead of
 `firstName` and `lastName`), we'll get a `404 Not Found` response
 containing a diff report showing which part of the request didn't match:
 
-<img alt="Contact POST mismatch" src="/images/screenshots/mock-rest-api/new-contact-postman-mismatch.png" style="border:none;"/>
+<img alt="Contact POST mismatch" src="/images/screenshots/mock-rest-api/new-contact-postman-mismatch.png" />
 
 
 ## Simulating state changes
@@ -284,7 +282,7 @@ store any state, so making a request to add a new contact will have no effect on
 the data returned later.
 
 For most testing scenarios this isn't an issue, but in cases where more realistic
-behaviour is required MockLab supports the concept of "stateful scenarios" whereby
+behaviour is required WireMock supports the concept of "stateful scenarios" whereby
 the state of a scenario can be used to determine which stub to match.
 
 If we wanted to, for instance, create a test case in which posting a new company
@@ -388,28 +386,28 @@ Let's say that if we receive a specific contact ID then we'll trigger the error.
 To do this, change the body match type to `matchesJsonPath` and the expression to
 `$.contact.id` `equalTo` `666`:
 
-<img alt="Matching on JSONPath" src="/images/screenshots/mock-rest-api/matches-json-path.png" style="width:80%"/>
+<img alt="Matching on JSONPath" src="/images/screenshots/mock-rest-api/matches-json-path.png" />
 
 Finally, change the response status code to `503`, and let's also add a plain text
 error message supported by a `Content-Type: text/plain` header:
 
-<img alt="Error 503 response" src="/images/screenshots/mock-rest-api/503-response.png" style="width:80%;border:none;"/>
+<img alt="Error 503 response" src="/images/screenshots/mock-rest-api/503-response.png" />
 
 ### Testing the error response
 
 Now we can send a test request and see the error response returned:
 
-<img alt="Error 503 response" src="/images/screenshots/mock-rest-api/503-error-test-request.png" style="width:80%;border:none;"/>
+<img alt="Error 503 response" src="/images/screenshots/mock-rest-api/503-error-test-request.png" />
 
 > **note**
 >
-> The message in the red text in this case indicates that MockLab couldn't
+> The message in the red text in this case indicates that WireMock couldn't
 > automatically generate a valid request body to match our JSONPath expression.
 > This can be safely ignored as we've created our own request body.
 
 ### Other types of error
 
-You can also simulate lower-level errors with MockLab such as dropped network
+You can also simulate lower-level errors with WireMock such as dropped network
 connections and delays. You can [learn more about faults here](/docs/simulating-faults/).
 
 

@@ -24,7 +24,7 @@ You can also optionally allow bursting by setting:
 * `burst` - the number of requests that can be made in a burst over the set rate limit  
 
 
-You set the rate limit by making a `PUT` request to `https://<your mock API>.mocklab.io/__admin/mocklab/settings/extended/rateLimits`
+You set the rate limit by making a `PUT` request to `http://localhost:8000/__admin/mocklab/settings/extended/rateLimits`
 containing the JSON object configuring all of your rate limits e.g.
 
 ```json
@@ -46,8 +46,7 @@ containing the JSON object configuring all of your rate limits e.g.
 If you've got admin API security turned on you'll need to supply your API key e.g.
 
 ```bash
-curl -H 'Authorization:Token <your API token>' \
-  https://<your mock API>.mocklab.io/__admin/mocklab/settings/extended/rateLimits \
+curl http://localhost:8000/__admin/mocklab/settings/extended/rateLimits \
   -X PUT -d '{
  "rateLimits": {
    "management": {
@@ -69,7 +68,7 @@ To rate limit a particular stub according to one of your named configurations yo
 need to create or edit the stub via the API, so that you can enable the `rate-limit`
 transformer and set the name of the rate limit to be used.
 
-You do this by `POST`ing the JSON to `https://<your mock API>.mocklab.io/__admin/mappings`.
+You do this by `POST`ing the JSON to `http://localhost:8000/__admin/mappings`.
 
 Taking the above example, if I wanted to use the "authentication" rate limit in my
 login handler stub, I'd do as follows:

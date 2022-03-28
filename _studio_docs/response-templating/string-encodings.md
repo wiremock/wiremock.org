@@ -4,7 +4,7 @@ title: Response Templating - String Encodings
 description: Working with base64, URL and form encodings.
 ---
 
-MockLab provides several helpers for encoding and decoding values to/from various
+WireMock provides several helpers for encoding and decoding values to/from various
 formats.
 
 ## Base64

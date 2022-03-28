@@ -6,7 +6,7 @@ description: Working with if statements, loops and collections.
 
 Taking actions conditionally and looping over collections of data are very common
 requirements from a templating system. This article explains how these are achieved
-in MockLab.
+in WireMock.
 
 ## Conditional logic with if / else and unless
 

@@ -4,7 +4,7 @@ title: Response Templating - String Helpers
 description: Working with strings
 ---
 
-MockLab provides a set of string manipulation helpers.
+WireMock provides a set of string manipulation helpers.
 
 ## Regular expression extract
 
@@ -177,8 +177,8 @@ You can optionally specify a prefix and suffix:
 
 {% raw %}
 ```handlebars
-{{lower 'MockLab'}} // mocklab
-{{upper 'MockLab'}} // MOCKLAB
+{{lower 'WireMock'}} // wiremock
+{{upper 'WireMock'}} // WIREMOCK
 ```
 {% endraw %}
 

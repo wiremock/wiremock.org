@@ -1,8 +1,7 @@
 ---
 layout: docs
 title: Stubbing Basics
-toc_rank: 20
-description: Overview of MockLab's stubbing capabilities
+description: How to set up a basic stub in WireMock Studio
 ---
 
 
@@ -25,7 +24,7 @@ In the Response section, set HTTP status, headers and body text. Typically it is
 
 <img src="/images/screenshots/basic-response.png" title="Basic stub response" class="boxed-image">
 
-Hit Save, then you're ready to test your stub. Point your browser to `http://<your-subdomain>.mocklab.io/hello-world`.
+Hit Save, then you're ready to test your stub. Point your browser to `http://localhost:8000/hello-world`.
 You should see the body text `Hello World!!!` that you entered into the body text box. You can find out what your
 subdomain is on the Settings page for the mock API.
 
