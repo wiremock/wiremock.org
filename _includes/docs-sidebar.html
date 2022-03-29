@@ -4,14 +4,18 @@
   <nav class="nav__list">
     <ul class="doc-categories">
       {% for doc_category in site.data.doc-categories %}
+      {% assign current_page = doc_category[1].pages | where_exp: "docpage", "page.url contains docpage" %}
         <li class="doc-category">
           <span class="doc-category__title">{{ doc_category[1].title }}</span>
-          <ul class="doc-category__links">
+          <ul class="
+          doc-category__sub-nav
+          {% if current_page.first %}doc-category__sub-nav--active{% endif %}
+          ">
             {% for page_id in doc_category[1].pages %}
               {% assign full_page_id = '/docs/' | append: page_id %}
               {% assign doc = site.docs | find: "id", full_page_id %}
               
-              <li>
+              <li class="doc-category__li">
                 {% if doc.url == page.url %}<a href="{{ doc.url }}" class="nav__list-item--selected">
                 {% else %}<a href="{{ base_path }}{{ doc.url }}">{% endif %}
 

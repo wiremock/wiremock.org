@@ -14,30 +14,213 @@ description: WireMock Studio is a tool for building and running mock APIs on you
 
 <div class="studio-header">
     <div class="studio-header__intro">
-        <img src="{{ base_path}}/images/wiremockTypeExample.svg" />
-        <h2>Studio</h2>
-        <p>
-            WireMock Studio is an IDE for your mock APIs.
-        </p>
+        <div class="studio-header-middle">
+            <img class="wiremockBIG" src="{{base_path}}/images/wiremockBIG.png" />
+            <h2>Studio</h2>
+        </div>
+        <h2 class="studio-subtitle">is an IDE for your mock APIs.</h2>
+        <h2 class="studio-mobile-subtitle">is an IDE for your</h2>
+        <h2 class="studio-mobile-subtitle">mock APIs.</h2>
+        
         <p>
             It provides management of multiple mock APIs, support for Swagger, OpenAPI, Postman and JWT, and a full web UI that's accessible to non-coders.
         </p>
-        <a class="btn-card-info btnDownload" href="/studio/docs/getting-started/">Get started</a>
+        <div class="getStartedHeader">
+            <a class="getStartedLink" href="/studio/docs/getting-started/">Get started</a>
+            <img src="{{base_path}}/images/studioRightIcon.svg" alt="wiremock get started" width="11" height="11"/>
+        </div>
+        
     </div>
 </div>
+<div class="wiremock-studio-container main-wrapper-studio">
+    <h2 class="titleTXT-main-wrapper">WireMock Studio Beta</h2>
+    <h2 class="titleTXT-main-wrapper">Getting Started</h2>
+    <img class="responsive-img-studio" src="{{ base_path}}/images/wiremockStudioDashboard.png"  />
+    <p class="pstudio">
+        WireMock Studio is currently released as a standalone JAR and a Docker image, making it straightforward to run on your own machine or in your test environment.
+    </p>
+    <h4 class="h4Studio">
+        Running the standalone JAR
+    </h4>
+    <p class="pstudio pMargin">
+        The standalone JAR requires a minimum of Java 11, and this is the best version to use, however we've tested it on Java 17 and this also works fine except if you try to enable and use HTTPS browser proxying.
+    </p>
+    <p class="pstudio pMargin">
+        After ensuring you've got a suitable Java version installed, download the <a href="#">WireMock Studio standalone JAR.</a>
+    </p>
+    <p class="pstudio">
+        Then open a terminal in the directory containing the JAR file and run:
+    </p>
+{% highlight java %}
+java -jar wiremock-studio-2.32.0-8.jar
+{% endhighlight %}
+    <p class="pstudio">You should see something like the following in the console:</p>
+    <img class="wiremockBYUP9" src="{{ base_path}}/images/wiremockBYUP9.png" />
+    <p class="pstudio">You can now visit the console URL shown, which defaults to <a>http://localhost:9000</a>.</p>
+    <h4 class="h4Studio">
+        Running in Docker
+    </h4>
+    <p class="pstudio">
+        To start WireMock Studio in Docker locally, run the following in a shell:
+    </p>
+{% highlight docker %}
+docker run -it \
+    -p 9000:9000 \
+    -p 8000:8000 \
+    -p 8001:8001 \
+    up9inc/wiremock-studio:2.32.0-8
+{% endhighlight %}
+    <p class="pstudio pMargin">
+        Note that ports 8000 and 8001 that are exposed in this case are ports we expect to assign new mock APIs to when we create them. You'll need to add more (or fewer) of these per your requirements.
+    </p>
+    <p class="pstudio">
+        Port 9000 is the UI and management port so should always be exposed.
+    </p>
+    <h4 class="h4Studio">
+        Deploying to Kubernetes
+    </h4>
+    <p class="pstudio">
+        Start by creating a Kubernetes manifest file called wiremock-studio.yaml with the following contents (tweaking parameters for your environment where appropriate):
+    </p>
+{% highlight yaml %}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wiremock-studio
+  labels:
+    name: wiremock-studio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: wiremock-studio
+  template:
+    metadata:
+      labels:
+        name: wiremock-studio
+    spec:
+      containers:
+      - name: wiremock-studio
+        image: up9inc/wiremock-studio:2.32.0-8
+        ports:
+        - containerPort: 9000
+        livenessProbe:
+          httpGet:
+            path: /status
+            port: 9000
+          initialDelaySeconds: 60
+          periodSeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /status
+            port: 9000
+          initialDelaySeconds: 10
+          periodSeconds: 3
 
-<!--
-<div>
-    <h2>Run anywhere</h2>
-    <p>Run Studio on your laptop, Docker, your test environment or Kubernetes cluster.</p>
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wiremock-studio
+  labels:
+    name: wiremock-studio
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 9000
+  selector:
+    name: wiremock-studio
+  sessionAffinity: None
+  type: LoadBalancer
+{% endhighlight %}
 
-    <h2>Kubernetes native</h2>
-    <p>Automatically mock your Kubernetes services and transparently re-route traffic with a single click.</p>
-
-    <p>Provision new mocks automatically as Kubernetes services.</p>
-
-    <h2>Built for automation</h2>
-    <p>All configuration is managed as git-friendly JSON.</p>
-    <p>100% compatible with WireMock Open Source APIs, making Studio fully scriptable and mock APIs embeddable in automated test suites.</p>
+<p class="pstudio">
+    Then apply the manifest to your cluster:
+</p>
+{% highlight docker %}
+kubectl apply -f wiremock-studio.yaml
+{% endhighlight %}
+<p class="pstudio">
+    After a few moments pod and service will have started in your cluster and you’ll be able to access the console via port forwarding:
+</p>
+{% highlight docker %}
+kubectl port-forward deployment/wiremock-studio 9000
+{% endhighlight %}
+<p class="pstudio">
+    Then you can access the web UI by pointing your browser to <a>http://localhost:9000</a>.
+</p>
+<h4 class="h4Studio">
+    Data storage when running in Docker or Kubernetes
+</h4>
+<p class="pstudio pMargin">
+    By default, WireMock Studio writes stub mappings and the mock API catalogue to JSON files under its home directory inside the container /home/wiremock.
+</p>
+<p class="pstudio pMargin">
+    When running in Docker or K8s as described above this will be a temporary, writable filesystem that will disappear when the container is removed.
+</p>
+<p class="pstudio">
+    If you want to preserve your mock APIs and their stubs you can mount a volume to /home/wiremock. When running directly in Docker you could do something like this (first ensuring Docker has permission to mount the directory you're in):
+</p>
+{% highlight docker %}
+docker run -it \
+  -p 9000:9000 \
+  -p 8000:8000 \
+  -v $PWD/wiremock:/home/wiremock \
+  up9inc/wiremock-studio:2.32.0-8
+{% endhighlight %}
+<p class="pstudio">
+    This will mount the wiremock subdirectory under the current directory as the root. This directory and its contents can be committed to source control.
+</p>
+<h4 class="h4Studio">More info on WireMock Studio features</h4>
+<p class="pstudio">
+    We're still in the process of producing new documentation, but since WireMock Studio's UI is very similar to MockLab's we invite you in the meantime to browse <a href="">MockLab's documentation.</a> Most things will work identically in both products.
+</p>
+<h4 class="h4Studio">
+    Getting help and support
+</h4>
+<p class="pstudio">
+    Please join our <a href="#">Slack Community</a> for help from the WireMock + UP9 team, and other community members.
+</p>
 </div>
--->
+<div class="otherWiremockProducts">
+    <div class="otherWiremockProducts-container">
+        <div class="otherWiremockProductsLeft">
+            <h2 class="h2Studio">
+                Other
+            </h2>
+            <img class="otherWiremockIMG" src="{{ base_path}}/images/wiremockTypeExample.svg" />
+            <h2 class="h2Studio">
+                Products
+            </h2>
+            <p class="otherWiremockP pstudio customTXTFooter">
+                Nisl urna sit sem lacus, dignissim sed cursus volutpat. Molestie aliquam vulputate feugiat etiam.
+            </p>
+        </div>
+        <div class="otherWiremockCardWrapper">
+            <div class="otherWiremockCard">
+                <div>
+                    <img src="{{ base_path}}/images/wiremockTypeExample.svg" width="82" alt="wiremock local" />
+                    <h4 class="h4Studio">Local</h4>
+                </div>
+                <p class="pstudio">
+                    The core WireMock engine. Embed in your unit tests, or run as a standalone server anywhere there's Java or Docker available
+                </p>
+                <a class="btn-card-info">Get Started</a>
+            </div>
+            <div class="otherWiremockCard">
+                <div>
+                    <img src="{{ base_path}}/images/wiremockTypeExample.svg" width="82" alt="wiremock web" />
+                    <h4 class="h4Studio">Web</h4>
+                </div>
+                <p class="pstudio">
+                    The core WireMock engine. Embed in your unit tests, or run as a standalone server anywhere there's Java or Docker available
+                </p>
+                <a class="btn-card-info btnGetStarted">Get Started</a>
+            </div>
+        </div>
+        
+    </div>
+</div> 

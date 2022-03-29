@@ -1,10 +1,10 @@
 ---
-layout: splash
+layout: support
 title: Support
 description: How to get support for WireMock open source and Studio
 ---
 
-# Support
+## Support
 
 If you're looking for answers you can't find in the documentation or need advice on the best way to solve a problem, there are a number of places you can find help.
 

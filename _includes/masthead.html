@@ -60,13 +60,17 @@
   .navlink::before {
     background: unset !important;
   }
-  
+  .navHover::before {
+    background: unset !important;
+  }
 </style>
 
 <div class="masthead">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
-      <a href="{{ base_path }}/"><img src="{{ base_path}}/images/wireMockLogo.png" style="width: 160px; height: 20px" /></a>
+      <a href="{{ base_path }}/">
+        <img src="{{ base_path}}/images/wireMockLogo.png" style="width: 160px; height: 20px" />
+      </a>
       <nav id="site-nav" class="greedy-nav">
         <!-- <button><div class="navicon"></div></button> -->
         <ul class="visible-links">
@@ -87,7 +91,9 @@
             {% endif %}
 
             {% if link.new_window %}
-            <li class="masthead__menu-item"><a href="{{ domain }}{{ link.url }}" title="{{ link.title }}" target="_blank">{{ link.title }}</a></li>
+            <li class="masthead__menu-item">
+              <a href="{{ domain }}{{ link.url }}" title="{{ link.title }}" target="_blank">{{ link.title }}</a>
+            </li>
             {% else %}
             
             <li class="masthead__menu-item">
@@ -106,7 +112,7 @@
                   {% endif %}
                 </span>
               {% else %}
-                <a class="{{subnavLink}}" href="{{ domain }}{{ link.url }}" title="{{ link.title }}">
+                <a class="{{subnavLink}} navHover" href="{{ domain }}{{ link.url }}" title="{{ link.title }}">
                   {{ link.title }}
                 </a>
               {% endif %}
