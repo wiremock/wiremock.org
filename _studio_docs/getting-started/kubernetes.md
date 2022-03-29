@@ -1,106 +1,48 @@
 ---
 layout: docs
 title: WireMock Studio - Getting Started - Kubernetes
-description: How to instlled and run WireMock Studio in your Kubernetes cluster.
+description: How to install and run WireMock Studio in your Kubernetes cluster.
 ---
+
+WireMock Studio can be deployed into a Kubernetes cluster. When doing so it gains some Kubernetes-specific capabilities
+including the automatic mocking and proxying through to existing services, and automatic configuration of services when creating new mock APIs.
+
+## Prerequisites
+
+To follow this installation guide you'll need to have [kubectl](https://kubernetes.io/docs/tasks/tools/){:target="{{site.data.misc.blank}}"} installed and authenticated
+against a Kubernetes cluster with sufficient privileges to create all resource types
+in (at least) the target namespace.
+
+You'll also need to download a copy of [wiremock-studio.yaml](https://github.com/wiremock/wiremock-studio-kubernetes-example/blob/main/wiremock-studio.yaml){:target="{{site.data.misc.blank}}"} from the Kubernetes example project.
 
 ## Deploying to Kubernetes
 
-Start by creating a Kubernetes manifest file called `wiremock-studio.yaml` with the following contents
-(tweaking parameters for your environment where appropriate):
-
-```yaml
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: wiremock-studio
-  labels:
-    name: wiremock-studio
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      name: wiremock-studio
-  template:
-    metadata:
-      labels:
-        name: wiremock-studio
-    spec:
-      containers:
-      - name: wiremock-studio
-        image: up9inc/wiremock-studio:{{site.data.misc.wiremock_studio_version}}
-        ports:
-        - containerPort: 9000
-        livenessProbe:
-          httpGet:
-            path: /status
-            port: 9000
-          initialDelaySeconds: 60
-          periodSeconds: 3
-        readinessProbe:
-          httpGet:
-            path: /status
-            port: 9000
-          initialDelaySeconds: 10
-          periodSeconds: 3
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: wiremock-studio
-  labels:
-    name: wiremock-studio
-spec:
-  externalTrafficPolicy: Cluster
-  ports:
-  - port: 80
-    protocol: TCP
-    targetPort: 9000
-  selector:
-    name: wiremock-studio
-  sessionAffinity: None
-  type: LoadBalancer
-```
-
-Then apply the manifest to your cluster:
+Open a terminal, cd into the directory containing `wiremock-studio.yaml` and run the following command to initiate the deployment:
 
 ```bash
-kubectl apply -f wiremock-studio.yaml
+kubectl apply -f wiremock-studio.yaml --namespace <target namespace>
 ```
 
-After a few moments pod and service will have started in your cluster and you'll
-be able to access the console via port forwarding:
+This will create the following resources:
+
+* A `ServiceAccount` for WireMock Studio to use for cluster operations.
+* A `Role`, allowing read/write access to all Services in the namespace.
+* A `RoleBinding`, associating the role with the default service account in the namespace.
+* A `PersistentVolumeClaim` for stub and config storage.
+* A `Deployment` for the WireMock Studio app.
+* A `Service` of type `LoadBalancer` (externally accessible) for the app.
+
+
+Once the deployment has completed, find the ingress (public) address used to access the console:
 
 ```bash
-kubectl port-forward deployment/wiremock-studio 9000
+kubectl get service wiremock-studio -ojsonpath='{.status.loadBalancer.ingress[0].ip}'
 ```
 
-Then you can access the web UI by pointing your browser to [http://localhost:9000](http://localhost:9000){:target="{{site.data.misc.blank}}"}.
+This will return an IP address, which you can then use in your web browser to access the console by placing `http://` in front of it e.g.
+`http://10.1.2.3`.
 
-## Data storage when running in Docker or Kubernetes
-
-By default, WireMock Studio writes stub mappings and the mock API catalogue to JSON files under
-its home directory inside the container `/home/wiremock`.
-
-When running in Docker or K8s as described above this will be a temporary, writable
-filesystem that will disappear when the container is removed.
-
-If you want to preserve your mock APIs and their stubs you can mount a volume to
-`/home/wiremock`. When running directly in Docker you could do something like this
-(first ensuring Docker has permission to mount the directory you're in):
-
-```bash
-docker run -it \
-  -p 9000:9000 \
-  -p 8000:8000 \
-  -v $PWD/wiremock:/home/wiremock \
-  up9inc/wiremock-studio:{{site.data.misc.wiremock_studio_version}}
-```
-
-This will mount the `wiremock` subdirectory under the current directory as the root.
-This directory and its contents can be committed to source control.
+For ease of access by your team it is recommended that you create a DNS `A` record pointing to this IP address in a zone you control.
 
 ## Getting help and support
 
