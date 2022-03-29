@@ -5,13 +5,19 @@
     <ul class="doc-categories">
       {% for doc_category in site.data.studio-doc-categories %}
         <li class="doc-category">
-          <span class="doc-category__title">{{ doc_category[1].title }}</span>
-          <ul class="doc-category__links">
+          <span class="doc-category__title">{{ doc_category[1].title }}
+            
+            <!-- {{doc_category[1].pages}} -->
+          </span>
+          <ul
+           class="
+           doc-category__sub-nav
+           ">
             {% for page_id in doc_category[1].pages %}
               {% assign full_page_id = '/studio/docs/' | append: page_id %}
               {% assign doc = site.studio_docs | find: "id", full_page_id %}
               
-              <li>
+              <li class="doc-category__li">
                 {% if doc.url == page.url %}<a href="{{ doc.url }}" class="nav__list-item--selected">
                 {% else %}<a href="{{ base_path }}{{ doc.url }}">{% endif %}
 

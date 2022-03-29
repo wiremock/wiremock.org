@@ -1,6 +1,7 @@
 ---
 layout: docs
 title: WireMock Studio - Getting Started - Docker
+parent: getting-started
 description: How to download and run WireMock Studio on your local machine.
 ---
 
@@ -19,4 +20,3 @@ to assign new mock APIs to when we create them. You'll need to add more (or fewe
 of these per your requirements.
 
 Port 9000 is the UI and management port so should always be exposed.
-
