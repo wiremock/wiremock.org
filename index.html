@@ -54,6 +54,61 @@ description: WireMock is a simulator for HTTP-based APIs. It enables you to stay
 
 </style>
 
+<div class="signup-modal-overlay"></div>
+
+<div class="signup-modal">
+  <div class="signup-modal-robot">
+    <h2>Get Started with</h2>
+    <img src="{{base_path}}/images/wiremockBigModal.png" width="384" />
+    <h4>Studio <span>Enterprise</span></h4>
+
+    <div class="box-description-modal">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquet vestibulum.</p>
+    </div>
+
+    <div class="box-description-modal-second">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquet vestibulum.</p>
+    </div>
+
+  </div>
+  <div class="signup-modal-form">
+    <h2>Request Demo</h2>
+    <div class="modal-form-block">
+        <h4>First name</h4>
+        <input class="input-form" type="text" />
+    </div>
+    <div class="modal-form-block">
+      <h4>Email</h4>
+      <input class="input-form" type="text" />
+    </div>
+    <div class="modal-form-block">
+      <h4>Company Name</h4>
+      <input class="input-form" type="text" />
+    </div>
+    <div class="modal-form-block">
+      <h4>Company Phone</h4>
+      <input class="input-form" type="text" />
+    </div>
+    <div class="modal-form-block">
+      <h4>Company Size</h4>
+      <input class="input-form" type="text" />
+    </div>
+    <hr />
+
+    <div class="modal-terms-wrapper">
+      <input class="terms-accept" type="checkbox" />
+      <div class="terms-wrapper">
+        <p class="terms-txt">By creating an account</p>
+        <p class="terms-txt">I agree to the Terms and Privacy Policy.</p>
+      </div>
+     
+    </div>
+
+    <button class="btn-submit-modal-form">Submit</button>
+  </div>
+</div>
+
+
 <div class="home-header-wrapper">
   <div class="home-header-leftHeaderHP"></div>
   <div class="home-header-rightHeaderHP"></div>
@@ -267,7 +322,49 @@ docker run -it --rm \
         </div>
         
     </div>
-  </div> 
+  </div>
+
+
+  <div id="studio-learn-more" class="container wiremock-studio-robot-wrapper">
+    <div class="wiremock-studio-robot">
+      <img class="wiremock-studio-img" src="{{base_path}}/images/wiremockRobot.png" alt="wiremock robot"/>
+    </div>
+    <div class="wiremock-studio-vLine"></div>
+    <div class="wiremock-studio-details details-custom">
+      <img class="wiremockIMGwidth" src="{{ base_path}}/images/wiremockTypeExample.svg" alt="wiremock api testing"/>
+      <h1>Studio <span class="enterprise">Enterprise</span></h1>
+      <h3 class="robot-subtitle">For larger teams and enterprises</h3>
+
+      <div class="enterpirse-feature">
+        <div class="enterprise-bullet"></div>
+        <h4>Users, teams and SSO</h4>
+      </div>
+      
+      <div class="enterpirse-feature">
+        <div class="enterprise-bullet"></div>
+        <h4>Multiple scalable hosts</h4>
+      </div>
+      <div class="enterpirse-feature">
+        <div class="enterprise-bullet"></div>
+        <h4>Persistent data</h4>
+      </div>
+      <div class="enterpirse-feature">
+        <div class="enterprise-bullet"></div>
+        <h4>Monitoring tool integration</h4>
+      </div>
+      <div class="enterpirse-feature">
+        <div class="enterprise-bullet"></div>
+        <h4>Private TLS certificate and DNS management</h4>
+      </div>
+      <div class="enterpirse-feature">
+        <div class="enterprise-bullet"></div>
+        <h4>Deploy into your own VPC or Kubernetes cluster</h4>
+      </div>
+
+      <span id="btnschedulecall" class="btn-schedule-call">Schedule a Call</span>
+  </div>
+</div> 
+
 </div>
 <div class="key-features-wrapper">
     <h2 class="keyFeaturesTXT">Key Features</h2>
@@ -382,4 +479,21 @@ docker run -it --rm \
 
 <script type="text/javascript">
   window.suppressMockLabPopover = true;
+
+  const schedulecall = document.getElementById('btnschedulecall');
+  const signupModalOverlay = document.getElementsByClassName('signup-modal-overlay');
+  const signupModal = document.getElementsByClassName('signup-modal');
+
+
+  schedulecall.addEventListener('click', () => {
+    signupModalOverlay[0].classList.add('activeModalForm')
+    signupModal[0].classList.add('activeModalForm')
+  })
+
+  signupModalOverlay[0].addEventListener('click', () => {
+    signupModalOverlay[0].classList.remove('activeModalForm')
+    signupModal[0].classList.remove('activeModalForm')
+  })
+
+
 </script>
