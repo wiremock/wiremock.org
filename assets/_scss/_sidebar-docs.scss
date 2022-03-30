@@ -46,6 +46,9 @@
         text-decoration: none !important;
         font-size: 14px;
         color: #18253d;
-        font-weight: unset !important;
+        font-weight: unset;
+    }
+    &__li--selected a {
+        font-weight: bold;
     }
 }
