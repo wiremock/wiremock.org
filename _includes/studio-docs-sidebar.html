@@ -15,14 +15,10 @@
             {% for page_id in doc_category[1].pages %}
               {% assign full_page_id = '/studio/docs/' | append: page_id %}
               {% assign doc = site.studio_docs | find: "id", full_page_id %}
-              
-              <li class="doc-category__li">
-                {% if doc.url == page.url %}<a href="{{ doc.url }}" class="nav__list-item--selected">
-                {% else %}<a href="{{ base_path }}{{ doc.url }}">{% endif %}
+              {% assign doc_title = doc.title | remove: doc_category[1].title | remove: " - " | remove: "WireMock Studio" | remove: " [Tutorial]" %}
 
-                {% assign doc_title = doc.title | remove: doc_category[1].title | remove: " - " | remove: "WireMock Studio" | remove: " [Tutorial]" %}
-                {{ doc_title }}
-                </a>
+              {% if doc.url == page.url %}<li class="doc-category__li doc-category__li--selected">{% else %}<li class="doc-category__li">{% endif %}
+                <a href="{{ doc.url }}">{{ doc_title }}</a>
               </li>
             {% endfor %}
           </ul>
