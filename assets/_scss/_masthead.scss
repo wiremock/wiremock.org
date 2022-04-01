@@ -72,6 +72,28 @@
             margin-left: 0;
         }
     }
+    .separator-line-nav {
+        margin: 0 20px;
+    }
+
+}
+
+.schedule-demo-nav,
+.schedule-demo-mobile-nav {
+    cursor: pointer;
+    background: #F0F5FF;
+    border: 1px solid rgba(15, 178, 239, 0.5);
+    border-radius: 4px;
+    padding: 3px 10px;
+    color: #0FB2EF;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+schedule-demo-nav-mobile {
+    margin-bottom: 10px;
 }
 
 .hamburgerMenuIcon {

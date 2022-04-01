@@ -61,6 +61,10 @@ description: WireMock is a simulator for HTTP-based APIs. It enables you to stay
 <div class="signup-modal-overlay"></div>
 
 <div class="signup-modal">
+  <div class="close-modal-icon">
+    <img src="{{base_path}}/images/closeModalIcon.png" width="7" height="7" alt="close icon"/>
+  </div>
+
   <div class="signup-modal-robot">
     <h2>Get Started with</h2>
     <img src="{{base_path}}/images/wiremockBigModal.png" width="384" />
@@ -76,6 +80,9 @@ description: WireMock is a simulator for HTTP-based APIs. It enables you to stay
 
   </div>
   <div class="signup-modal-form">
+
+
+
     <h2>Request Demo</h2>
 
     <script charset="utf-8" type="text/javascript" src="//js-eu1.hsforms.net/forms/shell.js"></script>
@@ -465,6 +472,9 @@ docker run -it --rm \
   const schedulecall = document.getElementById('btnschedulecall');
   const signupModalOverlay = document.getElementsByClassName('signup-modal-overlay');
   const signupModal = document.getElementsByClassName('signup-modal');
+  const scheduleCallNavBTN = document.getElementsByClassName('schedule-demo-nav');
+  const scheduleCallMobileNav = document.getElementsByClassName('schedule-demo-mobile-nav');
+  const closeIconModal = document.getElementsByClassName('close-modal-icon');
 
   function activateSignupModalForm() {
     signupModalOverlay[0].classList.add('activeModalForm');
@@ -478,6 +488,16 @@ docker run -it --rm \
     activateSignupModalForm();
   })
   signupModalOverlay[0].addEventListener('click', () => {
+    deactivateSignupModalForm();
+  })
+  scheduleCallNavBTN[0].addEventListener('click', () => {
+    activateSignupModalForm();
+  })
+  scheduleCallMobileNav[0].addEventListener('click', () => {
+    closeMenu();
+    activateSignupModalForm();
+  })
+  closeIconModal[0].addEventListener('click', () => {
     deactivateSignupModalForm();
   })
   const params = new Proxy(new URLSearchParams(window.location.search), {

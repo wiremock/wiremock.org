@@ -718,7 +718,7 @@ html {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 50;
+    z-index: 900;
     background-color: rgba(7, 0, 71, 0.5);
 
 }
@@ -732,17 +732,34 @@ html {
 }
 
 .signup-modal {
+    position: relative;
     display: none;
     position: fixed;
     background-color: #fff;
     width: 1117px;
     height: 720px;
-    z-index: 100;
+    z-index: 1000;
     left: 50%;
     top: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     border-radius: 4px;
+
+    .close-modal-icon {
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        border-radius: 50px;
+        background: #E9EBF8;
+        border: 1px solid #BCCEFD;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
     @media (max-width: 1140px) {
         width: 1020px;
@@ -819,11 +836,14 @@ html {
 }
 
 .signup-modal-form {
+
     width: 399px;
     height: 678px;
     display: flex;
     align-items: center;
     flex-direction: column;
+
+
 
     h2 {
         margin-top: 35px;
