@@ -1,8 +1,9 @@
 ---
 layout: docs
 title: Download and Installation
+meta_title: "Download and Installation | WireMock"
 toc_rank: 13
-description: Getting WireMock into your project
+description: WireMock is distributed in two flavours - a standard JAR containing just WireMock, and a standalone fat JAR containing WireMock plus all its dependencies.
 ---
 
 WireMock is distributed in two flavours - a standard JAR containing just WireMock, and a standalone fat JAR containing
@@ -11,7 +12,7 @@ WireMock plus all its dependencies.
 Most of the standalone JAR's dependencies are shaded i.e. they are hidden in alternative packages. This allows WireMock to be used in projects with
 conflicting versions of its dependencies. The standalone JAR is also runnable (see [Running as a Standalone Process](/docs/running-standalone/)).
 
-Additionally, versions of these JARs are distributed for both Java 7 and Java 8+. 
+Additionally, versions of these JARs are distributed for both Java 7 and Java 8+.
 
 The Java 7 distribution is aimed primarily at Android developers and enterprise Java teams still using JRE7. Some of its
 dependencies are not set to the latest versions e.g. Jetty 9.2.x is used, as this is the last minor version to retain Java 7 compatibility.
@@ -23,7 +24,7 @@ The Java 8+ build endeavours to track the latest version of all its major depend
 > The Java 7 version is now deprecated in the 2.x line and version 2.27.2 is the last release available. It's strongly
 > recommended that you use the Java 8 releases if possible.
 
-## Maven dependencies 
+## Maven dependencies
 
 Java 8:
 

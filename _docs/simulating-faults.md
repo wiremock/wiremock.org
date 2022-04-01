@@ -1,9 +1,10 @@
 ---
 layout: docs
 title: Simulating Faults
+meta_title: Simulating Faults | WireMock
 toc_rank: 80
 redirect_from: "/simulating-faults.html"
-description: Configuring WireMock to drop connections, return invalid HTTP and delay responses.
+description: One of the main reasons it’s beneficial to use web service fakes when testing is to inject faulty behaviour that might be difficult to get the real service to produce on demand.
 ---
 
 **One of the main reasons it's beneficial to use web service fakes when
@@ -54,7 +55,6 @@ following form to `http://<host>:<port>/__admin/settings`:
 
 ## Per-stub random delays
 
-
 In addition to fixed delays, a delay can be sampled from a random
 distribution. This allows simulation of more specific downstream
 latencies, such as a long tail.
@@ -73,17 +73,16 @@ Or set it on the `delayDistribution` field via the JSON api:
 ```json
 {
     "request": {
-            "method": "GET",
-            "url": "/random/delayed"
+        "method": "GET",
+        "url": "/random/delayed"
     },
     "response": {
-            "status": 200,
-            "delayDistribution": {
-                    "type": "lognormal",
-                    "median": 80,
-                    "sigma": 0.4
-            }
-
+        "status": 200,
+        "delayDistribution": {
+            "type": "lognormal",
+            "median": 80,
+            "sigma": 0.4
+        }
     }
 }
 ```
@@ -97,9 +96,9 @@ You can set a random delay globally with
 ```json
 {
     "delayDistribution": {
-            "type": "lognormal",
-            "median": 90,
-            "sigma": 0.1
+        "type": "lognormal",
+        "median": 90,
+        "sigma": 0.1
     }
 }
 ```
@@ -152,8 +151,8 @@ To use, instantiate a `new UniformDistribution(15, 25)`, or via JSON:
 
 ## Chunked Dribble Delay
 
-In addition to fixed and random delays, you can dribble your response back in chunks. 
-This is useful for simulating a slow network and testing deterministic timeouts. 
+In addition to fixed and random delays, you can dribble your response back in chunks.
+This is useful for simulating a slow network and testing deterministic timeouts.
 
 Use `#withChunkedDribbleDelay` on the stub to pass in the desired chunked response, it takes two parameters:
 
@@ -173,23 +172,22 @@ Or set it on the `chunkedDribbleDelay` field via the JSON API:
 ```json
 {
     "request": {
-            "method": "GET",
-            "url": "/chunked/delayed"
+        "method": "GET",
+        "url": "/chunked/delayed"
     },
     "response": {
-            "status": 200,
-            "body": "Hello world!",
-            "chunkedDribbleDelay": {
-                    "numberOfChunks": 5,
-                    "totalDuration": 1000
-            }
-
+        "status": 200,
+        "body": "Hello world!",
+        "chunkedDribbleDelay": {
+            "numberOfChunks": 5,
+            "totalDuration": 1000
+        }
     }
 }
 ```
 
-With the above settings the `Hello world!` response body will be broken into 
-five chunks and returned one at a time with a 200ms gap between each.  
+With the above settings the `Hello world!` response body will be broken into
+five chunks and returned one at a time with a 200ms gap between each.
 
 ## Bad responses
 
@@ -210,7 +208,7 @@ close the connection.
 `RANDOM_DATA_THEN_CLOSE`: Send garbage then close the connection.
 
 `CONNECTION_RESET_BY_PEER`: Close the connection, setting `SO_LINGER` to 0 and thus preventing the `TIME_WAIT` state being entered.
-Typically causes a "Connection reset by peer" type error to be thrown by the client. Note: this only seems to work properly on *nix OSs. On Windows it will most likely cause the connection to hang rather
+Typically causes a "Connection reset by peer" type error to be thrown by the client. Note: this only seems to work properly on \*nix OSs. On Windows it will most likely cause the connection to hang rather
 than reset.
 
 In JSON (fault values are the same as the ones listed above):

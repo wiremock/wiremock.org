@@ -3,11 +3,12 @@
    ========================================================================== */
 
 .masthead {
-    background-color: $dark-blue;
+    background-color: #fff;
     position: relative;
     animation: intro 0.3s both;
     animation-delay: 0.15s;
     z-index: 20;
+    border-bottom: 1px solid $head-border-bottom;
 
     &__inner-wrap {
         @include container;
@@ -30,6 +31,10 @@
 }
 
 .masthead__menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
     ul {
         margin: 0;
         padding: 0;
@@ -42,7 +47,11 @@
     display: block;
     list-style-type: none;
     white-space: nowrap;
-    font-size: 16px;
+    font-family: "Ubuntu";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    // font-size: 16px;
 
     &--lg {
         font-family: "McLaren", "Segoe UI", "Helvetica Neue", "Lucida Grande",
@@ -50,5 +59,115 @@
         font-size: $type-size-4;
         padding-right: 2em;
         font-weight: 700;
+    }
+}
+
+.social-links {
+    display: flex;
+    align-items: center;
+
+    li {
+        margin: 0 0 0 20px;
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+    .separator-line-nav {
+        margin: 0 20px;
+    }
+
+}
+
+.schedule-demo-nav,
+.schedule-demo-mobile-nav {
+    cursor: pointer;
+    background: #F0F5FF;
+    border: 1px solid rgba(15, 178, 239, 0.5);
+    border-radius: 4px;
+    padding: 3px 10px;
+    color: #0FB2EF;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+schedule-demo-nav-mobile {
+    margin-bottom: 10px;
+}
+
+.hamburgerMenuIcon {
+    display: none;
+}
+
+.mobile-menu-wrapper {
+    display: none;
+}
+
+.overlay-menu {
+    display: none;
+}
+
+@media (max-width: 1023px) {
+    #site-nav,
+    .social-links {
+        display: none;
+    }
+
+    .hamburgerMenuIcon {
+        display: block;
+        width: 16px;
+        height: 12px;
+    }
+
+    .closeMenuIcon {
+        position: absolute;
+        right: 30px;
+        top: 20px;
+    }
+
+    .mobile-menu-wrapper {
+        display: block;
+        background-color: #fff;
+        position: fixed;
+        right: -250px;
+        top: 0;
+        height: 100%;
+        width: 250px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        z-index: 100;
+        -webkit-transition: right 0.2s linear;
+        -moz-transition: right 0.2s linear;
+        -o-transition: right 0.2s linear;
+        transition: right 0.2s linear;
+        padding: 30px;
+        &.active-menu {
+            display: block;
+            right: 0;
+        }
+    }
+    .overlay-menu {
+        &.active-overlay {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 50;
+            background-color: rgba(7, 0, 71, 0.5);
+        }
+    }
+    .mobile-social-links {
+        display: flex;
+        justify-content: flex-end;
+
+        li {
+            margin-left: 10px;
+            &:first-child {
+                margin-left: 0;
+            }
+        }
     }
 }

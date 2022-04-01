@@ -1,20 +1,21 @@
 ---
 layout: docs
 title: Request Matching
+meta_title: Matching and filtering HTTP requests in WireMock | WireMock
 toc_rank: 61
-description: Matching and filtering HTTP requests in WireMock.
+description: WireMock supports matching of requests to stubs and verification queries using the following attributes.
 ---
 
 WireMock supports matching of requests to stubs and verification queries using the following attributes:
 
-* URL
-* HTTP Method
-* Query parameters
-* Headers
-* Basic authentication (a special case of header matching)
-* Cookies
-* Request body
-* Multipart/form-data
+-   URL
+-   HTTP Method
+-   Query parameters
+-   Headers
+-   Basic authentication (a special case of header matching)
+-   Cookies
+-   Request body
+-   Multipart/form-data
 
 Here's an example showing all attributes being matched using WireMock's in-built match operators. It is also possible to write [custom matching logic](/docs/extending-wiremock/#custom-request-matchers) if
 you need more precise control:
@@ -42,51 +43,58 @@ JSON:
 
 ```json
 {
-  "request" : {
-    "urlPath" : "/everything",
-    "method" : "ANY",
-    "headers" : {
-      "Accept" : {
-        "contains" : "xml"
-      }
-    },
-    "queryParameters" : {
-      "search_term" : {
-        "equalTo" : "WireMock"
-      }
-    },
-    "cookies" : {
-      "session" : {
-        "matches" : ".*12345.*"
-      }
-    },
-    "bodyPatterns" : [ {
-      "equalToXml" : "<search-results />"
-    }, {
-      "matchesXPath" : "//search-results"
-    } ],
-    "multipartPatterns" : [ {
-      "matchingType" : "ANY",
-      "headers" : {
-        "Content-Disposition" : {
-          "contains" : "name=\"info\""
+    "request": {
+        "urlPath": "/everything",
+        "method": "ANY",
+        "headers": {
+            "Accept": {
+                "contains": "xml"
+            }
         },
-        "Content-Type" : {
-          "contains" : "charset"
+        "queryParameters": {
+            "search_term": {
+                "equalTo": "WireMock"
+            }
+        },
+        "cookies": {
+            "session": {
+                "matches": ".*12345.*"
+            }
+        },
+        "bodyPatterns": [
+            {
+                "equalToXml": "<search-results />"
+            },
+            {
+                "matchesXPath": "//search-results"
+            }
+        ],
+        "multipartPatterns": [
+            {
+                "matchingType": "ANY",
+                "headers": {
+                    "Content-Disposition": {
+                        "contains": "name=\"info\""
+                    },
+                    "Content-Type": {
+                        "contains": "charset"
+                    }
+                },
+                "bodyPatterns": [
+                    {
+                        "equalToJson": "{}"
+                    }
+                ]
+            }
+        ],
+        "basicAuthCredentials": {
+            "username": "jeff@example.com",
+            "password": "jeffteenjefftyjeff"
         }
-      },
-      "bodyPatterns" : [ {
-        "equalToJson" : "{}"
-      } ]
-    } ],
-    "basicAuthCredentials" : {
-      "username" : "jeff@example.com",
-      "password" : "jeffteenjefftyjeff"
+    },
+    "response": {
+        "status": 200
     }
-  },
-  "response" : {
-    "status" : 200
-  }
 }
 ```
 
@@ -105,7 +113,6 @@ Java:
 ```java
 urlEqualTo("/your/url?and=query")
 ```
-
 
 JSON:
 
@@ -127,7 +134,6 @@ Java:
 urlMatching("/your/([a-z]*)\\?and=query")
 ```
 
-
 JSON:
 
 ```json
@@ -147,7 +153,6 @@ Java:
 ```java
 urlPathEqualTo("/your/url")
 ```
-
 
 JSON:
 
@@ -169,7 +174,6 @@ Java:
 urlPathMatching("/your/([a-z]*)")
 ```
 
-
 JSON:
 
 ```json
@@ -181,7 +185,6 @@ JSON:
   ...
 }
 ```
-
 
 ## Matching other attributes
 
@@ -297,7 +300,6 @@ JSON:
   ...
 }
 ```
-
 
 ### Regular expression
 
@@ -423,7 +425,7 @@ JSON:
 JSON equality matching is based on [JsonUnit](https://github.com/lukas-krecan/JsonUnit) and therefore supports placeholders.
 This allows specific attributes to be treated as wildcards, rather than an exactly value being required for a match.
 
-For instance, the following: 
+For instance, the following:
 
 ```json
 { "id": "${json-unit.any-string}" }
@@ -440,7 +442,7 @@ See [the JsonUnit placeholders documentation](https://github.com/lukas-krecan/Js
 
 > **note**
 >
-> Placeholders are only available in the `jre8` WireMock JARs, as the JsonUnit library requires at least Java 8. 
+> Placeholders are only available in the `jre8` WireMock JARs, as the JsonUnit library requires at least Java 8.
 
 ### JSON Path
 
@@ -590,7 +592,7 @@ Request body example:
 #### Nested value matching
 
 The JSONPath matcher can be combined with another matcher, such that the value returned from the JSONPath query is evaluated against it:
- 
+
 Java:
 
 ```java
@@ -651,7 +653,6 @@ JSON:
   ...
 }
 ```
-
 
 ### XML equality
 
@@ -746,7 +747,6 @@ You can further tune how XML documents are compared for equality by disabling sp
 
 Java:
 
-
 ```java
 import static org.xmlunit.diff.ComparisonType.*;
 
@@ -756,9 +756,9 @@ import static org.xmlunit.diff.ComparisonType.*;
     .exemptingComparisons(NAMESPACE_URI, ELEMENT_TAG_NAME)
 )
 ```
- 
+
 JSON:
- 
+
 ```json
 {
   "request": {
@@ -788,7 +788,6 @@ The full list of comparison types used by default is as follows:
 `CHILD_NODELIST_LENGTH`
 `CHILD_LOOKUP`
 `ATTR_NAME_LOOKUP`
-
 
 ### XPath
 
@@ -850,7 +849,7 @@ JSON:
 #### Nested value matching
 
 The XPath matcher described above can be combined with another matcher, such that the value returned from the XPath query is evaluated against it:
- 
+
 Java:
 
 ```java
@@ -876,10 +875,10 @@ JSON:
 ```
 
 If multiple nodes are returned from the XPath query, all will be evaluated and the returned match will be the one with the shortest distance.
- 
+
 If the XPath expression returns an XML element rather than a value, this will be rendered as an XML string before it is passed to the value matcher.
 This can be usefully combined with the `equalToXml` matcher e.g.
- 
+
 Java:
 
 ```java
@@ -945,7 +944,7 @@ JSON:
 
 ## Multipart/form-data
 
-Deems a match if a multipart value is valid and matches any or all the multipart pattern matchers supplied.   As a Multipart is a 'mini' HTTP request in itself all existing Header and Body content matchers can by applied to a Multipart pattern.
+Deems a match if a multipart value is valid and matches any or all the multipart pattern matchers supplied. As a Multipart is a 'mini' HTTP request in itself all existing Header and Body content matchers can by applied to a Multipart pattern.
 A Multipart pattern can be defined as matching `ANY` request multiparts or `ALL`. The default matching type is `ANY`.
 
 Java:
@@ -1006,9 +1005,9 @@ JSON:
     "request": {
         "method": "GET",
         "url": "/basic-auth",
-        "basicAuth" : {
-            "username" : "user",
-            "password" : "pass"
+        "basicAuth": {
+            "username": "user",
+            "password": "pass"
         }
     },
     "response": {
@@ -1046,18 +1045,18 @@ JSON:
 
 ```json
 {
-  "request" : {
-    "url" : "/dates",
-    "method" : "POST",
-    "headers" : {
-      "X-Munged-Date" : {
-        "after" : "2021-05-01T00:00:00Z"
-      }
+    "request": {
+        "url": "/dates",
+        "method": "POST",
+        "headers": {
+            "X-Munged-Date": {
+                "after": "2021-05-01T00:00:00Z"
+            }
+        }
+    },
+    "response": {
+        "status": 200
     }
-  },
-  "response" : {
-    "status" : 200
-  }
 }
 ```
 
@@ -1069,7 +1068,7 @@ Java:
 
 ```java
 stubFor(post("/dates")
-  .withHeader("X-Munged-Date", beforeNow().expectedOffset(3, DateTimeUnit.DAYS)) 
+  .withHeader("X-Munged-Date", beforeNow().expectedOffset(3, DateTimeUnit.DAYS))
   .withHeader("X-Finalised-Date", before("now +2 months")) // This form and beforeNow() are equivalent
   .willReturn(ok()));
 ```
@@ -1078,21 +1077,21 @@ JSON:
 
 ```json
 {
-  "request" : {
-    "url" : "/dates",
-    "method" : "POST",
-    "headers" : {
-      "X-Munged-Date" : {
-        "before" : "now +3 days"
-      },
-      "X-Finalised-Date" : {
-        // This is equivalent to "now +2 months"
-        "before" : "now",
-        "expectedOffset": 2,
-        "expectedOffsetUnit": "months"
-      }
+    "request": {
+        "url": "/dates",
+        "method": "POST",
+        "headers": {
+            "X-Munged-Date": {
+                "before": "now +3 days"
+            },
+            "X-Finalised-Date": {
+                // This is equivalent to "now +2 months"
+                "before": "now",
+                "expectedOffset": 2,
+                "expectedOffsetUnit": "months"
+            }
+        }
     }
-  }
 }
 ```
 
@@ -1134,16 +1133,16 @@ JSON:
 
 ```json
 {
-  "request" : {
-    "url" : "/dates",
-    "method" : "POST",
-    "headers" : {
-      "X-Munged-Date" : {
-        "equalToDateTime" : "2021-06-24T00:00:00",
-        "actualFormat" : "dd/MM/yyyy"
-      }
+    "request": {
+        "url": "/dates",
+        "method": "POST",
+        "headers": {
+            "X-Munged-Date": {
+                "equalToDateTime": "2021-06-24T00:00:00",
+                "actualFormat": "dd/MM/yyyy"
+            }
+        }
     }
-  }
 }
 ```
 
@@ -1172,17 +1171,19 @@ JSON:
 
 ```json
 {
-  "request" : {
-    "url" : "/dates",
-    "method" : "POST",
-    "bodyPatterns" : [{
-      "matchesJsonPath" : {
-        "expression" : "$.completedDate",
-        "after" : "now +15 days",
-        "truncateExpected" : "first day of month"
-      }
-    }]
-  }
+    "request": {
+        "url": "/dates",
+        "method": "POST",
+        "bodyPatterns": [
+            {
+                "matchesJsonPath": {
+                    "expression": "$.completedDate",
+                    "after": "now +15 days",
+                    "truncateExpected": "first day of month"
+                }
+            }
+        ]
+    }
 }
 ```
 
@@ -1201,32 +1202,33 @@ JSON:
 
 ```json
 {
-  "request" : {
-    "url" : "/dates",
-    "method" : "POST",
-    "bodyPatterns" : [{
-      "matchesJsonPath" : {
-        "expression" : "$.completedDate",
-        "equalToDateTime" : "2020-03-01T00:00:00Z",
-        "truncateActual" : "first day of month"
-      }
-    }]
-  }
+    "request": {
+        "url": "/dates",
+        "method": "POST",
+        "bodyPatterns": [
+            {
+                "matchesJsonPath": {
+                    "expression": "$.completedDate",
+                    "equalToDateTime": "2020-03-01T00:00:00Z",
+                    "truncateActual": "first day of month"
+                }
+            }
+        ]
+    }
 }
 ```
 
 <div id="all-truncations"></div>
 The full list of available truncations is:
 
-* `first minute of hour`
-* `first hour of day`
-* `first day of month`
-* `first day of next month`
-* `last day of month`
-* `first day of year`
-* `first day of next year`
-* `last day of year`
-
+-   `first minute of hour`
+-   `first hour of day`
+-   `first day of month`
+-   `first day of next month`
+-   `last day of month`
+-   `first day of year`
+-   `first day of next year`
+-   `last day of year`
 
 ## Logical AND and OR
 
@@ -1253,22 +1255,22 @@ JSON:
 
 ```json
 {
-  "request" : {
-    "urlPath": "/and",
-    "method": "GET",
-    "headers": {
-      "X-Some-Value": {
-        "and": [
-          {
-            "matches": "[a-z]+"
-          },
-          {
-            "contains": "magicvalue"
-          }
-        ]
-      }
+    "request": {
+        "urlPath": "/and",
+        "method": "GET",
+        "headers": {
+            "X-Some-Value": {
+                "and": [
+                    {
+                        "matches": "[a-z]+"
+                    },
+                    {
+                        "contains": "magicvalue"
+                    }
+                ]
+            }
+        }
     }
-  }
 }
 ```
 
@@ -1295,19 +1297,22 @@ JSON:
 
 ```json
 {
-  "request" : {
-    "urlPath" : "/or",
-    "method" : "GET",
-    "queryParameters" : {
-      "search" : {
-        "or" : [ {
-          "matches" : "[a-z]+"
-        }, {
-          "absent" : true
-        } ]
-      }
+    "request": {
+        "urlPath": "/or",
+        "method": "GET",
+        "queryParameters": {
+            "search": {
+                "or": [
+                    {
+                        "matches": "[a-z]+"
+                    },
+                    {
+                        "absent": true
+                    }
+                ]
+            }
+        }
     }
-  }
 }
 ```
 
@@ -1333,20 +1338,25 @@ JSON:
 
 ```json
 {
-  "request" : {
-    "url" : "/date-range",
-    "method" : "POST",
-    "bodyPatterns" : [ {
-      "matchesJsonPath" : {
-        "expression" : "$.date",
-        "and" : [ {
-          "before" : "2022-01-01T00:00:00"
-        }, {
-          "after" : "2020-01-01T00:00:00"
-        } ]
-      }
-    } ]
-  }
+    "request": {
+        "url": "/date-range",
+        "method": "POST",
+        "bodyPatterns": [
+            {
+                "matchesJsonPath": {
+                    "expression": "$.date",
+                    "and": [
+                        {
+                            "before": "2022-01-01T00:00:00"
+                        },
+                        {
+                            "after": "2020-01-01T00:00:00"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
 }
 ```
 
@@ -1354,6 +1364,6 @@ This would match the following JSON request body:
 
 ```json
 {
-  "date": "2021-01-01T00:00:00"
+    "date": "2021-01-01T00:00:00"
 }
 ```

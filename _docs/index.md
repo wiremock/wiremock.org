@@ -1,9 +1,10 @@
 ---
 layout: docs
 title: Home - WireMock User Documentation
+meta_title: WireMock User Documentation | WireMock
 toc_rank: 1001
 permalink: /docs/
-description: WireMock's user documentation.
+description: All of WireMock’s features are accessible via its REST (JSON) interface and its Java API. Additionally, stubs can be configured via JSON files. Read the full doc here.
 ---
 
 WireMock is an HTTP mock server. At its core it is web server that can be primed to serve canned responses to particular requests (stubbing) and

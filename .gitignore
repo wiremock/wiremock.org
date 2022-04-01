@@ -12,6 +12,7 @@ npm-debug.log*
 notes.txt
 main.min.js
 main.css
+.idea/
 
 vendor
 

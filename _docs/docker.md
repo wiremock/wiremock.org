@@ -1,16 +1,9 @@
 ---
 layout: docs
 title: Running in Docker
-toc_rank: 45
-description: Configuring and running WireMock in Docker
+meta_title: Configuring and running WireMock in Docker | WireMock
+description: The Docker image supports exactly the same set of command line arguments as the standalone version. These can be passed to the container by appending them to the end of the command.
 ---
-
-<div class="mocklab-callout"> 
-  <p class="mocklab-callout__text">
-    Configuring servers can be a major distraction from building great software. <strong>MockLab</strong> provides a hosted, 100% WireMock compatible mocking service, freeing you from the hassles of SSL, DNS and server configuration.    
-  </p>
-  <a href="http://get.mocklab.io/?utm_source=wiremock.org&utm_medium=docs-callout&utm_campaign=running-in-docker" title="Learn more" class="mocklab-callout__learn-more-button">Learn more</a>
-</div>
 
 From version 2.31.0 WireMock has an [official Docker image](https://hub.docker.com/r/wiremock/wiremock).
 
@@ -25,7 +18,7 @@ docker run -it --rm \
   wiremock/wiremock:{{ site.wiremock_version }}
 ```
 
-> Access [http://localhost:8080/__admin/mappings](http://localhost:8080/__admin/mappings) to display the mappings (empty set)
+> Access [http://localhost:8080/\_\_admin/mappings](http://localhost:8080/__admin/mappings) to display the mappings (empty set)
 
 ### Start with command line arguments
 
@@ -39,7 +32,6 @@ docker run -it --rm \
   wiremock/wiremock:{{ site.wiremock_version }} \
   --https-port 8443 --verbose
 ```
-
 
 ### Mounting stub mapping files
 

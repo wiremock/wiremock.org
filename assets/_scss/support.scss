@@ -1,0 +1,46 @@
+.support {
+    width: 950px;
+    height: 100vh;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 0 50px 0;
+
+    @media (max-width: 990px) {
+        width: 90%;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        font-family: "Ubuntu";
+        font-style: normal;
+        font-weight: bold;
+        color: #18253d;
+        border: none !important;
+    }
+    h1 {
+        font-size: 2.8rem;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    h2 {
+        margin-top: 30px;
+        margin-bottom: 0px;
+        font-size: 2rem;
+        padding-bottom: 10px;
+        :first-child {
+            padding-top: 0px !important;
+            margin-top: 0px !important;
+        }
+    }
+    p {
+        font-family: "Ubuntu";
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        color: #18253d;
+        margin-top: 0px !important;
+        margin-bottom: 0;
+    }
+}

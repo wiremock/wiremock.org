@@ -11,11 +11,7 @@ title: "WireMock"
 title_separator: "-"
 name: "Tom Akehurst"
 description: "WireMock is a flexible API mocking tool for fast, robust and comprehensive testing."
-# url                      : "http://localhost:4000"
-baseurl:
-# url                      : "http://wiremock.org/"
-# url                      : "http://new.wiremock.org"
-# baseurl                  : "/wiremock2"
+url: "https://wiremock.org"
 gh_repo:
 teaser: # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
 # breadcrumbs            : false # true, false (default)
@@ -150,7 +146,7 @@ kramdown:
 permalink: /blog/:title/
 paginate: 5 # amount of posts to show
 paginate_path: /blog/page:num/
-timezone: # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+# timezone: # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 # Plugins
 plugins:
@@ -198,9 +194,13 @@ tag_archive:
 #     tag: /tags/:name/
 
 collections:
+    studio_docs:
+        output: true
+        permalink: /studio/docs/:path/
     docs:
         output: true
         permalink: /docs/:path/
+    
 
 # HTML Compression
 # - http://jch.penibelst.de/

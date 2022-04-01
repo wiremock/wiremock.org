@@ -1,17 +1,10 @@
 ---
 layout: docs
-title: Record and Playback (New)
-toc_rank: 70
+title: Record and Playback
+meta_title: Record and Playback | WireMock
 redirect_from: "/record-playback.html"
-description: Recording HTTP exchanges with other APIs and playing them back as stubs - the new way.
+description: WireMock can create stub mappings from requests it has received. Combined with its proxying feature this allows you to “record” stub mappings from interaction with existing APIs.
 ---
-
-<div class="mocklab-callout"> 
-  <p class="mocklab-callout__text">
-    If you want to record stubs and host them in the cloud with minimum hassle, try <strong>MockLab</strong>. It provides a hosted, 100% WireMock compatible mocking service with a friendly web UI.    
-  </p>
-  <a href="http://get.mocklab.io/?utm_source=wiremock.org&utm_medium=docs-callout&utm_campaign=record-and-playback" title="Learn more" class="mocklab-callout__learn-more-button">Learn more</a>
-</div>
 
 WireMock can create stub mappings from requests it has received. Combined with its proxying feature this allows you to "record"
 stub mappings from interaction with existing APIs.
@@ -26,7 +19,7 @@ Both approaches are described in more detail below.
 The fastest way to get started with WireMock's recorder is to use the simple web UI provided.
 
 First, start an instance of [WireMock running standalone](/docs/running-standalone).
-Once that's running visit the recorder UI page at [http://localhost:8080/__admin/recorder](http://localhost:8080/__admin/recorder)
+Once that's running visit the recorder UI page at [http://localhost:8080/\_\_admin/recorder](http://localhost:8080/__admin/recorder)
 (assuming you started WireMock on the default port of 8080).
 
 ![Recorder UI]({{ base_path }}/images/recorder-screenshot.png)
@@ -34,7 +27,7 @@ Once that's running visit the recorder UI page at [http://localhost:8080/__admin
 Enter the URL you wish to record from in the target URL field and click the Record button. You can use `http://example.mocklab.io` to try it out.
 
 Now you need to make a request through WireMock to the target API so that it can be recorded. If you're using the example URL, you can generate a request using curl:
- 
+
 ```bash
 $ curl http://localhost:8080/recordables/123
 ```
@@ -42,7 +35,7 @@ $ curl http://localhost:8080/recordables/123
 Now click stop. You should see a message indicating that one stub was captured.
 
 You should also see that a file has been created called something like `recordables_123-40a93c4a-d378-4e07-8321-6158d5dbcb29.json`
-under the `mappings` directory created when WireMock started up, and that a new mapping has appeared at [http://localhost:8080/__admin/mappings](http://localhost:8080/__admin/mappings).
+under the `mappings` directory created when WireMock started up, and that a new mapping has appeared at [http://localhost:8080/\_\_admin/mappings](http://localhost:8080/__admin/mappings).
 
 Requesting the same URL again (possibly disabling your wifi first if you want firm proof) will now serve the recorded result:
 
@@ -61,7 +54,6 @@ $ curl http://localhost:8080/recordables/123
 > **note**
 >
 > "Playback" doesn't require any explicit action. Recorded stubs will start being served immediately after recording is stopped.
-
 
 ## Recording
 
@@ -99,7 +91,6 @@ POST /__admin/recordings/start
 POST /__admin/recordings/stop
 ```
 
-
 ## Snapshotting
 
 Snapshotting is effectively "recording after the fact". Rather than starting recording at a specific point, snapshotting allows you to convert requests already received by WireMock
@@ -107,7 +98,7 @@ into stub mappings.
 
 An implication of this order of events is that if you want to record an external API, you'll need to have configured proxying before you start generating traffic.
 See [Proxying](/docs/proxying) for details on proxy configuration, but in summary this can be achieved by creating a proxy mapping via the API or Java DSL:
-  
+
 Java:
 
 ```java
@@ -134,8 +125,8 @@ POST /__admin/mappings
 > You can still take snapshots without a proxy stub configured.
 > You might want to do this e.g. if you want to capture requests made by your application under test that you can then modify by hand to provide the appropriate responses.
 
-Once you have made some requests through WireMock (which you can view under http://localhost:8080/__admin/requests) you can trigger a snapshot to generate stub mappings:
- 
+Once you have made some requests through WireMock (which you can view under http://localhost:8080/\_\_admin/requests) you can trigger a snapshot to generate stub mappings:
+
 Java:
 
 ```java
@@ -162,7 +153,7 @@ POST /__admin/recordings/snapshot
 ## Customising your recordings
 
 The default recording behaviour can be tweaked in a number of ways by passing a "record spec" to the record or snapshot actions.
- 
+
 In Java this achieved using the DSL:
 
 ```java
@@ -283,8 +274,7 @@ The following sections will detail each parameter in turn:
 Additionally, when snapshotting the `ids` parameter allows specific serve events to be selected by ID.
 
 The `allowNonProxied` attribute, when set to `true` will cause requests that did not get proxied to a target service to be recorded/snapshotted. This is useful if
-you wish to "teach" WireMock your API by feeding it requests from your app that initially don't match a stub, then snapshotting to generate the correct stubs.  
- 
+you wish to "teach" WireMock your API by feeding it requests from your app that initially don't match a stub, then snapshotting to generate the correct stubs.
 
 ### Capturing request headers
 
@@ -293,16 +283,15 @@ For instance if you're intending to record from an API that supports both XML an
 then you will need to capture the value of the `Accept` header sent in each request.
 
 The `captureHeaders` attribute allows you to specify a map of header names to match parameter objects. Currently the only parameter
-available is `caseInsensitive`, which defaults to false if absent. 
+available is `caseInsensitive`, which defaults to false if absent.
 
- 
 ### Body files extraction size criteria
 
 By default, recorded response bodies will be included directly in the stub mapping response part, via the `body` attribute for text or `base64Body` for binary content.
 
 However, this can be overridden by setting the `textSizeThreshold` and `binarySizeThreshold` values under `extractBodyCriteria`.
 The size values are of type string, and support friendly syntax for specifying the order of magnitude e.g.
- 
+
 ```
 "56 kb"
 "10 Mb"
@@ -323,7 +312,7 @@ If you only require the IDs of captured stubs you can specify:
 
 ```json
 {
-  "outputFormat": "IDS"
+    "outputFormat": "IDS"
 }
 ```
 
@@ -333,7 +322,6 @@ By default generated stubs will be set to persistent, meaning that they will be 
 (or other back-end if you've implemented your own `MappingsSource`) and will survive calls to reset mappings to default.
 
 Setting `persist` to `false` means that stubs will not be saved and will be deleted on the next reset.
-
 
 ### Repeats as scenarios
 
@@ -345,13 +333,12 @@ However, when set to `true` (which is the default if omitted), multiple identica
 playing back, a series of requests matching this stub will yield the same series of responses captured during recording. If more requests are made after the end of the series
 is reached, the last response will continue to be returned.
 
-
 ### Transforming generated stubs
 
 If you need even more control over how your recorded stubs are generated, you can write one or more custom transformers that will be applied to stubs as they are captured.
 
 A transformer is an implementations of `StubMappingTransformer` and needs to be registered when starting WireMock as described in [Extending WireMock](/docs/extending-wiremock).
-   
+
 Transformer implementations supply a name, and this is used to identify them in the `transformers` parameter e.g.
 
 ```json
@@ -368,12 +355,11 @@ As with other types of WireMock extension, parameters can be supplied. The exact
 }
 ```
 
-
 ### Request body matching
 
-By default, the body match operator for a recorded stub is based on the `Content-Type` header of the request. For MIME types containing the string "json", the operator will be `equalToJson` with both the `ignoreArrayOrder` and `ignoreExtraElements` options set to `true`. For MIME types containing `xml`, it will use `equalToXml`. Otherwise, it will use `equalTo` with the `caseInsensitive` option set to `false`. 
- 
- This behavior can be customized via the `requestBodyPattern` parameter, which accepts a `matcher` (either `equalTo`, `equalToJson`, `equalToXml`, or `auto`) and any relevant matcher options (`ignoreArrayOrder`, `ignoreExtraElements`, or `caseInsensitive`). For example, here's how to preserve the default behavior, but set `ignoreArrayOrder` to `false` when `equalToJson` is used:
+By default, the body match operator for a recorded stub is based on the `Content-Type` header of the request. For MIME types containing the string "json", the operator will be `equalToJson` with both the `ignoreArrayOrder` and `ignoreExtraElements` options set to `true`. For MIME types containing `xml`, it will use `equalToXml`. Otherwise, it will use `equalTo` with the `caseInsensitive` option set to `false`.
+
+This behavior can be customized via the `requestBodyPattern` parameter, which accepts a `matcher` (either `equalTo`, `equalToJson`, `equalToXml`, or `auto`) and any relevant matcher options (`ignoreArrayOrder`, `ignoreExtraElements`, or `caseInsensitive`). For example, here's how to preserve the default behavior, but set `ignoreArrayOrder` to `false` when `equalToJson` is used:
 
 ```json
 "requestBodyPattern" : {
@@ -383,6 +369,7 @@ By default, the body match operator for a recorded stub is based on the `Content
 ```
 
 If you want to always match request bodies with `equalTo` case-insensitively, regardless of the MIME type, use:
+
 ```json
 "requestBodyPattern" : {
     "matcher": "equalTo",
@@ -393,5 +380,3 @@ If you want to always match request bodies with `equalTo` case-insensitively, re
 > **note**
 >
 > The `targetBaseUrl` parameter will be ignored when snapshotting and the `filters/ids` parameter will be ignored when recording.
-
-

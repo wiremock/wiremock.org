@@ -4,14 +4,23 @@ layout: default
 
 {% include base_path %}
 
-<div id="main" role="main">
-  {% include docs-sidebar.html %}
+<div id="main" class="custom-doc-wrapper" role="main">
+
+  {% if page.collection == 'studio_docs' %}
+    {% include studio-docs-sidebar.html %}
+  {% else %}
+    {% include docs-sidebar.html %}
+  {% endif %}
+
+  
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
+    {% if page.seo_title %}<meta itemprop="headline" content="{{ page.seo_title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
     {% if page.excerpt %}<meta itemprop="description" content="{{ page.excerpt | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
     {% if page.date %}<meta itemprop="datePublished" content="{{ page.date | date: "%B %d, %Y" }}">{% endif %}
     {% if page.modified %}<meta itemprop="dateModified" content="{{ page.modified | date: "%B %d, %Y" }}">{% endif %}
+
+    <meta itemprop="headline" content="zzzz">
 
     <div class="page__inner-wrap">
       <header>

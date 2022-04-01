@@ -1,8 +1,9 @@
 ---
 layout: docs
-title: 'Android'
+title: Running on Android
+meta_title: Running WireMock on the Android platform | WireMock
 toc_rank: 115
-description: Running WireMock on the Android platform.
+description: With some effort it is now possible to run WireMock on Android. Please see Sam Edwards’ excellent blog post for instructions.
 ---
 
 With some effort it is now possible to run WireMock on Android. Please see

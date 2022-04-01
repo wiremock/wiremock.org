@@ -1,17 +1,11 @@
 ---
 layout: docs
 title: Stubbing
+meta_title: Returning stubbed HTTP responses to specific requests | WireMock
 toc_rank: 50
 redirect_from: "/stubbing.html"
-description: Returning stubbed HTTP responses to specific requests.
+description: A core feature of WireMock is the ability to return canned HTTP responses for requests matching criteria. These are described in detail in Request Matching.
 ---
-
-<div class="mocklab-callout"> 
-  <p class="mocklab-callout__text">
-    If you want start stubbing quickly with zero code, try <strong>MockLab</strong>. It provides a hosted, 100% WireMock compatible mocking service with a friendly web UI.
-  </p>
-  <a href="http://get.mocklab.io/?utm_source=wiremock.org&utm_medium=docs-callout&utm_campaign=stubbing" title="Learn more" class="mocklab-callout__learn-more-button">Learn more</a>
-</div>
 
 A core feature of WireMock is the ability to return canned HTTP
 responses for requests matching criteria. These are described in detail in [Request Matching](/docs/request-matching/).
@@ -67,7 +61,7 @@ document can either be posted to
 Some common request and response patterns can be expressed in Java in abbreviated forms.
 
 Requests matching an exact URL plus one of the most common HTTP methods (GET, POST, PUT, DELETE) can be stubbed like this:
- 
+
 ```java
 stubFor(get("/some/thing")
     .willReturn(aResponse().withStatus(200)));
@@ -96,8 +90,7 @@ stubFor(put("/status-only")
 
 ```
 
-More DSL examples [can be found here](https://github.com/tomakehurst/wiremock/tree/master/src/test/java/ignored/Examples.java#374). 
-
+More DSL examples [can be found here](https://github.com/tomakehurst/wiremock/tree/master/src/test/java/ignored/Examples.java#374).
 
 HTTP methods currently supported are:
 `GET, POST, PUT, DELETE, HEAD, TRACE, OPTIONS`. You can specify `ANY` if
@@ -182,7 +175,6 @@ Priority is set via the `priority` attribute in JSON:
 
 In addition to matching on request headers, it's also possible to send response headers.
 
-
 Java:
 
 ```java
@@ -252,7 +244,6 @@ If you're specifying a JSON body via the JSON API, you can avoid having to escap
     }
 ```
 
-
 To read the body content from a file, place the file under the `__files`
 directory. By default this is expected to be under `src/test/resources`
 when running from the JUnit rule. When running standalone it will be
@@ -285,7 +276,6 @@ Or
 >
 > Body file paths should always be relative i.e. not have a leading /
 
-
 > **note**
 >
 > All strings used by WireMock, including the contents of body files are
@@ -313,7 +303,7 @@ JSON documents):
     },
     "response": {
         "status": 200,
-        "base64Body" : "WUVTIElOREVFRCE="
+        "base64Body": "WUVTIElOREVFRCE="
     }
 }
 ```
@@ -338,18 +328,18 @@ In JSON
 
 ```json
 {
-  "priority":10,
-  "request": {
-    "method": "ANY",
-    "urlPattern": ".*"
-  },
-  "response": {
-    "status": 404,
-    "jsonBody": {"status":"Error","message":"Endpoint not found"},
-    "headers": {
-      "Content-Type": "application/json"
+    "priority": 10,
+    "request": {
+        "method": "ANY",
+        "urlPattern": ".*"
+    },
+    "response": {
+        "status": 404,
+        "jsonBody": { "status": "Error", "message": "Endpoint not found" },
+        "headers": {
+            "Content-Type": "application/json"
+        }
     }
-  }
 }
 ```
 
@@ -389,17 +379,18 @@ To do the equivalent via the JSON API, `PUT` the edited stub mapping to `/__admi
 
 ```json
 {
-  "request" : {
-    "urlPath" : "/edit-me",
-    "method" : "ANY"
-  },
-  "response" : {
-    "status" : 200
-  }
+    "request": {
+        "urlPath": "/edit-me",
+        "method": "ANY"
+    },
+    "response": {
+        "status": 200
+    }
 }
 ```
 
 ## File serving
+
 When running the standalone JAR, files placed under the `__files` directory will
 be served up as if from under the docroot, except if stub mapping
 matching the URL exists. For example if a file exists
@@ -425,7 +416,6 @@ removeStub(stubMapping);
 They can be deleted via the HTTP API by issuing a `DELETE` to `http://<host>:<port>/__admin/mappings/{id}`
 where `id` is the UUID of the stub mapping, found in its `id` field.
 
-
 ## Reset
 
 The WireMock server can be reset at any time, removing all stub mappings
@@ -442,7 +432,6 @@ and you don't want these to disappear when you do a reset you can call
 `WireMock.resetToDefault()` instead, or post an empty request to
 `http://<host>:<port>/__admin/mappings/reset`.
 
-
 ## Getting all currently registered stub mappings
 
 All stub mappings can be fetched in Java by calling `WireMock.listAllStubMappings()`.
@@ -452,14 +441,12 @@ To fetch them via the HTTP API send a `GET` to `http://<host>:<port>/__admin/map
 Optionally limit and offset parameters can be specified to constrain the set returned e.g.
 `GET http://localhost:8080/__admin/mappings?limit=10&offset=50`
 
-
 ## Getting a single stub mapping by ID
 
 A single stub mapping can be retrieved by ID in Java by calling `WireMock.getSingleStubMapping(id)` where `id` is the
 UUID of the stub mapping.
 
 Via the HTTP client a mapping can be retrieved by sending a `GET` to `http://<host>:<port>/__admin/mappings/{id}`.
-
 
 ## Bulk importing stubs
 
@@ -480,32 +467,32 @@ Via the JSON API, `POST` the to `/__admin/mappings/import`:
 
 ```json
 {
-  "mappings": [
-    {
-      "request": {
-        "method": "GET",
-        "url": "/one"
-      },
-      "response": {
-        "status": 200
-      }
-    },
-    {
-      "id": "8c5db8b0-2db4-4ad7-a99f-38c9b00da3f7",
-      "request": {
-        "url": "/two"
-      },
-      "response": {
-        "status": 200,
-        "body": "Body content"
-      }
-    }
-  ],
+    "mappings": [
+        {
+            "request": {
+                "method": "GET",
+                "url": "/one"
+            },
+            "response": {
+                "status": 200
+            }
+        },
+        {
+            "id": "8c5db8b0-2db4-4ad7-a99f-38c9b00da3f7",
+            "request": {
+                "url": "/two"
+            },
+            "response": {
+                "status": 200,
+                "body": "Body content"
+            }
+        }
+    ],
 
-  "importOptions": {
-    "duplicatePolicy": "IGNORE",
-    "deleteAllNotInImport": true
-  }
+    "importOptions": {
+        "duplicatePolicy": "IGNORE",
+        "deleteAllNotInImport": true
+    }
 }
 ```
 

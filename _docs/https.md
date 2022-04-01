@@ -1,17 +1,10 @@
 ---
 layout: docs
 title: HTTPS
-toc_rank: 100
+meta_title: Using WireMock with HTTPS | WireMock
 redirect_from: "/https.html"
-description: Using WireMock with HTTPS.
+description: WireMock can optionally accept requests over HTTPS. By default it will serve its own self-signed TLS certificate.
 ---
-
-<div class="mocklab-callout"> 
-  <p class="mocklab-callout__text">
-    HTTPS configuration can be tricky to get right. <strong>MockLab</strong> provides a hosted, 100% WireMock compatible mocking service, freeing you from the hassles of SSL, DNS and server configuration.    
-  </p>
-  <a href="http://get.mocklab.io/?utm_source=wiremock.org&utm_medium=docs-callout&utm_campaign=https" title="Learn more" class="mocklab-callout__learn-more-button">Learn more</a>
-</div>
 
 WireMock can optionally accept requests over HTTPS. By default it will serve its own self-signed TLS certificate, but this can be
 overridden if required by providing a keystore containing another certificate.
@@ -45,6 +38,7 @@ The keystore type defaults to JKS, but this can be changed if you're using anoth
 ```
 
 To allow only HTTPS requests, disable HTTP by adding:
+
 ```java
 @Rule
 public WireMockRule wireMockRule = new WireMockRule(wireMockConfig().httpsPort(8443).httpDisabled(true));

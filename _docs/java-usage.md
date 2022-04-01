@@ -1,9 +1,9 @@
 ---
 layout: docs
-title: 'Java (Non-JUnit) Usage'
-toc_rank: 30
+title: Plain Java
+meta_title: Plain Java | WireMock
 redirect_from: "/java-usage.html"
-description: Using WireMock from within a Java application or service.
+description: If you want to use WireMock from Java (or any other JVM language) outside of JUnit you can programmatically create, start and stop the server.
 ---
 
 ## The Server
@@ -29,12 +29,10 @@ calling the client.
 
 ## The Client
 
-
 The `WireMock` class provides an over-the-wire client to a WireMock
 server (the local one by default).
 
 ### Configuring for static calls
-
 
 To configure the static client for an alternative host and port:
 
@@ -53,7 +51,6 @@ WireMock.configureFor("tomcat.host", 8080, "/wiremock");
 ```
 
 ### Newing up
-
 
 Instances of `WireMock` can also be created. This is useful if you need
 to talk to more than one server instance.

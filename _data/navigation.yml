@@ -1,19 +1,26 @@
 # main links links
 main:
-  - title: "Docs"
-    url: /docs/
+    
+    - title: "Docs"
+      subnav: "docs"
+      subnavLinks:
+        - name: "WireMock Open Source"
+          subnavLink: "/docs/"
+        - name: "WireMock Studio"
+          subnavLink: "/studio/docs/"
 
-  - title: "About"
-    url: /about/
+    - title: "Support"
+      url: /support
 
-  - title: "GitHub"
-    url: 'https://github.com/tomakehurst/wiremock'
-    new_window: true
+    - title: "Community"
+      subnav: "community"
+      subnavLinks:
+          - name: "Github"
+            subnavLink: "https://github.com/wiremock/wiremock"
+          - name: "Contributing"
+            subnavLink: "https://github.com/wiremock/wiremock/blob/master/CONTRIBUTING.md"
+          - name: "Resources"
+            subnavLink: /external-resources
 
-  - title: "Mailing List"
-    url: 'https://groups.google.com/forum/#!forum/wiremock-user'
-    new_window: true
-
-  - title: "External Resources"
-    url: /external-resources/
-
+    
+      

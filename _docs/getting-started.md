@@ -1,9 +1,10 @@
 ---
 layout: docs
 title: Getting Started
+meta_title: "Getting Started | WireMock"
 toc_rank: 10
 redirect_from: "/getting-started.html"
-description: Getting started with WireMock. Java, JUnit, standalone, servlet container.
+description: WireMock is distributed via Maven Central and can be included in your project using common build tools’ dependency management. Get started with WireMock.
 ---
 
 ## Installation
@@ -158,8 +159,7 @@ here](https://repo1.maven.org/maven2/com/github/tomakehurst/wiremock-jre8-standa
 
 See [Running as a Standalone Process](/docs/running-standalone/) running-standalone for more details and commandline options.
 
-Fetching all of your stub mappings (and checking WireMock is working)
----------------------------------------------------------------------
+## Fetching all of your stub mappings (and checking WireMock is working)
 
 A GET request to the root admin URL e.g `http://localhost:8080/__admin`
 will return all currently registered stub mappings. This is a useful way

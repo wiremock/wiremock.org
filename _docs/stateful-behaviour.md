@@ -1,9 +1,10 @@
 ---
 layout: docs
 title: Stateful Behaviour
+meta_title: Stateful Behaviour | WireMock
 toc_rank: 90
 redirect_from: "/stateful-behaviour.html"
-description: Mimicking stateful behaviour by returning different HTTP responses for the same request given a scenario's state.
+description: Most web services tend to have some state, which changes as you and others interact with it.
 ---
 
 **Most web services tend to have some state, which changes as you and
@@ -66,47 +67,47 @@ The JSON equivalent for the above three stubs is:
 
 ```json
 {
-  "mappings": [
-    {
-        "scenarioName": "To do list",
-        "requiredScenarioState": "Started",
-        "request": {
-            "method": "GET",
-            "url": "/todo/items"
+    "mappings": [
+        {
+            "scenarioName": "To do list",
+            "requiredScenarioState": "Started",
+            "request": {
+                "method": "GET",
+                "url": "/todo/items"
+            },
+            "response": {
+                "status": 200,
+                "body": "<items><item>Buy milk</item></items>"
+            }
         },
-        "response": {
-            "status": 200,
-            "body" : "<items><item>Buy milk</item></items>"
-        }
-    },
-    {
-        "scenarioName": "To do list",
-        "requiredScenarioState": "Started",
-        "newScenarioState": "Cancel newspaper item added",
-        "request": {
-            "method": "POST",
-            "url": "/todo/items",
-            "bodyPatterns": [
-                { "contains": "Cancel newspaper subscription" }
-             ]
+        {
+            "scenarioName": "To do list",
+            "requiredScenarioState": "Started",
+            "newScenarioState": "Cancel newspaper item added",
+            "request": {
+                "method": "POST",
+                "url": "/todo/items",
+                "bodyPatterns": [
+                    { "contains": "Cancel newspaper subscription" }
+                ]
+            },
+            "response": {
+                "status": 201
+            }
         },
-        "response": {
-            "status": 201
+        {
+            "scenarioName": "To do list",
+            "requiredScenarioState": "Cancel newspaper item added",
+            "request": {
+                "method": "GET",
+                "url": "/todo/items"
+            },
+            "response": {
+                "status": 200,
+                "body": "<items><item>Buy milk</item><item>Cancel newspaper subscription</item></items>"
+            }
         }
-    },
-    {
-        "scenarioName": "To do list",
-        "requiredScenarioState": "Cancel newspaper item added",
-        "request": {
-            "method": "GET",
-            "url": "/todo/items"
-        },
-        "response": {
-            "status": 200,
-            "body" : "<items><item>Buy milk</item><item>Cancel newspaper subscription</item></items>"
-        }
-    }
-  ]
+    ]
 }
 ```
 
@@ -119,7 +120,6 @@ Java:
 ```java
 List<Scenario> allScenarios = getAllScenarios();
 ```
-
 
 JSON:
 
@@ -135,14 +135,8 @@ GET /__admin/scenarios
 }
 ```
 
-
 ## Resetting scenarios
 
 The state of all configured scenarios can be reset back to
 `Scenario.START` either by calling `WireMock.resetAllScenarios()` in
 Java, or posting an empty request to `http://<host>:<port>/__admin/scenarios/reset`.
-
-
-
-
-

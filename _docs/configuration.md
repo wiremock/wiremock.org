@@ -1,11 +1,11 @@
 ---
 layout: docs
-title: 'Configuration'
-toc_rank: 40
-description: Configuring WireMockServer and the JUnit rule programmatically.
+title: "Java configuration"
+meta_title: Java configuration | WireMock
+description: Configuring WireMock progammatically in Java.
 ---
 
-Both ``WireMockServer`` and the ``WireMockRule`` take a configuration builder as the parameter to their constructor e.g.
+Both `WireMockServer` and the `WireMockRule` take a configuration builder as the parameter to their constructor e.g.
 
 ```java
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
@@ -37,7 +37,6 @@ Every option has a sensible default, so only options that you require an overrid
 .bindAddress("192.168.1.111")
 ```
 
-
 ## Jetty configuration
 
 Typically it is only necessary to tweak these settings if you are doing performance testing under significant loads.
@@ -55,7 +54,7 @@ Typically it is only necessary to tweak these settings if you are doing performa
  // Set the size of Jetty's header buffer (to avoid exceptions when very large request headers are sent). Defaults to 8192.
 .jettyHeaderBufferSize(16834)
 
-// Enable asynchronous request processing in Jetty. Recommended when using WireMock for performance testing with delays, as it allows much more efficient use of container threads and therefore higher throughput. Defaults to false. 
+// Enable asynchronous request processing in Jetty. Recommended when using WireMock for performance testing with delays, as it allows much more efficient use of container threads and therefore higher throughput. Defaults to false.
 .asynchronousResponseEnabled(true)
 
 // Set the number of asynchronous response threads. Effective only with asynchronousResponseEnabled=true. Defaults to 10.
@@ -91,6 +90,7 @@ WireMock can accept HTTPS connections from clients, require a client to present 
 ```
 
 WireMock uses the trust store for three purposes:
+
 1. As a server, when requiring client auth, WireMock will trust the client if it
    presents a public certificate in this trust store
 2. As a proxy, WireMock will use the private key & certificate in this key store
@@ -129,7 +129,6 @@ WireMock uses the trust store for three purposes:
 .caKeystoreType("JKS")
 ```
 
-
 ## File locations
 
 WireMock, when started programmatically, will default to `src/test/resources` as a filesystem root if not configured otherwise.
@@ -156,7 +155,7 @@ The request journal records requests received by WireMock. It is required by the
 
 ## Notification (logging)
 
-WireMock wraps all logging in its own ``Notifier`` interface. It ships with no-op, Slf4j and console (stdout) implementations.
+WireMock wraps all logging in its own `Notifier` interface. It ships with no-op, Slf4j and console (stdout) implementations.
 
 ```java
 // Provide an alternative notifier. The default logs to slf4j.
@@ -170,7 +169,6 @@ Gzipping of responses can be disabled.
 ```java
 .gzipDisabled(true)
 ```
-
 
 ## Extensions
 
@@ -193,11 +191,10 @@ This behaviour can be modified by setting a chunked encoding policy e.g.
 
 Valid values are:
 
-* `NEVER` - Never use chunked encoding. Warning: this will buffer all response bodies in order to calculate the size.
-This might put a lot of strain on the garbage collector if you're using large response bodies.
-* `BODY_FILE` - Use chunked encoding for body files but calculate a `Content-Length` for directly configured bodies.
-* `ALWAYS` - Always use chunk encoding - the default.
-
+-   `NEVER` - Never use chunked encoding. Warning: this will buffer all response bodies in order to calculate the size.
+    This might put a lot of strain on the garbage collector if you're using large response bodies.
+-   `BODY_FILE` - Use chunked encoding for body files but calculate a `Content-Length` for directly configured bodies.
+-   `ALWAYS` - Always use chunk encoding - the default.
 
 ## Cross-origin response headers (CORS)
 

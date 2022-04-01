@@ -47,10 +47,15 @@ $type-size-8: 0.625em; // ~10px
    Colors
    ========================================================================== */
 
+$general-background: #f0f5ff;
+$dark-milk: #7d93bd;
 $dark-blue: #263248;
 $light-blue: #7e8aa2;
 $very-light-blue: #becdea;
 $orange: #ff9800;
+
+// header border-bottom
+$head-border-bottom: #f0f5ff;
 
 // $gray                       : #7a8288;
 $gray: #666666;
@@ -98,6 +103,7 @@ $mocklab-light-green: #f9fcf5;
 $mocklab-dark-green: #036334;
 
 /* links */
+$head-nav-links: #7d93bd;
 $link-color: $info-color;
 $link-color-hover: mix(#000, $link-color, 25%);
 $link-color-visited: mix(#fff, $link-color, 25%);
@@ -138,7 +144,7 @@ $susy: (
     //   color: blue,
     //   output: overlay,
     //   toggle: top right,
-    // ),,,,,,,,,,,,,,,,,,,,
+    // ),,,,,,,,,,,,,,,,,,,,,,,,,,,
 );
 
 /*

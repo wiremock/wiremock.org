@@ -1,0 +1,318 @@
+.studio-header {
+    h1,
+    h2,
+    h3,
+    h4,
+    ul,
+    p {
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+    }
+
+    background: $general-background;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    background-image: url(../../images/wiremockStudioLeft.png),
+        url(../../images/wiremockStudioRight.png);
+    background-position: 0% 50%, 100% 50%;
+    background-repeat: no-repeat, no-repeat;
+    background-size: 420px 450px, 420px 450px;
+    height: 600px;
+
+    .studio-header__intro {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 560px;
+
+        .wiremockBIG {
+            width: 346px;
+            margin-right: 15px;
+        }
+
+        h2 {
+            font-family: "Ubuntu";
+            font-style: normal;
+            font-weight: bold;
+            color: #18253d;
+            font-size: 60px;
+            text-align: center;
+        }
+
+        p {
+            font-family: "Ubuntu";
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            text-align: center;
+            color: #18253d;
+            margin: 30px 0 !important;
+            width: 75%;
+        }
+        .getStartedHeader {
+            display: flex;
+            align-items: center;
+        }
+        .getStartedLink {
+            font-family: "Ubuntu";
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            color: #f59121;
+            margin-right: 5px;
+            text-decoration: none;
+            border-bottom: 2px solid;
+        }
+    }
+
+    .studio-header-middle {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.wiremock-studio-container {
+    width: 880px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1em;
+}
+
+.responsive-img-studio {
+    width: 100%;
+    height: auto;
+    margin: 30px 0;
+}
+
+.main-wrapper-studio {
+    h1,
+    h2,
+    h3,
+    h4,
+    ul,
+    p {
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+    }
+
+    padding: 60px 0;
+
+    .h4Studio {
+        font-family: "Ubuntu";
+        font-style: normal;
+        font-weight: bold;
+        font-size: 32px;
+        color: #18253d;
+        margin: 45px 0 20px 0 !important;
+    }
+
+    .pstudio {
+        font-family: "Ubuntu";
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        color: #18253d;
+
+        a {
+            color: #3db2ef;
+        }
+    }
+
+    .pMargin {
+        margin-bottom: 15px !important;
+    }
+
+    .titleTXT-main-wrapper {
+        color: #18253d;
+        font-style: normal;
+        font-weight: bold;
+        font-family: "Ubuntu";
+        font-size: 40px;
+    }
+
+    .wiremockBYUP9 {
+        width: 440px;
+        margin: 20px 0;
+    }
+    .highlight {
+        background: #f0f5ff;
+        border: 1px solid #d2dff9;
+        box-sizing: border-box;
+        border-radius: 8px;
+    }
+}
+
+.otherWiremockProducts {
+    padding: 0 0 60px 0;
+
+    .h2Studio {
+        font-family: "Ubuntu";
+        font-style: normal;
+        font-weight: bold;
+        font-size: 50px;
+        color: #18253d;
+        padding: 0;
+        margin: 0 0 0 0 !important;
+        border: none;
+    }
+
+    .pstudio {
+        font-family: "Ubuntu";
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        color: #18253d;
+    }
+
+    .customTXTFooter {
+        font-size: 16px;
+    }
+
+    .otherWiremockIMG {
+        width: 168px;
+    }
+
+    .h4Studio {
+        font-family: "Ubuntu";
+        font-style: normal;
+        padding: 0;
+        margin: 0 0 10px 0;
+        font-size: 36px;
+        color: #000;
+    }
+
+    .otherWiremockP {
+        margin-top: 40px !important;
+    }
+}
+
+.otherWiremockProducts-container {
+    display: flex;
+    justify-content: space-between;
+    width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    background: #f0f5ff;
+    border-radius: 50px;
+    padding: 50px;
+}
+
+.otherWiremockProductsLeft {
+    width: 294px;
+}
+
+.otherWiremockCardWrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 626px;
+}
+
+.otherWiremockCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    width: 288px;
+    height: 286px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid #d2dff9;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+.studio-mobile-subtitle {
+    display: none;
+    font-size: 30px !important;
+}
+
+@media (max-width: 1410px) {
+    .studio-subtitle {
+        display: none;
+    }
+    .wiremockBIG {
+        width: 180px !important;
+    }
+    .studio-header__intro {
+        h2 {
+            font-size: 30px !important;
+        }
+    }
+    .studio-mobile-subtitle {
+        display: block;
+    }
+}
+
+@media (max-width: 1305px) {
+    .studio-header {
+        background-size: 350px 400px, 350px 400px;
+    }
+    .studio-header__intro {
+        width: 370px !important;
+    }
+}
+
+@media (max-width: 1130px) {
+    .otherWiremockProducts-container {
+        width: 900px;
+        padding: 40px;
+    }
+    .otherWiremockCard {
+        width: 265px;
+        height: unset;
+    }
+}
+
+@media (max-width: 1080px) {
+    .studio-header__intro {
+        width: 320px !important;
+    }
+}
+
+@media (max-width: 1023px) {
+    .studio-header__intro {
+        padding: 0 20px;
+    }
+    .studio-header {
+        background-image: unset;
+    }
+    .wiremock-studio-container {
+        width: 90%;
+    }
+    .otherWiremockProducts-container {
+        width: 90%;
+        flex-direction: column;
+        align-items: center;
+    }
+    .otherWiremockProductsLeft {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .otherWiremockCardWrapper {
+        flex-direction: column;
+        align-items: center;
+        width: unset;
+    }
+    .otherWiremockCard {
+        margin-bottom: 20px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    .otherWiremockProducts {
+        .otherWiremockP {
+            margin-top: 20px !important;
+        }
+    }
+}
+
+@media (max-width: 340px) {
+    .wiremockBIG {
+        width: 165px !important;
+    }
+}

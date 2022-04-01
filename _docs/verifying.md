@@ -1,9 +1,10 @@
 ---
 layout: docs
 title: Verifying
+meta_title: Verifying whether specific HTTP requests were made | WireMock
 toc_rank: 60
 redirect_from: "/verifying.html"
-description: Verifying whether specific HTTP requests were made.
+description: Verifying and querying requests relies on the request journal, which is an in-memory log of received requests. This can be disabled for load testing.
 ---
 
 The WireMock server records all requests it receives in memory (at
@@ -89,8 +90,9 @@ A response of this form will be returned:
 
 All requests received by WireMock since the last reset can be fetched,
 along with additional data about whether the request was matched by a stub mapping and the resulting response definition.
- 
+
 In Java:
+
 ```java
 List<ServeEvent> allServeEvents = getAllServeEvents();
 ```
@@ -99,61 +101,64 @@ And via the HTTP API by sending a `GET` to `http://<host>:<port>/__admin/request
 
 ```json
 {
-  "requests" : [ {
-    "id" : "95bd9a40-82d4-47ce-9383-25a9e972f05d",
-    "request" : {
-      "url" : "/received-request/7",
-      "absoluteUrl" : "http://localhost:51490/received-request/7",
-      "method" : "GET",
-      "clientIp" : "127.0.0.1",
-      "headers" : {
-        "Connection" : "keep-alive",
-        "User-Agent" : "Apache-HttpClient/4.5.1 (Java/1.8.0_45)",
-        "Host" : "localhost:51490"
-      },
-      "cookies" : { },
-      "browserProxyRequest" : false,
-      "loggedDate" : 1475495213275,
-      "bodyAsBase64" : "",
-      "body" : "",
-      "loggedDateString" : "2016-10-03T11:46:53Z"
+    "requests": [
+        {
+            "id": "95bd9a40-82d4-47ce-9383-25a9e972f05d",
+            "request": {
+                "url": "/received-request/7",
+                "absoluteUrl": "http://localhost:51490/received-request/7",
+                "method": "GET",
+                "clientIp": "127.0.0.1",
+                "headers": {
+                    "Connection": "keep-alive",
+                    "User-Agent": "Apache-HttpClient/4.5.1 (Java/1.8.0_45)",
+                    "Host": "localhost:51490"
+                },
+                "cookies": {},
+                "browserProxyRequest": false,
+                "loggedDate": 1475495213275,
+                "bodyAsBase64": "",
+                "body": "",
+                "loggedDateString": "2016-10-03T11:46:53Z"
+            },
+            "responseDefinition": {
+                "status": 200,
+                "body": "This was matched"
+            },
+            "wasMatched": true
+        },
+        {
+            "id": "aa1a4250-f87c-4a17-82e3-79c83441ce03",
+            "request": {
+                "url": "/received-request/6",
+                "absoluteUrl": "http://localhost:51490/received-request/6",
+                "method": "GET",
+                "clientIp": "127.0.0.1",
+                "headers": {
+                    "Connection": "keep-alive",
+                    "User-Agent": "Apache-HttpClient/4.5.1 (Java/1.8.0_45)",
+                    "Host": "localhost:51490"
+                },
+                "cookies": {},
+                "browserProxyRequest": false,
+                "loggedDate": 1475495213268,
+                "bodyAsBase64": "",
+                "body": "",
+                "loggedDateString": "2016-10-03T11:46:53Z"
+            },
+            "responseDefinition": {
+                "status": 404,
+                "transformers": [],
+                "fromConfiguredStub": false,
+                "transformerParameters": {}
+            },
+            "wasMatched": false
+        }
+    ],
+    "meta": {
+        "total": 2
     },
-    "responseDefinition" : {
-      "status" : 200,
-      "body" : "This was matched"
-    },
-    "wasMatched" : true
-  }, {
-    "id" : "aa1a4250-f87c-4a17-82e3-79c83441ce03",
-    "request" : {
-      "url" : "/received-request/6",
-      "absoluteUrl" : "http://localhost:51490/received-request/6",
-      "method" : "GET",
-      "clientIp" : "127.0.0.1",
-      "headers" : {
-        "Connection" : "keep-alive",
-        "User-Agent" : "Apache-HttpClient/4.5.1 (Java/1.8.0_45)",
-        "Host" : "localhost:51490"
-      },
-      "cookies" : { },
-      "browserProxyRequest" : false,
-      "loggedDate" : 1475495213268,
-      "bodyAsBase64" : "",
-      "body" : "",
-      "loggedDateString" : "2016-10-03T11:46:53Z"
-    },
-    "responseDefinition" : {
-      "status" : 404,
-      "transformers" : [ ],
-      "fromConfiguredStub" : false,
-      "transformerParameters" : { }
-    },
-    "wasMatched" : false
-  } ],
-  "meta" : {
-    "total" : 2
-  },
-  "requestJournalDisabled" : false
+    "requestJournalDisabled": false
 }
 ```
 
@@ -162,7 +167,6 @@ And via the HTTP API by sending a `GET` to `http://<host>:<port>/__admin/request
 Optionally the results can be filtered to those occuring after a specififed (ISO8601) date-time. Also, the result set can optionally be limited in size
 e.g. to return the most recent three results after the 7th of June 2016 12pm send:
 `GET http://localhost:8080/__admin/requests?since=2016-06-06T12:00:00&limit=3`
-
 
 Results can also be filtered to include only unmatched requests via a query parameter:
 
@@ -187,7 +191,7 @@ List<ServeEvent> serveEvents =
 
 ### Criteria queries
 
-The request journal can also be queried, taking a request pattern as the filter criteria. In Java:  
+The request journal can also be queried, taking a request pattern as the filter criteria. In Java:
 
 ```java
 List<LoggedRequest> requests = findAll(putRequestedFor(urlMatching("/api/.*")));
@@ -199,35 +203,35 @@ which will return a response like this:
 
 ```json
 {
-  "requests": [
-    {
-      "url": "/my/url",
-      "absoluteUrl": "http://mydomain.com/my/url",
-      "method": "GET",
-      "headers": {
-        "Accept-Language": "en-us,en;q=0.5",
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:9.0) Gecko/20100101 Firefox/9.0",
-        "Accept": "image/png,image/*;q=0.8,*/*;q=0.5"
-      },
-      "body": "",
-      "browserProxyRequest": true,
-      "loggedDate": 1339083581823,
-      "loggedDateString": "2012-06-07 16:39:41"
-    },
-    {
-      "url": "/my/other/url",
-      "absoluteUrl": "http://my.other.domain.com/my/other/url",
-      "method": "POST",
-      "headers": {
-        "Accept": "text/plain",
-        "Content-Type": "text/plain"
-      },
-      "body": "My text",
-      "browserProxyRequest": false,
-      "loggedDate": 1339083581823,
-      "loggedDateString": "2012-06-07 16:39:41"
-    }
-  ]
+    "requests": [
+        {
+            "url": "/my/url",
+            "absoluteUrl": "http://mydomain.com/my/url",
+            "method": "GET",
+            "headers": {
+                "Accept-Language": "en-us,en;q=0.5",
+                "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:9.0) Gecko/20100101 Firefox/9.0",
+                "Accept": "image/png,image/*;q=0.8,*/*;q=0.5"
+            },
+            "body": "",
+            "browserProxyRequest": true,
+            "loggedDate": 1339083581823,
+            "loggedDateString": "2012-06-07 16:39:41"
+        },
+        {
+            "url": "/my/other/url",
+            "absoluteUrl": "http://my.other.domain.com/my/other/url",
+            "method": "POST",
+            "headers": {
+                "Accept": "text/plain",
+                "Content-Type": "text/plain"
+            },
+            "body": "My text",
+            "browserProxyRequest": false,
+            "loggedDate": 1339083581823,
+            "loggedDateString": "2012-06-07 16:39:41"
+        }
+    ]
 }
 ```
 
@@ -242,7 +246,6 @@ removeServeEvent(id);
 ```
 
 Or via the HTTP API by issuing a `DELETE` to `http://<host>:<port>/__admin/requests/{id}`.
-
 
 ### By criteria
 
@@ -286,7 +289,7 @@ stubFor(get("/api/dosomething/123")
 testClient.get("/api/dosomething/123");
 
 List<ServeEvent> removedServeEvents = removeEventsByStubMetadata(matchingJsonPath("$.tags[0]", equalTo("test-57")));
-```  
+```
 
 ```
 POST /__admin/requests/remove-by-metadata
@@ -307,7 +310,6 @@ The request log can be reset at any time. If you're using either of the
 JUnit rules this will happen automatically at the start of every test
 case. However you can do it yourself via a call to
 `WireMock.resetAllRequests()` in Java or sending a `DELETE` request to `http://<host>:<port>/__admin/requests`.
-
 
 ## Finding unmatched requests
 
@@ -385,45 +387,42 @@ will return a response like:
 
 ```json
 {
-  "nearMisses": [
-    {
-      "request": {
-        "url": "/actual",
-        "absoluteUrl": "http://localhost:8080/nomatch",
-        "method": "GET",
-        "clientIp": "0:0:0:0:0:0:0:1",
-        "headers": {
-          "User-Agent": "curl/7.30.0",
-          "Accept": "*/*",
-          "Host": "localhost:8080"
-        },
-        "cookies": {},
-        "browserProxyRequest": false,
-        "loggedDate": 1467402464520,
-        "bodyAsBase64": "",
-        "body": "",
-        "loggedDateString": "2016-07-01T19:47:44Z"
-      },
-      "stubMapping": {
-        "uuid": "42aedcf2-1f8d-4009-ac7b-9870e4ab2316",
-        "request": {
-          "url": "/expected",
-          "method": "GET"
-        },
-        "response": {
-          "status": 200
+    "nearMisses": [
+        {
+            "request": {
+                "url": "/actual",
+                "absoluteUrl": "http://localhost:8080/nomatch",
+                "method": "GET",
+                "clientIp": "0:0:0:0:0:0:0:1",
+                "headers": {
+                    "User-Agent": "curl/7.30.0",
+                    "Accept": "*/*",
+                    "Host": "localhost:8080"
+                },
+                "cookies": {},
+                "browserProxyRequest": false,
+                "loggedDate": 1467402464520,
+                "bodyAsBase64": "",
+                "body": "",
+                "loggedDateString": "2016-07-01T19:47:44Z"
+            },
+            "stubMapping": {
+                "uuid": "42aedcf2-1f8d-4009-ac7b-9870e4ab2316",
+                "request": {
+                    "url": "/expected",
+                    "method": "GET"
+                },
+                "response": {
+                    "status": 200
+                }
+            },
+            "matchResult": {
+                "distance": 0.12962962962962962
+            }
         }
-      },
-      "matchResult": {
-        "distance": 0.12962962962962962
-      }
-    }
-  ]
+    ]
 }
 ```
-
-
-
 
 To find near misses representing stub mappings closest to the specified request in Java:
 
@@ -449,34 +448,34 @@ will return a response like:
 
 ```json
 {
-  "nearMisses": [
-    {
-      "request": {
-        "url": "/nomatch",
-        "absoluteUrl": "http://localhost:8080/nomatch",
-        "method": "GET",
-        "clientIp": "0:0:0:0:0:0:0:1",
-        "headers": {
-          "User-Agent": "curl/7.30.0",
-          "Accept": "*/*",
-          "Host": "localhost:8080"
-        },
-        "cookies": {},
-        "browserProxyRequest": false,
-        "loggedDate": 1467402464520,
-        "bodyAsBase64": "",
-        "body": "",
-        "loggedDateString": "2016-07-01T19:47:44Z"
-      },
-      "requestPattern": {
-        "url": "/almostmatch",
-        "method": "GET"
-      },
-      "matchResult": {
-        "distance": 0.06944444444444445
-      }
-    }
-  ]
+    "nearMisses": [
+        {
+            "request": {
+                "url": "/nomatch",
+                "absoluteUrl": "http://localhost:8080/nomatch",
+                "method": "GET",
+                "clientIp": "0:0:0:0:0:0:0:1",
+                "headers": {
+                    "User-Agent": "curl/7.30.0",
+                    "Accept": "*/*",
+                    "Host": "localhost:8080"
+                },
+                "cookies": {},
+                "browserProxyRequest": false,
+                "loggedDate": 1467402464520,
+                "bodyAsBase64": "",
+                "body": "",
+                "loggedDateString": "2016-07-01T19:47:44Z"
+            },
+            "requestPattern": {
+                "url": "/almostmatch",
+                "method": "GET"
+            },
+            "matchResult": {
+                "distance": 0.06944444444444445
+            }
+        }
+    ]
 }
 ```
 

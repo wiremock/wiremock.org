@@ -12,7 +12,41 @@ layout: compress
   </head>
 
   <body>
+  <div class="signup-modal-overlay"></div>
 
+  <div class="signup-modal">
+    <div class="close-modal-icon">
+      <img src="{{base_path}}/images/closeModalIcon.png" width="7" height="7" alt="close icon"/>
+    </div>
+
+    <div class="signup-modal-robot">
+      <h2>Get Started with</h2>
+      <img src="{{base_path}}/images/wiremockBigModal.png" width="384" />
+      <h4>Studio <span>Enterprise</span></h4>
+
+      <div class="box-description-modal">
+        <p>Submit your request for WireMock Enterprise and our team will connect you.</p>
+      </div>
+
+      <div class="box-description-modal-second">
+        <p>Enterprise brings SSO, collaboration features, multiple host on-premise deployment and monitoring integration.</p>
+      </div>
+
+    </div>
+    <div class="signup-modal-form">
+      <h2>Schedule a Demo</h2>
+      <script charset="utf-8" type="text/javascript" src="//js-eu1.hsforms.net/forms/shell.js"></script>
+      <script>
+        hbspt.forms.create({
+          region: "eu1",
+          portalId: "25724978",
+          formId: "4a4ac91e-ce09-4e84-b7e8-4f90df8d3803"
+        });
+      </script>
+
+    </div>
+  </div>
+    
     {% include browser-upgrade.html %}
     {% include masthead.html %}
 
@@ -25,6 +59,8 @@ layout: compress
       </footer>
     </div>
 
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw=" crossorigin="anonymous"></script>
     {% include scripts.html %}
 
   </body>
