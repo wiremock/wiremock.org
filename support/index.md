@@ -8,14 +8,10 @@ description: How to get support for WireMock open source and Studio
 
 If you're looking for answers you can't find in the documentation or need advice on the best way to solve a problem, there are a number of places you can find help.
 
-## Mailing list
-
-The [WireMock mailing list](https://groups.google.com/forum/#!forum/wiremock-user){:target="{{site.data.misc.blank}}"} has existed for many years and is searchable so is a good place to start looking for information not in the documentation.
-
 ## Slack
 
-You can get real-time chat support from the WireMock community and core team by signing up to the [UP9 Slack](https://up9.com/slack?utm_source=wiremock.org&utm_medium=site&utm_campaign=wiremock.org-header){:target="{{site.data.misc.blank}}"} and joining the [#06-oss-wiremock](https://up9.slack.com/archives/C02V3EGV3U3) channel.
+You can get real-time chat support from the WireMock community by joining the [#06-oss-wiremock](https://up9.slack.com/archives/C02V3EGV3U3) Slack channel.
 
 ## Priority support
 
-If you need a guaranteed response SLA and priority access to our team please [schedule a quick call](https://calendly.com/d/cmw-d8b-hmq/nick-tom-at-mocklab) with us.
+We offer priority support with a guaranteed SLA as part of our Enterprise plan. [Schedule a demo](https://calendly.com/wiremock/wiremock-request-demo?month=2022-04) with our team to learn more.
