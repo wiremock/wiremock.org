@@ -36,5 +36,8 @@ let scheduleACall = params.scheduleACall;
 if (scheduleACall) {
     const scrollToFold = document.getElementById('a-studio-enterprise');
     scrollToFold.click();
-    activateSignupModalForm();
+    setTimeout(() => {
+        activateSignupModalForm();
+    },1000)
+
 }
