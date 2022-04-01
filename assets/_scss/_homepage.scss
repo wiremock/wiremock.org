@@ -952,6 +952,15 @@ html {
     .wiremock-studio-img {
         height: 100%;
     }
+
+    .code-tabs-main-wrapper {
+        ul {
+            flex-wrap: wrap;
+            display: flex;
+            margin-bottom: -11px !important;
+        }
+    }
+
 }
 
 @media (max-width: 1023px) {
@@ -1083,6 +1092,7 @@ html {
             ul {
                 display: flex;
                 flex-wrap: wrap;
+                margin-bottom: 5px !important;
 
                 li {
                     margin-left: 0 !important;

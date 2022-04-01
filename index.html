@@ -58,44 +58,7 @@ description: WireMock is a simulator for HTTP-based APIs. It enables you to stay
 
 </style>
 
-<div class="signup-modal-overlay"></div>
 
-<div class="signup-modal">
-  <div class="close-modal-icon">
-    <img src="{{base_path}}/images/closeModalIcon.png" width="7" height="7" alt="close icon"/>
-  </div>
-
-  <div class="signup-modal-robot">
-    <h2>Get Started with</h2>
-    <img src="{{base_path}}/images/wiremockBigModal.png" width="384" />
-    <h4>Studio <span>Enterprise</span></h4>
-
-    <div class="box-description-modal">
-      <p>Submit your request for WireMock Enterprise and our team will connect you.</p>
-    </div>
-
-    <div class="box-description-modal-second">
-      <p>Enterprise brings SSO, collaboration features, multiple host on-premise deployment and monitoring integration.</p>
-    </div>
-
-  </div>
-  <div class="signup-modal-form">
-
-
-
-    <h2>Request Demo</h2>
-
-    <script charset="utf-8" type="text/javascript" src="//js-eu1.hsforms.net/forms/shell.js"></script>
-    <script>
-      hbspt.forms.create({
-      region: "eu1",
-      portalId: "25724978",
-      formId: "4a4ac91e-ce09-4e84-b7e8-4f90df8d3803"
-    });
-    </script>
-
-  </div>
-</div>
 
 
 <div class="home-header-wrapper">
@@ -350,7 +313,7 @@ docker run -it --rm \
         <h4>Deploy into your own VPC or Kubernetes cluster</h4>
       </div>
 
-      <span id="btnschedulecall" class="btn-schedule-call">Schedule a demo</span>
+      <span id="btnschedulecall" class="btn-schedule-call">Schedule a Demo</span>
   </div>
 </div> 
 
@@ -414,92 +377,16 @@ docker run -it --rm \
       <a class="btn-card-info btnGetStarted" href="/docs/">Full Documentation</a>
     </div>
 </div>
-<!-- <div class="container apis-wrapper">
-  <h2 class="apisTxt">APIs</h2>
-  <span class="apisDescription">Common use cases library</span>
-  <div class="apis-card-wrapper">
-    <div class="apis-card">
-      <div class="apis-card-img-wrapper">
-        <img src="{{ base_path}}/images/paypalIcon.png" />
-      </div>
-      <h4><b>PayPal</b> API</h4>
-      <p>
-        Lorem ipsum dolor sit amet, ipsum  consectetur adipiscing elit vlout set ipsum lorem
-      </p>
-    </div>
-    <div class="apis-card">
-      <div class="apis-card-img-wrapper">
-        <img src="{{ base_path}}/images/paypalIcon.png" />
-      </div>
-      <h4><b>PayPal</b> API</h4>
-      <p>
-        Lorem ipsum dolor sit amet, ipsum  consectetur adipiscing elit vlout set ipsum lorem
-      </p>
-    </div>
-    <div class="apis-card">
-      <div class="apis-card-img-wrapper">
-        <img src="{{ base_path}}/images/paypalIcon.png" />
-      </div>
-      <h4><b>PayPal</b> API</h4>
-      <p>
-        Lorem ipsum dolor sit amet, ipsum  consectetur adipiscing elit vlout set ipsum lorem
-      </p>
-    </div>
-    <div class="apis-card">
-      <div class="apis-card-img-wrapper">
-        <img src="{{ base_path}}/images/paypalIcon.png" />
-      </div>
-      <h4><b>PayPal</b> API</h4>
-      <p>
-        Lorem ipsum dolor sit amet, ipsum  consectetur adipiscing elit vlout set ipsum lorem
-      </p>
-    </div>
-    <div class="apis-card">
-      <div class="apis-card-img-wrapper">
-        <img src="{{ base_path}}/images/paypalIcon.png" />
-      </div>
-      <h4><b>PayPal</b> API</h4>
-      <p>
-        Lorem ipsum dolor sit amet, ipsum  consectetur adipiscing elit vlout set ipsum lorem
-      </p>
-    </div>
-  </div>
-</div> -->
 
 <script type="text/javascript">
   window.suppressMockLabPopover = true;
 
   const schedulecall = document.getElementById('btnschedulecall');
-  const signupModalOverlay = document.getElementsByClassName('signup-modal-overlay');
-  const signupModal = document.getElementsByClassName('signup-modal');
-  const scheduleCallNavBTN = document.getElementsByClassName('schedule-demo-nav');
-  const scheduleCallMobileNav = document.getElementsByClassName('schedule-demo-mobile-nav');
-  const closeIconModal = document.getElementsByClassName('close-modal-icon');
 
-  function activateSignupModalForm() {
-    signupModalOverlay[0].classList.add('activeModalForm');
-    signupModal[0].classList.add('activeModalForm');
-  }
-  function deactivateSignupModalForm() {
-    signupModalOverlay[0].classList.remove('activeModalForm');
-    signupModal[0].classList.remove('activeModalForm');
-  }
   schedulecall.addEventListener('click', () => {
-    activateSignupModalForm();
+      activateSignupModalForm();
   })
-  signupModalOverlay[0].addEventListener('click', () => {
-    deactivateSignupModalForm();
-  })
-  scheduleCallNavBTN[0].addEventListener('click', () => {
-    activateSignupModalForm();
-  })
-  scheduleCallMobileNav[0].addEventListener('click', () => {
-    closeMenu();
-    activateSignupModalForm();
-  })
-  closeIconModal[0].addEventListener('click', () => {
-    deactivateSignupModalForm();
-  })
+
   const params = new Proxy(new URLSearchParams(window.location.search), {
     get: (searchParams, prop) => searchParams.get(prop),
   });
@@ -511,5 +398,5 @@ docker run -it --rm \
     activateSignupModalForm();
   }
 
-
 </script>
+<script src="{{ base_path}}/assets/js/homeHeaderCard.js"></script>
