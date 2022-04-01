@@ -1,3 +1,6 @@
+html {
+    scroll-behavior: smooth;
+}
 .home-header-wrapper {
     h1,
     h2,
@@ -120,6 +123,7 @@
 .btnDownload {
     background: #f59121;
     text-decoration: none;
+    font-weight: 700;
 }
 .btnGetStarted {
     background: #0fb2ef;
@@ -170,7 +174,7 @@
         justify-content: space-between;
         align-items: center;
         width: 267px;
-        height: 230px;
+        height: 244px;
         background-color: #fff;
         border: 1px solid #d2dff9;
         border-radius: 8px;
@@ -211,6 +215,7 @@
         }
 
         h2 {
+            font-size: 36px;
             font-family: "Ubuntu";
             font-style: normal;
             font-weight: bold;
@@ -715,6 +720,7 @@
     height: 100%;
     z-index: 50;
     background-color: rgba(7, 0, 71, 0.5);
+
 }
 
 .signup-modal-overlay.activeModalForm {
@@ -730,37 +736,38 @@
     position: fixed;
     background-color: #fff;
     width: 1117px;
-    height: 678px;
+    height: 720px;
     z-index: 100;
     left: 50%;
     top: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+    border-radius: 4px;
 
     @media (max-width: 1140px) {
         width: 1020px;
     }
     @media (max-width: 1023px) {
         justify-content: center;
-        width: auto;
+        width: 80%;
         height: 90%;
         padding: 30px;
         overflow: hidden;
     }
-    @media (min-height: 755px) {
-        height: 678px;
+    @media (min-height: 760px) {
+        height: 720px;
     }
 }
 
 .signup-modal-robot {
     width: 718px;
-    height: 678px;
+    height: 720px;
     background: url(../../images/signupModalRobot.png) no-repeat,
         linear-gradient(140deg, #ffffff 11.99%, #d2dff9 84.46%);
-    background-position: right;
-    // box-shadow: inset 116px 69px 95px 53px #fff;
-
+    background-position: bottom right;
     padding-left: 50px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
 
     h2 {
         font-family: "Ubuntu";
@@ -781,6 +788,14 @@
         color: #3db2ef;
     }
 
+    p {
+        font-family: 'Ubuntu';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 17px;
+        color: #494677;
+    }
+
     .box-description-modal,
     .box-description-modal-second {
         margin-top: 120px;
@@ -792,7 +807,7 @@
             rgba(255, 255, 255, 0) 100%
         );
         border-radius: 16px;
-        padding: 10px;
+        padding: 1px 20px;
     }
 
     .box-description-modal-second {
@@ -876,7 +891,7 @@
         overflow: scroll;
         h2 {
             margin-top:20px;
-            font-size: 35px;
+            font-size: 28px;
         }
     }
 }

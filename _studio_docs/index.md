@@ -17,7 +17,4 @@ Follow these guides to get started in your preferred environment:
 * [Getting Started - Desktop](/studio/docs/getting-started/desktop/)
 * [Getting Started - Docker](/studio/docs/getting-started/docker/)
 * [Getting Started - Kubernetes](/studio/docs/getting-started/kubernetes/)
-
-
-Additionally, MockLab is an edition of WireMock Studio running entirely in the cloud. You can [get started with MockLab](https://app.mocklab.io/login?for=signup){:target="{{site.data.misc.blank}}"} for free.
-
+* [Getting Started - Cloud (MockLab)](https://app.mocklab.io/login?for=signup){:target="{{site.data.misc.blank}}"}
