@@ -27,3 +27,14 @@ scheduleCallMobileNav[0].addEventListener('click', () => {
 closeIconModal[0].addEventListener('click', () => {
     deactivateSignupModalForm();
 })
+
+const params = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop),
+});
+let scheduleACall = params.scheduleACall;
+
+if (scheduleACall) {
+    const scrollToFold = document.getElementById('a-studio-enterprise');
+    scrollToFold.click();
+    activateSignupModalForm();
+}

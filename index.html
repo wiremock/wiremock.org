@@ -387,16 +387,7 @@ docker run -it --rm \
       activateSignupModalForm();
   })
 
-  const params = new Proxy(new URLSearchParams(window.location.search), {
-    get: (searchParams, prop) => searchParams.get(prop),
-  });
-  let scheduleACall = params.scheduleACall;
 
-  if (scheduleACall) {
-    const scrollToFold = document.getElementById('a-studio-enterprise');
-    scrollToFold.click();
-    activateSignupModalForm();
-  }
 
 </script>
 <script src="{{ base_path}}/assets/js/homeHeaderCard.js"></script>
