@@ -736,6 +736,20 @@
     top: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+
+    @media (max-width: 1140px) {
+        width: 1020px;
+    }
+    @media (max-width: 1023px) {
+        justify-content: center;
+        width: auto;
+        height: 90%;
+        padding: 30px;
+        overflow: hidden;
+    }
+    @media (min-height: 755px) {
+        height: 678px;
+    }
 }
 
 .signup-modal-robot {
@@ -783,6 +797,9 @@
 
     .box-description-modal-second {
         margin-top: 40px;
+    }
+    @media (max-width: 1023px) {
+        display: none;
     }
 }
 
@@ -851,6 +868,15 @@
             font-size: 12px !important;
             margin: 0 !important;
             padding: 0 !important;
+        }
+    }
+    @media (max-width: 1023px) {
+        width: auto;
+        height: unset;
+        overflow: scroll;
+        h2 {
+            margin-top:20px;
+            font-size: 35px;
         }
     }
 }
