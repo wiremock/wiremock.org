@@ -2,7 +2,7 @@
 layout: docs
 title: WireMock Studio - Getting Started - Docker
 parent: getting-started
-description: How to download and run WireMock Studio on your local machine.
+description: How to run WireMock Studio using Docker.
 ---
 
 To start WireMock Studio in Docker locally, run the following in a shell:
