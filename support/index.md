@@ -10,7 +10,7 @@ If you're looking for answers you can't find in the documentation or need advice
 
 ## Slack
 
-You can get real-time chat support from the WireMock community by joining the [#06-oss-wiremock](https://up9.slack.com/archives/C02V3EGV3U3) Slack channel.
+You can get real-time chat support from the WireMock community by joining the [UP9 community Slack](https://up9.com/slack) and heading to the `#06-oss-wiremock` channel.
 
 ## Priority support
 
