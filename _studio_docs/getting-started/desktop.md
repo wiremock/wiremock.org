@@ -11,7 +11,7 @@ WireMock Studio can be run on your own workstation either directly with Java or 
 The WireMock Studio Java standalone JAR requires a minimum of **Java 11**.
 
 After ensuring you've got a suitable Java version installed, download the
-<a href="http://wiremock-studio.s3-website-us-east-1.amazonaws.com/wiremock-studio-{{site.data.misc.wiremock_studio_version}}.jar" id="wiremock-studio-download">WireMock Studio standalone JAR</a>.
+<a href="https://releases.wiremock.studio/wiremock-studio-{{site.data.misc.wiremock_studio_version}}.jar" id="wiremock-studio-download">WireMock Studio standalone JAR</a>.
 
 Then open a terminal in the directory containing the JAR file and run:
 
