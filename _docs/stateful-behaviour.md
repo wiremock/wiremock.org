@@ -2,7 +2,6 @@
 layout: docs
 title: Stateful Behaviour
 meta_title: Stateful Behaviour | WireMock
-toc_rank: 90
 redirect_from: "/stateful-behaviour.html"
 description: Most web services tend to have some state, which changes as you and others interact with it.
 ---
@@ -127,7 +126,7 @@ JSON:
 GET /__admin/scenarios
 {
   "scenarios" : [ {
-    "id" : "c8d249ec-d86d-48b1-88a8-a660e6848042",
+    "id" : "my_scenario",
     "name" : "my_scenario",
     "state" : "Started",
     "possibleStates" : [ "Started", "state_2", "state_3" ]
@@ -138,5 +137,45 @@ GET /__admin/scenarios
 ## Resetting scenarios
 
 The state of all configured scenarios can be reset back to
-`Scenario.START` either by calling `WireMock.resetAllScenarios()` in
-Java, or posting an empty request to `http://<host>:<port>/__admin/scenarios/reset`.
+`Scenario.START` either by calling
+
+Java:
+
+```java
+WireMock.resetAllScenarios()
+```
+
+To do the equivalent via the HTTP API, send an empty `POST` request to `/__admin/scenarios/reset`.
+
+
+## Resetting a single scenario
+
+You can reset the state of an individual scenario.
+
+Java:
+
+```java
+WireMock.resetScenario("my_scenario");
+```
+
+The do the equivalent via the HTTP API, send an empty `PUT` to `/__admin/scenarios/my_scenario/state`.
+
+
+## Setting the state of an individual scenario
+
+You can also set the state of an individual scenario to a specific value.
+
+Java:
+
+```java
+WireMock.setScenarioState("my_scenario", "state_2");
+```
+
+HTTP:
+
+```json
+PUT /__admin/scenarios/my_scenario/state
+{
+    "state": "state_2"
+}
+```
