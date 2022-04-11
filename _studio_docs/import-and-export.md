@@ -4,11 +4,11 @@ title: Import & Export - Overview
 description: Importing and exporting mock API stubs in Swagger, OpenAPI and WireMock format.
 ---
 
-You can import your and [Swagger](/docs/swagger/) and [OpenAPI](/docs/swagger/) specifications and [Postman](/docs/import-export/postman) collections into WireMock Studio in order
+You can import your and [Swagger](/studio/docs/swagger/) and [OpenAPI](/studio/docs/swagger/) specifications and [Postman](/studio/docs/import-export/postman) collections into WireMock Studio in order
 to auto-generate stubs in your mock API. Swagger 2.x and OpenAPI 3.x are supported,
 in both JSON and YAML format.
 
-You can also import and export stubs in [WireMock](/docs/import-export/wiremock/) JSON format. This can be used
+You can also import and export stubs in [WireMock](/studio/docs/import-export/wiremock/) JSON format. This can be used
 to move projects between WireMock and WireMock Studio instances, store your mock APIs in source control
 and make copies of WireMock APIs.
 
@@ -31,9 +31,9 @@ The WireMock JSON format is also WireMock's native format, so when a file of thi
 it the stubs created correspond exactly to the file contents.
 
 However, when importing from Swagger and OpenAPI stubs are generated according to
-a set of conversion rules. These can be [tweaked and customised in a number of ways](/docs/swagger/#customising-the-import).
+a set of conversion rules. These can be [tweaked and customised in a number of ways](/studio/docs/swagger/#customising-the-import).
 
-You can also automate imports via [WireMock's API](/docs/import-export/api).
+You can also automate imports via [WireMock's API](/studio/docs/import-export/api/).
 
 
 ## Exporting

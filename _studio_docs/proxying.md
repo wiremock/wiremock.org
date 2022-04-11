@@ -33,7 +33,7 @@ The relative part of a request's URL will be appended onto the base URL, so give
 ## Templating the base URL
 
 When the Enable templating check box is ticked, the base URL can be a handlebars template, meaning that properties from the
-incoming request can be used to determine the URL. See [Response Templating](/docs/response-templating/) for details of the
+incoming request can be used to determine the URL. See [Response Templating](/studio/docs/response-templating/) for details of the
 model and syntax used.
 
 <img src="/images/screenshots/templated-proxy-response.png" title="Proxy response with templating"/>
@@ -47,9 +47,9 @@ errors that are hard to reliably replicate in the target API e.g.
 
 * Return an HTTP 503 response
 * Return response data in a format not expected by your app's client
-* Close the connection prematurely without sending a response (see [Simulating Faults](/docs/simulating-faults/))
+* Close the connection prematurely without sending a response (see [Simulating Faults](/studio/docs/simulating-faults/))
 
-This can be achieved using a variation of the [Default Responses](/docs/default-responses/) approach and setting the default response to Proxy:
+This can be achieved using a variation of the [Default Responses](/studio/docs/default-responses/) approach and setting the default response to Proxy:
 
 
 <img src="/images/screenshots/proxy-all-by-default-stub.png" title="Proxy all by default stub"/>

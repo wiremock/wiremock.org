@@ -9,8 +9,8 @@ The app is a simple to-do list based on Java and Spring Boot, supporting listing
 
 ## Mock API setup
 
-If you haven't yet created a mock API in WireMock Studio, start by doing this. See [Getting Started](/docs/getting-started/) for how to do this.
-Make a note of the base URL from the Settings page (any of them will do).
+If you haven't yet created a mock API in WireMock Studio, start by doing this.
+Once you've created a mock API, make a note of the base URL from the Settings page (any of them will do).
 
 ## App setup
 

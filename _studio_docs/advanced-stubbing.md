@@ -32,7 +32,7 @@ list would match a given request.
 
 Normally it's fine to leave the priority at its default. However it can sometimes be useful to so create a low priority,
 broadly matching stub defining some default behaviour e.g. a 404 page, and then create a set of higher priority, more specific
-stubs for testing individual cases. See [Serving Default Responses](/docs/default-responses/) for more details.
+stubs for testing individual cases. See [Serving Default Responses](/studio/docs/default-responses/) for more details.
 
 ## URL matching
 Determines how the URL will be matched. The options are:
@@ -190,5 +190,5 @@ Headers can be set on the response:
 
 
 ## Response body
-A response body can optionally be specified. If [response templating](/docs/response-templating/)
+A response body can optionally be specified. If [response templating](/studio/docs/response-templating/basics/)
 is enabled, certain parts can be dynamically generated using request attributes and random data.

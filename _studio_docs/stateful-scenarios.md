@@ -6,7 +6,7 @@ description: Return different responses based on a state machine
 ---
 
 Some testing activities require that different responses be served for a sequence of identical requests. For instance
-if you are testing a to-do list application [such as this one](/docs/exploratory-testing-tutorial/) you may wish to start
+if you are testing a to-do list application [such as this one](/studio/docs/exploratory-testing-tutorial/) you may wish to start
 with no to-do list items, post a new item, then see the item appear in the list.
 
 Assuming there is a "list to-do items" API call used to fetch the list, this must be called twice during the above test,

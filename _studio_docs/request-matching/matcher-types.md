@@ -42,7 +42,7 @@ you to selectively ignore or merely constrain specific JSON elements.
 The underlying implementation for `equalToJson` is supplied by
 [JSONUnit](https://github.com/lukas-krecan/JsonUnit){:target="{{site.data.misc.blank}}"}.
 
-You can learn more about working with JSON in the [Matching JSON](/docs/request-matching/json/) article.
+You can learn more about working with JSON in the [Matching JSON]/studio/request-matching/json/) article.
 
 ## `matchesJsonPath`
 
@@ -61,7 +61,7 @@ so that specific element values can be ignored.
 The underlying implementation for `equalToXml` is supplied by
 [XMLUnit](https://www.xmlunit.org/){:target="{{site.data.misc.blank}}"}.
 
-You can learn more about working with XML in the [Matching XML](/docs/request-matching/xml/) article.
+You can learn more about working with XML in the [Matching XML]/studio/request-matching/xml/) article.
 
 ## `matchesXPath`
 

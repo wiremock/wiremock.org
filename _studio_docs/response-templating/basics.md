@@ -93,7 +93,7 @@ Blocks can be used to apply processing to an inner piece of content.
 ```
 {% endraw %}
 
-Blocks form the foundation of logical and looping structures in Handlebars and are [described here in more detail](/docs/response-templating/conditional-logic-and-iteration/).
+Blocks form the foundation of logical and looping structures in Handlebars and are [described here in more detail](/studio/docs/response-templating/conditional-logic-and-iteration/).
 
 ### HTML escaping
 
@@ -202,20 +202,20 @@ WireMock provides a set of Handlebars helpers that perform a variety of logical 
 
 All of the available helpers are described in detail in these articles:
 
-[Conditional Logic and Iteration](/docs/response-templating/conditional-logic-and-iteration/)
+[Conditional Logic and Iteration]/studio/response-templating/conditional-logic-and-iteration/)
 
-[Strings](/docs/response-templating/string-helpers/)
+[Strings](/studio/docs/response-templating/string-helpers/)
 
-[String Encodings](/docs/response-templating/string-encodings/)
+[String Encodings](/studio/docs/response-templating/string-encodings/)
 
-[Dates & Times](/docs/response-templating/dates-and-times/)
+[Dates & Times](/studio/docs/response-templating/dates-and-times/)
 
-[Random Values](/docs/response-templating/random-values/)
+[Random Values](/studio/docs/response-templating/random-values/)
 
-[XML](/docs/response-templating/xml/)
+[XML](/studio/docs/response-templating/xml/)
 
-[JSON](/docs/response-templating/json/)
+[JSON](/studio/docs/response-templating/json/)
 
-[JSON Web Tokens](/docs/response-templating/jwt/)
+[JSON Web Tokens](/studio/docs/response-templating/jwt/)
 
-[Miscellaneous Helpers](/docs/response-templating/misc-helpers/)
+[Miscellaneous Helpers](/studio/docs/response-templating/misc-helpers/)

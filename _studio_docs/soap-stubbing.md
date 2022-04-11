@@ -73,7 +73,7 @@ such as transaction IDs or the current date. However, if data that changes on ea
 request is introduced it will be necessary allow a match to occur regardless of the
 actual value received.
 
-One way to do this is to use [placeholders](/docs/advanced-stubbing/#xml-placeholders).
+One way to do this is to use [placeholders](/studio/docs/advanced-stubbing/#xml-placeholders).
 Let's assume the request body of our API now contains a `TransactionId` element, which
 must be a unique value for each request e.g.:
 

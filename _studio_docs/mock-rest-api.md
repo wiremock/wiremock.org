@@ -155,9 +155,9 @@ And finally paste the filtered JSON in the body field:
 
 <img alt="Query parameter matching" src="/images/screenshots/mock-rest-api/filtered-contacts-response.png" />
 
-You can find more detail on [matching different parts of incoming requests here](/docs/advanced-stubbing/#advanced-request-parameter-matching).
+You can find more detail on [matching different parts of incoming requests here](/studio/docs/advanced-stubbing/#advanced-request-parameter-matching).
 
-[See here for the full list of available request matchers](/docs/request-matching/matcher-types/) (such as `equalTo` and `contains`).
+[See here for the full list of available request matchers](/studio/docs/request-matching/matcher-types/) (such as `equalTo` and `contains`).
 
 
 ## Getting an individual contact
@@ -223,7 +223,7 @@ Unpacking what we've done here:
 * `firstName`, `lastName` and `email` are now random alphanumeric text (with a fixed domain name in the case of `email`).
 * `dateAdded` is set to 3 months before today's date.
 
-You can [learn more about response templating here](/docs/response-templating/basics/) and [more about URL matching here](/docs/request-matching/url/).
+You can [learn more about response templating here](/studio/docs/response-templating/basics/) and [more about URL matching here](/studio/docs/request-matching/url/).
 
 
 ## Creating a new contact
@@ -246,7 +246,7 @@ at all will still yield the `201` response.
 If we want to ensure the stub is only matched when correctly structured JSON is
 sent in the request but without requiring a set of exact values, we can add a body
 matcher by clicking <img style="padding:0;vertical-align: middle; border: none; height: 30px" src="/images/screenshots/new-body-pattern-button.png" alt="New body matcher"/>
- and use [JSONUnit placeholders](/docs/request-matching/json/#using-placeholders-to-ignore-specific-json-attributes)
+ and use [JSONUnit placeholders](/studio/docs/request-matching/json/#using-placeholders-to-ignore-specific-json-attributes)
 as wildcards:
 
 {% raw %}
@@ -355,7 +355,7 @@ The scenario will now remain in state "2 companies" until it is manually reset,
 which you can do by clicking <img style="padding:0;vertical-align: middle; border: none; height: 40px" src="/images/screenshots/scenario-reset-button.png" alt="Reset all scenarios"/>, which resets all scenarios to "Started".
 
 
-You can [find out more about Scenarios here](/docs/stateful-scenarios/).
+You can [find out more about Scenarios here](/studio/docs/stateful-scenarios/).
 
 
 ## Returning errors for specific requests
@@ -408,7 +408,7 @@ Now we can send a test request and see the error response returned:
 ### Other types of error
 
 You can also simulate lower-level errors with WireMock such as dropped network
-connections and delays. You can [learn more about faults here](/docs/simulating-faults/).
+connections and delays. You can [learn more about faults here](/studio/docs/simulating-faults/).
 
 
 ## Conclusion

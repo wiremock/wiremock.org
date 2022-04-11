@@ -81,7 +81,7 @@ The following will render "success" in the output:
 ## Iterating over XML elements
 
 The `xPath` helper returns "one or many" collections results, which can either
-be printed directly, or passed to further helpers such as [`each`](/docs/response-templating/conditional-logic-and-iteration/#iteration) or [`join`](/docs/response-templating/string-helpers/#join).
+be printed directly, or passed to further helpers such as [`each`](/studio/docs/response-templating/conditional-logic-and-iteration/#iteration) or [`join`](/studio/docs/response-templating/string-helpers/#join).
 
 For instance, given a request body of the form:
 

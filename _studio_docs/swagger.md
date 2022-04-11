@@ -6,8 +6,8 @@ description: Generate your mock API automatically from a Swagger or OpenAPI defi
 Swagger / OpenAPI is undoubtedly the most widely used description language for REST and REST-like APIs.
 WireMock Studio supports automatic generation of mock APIs from imported Swagger and OpenAPI specifications.
 
-See [Import and Export Overview](/docs/import-and-export/) for basic importing instructions via the UI and
-[Importing and Export via the API](/docs/import-export/api) for directions on automating
+See [Import and Export Overview](/studio/docs/import-and-export/) for basic importing instructions via the UI and
+[Importing and Export via the API](/studio/docs/import-export/api) for directions on automating
 imports via WireMock's API.
 
 ## Customising the import
