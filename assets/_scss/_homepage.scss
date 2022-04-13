@@ -720,7 +720,6 @@ html {
     height: 100%;
     z-index: 900;
     background-color: rgba(7, 0, 71, 0.5);
-
 }
 
 .signup-modal-overlay.activeModalForm {
@@ -753,8 +752,8 @@ html {
         right: 10px;
         top: 10px;
         border-radius: 50px;
-        background: #E9EBF8;
-        border: 1px solid #BCCEFD;
+        background: #e9ebf8;
+        border: 1px solid #bccefd;
 
         display: flex;
         align-items: center;
@@ -806,7 +805,7 @@ html {
     }
 
     p {
-        font-family: 'Ubuntu';
+        font-family: "Ubuntu";
         font-style: normal;
         font-weight: 400;
         font-size: 17px;
@@ -818,11 +817,7 @@ html {
         margin-top: 120px;
         width: 337px;
         height: 129px;
-        background: linear-gradient(
-            95.55deg,
-            #ffffff 2.1%,
-            rgba(255, 255, 255, 0) 100%
-        );
+        background: linear-gradient(95.55deg, #ffffff 2.1%, rgba(255, 255, 255, 0) 100%);
         border-radius: 16px;
         padding: 1px 20px;
     }
@@ -836,14 +831,12 @@ html {
 }
 
 .signup-modal-form {
-
+    padding-top: 60px;
     width: 399px;
     height: 678px;
     display: flex;
     align-items: center;
     flex-direction: column;
-
-
 
     h2 {
         margin-top: 35px;
@@ -910,7 +903,7 @@ html {
         height: unset;
         overflow: scroll;
         h2 {
-            margin-top:20px;
+            margin-top: 20px;
             font-size: 28px;
         }
     }
@@ -960,7 +953,6 @@ html {
             margin-bottom: -11px !important;
         }
     }
-
 }
 
 @media (max-width: 1023px) {
