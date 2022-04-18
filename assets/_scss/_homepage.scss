@@ -245,6 +245,24 @@ html {
     }
 }
 
+.link-card-block {
+    a {
+        text-decoration: none;
+        margin-left: 5px;
+        margin-right: 5px;
+        cursor: pointer;
+        font-family: "Ubuntu";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        padding-bottom: 1px;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+
 .clients-wrapper {
     margin-top: 70px;
     display: flex;
@@ -306,8 +324,9 @@ html {
     }
 
     .code-tabs-main {
+        border-top-left-radius: 50px;
         border-top-right-radius: 50px;
-        width: 1018px;
+        width: 100%;
         background-color: #f8fafe;
 
         .code-tabs-main-wrapper {
@@ -444,6 +463,33 @@ html {
     }
 }
 
+.wiremock-studio-links-container {
+    display: flex;
+    //border: 1px solid red;
+    margin-top:20px;
+    width: 522px;
+    justify-content: space-between;
+}
+
+.desktop-link {
+    color: #F59121;
+    border-bottom: 1px solid #F59121;
+}
+.kubernetes-link {
+    color: #18253D;
+    border-bottom: 1px solid #18253D;
+}
+.docker-link {
+    color: #0886B5;
+    border-bottom: 1px solid #0886B5;
+}
+.cloud-link {
+    color: #0FB2EF;
+    border-bottom: 1px solid #0FB2EF;
+}
+
+
+
 .wiremock-studio-wrapper,
 .wiremock-studio-robot-wrapper {
     display: flex;
@@ -455,8 +501,11 @@ html {
     padding: 0;
 
     .wiremock-studio-img-wrapper {
-        width: 536px;
-        padding: 65px 0;
+        width: 790px;
+        padding-bottom: 50px;
+        img {
+            max-width: 100%;
+        }
     }
 
     .wiremock-studio-img {
@@ -468,11 +517,11 @@ html {
     }
 
     .wiremock-studio-details {
-        width: 536px;
-        padding: 65px 0;
+        width: 790px;
+        padding: 50px 0;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        align-items: center;
 
         h1 {
             margin: 0;
@@ -482,6 +531,7 @@ html {
             font-weight: bold;
             font-size: 50px;
             color: #18253d;
+            margin-top: 15px;
         }
 
         p {
@@ -490,10 +540,12 @@ html {
             font-weight: normal;
             font-size: 16px;
             color: #18253d;
+            text-align: center;
         }
 
         .p-margin-studio {
-            margin-top: 20px;
+            margin-bottom: 0;
+            margin-top: 40px;
         }
 
         .p-width-studio {
@@ -505,6 +557,15 @@ html {
         .wiremock-studio-links-wrapper {
             display: flex;
             margin-top: 30px;
+            h4 {
+                margin:0;
+                padding:0;
+                font-family: 'Ubuntu';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 20px;
+                color: #000000;
+            }
         }
     }
 
@@ -519,9 +580,11 @@ html {
         border-bottom-left-radius: 50px;
     }
     .details-custom {
-        margin-left: 50px;
+        width: 536px;
+        margin-left: 70px;
         justify-content: unset;
         padding-bottom: 30px;
+        align-items: flex-start;
 
         h1 {
             margin: 15px 0;
@@ -576,6 +639,14 @@ html {
     }
 }
 
+.wiremock-studio-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 70px;
+
+}
+
 .wiremock-studio-robot-wrapper {
     justify-content: unset;
 }
@@ -583,6 +654,8 @@ html {
 .key-features-wrapper {
     background: rgba(240, 245, 255, 0.5);
     padding: 70px 0;
+    margin-bottom: 70px;
+    border-radius: 50px;
     .keyFeaturesTXT {
         margin: 0;
         padding-bottom: 90px;
@@ -941,10 +1014,10 @@ html {
     }
 
     .wiremock-studio-wrapper {
-        .wiremock-studio-img-wrapper,
-        .wiremock-studio-details {
-            width: 436px;
-        }
+
+        //.wiremock-studio-details {
+        //    width: 436px;
+        //}
     }
     .wiremock-studio-robot {
         width: 58% !important;
@@ -960,7 +1033,12 @@ html {
             margin-bottom: -11px !important;
         }
     }
-
+    //.details-custom {
+    //    margin-left: 5px !important;
+    //}
+    .robot-subtitle {
+        font-size: 18px !important;
+    }
 }
 
 @media (max-width: 1023px) {
@@ -1011,7 +1089,8 @@ html {
         }
 
         .wiremock-studio-details {
-            padding-top: 0;
+            padding-left: 20px;
+            padding-right: 20px;
             align-items: center;
             display: flex;
             flex-direction: column;
@@ -1072,6 +1151,10 @@ html {
             }
         }
     }
+    .wiremock-studio-img-wrapper,
+    .wiremock-studio-details{
+        width: auto !important;
+    }
 }
 
 @media (max-width: 965px) {
@@ -1116,9 +1199,7 @@ html {
             width: unset;
             padding-left: 10px;
             padding-right: 10px;
-            img {
-                width: 100%;
-            }
+
         }
     }
 
@@ -1142,5 +1223,17 @@ html {
         margin: 0;
         padding: 0;
         width: 100%;
+    }
+    .wiremock-studio-links-container {
+        width: auto;
+        flex-direction: column;
+
+        .link-card-block {
+            margin-bottom:12px;
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
     }
 }

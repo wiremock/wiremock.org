@@ -139,31 +139,78 @@ description: WireMock is a simulator for HTTP-based APIs. It enables you to stay
     </div>
   </div>
 
+  <div id="studio-learn-more" class="container wiremock-studio-wrapper">
+
+
+    <div class="wiremock-studio-details">
+      <img class="wiremockIMGwidth" src="{{ base_path}}/images/wiremockTypeExample.svg" alt="wiremock api testing"/>
+      <h1>Studio</h1>
+      <p class="p-margin-studio">
+        WireMock Studio is tool built on top of the core WireMock engine, bringing a full web UI, management of multiple mock APIs and support for OpenAPI and Postman.
+      </p>
+      <p>
+        It can run on your laptop, in Docker or in your test environment, and has exactly the same data format as the underlying WireMock engine, so it's easy to reuse mock APIs or test code you've already created.
+      </p>
+      <div class="wiremock-studio-links-wrapper">
+        <h4>Get Started in your prefered Enviroment</h4>
+      </div>
+      <div class="wiremock-studio-links-container">
+        <div class="link-card-block">
+          <a class="desktop-link" href="#open-source-get-started">
+            Desktop
+          </a>
+          <img src="/images/studioRightIcon.svg" alt="Wiremock Open Source" />
+        </div>
+        <div class="link-card-block">
+          <a class="docker-link" href="#open-source-get-started">
+            Docker
+          </a>
+          <img src="/images/right-arrow-blue.svg" alt="Wiremock Open Source" />
+        </div>
+        <div class="link-card-block">
+          <a class="kubernetes-link" href="#open-source-get-started">
+            Kubernetes
+          </a>
+          <img src="/images/right-arrow-black.svg" alt="Wiremock Open Source" />
+        </div>
+        <div class="link-card-block">
+          <a class="cloud-link" href="#open-source-get-started">
+            Cloud (MockLab)
+          </a>
+          <img src="/images/dark-blue-right.svg" alt="Wiremock Open Source" />
+        </div>
+      </div>
+
+    </div>
+    <div class="wiremock-studio-img-wrapper">
+      <img class="wiremock-studio-img" src="{{base_path}}/images/wiremock-dashboard.svg" alt="wiremock mock server"/>
+    </div>
+  </div>
 
   <div id="open-source-get-started" class="container code-tabs-wrapper">
     <div class="code-tabs-row">
-      <div class="code-tabs-sidebar-wrapper">
-        <div class="code-tabs-sidebar">
-          <div class="code-tabs-example-card">
-            <img src="{{base_path}}/images/maven.png" alt="Maven" />
-          </div>
-          <div class="code-tabs-example-card">
-            <img src="{{base_path}}/images/elephantIcon.png" alt="Gradle"/>
-          </div>
-          <div class="code-tabs-example-card">
-            <img src="{{base_path}}/images/kotlin.png" alt="Kotlin" />
-          </div>
-          <div class="code-tabs-example-card">
-            <img src="{{base_path}}/images/sbt.png" alt="SBT"/>
-          </div>
-          <div class="code-tabs-example-card">
-            <img src="{{base_path}}/images/java.png" alt="Java"/>
-          </div>
-          <div class="code-tabs-example-card">
-            <img src="{{base_path}}/images/docker.png" alt="Docker"/>
-          </div>
-        </div>
-      </div>
+<!--      <div class="code-tabs-sidebar-wrapper">-->
+<!--        <div class="code-tabs-sidebar">-->
+<!--          <div class="code-tabs-example-card">-->
+<!--            <img src="{{base_path}}/images/maven.png" alt="Maven" />-->
+<!--          </div>-->
+<!--          <div class="code-tabs-example-card">-->
+<!--            <img src="{{base_path}}/images/elephantIcon.png" alt="Gradle"/>-->
+<!--          </div>-->
+<!--          <div class="code-tabs-example-card">-->
+<!--            <img src="{{base_path}}/images/kotlin.png" alt="Kotlin" />-->
+<!--          </div>-->
+<!--          <div class="code-tabs-example-card">-->
+<!--            <img src="{{base_path}}/images/sbt.png" alt="SBT"/>-->
+<!--          </div>-->
+<!--          <div class="code-tabs-example-card">-->
+<!--            <img src="{{base_path}}/images/java.png" alt="Java"/>-->
+<!--          </div>-->
+<!--          <div class="code-tabs-example-card">-->
+<!--            <img src="{{base_path}}/images/docker.png" alt="Docker"/>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
       <div class="code-tabs-main">
         <div class="code-tabs-main-wrapper">
           <ul>
@@ -253,72 +300,7 @@ docker run -it --rm \
     </div>
   </div>
 
-
-  <div id="studio-learn-more" class="container wiremock-studio-wrapper">
-      <div class="wiremock-studio-img-wrapper">
-        <img class="wiremock-studio-img" src="{{base_path}}/images/wiremockDashboard.png" alt="wiremock mock server"/>
-      </div>
-      <div class="wiremock-studio-vLine"></div>
-      <div class="wiremock-studio-details">
-        <img class="wiremockIMGwidth" src="{{ base_path}}/images/wiremockTypeExample.svg" alt="wiremock api testing"/>
-        <h1>Studio</h1>
-        <p class="p-margin-studio p-width-studio">
-          WireMock Studio is tool built on top of the core WireMock engine, bringing a full web UI, management of multiple mock APIs and support for OpenAPI and Postman.
-        </p>
-        <p class="p-width-studio">
-          It can run on your laptop, in Docker or in your test environment, and has exactly the same data format as the underlying WireMock engine, so it's easy to reuse mock APIs or test code you've already created.
-        </p>
-        <div class="wiremock-studio-links-wrapper">
-          <a class="btn-card-info btnDownload" href="/studio/docs/">Get Started</a>
-        </div>
-        
-    </div>
-  </div>
-
-  <a id="a-studio-enterprise" href="#studio-enterprise-learn-more">z</a>
-  <div id="studio-enterprise-learn-more" class="container wiremock-studio-robot-wrapper">
-    <div class="wiremock-studio-robot">
-      <img class="wiremock-studio-img" src="{{base_path}}/images/wiremockRobot.png" alt="wiremock robot"/>
-    </div>
-    <div class="wiremock-studio-vLine"></div>
-
-    <div id="studio-enterprise" class="wiremock-studio-details details-custom">
-      <img class="wiremockIMGwidth" src="{{ base_path}}/images/wiremockTypeExample.svg" alt="wiremock api testing"/>
-      <h1>Studio <span class="enterprise">Enterprise</span></h1>
-      <h3 class="robot-subtitle">Scalable and collaborative on-premise deployment</h3>
-
-      <div class="enterpirse-feature">
-        <div class="enterprise-bullet"></div>
-        <h4>Users, teams and SSO</h4>
-      </div>
-      
-      <div class="enterpirse-feature">
-        <div class="enterprise-bullet"></div>
-        <h4>Multiple scalable hosts</h4>
-      </div>
-      <div class="enterpirse-feature">
-        <div class="enterprise-bullet"></div>
-        <h4>Persistent data</h4>
-      </div>
-      <div class="enterpirse-feature">
-        <div class="enterprise-bullet"></div>
-        <h4>Monitoring tool integration</h4>
-      </div>
-      <div class="enterpirse-feature">
-        <div class="enterprise-bullet"></div>
-        <h4>Private TLS certificate and DNS management</h4>
-      </div>
-      <div class="enterpirse-feature">
-        <div class="enterprise-bullet"></div>
-        <h4>Deploy into your own VPC or Kubernetes cluster</h4>
-      </div>
-
-      <span id="btnschedulecall" class="btn-schedule-call">Schedule a Demo</span>
-  </div>
-</div> 
-
-</div>
-<div class="key-features-wrapper">
+  <div class="container key-features-wrapper">
     <h2 class="keyFeaturesTXT">Key Features</h2>
     <div class="container key-features-grid">
       <div class="key-features-card">
@@ -376,7 +358,52 @@ docker run -it --rm \
     <div class="container key-features-btn-full">
       <a class="btn-card-info btnGetStarted" href="/docs/">Full Documentation</a>
     </div>
+  </div>
+
+  <a id="a-studio-enterprise" href="#studio-enterprise-learn-more">z</a>
+  <div id="studio-enterprise-learn-more" class="container wiremock-studio-robot-wrapper">
+    <div class="wiremock-studio-robot">
+      <img class="wiremock-studio-img" src="{{base_path}}/images/wiremockRobot.png" alt="wiremock robot"/>
+    </div>
+    <div class="wiremock-studio-vLine"></div>
+
+    <div id="studio-enterprise" class="wiremock-studio-details details-custom">
+      <img class="wiremockIMGwidth" src="{{ base_path}}/images/wiremockTypeExample.svg" alt="wiremock api testing"/>
+      <h1>Studio <span class="enterprise">Enterprise</span></h1>
+      <h3 class="robot-subtitle">For larger teams and enterprises</h3>
+
+      <div class="enterpirse-feature">
+        <div class="enterprise-bullet"></div>
+        <h4>Users, teams and SSO</h4>
+      </div>
+      
+      <div class="enterpirse-feature">
+        <div class="enterprise-bullet"></div>
+        <h4>Multiple scalable hosts</h4>
+      </div>
+      <div class="enterpirse-feature">
+        <div class="enterprise-bullet"></div>
+        <h4>Persistent data</h4>
+      </div>
+      <div class="enterpirse-feature">
+        <div class="enterprise-bullet"></div>
+        <h4>Monitoring tool integration</h4>
+      </div>
+      <div class="enterpirse-feature">
+        <div class="enterprise-bullet"></div>
+        <h4>Private TLS certificate and DNS management</h4>
+      </div>
+      <div class="enterpirse-feature">
+        <div class="enterprise-bullet"></div>
+        <h4>Deploy into your own VPC or Kubernetes cluster</h4>
+      </div>
+
+      <span id="btnschedulecall" class="btn-schedule-call">Schedule a Demo</span>
+  </div>
+</div> 
+
 </div>
+
 
 <script type="text/javascript">
   window.suppressMockLabPopover = true;
