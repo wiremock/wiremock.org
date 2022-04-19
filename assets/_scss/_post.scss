@@ -1,0 +1,123 @@
+.post {
+  h2 {
+    padding:0;
+    margin:0;
+  }
+  background: #F0F5FF;
+  min-height: 450px;
+  &__header {
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    padding-top:80px;
+  }
+  &__title {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+    color: #18253D;
+  }
+  &__date {
+    margin:30px 0;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    color: #18253D;
+  }
+}
+
+.post-main {
+  width: 1015px;
+  display: flex;
+  justify-content: center;
+  margin-top: -160px;
+
+  margin-left: 496px;
+  &__content {
+    width: 800px;
+    margin-bottom: 80px;
+  }
+  &__floating {
+    position: relative;
+    margin-left: 30px;
+    width: 183px;
+  }
+
+  &__title {
+    margin-top: 40px;
+    margin-bottom: 0;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    color: #18253D;
+  }
+
+  &__paragraph {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    color: #18253D;
+
+    &--after-title {
+      margin-top: 20px;
+      margin-bottom: 0px;
+    }
+    &--normal{
+      margin-top: 40px;
+      margin-bottom: 0;
+    }
+  }
+  &__slack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 183px;
+    height: 276px;
+    border: 2px solid #F7F9FC;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: #fff;
+    background-image: url(../../images/floatingBG.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+    &--fixed-position {
+      top:20px;
+      position: fixed;
+    }
+  }
+  &__slack-content {
+    margin: 20px 0;
+    padding: 0;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #0C0B1A;
+    text-align: center;
+  }
+  &__open-slack {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    width: 88px;
+    height: 26px;
+    background: #592366;
+    border-radius: 4px;
+    color: #FFFFFF;
+    text-decoration: none;
+  }
+}
