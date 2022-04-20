@@ -33,15 +33,17 @@
 }
 
 .post-main {
-  width: 1015px;
-  display: flex;
-  justify-content: center;
   margin-top: -160px;
 
-  margin-left: 496px;
+  &__container {
+    display: flex;
+    justify-content: center;
+  }
+
   &__content {
     width: 800px;
     margin-bottom: 80px;
+    margin-left: 213px;
   }
   &__floating {
     position: relative;

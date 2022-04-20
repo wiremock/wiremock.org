@@ -22,6 +22,7 @@ description: Extensions, integrations, blog posts and videos about WireMock from
     </div>
 </div>
 <div class="post-main">
+    <div class="post-main__container">
         <div class="post-main__content">
             <img src="{{base_path}}/images/post-example.png" />
 
@@ -67,6 +68,7 @@ description: Extensions, integrations, blog posts and videos about WireMock from
                 <a class="post-main__open-slack" href="#">Open Slack</a>
             </div>
         </div>
+    </div>
 </div>
 
 <script>
@@ -76,7 +78,7 @@ description: Extensions, integrations, blog posts and videos about WireMock from
     window.addEventListener("scroll", () => {
         floatingBadge();
     });
-    
+
     const floatingBadge = () => {
 
         if (window.pageYOffset >= slackOffsetTop) {
