@@ -9,6 +9,7 @@ To start WireMock Studio in Docker locally, run the following in a shell:
 
 ```bash
 docker run -it \
+  --name wiremock-studio \
   -p 9000:9000 \
   -p 8000-8100:8000-8100 \
   up9inc/wiremock-studio:{{site.data.misc.wiremock_studio_version}}
@@ -31,6 +32,7 @@ If you want to preserve your mock APIs and their stubs you can mount a volume to
 
 ```bash
 docker run -it \
+  --name wiremock-studio \
   -p 9000:9000 \
   -p 8000-8100:8000-8100 \
   -v $PWD/wiremock:/home/wiremock \
