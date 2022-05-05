@@ -8,6 +8,8 @@ main:
           subnavLink: "/docs/"
         - name: "WireMock Studio"
           subnavLink: "/studio/docs/"
+        - name: "MockLab"
+          subnavLink: "https://www.mocklab.io/docs/getting-started/?utm_source=wiremock.org&utm_medium=masthead_doc-links&utm_campaign=2022_baseline"
 
     - title: "Support"
       url: /support

@@ -17,4 +17,4 @@ Follow these guides to get started in your preferred environment:
 * [Getting Started - Desktop](/studio/docs/getting-started/desktop/)
 * [Getting Started - Docker](/studio/docs/getting-started/docker/)
 * [Getting Started - Kubernetes](/studio/docs/getting-started/kubernetes/)
-* [Getting Started - Cloud (MockLab)](https://app.mocklab.io/login?for=signup){:target="{{site.data.misc.blank}}"}
+* [Getting Started - Cloud (MockLab)](https://app.mocklab.io/login?for=signup&utm_source=wiremock.org&utm_medium=studio-docs_home&utm_campaign=docs_2022_baseline){:target="{{site.data.misc.blank}}"}
