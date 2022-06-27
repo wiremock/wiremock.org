@@ -58,7 +58,7 @@ details.
 to "password" if not specified.
 
 `--https-require-client-cert`: Force clients to authenticate with a
-client certificate. See [HTTPS](/docs/https) for details.
+client certificate. See [HTTPS](/docs/https/) for details.
 
 `--verbose`: Turn on verbose logging to stdout
 
