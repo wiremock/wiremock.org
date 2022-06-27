@@ -31,7 +31,7 @@ http://localhost:8000/my/path?q=abc&limit=10
 
 However, it's often desirable just to look at the path part of the URL, and either
 ignore the query completely or specify it more flexibly using dedicated query parameter
-matchers (see [Query Parameters]/studio/advanced-stubbing/#advanced-request-parameter-matching)).
+matchers (see [Query Parameters](/studio/advanced-stubbing/#advanced-request-parameter-matching)).
 Dedicated query matchers can be useful if the parameter order in the URL can change,
 or if you need to match more loosely on the value e.g. using `contains` rater than
 exact equality.
