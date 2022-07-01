@@ -929,3 +929,14 @@ public WireMockRule wm = new WireMockRule(
     options().extensions(new ResponseTemplateTransformer(false, "string-length", stringLengthHelper))
 );
 ```
+
+This custom `string-length` helper will return the string length of the supplied parameter and is used like this:
+
+{% raw %}
+
+```
+{{string-length 'abcde'}}
+{{string-length request.body}}
+```
+
+{% endraw %}
