@@ -33,7 +33,10 @@
 .masthead__menu {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
+    @media (max-width: 1023px) {
+        justify-content: space-between;
+    }
 
     ul {
         margin: 0;
@@ -51,7 +54,7 @@
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
-    // font-size: 16px;
+    padding-left: 70px;
 
     &--lg {
         font-family: "McLaren", "Segoe UI", "Helvetica Neue", "Lucida Grande",

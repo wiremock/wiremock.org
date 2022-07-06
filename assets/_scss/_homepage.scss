@@ -2,16 +2,6 @@ html {
     scroll-behavior: smooth;
 }
 .home-header-wrapper {
-    h1,
-    h2,
-    h3,
-    h4,
-    ul,
-    p {
-        margin: 0 !important;
-        padding: 0 !important;
-        border: none !important;
-    }
     background: linear-gradient(#fff 100%, rgba(210, 223, 249, 0));
 
     @media (min-width: 2000px) {
@@ -22,64 +12,14 @@ html {
     margin-right: auto;
 
     .home-header-container {
-        position: relative;
-    }
-    .home-header-leftHeaderHP {
-        transform-origin: left;
-        overflow: hidden;
-        background: url(../../images/leftHeaderHP.png);
-        position: absolute;
-        left: 0%;
-        width: 40%;
-        height: 613px;
-        // background-size: 100% 100%;
-        background-repeat: no-repeat;
-        -webkit-transform: translateY(0%);
-        transform: translateY(0%);
-        mix-blend-mode: luminosity;
-        -webkit-filter: blur(5px);
-        filter: blur(5px);
-        opacity: 0.8;
-        -webkit-transition: -webkit-transform 0.7s;
-        transition: -webkit-transform 0.7s;
-        transition: transform 0.7s;
-        transition: transform 0.7s, -webkit-transform 0.7s;
-    }
+        display: flex;
+        flex-direction: row;
+        margin-top: 2.5rem;
+        padding: 0;
 
-    .home-header-rightHeaderHP {
-        transform-origin: right;
-        overflow: hidden;
-        background: url(../../images/rightHeaderHP.png);
-        position: absolute;
-        right: 0%;
-        width: 40%;
-        height: 613px;
-        // background-size: 100% 100%;
-        background-repeat: no-repeat;
-        -webkit-transform: translateY(0%);
-        transform: translateY(0%);
-        mix-blend-mode: luminosity;
-        -webkit-filter: blur(5px);
-        filter: blur(5px);
-        opacity: 0.5;
-        -webkit-transition: -webkit-transform 0.5s;
-        transition: -webkit-transform 0.5s;
-        transition: transform 0.5s;
-        transition: transform 0.5s, -webkit-transform 0.5s;
-    }
-    .headerHoverCard {
-        opacity: 1;
-        -webkit-filter: blur(0px);
-        filter: blur(0px);
-        mix-blend-mode: unset;
-        -webkit-transform: scale(0.7);
-        transform: scale(0.7);
-    }
-    .headerHoverCardOpenStuio {
-        box-shadow: inset -100px 0px 20px 20px rgba(255, 255, 255, 0.9);
-    }
-    .headerHoverCardStudio {
-        box-shadow: inset 223px 0px 20px 0px rgba(255, 255, 255, 0.6);
+        @media (max-width: 1023px) {
+            flex-direction: column;
+        }
     }
 }
 
@@ -135,8 +75,85 @@ html {
     border: 1px solid rgba(15, 178, 239, 0.5);
 }
 
-.home-header-title-wrapper {
-    padding-top: 2.5rem;
+.dot {
+    margin-top: 4px;
+    height: 12px;
+    width: 12px;
+    margin-left: 3px;
+    background-color: #bbb;
+    border-width: 1px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.fake-osx-chrome {
+    width: 100%;
+    box-shadow: 3px 3px 7px 0px;
+    border-radius: 8px;
+}
+
+.fake-osx-chrome-title-bar {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    padding: 10px;
+    padding-left: 15px;
+    background-color: #223746;
+    
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+.btn-primary {
+    cursor: pointer;
+    width: fit-content;
+    padding: 8px 20px;
+    background: #0fb2ef;
+    border-radius: 4px;
+    font-family: "Ubuntu";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    color: #fff;
+    border: none;
+    margin-right: 5px;
+    text-decoration: none;
+
+    &--mocklab {
+        background: $mocklab-dark-green;
+    }
+}
+
+.btn-secondary {
+    cursor: pointer;
+    background: #F0F5FF;
+    border: 1px solid rgba(15, 178, 239, 0.5);
+    border-radius: 4px;
+    padding: 7px 20px;
+    color: #0FB2EF;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    text-decoration: none;
+
+    &--mocklab {
+        color: $mocklab-dark-green;
+        background: $mocklab-light-green;
+        border-color: $mocklab-dark-green;
+    }
+}
+
+.home-header-hero-text {
+
+    width: 50%;
+    @media (max-width: 1023px) {
+        width: 100%;
+    }
+    
+    padding: 40px;
 
     h1 {
         font-family: "Ubuntu";
@@ -144,22 +161,52 @@ html {
         font-weight: bold;
         font-size: 60px;
         color: #18253d;
-        text-align: center;
+        text-align: left;
     }
-}
-
-.home-header-description-wrapper {
-    display: flex;
-    justify-content: center;
-    padding-top: 2.5rem;
 
     p {
-        width: 430px;
-        text-align: center;
+        text-align: left;
         font-family: "Ubuntu";
+        font-size: 20px;
         font-style: normal;
         font-weight: 400;
         color: #18253d;
+        margin-top: 1rem;
+    }
+}
+
+.home-header-hero-image {
+    width: 50%;
+    @media (max-width: 1023px) {
+        width: 100%;
+    }
+    border-radius: 5px;
+    padding: 40px;
+
+    figure.highlight {
+        border: none;
+        border-radius: 0;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        // background-color: #f8fafe;
+        background-color: #223746;
+        box-shadow: none;
+        margin-top: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+
+        &::before {
+            content: "";
+            background-color: transparent;
+        }
+
+        code.language-json {
+            .p,.w,.nl {
+                color: #dededd;
+            }
+        }
     }
 }
 
@@ -245,8 +292,35 @@ html {
     }
 }
 
+.mocklab-callout-bullets {
+    padding-left: 0;
+    
+    li {
+        font-family: "Ubuntu";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        color: #0c0b1a;
+        margin: 0;
+        padding-left: 0;
+        list-style-type: none;
+        padding: 5px 0 5px 0;
+    }
+}
+
+.logos-title {
+    padding-top: 70px;
+    font-family: 'Ubuntu';
+    color: #18253d;
+    font-size: 24px;
+    margin: auto;
+    width: 200px;
+    font-weight: 300;
+}
+
 .clients-wrapper {
-    margin-top: 70px;
+    margin-top: 15px;
+    margin-bottom: 50px;
     display: flex;
     justify-content: center;
 
@@ -312,6 +386,9 @@ html {
 
         .code-tabs-main-wrapper {
             margin: 45px 45px;
+            @media (max-width: 800px) {
+                margin: 15px;
+            }
 
             ul {
                 padding: 0 0 10px 0;
@@ -446,10 +523,11 @@ html {
 
 .wiremock-studio-wrapper,
 .wiremock-studio-robot-wrapper {
+    margin-top: 50px;
     display: flex;
     justify-content: space-evenly;
 
-    background: #f0f5ff;
+    background: #FAFCF6;
     border-radius: 50px;
     margin-bottom: 4rem;
     padding: 0;
@@ -519,7 +597,6 @@ html {
         border-bottom-left-radius: 50px;
     }
     .details-custom {
-        margin-left: 50px;
         justify-content: unset;
         padding-bottom: 30px;
 
@@ -535,7 +612,7 @@ html {
         font-size: 20px;
         color: #000000;
         margin-top: 0;
-        margin-bottom: 40px;
+        margin-bottom: 20px;
     }
 
     .enterpirse-feature {
