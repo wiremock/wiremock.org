@@ -815,8 +815,6 @@ html {
     display: none;
     position: fixed;
     background-color: #fff;
-    width: 1117px;
-    height: 720px;
     z-index: 1000;
     left: 50%;
     top: 50%;
@@ -916,13 +914,7 @@ html {
 
 .signup-modal-form {
 
-    width: 399px;
-    height: 678px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-
-
+    padding: 30px;
 
     h2 {
         margin-top: 35px;

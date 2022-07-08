@@ -15,4 +15,4 @@ If you're looking for answers you can't find in the documentation or need advice
 
 ## Priority support
 
-We offer priority support with a guaranteed SLA as part of our Enterprise plan. [Schedule a call](https://calendly.com/wiremock/wiremock-request-demo?month=2022-04) with our team to learn more.
+We offer priority support with a guaranteed SLA as part of our Enterprise plan. <a href="#" class="schedule-call-button">Schedule a call</a> with our team to learn more.
