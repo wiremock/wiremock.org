@@ -171,6 +171,8 @@ Priority is set via the `priority` attribute in JSON:
 }
 ```
 
+When unspecified, stubs default to a priority of `5`[<sup>^</sup>](https://github.com/wiremock/wiremock/blob/master/src/main/java/com/github/tomakehurst/wiremock/stubbing/StubMapping.java#L37) where `1` is the highest priority and Java `Integer.MAX_VALUE` (i.e., `2147483647`) is the minimum priority.
+
 ## Sending response headers
 
 In addition to matching on request headers, it's also possible to send response headers.
