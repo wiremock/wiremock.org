@@ -6,7 +6,7 @@ description: Working with strings
 
 WireMock provides a set of string manipulation helpers.
 
-## Regular expression extract
+## Regular expression extract helper
 
 The `regexExtract` helper supports extraction of values matching a regular expresson from a string.
 
@@ -27,6 +27,13 @@ Regex groups can be used to extract multiple parts into an object for later use 
 ```
 {% endraw %}
 
+Optionally, a default value can be specified for when there is no match. When the regex does not match and no default is specified, an error will be thrown instead.
+
+{% raw %}
+```handlebars
+{{regexExtract 'abc' '[0-9]+' default='my default value'}}
+```
+{% endraw %}
 
 ## String transformation helpers
 
@@ -88,7 +95,7 @@ For instance the following template:
 will output:
 
 ```
-        hello        
+        hello
 ```
 
 You can also specify the padding character e.g.

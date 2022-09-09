@@ -844,7 +844,7 @@ Regex groups can be used to extract multiple parts into an object for later use 
 
 {% endraw %}
 
-Optionally, a default value can be specified for when there is no match.
+Optionally, a default value can be specified for when there is no match. When the regex does not match and no default is specified, an error will be thrown instead.
 
 {% raw %}
 
