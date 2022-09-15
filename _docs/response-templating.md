@@ -194,7 +194,7 @@ For instance, given a request URL like `/multi-query?things=1&things=2&things=3`
 
 {% raw %}
 
-```
+```handlebars
 {{request.query.things}} // Will return 1
 {{request.query.things.0}} // Will return 1
 {{request.query.things.first}} // Will return 1
@@ -222,7 +222,7 @@ URLs you're matching are of the form `/stuff?ids[]=111&ids[]=222&ids[]=333` then
 
 {% raw %}
 
-```
+```handlebars
 {{lookup request.query 'ids[].1'}} // Will return 222
 ```
 
@@ -271,7 +271,7 @@ These parameters can be referenced in template body content using the `parameter
 
 {% raw %}
 
-```
+```handlebars
 <h1>The MyCustomParameter value is {{parameters.MyCustomParameter}}</h1>
 ```
 
@@ -286,7 +286,7 @@ are available e.g.
 
 {% raw %}
 
-```
+```handlebars
 {{capitalize request.query.search}}
 ```
 
@@ -298,7 +298,7 @@ Variable assignment and number helpers are available:
 
 {% raw %}
 
-```
+```handlebars
 {{#assign 'myCapitalisedQuery'}}{{capitalize request.query.search}}{{/assign}}
 
 {{isOdd 3}}
@@ -328,7 +328,7 @@ The following will render "Stuff" into the output:
 
 {% raw %}
 
-```
+```handlebars
 {{xPath request.body '/outer/inner/text()'}}
 ```
 
@@ -338,7 +338,7 @@ And given the same XML the following will render `<inner>Stuff</inner>`:
 
 {% raw %}
 
-```
+```handlebars
 {{xPath request.body '/outer/inner'}}
 ```
 
@@ -360,7 +360,7 @@ The following will render "success" in the output:
 
 {% raw %}
 
-```
+```handlebars
 {{soapXPath request.body '/a/test/text()'}}
 ```
 
@@ -385,7 +385,7 @@ A common use case for returned node objects is to iterate over the collection wi
 
 {% raw %}
 
-```
+```handlebars
 {{#each (xPath request.body '/things/item') as |node|}}
   name: {{node.name}}, text: {{node.text}}, ID attribute: {{node.attributes.id}}
 {{/each}}
@@ -409,7 +409,7 @@ The following will render "Stuff" into the output:
 
 {% raw %}
 
-```
+```handlebars
 {{jsonPath request.body '$.outer.inner'}}
 ```
 
@@ -419,7 +419,7 @@ And for the same JSON the following will render `{ "inner": "Stuff" }`:
 
 {% raw %}
 
-```
+```handlebars
 {{jsonPath request.body '$.outer'}}
 ```
 
@@ -429,7 +429,7 @@ Default value can be specified if the path evaluates to null or undefined:
 
 {% raw %}
 
-```
+```handlebars
 {{jsonPath request.body '$.size' default='M'}}
 ```
 
@@ -444,7 +444,7 @@ It can accept the JSON from a block:
 
 {% raw %}
 
-```
+```handlebars
 {{#parseJson 'parsedObj'}}
 {
   "name": "transformed"
@@ -461,7 +461,7 @@ Or as a parameter:
 
 {% raw %}
 
-```
+```handlebars
 {{parseJson request.body 'bodyJson'}}
 {{bodyJson.name}}
 ```
@@ -472,7 +472,7 @@ Without assigning to a variable:
 
 {% raw %}
 
-```
+```handlebars
 {{lookup (parseJson request.body) 'name'}}
 ```
 
@@ -484,7 +484,7 @@ A helper is present to render the current date/time, with the ability to specify
 
 {% raw %}
 
-```
+```handlebars
 {{now}}
 {{now offset='3 days'}}
 {{now offset='-24 seconds'}}
@@ -498,7 +498,7 @@ Dates can be rendered in a specific timezone (the default is UTC):
 
 {% raw %}
 
-```
+```handlebars
 {{now timezone='Australia/Sydney' format='yyyy-MM-dd HH:mm:ssZ'}}
 ```
 
@@ -509,7 +509,7 @@ the UNIX timestamp in seconds.
 
 {% raw %}
 
-```
+```handlebars
 {{now offset='2 years' format='epoch'}}
 {{now offset='2 years' format='unix'}}
 ```
@@ -520,7 +520,7 @@ Dates can be parsed using the `parseDate` helper:
 
 {% raw %}
 
-```
+```handlebars
 // Attempts parsing using ISO8601, RFC 1123, RFC 1036 and ASCTIME formats.
 // We wrap in the date helper in order to print the result as a string.
 {{date (parseDate request.headers.MyDate)}}
@@ -538,7 +538,7 @@ Dates can be truncated to e.g. first day of month using the `truncateDate` helpe
 
 {% raw %}
 
-```
+```handlebars
 // If the MyDate header is Tue, 15 Jun 2021 15:16:17 GMT
 // then the result of the following will be 2021-06-01T00:00:00Z
 {{date (truncateDate (parseDate request.headers.MyDate) 'first day of month')}}
@@ -554,7 +554,7 @@ Random strings of various kinds can be generated:
 
 {% raw %}
 
-```
+```handlebars
 {{randomValue length=33 type='ALPHANUMERIC'}}
 {{randomValue length=12 type='ALPHANUMERIC' uppercase=true}}
 {{randomValue length=55 type='ALPHABETIC'}}
@@ -573,7 +573,7 @@ A value can be randomly selected from a literal list:
 
 {% raw %}
 
-```
+```handlebars
 {{{pickRandom '1' '2' '3'}}}
 ```
 
@@ -583,7 +583,7 @@ Or from a list passed as a parameter:
 
 {% raw %}
 
-```
+```handlebars
 {{{pickRandom (jsonPath request.body '$.names')}}}
 ```
 
@@ -598,7 +598,7 @@ Random integers can be produced with lower and/or upper bounds, or neither:
 
 {% raw %}
 
-```
+```handlebars
 {{randomInt}}
 {{randomInt lower=5 upper=9}}
 {{randomInt upper=54323}}
@@ -611,7 +611,7 @@ Likewise decimals can be produced with or without bounds:
 
 {% raw %}
 
-```
+```handlebars
 {{randomDecimal}}
 {{randomDecimal lower=-10.1 upper=-0.9}}
 {{randomDecimal upper=12.5}}
@@ -629,7 +629,7 @@ Addition, subtraction, multiplication, division and remainder (mod) are supporte
 
 {% raw %}
 
-```
+```handlebars
 {{math 1 '+' 2}}
 {{math 4 '-' 2}}
 {{math 2 '*' 3}}
@@ -645,7 +645,7 @@ The `range` helper will produce an array of integers between the bounds specifie
 
 {% raw %}
 
-```
+```handlebars
 {{range 3 8}}
 {{range -2 2}}
 ```
@@ -656,7 +656,7 @@ This can be usefully combined with `randomInt` and `each` to output random lengt
 
 {% raw %}
 
-```
+```handlebars
 {{#each (range 0 (randomInt lower=1 upper=10)) as |index|}}
 id: {{index}}
 {{/each}}
@@ -671,7 +671,7 @@ Providing no parameters will result in an empty array.
 
 {% raw %}
 
-```
+```handlebars
 {{array 1 'two' true}}
 {{array}}
 ```
@@ -687,7 +687,7 @@ It can be used as parameter to the `if` helper:
 
 {% raw %}
 
-```
+```handlebars
 {{#if (contains 'abcde' 'abc')}}YES{{/if}}
 {{#if (contains (array 'a' 'b' 'c') 'a')}}YES{{/if}}
 ```
@@ -698,7 +698,7 @@ Or as a block element on its own:
 
 {% raw %}
 
-```
+```handlebars
 {{#contains 'abcde' 'abc'}}YES{{/contains}}
 {{#contains (array 'a' 'b' 'c') 'a'}}YES{{/contains}}
 ```
@@ -714,7 +714,7 @@ Like the `contains` helper it can be used as parameter to the `if` helper:
 
 {% raw %}
 
-```
+```handlebars
 {{#if (matches '123' '[0-9]+')}}YES{{/if}}
 ```
 
@@ -724,7 +724,7 @@ Or as a block element on its own:
 
 {% raw %}
 
-```
+```handlebars
 {{#matches '123' '[0-9]+'}}YES{{/matches}}
 ```
 
@@ -736,7 +736,7 @@ Use the `trim` helper to remove whitespace from the start and end of the input:
 
 {% raw %}
 
-```
+```handlebars
 {{trim request.headers.X-Padded-Header}}
 
 {{#trim}}
@@ -754,7 +754,7 @@ The `base64` helper can be used to base64 encode and decode values:
 
 {% raw %}
 
-```
+```handlebars
 {{base64 request.headers.X-Plain-Header}}
 {{base64 request.headers.X-Encoded-Header decode=true}}
 
@@ -779,7 +779,7 @@ The `urlEncode` helper can be used to URL encode and decode values:
 
 {% raw %}
 
-```
+```handlebars
 {{urlEncode request.headers.X-Plain-Header}}
 {{urlEncode request.headers.X-Encoded-Header decode=true}}
 
@@ -802,7 +802,7 @@ indicating that values should be URL decoded. The folowing example will parse th
 
 {% raw %}
 
-```
+```handlebars
 {{formData request.body 'form' urlDecode=true}}{{form.formField3}}
 ```
 
@@ -812,7 +812,7 @@ If the form submitted has multiple values for a given field, these can be access
 
 {% raw %}
 
-```
+```handlebars
 {{formData request.body 'form' urlDecode=true}}{{form.multiValueField.1}}, {{form.multiValueField.2}}
 {{formData request.body 'form' urlDecode=true}}{{form.multiValueField.first}}, {{form.multiValueField.last}}
 ```
@@ -827,7 +827,7 @@ A single value can be extracted like this:
 
 {% raw %}
 
-```
+```handlebars
 {{regexExtract request.body '[A-Z]+'}}"
 ```
 
@@ -837,18 +837,18 @@ Regex groups can be used to extract multiple parts into an object for later use 
 
 {% raw %}
 
-```
+```handlebars
 {{regexExtract request.body '([a-z]+)-([A-Z]+)-([0-9]+)' 'parts'}}
 {{parts.0}},{{parts.1}},{{parts.2}}
 ```
 
 {% endraw %}
 
-Optionally, a default value can be specified for when there is no match.
+Optionally, a default value can be specified for when there is no match. When the regex does not match and no default is specified, an error will be thrown instead.
 
 {% raw %}
 
-```
+```handlebars
 {{regexExtract 'abc' '[0-9]+' default='my default value'}}
 ```
 
@@ -860,7 +860,7 @@ The `size` helper returns the size of a string, list or map:
 
 {% raw %}
 
-```
+```handlebars
 {{size 'abcde'}}
 {{size request.query.things}}
 ```
@@ -873,7 +873,7 @@ The local machine's hostname can be printed:
 
 {% raw %}
 
-```
+```handlebars
 {{hostname}}
 ```
 
@@ -885,7 +885,7 @@ Environment variables and system properties can be printed:
 
 {% raw %}
 
-```
+```handlebars
 {{systemValue type='ENVIRONMENT' key='PATH'}}
 {{systemValue type='PROPERTY' key='os.path'}}
 ```
