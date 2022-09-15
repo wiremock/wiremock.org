@@ -58,7 +58,7 @@ details.
 to "password" if not specified.
 
 `--https-require-client-cert`: Force clients to authenticate with a
-client certificate. See https for details.
+client certificate. See [HTTPS](/docs/https/) for details.
 
 `--verbose`: Turn on verbose logging to stdout
 
@@ -66,10 +66,10 @@ client certificate. See https for details.
 `__files` reside. This defaults to the current directory.
 
 `--record-mappings`: Record incoming requests as stub mappings. See
-record-playback.
+[Record and Playback](/docs/record-playback/).
 
 `--match-headers`: When in record mode, capture request headers with the
-keys specified. See record-playback.
+keys specified. See [Record and Playback](/docs/record-playback/).
 
 `--proxy-all`: Proxy all requests through to another base URL e.g.
 `--proxy-all="http://api.someservice.com"` Typically used in conjunction
@@ -91,7 +91,7 @@ internet access via an opaque proxy). e.g.
 e.g. `--proxy-via http://username:password@webproxy.mycorp.com:8080/`.
 
 `--enable-browser-proxying`: Run as a browser proxy. See
-browser-proxying.
+[Running as a browser proxy](/docs/proxying#running-as-a-browser-proxy).
 
 `--ca-keystore`: A key store containing a root Certificate Authority private key
 and certificate that can be used to sign generated certificates when
@@ -145,7 +145,7 @@ Recommended when using WireMock for performance testing with delays, as it allow
 Effective only with `asynchronousResponseEnabled=true`. Defaults to 10.
 
 `--extensions`: Extension class names e.g.
-com.mycorp.HeaderTransformer,com.mycorp.BodyTransformer. See extending-wiremock.
+com.mycorp.HeaderTransformer,com.mycorp.BodyTransformer. See [Extending WireMock](/docs/extending-wiremock/).
 
 `--print-all-network-traffic`: Print all raw incoming and outgoing network traffic to console.
 
