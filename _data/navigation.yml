@@ -17,12 +17,9 @@ main:
     - title: "Community"
       subnav: "community"
       subnavLinks:
-          - name: "Github"
+          - name: "GitHub"
             subnavLink: "https://github.com/wiremock/wiremock"
           - name: "Contributing"
             subnavLink: "https://github.com/wiremock/wiremock/blob/master/CONTRIBUTING.md"
           - name: "Resources"
             subnavLink: /external-resources
-
-    
-      
