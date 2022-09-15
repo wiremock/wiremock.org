@@ -204,3 +204,12 @@ To enable automatic sending of CORS headers on stub responses, do the following:
 ```java
 .stubCorsEnabled(true)
 ```
+
+## Limiting logged response body size
+
+By default, response bodies will be recorded in the journal in their entirety. This can result in out of memory errors when very large bodies are served so WireMock
+provides an option to limit the number of bytes of response bodies retained (truncating any that are larger).
+
+```java
+.maxLoggedResponseSize(100000) // bytes
+```

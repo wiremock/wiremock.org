@@ -168,6 +168,8 @@ The last of these will cause chunked encoding to be used only when a stub define
 
 `--enable-stub-cors`: Enable automatic sending of cross-origin (CORS) response headers. Defaults to off.
 
+`--logged-response-body-size-limit`: Set a limit in bytes beyond which response bodies in the log will be truncated. When enabled this helps avoid out of memory errors when serving large response bodies.
+
 `--help`: Show command line help
 
 ## Configuring WireMock using the Java client
