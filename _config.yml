@@ -8,7 +8,7 @@
 # Site Settings
 locale: "en-US"
 title: "WireMock"
-title_separator: "-"
+title_separator: "|"
 name: "Tom Akehurst"
 description: "WireMock is a flexible API mocking tool for fast, robust and comprehensive testing."
 url: "https://wiremock.org"
