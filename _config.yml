@@ -60,6 +60,10 @@ analytics:
 google_ad_client:
 google_ad_slot:
 
+# MS Clarity
+clarity:
+    enabled: true
+
 # Site Author
 author:
     name: "Your Name"
