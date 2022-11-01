@@ -664,7 +664,6 @@ html {
     padding: 70px 0;
     .keyFeaturesTXT {
         margin: 0;
-        padding-bottom: 90px;
         text-align: center;
         font-family: "Ubuntu";
         font-style: normal;
@@ -672,6 +671,10 @@ html {
         color: #18253d;
         font-size: 50px;
         border-bottom: none;
+    }
+    .keyFeaturesInfo {
+        text-align: center;
+        padding-bottom: 90px;
     }
     .key-features-grid {
         display: grid;
