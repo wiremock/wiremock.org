@@ -170,6 +170,10 @@ The last of these will cause chunked encoding to be used only when a stub define
 
 `--logged-response-body-size-limit`: Set a limit in bytes beyond which response bodies in the log will be truncated. When enabled this helps avoid out of memory errors when serving large response bodies.
 
+`--allow-proxy-targets`: Limit the permitted targets for proxying to and recording from the supplied addressess. This parameter takes a comma-separated list of single IP addresses, IP address ranges and hostname wildcards. See [this article](/docs/configuration/#preventing-proxying-to-and-recording-from-specific-target-addresses) for details.
+
+`--deny-proxy-targets`: Prevent proxying to and recording from the supplied addressess. This parameter takes a comma-separated list of single IP addresses, IP address ranges and hostname wildcards. Note: if both `--allow-proxy-targets` and this parameter are set, the allow list will be evaluated first. See [this article](/docs/configuration/#preventing-proxying-to-and-recording-from-specific-target-addresses) for details.
+
 `--help`: Show command line help
 
 ## Configuring WireMock using the Java client
