@@ -301,6 +301,33 @@ JSON:
 }
 ```
 
+### Negative substring (does not contain)
+
+Deems a match if the attribute value does not contain the expected value.
+
+Java:
+
+```java
+.withCookie("my_profile", notContaining("johnsmith@example.com"))
+```
+
+JSON:
+
+```json
+{
+  "request": {
+    ...
+    "cookies" : {
+      "my_profile" : {
+        "doesNotContain" : "johnsmith@example.com"
+      }
+    }
+    ...
+  },
+  ...
+}
+```
+
 ### Regular expression
 
 Deems a match if the entire attribute value matched the expected regular expression.
