@@ -1,7 +1,8 @@
 ---
-layout: splash
+layout: default
 author_profile: true
 title: About
+meta_title: Contributors | WireMock
 ---
 
 # About WireMock

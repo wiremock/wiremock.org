@@ -7,7 +7,7 @@ redirect_from: "/stubbing.html"
 description: A core feature of WireMock is the ability to return canned HTTP responses for requests matching criteria. These are described in detail in Request Matching.
 ---
 
-A core feature of WireMock is the ability to return canned HTTP
+A core feature of WireMock [API mocking](/) is the ability to return canned HTTP
 responses for requests matching criteria. These are described in detail in [Request Matching](/docs/request-matching/).
 
 ## Basic stubbing

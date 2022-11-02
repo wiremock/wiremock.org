@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: "Java configuration"
-meta_title: Java configuration | WireMock
+meta_title: Configuring WireMock in Java | WireMock
 description: Configuring WireMock progammatically in Java.
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Getting Started
-meta_title: "Getting Started | WireMock"
+meta_title: WireMock Quick Start Guide
 toc_rank: 10
 redirect_from: "/getting-started.html"
 description: WireMock is distributed via Maven Central and can be included in your project using common build tools’ dependency management. Get started with WireMock.

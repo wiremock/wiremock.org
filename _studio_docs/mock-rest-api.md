@@ -11,7 +11,7 @@ sometimes many REST APIs to the the job done.
 
 Inevitably this means that teams are delayed shipping new features when APIs aren't
 finished, sandbox environments are down or test scenarios can't be run, so being
-able to quickly deploy a mock API is essential to keep things moving.
+able to quickly deploy a [mock API server](/) is essential to keep things moving.
 
 In this tutorial you'll build a mock REST API from a fictitious contact manager,
 which is suitable for integration, functional and performance testing.

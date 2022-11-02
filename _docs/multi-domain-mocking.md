@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Multi-domain Mocking
-meta_title: Multi-domain Mocking | WireMock
+meta_title: Multi-domain API Mocking with WireMock
 toc_rank: 66
 description: A typical usage pattern is to run a WireMock instance per API you need to mock and configure your app to treat these instances as endpoints.
 ---

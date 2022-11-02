@@ -1,7 +1,7 @@
 ---
 layout: splash
 title: Admin API Reference
-meta_title: The WireMock Admin REST API | WireMock
+meta_title: WireMock Admin REST API Documentation | WireMock
 toc_rank: 120
 description: The WireMock admin API is described in OpenAPI 3.0.
 redirect_from: "/wiremock-admin-api.html"

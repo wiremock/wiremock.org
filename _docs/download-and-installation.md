@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Download and Installation
-meta_title: "Download and Installation | WireMock"
+meta_title: "How to Download and Install WireMock"
 toc_rank: 13
 description: WireMock is distributed in two flavours - a standard JAR containing just WireMock, and a standalone fat JAR containing WireMock plus all its dependencies.
 ---
