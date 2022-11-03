@@ -213,3 +213,25 @@ provides an option to limit the number of bytes of response bodies retained (tru
 ```java
 .maxLoggedResponseSize(100000) // bytes
 ```
+
+## Preventing proxying to and recording from specific target addresses
+
+As a security measure WireMock can be configured to only permit proxying (and therefore recording) to certain addresses.
+This is achieved via a list of allowed address rules and a list of denied address rules, where the allowed list is evaluated first.
+
+Each rule can be one of the following:
+
+* A single IP address
+* An IP address range in the e.g. `10.1.1.1-10.2.2.2`
+* A hostname wildcard e.g. `dev-*.example.com`
+
+The ruleset is built and applied as follows:
+
+```java
+.limitProxyTargets(NetworkAddressRules.builder()
+  .allow("192.168.56.42")
+  .allow("192.0.1.1-192.168.254.1")
+  .deny("*.acme.com")
+  .build()
+)
+```
