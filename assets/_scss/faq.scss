@@ -1,14 +1,55 @@
 .faq {
-    padding: 0 5em;
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 0 5em;
 }
 
 .faq-list {
-    dt {
-        color: #000;
-        font-weight: bold;
+  dt {
+    font-size: 20px;
+    color: #000;
+    font-weight: bold;
+
+    &:before {
+      content: '';
+      border-left: transparent;
+      border-right: transparent;
+      border-bottom: 10px solid #000;
+    }
+  }
+
+  dt {
+    &.faq-list--collapsed {
+      margin-bottom: 12px;
+
+      & + dd {
+        display: none;
+      }
     }
 
-    dd {
-        margin: 0 0 16px 0;
+    &.faq-list--expanded {
+      .faq-list-arrow {
+        transform: rotate(45deg);
+      }
+
+      & + dd {
+        display: block;
+      }
     }
+  }
+
+  dd {
+    margin: 0 0 16px 0;
+  }
+
+  &-arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(-45deg);
+    top: -4px;
+    margin-right: 10px;
+    position: relative;
+  }
 }
