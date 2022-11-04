@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: Response Templating
-meta_title: Response Templating | WireMock
+meta_title: Mock API Response Templating | WireMock
 toc_rank: 71
 description: Response headers and bodies, as well as proxy URLs, can optionally be rendered using Handlebars templates.
 ---

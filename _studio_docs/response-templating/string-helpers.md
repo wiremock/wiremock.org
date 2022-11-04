@@ -1,6 +1,7 @@
 ---
 layout: docs
 title: Response Templating - String Helpers
+meta_title: Response Templating - Working with Strings and Regular Expressions | WireMock
 description: Working with strings
 ---
 

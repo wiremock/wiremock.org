@@ -1,6 +1,7 @@
 ---
 layout: docs
 title: Proxying
+meta_title: Proxying in WireMock Studio | WireMock
 toc_rank: 46
 description: Proxying requests to other systems
 ---

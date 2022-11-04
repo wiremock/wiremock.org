@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: "Stub Metadata"
-meta_title: Associating and using metadata with stubs | WireMock
+meta_title: Associating and using metadata with API stubs | WireMock
 toc_rank: 117
 description: It is possible to attach arbitrary metadata to stub mappings, which can be later used to search or deletion, or simply retrieval.
 ---

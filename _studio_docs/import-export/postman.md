@@ -1,6 +1,7 @@
 ---
 layout: docs
 title: Import & Export - Postman
+meta_title: Import and convert Postman files to API stubs | WireMock
 description: Importing Postman collections into WireMock Studio.
 ---
 

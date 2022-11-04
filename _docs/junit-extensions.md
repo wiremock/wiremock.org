@@ -1,6 +1,7 @@
 ---
 layout: docs
 title: 'JUnit 4 and Vintage'
+meta_title: Using Junit 4 and Vintage to Manage WireMock instances | WireMock
 redirect_from:
   - "/junit-rule.html"
   - "/docs/junit-rule/index.html"
