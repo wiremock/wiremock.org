@@ -279,7 +279,7 @@ JSON files containing multiple stub mappings can also be used. These are of the 
 
 ## Pushing JSON files to a remote WireMock instance
 
-You can push a collection of stub mappings and associated files to a remote WireMock or MockLab instance via the
+You can push a collection of stub mappings and associated files to a remote WireMock or WireMock Cloud instance via the
 Java API as follows:
 
 ```java

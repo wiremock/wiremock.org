@@ -6,6 +6,8 @@ main:
       subnavLinks:
         - name: "WireMock Open Source"
           subnavLink: "/docs/"
+        - name: "WireMock Cloud"  
+          subnavLink: "https://docs.wiremock.io/getting-started/?utm_source=wiremock.org&utm_medium=masthead_doc-links&utm_campaign=2022_baseline"
         - name: "WireMock Studio"
           subnavLink: "/studio/docs/"
         - name: "MockLab"
