@@ -174,6 +174,8 @@ The last of these will cause chunked encoding to be used only when a stub define
 
 `--deny-proxy-targets`: Prevent proxying to and recording from the supplied addressess. This parameter takes a comma-separated list of single IP addresses, IP address ranges and hostname wildcards. Note: if both `--allow-proxy-targets` and this parameter are set, the allow list will be evaluated first. See [this article](/docs/configuration/#preventing-proxying-to-and-recording-from-specific-target-addresses) for details.
 
+`--proxy-timeout`: Set the timeout for requests to the proxy in milliseconds
+
 `--help`: Show command line help
 
 ## Configuring WireMock using the Java client

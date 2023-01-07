@@ -101,6 +101,9 @@ WireMock uses the trust store for three purposes:
 ## Proxy settings
 
 ```java
+// Set the timeout for requests to the proxy in milliseconds
+.proxyTimeout(5000)
+
 // Make WireMock behave as a forward proxy e.g. via browser proxy settings
 .enableBrowserProxying(true)
 
