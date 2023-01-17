@@ -48,8 +48,16 @@ public WireMockRule wm = new WireMockRule(wireMockConfig().extensions(Webhooks.c
 To use the webhooks extension with standalone WireMock you must download the extension JAR file and add it to the Java classpath
 on the startup command line:
 
+#### macOs / Linux:
 ```bash
 java -cp wiremock-jre8-standalone-{{ site.wiremock_version }}.jar:wiremock-webhooks-extension-{{ site.wiremock_version }}.jar \
+  com.github.tomakehurst.wiremock.standalone.WireMockServerRunner \
+  --extensions org.wiremock.webhooks.Webhooks
+```
+
+#### Windows:
+```bat
+java -cp wiremock-jre8-standalone-{{ site.wiremock_version }}.jar;wiremock-webhooks-extension-{{ site.wiremock_version }}.jar \
   com.github.tomakehurst.wiremock.standalone.WireMockServerRunner \
   --extensions org.wiremock.webhooks.Webhooks
 ```
