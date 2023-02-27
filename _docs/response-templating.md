@@ -155,13 +155,14 @@ The model of the request is supplied to the header and body templates. The follo
 
 `request.url` - URL path and query
 
-`request.path` - URL path
+`request.path` - URL path. This can be referenced in full or it can be treated as an array of path segments (like below) e.g. `request.path.3`.
+When the path template URL match type has been used you can additionally reference path variables by name e.g. `request.path.contactId`.
 
-`request.pathSegments.[<n>]`- URL path segment (zero indexed) e.g. `request.pathSegments.[2]`
+`request.pathSegments.[<n>]`- URL path segment (zero indexed) e.g. `request.pathSegments.2`
 
 `request.query.<key>`- First value of a query parameter e.g. `request.query.search`
 
-`request.query.<key>.[<n>]`- nth value of a query parameter (zero indexed) e.g. `request.query.search.[5]`
+`request.query.<key>.[<n>]`- nth value of a query parameter (zero indexed) e.g. `request.query.search.5`
 
 `request.method`- request method e.g. `POST`
 
@@ -177,11 +178,11 @@ The model of the request is supplied to the header and body templates. The follo
 
 `request.headers.[<key>]`- Header with awkward characters e.g. `request.headers.[$?blah]`
 
-`request.headers.<key>.[<n>]`- nth value of a header (zero indexed) e.g. `request.headers.ManyThings.[1]`
+`request.headers.<key>.[<n>]`- nth value of a header (zero indexed) e.g. `request.headers.ManyThings.1`
 
 `request.cookies.<key>` - First value of a request cookie e.g. `request.cookies.JSESSIONID`
 
-`request.cookies.<key>.[<n>]` - nth value of a request cookie e.g. `request.cookies.JSESSIONID.[2]`
+`request.cookies.<key>.[<n>]` - nth value of a request cookie e.g. `request.cookies.JSESSIONID.2`
 
 `request.body` - Request body text (avoid for non-text bodies)
 
