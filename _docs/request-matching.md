@@ -192,8 +192,8 @@ WireMock from 3.0.0 onwards supports matching on URL path templates conforming t
 
 When the path template URL match type is used this enables
 
-1) The ability to match path variables in the same way as query parameters, headers etc.
-2) The ability to reference path variables by name in response templates.
+1. The ability to match path variables in the same way as query parameters, headers etc.
+2. The ability to reference path variables by name in [response templates](../response-templating/#the-request-model).
 
 To match any request URL that conforms to the path template, you can do the following.
 
