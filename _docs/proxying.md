@@ -162,7 +162,7 @@ Also, we can enable/disable pass through unmatched requests to the target indica
 
 Update proxyPassThrough flag via Java client
 ```java
-WireMockConfiguration wireMockConfiguration = WireMockConfiguration.wireMockConfig().proxyPassThrough(false);
+WireMockServer wireMockServer = new WireMockServer(options().proxyPassThrough(false));
 ```
 
 Json payload to update via admin API to update global settings as described in [API section](/docs/api/#tag/System/paths/~1__admin~1settings/post)
