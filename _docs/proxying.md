@@ -158,7 +158,19 @@ stubFor(get(urlEqualTo("/users/12345.json"))
   .withStatus(503)));
 ```
 
-Also, we can enable/disable pass through unmatched requests to the target indicated by the original requests by enabling/disabling proxyPassThrough flag.  This flag can be set either by passing option while running standalone jar or by updating global settings through API.
+Also, we can enable/disable pass through unmatched requests to the target indicated by the original requests by enabling/disabling proxyPassThrough flag.  This flag can be set either by passing CLI option as described in [Running Standalone](/docs/running-standalone/#command-line-options) or by updating global settings.
+
+Update proxyPassThrough flag via Java client
+```java
+WireMockConfiguration wireMockConfiguration = WireMockConfiguration.wireMockConfig().proxyPassThrough(false);
+```
+
+Json payload to update via admin API to update global settings as described in [API section](/docs/api/#tag/System/paths/~1__admin~1settings/post)
+```json
+{
+  "proxyPassThrough": false
+}
+```
 
 ### Browser proxying of HTTPS
 
