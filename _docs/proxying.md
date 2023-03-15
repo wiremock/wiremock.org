@@ -158,7 +158,8 @@ stubFor(get(urlEqualTo("/users/12345.json"))
   .withStatus(503)));
 ```
 
-Also, we can enable/disable pass through unmatched requests to the target indicated by the original requests by enabling/disabling proxyPassThrough flag.  This flag can be set either by passing CLI option as described in [Running Standalone](/docs/running-standalone/#command-line-options) or by updating global settings.
+Also, we can enable/disable pass through unmatched requests to the target indicated by the original requests by enabling/disabling proxyPassThrough flag.
+By default, flag is set to true. This flag can be enabled/disabled either by passing CLI option while running jar as described in [Running Standalone](/docs/running-standalone/#command-line-options) or by updating global settings.
 
 Update proxyPassThrough flag via Java client
 ```java
