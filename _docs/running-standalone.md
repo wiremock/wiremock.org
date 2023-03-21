@@ -174,6 +174,8 @@ The last of these will cause chunked encoding to be used only when a stub define
 
 `--deny-proxy-targets`: Prevent proxying to and recording from the supplied addressess. This parameter takes a comma-separated list of single IP addresses, IP address ranges and hostname wildcards. Note: if both `--allow-proxy-targets` and this parameter are set, the allow list will be evaluated first. See [this article](/docs/configuration/#preventing-proxying-to-and-recording-from-specific-target-addresses) for details.
 
+`--proxy-timeout`: Set the timeout for requests to the proxy in milliseconds
+
 `--proxy-pass-through`: Flag used in browser-caching in order to enable or disable pass through unmatched requests to the target indicated by the original requests. By default, this flag is enabled and let the requests pass through.
 
 `--help`: Show command line help
