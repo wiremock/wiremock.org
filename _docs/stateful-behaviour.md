@@ -13,7 +13,7 @@ this when you've swapped a real service for a test double.**
 ## Scenarios
 
 WireMock supports state via the notion of scenarios. A scenario is
-essentially a state machine whose states can be arbitrarily assigned. It
+essentially a state machine whose states can be arbitrarily assigned. Its
 starting state is always `Scenario.STARTED`. Stub mappings can be
 configured to match on scenario state, such that stub A can be returned
 initially, then stub B once the next scenario state has been triggered.

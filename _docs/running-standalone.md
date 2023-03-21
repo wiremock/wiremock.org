@@ -176,6 +176,8 @@ The last of these will cause chunked encoding to be used only when a stub define
 
 `--proxy-timeout`: Set the timeout for requests to the proxy in milliseconds
 
+`--proxy-pass-through`: Flag used in browser-caching in order to enable or disable pass through unmatched requests to the target indicated by the original requests. By default, this flag is enabled and let the requests pass through.
+
 `--help`: Show command line help
 
 ## Configuring WireMock using the Java client

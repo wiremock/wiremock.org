@@ -1,5 +1,7 @@
 .sidebar {
     opacity: 1 !important;
+    margin-top: 74px;
+
     :hover {
         opacity: 1 !important;
     }
@@ -17,26 +19,9 @@
         position: relative;
         font-size: 16px;
         color: #18253d;
-        &::after {
-            font-size: 9px;
-            content: "\25B6";
-            position: absolute;
-            right: -15px;
-            top: 5px;
-        }
     }
-    &__caret-down {
-        &::after {
-            font-size: 9px;
-            content: "\25B6";
-            position: absolute;
-            right: -15px;
-            top: 5px;
-            transform: rotate(90deg);
-        }
-    }
+    
     &__sub-nav {
-        display: none;
         margin-left: 10px;
     }
     &__sub-nav--active {

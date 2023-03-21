@@ -158,6 +158,28 @@ stubFor(get(urlEqualTo("/users/12345.json"))
   .withStatus(503)));
 ```
 
+Also, we can enable/disable pass through unmatched requests to the target indicated by the original requests by enabling/disabling proxyPassThrough flag. By default, flag is set to true. 
+
+This flag can be enabled/disabled at startup either by passing CLI option while running jar as described in [Running Standalone](/docs/running-standalone/#command-line-options) or by passing as options in Java client as shown below.
+
+```java
+WireMockServer wireMockServer = new WireMockServer(options().proxyPassThrough(false));
+```
+
+We can also update this flag without WireMock restart either by using Admin API as described in [API section](/docs/api/#tag/System/paths/~1__admin~1settings/post) if we are running as standalone or by updating the global settings in Java client.
+
+Json payload to update via admin API
+```json
+{
+  ...
+  "proxyPassThrough": false
+}
+```
+
+```java
+WireMock.updateSettings(WireMock.getSettings().copy().proxyPassThrough(false).build());
+```
+
 ### Browser proxying of HTTPS
 
 wiremock-jre8 allows forward proxying, stubbing & recording of HTTPS traffic.

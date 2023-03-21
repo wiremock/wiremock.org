@@ -9,11 +9,11 @@ description: How to get support for WireMock open source and Studio
 
 <br />
 
-If you're looking for answers you can't find in the documentation or need advice on the best way to solve a problem you can find a community of users and contributors on the [WireMock mailing list](https://groups.google.com/g/wiremock-user){:target="{{site.data.misc.blank}}"}.
+If you're looking for help or advice you can find a community of users and contributors on the [WireMock community Slack](https://join.slack.com/t/wiremock-community/shared_invite/zt-1mkbo0zlx-gxeZdTJ15Kchdt888Fn_1A){:target="{{site.data.misc.blank}}"}.
 
 <br />
 [Stack Overflow](https://stackoverflow.com/questions/tagged/wiremock){:target="{{site.data.misc.blank}}"} also has many good WireMock questions and answers.
 
 ## Priority support
 
-We offer priority support with a guaranteed SLA as part of our Enterprise plan. <a href="#" class="schedule-call-button">Schedule a call</a> with our team to learn more.
+We offer priority support with a guaranteed SLA as part the WireMock Cloud Enterprise plan. <a href="https://share-eu1.hsforms.com/1YSKnSP93Tsig1JoO3lXSawfbdiq" class="schedule-call-button">get in touch</a> with our team to discuss options or get a demo.
