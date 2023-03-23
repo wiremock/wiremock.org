@@ -1394,3 +1394,161 @@ This would match the following JSON request body:
     "date": "2021-01-01T00:00:00"
 }
 ```
+
+### Matching Header/Query parameter containing multiple values
+
+You can match multiple values of a query parameter or header with below provided matchers.
+
+Exactly matcher exactly matches multiple values or patterns and make sure that it does not contain any other value.
+
+```java
+// There must be 3 values of id exactly whose values are 1, 2, and 3
+stubFor(get(urlPathEqualTo("/things"))
+    .withQueryParam("id", havingExactly("1", "2", "3"))
+    .willReturn(ok()));
+```
+
+```json 
+{
+  "mapping": {
+    "request" : {
+      "urlPath" : "/things",
+      "method" : "GET",
+      "queryParameters" : {
+        "id" : {
+          "hasExactly" : [
+            {
+              "equalTo": "1"
+            },
+            {
+              "equalTo": "2"
+            },
+            {
+              "equalTo": "3"
+            }
+          ]
+        }
+      }
+    },
+    "response" : {
+      "status" : 200
+    }
+  }
+}
+```
+
+```java
+// There must be 3 values of id exactly whose values conform to the match expressions
+    stubFor(get(urlPathEqualTo("/things"))
+    .withQueryParam("id", havingExactly(
+    equalTo("1"),
+    containing("2"),
+    notContaining("3")
+    )).willReturn(ok()));
+```
+
+```json
+{
+  "mapping": {
+    "request" : {
+      "urlPath" : "/things",
+      "method" : "GET",
+      "queryParameters" : {
+        "id" : {
+          "hasExactly" : [
+            {
+              "equalTo": "1"
+            },
+            {
+              "contains": "2"
+            },
+            {
+              "doesNotContain": "3"
+            }
+          ]
+        }
+      }
+    },
+    "response" : {
+      "status" : 200
+    }
+  }
+}
+```
+
+Includes matcher matches multiple values or patterns specified and may contain other values as well.
+
+```java
+// The values of id must include 1, 2, and 3.
+stubFor(get(urlPathEqualTo("/things"))
+      .withQueryParam("id", including("1", "2", "3")) 
+      .willReturn(ok()));
+```
+
+```json
+{
+  "mapping": {
+    "request" : {
+      "urlPath" : "/things",
+      "method" : "GET",
+      "queryParameters" : {
+        "id" : {
+          "includes" : [
+            {
+              "equalTo": "1"
+            },
+            {
+              "equalTo": "2"
+            },
+            {
+              "equalTo": "3"
+            }
+          ]
+        }
+      }
+    },
+    "response" : {
+      "status" : 200
+    }
+  }
+}
+```
+
+
+```java
+//values of id must conform to the match expressions
+stubFor(get(urlPathEqualTo("/things"))
+    .withQueryParam("id", including(
+    equalTo("1"),
+    containing("2"),
+    notContaining("3")
+    )).willReturn(ok()));
+```
+```json
+{
+  "mapping": {
+    "request" : {
+      "urlPath" : "/things",
+      "method" : "GET",
+      "queryParameters" : {
+        "id" : {
+          "includes" : [
+            {
+              "equalTo": "1"
+            },
+            {
+              "contains": "2"
+            },
+            {
+              "doesNotContain": "3"
+            }
+          ]
+        }
+      }
+    },
+    "response" : {
+      "status" : 200
+    }
+  }
+}
+```
