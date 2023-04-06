@@ -36,6 +36,9 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3
+      # https://github.com/CocoaPods/CocoaPods/issues/10315
+      - name: Apply Ruby Patch 
+        run: "gem install ffi -- --enable-system-libffi"
       - name: Build with Jekyll
         # Outputs to the './_site' directory by default
         run: bundle exec jekyll build --config '_config_preview_public.yml'
