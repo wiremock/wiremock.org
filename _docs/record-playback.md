@@ -22,7 +22,7 @@ First, start an instance of [WireMock running standalone](/docs/running-standalo
 Once that's running visit the recorder UI page at [http://localhost:8080/\_\_admin/recorder](http://localhost:8080/__admin/recorder)
 (assuming you started WireMock on the default port of 8080).
 
-![Recorder UI]({{ base_path }}/images/recorder-screenshot.png)
+![Recorder UI]({{ '/images/recorder-screenshot.png' | absolute_url }})
 
 Enter the URL you wish to record from in the target URL field and click the Record button. You can use `http://example.mocklab.io` to try it out.
 

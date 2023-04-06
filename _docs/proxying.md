@@ -145,7 +145,7 @@ $ java -jar wiremock-standalone-{{ site.wiremock_version }}.jar --enable-browser
 ```
 
 Then open your browser's proxy settings and point them to the running server:
-<img src="{{ base_path }}/images/firefox-proxy-screenshot.png" alt="Firefox proxy screenshot" style="width: 50%; height: auto; margin-top: 1em;"/>
+<img src="{{ '/images/firefox-proxy-screenshot.png' | absolute_url }}" alt="Firefox proxy screenshot" style="width: 50%; height: auto; margin-top: 1em;"/>
 
 After that, you can configure stubs as described in [Running Standalone](/docs/running-standalone/#configuring-wiremock-using-the-java-client) and then browse to a website. Any resources fetched whose requests are matched by stubs you have configured will be overridden by the stub's response.
 

@@ -2,8 +2,6 @@
 layout: default
 ---
 
-{% include base_path %}
-
 <div id="main" class="custom-doc-wrapper" role="main">
 
   {% if page.collection == 'studio_docs' %}
@@ -21,7 +19,7 @@ layout: default
     {% if page.modified %}<meta itemprop="dateModified" content="{{ page.modified | date: "%B %d, %Y" }}">{% endif %}
 
     <div style="background-color: #f2f2f2;border: #c8c8c8 1px solid;padding: 8px;margin-bottom:32px;">
-      <a href="{{site.community_slack.join_url}}"><img src="{{base_path}}/images/slack-logo-medium.png" alt="Slack logo" style="vertical-align:sub;height:22px;margin-left:7px;margin-right:8px"/></a>
+      <a href="{{site.community_slack.join_url}}"><img src="{{ '/images/slack-logo-medium.png' | absolute_url }}" alt="Slack logo" style="vertical-align:sub;height:22px;margin-left:7px;margin-right:8px"/></a>
       Need help? Join the <a href="{{site.community_slack.join_url}}">WireMock community Slack</a>
     </div>
 

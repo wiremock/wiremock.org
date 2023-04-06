@@ -11,6 +11,6 @@ The WireMock admin API is described in [OpenAPI 3.0](https://github.com/OAI/Open
 
 Below is the full API reference:
 
-<redoc hide-hostname="true" path-in-middle-panel="true" spec-url="{{ base_path }}/assets/js/wiremock-admin-api.json"></redoc>
+<redoc hide-hostname="true" path-in-middle-panel="true" spec-url="{{ '/assets/js/wiremock-admin-api.json' | absolute_url }}"></redoc>
 
-<script src="{{ base_path }}/assets/js/redoc.standalone.js"></script>
+<script src="{{ '/assets/js/redoc.standalone.js' | absolute_url }}"></script>
