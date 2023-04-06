@@ -32,10 +32,8 @@ jobs:
         with:
           ruby-version: '2.7.6' # Not needed with a .ruby-version file
           bundler: '2.4.10'
-          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+          bundler-cache: false # runs 'bundle install' and caches installed gems automatically
           cache-version: 3 # Increment this number if you need to re-download cached gems
-        env:
-          BUNDLE_DEPLOYMENT: false
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3
