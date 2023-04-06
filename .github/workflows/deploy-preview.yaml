@@ -30,15 +30,12 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
         with:
-          ruby-version: '3.1' # Not needed with a .ruby-version file
+          ruby-version: '2.7.6' # Not needed with a .ruby-version file
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
           cache-version: 0 # Increment this number if you need to re-download cached gems
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3
-      # https://github.com/CocoaPods/CocoaPods/issues/10315
-      - name: Apply Ruby Patch 
-        run: "gem install ffi -- --enable-system-libffi"
       - name: Build with Jekyll
         # Outputs to the './_site' directory by default
         run: bundle exec jekyll build --config '_config_preview_public.yml'
