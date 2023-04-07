@@ -48,7 +48,7 @@ sets the keystore password value. The key manager password can be set with the (
 `--https-truststore`: Path to a keystore file containing client public
 certificates, proxy target public certificates & private keys to use when
 authenticate with a proxy target that require client authentication. Can be a path to a file or a resource on the classpath. See
-[HTTPS configuration](../configuration/#https-configuration)
+[HTTPS configuration](../configuration#https-configuration)
 and [Running as a browser proxy](../proxying#running-as-a-browser-proxy) for
 details.
 
@@ -170,9 +170,9 @@ The last of these will cause chunked encoding to be used only when a stub define
 
 `--logged-response-body-size-limit`: Set a limit in bytes beyond which response bodies in the log will be truncated. When enabled this helps avoid out of memory errors when serving large response bodies.
 
-`--allow-proxy-targets`: Limit the permitted targets for proxying to and recording from the supplied addressess. This parameter takes a comma-separated list of single IP addresses, IP address ranges and hostname wildcards. See [this article](../configuration/#preventing-proxying-to-and-recording-from-specific-target-addresses) for details.
+`--allow-proxy-targets`: Limit the permitted targets for proxying to and recording from the supplied addressess. This parameter takes a comma-separated list of single IP addresses, IP address ranges and hostname wildcards. See [this article](../configuration#preventing-proxying-to-and-recording-from-specific-target-addresses) for details.
 
-`--deny-proxy-targets`: Prevent proxying to and recording from the supplied addressess. This parameter takes a comma-separated list of single IP addresses, IP address ranges and hostname wildcards. Note: if both `--allow-proxy-targets` and this parameter are set, the allow list will be evaluated first. See [this article](../configuration/#preventing-proxying-to-and-recording-from-specific-target-addresses) for details.
+`--deny-proxy-targets`: Prevent proxying to and recording from the supplied addressess. This parameter takes a comma-separated list of single IP addresses, IP address ranges and hostname wildcards. Note: if both `--allow-proxy-targets` and this parameter are set, the allow list will be evaluated first. See [this article](../configuration#preventing-proxying-to-and-recording-from-specific-target-addresses) for details.
 
 `--proxy-timeout`: Set the timeout for requests to the proxy in milliseconds
 

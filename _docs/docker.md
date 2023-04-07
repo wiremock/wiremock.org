@@ -22,7 +22,7 @@ docker run -it --rm \
 
 ### Start with command line arguments
 
-The Docker image supports exactly the same set of command line arguments as the [standalone version](../running-standalone/#command-line-options).
+The Docker image supports exactly the same set of command line arguments as the [standalone version](../running-standalone#command-line-options).
 These can be passed to the container by appending them to the end of the command e.g.:
 
 ```sh

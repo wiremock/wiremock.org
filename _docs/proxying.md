@@ -147,7 +147,7 @@ $ java -jar wiremock-standalone-{{ site.wiremock_version }}.jar --enable-browser
 Then open your browser's proxy settings and point them to the running server:
 <img src="{{ '/images/firefox-proxy-screenshot.png' | absolute_url }}" alt="Firefox proxy screenshot" style="width: 50%; height: auto; margin-top: 1em;"/>
 
-After that, you can configure stubs as described in [Running Standalone](../running-standalone/#configuring-wiremock-using-the-java-client) and then browse to a website. Any resources fetched whose requests are matched by stubs you have configured will be overridden by the stub's response.
+After that, you can configure stubs as described in [Running Standalone](../running-standalone#configuring-wiremock-using-the-java-client) and then browse to a website. Any resources fetched whose requests are matched by stubs you have configured will be overridden by the stub's response.
 
 So for instance, say you're visiting
 a web page that fetches a user profile via an AJAX call to `/users/12345.json` and you wanted to test how it responded to a server unavailable response. You could create a stub like this and the response from the server would be swapped for a 503 response:
@@ -160,7 +160,7 @@ stubFor(get(urlEqualTo("/users/12345.json"))
 
 Also, we can enable/disable pass through unmatched requests to the target indicated by the original requests by enabling/disabling proxyPassThrough flag. By default, flag is set to true. 
 
-This flag can be enabled/disabled at startup either by passing CLI option while running jar as described in [Running Standalone](../running-standalone/#command-line-options) or by passing as options in Java client as shown below.
+This flag can be enabled/disabled at startup either by passing CLI option while running jar as described in [Running Standalone](../running-standalone#command-line-options) or by passing as options in Java client as shown below.
 
 ```java
 WireMockServer wireMockServer = new WireMockServer(options().proxyPassThrough(false));

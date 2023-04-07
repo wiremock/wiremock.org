@@ -96,4 +96,4 @@ POST /__admin/mappings/remove-by-metadata
 
 ## Remove request journal events by metadata
 
-See [Removing items from the journal](../verifying/#by-criteria)
+See [Removing items from the journal](../verifying#by-criteria)

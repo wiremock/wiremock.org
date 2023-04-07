@@ -17,7 +17,7 @@ WireMock enables flexible definition of a [mock API](/) by supporting rich match
 -   Request body
 -   Multipart/form-data
 
-Here's an example showing all attributes being matched using WireMock's in-built match operators. It is also possible to write [custom matching logic](../extending-wiremock/#custom-request-matchers) if
+Here's an example showing all attributes being matched using WireMock's in-built match operators. It is also possible to write [custom matching logic](../extending-wiremock#custom-request-matchers) if
 you need more precise control:
 
 Java:

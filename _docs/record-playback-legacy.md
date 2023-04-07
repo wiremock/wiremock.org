@@ -45,7 +45,7 @@ PUT). This is done by adding an extra parameter to the command line e.g.
 
 ## Playback
 
-If you start the standalone runner again without the extra commandline
+If you start the standalone runner again without the extra command line
 options it will automatically load the newly created stub mappings and
 start serving them.
 
