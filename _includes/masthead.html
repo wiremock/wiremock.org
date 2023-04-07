@@ -74,22 +74,22 @@
           
           {% for link in site.data.navigation.main %}
             {% if link.url contains 'http' %}
-              {% assign domain = '' %}
+              {% assign effectiveLink = link.url %}
               {% else %}
-              {% assign domain = base_path %}
+              {% assign effectiveLink = link.url | absolute_url %}
             {% endif %}
 
             {% if link.subnav %} 
               {% assign subnavLink = "navlink" %}
               {% assign subnav = link.subnav %} 
               {% else %}
-              {% assign subnavLink = "base_path" %}
+              {% assign subnavLink = '/' | absolute_url %}
               {% assign subnav = "" %} 
             {% endif %}
 
             {% if link.new_window %}
             <li class="masthead__menu-item">
-              <a href="{{ domain }}{{ link.url }}" title="{{ link.title }}" target="_blank">{{ link.title }}</a>
+              <a href="{{ effectiveLink }}" title="{{ link.title }}" target="_blank">{{ link.title }}</a>
             </li>
             {% else %}
             
@@ -109,7 +109,7 @@
                   {% endif %}
                 </span>
               {% else %}
-                <a class="{{subnavLink}} navHover" href="{{ domain }}{{ link.url }}" title="{{ link.title }}">
+                <a class="{{subnavLink}} navHover" href="{{ effectiveLink }}" title="{{ link.title }}">
                   {{ link.title }}
                 </a>
               {% endif %}
