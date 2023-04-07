@@ -38,11 +38,9 @@ jobs:
         id: pages
         uses: actions/configure-pages@v3
       - name:  Update RubyGems and Co
-        # Outputs to the './_site' directory by default
         run: gem update --system
-      - name: Install Jekyll and Bundles
-        # Outputs to the './_site' directory by default
-        run: gem install jekyll
+      - name: Install Ruby Bundles
+        run: bundle install
       - name: Build with Jekyll
         # Outputs to the './_site' directory by default
         run: bundle exec jekyll build --config '_config_preview_public.yml' --baseurl "${{ steps.pages.outputs.base_path }}"
