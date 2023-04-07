@@ -23,7 +23,7 @@ new WireMockServer(wireMockConfig()
   .extensions(new BodyContentTransformer(), new HeaderMangler()));
 ```
 
-See [Running as a Standalone Process](/docs/running-standalone/) for details on running with extensions from the command line.
+See [Running as a Standalone Process](../running-standalone/) for details on running with extensions from the command line.
 
 ## Transforming Responses
 

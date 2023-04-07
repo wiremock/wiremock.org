@@ -57,7 +57,7 @@ wm.stubFor(get(urlPathEqualTo("/templated"))
 
 {% endraw %}
 
-Command line parameters can be used to enable templating when running WireMock [standalone](/docs/running-standalone/#command-line-options).
+Command line parameters can be used to enable templating when running WireMock [standalone](../running-standalone/#command-line-options).
 
 ## Template caching
 
@@ -546,7 +546,7 @@ Dates can be truncated to e.g. first day of month using the `truncateDate` helpe
 
 {% endraw %}
 
-See the [full list of truncations here](/docs/request-matching/#all-truncations).
+See the [full list of truncations here](../request-matching/#all-truncations).
 
 ## Random value helper
 

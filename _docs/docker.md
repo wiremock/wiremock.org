@@ -22,7 +22,7 @@ docker run -it --rm \
 
 ### Start with command line arguments
 
-The Docker image supports exactly the same set of command line arguments as the [standalone version](/docs/running-standalone/#command-line-options).
+The Docker image supports exactly the same set of command line arguments as the [standalone version](../running-standalone/#command-line-options).
 These can be passed to the container by appending them to the end of the command e.g.:
 
 ```sh
@@ -50,10 +50,10 @@ docker run -it --rm \
 
 ### Running with extensions
 
-[WireMock extensions](/docs/extending-wiremock/) are packaged as JAR files. In order to use them they need to be made
+[WireMock extensions](../extending-wiremock/) are packaged as JAR files. In order to use them they need to be made
 available at runtime and WireMock must be configured to enable them.
 
-For example, to use the [Webhooks extension](/docs/webhooks-and-callbacks/) we would first download [wiremock-webhooks-extension-{{ site.wiremock_version }}.jar](https://repo1.maven.org/maven2/org/wiremock/wiremock-webhooks-extension/{{ site.wiremock_version }}/wiremock-webhooks-extension-{{ site.wiremock_version }}.jar)
+For example, to use the [Webhooks extension](../webhooks-and-callbacks/) we would first download [wiremock-webhooks-extension-{{ site.wiremock_version }}.jar](https://repo1.maven.org/maven2/org/wiremock/wiremock-webhooks-extension/{{ site.wiremock_version }}/wiremock-webhooks-extension-{{ site.wiremock_version }}.jar)
 into the `extensions` directory under our working directory.
 
 Then when starting Docker we would mount the extensions directory to `/var/wiremock/extensions` and enable the webhooks extension

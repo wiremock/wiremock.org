@@ -33,7 +33,7 @@ various settings. An `Options` implementation can be created via the
 public WireMockRule wireMockRule = new WireMockRule(options().port(8888).httpsPort(8889));
 ```
 
-See [Configuration](/docs/configuration/) for details.
+See [Configuration](../configuration/) for details.
 
 ## Unmatched requests
 

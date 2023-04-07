@@ -8,14 +8,14 @@ description: Verifying and querying requests relies on the request journal, whic
 ---
 
 The WireMock server records all requests it receives in memory (at
-least until it is [reset](/docs/stubbing#reset)). This makes it possible to verify that
+least until it is [reset](../stubbing#reset)). This makes it possible to verify that
 a request matching a specific pattern was received, and also to fetch
 the requests' details.
 
 Verifying and querying requests relies on the request journal, which is an in-memory log
-of received requests. This can be disabled for load testing - see the [Configuration](/docs/configuration/) section for details.
+of received requests. This can be disabled for load testing - see the [Configuration](../configuration/) section for details.
 
-Like stubbing, verification also uses WireMock's [Request Matching](/docs/request-matching/) system to filter and query requests.
+Like stubbing, verification also uses WireMock's [Request Matching](../request-matching/) system to filter and query requests.
 
 ## Verification failures, console output and IntelliJ
 
@@ -37,7 +37,7 @@ verify(postRequestedFor(urlEqualTo("/verify/this"))
 
 The criteria part in the parameter to `postRequestedFor()` uses the same
 builder as for stubbing, so all of the same predicates are available.
-See [Stubbing](/docs/stubbing/) for more details.
+See [Stubbing](../stubbing/) for more details.
 
 To check for a precise number of requests matching the criteria, use
 this form:
@@ -302,7 +302,7 @@ POST /__admin/requests/remove-by-metadata
 }
 ```
 
-For more info about stub metadata see [Stub Metadata](/docs/stub-metadata/)
+For more info about stub metadata see [Stub Metadata](../stub-metadata/)
 
 ## Resetting the request journal
 

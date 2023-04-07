@@ -175,7 +175,7 @@ Gzipping of responses can be disabled.
 
 ## Extensions
 
-For details see [Extending WireMock](/docs/extending-wiremock/).
+For details see [Extending WireMock](../extending-wiremock/).
 
 ```java
 // Add extensions
