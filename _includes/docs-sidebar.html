@@ -16,7 +16,7 @@
               {% assign doc_title = doc.title | remove: doc_category[1].title | remove: " - " | remove: " [Tutorial]" %}
               
               {% if doc.url == page.url %}<li class="doc-category__li doc-category__li--selected">{% else %}<li class="doc-category__li">{% endif %}
-                <a href="{{ doc.url }}">{{ doc_title }}</a>
+                <a href="{{ doc.url | absolute_url }}">{{ doc_title }}</a>
               </li>
             {% endfor %}
           </ul>

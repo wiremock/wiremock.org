@@ -81,7 +81,7 @@
 
             {% if link.subnav %} 
               {% assign subnavLink = "navlink" %}
-              {% assign subnav = link.subnav %} 
+              {% assign subnav = link.subnav | absolute_url %} 
               {% else %}
               {% assign subnavLink = '/' | absolute_url %}
               {% assign subnav = "" %} 
@@ -101,7 +101,7 @@
                   {% if link.subnav %}
                   <div class="divSubNav">
                     {% for subnavigation in link.subnavLinks %}
-                      <a href="{{ subnavigation.subnavLink }}">
+                      <a href="{{ subnavigation.subnavLink | absolute_url }}">
                         {{ subnavigation.name }}
                       </a>
                     {% endfor %}
