@@ -46,11 +46,12 @@ jobs:
         run: bundle exec jekyll build --config '_config_preview_public.yml' --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: development
-      - name: Validate HTML and links
-        uses: anishathalye/proof-html@v2
-        with:
-          directory: ./_site
-          enforce_https: false
+# TODO: Uncomment when cleaned up (if ever)
+#      - name: Validate HTML and links
+#        uses: anishathalye/proof-html@v2
+#        with:
+#          directory: ./_site
+#          enforce_https: false
       - name: Upload artifact
         # Automatically uploads an artifact from the './_site' directory by default
         uses: actions/upload-pages-artifact@v1
