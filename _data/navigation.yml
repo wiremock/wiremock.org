@@ -22,7 +22,7 @@ main:
           - name: "GitHub"
             subnavLink: "https://github.com/wiremock/wiremock"
           - name: "Slack"
-            subnavLink: "https://join.slack.com/t/wiremock-community/shared_invite/zt-1mkbo0zlx-gxeZdTJ15Kchdt888Fn_1A"
+            subnavLink: "http://slack.wiremock.org/"
           - name: "Slack archive"
             subnavLink: "https://community.wiremock.io/"
           - name: "Contributing"
