@@ -13,7 +13,7 @@ default proxied to another (possibly real, live) service, but where
 specific stubs are configured these are returned in place of the remote
 service's response. Responses that the live service can't be forced to
 generate on demand can thus be injected for testing. Proxying also
-supports [record and playback](/docs/record-playback/).
+supports [record and playback](../record-playback/).
 
 # Proxy stub mappings
 
@@ -122,14 +122,14 @@ or
 }
 ```
 
-You can also add response headers via the same method as for non-proxy responses (see [Stubbing](/docs/stubbing/)).
+You can also add response headers via the same method as for non-proxy responses (see [Stubbing](../stubbing/)).
 
 ## Standalone shortcut
 
 It is possible to start the standalone running with the catch-all stub
 already configured:
 
-Then it's simply a case of adding your stub mapping `.json` files under `mappings` as usual (see [Stubbing](/docs/stubbing/)).
+Then it's simply a case of adding your stub mapping `.json` files under `mappings` as usual (see [Stubbing](../stubbing/)).
 
 ## Running as a browser proxy
 
@@ -145,9 +145,9 @@ $ java -jar wiremock-standalone-{{ site.wiremock_version }}.jar --enable-browser
 ```
 
 Then open your browser's proxy settings and point them to the running server:
-<img src="{{ base_path }}/images/firefox-proxy-screenshot.png" alt="Firefox proxy screenshot" style="width: 50%; height: auto; margin-top: 1em;"/>
+<img src="{{ '/images/firefox-proxy-screenshot.png' | absolute_url }}" alt="Firefox proxy screenshot" style="width: 50%; height: auto; margin-top: 1em;"/>
 
-After that, you can configure stubs as described in [Running Standalone](/docs/running-standalone/#configuring-wiremock-using-the-java-client) and then browse to a website. Any resources fetched whose requests are matched by stubs you have configured will be overridden by the stub's response.
+After that, you can configure stubs as described in [Running Standalone](../running-standalone#configuring-wiremock-using-the-java-client) and then browse to a website. Any resources fetched whose requests are matched by stubs you have configured will be overridden by the stub's response.
 
 So for instance, say you're visiting
 a web page that fetches a user profile via an AJAX call to `/users/12345.json` and you wanted to test how it responded to a server unavailable response. You could create a stub like this and the response from the server would be swapped for a 503 response:
@@ -160,13 +160,13 @@ stubFor(get(urlEqualTo("/users/12345.json"))
 
 Also, we can enable/disable pass through unmatched requests to the target indicated by the original requests by enabling/disabling proxyPassThrough flag. By default, flag is set to true. 
 
-This flag can be enabled/disabled at startup either by passing CLI option while running jar as described in [Running Standalone](/docs/running-standalone/#command-line-options) or by passing as options in Java client as shown below.
+This flag can be enabled/disabled at startup either by passing CLI option while running jar as described in [Running Standalone](../running-standalone#command-line-options) or by passing as options in Java client as shown below.
 
 ```java
 WireMockServer wireMockServer = new WireMockServer(options().proxyPassThrough(false));
 ```
 
-We can also update this flag without WireMock restart either by using Admin API as described in [API section](/docs/api/#tag/System/paths/~1__admin~1settings/post) if we are running as standalone or by updating the global settings in Java client.
+We can also update this flag without WireMock restart either by using Admin API as described in [API section](../api/#tag/System/paths/~1__admin~1settings/post) if we are running as standalone or by updating the global settings in Java client.
 
 Json payload to update via admin API
 ```json
@@ -315,4 +315,4 @@ public WireMockRule wireMockRule = new WireMockRule(wireMockConfig()
     .trustStorePassword("mostsecret")); // Defaults to "password" if omitted
 ```
 
-See [Running as a Standalone Process](/docs/running-standalone/) for command line equivalent.
+See [Running as a Standalone Process](../running-standalone/) for command line equivalent.

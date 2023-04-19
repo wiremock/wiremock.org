@@ -1,4 +1,3 @@
-{% include base_path %}
 {% assign navigation = site.data.navigation[include.nav] %}
 
 <nav class="nav__list">
@@ -9,12 +8,12 @@
         {% if nav.url %}
           {% comment %}internal/external URL check{% endcomment %}
           {% if nav.url contains "://" %}
-            {% assign domain = "" %}
+            {% assign effectiveLink = nav.url %}
           {% else %}
-            {% assign domain = base_path %}
+            {% assign effectiveLink = nav.url | absolute_url %}
           {% endif %}
 
-          <a href="{{ domain }}{{ nav.url }}"><span class="nav__sub-title">{{ nav.title }}</span></a>
+          <a href="{{ effectiveLink }}"><span class="nav__sub-title">{{ nav.title }}</span></a>
         {% else %}
           <span class="nav__sub-title">{{ nav.title }}</span>
         {% endif %}
@@ -24,9 +23,9 @@
           {% for child in nav.children %}
             {% comment %}internal/external URL check{% endcomment %}
             {% if child.url contains "://" %}
-              {% assign domain = "" %}
+              {% assign effectiveLink = child.url %}
             {% else %}
-              {% assign domain = base_path %}
+              {% assign effectiveLink = child.url | absolute_url %}
             {% endif %}
 
             {% comment %}set "active" class on current page{% endcomment %}
@@ -36,7 +35,7 @@
               {% assign active = "" %}
             {% endif %}
 
-            <li><a href="{{ domain }}{{ child.url }}" class="{{ active }}">{{ child.title }}</a></li>
+            <li><a href="{{ effectiveLink }}" class="{{ active }}">{{ child.title }}</a></li>
           {% endfor %}
         </ul>
         {% endif %}

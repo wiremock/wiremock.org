@@ -71,7 +71,7 @@ description: WireMock is a tool for building mock APIs. API mocking enables you 
 
       <div style="margin-top: 40px;display:flex;flex-wrap:wrap;gap: 5px;">
         <a href="#open-source-get-started" class="btn-primary">Get started</a>
-        <a href="/docs/" class="btn-secondary">View docs</a>
+        <a href="{{ '/docs/' | absolute_url}}" class="btn-secondary">View docs</a>
         <a href="http://slack.wiremock.org/" class="btn-secondary">Slack community</a>
       </div>
     </div>
@@ -106,12 +106,12 @@ description: WireMock is a tool for building mock APIs. API mocking enables you 
   <a id="a-studio-enterprise" href="#studio-enterprise-learn-more">z</a>
   <div id="studio-enterprise-learn-more" class="container wiremock-studio-wrapper" style="background-color: #E4F0F7">
     <div class="wiremock-studio-img-wrapper">
-      <img class="wiremock-studio-img" src="{{base_path}}/images/wiremock-cloud/hero-screenshot.png" alt="wiremock cloud screenshot"/>
+      <img class="wiremock-studio-img" src="{{ '/images/wiremock-cloud/hero-screenshot.png' | absolute_url }}" alt="wiremock cloud screenshot"/>
     </div>
     <div class="wiremock-studio-vLine"></div>
 
     <div id="studio-enterprise" class="wiremock-studio-details details-custom">
-      <img class="wiremockIMGwidth" src="{{ base_path}}/images/wiremock-cloud/wiremock_cloud_logo.png" alt="wiremock cloud logo" />
+      <img class="wiremockIMGwidth" src="{{ '/images/wiremock-cloud/wiremock_cloud_logo.png' | absolute_url }}" | alt="wiremock cloud logo" />
       <h3 class="robot-subtitle" style="margin-top:20px">Hosted API mocking for teams and enterprises</h3>
 
       <ul class="mocklab-callout-bullets">
@@ -134,22 +134,22 @@ description: WireMock is a tool for building mock APIs. API mocking enables you 
       <div class="code-tabs-sidebar-wrapper">
         <div class="code-tabs-sidebar">
           <div class="code-tabs-example-card">
-            <img src="{{base_path}}/images/maven.png" alt="Maven" />
+            <img src="{{ '/images/maven.png' | absolute_url }}" alt="Maven" />
           </div>
           <div class="code-tabs-example-card">
-            <img src="{{base_path}}/images/elephantIcon.png" alt="Gradle"/>
+            <img src="{{ '/images/elephantIcon.png' | absolute_url }}" alt="Gradle"/>
           </div>
           <div class="code-tabs-example-card">
-            <img src="{{base_path}}/images/kotlin.png" alt="Kotlin" />
+            <img src="{{ '/images/kotlin.png' | absolute_url }}" alt="Kotlin" />
           </div>
           <div class="code-tabs-example-card">
-            <img src="{{base_path}}/images/sbt.png" alt="SBT"/>
+            <img src="{{ '/images/sbt.png ' | absolute_url }}" alt="SBT"/>
           </div>
           <div class="code-tabs-example-card">
-            <img src="{{base_path}}/images/java.png" alt="Java"/>
+            <img src="{{ '/images/java.png ' | absolute_url }}" alt="Java"/>
           </div>
           <div class="code-tabs-example-card">
-            <img src="{{base_path}}/images/docker.png" alt="Docker"/>
+            <img src="{{ '/images/docker.png ' | absolute_url }}" alt="Docker"/>
           </div>
         </div>
       </div>
@@ -174,21 +174,21 @@ description: WireMock is a tool for building mock APIs. API mocking enables you 
   <scope>test</scope>
 </dependency>
 {% endhighlight %}
-            <p class="codeTabDescription" style="margin-top:2rem;">Then follow the next steps for <a href="/docs/junit-jupiter/">JUnit 5+</a> or <a href="/docs/java-usage/">plain Java</a>.</p>
+            <p class="codeTabDescription" style="margin-top:2rem;">Then follow the next steps for <a href="docs/junit-jupiter/">JUnit 5+</a> or <a href="docs/java-usage/">plain Java</a>.</p>
           </div>
           <div class="codeSnippet" data-snippettab="gradle groovy">
             <p class="codeTabDescription">Add the following to your project's <strong>build.gradle</strong>:</p>
 {% highlight groovy %}
 testImplementation "com.github.tomakehurst:wiremock-jre8:{{ site.wiremock_version }}"
 {% endhighlight %}
-            <p class="codeTabDescription" style="margin-top:2rem;">Then follow the next steps for <a href="/docs/junit-jupiter/">JUnit 5+</a> or <a href="/docs/java-usage/">plain Java</a>.</p>
+            <p class="codeTabDescription" style="margin-top:2rem;">Then follow the next steps for <a href="docs/junit-jupiter/">JUnit 5+</a> or <a href="docs/java-usage/">plain Java</a>.</p>
           </div>
           <div class="codeSnippet" data-snippettab="gradle kotlin">
             <p class="codeTabDescription">Add the following to your project's <strong>build.gradle.kts</strong>:</p>
 {% highlight kotlin %}
 testImplementation("com.github.tomakehurst:wiremock-jre8:{{ site.wiremock_version }}")
 {% endhighlight %}
-            <p class="codeTabDescription" style="margin-top:2rem;">Then follow the next steps for <a href="/docs/junit-jupiter/">JUnit 5+</a> or <a href="/docs/java-usage/">plain Java</a>.</p>
+            <p class="codeTabDescription" style="margin-top:2rem;">Then follow the next steps for <a href="docs/junit-jupiter/">JUnit 5+</a> or <a href="docs/java-usage/">plain Java</a>.</p>
           </div>
           <div class="codeSnippet" data-snippettab="scala sbt">
             <p class="codeTabDescription">Add the following to your project’s <strong>build.sbt</strong>:</p>
@@ -205,7 +205,7 @@ libraryDependencies +=
 {% highlight bash %}
 java -jar wiremock-jre8-standalone-{{ site.wiremock_version }}.jar
 {% endhighlight %}
-            <p class="codeTabDescription" style="margin-top:2rem;">Learn more in the <a href="/docs/running-standalone/">running standalone guide.</a></p>
+            <p class="codeTabDescription" style="margin-top:2rem;">Learn more in the <a href="docs/running-standalone/">running standalone guide.</a></p>
           </div>
           <div class="codeSnippet" data-snippettab="docker">
             <p class="codeTabDescription">Run the following in a terminal:</p>
@@ -215,7 +215,7 @@ docker run -it --rm \
   --name wiremock \
   wiremock/wiremock:{{ site.wiremock_version }}
 {% endhighlight %}
-            <p class="codeTabDescription" style="margin-top:2rem;">Learn more in the <a href="/docs/docker/">Docker guide.</a></p>
+            <p class="codeTabDescription" style="margin-top:2rem;">Learn more in the <a href="docs/docker/">Docker guide.</a></p>
           </div>
         </div>
         </div>
@@ -243,7 +243,7 @@ docker run -it --rm \
 
       </div>
       <a href="https://github.com/wiremock/wiremock" class="ctDownloadBTN" target="_blank">
-        <img src="{{base_path}}/images/ctGithubDownloadIcon.svg" />
+        <img src="{{ '/images/ctGithubDownloadIcon.svg' | absolute_url }}" />
         <span>View Repo</span>
       </a>
     </div>
@@ -254,7 +254,7 @@ docker run -it --rm \
     <p class="keyFeaturesInfo">WireMock frees you from dependency on unstable APIs and allows you to develop with confidence. It's easy to launch a mock API server and simulate a host of real-world scenarios and APIs - including REST, SOAP, OAuth2 and more.</p>
     <div class="container key-features-grid">
       <div class="key-features-card">
-        <img src="{{ base_path}}/images/requestIcon.svg" alt="Wiremock Features"/>
+        <img src="{{ '/images/requestIcon.svg' | absolute_url }}" alt="Wiremock Features"/>
         <p>
           Advanced request
         </p>
@@ -263,7 +263,7 @@ docker run -it --rm \
         </p>
       </div>
       <div class="key-features-card">
-        <img src="{{ base_path}}/images/responseIcon.svg" alt="wiremock dynamic response"/>
+        <img src="{{ '/images/responseIcon.svg' | absolute_url }}" alt="wiremock dynamic response"/>
         <p>
           Dynamic response
         </p>
@@ -272,7 +272,7 @@ docker run -it --rm \
         </p>
       </div>
       <div class="key-features-card">
-        <img src="{{ base_path}}/images/unitTestIcon.svg" alt="wiremock unit tests" />
+        <img src="{{ '/images/unitTestIcon.svg' | absolute_url }}" alt="wiremock unit tests" />
         <p>
           Run in your unit tests, on your
         </p>
@@ -281,7 +281,7 @@ docker run -it --rm \
         </p>
       </div>
       <div class="key-features-card">
-        <img src="{{ base_path}}/images/faultIcon.svg" alt="wiremock fault and latency"/>
+        <img src="{{ '/images/faultIcon.svg' | absolute_url }}" alt="wiremock fault and latency"/>
         <p>
           Fault and latency
         </p>
@@ -290,13 +290,13 @@ docker run -it --rm \
         </p>
       </div>
       <div class="key-features-card">
-        <img src="{{ base_path}}/images/recordIcon.svg" alt="wiremock record playback"/>
+        <img src="{{ '/images/recordIcon.svg' | absolute_url }}" alt="wiremock record playback"/>
         <p>
           Record / Playback
         </p>
       </div>
       <div class="key-features-card">
-        <img src="{{ base_path}}/images/httpIcon.svg" alt="wiremock java, python, http" />
+        <img src="{{ '/images/httpIcon.svg' | absolute_url }}" alt="wiremock java, python, http" />
         <p>
           Java, Python, HTTP and
         </p>
@@ -306,7 +306,7 @@ docker run -it --rm \
       </div>
     </div>
     <div class="container key-features-btn-full">
-      <a class="btn-card-info btnGetStarted" href="/docs/">Full Documentation</a>
+      <a class="btn-card-info btnGetStarted" href="docs/">Full Documentation</a>
     </div>
 
     <div class="container faq">
@@ -325,7 +325,7 @@ docker run -it --rm \
         <dd>WireMock supports several approaches for creating mock APIs - in code, via its REST API, as JSON files and by recording HTTP traffic proxied to another destination.</dd>
 
         <dt><i class="faq-list-arrow"></i> What makes WireMock unique?</dt>
-        <dd>WireMock has a rich <a href="/docs/request-matching/">matching system</a>, allowing any part of an incoming request to be matched against complex and precise criteria. Responses of any complexity can be dynamically generated via the Handlebars based templating system. Finally, WireMock is easy to integrate into any workflow due to its numerous <a href="/docs/extending-wiremock/">extension points</a> and comprehensive APIs.</dd>
+        <dd>WireMock has a rich <a href="docs/request-matching/">matching system</a>, allowing any part of an incoming request to be matched against complex and precise criteria. Responses of any complexity can be dynamically generated via the Handlebars based templating system. Finally, WireMock is easy to integrate into any workflow due to its numerous <a href="docs/extending-wiremock/">extension points</a> and comprehensive APIs.</dd>
 
         <dt><i class="faq-list-arrow"></i> Is WireMock open source?</dt>
         <dd>Yes, WireMock is a completely open source API mocking tool (<a href="https://github.com/wiremock/wiremock">GitHub repo</a>). If you’re looking for a hosted version of WireMock, check out <a href="https://wiremock.io/">WireMock Cloud</a>.</dd>

@@ -1,7 +1,6 @@
-{% include base_path %}
 
 {% if paginator.total_pages > 1 %}
-{% assign blog_base_path = base_path | append: '/blog' %}
+{% assign blog_base_path = '/blog' | absolute_url %}
 
 <!-- Base: {{ blog_base_path }} -->
 

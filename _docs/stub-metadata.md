@@ -48,7 +48,7 @@ JSON:
 
 ## Search for stubs by metadata
 
-Stubs can be found by matching against their metadata using the same matching strategies as when [matching HTTP requests](/docs/request-matching/).
+Stubs can be found by matching against their metadata using the same matching strategies as when [matching HTTP requests](../request-matching/).
 The most useful matcher for this is `matchesJsonPath`:
 
 Java:
@@ -96,4 +96,4 @@ POST /__admin/mappings/remove-by-metadata
 
 ## Remove request journal events by metadata
 
-See [Removing items from the journal](/docs/verifying/#by-criteria)
+See [Removing items from the journal](../verifying#by-criteria)

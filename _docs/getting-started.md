@@ -31,7 +31,7 @@ testImplementation "com.github.tomakehurst:wiremock-jre8:{{ site.wiremock_versio
 ```
 
 WireMock is also shipped in Java 7 and standalone versions, both of which work better in certain contexts.
-See [Download and Installation](/docs/download-and-installation/) for details.
+See [Download and Installation](../download-and-installation/) for details.
 
 ## Writing a test with JUnit 4.x
 
@@ -74,9 +74,9 @@ For many more examples of JUnit tests look no further than [WireMock's
 own acceptance
 tests](https://github.com/tomakehurst/wiremock/tree/master/src/test/java/com/github/tomakehurst/wiremock)
 
-For more details on verifying requests and stubbing responses, see [Stubbing](/docs/stubbing) and [Verifying](/docs/verifying/)
+For more details on verifying requests and stubbing responses, see [Stubbing](../stubbing) and [Verifying](../verifying/)
 
-For more information on the JUnit rule see [The JUnit Rule](/docs/junit-rule/).
+For more information on the JUnit rule see [The JUnit Rule](../junit-rule/).
 
 ## Changing port numbers
 
@@ -112,7 +112,7 @@ int httpsPort = wireMockRule.httpsPort();
 
 ## Writing a test with JUnit 5.x
 
-See [JUnit 5+ Jupiter Usage](/docs/junit-jupiter/) for various JUnit 5 usage scenarios.
+See [JUnit 5+ Jupiter Usage](../junit-jupiter/) for various JUnit 5 usage scenarios.
 
 ## Non-JUnit and general Java usage
 
@@ -157,7 +157,7 @@ This will start the server on port 8080:
 You can <a id="wiremock-standalone-download" href="https://repo1.maven.org/maven2/com/github/tomakehurst/wiremock-jre8-standalone/{{ site.wiremock_version }}/wiremock-jre8-standalone-{{ site.wiremock_version }}.jar">download the standalone JAR from
 here</a>.
 
-See [Running as a Standalone Process](/docs/running-standalone/) running-standalone for more details and commandline options.
+See [Running as a Standalone Process](../running-standalone/) running-standalone for more details and commandline options.
 
 ## Fetching all of your stub mappings (and checking WireMock is working)
 
