@@ -249,3 +249,5 @@ will be generated: `put-hosts-id.json` filename. Default template: `{{{method}}}
 ```java
 .filenameTemplate("{{{request.url}}}-{{{request.url}}}.json")
 ```
+
+Note: starting from [3.0.0-beta-8](https://github.com/wiremock/wiremock/releases/tag/3.0.0-beta-8)
