@@ -214,6 +214,73 @@ JSON:
 }
 ```
 
+### Path templates
+
+WireMock from 3.0.0 onwards supports matching on URL path templates conforming to the [RFC 6570](https://www.rfc-editor.org/rfc/rfc6570) standard.
+
+When the path template URL match type is used this enables
+
+1. The ability to match path variables in the same way as query parameters, headers etc.
+2. The ability to reference path variables by name in [response templates](../response-templating/#the-request-model).
+
+To match any request URL that conforms to the path template, you can do the following.
+
+Java:
+
+```java
+stubFor(
+    get(urlPathTemplate("/contacts/{contactId}/addresses/{addressId}"))
+      .willReturn(ok()));
+```
+
+JSON:
+
+```json
+{
+  "request": {
+    "urlPathTemplate": "/contacts/{contactId}/addresses/{addressId}"
+    "method" : "GET",
+
+  },
+  "response" : {
+    "status" : 200
+  }
+}
+```
+
+To further constrain the match to specific values of the path variables you can add match clauses for some or all of the variables in the path expression.
+
+```java
+stubFor(
+    get(urlPathTemplate("/contacts/{contactId}/addresses/{addressId}"))
+      .withPathParam("contactId", equalTo("12345"))
+      .withPathParam("addressId", equalTo("99876"))
+      .willReturn(ok()));
+```
+
+JSON:
+
+```json
+{
+  "request" : {
+    "urlPathTemplate" : "/v1/contacts/{contactId}/addresses/{addressId}",
+    "method" : "GET",
+    "pathParameters" : {
+      "contactId" : {
+        "equalTo" : "12345"
+      },
+      "addressId" : {
+        "equalTo" : "99876"
+      }
+    }
+  },
+  "response" : {
+    "status" : 200
+  }
+}
+```
+
+
 ## Matching other attributes
 
 All request attributes other than the URL can be matched using the following set of operators.
