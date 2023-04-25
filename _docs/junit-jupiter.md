@@ -161,7 +161,7 @@ This behavior can be changed by calling `.failOnUnmatchedRequests(false)` on the
 ## Proxy mode
 
 The JUnit Jupiter extension can be configured to enable "proxy mode" which simplifies configuration and supports
-[multi-domain mocking](/docs/multi-domain-mocking/).
+[multi-domain mocking](../multi-domain-mocking/).
 
 ### Declarative
 

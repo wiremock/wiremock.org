@@ -1,9 +1,4 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your entire site, values
-# which you are expected to set up once and rarely need to edit after that.
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# `jekyll serve`. If you change this file, please restart the server process.
+# This config file is for publishing preview on GitHub Pages
 
 # Site Settings
 locale: "en-US"
@@ -11,22 +6,12 @@ title: "WireMock"
 title_separator: "|"
 name: "Tom Akehurst"
 description: "WireMock is a flexible API mocking tool for fast, robust and comprehensive testing."
-url: "https://wiremock.org"
+url: "https://wiremock.github.io"
+baseurl: "/wiremock.org-sources/"
 gh_repo:
 teaser: # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
 # breadcrumbs            : false # true, false (default)
 words_per_minute: 200
-comments:
-    provider: # false (default), "disqus", "discourse", "facebook", "google-plus", custom"
-    disqus:
-        shortname: # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
-    discourse:
-        server: # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
-    facebook:
-        # https://developers.facebook.com/docs/plugins/comments
-        appid:
-        num_posts: # 5 (default)
-        colorscheme: # "light" (default), "dark"
 
 # SEO Related
 google_site_verification:
@@ -48,21 +33,6 @@ social:
     type: # Person or Organization (defaults to Person)
     name: # If the user or organization name differs from the site's name
     links: # An array of links to social media profiles
-
-# Analytics
-analytics:
-    provider: google
-    google:
-        tracking_id: "UA-36386229-2"
-        optimize_id: "GTM-WQTGSSM"
-
-# Google AdSense
-google_ad_client:
-google_ad_slot:
-
-# MS Clarity
-clarity:
-    enabled: true
 
 # Site Author
 author:
@@ -188,17 +158,6 @@ category_archive:
 tag_archive:
     type: liquid
     path: /tags/
-# https://github.com/jekyll/jekyll-archives
-# jekyll-archives:
-#   enabled:
-#     - categories
-#     - tags
-#   layouts:
-#     category: archive-taxonomy
-#     tag: archive-taxonomy
-#   permalinks:
-#     category: /categories/:name/
-#     tag: /tags/:name/
 
 collections:
     studio_docs:
@@ -220,4 +179,4 @@ wiremock_version: 2.35.0
 wiremock_beta_version: 3.0.0-beta-2
 
 community_slack:
-  join_url: http://slack.wiremock.org/
+  join_url: https://join.slack.com/t/wiremock-community/shared_invite/zt-1mkbo0zlx-gxeZdTJ15Kchdt888Fn_1A

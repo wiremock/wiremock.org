@@ -119,7 +119,6 @@ html {
     color: #fff;
     border: none;
     margin-top: 5px;
-    margin-right: 5px;
     text-decoration: none;
 
     &--mocklab {
@@ -139,7 +138,9 @@ html {
     font-weight: 500;
     font-size: 20px;
     text-decoration: none;
-    margin-top: 5px; 
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
 
     &--mocklab {
         color: $mocklab-dark-green;
@@ -521,6 +522,12 @@ html {
             }
         }
     }
+}
+
+.wiremock-studio__buttons {
+    display: flex;
+    gap: 5px;
+    margin-top: 40px;
 }
 
 .wiremock-studio-wrapper,

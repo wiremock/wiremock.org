@@ -71,7 +71,7 @@ specify a trust store containing the certificate(s).
 ## Common HTTPS issues
 
 `javax.net.ssl.SSLException: Unrecognized SSL message, plaintext connection?`: Usually means you've tried to connect to the
-HTTP port with a client that's expecting HTTPS (i.e. has https:// in the URL).
+HTTP port with a client that's expecting HTTPS (i.e. has `https://` in the URL).
 
 `org.apache.hc.core5.http.NoHttpResponseException: The target server failed to respond`: Could mean you've tried to connect to the HTTPS port with a
 client expecting HTTP.

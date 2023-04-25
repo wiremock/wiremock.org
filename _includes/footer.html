@@ -1,7 +1,6 @@
-{% include base_path %}
 
 <div class="page__footer-copyright">
-  <img src="{{ base_path}}/images/shortLogo.png" class="short-logo"/>
+  <img src="{{ '/images/shortLogo.png' | absolute_url }}" class="short-logo"/>
 
   <span class="footer-copyright-description">&copy; {{ site.time | date: '%Y' }}</span>
 
@@ -10,9 +9,9 @@
   </ul>
 </div>
 
-<script src="{{ base_path}}/assets/js/mobile-navbar.js"></script>
-<script src="{{ base_path}}/assets/js/codeTab.js"></script>
+<script src="{{ '/assets/js/mobile-navbar.js' | absolute_url }}"></script>
+<script src="{{ '/assets/js/codeTab.js' | absolute_url }}"></script>
 
-<script src="{{ base_path}}/assets/js/sidebar-docs.js"></script>
-<script src="{{ base_path}}/assets/js/tracking-events.js"></script>
-<script src="{{ base_path}}/assets/js/faq.js"></script>
+<script src="{{ '/assets/js/sidebar-docs.js' | absolute_url }}"></script>
+<script src="{{ '/assets/js/tracking-events.js' | absolute_url }}"></script>
+<script src="{{ '/assets/js/faq.js' | absolute_url }}"></script>

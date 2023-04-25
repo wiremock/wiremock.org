@@ -1,4 +1,3 @@
-{% include base_path %}
 
 {% if page.author %}
   {% assign author = site.data.authors[page.author] %}{% else %}{% assign author = site.author %}
@@ -10,7 +9,7 @@
     {% if author.avatar contains "://" %}
     	<img src="{{ author.avatar }}" alt="{{ author.name }}">
     {% else %}
-    	<img src="{{ author.avatar | prepend: "/images/" | prepend: base_path }}" class="author__avatar" alt="{{ author.name }}">
+    	<img src="{{ author.avatar | prepend: "/images/" | absolute_url }}" class="author__avatar" alt="{{ author.name }}">
     {% endif %}
   </div>
 

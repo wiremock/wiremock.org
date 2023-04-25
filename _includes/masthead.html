@@ -1,4 +1,3 @@
-{% include base_path %}
 
 <style>
   .navlink {
@@ -68,29 +67,29 @@
 <div class="masthead">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
-      <a href="/"><img src="{{ base_path}}/images/wireMockLogo.png" style="width: 160px; height: 20px" /></a>
+      <a href="{{ '/' | absolute_url }}"><img src="{{ '/images/wireMockLogo.png' | absolute_url }}" style="width: 160px; height: 20px" /></a>
       <nav id="site-nav" class="greedy-nav">
         <!-- <button><div class="navicon"></div></button> -->
         <ul class="visible-links">
           
           {% for link in site.data.navigation.main %}
             {% if link.url contains 'http' %}
-              {% assign domain = '' %}
+              {% assign effectiveLink = link.url %}
               {% else %}
-              {% assign domain = base_path %}
+              {% assign effectiveLink = link.url | absolute_url %}
             {% endif %}
 
             {% if link.subnav %} 
               {% assign subnavLink = "navlink" %}
-              {% assign subnav = link.subnav %} 
+              {% assign subnav = link.subnav | absolute_url %} 
               {% else %}
-              {% assign subnavLink = "base_path" %}
+              {% assign subnavLink = '/' | absolute_url %}
               {% assign subnav = "" %} 
             {% endif %}
 
             {% if link.new_window %}
             <li class="masthead__menu-item">
-              <a href="{{ domain }}{{ link.url }}" title="{{ link.title }}" target="_blank">{{ link.title }}</a>
+              <a href="{{ effectiveLink }}" title="{{ link.title }}" target="_blank">{{ link.title }}</a>
             </li>
             {% else %}
             
@@ -102,7 +101,7 @@
                   {% if link.subnav %}
                   <div class="divSubNav">
                     {% for subnavigation in link.subnavLinks %}
-                      <a href="{{ subnavigation.subnavLink }}">
+                      <a href="{{ subnavigation.subnavLink | absolute_url }}">
                         {{ subnavigation.name }}
                       </a>
                     {% endfor %}
@@ -110,7 +109,7 @@
                   {% endif %}
                 </span>
               {% else %}
-                <a class="{{subnavLink}} navHover" href="{{ domain }}{{ link.url }}" title="{{ link.title }}">
+                <a class="{{subnavLink}} navHover" href="{{ effectiveLink }}" title="{{ link.title }}">
                   {{ link.title }}
                 </a>
               {% endif %}
@@ -123,31 +122,31 @@
 
           <li class="masthead__menu-item">
             <a class="navHover" href="https://wiremock.io?utm_source=wiremock.org&utm_medium=masthead&utm_campaign=homepage_2022_baseline" title="WireMock Cloud">
-              <img src="/images/wiremock-cloud/wiremock_cloud_logo.png" alt="WireMock Cloud" style="vertical-align: middle;height: 28px"/>
+              <img src="{{ '/images/wiremock-cloud/wiremock_cloud_logo.png' | absolute_url }}" alt="WireMock Cloud" style="vertical-align: middle;height: 28px"/>
             </a>
           </li>
         </ul>
         
       </nav>
       
-      <img id="hamburgerMenuIcon" class="hamburgerMenuIcon" src="{{ base_path}}/images/hamburgerMenuIcon.svg" />
+      <img id="hamburgerMenuIcon" class="hamburgerMenuIcon" src="{{ '/images/hamburgerMenuIcon.svg' | absolute_url }}" />
       <div id="overlay-menu" class="overlay-menu"></div>
       <div class="mobile-menu-wrapper">
-        <img id="closeMenuIcon" class="closeMenuIcon" src="{{ base_path}}/images/closeMenuIcon.svg" />
+        <img id="closeMenuIcon" class="closeMenuIcon" src="{{ '/images/closeMenuIcon.svg' | absolute_url }}" />
         <ul>
-          <li><a href="/docs">Open Source docs</a></li>
+          <li><a href="{{ '/docs' | absolute_url }}">Open Source docs</a></li>
           <li>
             <a href="https://wiremock.io?utm_source=wiremock.org&utm_medium=masthead&utm_campaign=homepage_2022_baseline" title="WireMock Cloud">
-              <img src="/images/wiremock-cloud/wiremock_cloud_logo.png" alt="WireMock Cloud" style="vertical-align: middle;height: 28px"/><br>
+              <img src="{{ '/images/wiremock-cloud/wiremock_cloud_logo.png' | absolute_url }}" alt="WireMock Cloud" style="vertical-align: middle;height: 28px"/><br>
               WireMock Cloud docs
             </a>
           </li>
-          <li><a href="/studio/docs">Studio docs</a></li>
+          <li><a href="{{ '/studio/docs' | absolute_url }}">Studio docs</a></li>
           
-          <li><a href="/support">Support</a></li>
+          <li><a href="{{ '/support' | absolute_url }}">Support</a></li>
           <li><a href="https://github.com/wiremock/wiremock" target="_blank">GitHub</a></li>
           <li><a href="https://github.com/wiremock/wiremock/blob/master/CONTRIBUTING.md" target="_blank">Contributing</a></li>
-          <li><a href="/external-resources">Resources</a></li>
+          <li><a href="{{ '/external-resources' | absolute_url }}">Resources</a></li>
         </ul>
       </div>
     </div>
