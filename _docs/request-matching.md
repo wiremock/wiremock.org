@@ -11,6 +11,7 @@ WireMock enables flexible definition of a [mock API](/) by supporting rich match
 -   URL
 -   HTTP Method
 -   Query parameters
+-   Form parameters
 -   Headers
 -   Basic authentication (a special case of header matching)
 -   Cookies
@@ -20,6 +21,7 @@ WireMock enables flexible definition of a [mock API](/) by supporting rich match
 Here's an example showing all attributes being matched using WireMock's in-built match operators. It is also possible to write [custom matching logic](../extending-wiremock#custom-request-matchers) if
 you need more precise control:
 
+## Request with XML Body
 Java:
 
 ```java
@@ -97,6 +99,32 @@ JSON:
     }
 }
 ```
+## Request with Form Parameters
+
+```java
+stubFor(post(urlPathEqualTo("/mock"))
+.withFormParam("tool", equalTo("WireMock"))
+.withBasicAuth("jeff@example.com", "jeffteenjefftyjeff")
+)
+.willReturn(aResponse()));
+```
+
+```json
+{
+    "request": {
+        "urlPath": "/mock",
+        "method": "POST",
+      "formParameters": {
+            "tool": {
+                "equalTo": "WireMock"
+            }
+        },
+    "response": {
+        "status": 200
+    }
+}
+```
+
 
 The following sections describe each type of matching strategy in detail.
 
