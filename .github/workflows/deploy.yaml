@@ -45,7 +45,7 @@ jobs:
         # Outputs to the './_site' directory by default
         run: bundle exec jekyll build --config '_config.yml' --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
-          JEKYLL_ENV: development
+          JEKYLL_ENV: production
 # TODO: Uncomment when cleaned up (if ever)
 #      - name: Validate HTML and links
 #        uses: anishathalye/proof-html@v2
