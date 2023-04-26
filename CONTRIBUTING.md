@@ -18,6 +18,14 @@ Do not hesitate to ask there if you hit an obstacle.
 
 ## Key locations
 
+### WireMock 3.x
+
+WireMock Java 3.x documentation (`wiremock.org/3.x`), including API specifications and other resources is located in the
+[`3.0.0-beta` branch](https://github.com/wiremock/wiremock.org/tree/3.0.0-beta)
+that i included as a submodule and build by the CD flow.
+To update the documentation, submit pull requests against the branch,
+and they will be included into the main release line.
+
 ## Preparing the developer environment
 
 The website is powered by Jekyll, and hence the Ruby developer environment is needed.

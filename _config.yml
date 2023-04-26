@@ -123,6 +123,8 @@ exclude:
     - Rakefile
     - README
     - tmp
+    # Served via symbolic links
+    - .submodules
 keep_files:
     - .git
     - .svn
@@ -150,6 +152,7 @@ kramdown:
     smart_quotes: lsquo,rsquo,ldquo,rdquo
 
 # Outputting
+safe: false # Allow symbolic links for submodule contents
 permalink: /blog/:title/
 paginate: 5 # amount of posts to show
 paginate_path: /blog/page:num/
@@ -207,7 +210,9 @@ collections:
     docs:
         output: true
         permalink: /docs/:path/
-    
+    docs-3x:
+        output: true
+        permalink: /docs/3.x/:path/
 
 # HTML Compression
 # - http://jch.penibelst.de/
@@ -217,7 +222,9 @@ compress_html:
         envs: development
 
 wiremock_version: 2.35.0
-wiremock_beta_version: 3.0.0-beta-2
+wiremock_beta_version: 3.0.0-beta-8
+wiremock_beta_site: false
+wiremock_ga_site: true
 
 community_slack:
   join_url: http://slack.wiremock.org/

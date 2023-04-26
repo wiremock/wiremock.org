@@ -6,14 +6,22 @@ main:
       subnavLinks:
         - name: "WireMock for Java"
           subnavLink: "/docs/"
+        - name: "WireMock 3.x for Java (Preview)"
+          subnavLink: "/3.x/docs/"
+          wiremock_beta_link: true
         - name: "WireMock Standalone"
           subnavLink: "/docs/running-standalone/"
+        - name: "WireMock 3.x Standalone (Preview)"
+          subnavLink: "/3.x/docs/running-standalone/"
+          wiremock_beta_link: true
         - name: "WireMock in Docker"
           subnavLink: "/docs/docker/"
         - name: "WireMock Python"
           subnavLink: "https://wiremock.readthedocs.io/en/latest/"
         - name: "WireMock Cloud"  
           subnavLink: "https://docs.wiremock.io/getting-started/?utm_source=wiremock.org&utm_medium=masthead_doc-links&utm_campaign=2022_baseline"
+        - name: "External Resources"
+          subnavLink: "/external-resources"
 
     - title: "Need Help?"
       subnav: "help"

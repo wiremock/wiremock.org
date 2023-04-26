@@ -101,9 +101,17 @@
                   {% if link.subnav %}
                   <div class="divSubNav">
                     {% for subnavigation in link.subnavLinks %}
-                      <a href="{{ subnavigation.subnavLink | absolute_url }}">
-                        {{ subnavigation.name }}
-                      </a>
+                      {% if link.subnav.wiremock_beta_link %}
+                        {% if site.wiremock_ga_site %}
+                          <a href="{{ subnavigation.subnavLink | absolute_url }}">
+                          {{ subnavigation.name }}
+                        </a>
+                        {% endif %}
+                      {% else %}
+                        <a href="{{ subnavigation.subnavLink | absolute_url }}">
+                          {{ subnavigation.name }}
+                        </a>
+                      {% endif %}
                     {% endfor %}
                   </div>
                   {% endif %}
