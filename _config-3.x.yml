@@ -1,2 +1,2 @@
 url: "https://wiremock.org/3.x"
-destination: "./_site_3x"
+destination: "./tmp/_site_3x"
