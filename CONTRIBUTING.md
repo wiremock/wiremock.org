@@ -37,7 +37,7 @@ Prerequisites:
 bundle install
 
 ## Build the website
-jekyll build --config '_config.yml'
+bundle exec jekyll build --config '_config.yml'
 ```
 
 Note that `_config_preview.yml' is used to disable analytics in the deployed versions
