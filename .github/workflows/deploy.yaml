@@ -52,7 +52,7 @@ jobs:
           bundle exec jekyll build --config '_config.yml,_config-3.x.yml' --baseurl "${{ steps.pages.outputs.base_path }}/3.x"
           ruby .scripts/merge-sitemaps.rb
           mkdir _site/3.x
-          cp -R tmp/site_3x/* _site/3.x
+          cp -R tmp/site_3x/* _site/3.x/
         env:
           JEKYLL_ENV: 3.x
 # TODO: Uncomment when cleaned up (if ever)
