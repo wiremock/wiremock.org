@@ -102,7 +102,7 @@
                   <div class="divSubNav">
                     {% for subnavigation in link.subnavLinks %}
                       {% if link.subnav.wiremock_beta_link %}
-                        {% if site.wiremock_ga_site %}
+                        {% if site.wiremock_ga_site = true %}
                           <a href="{{ subnavigation.subnavLink | absolute_url }}">
                           {{ subnavigation.name }}
                         </a>
