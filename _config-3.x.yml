@@ -1,4 +1,4 @@
 url: "https://wiremock.org/3.x"
-destination: "./tmp/_site_3x"
+destination: "./tmp/site_3x"
 wiremock_beta_site: true
 wiremock_ga_site: false
