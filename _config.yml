@@ -222,7 +222,9 @@ compress_html:
         envs: development
 
 wiremock_version: 2.35.0
-wiremock_beta_version: 3.0.0-beta-2
+wiremock_beta_version: 3.0.0-beta-8
+wiremock_beta_site: false
+wiremock_ga_site: true
 
 community_slack:
   join_url: http://slack.wiremock.org/
