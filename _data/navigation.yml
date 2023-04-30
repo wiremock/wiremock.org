@@ -6,20 +6,28 @@ main:
       subnavLinks:
         - name: "WireMock for Java"
           subnavLink: "/docs/"
+        - name: "WireMock 3.x for Java (Preview)"
+          subnavLink: "/3.x/docs/"
+          wiremock_baseline: 3.x
         - name: "WireMock Standalone"
           subnavLink: "/docs/running-standalone/"
+        - name: "WireMock 3.x Standalone (Preview)"
+          subnavLink: "/3.x/docs/running-standalone/"
+          wiremock_baseline: 3.x
         - name: "WireMock in Docker"
           subnavLink: "/docs/docker/"
         - name: "WireMock Python"
           subnavLink: "https://wiremock.readthedocs.io/en/latest/"
         - name: "WireMock Cloud"  
           subnavLink: "https://docs.wiremock.io/getting-started/?utm_source=wiremock.org&utm_medium=masthead_doc-links&utm_campaign=2022_baseline"
+        - name: "External Resources"
+          subnavLink: "/external-resources"
 
     - title: "Need Help?"
       subnav: "help"
       subnavLinks:
         - name: "Q&A on Slack"
-          subnavLink: "http://slack.wiremock.org/"
+          subnavLink: "https://slack.wiremock.org/"
         - name: "StackOverflow"
           subnavLink: "https://stackoverflow.com/questions/tagged/wiremock"
         - name: "Commercial Options"
@@ -29,7 +37,7 @@ main:
       subnav: "participate"
       subnavLinks:
         - name: "Community Slack"
-          subnavLink: "http://slack.wiremock.org/"
+          subnavLink: "https://slack.wiremock.org/"
         - name: "Contributor Guide"
           subnavLink: "https://github.com/wiremock/community/blob/main/contributing/README.md"
         - name: "Our GitHub"

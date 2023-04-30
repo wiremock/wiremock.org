@@ -15,5 +15,6 @@ main.css
 .idea/
 
 /vendor
+/tmp
 
 **/.DS_Store
