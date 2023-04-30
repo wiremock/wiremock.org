@@ -1,4 +1,5 @@
 url: "https://wiremock.org/3.x"
 destination: "./tmp/site_3x"
-wiremock_beta_site: true
-wiremock_ga_site: false
+wiremock_preview_site: true
+wiremock_baseline: 3.x
+wiremock_preview: true

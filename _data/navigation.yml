@@ -8,12 +8,12 @@ main:
           subnavLink: "/docs/"
         - name: "WireMock 3.x for Java (Preview)"
           subnavLink: "/3.x/docs/"
-          wiremock_beta_link: true
+          wiremock_baseline: 3.x
         - name: "WireMock Standalone"
           subnavLink: "/docs/running-standalone/"
         - name: "WireMock 3.x Standalone (Preview)"
           subnavLink: "/3.x/docs/running-standalone/"
-          wiremock_beta_link: true
+          wiremock_baseline: 3.x
         - name: "WireMock in Docker"
           subnavLink: "/docs/docker/"
         - name: "WireMock Python"
