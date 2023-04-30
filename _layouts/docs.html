@@ -27,7 +27,7 @@ layout: default
     <div style="background-color: #f2f2f2;border: #c8c8c8 1px solid;padding: 8px;margin-bottom:32px;">
       This document is for the WireMock {{ site.data.baselines.current.id }} baseline.
       See the documentation for WireMock {{ site.data.baselines.preview.id }} preview 
-      <a href="{{  page.url | prepend: site.data.baselines.preview.id | prepend: '/'  | absolute_url }}">here</a>
+      <a href="{{  page.url | prepend: site.data.baselines.preview.absoluteUrl }}">here</a>
     </div>
     {% else %}
       {% if site.wiremock_baseline == site.data.baselines.preview.id %} 
@@ -35,7 +35,7 @@ layout: default
         <b>WARNING: </b>
         This document is for WireMock {{ site.data.baselines.preview.id }} preview.
         See the documentation for the current WireMock {{ site.data.baselines.current.id }} baseline
-        <a href="{{  page.url | prepend: site.data.baselines.current.id | prepend: '/'  | absolute_url }}">here</a>.
+        <a href="{{  page.url | prepend: site.data.baselines.current.absoluteUrl }}">here</a>.
         If you are interested to know more what is planned for WireMock {{ site.data.baselines.preview.id }}, 
         see
         <a href="{{  site.data.baselines.preview.scopeUrl | absolute_url }}">this page</a>.
@@ -45,7 +45,7 @@ layout: default
         <b>WARNING: </b>
         This document is for an old WireMock {{ site.wiremock_baseline }} baseline.
         See the documentation for the current WireMock {{ site.data.baselines.current.id }} baseline
-        <a href="{{  page.url | prepend: site.data.baselines.current.id | prepend: '/'  | absolute_url }}">here</a>
+        <a href="{{  page.url | prepend: site.data.baselines.current.absoluteUrl }}">here</a>
       </div>
       {% endif %}  
     {% endif %}
