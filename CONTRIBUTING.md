@@ -1,6 +1,6 @@
 # Contributing to the WireMock website
 
-[![a](https://img.shields.io/badge/slack-Join%20us-brightgreen?style=flat&logo=slack)](http://slack.wiremock.org/)
+[![a](https://img.shields.io/badge/slack-Join%20us-brightgreen?style=flat&logo=slack)](https://slack.wiremock.org/)
 
 All contributions to the website are welcome!
 Whether you develop new documentation, want to share your use-case,
