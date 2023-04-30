@@ -226,4 +226,4 @@ wiremock_beta_version: 3.0.0-beta-8
 wiremock_baseline: 2.x
 
 community_slack:
-  join_url: http://slack.wiremock.org/
+  join_url: https://slack.wiremock.org/
