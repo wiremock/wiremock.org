@@ -57,10 +57,26 @@ on the website and in the documentation contents.
 To do so, run the following command:
 
 ```bash
-bundle exec jekyll serve
+bundle exec jekyll serve --config '_config.yml'
 ```
 
 It will start the website on [http://localhost:4000](http://localhost:4000).
+
+## Preview and Previous site baselines
+
+The website may include preview and deprecated baselines, mainly to serve the documentation.
+The websites have slightly different layouts to help users navigate (links, headers, etc.).
+
+Alternative baselines are managed in the `main` branch,
+but the content comes from other Git branches.
+For example, if the `3.x` baseline is a preview one...
+
+- There is a branch in the repository, for example `3.0.0-beta` for `3.x`
+- There is a `wiremorg.org/3.x` entry on the website.
+  It is included from the branch via Git submodules and packaging scripts in GitHub Actions
+- For this version, there is a `_config-3.x.yml` file that defines configuration overrides for this version
+- To build and test the baseline on a local machine, one needs to include the overrides config file into `jekyll build` and `jekyll serve` commands.
+  For example, `bundle exec jekyll serve --config '_config.yml,_config-3.x.yml'`.
 
 ## Deploying the website
 
