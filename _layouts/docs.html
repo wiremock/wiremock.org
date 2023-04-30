@@ -23,6 +23,30 @@ layout: default
       Need help? Join the <a href="{{site.community_slack.join_url}}">WireMock community Slack</a>
     </div>
 
+    {% if site.wiremock_baseline == site.data.baselines.current %} 
+    <div style="background-color: #f2f2f2;border: #c8c8c8 1px solid;padding: 8px;margin-bottom:32px;">
+      This is the documentation for the WireMock {{ site.data.baselines.current }} baseline.
+      See the documentation for WireMock {{ site.data.baselines.preview }} preview 
+      <a href="{{  page.url | prepend: site.data.baselines.preview | prepend: '/'  | absolute_url }}">here</a>
+    </div>
+    {% else %}
+      {% if site.wiremock_baseline == site.data.baselines.current %} 
+      <div style="background-color: #f2f2f2;border: #c8c8c8 1px solid;padding: 8px;margin-bottom:32px;">
+        <b>WARNING: </b>
+        This is the documentation for WireMock {{ site.data.baselines.previews }} preview.
+        See the documentation for the current WireMock {{ site.data.baselines.current }} baseline
+        <a href="{{  page.url | prepend: site.data.baselines.current | prepend: '/'  | absolute_url }}">here</a>
+      </div>
+      {% else %}
+      <div style="background-color: #f2f2f2;border: #c8c8c8 1px solid;padding: 8px;margin-bottom:32px;">
+        <b>WARNING: </b>
+        This is the archive documentation for WireMock {{ site.wiremock_baseline }}.
+        See the documentation for the current WireMock {{ site.data.baselines.current }} baseline
+        <a href="{{  page.url | prepend: site.data.baselines.current | prepend: '/'  | absolute_url }}">here</a>
+      </div>
+      {% endif %}  
+    {% endif %}
+
     <div class="page__inner-wrap">
       <header>
         {% if page.title %}<h1 class="page__title" itemprop="headline">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</h1>{% endif %}
