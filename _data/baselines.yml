@@ -1,6 +1,9 @@
 # Current GA Version of WireMock
-current: 2.x
+current:
+  id: 2.x
 # List of preview versions
-preview: 3.x
+preview: 
+  id: 3.x
+  scopeUrl: https://github.com/orgs/wiremock/projects/5
 # List of old versions documentation for which is served on the website
 archive:
