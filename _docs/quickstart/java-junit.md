@@ -9,7 +9,7 @@ In this guide we will write an API Unit test with WireMock and JUnit 4.
 
 ## Prerequisites
 
-- Java 11, 17 or JDK 1.8
+- Java 11 or 17
 - Maven or Gradle, recent versions
 - A Java project, based on Maven and Gradle
 - A Unit test file which we will use as a playground
@@ -19,7 +19,12 @@ In this guide we will write an API Unit test with WireMock and JUnit 4.
 ## Add WireMock Dependency to your project
 
 WireMock is distributed via Maven Central and can be included in your project using common build tools' dependency management.
-To add the standard WireMock JAR as a project dependency, put the following in the dependencies section of your build file:
+To add the standard WireMock JAR as a project dependency, put the dependencies below section of your build file.
+
+In our test, we will also use AssertJ to verify the responses.
+To send the requests, we will use the embedded HTTP client available in Java 11+.
+If you want to add a Java 1.8 test, you will need to add an external HTTP Client implementation
+like [Apache HttpClient](https://hc.apache.org/httpcomponents-client-5.2.x/#).
 
 ### Maven
 
@@ -30,12 +35,19 @@ To add the standard WireMock JAR as a project dependency, put the following in t
     <version>{{ site.wiremock_version }}</version>
     <scope>test</scope>
 </dependency>
+<dependency>
+    <groupId>org.assertj</groupId>
+    <artifactId>assertj-core</artifactId>
+    <version>3.24.2</version>
+    <scope>test</scope>
+</dependency>
 ```
 
 ### Gradle
 
 ```groovy
 testImplementation "com.github.tomakehurst:wiremock-jre8:{{ site.wiremock_version }}"
+testImplementation "org.assertj:assertj-core:3.24.2"
 ```
 
 ## Add the WireMock rule
@@ -62,6 +74,12 @@ public WireMockRule wireMockRule = new WireMockRule(8089); // No-args constructo
 Now you're ready to write a test case like this:
 
 ```java
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+...
+
 @Test
 public void exampleTest() {
     // Setup the WireMock mapping stub for the test
@@ -71,14 +89,20 @@ public void exampleTest() {
             .withHeader("Content-Type", "text/xml")
             .withBody("<response>SUCCESS</response>")));
 
-    // Send the request and receive the response
-    Result result = myHttpServiceCallingObject.doSomething();
-    assertTrue(result.wasSuccessful());
+    // Setup HTTP POST request (with HTTP Client embedded in Java 11+)
+    final HttpClient client = HttpClient.newBuilder().build();
+    final HttpRequest request = HttpRequest.newBuilder()
+        .uri(wiremockServer.getRequestURI("/my/resource"))
+        .header("Content-Type", "text/xml")
+        .POST().build();
 
-    // Verify the response
-    verify(postRequestedFor(urlPathEqualTo("/my/resource"))
-        .withRequestBody(matching(".*message-1234.*"))
-        .withHeader("Content-Type", equalTo("text/xml")));
+    // Send the request and receive the response
+    final HttpResponse<String> response =
+            client.send(request, HttpResponse.BodyHandlers.ofString());
+
+    // Verify the response (with AssertJ)
+    assertThat(response.statusCode()).as("Wrong response status code").isEqualTo(200);
+    assertThat(response.body()).as("Wrong response body").contains("<response>SUCCESS</response>");
 }
 ```
 
