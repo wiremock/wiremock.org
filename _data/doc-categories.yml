@@ -9,7 +9,8 @@ standalone:
   title: WireMock Standalone
   pages:
     - docker
-    - running-standalone
+    - standalone/java-jar
+    - standalone/administration
 
 java:
   title: Java Usage
@@ -55,4 +56,4 @@ extensibility:
 reference:
   title: Reference
   pages:
-    - api
+    - standalone/admin-api-reference
