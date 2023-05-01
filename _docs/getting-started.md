@@ -8,44 +8,6 @@ description: WireMock is distributed via Maven Central and can be included in yo
 ---
 
 
-
-## Writing a test with JUnit 5.x
-
-See [JUnit 5+ Jupiter Usage](../junit-jupiter/) for various JUnit 5 usage scenarios.
-
-## Non-JUnit and general Java usage
-
-If you're not using JUnit or neither of the WireMock rules manage its
-lifecycle in a suitable way you can construct and start the server
-directly:
-
-```java
-WireMockServer wireMockServer = new WireMockServer(wireMockConfig().port(8089)); //No-args constructor will start on port 8080, no HTTPS
-wireMockServer.start();
-
-// Do some stuff
-
-WireMock.reset();
-
-// Finish doing stuff
-
-wireMockServer.stop();
-```
-
-If you've changed the port number and/or you're running the server on
-another host, you'll need to tell the client:
-
-```java
-WireMock.configureFor("wiremock.host", 8089);
-```
-
-And if you've deployed it into a servlet container under a path other
-than root you'll need to set that too:
-
-```java
-WireMock.configureFor("tomcat.host", 8080, "/wiremock");
-```
-
 ## Running standalone
 
 The WireMock server can be run in its own process, and configured via
