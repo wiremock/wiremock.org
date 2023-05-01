@@ -42,6 +42,7 @@ configuration:
   pages:
     - https
     - multi-domain-mocking
+    - advanced/deploy-to-servlet-container
 
 extensibility:
   title: Extensibility
