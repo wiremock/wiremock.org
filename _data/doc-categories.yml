@@ -46,6 +46,7 @@ configuration:
     - https
     - multi-domain-mocking
     - advanced/deploy-to-servlet-container
+    - advanced/java7
 
 extensibility:
   title: Extensibility
