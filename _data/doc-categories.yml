@@ -1,28 +1,26 @@
 setup:
-  title: Setup
+  title: Getting started
   pages:
     - getting-started
     - download-and-installation
-    - running-standalone
-    - docker
-    - android
-    - spring-boot
 
-configuration:
-  title: Configuration
+standalone:
+  title: WireMock Standalone
   pages:
-    - https
-    - multi-domain-mocking
+    - docker
+    - running-standalone
 
 java:
   title: Java Usage
   pages:
     - junit-jupiter
     - junit-extensions
+    - spring-boot
     - java-usage
     - configuration
     - running-without-http-server
-
+    - android
+    
 stubbing-and-verifying:
   title: Stubbing & Verifying
   pages:
@@ -38,6 +36,12 @@ record-playback:
   title: Record & Playback
   pages:
     - record-playback
+
+configuration:
+  title: Advanced use-cases
+  pages:
+    - https
+    - multi-domain-mocking
 
 extensibility:
   title: Extensibility
