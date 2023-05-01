@@ -1,9 +1,10 @@
 setup:
   title: Getting started
   pages:
-    - getting-started
+    - overview
     - quickstart/java-junit
     - download-and-installation
+    - getting-started
 
 standalone:
   title: WireMock Standalone
