@@ -2,6 +2,7 @@ setup:
   title: Getting started
   pages:
     - getting-started
+    - quickstart/java-junit
     - download-and-installation
 
 standalone:
