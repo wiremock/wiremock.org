@@ -104,31 +104,42 @@ description: >
 
 <h2>By use-case</h2>
 
+<p>
+    Below you can find links to the documentation for WireMock key use-cases.
+    You can find more documentation pages on the sidebar.
+</p>
 
 <div class="grid-container">
-    <a class="card card-use-case">
+    <a class="card card-use-case" href="./request-matching">
         <img src="{{ '/images/requestIcon.svg' | absolute_url }}" alt="Wiremock Features"/>
         Advanced request matching
     </a>
-    <a  class="card card-use-case">
+    <a  class="card card-use-case" href="./response-templating">
         <img src="{{ '/images/responseIcon.svg' | absolute_url }}" alt="wiremock dynamic response"/>
         Dynamic response templating
     </a>
-    <a class="card card-use-case">
-        <img src="{{ '/images/unitTestIcon.svg' | absolute_url }}" alt="wiremock unit tests" />
-        Run in your unit tests, on your laptop or in your test environment.
+    <!-- TODO: replace by a generic test framework listing -->
+    <a class="card card-use-case" href="./junit-jupiter">
+        <img src="{{ '/images/logos/doc-sections/checklist.svg' | absolute_url }}" alt="wiremock unit tests" />
+        Use API Mocking in your unit tests
     </a>
-    <a class="card card-use-case">
+    <a class="card card-use-case" href="./simulating-faults">
       <img src="{{ '/images/faultIcon.svg' | absolute_url }}" alt="wiremock fault and latency"/>
       Fault and latency injection
     </a>
-    <a class="card card-use-case">
+    <a class="card card-use-case" href="./record-playback">
         <img src="{{ '/images/recordIcon.svg' | absolute_url }}" alt="wiremock record playback"/>
         Record / Playback
     </a>
-    <a class="card card-use-case">
-        <img src="{{ '/images/httpIcon.svg' | absolute_url }}" alt="wiremock java, python, http" />
+    <!-- On the landing but no Root page
+    <a class="card card-use-case" href="./">
+        <img src="{{ '/images/httpIcon.svg' | absolute_url }}" alt="WireMock java, python, htt APIs" />
         Java, Python, HTTP and JSON file APIs
+    </a>
+    -->
+    <a class="card card-use-case" href="./extending-wiremock">
+        <img src="{{ '/images/logos/doc-sections/extensibility.svg' | absolute_url }}" alt="" />
+        Extending WireMock
     </a>
   </div>
 
