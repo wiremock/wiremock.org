@@ -4,8 +4,11 @@ layout: docs
 
 <style>
   .solution-block {
-    align-items: center;
+    display: flex;
+    justify-content: center;
     width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
   
   .solution-header {
@@ -25,7 +28,7 @@ layout: docs
 </style>
 
 {% if page.logo %}
-<div>
+<div class="solution-block">
   <div class="solution-header">
   <img src="{{ '/images/logos/wiremock/logo_square.svg' | absolute_url }}">
   <img src="{{ '/images/logos/doc-sections/connect.svg' | absolute_url }}">
