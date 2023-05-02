@@ -2,7 +2,6 @@
 layout: solution
 title: WireMock and Python
 meta_title: Python Solutions | WireMock
-toc_rank: 115
 description: Additional solutions for WireMock when using Python
 logo: /images/logos/technology/python.svg
 ---

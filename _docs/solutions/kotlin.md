@@ -2,7 +2,6 @@
 layout: solution
 title: WireMock and Kotlin
 meta_title: Kotlin Solutions | WireMock
-toc_rank: 115
 description: Additional solutions for WireMock when using Kotlin
 logo: /images/logos/technology/kotlin.svg
 ---

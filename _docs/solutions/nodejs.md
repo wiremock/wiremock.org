@@ -2,7 +2,6 @@
 layout: solution
 title: WireMock and Node.js
 meta_title: Node.js Solutions | WireMock
-toc_rank: 115
 description: Additional solutions for WireMock when using Node.js
 logo: /images/logos/technology/nodejs.svg
 ---
