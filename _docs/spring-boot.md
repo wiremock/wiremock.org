@@ -1,9 +1,11 @@
 ---
-layout: docs
+layout: solution
 title: "Using with Spring Boot"
 meta_title: Running WireMock with Spring Boot | WireMock
 toc_rank: 116
 description: The team behind Spring Cloud Contract have created a library to support running WireMock using the “ambient” HTTP server
+redirect_from: "/solutions/spring-boot.html"
+logo: /images/logos/technology/spring.svg
 ---
 
 The team behind Spring Cloud Contract have created a library to support running WireMock using the "ambient" HTTP server.
