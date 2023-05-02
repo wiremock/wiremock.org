@@ -1,0 +1,192 @@
+---
+layout: docs
+title: "Home - WireMock User Documentation"
+meta_title: "WireMock User Documentation | WireMock"
+toc_rank: 1001
+permalink: /docs/
+description: > 
+    All of WireMock’s features are accessible via its REST (JSON) interface and its Java API.
+    Additionally, stubs can be configured via JSON files. Read the full doc here.
+---
+
+<style>
+    .grid-container {
+        display: grid;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 61rem;
+        gap: 1rem;
+        grid-template-columns: repeat(3, 1fr)
+    }
+
+    .card {
+        display: flex;
+        border: .2rem solid;
+        border-radius: 1rem;
+        height: 6rem;
+        width: 15rem;
+        font-weight: 600;
+        vertical-align: middle;
+    }
+
+    .card > img {
+        width: 4em;
+        border-style: none;
+    }
+
+</style>
+
+<p>
+    WireMock is a popular open-source tool for API mock testing, with over 5 million downloads per month.
+    It can help you to create stable test and development environments,
+    isolate yourself from flakey 3rd parties
+    and simulate APIs that don't exist yet.
+</p>
+<!--
+</p>
+    At its core it is web server that can be primed to serve canned responses to particular requests (stubbing) and
+    that captures incoming requests so that they can be checked later (verification).
+    It also has an assortment of other useful features including record/playback of interactions with other APIs, injection of faults and delays,
+    simulation of stateful behavior.
+</p>
+-->
+
+<h2>Getting Started</h2>
+
+<div class="grid-container">
+    <a class="card" href="./overview">
+        <img src="{{ '/images/logos/doc-sections/summary.svg' | absolute_url }}">
+        Overview
+    </a>
+    <a class="card" href="./getting-started">
+        <img src="{{ '/images/logos/doc-sections/quickstart.svg' | absolute_url }}">
+        Quick Start
+    </a>
+    <a class="card" href="./download-and-installation">
+        <img src="{{ '/images/logos/doc-sections/download.svg' | absolute_url }}">
+        Download
+    </a>
+    <a class="card" href="../support">
+        <img src="{{ '/images/logos/doc-sections/help.svg' | absolute_url }}">
+        Get Help
+    </a>
+</div>
+
+
+<h2>Distributions</h2>
+
+<p>WireMock provides the following generic distributions that allow running it as a standalone server
+   in a container or within a Java Virtual Machine.
+</p>
+
+<div class="grid-container">
+    <a class="card" href="./running-standalone">
+        <img src="{{ '/images/logos/technology/jar.svg' | absolute_url }}">
+        Standalone JAR
+    </a>
+    <a class="card" href="./docker">
+        <img src="{{ '/images/logos/technology/docker.svg' | absolute_url }}">
+        Docker
+    </a>
+</div>
+
+<h2>By use-case</h2>
+
+
+<div class="grid-container">
+    <a class="card">
+        <img src="{{ '/images/requestIcon.svg' | absolute_url }}" alt="Wiremock Features"/>
+        Advanced request matching
+    </a>
+    <a  class="card">
+        <img src="{{ '/images/responseIcon.svg' | absolute_url }}" alt="wiremock dynamic response"/>
+        Dynamic response templating
+    </a>
+    <a class="card">
+        <img src="{{ '/images/unitTestIcon.svg' | absolute_url }}" alt="wiremock unit tests" />
+        Run in your unit tests, on your laptop or in your test environment.
+    </a>
+    <a class="card">
+      <img src="{{ '/images/faultIcon.svg' | absolute_url }}" alt="wiremock fault and latency"/>
+      Fault and latency injection
+    </a>
+    <a class="card">
+        <img src="{{ '/images/recordIcon.svg' | absolute_url }}" alt="wiremock record playback"/>
+        Record / Playback
+    </a>
+    <a class="card">
+        <img src="{{ '/images/httpIcon.svg' | absolute_url }}" alt="wiremock java, python, http" />
+        Java, Python, HTTP and JSON file APIs
+    </a>
+  </div>
+
+<h2>By technology</h2>
+
+<div class="grid-container">
+    <a class="card" href="./java-usage">
+        <img src="{{ '/images/logos/technology/java.svg' | absolute_url }}">
+        Java
+    </a>
+    <a class="card" href="./solutions/python">
+        <img src="{{ '/images/logos/technology/python.svg' | absolute_url }}">
+        Python
+    </a>
+    <a class="card" href="./solutions/nodejs">
+        <img class="card-image" src="{{ '/images/logos/technology/nodejs.svg' | absolute_url }}">
+        Node.js
+    </a>
+    <a class="card" href="./android">
+        <img class="card-image" src="{{ '/images/logos/technology/android.svg' | absolute_url }}">
+        Android
+    </a>
+    <a class="card" href="./solutions/dotnet">
+        <img class="card-image" src="{{ '/images/logos/technology/dotnet.svg' | absolute_url }}">
+        .NET
+    </a>
+    <a class="card" href="./solutions/golang">
+        <img class="card-image" src="{{ '/images/logos/technology/golang.svg' | absolute_url }}">
+        Rust
+    </a>
+    <a class="card" href="./solutions/rust">
+        <img class="card-image" src="{{ '/images/logos/technology/rust.svg' | absolute_url }}">
+        Rust
+    </a>
+</div>
+
+<p>
+    There are also solutions and guides for particular technologies,
+    provided by the WireMock community and external contributors.
+</p>
+
+<div class="grid-container">
+    <a class="card" href="./java-usage">
+        <img src="{{ '/images/logos/technology/java.svg' | absolute_url }}">
+        Java
+    </a>
+    <a class="card" href="./solutions/python">
+        <img src="{{ '/images/logos/technology/python.svg' | absolute_url }}">
+        Python
+    </a>
+    <a class="card" href="./solutions/nodejs">
+        <img class="card-image" src="{{ '/images/logos/technology/nodejs.svg' | absolute_url }}">
+        Node.js
+    </a>
+    <a class="card" href="./android">
+        <img class="card-image" src="{{ '/images/logos/technology/android.svg' | absolute_url }}">
+        Android
+    </a>
+    <a class="card" href="./solutions/dotnet">
+        <img class="card-image" src="{{ '/images/logos/technology/dotnet.svg' | absolute_url }}">
+        .NET
+    </a>
+    <a class="card" href="./solutions/golang">
+        <img class="card-image" src="{{ '/images/logos/technology/golang.svg' | absolute_url }}">
+        Rust
+    </a>
+    <a class="card" href="./solutions/rust">
+        <img class="card-image" src="{{ '/images/logos/technology/rust.svg' | absolute_url }}">
+        Rust
+    </a>
+</div>
+
+
