@@ -1,0 +1,17 @@
+blank_issues_enabled: true
+contact_links:
+  - name: '🛟 Help on Slack'
+    url: https://slack.wiremock.org/
+    about: |
+      You can ask questions on the community Slack in the '#help' or '#help-contributing' channels.
+      Please do not raise GitHub issues for questions.
+  - name: '📚 Knowledge Base on StackOverflow'
+    url: https://stackoverflow.com/questions/tagged/wiremock
+    about: |
+      You can also look for similar issues or ask questions on StackOverflow, use the 'wiremock' tag.
+  - name: '💁 More Support Options'
+    url: https://github.com/wiremock/.github/blob/main/SUPPORT.md
+    about: |
+      Check out the Support page to know more about community and commercial support options available,
+      including managed/SaaS services, enterprise support with SLA, training and consulting options
+      listed by the vendors.

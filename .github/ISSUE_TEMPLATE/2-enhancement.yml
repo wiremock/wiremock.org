@@ -1,0 +1,19 @@
+name: '🚀 Enhancement'
+labels: ['enhancement']
+description: 'Use it for any proposals for improving this project'
+
+body:
+  - type: textarea
+    attributes:
+      label: Proposal
+      description: Summarize your idea and motivation for a feature here
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: References
+      description: Reference any relevant documentation, prior work, other materials or issues/pull requests that can be used for inspiration.
+    validations:
+      required: false
+ 
