@@ -54,7 +54,7 @@ jobs:
           mkdir _site/3.x
           cp -R tmp/site_3x/* _site/3.x/
         env:
-          JEKYLL_ENV: 3.x
+          JEKYLL_ENV: production
 # TODO: Uncomment when cleaned up (if ever)
 #      - name: Validate HTML and links
 #        uses: anishathalye/proof-html@v2
