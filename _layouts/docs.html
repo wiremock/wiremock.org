@@ -61,8 +61,23 @@ layout: default
       </section>
 
       <footer class="page__meta">
+        <a href="{{ page.path | prepend: site.pageEditPrefix }}" target="_blank">
+          <h4 class="page__meta-title">
+            <img width="16px" src= "/images/logos/doc-sections/edit.svg" />
+            &nbsp;Improve this page
+          </h4>
+        </a>
+        <a href="{{ 'https://github.com/wiremock/wiremock.org/issues/new?labels=bug&template=2-bug.yml&page=' | append: page.url | append: '&title=Issue on ' | append: page.title }}" target="_blank">
+          <h4 class="page__meta-title">
+            <img width="16px" src= "/images/logos/doc-sections/bug.svg" />
+            &nbsp;Report an issue
+          </h4>
+        </a>
         {% if site.data.ui-text[site.locale].meta_label %}
-          <h4 class="page__meta-title">{{ site.data.ui-text[site.locale].meta_label }}</h4>
+          
+          <h4 class="page__meta-title">
+            {{ site.data.ui-text[site.locale].meta_label }}
+          </h4>
         {% endif %}
         {% include page__taxonomy.html %}
       </footer>
