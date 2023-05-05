@@ -4,6 +4,7 @@ title: "WireMock for Java and JVM languages"
 meta_title: "Java and Java Virtual Machine Solutions | WireMock"
 description: "Additional solutions for WireMock when using Java or other JVM based languages"
 logo: /images/logos/technology/java.svg
+hide-disclaimer: true
 ---
 
 WireMock was originally created for Java development,
