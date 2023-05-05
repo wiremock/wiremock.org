@@ -3,3 +3,4 @@ destination: "./tmp/site_3x"
 wiremock_preview_site: true
 wiremock_baseline: 3.x
 wiremock_preview: true
+pageEditPrefix: https://github.com/wiremock/wiremock.org/edit/3.0.0-beta/
