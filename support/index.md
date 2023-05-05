@@ -1,19 +1,30 @@
 ---
 layout: support
 title: Support
-meta_title: How to get support
-description: How to get support for WireMock open source and Studio
+meta_title: How to get WireMock support
+description: Enterprise and commercial support and consulting options
 ---
 
-# Support
+WireMock is an open source project.
+In accordance with the [Apache License 2.0](https://github.com/wiremock/wiremock/blob/master/LICENSE.txt),
+in general there is no support or guarantees provided for it.
+At the same time, you can get some assistance through WireMock community channels,
+and contribute to helping other users too.
+There are also vendors that provide commercial support for WireMock.
 
-<br />
+## WireMock Community
 
-If you're looking for help or advice you can find a community of users and contributors on the [WireMock community Slack]({{ site.community_slack.join_url }}){:target="{{site.data.misc.blank}}"}.
+If you’re looking for help or advice,
+you can find a community of users and contributors on the WireMock community Slack channels.
+Stack Overflow also has many good WireMock questions and answers.
 
-<br />
-[Stack Overflow](https://stackoverflow.com/questions/tagged/wiremock){:target="{{site.data.misc.blank}}"} also has many good WireMock questions and answers.
+Note that all the community channels are maintained without any guarantees or a Service Level Agreement (SLA).
+All responses are provided by community members, and it is a best effort.
+Every community member is welcome to participate, help to triage and answer the questions.
 
-## Priority support
+- [WireMock Community Slack](http://slack.wiremock.org/) provides the `#help` channel for Q&A
+- [As a question on StackOverflow](https://stackoverflow.com/questions/tagged/wiremock), use the `wiremock` tag
 
-We offer priority support with a guaranteed SLA as part the WireMock Cloud Enterprise plan. <a href="https://share-eu1.hsforms.com/1YSKnSP93Tsig1JoO3lXSawfbdiq" class="schedule-call-button">get in touch</a> with our team to discuss options or get a demo.
+## Commercial support, trainings and consulting
+
+See [this page](./commercial).
