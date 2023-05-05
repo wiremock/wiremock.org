@@ -1,4 +1,4 @@
-.studio-header {
+.wiremock-cloud-header {
     h1,
     h2,
     h3,
@@ -23,7 +23,7 @@
     background-size: 420px 450px, 420px 450px;
     height: 600px;
 
-    .studio-header__intro {
+    .wiremock-cloud-header__intro {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -69,13 +69,13 @@
         }
     }
 
-    .studio-header-middle {
+    .wiremock-cloud-header-middle {
         display: flex;
         align-items: center;
     }
 }
 
-.wiremock-studio-container {
+.wiremock-cloud-container {
     width: 880px;
     margin-left: auto;
     margin-right: auto;
@@ -224,33 +224,33 @@
     box-sizing: border-box;
     border-radius: 8px;
 }
-.studio-mobile-subtitle {
+.wiremock-cloud-mobile-subtitle {
     display: none;
     font-size: 30px !important;
 }
 
 @media (max-width: 1410px) {
-    .studio-subtitle {
+    .wiremock-cloud-subtitle {
         display: none;
     }
     .wiremockBIG {
         width: 180px !important;
     }
-    .studio-header__intro {
+    .wiremock-cloud-header__intro {
         h2 {
             font-size: 30px !important;
         }
     }
-    .studio-mobile-subtitle {
+    .wiremock-cloud-mobile-subtitle {
         display: block;
     }
 }
 
 @media (max-width: 1305px) {
-    .studio-header {
+    .wiremock-cloud-header {
         background-size: 350px 400px, 350px 400px;
     }
-    .studio-header__intro {
+    .wiremock-cloud-header__intro {
         width: 370px !important;
     }
 }
@@ -267,19 +267,19 @@
 }
 
 @media (max-width: 1080px) {
-    .studio-header__intro {
+    .wiremock-cloud-header__intro {
         width: 320px !important;
     }
 }
 
 @media (max-width: 1023px) {
-    .studio-header__intro {
+    .wiremock-cloud-header__intro {
         padding: 0 20px;
     }
-    .studio-header {
+    .wiremock-cloud-header {
         background-image: unset;
     }
-    .wiremock-studio-container {
+    .wiremock-cloud-container {
         width: 90%;
     }
     .otherWiremockProducts-container {
