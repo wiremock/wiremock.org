@@ -76,7 +76,8 @@ layout: default
       </header>
 
       <section class="page__content" itemprop="text">
-        {% include anchor-headings.html html=content beforeHeading="true" anchorBody="#" anchorClass="anchor" %}
+        <!--TODO: use beforeHeading="true"  before mastering the negative indenting magic-->
+        {% include anchor-headings.html html=content anchorBody="#" anchorClass="anchor" %}
         {% if page.link %}<div><a href="{{ page.link }}" class="btn">{{ site.data.ui-text[site.locale].ext_link_label }}</a></div>{% endif %}
       </section>
 
