@@ -1,0 +1,20 @@
+name: '⚙️ Maintenance / Internal'
+labels: ['chore']
+description: 'Internal issues for repository maintenance, code quality, and other changes not visible to end users'
+
+body:
+  - type: textarea
+    attributes:
+      label: Summary
+      description: |
+        Describe your use-case and motivation for the change.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: References
+      description: |
+        Reference any relevant materials, prior work or issues/pull requests that can be used for inspiration.
+    validations:
+      required: false
