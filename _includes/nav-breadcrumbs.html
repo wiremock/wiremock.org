@@ -3,12 +3,19 @@
 
       {% for crumb in breadcrumbs %} 
          {% if forloop.first and site.breadcrumbs.root.image %}
-         <li class="breadcrumb-item breadcrumb-item-icon" property="itemListElement" typeof="ListItem">
-            <a property="item" typeof="WebPage" href="{{ crumb.url | relative_url }}">
-               <span class="icon" property="name">{% include nav-breadcrumb-icon.svg %}</span>
-               <meta property="position" content="{{ crumb.position }}" />
-            </a>
-         </li>
+            
+            
+            
+            <li class="breadcrumb-item breadcrumb-item-icon" property="itemListElement" typeof="ListItem">
+               <a property="item" typeof="WebPage" href="{{ crumb.url | relative_url }}">
+                  {% if site.breadcrumbs.root.imagePath %}
+                  <img class="icon" src="{{ site.breadcrumbs.root.imagePath }}"/>
+                  {% else %}
+                  <span class="icon" property="name">{% include "nav-breadcrumb-icon".svg %}</span>
+                  {% endif %}
+                  <meta property="position" content="{{ crumb.position }}" />
+               </a>
+            </li>
          {% continue %} 
       {% endif %} 
       {% if forloop.last %}

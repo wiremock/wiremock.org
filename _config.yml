@@ -164,6 +164,7 @@ breadcrumbs:
   root:
     hide: true
     image: true
+    imagePath: /images/logos/doc-sections/home.svg
 
 # Plugins
 plugins:
