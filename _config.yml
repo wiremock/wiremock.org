@@ -53,8 +53,7 @@ social:
 analytics:
     provider: google
     google:
-        tracking_id: "UA-36386229-2"
-        optimize_id: "GTM-WQTGSSM"
+        id: "G-KN208QTJLZ"
 
 # Google AdSense
 google_ad_client:
