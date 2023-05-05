@@ -56,7 +56,7 @@ layout: default
       </header>
 
       <section class="page__content" itemprop="text">
-        {{ content }}
+        {% include anchor-headings.html html=content beforeHeading="true" anchorBody="#" anchorClass="anchor" %}
         {% if page.link %}<div><a href="{{ page.link }}" class="btn">{{ site.data.ui-text[site.locale].ext_link_label }}</a></div>{% endif %}
       </section>
 
