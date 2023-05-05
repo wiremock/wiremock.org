@@ -1,0 +1,42 @@
+name: '🐛 Bug Report'
+labels: ['bug']
+description: 'Create a bug report to help us improve'
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do **NOT** use this form to report security issues.
+        See the [Security Issue reporting guidelines](https://github.com/wiremock/.github/blob/main/SECURITY.md)
+
+  - type: input
+    id: page
+    attributes:
+      label: Page
+      description: The URL or name of the page you encounter issues on
+    validations:
+      required: false
+  
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Describe the problem, expected and actual behavior here. Screenshots are welcome too.
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggestions
+    attributes:
+      label: Suggested Edits
+      description: Suggest the text or contents for the page. Do not hesitate to just submit a pull request instead!
+    validations:
+      required: false
+
+  - type: textarea
+    id: references
+    attributes:
+      label: References
+      description: Reference any relevant documentation, prior work, other materials or issues/pull requests that can be used for inspiration.
+    validations:
+      required: false

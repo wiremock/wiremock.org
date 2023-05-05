@@ -1,0 +1,72 @@
+---
+layout: docs
+---
+
+<style>
+  .solution-block {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .solution-header {
+      display: inline;
+      align-items: center;
+      justify-content: center;
+      min-height: 8rem;
+      width: fit-content;
+  }
+  
+  .solution-header > img {
+      width: auto;
+      height: 6rem;
+      border-style: none;
+  }
+
+</style>
+
+{% if page.logo %}
+<div class="solution-block">
+  <div class="solution-header">
+  <img src="{{ '/images/logos/wiremock/logo_square.svg' | absolute_url }}">
+  <img src="{{ '/images/logos/doc-sections/connect.svg' | absolute_url }}">
+  <img src="{{ page.logo | absolute_url }}">
+  </div>
+</div>
+{% endif %}
+
+{% if page.coming-soon %}
+<div style="background-color: #f2f2f2;border: #c8c8c8 1px solid;padding: 8px;margin-bottom:32px;">
+  <p>
+    <b>Work in Progress:</b>
+    This solution page will be published soon.
+    If you are interested to contribute a patch based on
+    <a href="https://github.com/wiremock/ecosystem/">WireMock Ecosystem</a>,
+    please submit a pull request!
+  </p>
+</div>
+{% else %}
+  {% if page.hide-disclaimer %}
+    <!-- All solutions on this page are supported by the community -->
+  {% else %}
+  <div style="background-color: #f2f2f2;border: #c8c8c8 1px solid;padding: 8px;margin-bottom:32px;">
+    <p>
+      <b>Disclaimer:</b>
+      This solution page includes resources maintained
+      by their authors outside the WireMock organization on GitHub.
+      The info is provided as is without guarantees unless explicitly specified.
+      Referenced projects and guidelines 
+      might be incompatible with the recent WireMock {{ site.data.baselines.current.id }} releases
+      or the recent versions of the target technology or framework.
+    </p>
+    <p>
+      Please use with caution, and submit GitHub issues or pull requests to this page and referenced repositories
+      if something is missing, broken or needs update.
+    </p>
+  </div>
+  {% endif %}
+{% endif %}
+
+{{ content }}

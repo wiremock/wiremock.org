@@ -1,9 +1,11 @@
 ---
-layout: docs
+layout: solution
 title: "Using with Spring Boot"
 meta_title: Running WireMock with Spring Boot | WireMock
 toc_rank: 116
 description: The team behind Spring Cloud Contract have created a library to support running WireMock using the “ambient” HTTP server
+redirect_from: "/docs/spring-boot.html"
+logo: /images/logos/technology/spring.svg
 ---
 
 The team behind Spring Cloud Contract have created a library to support running WireMock using the "ambient" HTTP server.
@@ -13,3 +15,7 @@ See [Spring Cloud Contract WireMock](https://docs.spring.io/spring-cloud-contrac
 
 The article [Faking OAuth2 Single Sign-on in Spring](https://engineering.pivotal.io/post/faking_oauth_sso/)
 from Pivotal's blog shows how WireMock can be used to test Spring apps that use 3rd party OAuth2 login.
+
+## Useful pages
+
+- [WireMock on Java and JVM](../solutions/jvm) - Most of JVM generic solutions are applicable to Spring Boot  development too

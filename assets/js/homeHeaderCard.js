@@ -1,7 +1,7 @@
 const openSourceCard = document.querySelector("#openSourceCard");
 const leftHeaderHP = document.querySelector(".home-header-leftHeaderHP");
 
-const studioCard = document.querySelector("#studioCard");
+const wiremockCloudCard = document.querySelector("#wiremockCloudCard");
 const rightHeaderHP = document.querySelector(".home-header-rightHeaderHP");
 
 openSourceCard.addEventListener("mouseover", () => {
@@ -12,10 +12,10 @@ openSourceCard.addEventListener("mouseout", () => {
     leftHeaderHP.classList.remove("headerHoverCard");
 });
 
-studioCard.addEventListener("mouseover", () => {
+wiremockCloudCard.addEventListener("mouseover", () => {
     rightHeaderHP.classList.add("headerHoverCardStudio");
     rightHeaderHP.classList.add("headerHoverCard");
 });
-studioCard.addEventListener("mouseout", () => {
+wiremockCloudCard.addEventListener("mouseout", () => {
     rightHeaderHP.classList.remove("headerHoverCard");
 });

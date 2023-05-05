@@ -2,9 +2,15 @@
 layout: docs
 title: Plain Java
 meta_title: Use WireMock from Java or other JVM languages | WireMock
-redirect_from: "/java-usage.html"
+redirect_from: 
+  - "/java-usage.html"
+  - "/docs/plain-java"
 description: If you want to use WireMock from Java (or any other JVM language) outside of JUnit you can programmatically create, start and stop the server.
 ---
+
+If you're not using JUnit or neither of the WireMock rules manage its
+lifecycle in a suitable way you can construct and start the server
+directly.
 
 ## The Server
 
@@ -26,6 +32,22 @@ For more details of the `options()` builder accepted by the constructor see [Con
 As with stubbing and verification via the [JUnit rule](../junit-rule/) you can call the
 stubbing/verifying DSL from the server object as an alternative to
 calling the client.
+
+### Managing ports
+
+If you've changed the port number and/or you're running the server on
+another host, you'll need to tell the client:
+
+```java
+WireMock.configureFor("wiremock.host", 8089);
+```
+
+And if you've deployed it into a servlet container under a path other
+than root you'll need to set that too:
+
+```java
+WireMock.configureFor("tomcat.host", 8080, "/wiremock");
+```
 
 ## The Client
 
