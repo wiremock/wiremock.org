@@ -1,4 +1,4 @@
-# WireMock Website
+# WireMock 3.x Website
 
 Repository that stores the WireMock website and documentation.
 Powered by Jekyll and Markdown.

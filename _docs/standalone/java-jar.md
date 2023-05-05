@@ -180,6 +180,9 @@ The last of these will cause chunked encoding to be used only when a stub define
 
 `--proxy-pass-through`: Flag used in browser-caching in order to enable or disable pass through unmatched requests to the target indicated by the original requests. By default, this flag is enabled and let the requests pass through.
 
+`--filename-template`: Set filename template in handlebar format. For endpoint: `GET /pets/{id}` using the format: `{{{method}}}-{{{url}}}.json` output will be `get-pets-id.json`. Default format: `{{{method}}}-{{{path}}}-{{{id}}}.json` hence by default template filename will be: `get-pets-id-1.json`.   
+Note: introduced in [3.0.0-beta-8](https://github.com/wiremock/wiremock/releases/tag/3.0.0-beta-8).
+
 `--help`: Show command line help
 
 ## Configuring WireMock using the Java client
