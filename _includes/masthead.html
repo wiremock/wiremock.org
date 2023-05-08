@@ -82,33 +82,33 @@
         <!-- <button><div class="navicon"></div></button> -->
         <ul class="visible-links">
           
-          {% for link in site.data.navigation.main %}
-            {% if link.url contains 'http' %}
-              {% assign effectiveLink = link.url %}
+          {% for menuItem in site.data.navigation.main %}
+            {% if menuItem.link contains 'http' %}
+              {% assign effectiveLink = menuItem.link %}
               {% else %}
-              {% assign effectiveLink = link.url | absolute_url %}
+              {% assign effectiveLink = menuItem.link | absolute_url %}
             {% endif %}
             
             <li class="masthead__menu-item">
               <span class="navlink">
-              {% if link.url %}
-                {% if link.new_window %}
+              {% if menuItem.link %}
+                {% if menuItem.new_window %}
                 <a href="{{ effectiveLink }}" target="_blank">
                 {% else %}
                 <a href="{{ effectiveLink }}">
                 {% endif %}
-                {% if link.icon %}
-                  <img src="{{ link.icon | absolute_url }}"/>
+                {% if menuItem.icon %}
+                  <img src="{{ menuItem.icon | absolute_url }}"/>
                 {% endif %}
-                  {{ link.title }}
+                  {{ menuItem.title }}
                 </a>
               {% else %}
-                {{ link.title }}
+                {{ menuItem.title }}
               {% endif %}
 
-              {% if link.subnav %}
+              {% if menuItem.subnav %}
                 <div class="divSubNav">
-                  {% for subnavigation in link.subnavLinks %}
+                  {% for subnavigation in menuItem.subnavLinks %}
                     {% if subnavigation.wiremock_baseline %}
                       <!-- Show the preview link -->
                       {% if site.wiremock_baseline != subnavigation.wiremock_baseline %}
