@@ -41,7 +41,7 @@ main:
           subnavLink: "https://github.com/wiremock/.github/blob/main/CODE_OF_CONDUCT.md"
 
     - title: "WireMock Cloud"
-      link: "https://docs.wiremock.io/getting-started/?utm_source=wiremock.org&utm_medium=masthead_doc-links&utm_campaign=2022_baseline"
+      link: "https://www.wiremock.io/product?utm_source=wiremock.org&utm_medium=masthead_doc-links&utm_campaign=2022_baseline"
       new_window: true
       icon: "/images/logos/doc-sections/cloud.svg"
 # TODO: re-enable once/if there are more commercial offerings
