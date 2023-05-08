@@ -53,7 +53,12 @@ social:
 analytics:
     provider: google
     google:
+        # gtag
         id: "G-KN208QTJLZ"
+        # Google Analytics
+        # TODO: Remove once disabled on 15 July
+        tracking_id: "UA-36386229-2"
+        optimize_id: "GTM-WQTGSSM"
 
 # Google AdSense
 google_ad_client:
