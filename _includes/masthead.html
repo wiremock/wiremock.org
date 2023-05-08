@@ -11,6 +11,16 @@
     font-size: 14px;
   }
 
+  .navlink a {
+    padding: 0 !important;
+    margin: 0 0 5px 0;
+    width: fit-content !important;
+  }
+
+  .navlink a img {
+    width: 28px;
+  }
+
   .divSubNav {
     position: relative;
     cursor: default;
@@ -89,7 +99,14 @@
 
             {% if link.new_window %}
             <li class="masthead__menu-item">
-              <a href="{{ effectiveLink }}" title="{{ link.title }}" target="_blank">{{ link.title }}</a>
+              <span class="navlink">
+                <a href="{{ effectiveLink }}" target="_blank">
+                  {% if link.icon %}
+                    <img src="{{ link.icon | absolute_url }}"/>
+                  {% endif %}
+                  {{ link.title }}
+                </a>
+              </span>
             </li>
             {% else %}
             
@@ -129,12 +146,6 @@
             {% endif %}
 
           {% endfor %}
-
-          <li class="masthead__menu-item">
-            <a class="navHover" href="https://wiremock.io?utm_source=wiremock.org&utm_medium=masthead&utm_campaign=homepage_2022_baseline" title="WireMock Cloud">
-              <img src="{{ '/images/wiremock-cloud/wiremock_cloud_logo.png' | absolute_url }}" alt="WireMock Cloud" style="vertical-align: middle;height: 28px"/>
-            </a>
-          </li>
         </ul>
         
       </nav>
