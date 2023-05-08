@@ -88,63 +88,45 @@
               {% else %}
               {% assign effectiveLink = link.url | absolute_url %}
             {% endif %}
-
-            {% if link.subnav %} 
-              {% assign subnavLink = "navlink" %}
-              {% assign subnav = link.subnav | absolute_url %} 
-              {% else %}
-              {% assign subnavLink = '/' | absolute_url %}
-              {% assign subnav = "" %} 
-            {% endif %}
-
-            {% if link.new_window %}
+            
             <li class="masthead__menu-item">
               <span class="navlink">
+              {% if link.url %}
+                {% if link.new_window %}
                 <a href="{{ effectiveLink }}" target="_blank">
-                  {% if link.icon %}
-                    <img src="{{ link.icon | absolute_url }}"/>
-                  {% endif %}
+                {% else %}
+                <a href="{{ effectiveLink }}">
+                {% endif %}
+                {% if link.icon %}
+                  <img src="{{ link.icon | absolute_url }}"/>
+                {% endif %}
                   {{ link.title }}
                 </a>
+              {% else %}
+                {{ link.title }}
+              {% endif %}
+
+              {% if link.subnav %}
+                <div class="divSubNav">
+                  {% for subnavigation in link.subnavLinks %}
+                    {% if subnavigation.wiremock_baseline %}
+                      <!-- Show the preview link -->
+                      {% if site.wiremock_baseline != subnavigation.wiremock_baseline %}
+                      <a href="{{ subnavigation.subnavLink | absolute_url }}">
+                        {{ subnavigation.name }}
+                      </a>
+                      {% endif %}
+                    {% else %}
+                      <!-- General link -->
+                      <a href="{{ subnavigation.subnavLink | absolute_url }}">
+                        {{ subnavigation.name }}
+                      </a>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              {% endif %}
               </span>
             </li>
-            {% else %}
-            
-            <li class="masthead__menu-item">
-              {% if link.subnav %}
-                <span class="{{subnavLink}}">
-                  {{ link.title }}
-
-                  {% if link.subnav %}
-                  <div class="divSubNav">
-                    {% for subnavigation in link.subnavLinks %}
-                      {% if subnavigation.wiremock_baseline %}
-                        <!-- Show the preview link -->
-                        {% if site.wiremock_baseline != subnavigation.wiremock_baseline %}
-                        <a href="{{ subnavigation.subnavLink | absolute_url }}">
-                          {{ subnavigation.name }}
-                        </a>
-                        {% endif %}
-                      {% else %}
-                        <!-- General link -->
-                        <a href="{{ subnavigation.subnavLink | absolute_url }}">
-                          {{ subnavigation.name }}
-                        </a>
-                      {% endif %}
-                    {% endfor %}
-                  </div>
-                  {% endif %}
-                </span>
-              {% else %}
-                <a class="{{subnavLink}} navHover" href="{{ effectiveLink }}" title="{{ link.title }}">
-                  {{ link.title }}
-                </a>
-              {% endif %}
-              
-            </li>
-            
-            {% endif %}
-
           {% endfor %}
         </ul>
         
