@@ -39,21 +39,7 @@ main:
           subnavLink: "https://github.com/wiremock/wiremock.org"
         - name: "Code of Conduct"
           subnavLink: "https://github.com/wiremock/.github/blob/main/CODE_OF_CONDUCT.md"
-
-    - title: "WireMock Cloud"
-      link: "https://www.wiremock.io/product?utm_source=wiremock.org&utm_medium=masthead_doc-links&utm_campaign=2022_baseline"
-      new_window: true
-      icon: "/images/logos/doc-sections/cloud.svg"
-# TODO: re-enable once/if there are more commercial offerings
-#      subnav: "commercial"
-#      subnavLinks:
-#        - name: "WireMock Cloud"  
-#          subnavLink: "https://docs.wiremock.io/getting-started/?utm_source=wiremock.org&utm_medium=masthead_doc-links&utm_campaign=2022_baseline"
-#        - name: "WireMock Studio (Discontinued)"
-#          subnavLink: "/studio/docs/"
-#        - name: "MockLab (Deprecated)"
-#          subnavLink: "https://www.mocklab.io/docs/getting-started/?utm_source=wiremock.org&utm_medium=masthead_doc-links&utm_campaign=2022_baseline"
-
+    
     - title: "Resources"
       subnav: "resources"
       subnavLinks:
@@ -68,3 +54,18 @@ main:
         - name: "External Resources"
           subnavLink: "/external-resources"
           
+    - title: "WireMock Cloud"
+      link: "https://www.wiremock.io/product?utm_source=wiremock.org&utm_medium=masthead_doc-links&utm_campaign=2022_baseline"
+      new_window: true
+      icon: "/images/logos/doc-sections/cloud.svg"
+# TODO: re-enable once/if there are more commercial offerings
+#      subnav: "commercial"
+#      subnavLinks:
+#        - name: "WireMock Cloud"  
+#          subnavLink: "https://docs.wiremock.io/getting-started/?utm_source=wiremock.org&utm_medium=masthead_doc-links&utm_campaign=2022_baseline"
+#        - name: "WireMock Studio (Discontinued)"
+#          subnavLink: "/studio/docs/"
+#        - name: "MockLab (Deprecated)"
+#          subnavLink: "https://www.mocklab.io/docs/getting-started/?utm_source=wiremock.org&utm_medium=masthead_doc-links&utm_campaign=2022_baseline"
+
+
