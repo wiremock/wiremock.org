@@ -16,6 +16,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
+          # No longer a default
           submodules: recursive
       - name: Setup Ruby
         uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
