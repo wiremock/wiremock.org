@@ -11,6 +11,19 @@
     font-size: 14px;
   }
 
+  .navlink a {
+    padding: 0 !important;
+    margin: 0 0 5px 0;
+    width: fit-content !important;
+    height: 32px;
+  }
+
+  .navlink-image {
+    width: 20px;
+    filter: invert(47%);
+    vertical-align: middle;
+  }
+
   .divSubNav {
     position: relative;
     cursor: default;
@@ -49,17 +62,21 @@
 
   .divSubNav a::before {
     background: none !important;
-    
   }
 
   .navlink:hover > .divSubNav {
     display: block;
   }
 
+  .navHover::before {
+    background: unset !important;
+  }
+
   .navlink::before {
     background: unset !important;
   }
-  .navHover::before {
+
+  .navlink a::before {
     background: unset !important;
   }
 </style>
@@ -72,64 +89,57 @@
         <!-- <button><div class="navicon"></div></button> -->
         <ul class="visible-links">
           
-          {% for link in site.data.navigation.main %}
-            {% if link.url contains 'http' %}
-              {% assign effectiveLink = link.url %}
+          {% for menuItem in site.data.navigation.main %}
+            {% if menuItem.link contains 'http' %}
+              {% assign effectiveLink = menuItem.link %}
               {% else %}
-              {% assign effectiveLink = link.url | absolute_url %}
+              {% assign effectiveLink = menuItem.link | absolute_url %}
             {% endif %}
-
-            {% if link.subnav %} 
-              {% assign subnavLink = "navlink" %}
-              {% assign subnav = link.subnav | absolute_url %} 
-              {% else %}
-              {% assign subnavLink = '/' | absolute_url %}
-              {% assign subnav = "" %} 
-            {% endif %}
-
-            {% if link.new_window %}
-            <li class="masthead__menu-item">
-              <a href="{{ effectiveLink }}" title="{{ link.title }}" target="_blank">{{ link.title }}</a>
-            </li>
-            {% else %}
             
             <li class="masthead__menu-item">
-              {% if link.subnav %}
-                <span class="{{subnavLink}}">
-                  {{ link.title }}
-
-                  {% if link.subnav %}
-                  <div class="divSubNav">
-                    {% for subnavigation in link.subnavLinks %}
-                      {% if subnavigation.wiremock_baseline %}
-                        <!-- Show the preview link -->
-                        {% if site.wiremock_baseline != subnavigation.wiremock_baseline %}
-                        <a href="{{ subnavigation.subnavLink | absolute_url }}">
-                          {{ subnavigation.name }}
-                        </a>
-                        {% endif %}
-                      {% else %}
-                        <!-- General link -->
-                        <a href="{{ subnavigation.subnavLink | absolute_url }}">
-                          {{ subnavigation.name }}
-                        </a>
-                      {% endif %}
-                    {% endfor %}
-                  </div>
-                  {% endif %}
-                </span>
-              {% else %}
-                <a class="{{subnavLink}} navHover" href="{{ effectiveLink }}" title="{{ link.title }}">
-                  {{ link.title }}
+              <span class="navlink">
+              {% if menuItem.link %}
+                {% if menuItem.new_window %}
+                <a href="{{ effectiveLink }}" target="_blank">
+                {% else %}
+                <a href="{{ effectiveLink }}">
+                {% endif %}
+                {% if menuItem.icon %}
+                  <img class="navlink-image" src="{{ menuItem.icon | absolute_url }}"/>
+                {% endif %}
+                  {{ menuItem.title }}
                 </a>
+              {% else %}
+                {% if menuItem.icon %}
+                  <img class="navlink-image" src="{{ menuItem.icon | absolute_url }}"/>
+                {% endif %}
+                {{ menuItem.title }}
               {% endif %}
-              
-            </li>
-            
-            {% endif %}
 
+              {% if menuItem.subnav %}
+                <div class="divSubNav">
+                  {% for subnavigation in menuItem.subnavLinks %}
+                    {% if subnavigation.wiremock_baseline %}
+                      <!-- Show the preview link -->
+                      {% if site.wiremock_baseline != subnavigation.wiremock_baseline %}
+                      <a href="{{ subnavigation.subnavLink | absolute_url }}">
+                        {{ subnavigation.name }}
+                      </a>
+                      {% endif %}
+                    {% else %}
+                      <!-- General link -->
+                      <a href="{{ subnavigation.subnavLink | absolute_url }}">
+                        {{ subnavigation.name }}
+                      </a>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              {% endif %}
+              </span>
+            </li>
           {% endfor %}
 
+          <!-- TODO: merge into the main control -->
           <li class="masthead__menu-item">
             <a class="navHover" href="https://wiremock.io?utm_source=wiremock.org&utm_medium=masthead&utm_campaign=homepage_2022_baseline" title="WireMock Cloud">
               <img src="{{ '/images/wiremock-cloud/wiremock_cloud_logo.png' | absolute_url }}" alt="WireMock Cloud" style="vertical-align: middle;height: 28px"/>
