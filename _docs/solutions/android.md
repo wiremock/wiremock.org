@@ -4,7 +4,7 @@ title: Running on Android
 meta_title: Running WireMock on the Android platform | WireMock
 toc_rank: 115
 description: With some effort it is now possible to run WireMock on Android. Please see Sam Edwards’ excellent blog post for instructions.
-redirect_from: "/solutions/android.html"
+redirect_from: "/docs/android.html"
 logo: /images/logos/technology/android.svg
 ---
 
@@ -26,5 +26,6 @@ References:
 
 ## Useful pages
 
-- [WireMock and Kotlin](../solutions/kotlin) - Android ecosystem embraces Kotlin as a development language, 
+- [WireMock and Kotlin](../solutions/kotlin) - Android ecosystem embraces Kotlin as a development language,
   and there are some additional tooling available
+- [WireMock on Java and JVM](../solutions/jvm) - Some of JVM generic solutions are applicable to Android development too

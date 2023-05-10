@@ -51,18 +51,20 @@ social:
     
 # Analytics
 analytics:
-    provider: google
     google:
+        # gtag
+        id: "G-KN208QTJLZ"
+        # Google Analytics
+        # TODO: Remove once disabled on 15 July
         tracking_id: "UA-36386229-2"
         optimize_id: "GTM-WQTGSSM"
+    # MS Clarity
+    clarity:
+        enabled: true
 
 # Google AdSense
 google_ad_client:
 google_ad_slot:
-
-# MS Clarity
-clarity:
-    enabled: true
 
 # Site Author
 author:
@@ -232,6 +234,7 @@ compress_html:
 wiremock_version: 2.35.0
 wiremock_beta_version: 3.0.0-beta-8
 wiremock_baseline: 2.x
+pageEditPrefix: https://github.com/wiremock/wiremock.org/edit/main/
 
 community_slack:
   join_url: https://slack.wiremock.org/

@@ -10,6 +10,26 @@ layout: default
     {% include docs-sidebar.html %}
   {% endif %}
 
+  <style>
+    .anchor {
+     color: #888;
+      content: url('/images/logos/doc-sections/link.svg');
+      width: 24px;
+      vertical-align: middle;
+      visibility: hidden;
+    }
+
+    h1:hover .anchor,
+    h2:hover .anchor,
+    h3:hover .anchor,
+    h4:hover .anchor,
+    h5:hover .anchor,
+    h6:hover .anchor {
+      color: #3D598B;
+      visibility: visible;
+    }
+
+  </style>
   
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
@@ -60,13 +80,29 @@ layout: default
       </header>
 
       <section class="page__content" itemprop="text">
-        {{ content }}
+        <!--TODO: use beforeHeading="true"  before mastering the negative indenting magic-->
+        {% include anchor-headings.html html=content anchorBody="#" anchorClass="anchor" %}
         {% if page.link %}<div><a href="{{ page.link }}" class="btn">{{ site.data.ui-text[site.locale].ext_link_label }}</a></div>{% endif %}
       </section>
 
       <footer class="page__meta">
+        <a href="{{ page.path | prepend: site.pageEditPrefix }}" target="_blank">
+          <h4 class="page__meta-title">
+            <img width="16px" src= "/images/logos/doc-sections/edit.svg" />
+            &nbsp;Improve this page
+          </h4>
+        </a>
+        <a href="{{ 'https://github.com/wiremock/wiremock.org/issues/new?labels=bug&template=3-bug.yml&page=' | append: page.url | append: '&title=Issue on ' | append: page.title }}" target="_blank">
+          <h4 class="page__meta-title">
+            <img width="16px" src= "/images/logos/doc-sections/bug.svg" />
+            &nbsp;Report an issue
+          </h4>
+        </a>
         {% if site.data.ui-text[site.locale].meta_label %}
-          <h4 class="page__meta-title">{{ site.data.ui-text[site.locale].meta_label }}</h4>
+          
+          <h4 class="page__meta-title">
+            {{ site.data.ui-text[site.locale].meta_label }}
+          </h4>
         {% endif %}
         {% include page__taxonomy.html %}
       </footer>
