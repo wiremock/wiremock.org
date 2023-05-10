@@ -28,7 +28,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          submodules: recursive
+          submodules: true
       - name: Setup Ruby
         uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
         with:
@@ -51,7 +51,7 @@ jobs:
       - name: Build 3.x with Jekyll
         # Outputs to the './_site' directory by default
         run: |
-          cd ./submodules/wiremock.org-3.x
+          cd .submodules/wiremock.org-3.x
           bundle exec jekyll build --config '_config.yml,_config-3.x.yml' --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
