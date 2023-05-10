@@ -12,6 +12,9 @@ WireMock plus all its dependencies.
 Most of the standalone JAR's dependencies are shaded i.e. they are hidden in alternative packages. This allows WireMock to be used in projects with
 conflicting versions of its dependencies. The standalone JAR is also runnable (see [Running as a Standalone Process](../running-standalone/)).
 
+
+
+
 ## 3.x beta
 
 Maven:

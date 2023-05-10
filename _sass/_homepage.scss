@@ -346,7 +346,6 @@ html {
 }
 
 .code-tabs-wrapper {
-    margin-top: 70px;
     margin-bottom: 70px;
     background-color: $general-background;
     border-radius: 50px;
@@ -684,7 +683,7 @@ html {
     .keyFeaturesInfo {
         text-align: center;
         padding-top: 20px;
-        padding-bottom: 90px;
+        padding-bottom: 30px;
         max-width: 1150px;
         margin: 0 auto;
     }
@@ -729,7 +728,8 @@ html {
     .key-features-btn-full {
         display: flex;
         justify-content: center;
-        padding-top: 90px;
+        padding-top: 20px;
+        padding-bottom: 40px;       
     }
 }
 
