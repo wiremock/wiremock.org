@@ -52,9 +52,19 @@ description: WireMock is a tool for building mock APIs. API mocking enables you 
   }
 }
 
-  #a-wiremock-cloud {
-    display: none;
+#a-wiremock-cloud {
+  display: none;
+}
+
+.summary-header-stats {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+
+  >a {
+      padding-left: 10px;
   }
+}
 
 </style>
 
@@ -63,16 +73,41 @@ description: WireMock is a tool for building mock APIs. API mocking enables you 
   <div class="container home-header-container">
     <div class="home-header-hero-text">
       <h1>WireMock - flexible API mocking</h1>
-      <h2>Free and Open Source</h2>
-      <p>The flexible tool for building mock APIs.</p>
+      
+      <div class="summary-header-stats">
+          <a href="https://github.com/wiremock/wiremock/stargazers" target="_blank">
+            <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/wiremock/wiremock?style=social" >
+          </a>
+          <a href="https://github.com/wiremock/wiremock" target="_blank">
+            <img alt="GitHub forks" src="https://img.shields.io/github/forks/wiremock/wiremock?style=social" >
+          </a>
+          <a href="https://github.com/wiremock/" target="_blank">
+            <img alt="Downloads" src="https://img.shields.io/badge/Downloads-5M%2B%20%2F%20month-white?style=social" >
+          </a>
+          <a href="https://github.com/wiremock/" target="_blank">
+            <img alt="Contributors" src="https://img.shields.io/badge/Contributors-279-white?style=social&logo=github" >
+          </a>
+
+          <!-- Automate pulling with fancy style
+          <a href="https://github.com/wiremock/" target="_blank">
+            <img alt="Contributors" src="https://cauldron.io/project/7478/export/svg/git_contributors.svg" >
+          </a>
+          -->
+      </div>
+
+
+      <p>Free and Open Source tool for building mock APIs.
+         Create stable development environments, isolate yourself from flakey 3rd parties and simulate APIs that don't exist yet.
+      </p>
       <p>
-        Create stable development environments, isolate yourself from flakey 3rd parties and simulate APIs that don't exist yet.
+        Available as a standalone service, Java lib and integrations for modern languages and technology stacks. 
       </p>
 
       <div style="margin-top: 40px;display:flex;flex-wrap:wrap;gap: 5px;">
-        <a href="#open-source-get-started" class="btn-primary">Get started</a>
-        <a href="{{ '/docs/' | absolute_url }}" class="btn-secondary">View docs</a>
-        <a href="{{ site.community_slack.join_url | absolute_url }}" class="btn-secondary">Slack community</a>
+
+        <a href="{{ '/docs/' | absolute_url }}" class="btn-primary">Get Started</a>
+        <a href="{{ '/docs/download-and-installation/' | absolute_url }}" class="btn-secondary">Downloads</a>
+        <a href="{{ site.community_slack.join_url | absolute_url }}" class="btn-secondary">Slack Community</a>
       </div>
     </div>
     <div class="home-header-hero-image">
@@ -89,7 +124,6 @@ description: WireMock is a tool for building mock APIs. API mocking enables you 
     "method": "GET",
     "url": "/wiremock"
   },
-
   "response": {
     "status": 200,
     "body": "Easy!"
