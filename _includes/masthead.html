@@ -66,6 +66,10 @@
     display: block;
   }
 
+  .navHover::before {
+    background: unset !important;
+  }
+
   .navlink::before {
     background: unset !important;
   }
@@ -129,6 +133,13 @@
               </span>
             </li>
           {% endfor %}
+
+          <!-- TODO: merge into the main control -->
+          <li class="masthead__menu-item">
+            <a class="navHover" href="https://wiremock.io?utm_source=wiremock.org&utm_medium=masthead&utm_campaign=homepage_2022_baseline" title="WireMock Cloud">
+              <img src="{{ '/images/wiremock-cloud/wiremock_cloud_logo.png' | absolute_url }}" alt="WireMock Cloud" style="vertical-align: middle;height: 28px"/>
+            </a>
+          </li>
         </ul>
         
       </nav>
