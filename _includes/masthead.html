@@ -79,6 +79,58 @@
   .navlink a::before {
     background: unset !important;
   }
+
+  .wiremock-cloud-logo-navbar-item {
+    padding-left: 20px;
+  }
+
+  .wiremock-cloud-logo-navbar-item div span {
+    text-align: right;
+  }
+  
+  .wiremock-cloud-logo-navbar {
+    margin: 0;
+    background: unset !important;
+  }
+
+  .wiremock-cloud-logo-navbar div {
+    border-color: #0FB2EF;
+    background-color: #E4F0F7;
+    border-style: solid;
+    border-radius: 8px;
+    border-width: 4px;
+    align-items: center;
+    justify-content: center;
+    margin: 0;    
+    height: 82px;
+    position: relative;
+  }
+
+  .wiremock-cloud-logo-navbar div img {
+    vertical-align: middle;
+    width: 100%;
+    background-color: #E4F0F7;
+    height: 64px;
+    padding: 4px;
+  }
+
+  .wiremock-cloud-logo-navbar div div {
+    font-size: medium;
+    font-weight: bold;
+    position: absolute;
+    bottom: 2px;
+    left: 4px;
+    border-style: none;
+    height: fit-content;
+  }
+
+  .wiremock-cloud-logo-note {
+    margin-left: auto;
+    margin-right: auto;
+    float: right;
+    font-size: small;
+    padding-right: 10rem;
+  }
 </style>
 
 <div class="masthead">
@@ -140,10 +192,21 @@
           {% endfor %}
 
           <!-- TODO: merge into the main control -->
-          <li class="masthead__menu-item">
-            <a class="navHover" href="https://wiremock.io?utm_source=wiremock.org&utm_medium=masthead&utm_campaign=homepage_2022_baseline" title="WireMock Cloud">
-              <img src="{{ '/images/wiremock-cloud/wiremock_cloud_logo.png' | absolute_url }}" alt="WireMock Cloud" style="vertical-align: middle;height: 28px"/>
-            </a>
+          <style>
+              
+
+              
+          </style>
+
+          <li class="masthead__menu-item wiremock-cloud-logo-navbar-item">
+            <div>
+              <a class="wiremock-cloud-logo-navbar" href="https://wiremock.io/product?utm_source=wiremock.org&utm_medium=masthead&utm_campaign=homepage_2022_baseline" title="WireMock Cloud">
+                <div>
+                  <img alt="WireMock Cloud" src="{{ '/images/wiremock-cloud/wiremock_cloud_logo.png' | absolute_url }}"/>
+                  <div>Start for Free*</div>
+                </div>
+              </a>
+            </div>
           </li>
         </ul>
         
@@ -172,3 +235,5 @@
     </div>
   </div>
 </div>
+
+<div class="wiremock-cloud-logo-note">* Free forever. No credit card needed</div>
