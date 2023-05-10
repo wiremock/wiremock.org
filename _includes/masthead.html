@@ -3,7 +3,7 @@
   .navlink {
     position: relative !important;
     color: #7d93bd;
-    padding-bottom: 0.9rem;
+    padding-bottom: 0;
     cursor: pointer;
     font-family: "Ubuntu";
     font-style: normal;
@@ -82,6 +82,7 @@
 
   .wiremock-cloud-logo-navbar-item {
     padding-left: 20px;
+    padding-top: 0;
   }
 
   .wiremock-cloud-logo-navbar-item div span {
@@ -102,7 +103,7 @@
     align-items: center;
     justify-content: center;
     margin: 0;    
-    height: 82px;
+    height: 45px;
     position: relative;
   }
 
@@ -110,12 +111,14 @@
     vertical-align: middle;
     width: 100%;
     background-color: #E4F0F7;
-    height: 64px;
+    height: 36px;
     padding: 4px;
+    padding-left: 12px;
+    padding-right: 12px;
   }
 
   .wiremock-cloud-logo-navbar div div {
-    font-size: medium;
+    font-size: x-small;
     font-weight: bold;
     position: absolute;
     bottom: 2px;
@@ -126,10 +129,15 @@
 
   .wiremock-cloud-logo-note {
     margin-left: auto;
-    margin-right: auto;
+    margin-right: 4em;
     float: right;
     font-size: small;
-    padding-right: 10rem;
+  }
+
+  @media (max-width: 1023px) {
+    .wiremock-cloud-logo-note {
+      display: none;
+    }
   }
 </style>
 
