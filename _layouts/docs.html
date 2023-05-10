@@ -38,42 +38,43 @@ layout: default
     {% if page.date %}<meta itemprop="datePublished" content="{{ page.date | date: "%B %d, %Y" }}">{% endif %}
     {% if page.modified %}<meta itemprop="dateModified" content="{{ page.modified | date: "%B %d, %Y" }}">{% endif %}
 
-    <div style="background-color: #f2f2f2;border: #c8c8c8 1px solid;padding: 8px;margin-bottom:32px;">
-      <a href="{{site.community_slack.join_url}}"><img src="{{ '/images/slack-logo-medium.png' | absolute_url }}" alt="Slack logo" style="vertical-align:sub;height:22px;margin-left:7px;margin-right:8px"/></a>
-      Need help? Join the <a href="{{site.community_slack.join_url}}">WireMock community Slack</a>
+    <div class="breadcrumbs-bar">
+      {% include nav-breadcrumbs.html %}
     </div>
 
-    {% if site.wiremock_baseline == site.data.baselines.current.id %} 
-    <div style="background-color: #f2f2f2;border: #c8c8c8 1px solid;padding: 8px;margin-bottom:32px;">
-      This document is for the WireMock {{ site.data.baselines.current.id }} baseline.
-      See the documentation for WireMock {{ site.data.baselines.preview.id }} preview 
-      <a href="{{  page.url | prepend: site.data.baselines.preview.absoluteUrl }}">here</a>
-    </div>
-    {% else %}
-      {% if site.wiremock_baseline == site.data.baselines.preview.id %} 
-      <div style="background-color: #f2f2f2;border: #c8c8c8 1px solid;padding: 8px;margin-bottom:32px;">
-        <b>WARNING: </b>
-        This document is for WireMock {{ site.data.baselines.preview.id }} preview.
-        See the documentation for the current WireMock {{ site.data.baselines.current.id }} baseline
-        <a href="{{  page.url | prepend: site.data.baselines.current.absoluteUrl }}">here</a>.
-        If you are interested to know more what is planned for WireMock {{ site.data.baselines.preview.id }}, 
-        see
-        <a href="{{  site.data.baselines.preview.scopeUrl | absolute_url }}">this page</a>.
-      </div>
-      {% else %}
-      <div style="background-color: #f2f2f2;border: #c8c8c8 1px solid;padding: 8px;margin-bottom:32px;">
-        <b>WARNING: </b>
-        This document is for an old WireMock {{ site.wiremock_baseline }} baseline.
-        See the documentation for the current WireMock {{ site.data.baselines.current.id }} baseline
-        <a href="{{  page.url | prepend: site.data.baselines.current.absoluteUrl }}">here</a>
-      </div>
-      {% endif %}  
-    {% endif %}
+
 
     <div class="page__inner-wrap">
       <header>
         {% if page.title %}<h1 class="page__title" itemprop="headline">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</h1>{% endif %}
       </header>
+
+      {% if site.wiremock_baseline == site.data.baselines.current.id %} 
+      <div style="background-color: #f2f2f2;border: #c8c8c8 1px solid;padding: 8px;margin-bottom:32px;">
+        This document is for the WireMock {{ site.data.baselines.current.id }} baseline.
+        See the documentation for WireMock {{ site.data.baselines.preview.id }} preview 
+        <a href="{{  page.url | prepend: site.data.baselines.preview.absoluteUrl }}">here</a>
+      </div>
+      {% else %}
+        {% if site.wiremock_baseline == site.data.baselines.preview.id %} 
+        <div style="background-color: #f2f2f2;border: #c8c8c8 1px solid;padding: 8px;margin-bottom:32px;">
+          <b>WARNING: </b>
+          This document is for WireMock {{ site.data.baselines.preview.id }} preview.
+          See the documentation for the current WireMock {{ site.data.baselines.current.id }} baseline
+          <a href="{{  page.url | prepend: site.data.baselines.current.absoluteUrl }}">here</a>.
+          If you are interested to know more what is planned for WireMock {{ site.data.baselines.preview.id }}, 
+          see
+          <a href="{{  site.data.baselines.preview.scopeUrl | absolute_url }}">this page</a>.
+        </div>
+        {% else %}
+        <div style="background-color: #f2f2f2;border: #c8c8c8 1px solid;padding: 8px;margin-bottom:32px;">
+          <b>WARNING: </b>
+          This document is for an old WireMock {{ site.wiremock_baseline }} baseline.
+          See the documentation for the current WireMock {{ site.data.baselines.current.id }} baseline
+          <a href="{{  page.url | prepend: site.data.baselines.current.absoluteUrl }}">here</a>
+        </div>
+        {% endif %}  
+      {% endif %}
 
       <section class="page__content" itemprop="text">
         <!--TODO: use beforeHeading="true"  before mastering the negative indenting magic-->
@@ -82,17 +83,17 @@ layout: default
       </section>
 
       <footer class="page__meta">
-        <a href="{{ page.path | prepend: site.pageEditPrefix }}" target="_blank">
-          <h4 class="page__meta-title">
+        <a class="page__meta-title" href="{{ page.path | prepend: site.pageEditPrefix }}" target="_blank">
             <img width="16px" src= "/images/logos/doc-sections/edit.svg" />
-            &nbsp;Improve this page
-          </h4>
+            Improve this page
         </a>
-        <a href="{{ 'https://github.com/wiremock/wiremock.org/issues/new?labels=bug&template=3-bug.yml&page=' | append: page.url | append: '&title=Issue on ' | append: page.title }}" target="_blank">
-          <h4 class="page__meta-title">
+        <a class="page__meta-title" href="{{ 'https://github.com/wiremock/wiremock.org/issues/new?labels=bug&template=3-bug.yml&page=' | append: page.url | append: '&title=Issue on ' | append: page.title }}" target="_blank">
             <img width="16px" src= "/images/logos/doc-sections/bug.svg" />
-            &nbsp;Report an issue
-          </h4>
+            Report an issue
+        </a>
+        <a class="page__meta-title" href="http://slack.wiremock.org/" target="_blank">
+            <img width="16px" src= "/images/logos/doc-sections/slack.svg" />
+            Ask on Slack
         </a>
         {% if site.data.ui-text[site.locale].meta_label %}
           

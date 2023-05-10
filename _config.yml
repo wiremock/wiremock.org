@@ -160,6 +160,14 @@ paginate: 5 # amount of posts to show
 paginate_path: /blog/page:num/
 # timezone: # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
+# Breadcrumbs
+# From: https://github.com/git-no/jekyll-breadcrumbs
+breadcrumbs:
+  root:
+    hide: true
+    image: true
+    imagePath: /images/logos/doc-sections/home.svg
+
 # Plugins
 plugins:
     - jekyll-redirect-from

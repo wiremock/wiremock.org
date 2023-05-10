@@ -11,14 +11,12 @@
     @include clearfix;
     margin-top: 0;
     margin-bottom: 0;
-    padding-left: 2em;
     padding-right: 2em;
     font-family: $sans-serif;
     animation: intro 0.3s both;
     animation-delay: 0.3s;
 
     @include breakpoint($large) {
-        padding-left: 1em;
         padding-right: 1em;
     }
 
@@ -33,15 +31,24 @@
 
         @include breakpoint($large) {
             @include span(10 of 12 last);
+            float: left;
+            padding-left: 0;
         }
 
         @include breakpoint($x-large) {
             @include prefix(0.5 of 12);
+            float: left;
+            padding-left: 0;
         }
     }
 
     li {
         display: inline;
+    }
+
+    li a {
+        display: inline;
+        color: inherit;
     }
 
     .current {
@@ -305,6 +312,7 @@
    ========================================================================== */
 
 .nav__list {
+    padding-top: 10px;
     font-size: 1.25rem;
 
     ul {
