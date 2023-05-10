@@ -60,7 +60,7 @@ jobs:
         run: |
           ruby .scripts/merge-sitemaps.rb
           mkdir _site/3.x
-          cp -R ./submodules/wiremock.org-3.x/tmp/site_3x/* _site/3.x/
+          cp -R .submodules/wiremock.org-3.x/tmp/site_3x/* _site/3.x/
         env:
           JEKYLL_ENV: production
 # TODO: Uncomment when cleaned up (if ever)
