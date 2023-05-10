@@ -51,7 +51,6 @@ social:
     
 # Analytics
 analytics:
-    provider: google
     google:
         # gtag
         id: "G-KN208QTJLZ"
@@ -59,14 +58,13 @@ analytics:
         # TODO: Remove once disabled on 15 July
         tracking_id: "UA-36386229-2"
         optimize_id: "GTM-WQTGSSM"
+    # MS Clarity
+    clarity:
+        enabled: true
 
 # Google AdSense
 google_ad_client:
 google_ad_slot:
-
-# MS Clarity
-clarity:
-    enabled: true
 
 # Site Author
 author:
