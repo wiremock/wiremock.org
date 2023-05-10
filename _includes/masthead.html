@@ -18,8 +18,10 @@
     height: 32px;
   }
 
-  .navlink a img {
-    width: 28px;
+  .navlink-image {
+    width: 20px;
+    filter: invert(47%);
+    vertical-align: middle;
   }
 
   .divSubNav {
@@ -103,11 +105,14 @@
                 <a href="{{ effectiveLink }}">
                 {% endif %}
                 {% if menuItem.icon %}
-                  <img src="{{ menuItem.icon | absolute_url }}"/>
+                  <img class="navlink-image" src="{{ menuItem.icon | absolute_url }}"/>
                 {% endif %}
                   {{ menuItem.title }}
                 </a>
               {% else %}
+                {% if menuItem.icon %}
+                  <img class="navlink-image" src="{{ menuItem.icon | absolute_url }}"/>
+                {% endif %}
                 {{ menuItem.title }}
               {% endif %}
 
