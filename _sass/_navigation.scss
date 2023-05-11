@@ -11,14 +11,12 @@
     @include clearfix;
     margin-top: 0;
     margin-bottom: 0;
-    padding-left: 2em;
     padding-right: 2em;
     font-family: $sans-serif;
     animation: intro 0.3s both;
     animation-delay: 0.3s;
 
     @include breakpoint($large) {
-        padding-left: 1em;
         padding-right: 1em;
     }
 
@@ -33,15 +31,24 @@
 
         @include breakpoint($large) {
             @include span(10 of 12 last);
+            float: left;
+            padding-left: 0;
         }
 
         @include breakpoint($x-large) {
             @include prefix(0.5 of 12);
+            float: left;
+            padding-left: 0;
         }
     }
 
     li {
         display: inline;
+    }
+
+    li a {
+        display: inline;
+        color: inherit;
     }
 
     .current {
@@ -171,10 +178,12 @@
 .greedy-nav {
     position: relative;
     min-width: 250px;
+    margin-left: auto;
+    margin-right: 0;
 
     a {
         display: block;
-        margin: 0 3rem;
+        margin: 0;
         padding: 0 0;
         color: $head-nav-links;
         text-decoration: none;
@@ -197,13 +206,14 @@
     }
 
     .visible-links {
-        margin-left: 150px;
+        margin-left: auto;
+        margin-right: 2em;        
         display: table;
 
         li {
             display: table-cell;
-            // vertical-align: middle;
-            // margin-top: 2px;
+            vertical-align: top;
+            padding-top: 10px;
 
             &:first-child {
                 font-weight: bold;
@@ -218,6 +228,12 @@
                     margin-right: 0;
                 }
             }
+        }
+
+        li:last-child {
+            float: right;
+            padding-top: 2px;
+            padding-bottom: 2px;
         }
 
         a {
@@ -305,6 +321,7 @@
    ========================================================================== */
 
 .nav__list {
+    padding-top: 10px;
     font-size: 1.25rem;
 
     ul {

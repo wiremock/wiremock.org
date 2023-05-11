@@ -3,29 +3,31 @@ layout: docs
 title: Download and Installation
 meta_title: "How to Download and Install WireMock"
 toc_rank: 13
-description: WireMock is distributed in two flavours - a standard JAR containing just WireMock, and a standalone fat JAR containing WireMock plus all its dependencies.
+description: >
+    WireMock is available as a standalone service (for Docker of Java), Java library
+    and integrations for modern languages and technology stacks.
 ---
 
-WireMock is distributed in two flavours - a standard JAR containing just WireMock, and a standalone uber JAR containing
+
+## Download options
+
+WireMock Java is distributed in two flavours - a standard JAR containing just WireMock, and a standalone uber JAR containing
 WireMock plus all its dependencies.
 
 Most of the standalone JAR's dependencies are shaded i.e. they are hidden in alternative packages. This allows WireMock to be used in projects with
 conflicting versions of its dependencies. The standalone JAR is also runnable (see [Running as a Standalone Process](../running-standalone/)).
 
-## 3.x beta
+## Test dependencies
 
-Maven:
+<div class="downloads-wrapper">
+    {% include downloads.html %}
+</div>
 
-```xml
-<dependency>
-    <groupId>com.github.tomakehurst</groupId>
-    <artifactId>wiremock</artifactId>
-    <version>{{ site.wiremock_beta_version }}</version>
-    <scope>test</scope>
-</dependency>
-```
+## Standalone Service
 
-Maven (standalone):
+### WireMock 3.x Beta (recommended)
+
+#### Maven
 
 ```xml
 <dependency>
@@ -36,34 +38,28 @@ Maven (standalone):
 </dependency>
 ```
 
-Gradle:
-
-```groovy
-testImplementation "com.github.tomakehurst:wiremock:{{ site.wiremock_beta_version }}"
-```
-
-Gradle (standalone):
+#### Gradle
 
 ```groovy
 testImplementation "com.github.tomakehurst:wiremock-standalone:{{ site.wiremock_beta_version }}"
 ```
 
+### Stable
 
+#### Docker
 
-## Stable
+Run the following in a terminal:
 
-Maven:
-
-```xml
-<dependency>
-    <groupId>com.github.tomakehurst</groupId>
-    <artifactId>wiremock-jre8</artifactId>
-    <version>{{ site.wiremock_version }}</version>
-    <scope>test</scope>
-</dependency>
+```bash
+docker run -it --rm \
+  -p 8080:8080 \
+  --name wiremock \
+  wiremock/wiremock:{{ site.wiremock_version }}
 ```
 
-Maven (standalone):
+Learn more in the [Docker guide](../docker).
+
+#### Maven - stable
 
 ```xml
 <dependency>
@@ -74,13 +70,7 @@ Maven (standalone):
 </dependency>
 ```
 
-Gradle:
-
-```groovy
-testImplementation "com.github.tomakehurst:wiremock-jre8:{{ site.wiremock_version }}"
-```
-
-Gradle (standalone):
+#### Gradle - stable
 
 ```groovy
 testImplementation "com.github.tomakehurst:wiremock-jre8-standalone:{{ site.wiremock_version }}"

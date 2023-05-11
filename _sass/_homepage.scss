@@ -24,7 +24,7 @@ html {
 }
 
 .wiremockIMGwidth {
-    width: 123px;
+    width: 200px;
 }
 
 #openSourceCard:hover {
@@ -157,6 +157,7 @@ html {
     }
     
     padding: 40px;
+    padding-bottom: 10px;
 
     h1 {
         font-family: "Ubuntu";
@@ -295,7 +296,7 @@ html {
     }
 }
 
-.mocklab-callout-bullets {
+.wiremock-cloud-callout-bullets {
     padding-left: 0;
     
     li {
@@ -345,7 +346,6 @@ html {
 }
 
 .code-tabs-wrapper {
-    margin-top: 70px;
     margin-bottom: 70px;
     background-color: $general-background;
     border-radius: 50px;
@@ -527,7 +527,7 @@ html {
 .wiremock-cloud__buttons {
     display: flex;
     gap: 5px;
-    margin-top: 40px;
+    margin-top: 10px;
 }
 
 .wiremock-cloud-wrapper,
@@ -622,7 +622,6 @@ html {
         font-size: 20px;
         color: #000000;
         margin-top: 0;
-        margin-bottom: 20px;
     }
 
     .enterpirse-feature {
@@ -683,7 +682,7 @@ html {
     .keyFeaturesInfo {
         text-align: center;
         padding-top: 20px;
-        padding-bottom: 90px;
+        padding-bottom: 30px;
         max-width: 1150px;
         margin: 0 auto;
     }
@@ -728,8 +727,21 @@ html {
     .key-features-btn-full {
         display: flex;
         justify-content: center;
-        padding-top: 90px;
+        padding-top: 20px;
+        padding-bottom: 40px;       
     }
+}
+
+.downloads-wrapper {
+    background: white;
+    padding: 70px 0;
+    padding-bottom: 20px;
+}
+
+.faq-wrapper {
+    background: rgba(240, 245, 255, 0.5);
+    padding: 70px 0;
+    padding-bottom: 20px;
 }
 
 .apis-wrapper {

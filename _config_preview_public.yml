@@ -19,20 +19,17 @@ bing_site_verification:
 alexa_site_verification:
 yandex_site_verification:
 
-# Social Sharing
-twitter:
-    username:
-facebook:
-    username:
-    app_id:
-    publisher:
-og_image: # Open Graph/Twitter default site image
+og_image: opengraphs/default.png
+
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
-    type: # Person or Organization (defaults to Person)
-    name: # If the user or organization name differs from the site's name
-    links: # An array of links to social media profiles
+    type: Organization
+    name: WireMock
+    links:
+      - https://twitter.com/wiremockorg
+      - https://fosstodon.org/@wiremock
+      - https://www.youtube.com/@WireMockTV
 
 # Site Author
 author:

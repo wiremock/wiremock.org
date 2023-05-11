@@ -11,50 +11,19 @@ description: WireMock is a tool for building mock APIs. API mocking enables you 
     padding: 0 !important;
 }
 
-.codeTabDescription {
-    margin: 0px;
-    padding: 0px;
-    font-family: "Ubuntu";
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    color: #000;
-}
-
-.code-tabs-main-example {
-  padding: 30px;
-}
-
-.code-tabs-main-example .highlight {
-  background: #F0F5FF;
-  border: 1px solid #D2DFF9;
-  box-sizing: border-box;
-  border-radius: 8px;
-}
-
-.codeSnippet {
+#a-wiremock-cloud {
   display: none;
-  width: 100%;
-  position: relative;
 }
 
-.codeSnippet.activeCodeSnippet {
-  display: block;
-}
+.summary-header-stats {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
 
-.code-tabs-main {
-  width: 1018px;
-}
-
-@media (max-width:670px) {
-  .code-tabs-main {
-    width: 100% !important;
+  >a {
+      padding-left: 10px;
   }
 }
-
-  #a-wiremock-cloud {
-    display: none;
-  }
 
 </style>
 
@@ -63,16 +32,38 @@ description: WireMock is a tool for building mock APIs. API mocking enables you 
   <div class="container home-header-container">
     <div class="home-header-hero-text">
       <h1>WireMock - flexible API mocking</h1>
-      <h2>Free and Open Source</h2>
-      <p>The flexible tool for building mock APIs.</p>
-      <p>
-        Create stable development environments, isolate yourself from flakey 3rd parties and simulate APIs that don't exist yet.
+      
+      <div class="summary-header-stats">
+          <a href="https://github.com/wiremock/wiremock/stargazers" target="_blank">
+            <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/wiremock/wiremock?style=social" >
+          </a>
+          <a href="https://github.com/wiremock/wiremock" target="_blank">
+            <img alt="GitHub forks" src="https://img.shields.io/github/forks/wiremock/wiremock?style=social" >
+          </a>
+          <a href="https://github.com/wiremock/" target="_blank">
+            <img alt="Downloads" src="https://img.shields.io/badge/Downloads-5M%2B%20%2F%20month-white?style=social" >
+          </a>
+          <a href="https://github.com/wiremock/" target="_blank">
+            <img alt="Contributors" src="https://img.shields.io/badge/Contributors-279-white?style=social&logo=github" >
+          </a>
+
+          <!-- Automate pulling with fancy style
+          <a href="https://github.com/wiremock/" target="_blank">
+            <img alt="Contributors" src="https://cauldron.io/project/7478/export/svg/git_contributors.svg" >
+          </a>
+          -->
+      </div>
+
+
+      <p>Free and Open Source tool for building mock APIs.
+         Create stable development environments, isolate yourself from flakey 3rd parties and simulate APIs that don't exist yet.
       </p>
 
       <div style="margin-top: 40px;display:flex;flex-wrap:wrap;gap: 5px;">
-        <a href="#open-source-get-started" class="btn-primary">Get started</a>
-        <a href="{{ '/docs/' | absolute_url }}" class="btn-secondary">View docs</a>
-        <a href="{{ site.community_slack.join_url | absolute_url }}" class="btn-secondary">Slack community</a>
+
+        <a href="{{ '/docs/' | absolute_url }}" class="btn-primary">Get Started</a>
+        <a href="{{ '/docs/download-and-installation/' | absolute_url }}" class="btn-secondary">Downloads</a>
+        <a href="{{ site.community_slack.join_url | absolute_url }}" class="btn-secondary">Slack Community</a>
       </div>
     </div>
     <div class="home-header-hero-image">
@@ -89,7 +80,6 @@ description: WireMock is a tool for building mock APIs. API mocking enables you 
     "method": "GET",
     "url": "/wiremock"
   },
-
   "response": {
     "status": 200,
     "body": "Easy!"
@@ -112,205 +102,98 @@ description: WireMock is a tool for building mock APIs. API mocking enables you 
 
     <div id="wiremock-cloud" class="wiremock-cloud-details details-custom">
       <img class="wiremockIMGwidth" src="{{ '/images/wiremock-cloud/wiremock_cloud_logo.png' | absolute_url }}" | alt="wiremock cloud logo" />
-      <h3 class="robot-subtitle" style="margin-top:20px">Hosted API mocking for teams and enterprises</h3>
+      <h3 class="robot-subtitle" style="margin-top:20px">Hosted API mocking for everyone</h3>
 
       <ul class="mocklab-callout-bullets">
-        <li>Cloud hosted - nothing to install</li>
-        <li>Intuitive web UI</li>
-        <li>Team collaboration</li>
-        <li>Swagger, OpenAPI and Postman import</li>
-        <li>100% WireMock API compatible</li>
+        <li>SaaS, nothing to install</li>
+        <li>For individuals, teams and enterprises</li>
+        <li>Intuitive web UI for developers</li>
+        <li>OpenAPI, Swagger and Postman import</li>
+        <li><b style="color:red;">NEW:</b> Chaos Engineering</li>
+        <li>Free Plan for individuals</li>
       </ul>
 
       <div class="wiremock-cloud__buttons">
-        <a href="https://wiremock.io/?utm_source=wiremock.org&utm_medium=homepage-callout_learn-more&utm_campaign=homepage_baseline" class="btn-secondary btn-secondary">Learn more</a>
-        <a href="https://app.wiremock.cloud/signup?utm_source=wiremock.org&utm_medium=homepage-callout_try-it-now&utm_campaign=homepage_baseline" class="btn-primary btn-primary">Get Started for Free</a>
+        <a href="https://www.wiremock.io/product?utm_source=wiremock.org&utm_medium=homepage-callout_learn-more&utm_campaign=homepage_baseline" class="btn-primary">Learn more</a>
+        <a href="https://app.wiremock.cloud/signup?utm_source=wiremock.org&utm_medium=homepage-callout_try-it-now&utm_campaign=homepage_baseline" class="btn-secondary">Sign Up for Free</a>
       </div>
   </div>
 </div>
 
-  <div id="open-source-get-started" class="container code-tabs-wrapper">
-    <div class="code-tabs-row">
-      <div class="code-tabs-sidebar-wrapper">
-        <div class="code-tabs-sidebar">
-          <div class="code-tabs-example-card">
-            <img src="{{ '/images/maven.png' | absolute_url }}" alt="Maven" />
-          </div>
-          <div class="code-tabs-example-card">
-            <img src="{{ '/images/elephantIcon.png' | absolute_url }}" alt="Gradle"/>
-          </div>
-          <div class="code-tabs-example-card">
-            <img src="{{ '/images/kotlin.png' | absolute_url }}" alt="Kotlin" />
-          </div>
-          <div class="code-tabs-example-card">
-            <img src="{{ '/images/sbt.png ' | absolute_url }}" alt="SBT"/>
-          </div>
-          <div class="code-tabs-example-card">
-            <img src="{{ '/images/java.png ' | absolute_url }}" alt="Java"/>
-          </div>
-          <div class="code-tabs-example-card">
-            <img src="{{ '/images/docker.png ' | absolute_url }}" alt="Docker"/>
-          </div>
-        </div>
-      </div>
-      <div class="code-tabs-main">
-        <div class="code-tabs-main-wrapper">
-          <ul>
-            <li class="active-tab-example">Maven</li>
-            <li>Gradle Groovy</li>
-            <li>Gradle Kotlin</li>
-            <li>Scala SBT</li>
-            <li>Standalone</li>
-            <li>Docker</li>
-          </ul>
-          <div class="code-tabs-main-example">
-            <div class="codeSnippet activeCodeSnippet" data-snippettab="maven">
-              <p class="codeTabDescription">Add the following to your project's <strong>pom.xml</strong> dependencies:</p>
-{% highlight xml %}
-<dependency>
-  <groupId>com.github.tomakehurst</groupId>
-  <artifactId>wiremock-jre8</artifactId>
-  <version>{{ site.wiremock_version }}</version>
-  <scope>test</scope>
-</dependency>
-{% endhighlight %}
-            <p class="codeTabDescription" style="margin-top:2rem;">Then follow the next steps for <a href="docs/junit-jupiter/">JUnit 5+</a> or <a href="docs/java-usage/">plain Java</a>.</p>
-          </div>
-          <div class="codeSnippet" data-snippettab="gradle groovy">
-            <p class="codeTabDescription">Add the following to your project's <strong>build.gradle</strong>:</p>
-{% highlight groovy %}
-testImplementation "com.github.tomakehurst:wiremock-jre8:{{ site.wiremock_version }}"
-{% endhighlight %}
-            <p class="codeTabDescription" style="margin-top:2rem;">Then follow the next steps for <a href="docs/junit-jupiter/">JUnit 5+</a> or <a href="docs/java-usage/">plain Java</a>.</p>
-          </div>
-          <div class="codeSnippet" data-snippettab="gradle kotlin">
-            <p class="codeTabDescription">Add the following to your project's <strong>build.gradle.kts</strong>:</p>
-{% highlight kotlin %}
-testImplementation("com.github.tomakehurst:wiremock-jre8:{{ site.wiremock_version }}")
-{% endhighlight %}
-            <p class="codeTabDescription" style="margin-top:2rem;">Then follow the next steps for <a href="docs/junit-jupiter/">JUnit 5+</a> or <a href="docs/java-usage/">plain Java</a>.</p>
-          </div>
-          <div class="codeSnippet" data-snippettab="scala sbt">
-            <p class="codeTabDescription">Add the following to your project’s <strong>build.sbt</strong>:</p>
-{% highlight scala %}
-libraryDependencies +=
-  "com.github.tomakehurst" % "wiremock-jre8" % "{{ site.wiremock_version }}" % Test
-{% endhighlight %}
-          </div>
-          <div class="codeSnippet" data-snippettab="standalone">
-            <p class="codeTabDescription">
-              Download the <a id="wiremock-standalone-download" href="https://repo1.maven.org/maven2/com/github/tomakehurst/wiremock-jre8-standalone/{{ site.wiremock_version }}/wiremock-jre8-standalone-{{ site.wiremock_version }}.jar">latest standalone JAR</a>
-              then run the following in a terminal:
-            </p>
-{% highlight bash %}
-java -jar wiremock-jre8-standalone-{{ site.wiremock_version }}.jar
-{% endhighlight %}
-            <p class="codeTabDescription" style="margin-top:2rem;">Learn more in the <a href="docs/running-standalone/">running standalone guide.</a></p>
-          </div>
-          <div class="codeSnippet" data-snippettab="docker">
-            <p class="codeTabDescription">Run the following in a terminal:</p>
-{% highlight bash %}
-docker run -it --rm \
-  -p 8080:8080 \
-  --name wiremock \
-  wiremock/wiremock:{{ site.wiremock_version }}
-{% endhighlight %}
-            <p class="codeTabDescription" style="margin-top:2rem;">Learn more in the <a href="docs/docker/">Docker guide.</a></p>
-          </div>
-        </div>
-        </div>
-      </div>
+<div class="key-features-wrapper">
+  <h2 class="keyFeaturesTXT">Key Features</h2>
+  <p class="keyFeaturesInfo">WireMock frees you from dependency on unstable APIs and allows you to develop with confidence. It's easy to launch a mock API server and simulate a host of real-world scenarios and APIs - including REST, SOAP, OAuth2 and more.</p>
+  <div class="container key-features-grid">
+    <div class="key-features-card">
+      <img src="{{ '/images/requestIcon.svg' | absolute_url }}" alt="Wiremock Features"/>
+      <p>
+        Advanced request
+      </p>
+      <p>
+        matching
+      </p>
     </div>
-    <div class="code-tabs-footer">
-
-      <div class="ct-github-info-wrapper">
-
-        <div class="github-card-info-wrapper">
-          <div class="github-card-info">
-            <a href="https://github.com/wiremock/wiremock/stargazers" target="_blank">
-              <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/wiremock/wiremock?style=social" >
-            </a>
-          </div>
-        </div>
-
-        <div class="github-card-info-wrapper">
-          <div class="github-card-info">
-            <a href="https://github.com/wiremock/wiremock" target="_blank">
-              <img alt="GitHub forks" src="https://img.shields.io/github/forks/wiremock/wiremock?style=social" >
-            </a>
-          </div>
-        </div>
-
-      </div>
-      <a href="https://github.com/wiremock/wiremock" class="ctDownloadBTN" target="_blank">
-        <img src="{{ '/images/ctGithubDownloadIcon.svg' | absolute_url }}" />
-        <span>View Repo</span>
-      </a>
+    <div class="key-features-card">
+      <img src="{{ '/images/responseIcon.svg' | absolute_url }}" alt="wiremock dynamic response"/>
+      <p>
+        Dynamic response
+      </p>
+      <p>
+        templating
+      </p>
+    </div>
+    <div class="key-features-card">
+      <img src="{{ '/images/unitTestIcon.svg' | absolute_url }}" alt="wiremock unit tests" />
+      <p>
+        Run in your unit tests, on your
+      </p>
+      <p>
+        laptop or in your test environment.
+      </p>
+    </div>
+    <div class="key-features-card">
+      <img src="{{ '/images/faultIcon.svg' | absolute_url }}" alt="wiremock fault and latency"/>
+      <p>
+        Fault and latency
+      </p>
+      <p>
+        injection
+      </p>
+    </div>
+    <div class="key-features-card">
+      <img src="{{ '/images/recordIcon.svg' | absolute_url }}" alt="wiremock record playback"/>
+      <p>
+        Record / Playback
+      </p>
+    </div>
+    <div class="key-features-card">
+      <img src="{{ '/images/httpIcon.svg' | absolute_url }}" alt="wiremock java, python, http" />
+      <p>
+        Java, Python, HTTP and
+      </p>
+      <p>
+        JSON file APIs
+      </p>
     </div>
   </div>
+  <div class="key-features-btn-full">
+    <a class="btn-card-info btnGetStarted" href="docs/">Full Documentation</a>
+  </div>
 
-<div class="key-features-wrapper">
-    <h2 class="keyFeaturesTXT">Key Features</h2>
-    <p class="keyFeaturesInfo">WireMock frees you from dependency on unstable APIs and allows you to develop with confidence. It's easy to launch a mock API server and simulate a host of real-world scenarios and APIs - including REST, SOAP, OAuth2 and more.</p>
-    <div class="container key-features-grid">
-      <div class="key-features-card">
-        <img src="{{ '/images/requestIcon.svg' | absolute_url }}" alt="Wiremock Features"/>
-        <p>
-          Advanced request
-        </p>
-        <p>
-          matching
-        </p>
-      </div>
-      <div class="key-features-card">
-        <img src="{{ '/images/responseIcon.svg' | absolute_url }}" alt="wiremock dynamic response"/>
-        <p>
-          Dynamic response
-        </p>
-        <p>
-          templating
-        </p>
-      </div>
-      <div class="key-features-card">
-        <img src="{{ '/images/unitTestIcon.svg' | absolute_url }}" alt="wiremock unit tests" />
-        <p>
-          Run in your unit tests, on your
-        </p>
-        <p>
-          laptop or in your test environment.
-        </p>
-      </div>
-      <div class="key-features-card">
-        <img src="{{ '/images/faultIcon.svg' | absolute_url }}" alt="wiremock fault and latency"/>
-        <p>
-          Fault and latency
-        </p>
-        <p>
-          injection
-        </p>
-      </div>
-      <div class="key-features-card">
-        <img src="{{ '/images/recordIcon.svg' | absolute_url }}" alt="wiremock record playback"/>
-        <p>
-          Record / Playback
-        </p>
-      </div>
-      <div class="key-features-card">
-        <img src="{{ '/images/httpIcon.svg' | absolute_url }}" alt="wiremock java, python, http" />
-        <p>
-          Java, Python, HTTP and
-        </p>
-        <p>
-          JSON file APIs
-        </p>
-      </div>
-    </div>
-    <div class="container key-features-btn-full">
-      <a class="btn-card-info btnGetStarted" href="docs/">Full Documentation</a>
-    </div>
 
+  <div class="downloads-wrapper">
+    <h2 class="keyFeaturesTXT">Downloads</h2>
+    <p class="keyFeaturesInfo">WireMock is available as a standalone service, Java library
+      and integrations for modern languages and technology stacks.
+    </p>
+      
+    {% include downloads.html show_standalone="true" %}
+  
+  </div>
+
+  <div class="faq-wrapper">
     <div class="container faq">
-      <h2>FAQ</h2>
+      <h2 class="keyFeaturesTXT">FAQ</h2>
       <dl class="faq-list">
         <dt><i class="faq-list-arrow"></i> What is WireMock?</dt>
         <dd>WireMock is a free API mocking tool that can be run as a standalone server, or in a hosted version via the <a href="https://wiremock.io/">WireMock Cloud</a> managed service.</dd>
@@ -334,4 +217,5 @@ docker run -it --rm \
         <dd>WireMock is completely free under the Apache 2.0 license.</dd>
       </dl>
     </div>
+  </div>
 </div>
