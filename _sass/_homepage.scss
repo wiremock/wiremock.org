@@ -24,7 +24,7 @@ html {
 }
 
 .wiremockIMGwidth {
-    width: 123px;
+    width: 200px;
 }
 
 #openSourceCard:hover {
@@ -296,7 +296,7 @@ html {
     }
 }
 
-.mocklab-callout-bullets {
+.wiremock-cloud-callout-bullets {
     padding-left: 0;
     
     li {
@@ -527,7 +527,7 @@ html {
 .wiremock-cloud__buttons {
     display: flex;
     gap: 5px;
-    margin-top: 40px;
+    margin-top: 10px;
 }
 
 .wiremock-cloud-wrapper,
@@ -622,7 +622,6 @@ html {
         font-size: 20px;
         color: #000000;
         margin-top: 0;
-        margin-bottom: 20px;
     }
 
     .enterpirse-feature {

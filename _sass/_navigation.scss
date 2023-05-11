@@ -178,10 +178,12 @@
 .greedy-nav {
     position: relative;
     min-width: 250px;
+    margin-left: auto;
+    margin-right: 0;
 
     a {
         display: block;
-        margin: 0 3rem;
+        margin: 0;
         padding: 0 0;
         color: $head-nav-links;
         text-decoration: none;
@@ -204,13 +206,14 @@
     }
 
     .visible-links {
-        margin-left: 150px;
+        margin-left: auto;
+        margin-right: 2em;        
         display: table;
 
         li {
             display: table-cell;
-            // vertical-align: middle;
-            // margin-top: 2px;
+            vertical-align: top;
+            padding-top: 10px;
 
             &:first-child {
                 font-weight: bold;
@@ -225,6 +228,12 @@
                     margin-right: 0;
                 }
             }
+        }
+
+        li:last-child {
+            float: right;
+            padding-top: 2px;
+            padding-bottom: 2px;
         }
 
         a {

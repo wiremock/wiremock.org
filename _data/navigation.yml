@@ -57,12 +57,11 @@ main:
           subnavLink: "https://community.wiremock.io/"
         - name: "External Resources"
           subnavLink: "/external-resources"
-          
-    - title: "WireMock Cloud"
-      link: "https://www.wiremock.io/product?utm_source=wiremock.org&utm_medium=masthead_doc-links&utm_campaign=2022_baseline"
-      new_window: true
-      icon: "/images/logos/doc-sections/cloud.svg"
+
 # TODO: re-enable once/if there are more commercial offerings
+#    - title: "Commercial Offerings"
+#      new_window: true
+#      icon: "/images/logos/doc-sections/cloud.svg"
 #      subnav: "commercial"
 #      subnavLinks:
 #        - name: "WireMock Cloud"  
