@@ -29,6 +29,7 @@ main:
           subnavLink: "https://github.com/wiremock/.github/blob/main/SUPPORT.md#commercial-support-trainings-and-consulting"
 
     - title: "Participate"
+      link: '/participate'
       icon: "/images/logos/doc-sections/community.svg"
       subnav: "participate"
       subnavLinks:
@@ -44,6 +45,7 @@ main:
           subnavLink: "https://github.com/wiremock/.github/blob/main/CODE_OF_CONDUCT.md"
     
     - title: "Resources"
+      link: "/external-resources"
       icon: "/images/logos/doc-sections/plus.svg"
       subnav: "resources"
       subnavLinks:
