@@ -9,7 +9,7 @@ setup:
 standalone:
   title: WireMock Standalone
   pages:
-    - docker
+    - standalone/docker
     - standalone/java-jar
     - standalone/administration
 
