@@ -47,7 +47,13 @@
       {% for doc_category in site.data.doc-categories %}
       {% assign current_page = doc_category[1].pages | where_exp: "docpage", "page.url contains docpage" %}
         <li class="doc-category">
-          <span class="doc-category__title">{{ doc_category[1].title }}</span>
+          <span {% if current_page.link == page.url %}class="doc-category__li doc-category__li--selected"{% else %}class="doc-category__li"{% endif %}>
+            {% if doc_category[1].link %}
+              <a href="{{ doc_category[1].link | absolute_url }}">{{ doc_category[1].title }}</a>
+            {% else %}
+              {{ doc_category[1].title }}
+            {% endif %}
+          </span>
           <ul class="
           doc-category__sub-nav
           {% if current_page.first %}doc-category__sub-nav--active{% endif %}
