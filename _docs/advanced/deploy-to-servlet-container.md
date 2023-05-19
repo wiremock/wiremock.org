@@ -14,8 +14,8 @@ to explode the WAR on deployment. This has only really been tested in
 Tomcat 6 and Jetty, so YMMV. Running standalone is definitely the
 preferred option.
 
-The easiest way to create a WireMock WAR project is to clone the [sample
-app](https://github.com/tomakehurst/wiremock/tree/master/sample-war)
+The easiest way to create a WireMock WAR project is to clone the
+[sample app](https://github.com/wiremock/wiremock/tree/master/sample-war).
 
 ### Deploying under a sub-path of the context root
 
