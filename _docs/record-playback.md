@@ -24,7 +24,7 @@ Once that's running visit the recorder UI page at [http://localhost:8080/\_\_adm
 
 ![Recorder UI]({{ '/images/recorder-screenshot.png' | absolute_url }})
 
-Enter the URL you wish to record from in the target URL field and click the Record button. You can use `http://example.mocklab.io` to try it out.
+Enter the URL you wish to record from in the target URL field and click the Record button. You can use `http://examples.wiremockapi.cloud/` to try it out.
 
 Now you need to make a request through WireMock to the target API so that it can be recorded. If you're using the example URL, you can generate a request using curl:
 
@@ -63,18 +63,18 @@ Java:
 
 ```java
 // Static DSL
-WireMock.startRecording("http://example.mocklab.io");
+WireMock.startRecording("http://examples.wiremockapi.cloud/");
 List<StubMapping> recordedMappings = WireMock.stopRecording();
 
 // Client instance
 WireMock wireMockClient = new WireMock(8080);
-wireMockClient.startStubRecording("http://example.mocklab.io");
+wireMockClient.startStubRecording("http://examples.wiremockapi.cloud/");
 List<StubMapping> recordedMappings = wireMockClient.stopStubRecording();
 
 // Directly
 WireMockServer wireMockServer = new WireMockServer();
 wireMockServer.start();
-wireMockServer.startRecording("http://example.mocklab.io");
+wireMockServer.startRecording("http://examples.wiremockapi.cloud/");
 List<StubMapping> recordedMappings = wireMockServer.stopRecording();
 ```
 
@@ -83,7 +83,7 @@ API:
 ```json
 POST /__admin/recordings/start
 {
-  "targetBaseUrl": "http://example.mocklab.io"
+  "targetBaseUrl": "http://examples.wiremockapi.cloud/"
 }
 ```
 
@@ -102,7 +102,7 @@ See [Proxying](../proxying) for details on proxy configuration, but in summary t
 Java:
 
 ```java
-stubFor(proxyAllTo("http://example.mocklab.io").atPriority(1));
+stubFor(proxyAllTo("http://examples.wiremockapi.cloud/").atPriority(1));
 ```
 
 API:
@@ -115,7 +115,7 @@ POST /__admin/mappings
         "method": "ANY"
     },
     "response": {
-        "proxyBaseUrl" : "http://example.mocklab.io"
+        "proxyBaseUrl" : "http://examples.wiremockapi.cloud/"
     }
 }
 ```
@@ -159,7 +159,7 @@ In Java this achieved using the DSL:
 ```java
 startRecording(
       recordSpec()
-          .forTarget("http://example.mocklab.io")
+          .forTarget("http://examples.wiremockapi.cloud/")
           .onlyRequestsMatching(getRequestedFor(urlPathMatching("/api/.*")))
           .captureHeader("Accept")
           .captureHeader("Content-Type", true)
@@ -178,7 +178,7 @@ And via the API:
 ```json
 POST /__admin/recordings/start
 {
-  "targetBaseUrl" : "http://example.mocklab.io",
+  "targetBaseUrl" : "http://examples.wiremockapi.cloud/",
   "filters" : {
     "urlPathPattern" : "/api/.*",
     "method" : "GET",

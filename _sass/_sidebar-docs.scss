@@ -23,13 +23,13 @@
     
     &__sub-nav {
         margin-left: 10px;
+        font-size: 18px;
     }
     &__sub-nav--active {
         display: block;
     }
     &__li a {
         text-decoration: none !important;
-        font-size: 14px;
         color: #18253d;
         font-weight: unset;
     }

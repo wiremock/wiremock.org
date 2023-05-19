@@ -78,6 +78,15 @@ For example, if the `3.x` baseline is a preview one...
 - To build and test the baseline on a local machine, one needs to include the overrides config file into `jekyll build` and `jekyll serve` commands.
   For example, `bundle exec jekyll serve --config '_config.yml,_config-3.x.yml'`.
 
+## Checking for broken links
+
+The CI will soon verify that, but for now you can check manually, e.g. with the
+[broken-link-checker](https://github.com/stevenvachon/broken-link-checker).
+
+```bash
+blc http://localhost:4000/ --exclude-external
+```
+
 ## Deploying the website
 
 The repository includes the GitHub action that automatically deploys the website upon

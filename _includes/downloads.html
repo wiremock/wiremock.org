@@ -92,21 +92,21 @@
   <scope>test</scope>
 </dependency>
 {% endhighlight %}
-            <p class="codeTabDescription" style="margin-top:2rem;">Then follow the next steps for <a href="docs/junit-jupiter/">JUnit 5+</a> or <a href="docs/java-usage/">plain Java</a>.</p>
+            <p class="codeTabDescription" style="margin-top:2rem;">Then follow the next steps for <a href="{{ '/docs/junit-jupiter/' | absolute_url }}">JUnit 5+</a> or <a href="{{ '/docs/java-usage/' | absolute_url }}">plain Java</a>.</p>
           </div>
           <div class="codeSnippet" data-snippettab="gradle groovy">
             <p class="codeTabDescription">Add the following to your project's <strong>build.gradle</strong>:</p>
 {% highlight groovy %}
 testImplementation "com.github.tomakehurst:wiremock-jre8:{{ site.wiremock_version }}"
 {% endhighlight %}
-            <p class="codeTabDescription" style="margin-top:2rem;">Then follow the next steps for <a href="docs/junit-jupiter/">JUnit 5+</a> or <a href="docs/java-usage/">plain Java</a>.</p>
+            <p class="codeTabDescription" style="margin-top:2rem;">Then follow the next steps for <a href="{{ '/docs/junit-jupiter/' | absolute_url }}">JUnit 5+</a> or <a href="{{ '/docs/java-usage/' | absolute_url }}">plain Java</a>.</p>
           </div>
           <div class="codeSnippet" data-snippettab="gradle kotlin">
             <p class="codeTabDescription">Add the following to your project's <strong>build.gradle.kts</strong>:</p>
 {% highlight kotlin %}
 testImplementation("com.github.tomakehurst:wiremock-jre8:{{ site.wiremock_version }}")
 {% endhighlight %}
-            <p class="codeTabDescription" style="margin-top:2rem;">Then follow the next steps for <a href="docs/junit-jupiter/">JUnit 5+</a> or <a href="docs/java-usage/">plain Java</a>.</p>
+            <p class="codeTabDescription" style="margin-top:2rem;">Then follow the next steps for <a href="{{ '/docs/junit-jupiter/' | absolute_url }}">JUnit 5+</a> or <a href="{{ 'docs/java-usage/' | absolute_url }}">plain Java</a>.</p>
           </div>
           <div class="codeSnippet" data-snippettab="scala sbt">
             <p class="codeTabDescription">Add the following to your project’s <strong>build.sbt</strong>:</p>
@@ -123,7 +123,7 @@ libraryDependencies +=
 {% highlight bash %}
 java -jar wiremock-jre8-standalone-{{ site.wiremock_version }}.jar
 {% endhighlight %}
-            <p class="codeTabDescription" style="margin-top:2rem;">Learn more in the <a href="docs/running-standalone/">running standalone guide.</a></p>
+            <p class="codeTabDescription" style="margin-top:2rem;">Learn more in the <a href="{{ 'docs/running-standalone/' | absolute_url }}">running standalone guide.</a></p>
           </div>
           <div class="codeSnippet" data-snippettab="docker">
             <p class="codeTabDescription">Run the following in a terminal:</p>
@@ -133,7 +133,7 @@ docker run -it --rm \
   --name wiremock \
   wiremock/wiremock:{{ site.wiremock_version }}
 {% endhighlight %}
-            <p class="codeTabDescription" style="margin-top:2rem;">Learn more in the <a href="docs/docker/">Docker guide.</a></p>
+            <p class="codeTabDescription" style="margin-top:2rem;">Learn more in the <a href="{{ '/docs/docker/ ' | absolute_url }}">Docker guide.</a></p>
           </div>
         </div>
         </div>

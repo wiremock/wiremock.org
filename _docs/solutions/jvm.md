@@ -38,7 +38,7 @@ for unit and integration testing.
 
 ## WireMock Extensions
 
-_WireMock Java_ is [extensible](../extending-wiremock),
+_WireMock Java_ is [extensible](../../extending-wiremock),
 and there is a number of available extensions that can be included into WireMock
 to extend its functionality, including but not limited to request filters, observability, storage, etc.
 

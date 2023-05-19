@@ -7,7 +7,7 @@ redirect_from:
   - "/docs/junit-rule/index.html"
   - "/docs/junit-rule/"
   - "/junit-rule/"
-  - "/docs/junit-4"
+  - "/docs/junit-4.html"
 description: WireMock includes a JUnit rule, compatible with JUnit 4.x and JUnit 5 Vintage. This provides a convenient way to manage one or more WireMock instances in your test cases.
 ---
 
