@@ -3,8 +3,8 @@ layout: docs
 title: Participate in WireMock
 meta_title: How to participate in the WireMock Community
 redirect_from: 
-- "/contributing"
-- "/participate"
+- "/contributing.html"
+- "/participate.html"
 description: >
     Regardless of your expertise and time you could dedicate, there're opportunities to participate 
     in the project and its community!

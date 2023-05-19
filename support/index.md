@@ -3,6 +3,8 @@ layout: support
 title: Support
 meta_title: How to get support
 description: How to get support for WireMock open source and Studio
+redirect_from:
+  - "/docs/support.html"
 ---
 
 # Support
