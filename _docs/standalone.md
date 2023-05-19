@@ -16,7 +16,7 @@ We provide the JAR file and Docker image distributions for it.
 
 ## Running WireMock
 
-- [Running as a Docker Image](./docker)
+- [Running as a Docker Image](../docker)
 - [Running as a JAR file](./java-jar)
 
 ## Management

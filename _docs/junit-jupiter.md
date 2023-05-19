@@ -4,7 +4,7 @@ title: "JUnit 5+ Jupiter"
 meta_title: Using WireMock's JUnit Jupiter extension | WireMock
 description: WireMock includes a JUnit Jupiter extension which is used to manage the lifecycle and configuration of one or more WireMock instances in your test case.
 redirect_from:
-  - "/docs/junit-5"
+  - "/docs/junit-5.html"
 ---
 
 The JUnit Jupiter extension simplifies running of one or more WireMock instances in a Jupiter test class.
