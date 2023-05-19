@@ -3,7 +3,7 @@ main:
     
     - title: "Docs"
       link: "/docs"
-      icon: "/images/logos/doc-sections/document.svg"
+      icon: "/images/logos/doc-sections/documentBar.svg"
       subnav: "docs"
       subnavLinks:
         - name: "WireMock"
@@ -18,7 +18,7 @@ main:
 
     - title: "Need Help?"
       link: "/support"
-      icon: "/images/logos/doc-sections/help-mono.svg"
+      icon: "/images/logos/doc-sections/helpsec.svg"
       subnav: "help"
       subnavLinks:
         - name: "Q&A on Slack"
@@ -30,7 +30,7 @@ main:
 
     - title: "Participate"
       link: '/participate'
-      icon: "/images/logos/doc-sections/community.svg"
+      icon: "/images/logos/doc-sections/team.svg"
       subnav: "participate"
       subnavLinks:
         - name: "Community Slack"
@@ -46,7 +46,7 @@ main:
     
     - title: "Resources"
       link: "/external-resources"
-      icon: "/images/logos/doc-sections/plus.svg"
+      icon: "/images/logos/doc-sections/plusnew.svg"
       subnav: "resources"
       subnavLinks:
         - name: "WireMock Ecosystem"

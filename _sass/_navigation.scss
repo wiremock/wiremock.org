@@ -180,7 +180,11 @@
     min-width: 250px;
     margin-left: auto;
     margin-right: 0;
-
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-items: center;
+    margin-top: 0.8%;
     a {
         display: block;
         margin: 0;
@@ -232,8 +236,9 @@
 
         li:last-child {
             float: right;
-            padding-top: 2px;
+            padding-top: 1px;
             padding-bottom: 2px;
+            
         }
 
         a {
