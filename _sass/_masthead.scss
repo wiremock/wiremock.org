@@ -13,8 +13,8 @@
     &__inner-wrap {
         @include container;
         @include clearfix;
-        padding-left: 1em;
-        padding-right: 1em;
+        padding-left: 40px;
+        padding-right: 0em;
         font-family: $sans-serif-narrow;
 
         @include breakpoint($x-large) {
