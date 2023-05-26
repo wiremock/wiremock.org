@@ -12,7 +12,7 @@ logo: /images/logos/technology/dotnet.svg
 A .NET implementation of a API mock server in C# based on
 [mock4net](https://github.com/alexvictoor/mock4net)
 It mimics the functionality from [WireMock](https://github.com/wiremock/wiremock) implemented in Java.
-WireMock.NET can be used with all .NET based languages within .NET test frameworks,
+WireMock.NET can be used with all .NET based languages,
 both .NET Framework and .NET Core are supported.
 It can also be deployed as a standalone server, including Windows service and a container.
 
@@ -26,15 +26,6 @@ References:
 - [WireMock.Net Docker images](https://github.com/WireMock-Net/WireMock.Net-docker) for Linux and Windows
 - [WireMock.Net Examples](https://github.com/WireMock-Net/WireMock.Net-examples)
 
-## Mock4Net
-
-A tiny mock HTTP server for .NET, inspired by WireMock.
-A fluent API allows to specify the behavior of the server and hence easily stub and mock
-web services and REST resources.
-
-References:
-
-- [GitHub Repository](https://github.com/alexvictoor/mock4net)
 
 ## WireMockInspector
 
