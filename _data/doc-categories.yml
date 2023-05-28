@@ -39,6 +39,13 @@ stubbing-and-verifying:
     - proxying
     - verifying
 
+templating:
+  title: Templating
+  link: /docs/mock-api-templates
+  pages:
+    - mock-api-templates
+    - mock-api-templates/usage
+
 record-playback:
   title: Record & Playback
   link: /docs/record-playback/
@@ -65,3 +72,4 @@ reference:
   title: Reference
   pages:
     - standalone/admin-api-reference
+    - mock-api-templates
