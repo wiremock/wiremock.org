@@ -2,28 +2,25 @@
 main:
     
     - title: "Docs"
+      link: "/docs"
+      icon: "/images/logos/doc-sections/documentBar.svg"
       subnav: "docs"
       subnavLinks:
-        - name: "WireMock for Java"
+        - name: "WireMock"
           subnavLink: "/docs/"
-        - name: "WireMock 3.x for Java (Preview)"
+        - name: "WireMock 3.x (Preview)"
           subnavLink: "/3.x/docs/"
           wiremock_baseline: 3.x
-        - name: "WireMock Standalone"
-          subnavLink: "/docs/running-standalone/"
-        - name: "WireMock 3.x Standalone (Preview)"
-          subnavLink: "/3.x/docs/running-standalone/"
-          wiremock_baseline: 3.x
-        - name: "WireMock in Docker"
-          subnavLink: "/docs/docker/"
-        - name: "WireMock Python"
-          subnavLink: "https://wiremock.readthedocs.io/en/latest/"
+        - name: "Mock API Templates"
+          subnavLink: "/docs/mock-api-templates"
         - name: "WireMock Cloud"  
           subnavLink: "https://docs.wiremock.io/getting-started/?utm_source=wiremock.org&utm_medium=masthead_doc-links&utm_campaign=2022_baseline"
         - name: "External Resources"
           subnavLink: "/external-resources"
 
     - title: "Need Help?"
+      link: "/support"
+      icon: "/images/logos/doc-sections/helpsec.svg"
       subnav: "help"
       subnavLinks:
         - name: "Q&A on Slack"
@@ -34,6 +31,8 @@ main:
           subnavLink: "/support/commercial"
 
     - title: "Participate"
+      link: '/participate'
+      icon: "/images/logos/doc-sections/team.svg"
       subnav: "participate"
       subnavLinks:
         - name: "Community Slack"
@@ -46,20 +45,14 @@ main:
           subnavLink: "https://github.com/wiremock/wiremock.org"
         - name: "Code of Conduct"
           subnavLink: "https://github.com/wiremock/.github/blob/main/CODE_OF_CONDUCT.md"
-
-    - title: "Commercial"
-      subnav: "commercial"
-      subnavLinks:
-        - name: "WireMock Cloud"  
-          subnavLink: "https://docs.wiremock.io/getting-started/?utm_source=wiremock.org&utm_medium=masthead_doc-links&utm_campaign=2022_baseline"
-        - name: "WireMock Studio (Discontinued)"
-          subnavLink: "/studio/docs/"
-        - name: "MockLab (Deprecated)"
-          subnavLink: "https://www.mocklab.io/docs/getting-started/?utm_source=wiremock.org&utm_medium=masthead_doc-links&utm_campaign=2022_baseline"
-
+    
     - title: "Resources"
+      link: "/external-resources"
+      icon: "/images/logos/doc-sections/plusnew.svg"
       subnav: "resources"
       subnavLinks:
+        - name: "Mock API Templates Library"
+          subnavLink: "https://library.wiremock.org/"
         - name: "WireMock Ecosystem"
           subnavLink: "https://github.com/wiremock/ecosystem"
         - name: "Twitter"
@@ -70,4 +63,18 @@ main:
           subnavLink: "https://community.wiremock.io/"
         - name: "External Resources"
           subnavLink: "/external-resources"
-          
+
+# TODO: re-enable once/if there are more commercial offerings
+#    - title: "Commercial Offerings"
+#      new_window: true
+#      icon: "/images/logos/doc-sections/cloud.svg"
+#      subnav: "commercial"
+#      subnavLinks:
+#        - name: "WireMock Cloud"  
+#          subnavLink: "https://docs.wiremock.io/getting-started/?utm_source=wiremock.org&utm_medium=masthead_doc-links&utm_campaign=2022_baseline"
+#        - name: "WireMock Studio (Discontinued)"
+#          subnavLink: "/studio/docs/"
+#        - name: "MockLab (Deprecated)"
+#          subnavLink: "https://www.mocklab.io/docs/getting-started/?utm_source=wiremock.org&utm_medium=masthead_doc-links&utm_campaign=2022_baseline"
+
+

@@ -243,12 +243,14 @@
     a {
         color: inherit;
     }
+    margin-bottom: 10px;
 }
 
 .page__meta-title {
-    margin-bottom: 10px;
-    font-size: $type-size-6;
+    font-size: small;
     text-transform: uppercase;
+    padding-left: 20px;
+    padding-bottom: 20px;
 }
 
 /*

@@ -1,5 +1,6 @@
 setup:
   title: Getting started
+  link: /docs/overview
   pages:
     - overview
     - quickstart/java-junit
@@ -8,13 +9,15 @@ setup:
 
 standalone:
   title: WireMock Standalone
+  link: /docs/standalone
   pages:
-    - docker
+    - standalone/docker
     - standalone/java-jar
     - standalone/administration
 
 java:
   title: Java Usage
+  link: /docs/solutions/jvm/
   pages:
     - junit-jupiter
     - junit-extensions
@@ -26,6 +29,7 @@ java:
     
 stubbing-and-verifying:
   title: Stubbing & Verifying
+  link: /docs/stubbing
   pages:
     - stubbing
     - request-matching
@@ -35,8 +39,16 @@ stubbing-and-verifying:
     - proxying
     - verifying
 
+templating:
+  title: Templating
+  link: /docs/mock-api-templates
+  pages:
+    - mock-api-templates
+    - mock-api-templates/usage
+
 record-playback:
   title: Record & Playback
+  link: /docs/record-playback/
   pages:
     - record-playback
 
@@ -50,6 +62,7 @@ configuration:
 
 extensibility:
   title: Extensibility
+  link: /docs/extending-wiremock/
   pages:
     - extending-wiremock
     - stub-metadata
@@ -59,3 +72,4 @@ reference:
   title: Reference
   pages:
     - standalone/admin-api-reference
+    - mock-api-templates

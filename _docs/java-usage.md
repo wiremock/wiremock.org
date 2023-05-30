@@ -2,7 +2,9 @@
 layout: docs
 title: Plain Java
 meta_title: Use WireMock from Java or other JVM languages | WireMock
-redirect_from: "/java-usage.html"
+redirect_from: 
+  - "/java-usage.html"
+  - "/docs/plain-java.html"
 description: If you want to use WireMock from Java (or any other JVM language) outside of JUnit you can programmatically create, start and stop the server.
 ---
 

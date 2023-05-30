@@ -2,7 +2,9 @@
 layout: support
 title: Support
 meta_title: How to get WireMock support
-description: Enterprise and commercial support and consulting options
+description: Community Assistance, Enterprise and commercial support and consulting options
+redirect_from:
+  - "/docs/support.html"
 ---
 
 WireMock is an open source project.

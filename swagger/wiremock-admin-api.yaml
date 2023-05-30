@@ -569,7 +569,7 @@ components:
                   targetBaseUrl:
                     type: string
                     description: Target URL when using the record and playback API
-                    example: http://example.mocklab.io
+                    example: http://examples.wiremockapi.cloud/
           example:
             $ref: "examples/record-spec.yaml"
 

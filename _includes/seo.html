@@ -75,7 +75,7 @@
   {% else %}
     <meta name="twitter:card" content="summary">
     {% if site.og_image %}
-      <meta name="twitter:image" content="{{ site.og_image | prepend: "/images/" | absolute_url }}">
+      <meta name="twitter:image" content="{{ site.og_image | prepend: '/images/'' | absolute_url }}">
     {% endif %}
   {% endif %}
 
@@ -98,6 +98,8 @@
   <meta property="og:image" content="{% if page.header.image contains "://" %}{{ page.header.image }}{% else %}{{ page.header.image | prepend: "/images/" | absolute_url }}{% endif %}">
 {% elsif page.header.overlay_image %}
   <meta property="og:image" content="{% if page.header.overlay_image contains "://" %}{{ page.header.overlay_image }}{% else %}{{ page.header.overlay_image | prepend: "/images/" | absolute_url }}{% endif %}">
+{% elsif site.og_image %}
+  <meta name="image" property="og:image" content="{{ site.og_image | prepend: '/images/'' | absolute_url }}">
 {% endif %}
 
 {% if page.date %}
@@ -117,7 +119,7 @@
       "@context": "http://schema.org",
       "@type": "Organization",
       "url": {{ seo_url | jsonify }},
-      "logo": {{ site.og_image | prepend: "/images/" | absolute_url | jsonify }}
+      "logo": {{ site.og_image | prepend: '/images/' | absolute_url | jsonify }}
     }
   </script>
 {% endif %}

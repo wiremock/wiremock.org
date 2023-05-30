@@ -24,14 +24,14 @@ html {
 }
 
 .wiremockIMGwidth {
-    width: 123px;
+    width: 200px;
 }
 
 #openSourceCard:hover {
     border: 1px solid #18253d;
 }
 
-#studioCard:hover {
+#wiremockCloudCard:hover {
     border: 1px solid #f59121;
 }
 
@@ -157,6 +157,7 @@ html {
     }
     
     padding: 40px;
+    padding-bottom: 10px;
 
     h1 {
         font-family: "Ubuntu";
@@ -295,7 +296,7 @@ html {
     }
 }
 
-.mocklab-callout-bullets {
+.wiremock-cloud-callout-bullets {
     padding-left: 0;
     
     li {
@@ -345,7 +346,6 @@ html {
 }
 
 .code-tabs-wrapper {
-    margin-top: 70px;
     margin-bottom: 70px;
     background-color: $general-background;
     border-radius: 50px;
@@ -524,14 +524,14 @@ html {
     }
 }
 
-.wiremock-studio__buttons {
+.wiremock-cloud__buttons {
     display: flex;
     gap: 5px;
-    margin-top: 40px;
+    margin-top: 10px;
 }
 
-.wiremock-studio-wrapper,
-.wiremock-studio-robot-wrapper {
+.wiremock-cloud-wrapper,
+.wiremock-cloud-robot-wrapper {
     margin-top: 50px;
     display: flex;
     justify-content: space-evenly;
@@ -541,21 +541,21 @@ html {
     margin-bottom: 4rem;
     padding: 0;
 
-    .wiremock-studio-img-wrapper {
+    .wiremock-cloud-img-wrapper {
         width: 536px;
         padding: 65px 0;
     }
 
-    .wiremock-studio-img {
+    .wiremock-cloud-img {
         width: 100%;
     }
     
 
-    .wiremock-studio-vLine {
+    .wiremock-cloud-vLine {
         border-left: 1px solid #d2dff9;
     }
 
-    .wiremock-studio-details {
+    .wiremock-cloud-details {
         width: 536px;
         padding: 65px 0;
         display: flex;
@@ -580,17 +580,17 @@ html {
             color: #18253d;
         }
 
-        .p-margin-studio {
+        .p-margin-wiremock-cloud{
             margin-top: 20px;
         }
 
-        .p-width-studio {
+        .p-width-wiremock-cloud {
             width: 65%;
             &:last-of-type {
                 margin-bottom: 0;
             }
         }
-        .wiremock-studio-links-wrapper {
+        .wiremock-cloud-links-wrapper {
             display: flex;
             margin-top: 30px;
         }
@@ -600,7 +600,7 @@ html {
         color: #3db2ef;
     }
 
-    .wiremock-studio-robot {
+    .wiremock-cloud-robot {
         background: linear-gradient(201.62deg, #ffffff -3.51%, #d2dff9 86.83%);
         width: 50%;
         border-top-left-radius: 50px;
@@ -622,7 +622,6 @@ html {
         font-size: 20px;
         color: #000000;
         margin-top: 0;
-        margin-bottom: 20px;
     }
 
     .enterpirse-feature {
@@ -663,7 +662,7 @@ html {
     }
 }
 
-.wiremock-studio-robot-wrapper {
+.wiremock-cloud-robot-wrapper {
     justify-content: unset;
 }
 
@@ -683,7 +682,7 @@ html {
     .keyFeaturesInfo {
         text-align: center;
         padding-top: 20px;
-        padding-bottom: 90px;
+        padding-bottom: 30px;
         max-width: 1150px;
         margin: 0 auto;
     }
@@ -728,8 +727,21 @@ html {
     .key-features-btn-full {
         display: flex;
         justify-content: center;
-        padding-top: 90px;
+        padding-top: 20px;
+        padding-bottom: 40px;       
     }
+}
+
+.downloads-wrapper {
+    background: white;
+    padding: 70px 0;
+    padding-bottom: 20px;
+}
+
+.faq-wrapper {
+    background: rgba(240, 245, 255, 0.5);
+    padding: 70px 0;
+    padding-bottom: 20px;
 }
 
 .apis-wrapper {
@@ -1025,16 +1037,16 @@ html {
         }
     }
 
-    .wiremock-studio-wrapper {
-        .wiremock-studio-img-wrapper,
-        .wiremock-studio-details {
+    .wiremock-cloud-wrapper {
+        .wiremock-cloud-img-wrapper,
+        .wiremock-cloud-details {
             width: 436px;
         }
     }
-    .wiremock-studio-robot {
+    .wiremock-cloud-robot {
         width: 58% !important;
     }
-    .wiremock-studio-img {
+    .wiremock-cloud-img {
         height: 100%;
     }
 
@@ -1087,22 +1099,22 @@ html {
         }
     }
 
-    .wiremock-studio-wrapper {
+    .wiremock-cloud-wrapper {
         flex-direction: column;
         align-items: center;
 
-        .wiremock-studio-vLine {
+        .wiremock-cloud-vLine {
             display: none;
         }
 
-        .wiremock-studio-details {
+        .wiremock-cloud-details {
             padding-top: 0;
             align-items: center;
             display: flex;
             flex-direction: column;
             text-align: center;
 
-            .wiremock-studio-links-wrapper {
+            .wiremock-cloud-links-wrapper {
                 margin-top: 0;
             }
         }
@@ -1134,11 +1146,11 @@ html {
         display: none;
     }
 
-    .wiremock-studio-robot-wrapper {
+    .wiremock-cloud-robot-wrapper {
         justify-content: center;
 
-        .wiremock-studio-vLine,
-        .wiremock-studio-robot {
+        .wiremock-cloud-vLine,
+        .wiremock-cloud-robot {
             display: none !important;
         }
 
@@ -1195,8 +1207,8 @@ html {
     .clients-wrapper {
         grid-template-columns: auto;
     }
-    .wiremock-studio-wrapper {
-        .wiremock-studio-img-wrapper {
+    .wiremock-cloud-wrapper {
+        .wiremock-cloud-img-wrapper {
             max-width: 100%;
             width: unset;
             padding-left: 10px;
@@ -1220,7 +1232,7 @@ html {
             }
         }
     }
-    .wiremock-studio-details {
+    .wiremock-cloud-details {
         width: auto !important;
     }
     .key-features-grid {

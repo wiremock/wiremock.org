@@ -7,7 +7,7 @@ File.open( "_site/sitemap.xml", 'r' ) do |f1|
     footer = [ content1.slice!( -1 ) ]
 end
 
-File.open( "tmp/site_3x/sitemap.xml", 'r' ) do |f2|
+File.open( ".submodules/wiremock.org-3.x/tmp/site_3x/sitemap.xml", 'r' ) do |f2|
     content2 = (IO.readlines f2)
     content2.slice!( 0..11 )
     content2.slice!( -1 ) 
