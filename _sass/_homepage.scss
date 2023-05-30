@@ -149,6 +149,33 @@ html {
     }
 }
 
+.summary-header-stats {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+  
+    >a {
+        padding-left: 10px;
+    }
+}
+  
+.whats-hot {
+    border-color: red;
+    border-width: 5px;
+    border-style: groove;
+    background-color: #F7FAFF;
+  
+    >h2 {
+      padding: 10px;
+      margin: 0;
+    }
+  
+    >p {
+      padding: 0px;
+      margin-bottom: 0;
+    }
+}
+
 .home-header-hero-text {
 
     width: 50%;
@@ -158,6 +185,7 @@ html {
     
     padding: 40px;
     padding-bottom: 10px;
+    padding-top: 10px;
 
     h1 {
         font-family: "Ubuntu";
