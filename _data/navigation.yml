@@ -28,7 +28,7 @@ main:
         - name: "StackOverflow"
           subnavLink: "https://stackoverflow.com/questions/tagged/wiremock"
         - name: "Commercial Options"
-          subnavLink: "https://github.com/wiremock/.github/blob/main/SUPPORT.md#commercial-support-trainings-and-consulting"
+          subnavLink: "/support/commercial"
 
     - title: "Participate"
       link: '/participate'
