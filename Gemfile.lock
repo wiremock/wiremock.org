@@ -23,6 +23,7 @@ GEM
     ffi (1.15.5-x64-mingw32)
     forwardable-extended (2.6.0)
     gemoji (4.1.0)
+    google-protobuf (3.22.3-arm64-darwin)
     google-protobuf (3.22.3-x64-mingw32)
     google-protobuf (3.22.3-x86_64-linux)
     html-pipeline (2.14.3)
@@ -75,6 +76,8 @@ GEM
       rb-inotify (~> 0.9, >= 0.9.10)
     mercenary (0.4.0)
     minitest (5.18.0)
+    nokogiri (1.14.3-arm64-darwin)
+      racc (~> 1.4)
     nokogiri (1.14.3-x64-mingw32)
       racc (~> 1.4)
     nokogiri (1.14.3-x86_64-linux)
@@ -105,10 +108,10 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.4.2)
-    wdm (0.1.1)
     webrick (1.8.1)
 
 PLATFORMS
+  arm64-darwin-21
   x64-mingw32
   x86_64-linux
 
@@ -122,8 +125,7 @@ DEPENDENCIES
   jemoji
   json (~> 1.8.6)
   nokogiri (>= 1.7.2)
-  wdm (~> 0.1.0)
   webrick (~> 1.7)
 
 BUNDLED WITH
-   2.4.10
+   2.3.8
