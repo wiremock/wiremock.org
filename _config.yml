@@ -62,6 +62,8 @@ analytics:
     # MS Clarity
     clarity:
         enabled: true
+    vwo:
+        enabled: true
 
 # Google AdSense
 google_ad_client:
