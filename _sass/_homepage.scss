@@ -139,7 +139,6 @@ html {
     font-size: 20px;
     text-decoration: none;
     margin-top: 5px;
-    display: flex;
     align-items: center;
 
     &--mocklab {
@@ -177,7 +176,6 @@ html {
 }
 
 .home-header-hero-text {
-
     width: 50%;
     @media (max-width: 1023px) {
         width: 100%;
@@ -191,9 +189,14 @@ html {
         font-family: "Ubuntu";
         font-style: normal;
         font-weight: bold;
-        font-size: 60px;
+        font-size: 50px;
         color: #18253d;
         text-align: left;
+        word-break: break-word;
+
+        @media (min-width: 920px) {
+            font-size: 60px;
+        }
     }
 
     p {
