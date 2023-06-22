@@ -23,16 +23,6 @@ html {
     }
 }
 
-.home-header-heading {
-    margin: 0;
-    font-family: "Ubuntu";
-    font-style: normal;
-    font-weight: bold;
-    font-size: 60px !important;
-    color: #18253d;
-    text-align: left;
-}
-
 .wiremockIMGwidth {
     width: 200px;
 }
@@ -149,7 +139,6 @@ html {
     font-size: 20px;
     text-decoration: none;
     margin-top: 5px;
-    display: flex;
     align-items: center;
 
     &--mocklab {
@@ -187,18 +176,6 @@ html {
 }
 
 .home-header-hero-text {
-    &--b {
-        margin-bottom: 40px;
-
-        @media (min-width: 920px) {
-            min-height: 50vh;
-            max-height: 620px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-    }
-
     width: 50%;
     @media (max-width: 1023px) {
         width: 100%;
