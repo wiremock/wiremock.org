@@ -91,7 +91,9 @@ blc http://localhost:4000/ --exclude-external
 
 Occasionally we run A/B tests to find out what design changes might help our users navigate the site.
 
-As a result we currently have an A/B test running on the homepage, so to avoid interfering with the test please do not modify the `start.html` page or the `index.html`.
+Major changes to navigation and layout can impact the results of A/B tests,
+so we will be delaying merges of non-critical pull requests that impact pages and components under test.
+You can find the list of ongoing A/B tests and contacts (as assignees) using [this GitHub Issue query](https://github.com/wiremock/wiremock.org/labels/ab-tests)
 
 ## Deploying the website
 
