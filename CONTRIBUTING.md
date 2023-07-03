@@ -87,6 +87,14 @@ The CI will soon verify that, but for now you can check manually, e.g. with the
 blc http://localhost:4000/ --exclude-external
 ```
 
+## A/B Testing
+
+Occasionally we run A/B tests to find out what design changes might help our users navigate the site.
+
+Major changes to navigation and layout can impact the results of A/B tests,
+so we will be delaying merges of non-critical pull requests that impact pages and components under test.
+You can find the list of ongoing A/B tests and contacts (as assignees) using [this GitHub Issue query](https://github.com/wiremock/wiremock.org/labels/ab-tests)
+
 ## Deploying the website
 
 The repository includes the GitHub action that automatically deploys the website upon
