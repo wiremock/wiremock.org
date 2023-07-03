@@ -87,6 +87,12 @@ The CI will soon verify that, but for now you can check manually, e.g. with the
 blc http://localhost:4000/ --exclude-external
 ```
 
+## A/B Testing
+
+Occasionally we run A/B tests to find out what design changes might help our users navigate the site.
+
+As a result we currently have an A/B test running on the homepage, so to avoid interfering with the test please do not modify the `start.html` page or the `index.html`.
+
 ## Deploying the website
 
 The repository includes the GitHub action that automatically deploys the website upon
