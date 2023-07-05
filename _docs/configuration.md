@@ -251,3 +251,25 @@ will be generated: `put-hosts-id.json` filename. Default template: `{{{method}}}
 ```
 
 Note: starting from [3.0.0-beta-8](https://github.com/wiremock/wiremock/releases/tag/3.0.0-beta-8)
+
+
+## Listening for raw traffic
+
+If you would like to observe raw HTTP traffic to and from Jetty
+for debugging purposes you can use a `WiremockNetworkTrafficListener`.
+
+One scenario where it can be useful is where Jetty
+alters the response from Wiremock before sending it to the client.
+(An example of that is where Jetty appends a --gzip postfix to the ETag response header
+if the response is gzipped.)
+Using WireMock's request listener extension points in this case would not show those alterations.
+
+To output all raw traffic to console use `ConsoleNotifyingWiremockNetworkTrafficListener`, for example:
+
+```java
+.networkTrafficListener(new ConsoleNotifyingWiremockNetworkTrafficListener()));
+```
+
+If you would like to collect the traffic
+and for example add it to your acceptance test's output,
+you can use the `CollectingNetworkTrafficListener`.
