@@ -315,7 +315,7 @@ Variable assignment and number helpers are available:
 
 ## XPath helpers
 
-Addiionally some helpers are available for working with JSON and XML.
+Additionally some helpers are available for working with JSON and XML.
 
 When the incoming request contains XML, the `xPath` helper can be used to extract values or sub documents via an XPath 1.0 expression. For instance, given the XML
 

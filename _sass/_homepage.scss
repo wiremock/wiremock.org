@@ -139,7 +139,6 @@ html {
     font-size: 20px;
     text-decoration: none;
     margin-top: 5px;
-    display: flex;
     align-items: center;
 
     &--mocklab {
@@ -149,8 +148,34 @@ html {
     }
 }
 
-.home-header-hero-text {
+.summary-header-stats {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+  
+    >a {
+        padding-left: 10px;
+    }
+}
+  
+.whats-hot {
+    border-color: red;
+    border-width: 5px;
+    border-style: groove;
+    background-color: #F7FAFF;
+  
+    >h2 {
+      padding: 10px;
+      margin: 0;
+    }
+  
+    >p {
+      padding: 0px;
+      margin-bottom: 0;
+    }
+}
 
+.home-header-hero-text {
     width: 50%;
     @media (max-width: 1023px) {
         width: 100%;
@@ -158,14 +183,20 @@ html {
     
     padding: 40px;
     padding-bottom: 10px;
+    padding-top: 10px;
 
     h1 {
         font-family: "Ubuntu";
         font-style: normal;
         font-weight: bold;
-        font-size: 60px;
+        font-size: 28px;
         color: #18253d;
         text-align: left;
+        word-break: break-word;
+
+        @media (min-width: 920px) {
+            font-size: 60px;
+        }
     }
 
     p {
@@ -526,8 +557,13 @@ html {
 
 .wiremock-cloud__buttons {
     display: flex;
+    flex-direction: column;
     gap: 5px;
     margin-top: 10px;
+
+    @media (min-width: 768px) {
+        flex-direction: row;
+    }
 }
 
 .wiremock-cloud-wrapper,
@@ -676,13 +712,16 @@ html {
         font-style: normal;
         font-weight: bold;
         color: #18253d;
-        font-size: 50px;
+        font-size: 28px;
         border-bottom: none;
+
+        @media (min-width: 768px) {
+            font-size: 50px;
+        }
     }
     .keyFeaturesInfo {
         text-align: center;
-        padding-top: 20px;
-        padding-bottom: 30px;
+        padding: 20px 20px 30px 20px;
         max-width: 1150px;
         margin: 0 auto;
     }
@@ -1240,4 +1279,93 @@ html {
         padding: 0;
         width: 100%;
     }
+}
+
+.home-hero {
+    &__title {
+        margin-top: 40px;
+        margin-bottom: 30px;
+        font-family: "Ubuntu";
+        font-style: normal;
+        font-weight: bold;
+        font-size: 28px;
+        color: #18253d;
+        text-align: center;
+
+        @media (min-width: 920px) {
+            font-size: 60px;
+            margin-bottom: 60px;
+        }
+    }
+
+    &__boxes {
+        @media (min-width: 920px) {
+            padding: 40px 0;
+            display: flex;
+        }
+    }
+
+    &__box {
+        display: grid;
+        flex-direction: column;
+        flex: 1 0 50%;
+        padding: 20px 20px;
+        margin-bottom: 20px;
+        grid-template-rows: min-content 1fr min-content;
+
+
+        &--alt {
+            background: #E4F0F7;
+            border-radius: 15px;
+        }
+
+        p {
+            font-family: "Ubuntu";
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 400;
+            color: #18253d;
+            margin-top: 1rem;
+        }
+
+        @media (min-width: 920px) {
+            padding: 40px;
+            margin-bottom: 0;
+            padding: 20px;
+
+            p {
+                font-size: 16px;
+            }
+        }
+    }
+
+    &__heading {
+        margin: 0 0 10px;
+        font-size: 24px;
+        color: #18253d;
+
+        @media (min-width: 920px) {
+            margin-bottom: 20px;
+            font-size: 50px;
+        }
+    }
+}
+
+.hr {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    max-width: 90%;
+
+    @media (min-width: 920px) {
+        margin-top: 60px;
+        margin-bottom: 60px;
+    }
+
+    @media (min-width: 2000px) {
+        width: 1280px;
+    }
+
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
 }

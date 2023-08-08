@@ -24,4 +24,12 @@
   {% include /analytics-providers/custom.html %}
 {% endif %}
 
+{% if site.analytics.custom %}
+  {% include /analytics-providers/custom.html %}
+{% endif %}
+
+{% if site.analytics.vwo %}
+  {% include /analytics-providers/vwo.html %}
+{% endif %}
+
 {% endif %}

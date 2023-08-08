@@ -62,6 +62,8 @@ analytics:
     # MS Clarity
     clarity:
         enabled: true
+    vwo:
+        enabled: true
 
 # Google AdSense
 google_ad_client:
@@ -239,3 +241,7 @@ pageEditPrefix: https://github.com/wiremock/wiremock.org/edit/main/
 
 community_slack:
   join_url: https://slack.wiremock.org/
+
+# Default link for wiremock signup button in header
+# This can be overridden in pages using frontmatter start_link variable
+header_signup_link: https://wiremock.io/product?utm_source=wiremock.org&utm_medium=masthead&utm_campaign=homepage_2022_baseline

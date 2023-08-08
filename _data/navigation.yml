@@ -3,7 +3,7 @@ main:
     
     - title: "Docs"
       link: "/docs"
-      icon: "/images/logos/doc-sections/document.svg"
+      icon: "/images/logos/doc-sections/documentBar.svg"
       subnav: "docs"
       subnavLinks:
         - name: "WireMock"
@@ -11,6 +11,8 @@ main:
         - name: "WireMock 3.x (Preview)"
           subnavLink: "/3.x/docs/"
           wiremock_baseline: 3.x
+        - name: "Mock API Templates"
+          subnavLink: "/docs/mock-api-templates"
         - name: "WireMock Cloud"  
           subnavLink: "https://docs.wiremock.io/getting-started/?utm_source=wiremock.org&utm_medium=masthead_doc-links&utm_campaign=2022_baseline"
         - name: "External Resources"
@@ -18,7 +20,7 @@ main:
 
     - title: "Need Help?"
       link: "/support"
-      icon: "/images/logos/doc-sections/help-mono.svg"
+      icon: "/images/logos/doc-sections/helpsec.svg"
       subnav: "help"
       subnavLinks:
         - name: "Q&A on Slack"
@@ -26,11 +28,11 @@ main:
         - name: "StackOverflow"
           subnavLink: "https://stackoverflow.com/questions/tagged/wiremock"
         - name: "Commercial Options"
-          subnavLink: "https://github.com/wiremock/.github/blob/main/SUPPORT.md#commercial-support-trainings-and-consulting"
+          subnavLink: "/support/commercial"
 
     - title: "Participate"
       link: '/participate'
-      icon: "/images/logos/doc-sections/community.svg"
+      icon: "/images/logos/doc-sections/team.svg"
       subnav: "participate"
       subnavLinks:
         - name: "Community Slack"
@@ -46,9 +48,11 @@ main:
     
     - title: "Resources"
       link: "/external-resources"
-      icon: "/images/logos/doc-sections/plus.svg"
+      icon: "/images/logos/doc-sections/plusnew.svg"
       subnav: "resources"
       subnavLinks:
+        - name: "Mock API Templates Library"
+          subnavLink: "https://library.wiremock.org/"
         - name: "WireMock Ecosystem"
           subnavLink: "https://github.com/wiremock/ecosystem"
         - name: "Twitter"

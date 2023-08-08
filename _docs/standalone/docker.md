@@ -71,3 +71,33 @@ docker run -it --rm \
   wiremock/wiremock \
     --extensions org.wiremock.webhooks.Webhooks
 ```
+
+### Building your own image
+
+Inside the container, the WireMock uses `/home/wiremock` as the root from which it reads the `mappings` and `__files` directories.
+This means you can copy your configuration from your host machine into Docker and WireMock will load the stub mappings.
+
+Wiremock utilizes a custom entrypoint script that passes all provided arguments as WireMock startup parameters. To modify the WireMock launch parameters it is recommended to override the entrypoint in your custom Docker image. 
+
+```Dockerfile
+# Sample Dockerfile
+FROM wiremock/wiremock:latest
+COPY wiremock /home/wiremock
+ENTRYPOINT ["/docker-entrypoint.sh", "--global-response-templating", "--disable-gzip", "--verbose"]
+```
+
+### Docker Compose
+
+Configuration in compose file is similar to Dockerfile definition
+
+```YAML
+# Sample compose file
+version: "3"
+services:
+  wiremock:
+    image: "wiremock/wiremock:latest"
+    container_name: my_wiremock
+    entrypoint: ["/docker-entrypoint.sh", "--global-response-templating", "--disable-gzip", "--verbose"]
+```
+
+
