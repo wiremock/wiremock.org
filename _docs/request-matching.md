@@ -563,10 +563,6 @@ would match a request with a JSON body of:
 It's also possible to use placeholders that constrain the expected value by type or regular expression.
 See [the JsonUnit placeholders documentation](https://github.com/lukas-krecan/JsonUnit#typeplc) for the full syntax.
 
-> **note**
->
-> Placeholders are only available in the `jre8` WireMock JARs, as the JsonUnit library requires at least Java 8.
-
 ### JSON Path
 
 Deems a match if the attribute value is valid JSON and matches the [JSON Path](http://goessner.net/articles/JsonPath/) expression supplied. A JSON body will be considered to match a path expression if the expression returns either a non-null single value (string, integer etc.), or a non-empty object or array.

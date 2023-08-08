@@ -50,16 +50,14 @@ on the startup command line:
 
 #### macOs / Linux:
 ```bash
-java -cp wiremock-jre8-standalone-{{ site.wiremock_version }}.jar:wiremock-webhooks-extension-{{ site.wiremock_version }}.jar \
-  com.github.tomakehurst.wiremock.standalone.WireMockServerRunner \
-  --extensions org.wiremock.webhooks.Webhooks
+java -cp wiremock-standalone-{{ site.wiremock_version }}.jar:wiremock-webhooks-extension-{{ site.wiremock_version }}.jar \
+  wiremock.Run --extensions org.wiremock.webhooks.Webhooks
 ```
 
 #### Windows:
 ```bat
-java -cp wiremock-jre8-standalone-{{ site.wiremock_version }}.jar;wiremock-webhooks-extension-{{ site.wiremock_version }}.jar \
-  com.github.tomakehurst.wiremock.standalone.WireMockServerRunner \
-  --extensions org.wiremock.webhooks.Webhooks
+java -cp wiremock-standalone-{{ site.wiremock_version }}.jar;wiremock-webhooks-extension-{{ site.wiremock_version }}.jar \
+  wiremock.Run --extensions org.wiremock.webhooks.Webhooks
 ```
 
 You can [download the webhooks extension JAR here](https://repo1.maven.org/maven2/org/wiremock/wiremock-webhooks-extension/{{ site.wiremock_version }}/wiremock-webhooks-extension-{{ site.wiremock_version }}.jar).
