@@ -64,7 +64,7 @@ specify a trust store containing the certificate(s).
 
 > **note**
 >
-> Version 9.4.15.v20190215 of Jetty (used in the jre8 WireMock build) requires client certificates to contain Subject Alternative Names.
+> Jetty requires client certificates to contain Subject Alternative Names.
 > See [this script](https://github.com/tomakehurst/wiremock/blob/master/scripts/create-client-cert.sh) for an example of how to build
 > a truststore containing a valid certificate (you'll probably want to edit the client-cert.conf file before running this).
 
