@@ -70,8 +70,8 @@ that allows configuring WireMock API endpoints in your code and tests.
 
 References:
 
-- [Documentation](https://pkg.go.dev/github.com/walkerus/go-wiremock)
-- [GitHub Repository](https://github.com/walkerus/go-wiremock)
+- [Documentation](https://pkg.go.dev/github.com/wiremock/go-wiremock)
+- [GitHub Repository](https://github.com/wiremock/go-wiremock)
 
 ## Useful pages
 
