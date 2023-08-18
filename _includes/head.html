@@ -1,29 +1,105 @@
+<meta charset="utf-8" />
 
-<meta charset="utf-8">
+{% include seo.html %} {% include analytics.html %}
 
-{% include seo.html %}
-
-{% include analytics.html %}
-
-<link href="{{ '/feed.xml' | absolute_url }}" type="application/atom+xml" rel="alternate" title="{{ site.title }} Feed">
+<link
+  href="{{ '/feed.xml' | absolute_url }}"
+  type="application/atom+xml"
+  rel="alternate"
+  title="{{ site.title }} Feed"
+/>
 
 <!-- http://t.co/dKP3o1e -->
-<meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized" content="320">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <script>
-  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  document.documentElement.className =
+    document.documentElement.className.replace(/\bno-js\b/g, "") + " js ";
 </script>
 
-<link href="https://fonts.googleapis.com/css?family=Lato|Source+Code+Pro|Cairo" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700;800&family=Roboto:wght@400;500;700&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+<link
+  href="https://fonts.googleapis.com/css?family=Lato|Source+Code+Pro|Cairo"
+  rel="stylesheet"
+/>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700;800&family=Roboto:wght@400;500;700&family=Ubuntu:wght@400;500;700&display=swap"
+  rel="stylesheet"
+/>
 
 <!-- For all browsers -->
-<link rel="stylesheet" href="{{ '/assets/css/main.css' | absolute_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/main.css' | absolute_url }}" />
 
-<meta http-equiv="cleartype" content="on">
+{% if site.analytics and page.analytics != false and jekyll.environment ==
+"production" %}
+<script type="text/javascript">
+  function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
 
-<link rel="shortcut icon" type="image/x-icon" href="{{ '/images/favicon.svg' | absolute_url }}">
+  let funnelData = {
+    ["Initial landing page"]: window.location.origin + window.location.pathname,
+  };
+
+  if (document.referrer.length) {
+    const referrerUrl = new URL(document.referrer);
+    funnelData["Initial Referrer"] = referrerUrl.toString();
+    funnelData["Initial Referring Domain"] = referrerUrl.hostname;
+  }
+
+  if (location.href.includes("utm_")) {
+    if (localStorage.getItem("funnelData")) {
+      const existingFunnelData = JSON.parse(
+        atob(localStorage.getItem("funnelData")),
+      );
+
+      if (existingFunnelData["Initial landing page"]) {
+        funnelData["Initial landing page"] =
+          existingFunnelData["Initial landing page"];
+      }
+    }
+
+    new URL(location.href).searchParams.forEach((value, key) => {
+      if (key.indexOf("utm_") === 0) {
+        funnelData[`Initial UTM ${capitalize(key.replace("utm_", ""))}`] =
+          value;
+      }
+    });
+  }
+
+  localStorage.setItem("funnelData", btoa(JSON.stringify(funnelData)));
+
+  window.analytics.ready(function () {
+    window.aId = window.analytics.user().anonymousId();
+    window.analytics.identify(funnelData);
+    const funnelParam = localStorage.getItem("funnelData");
+    [].filter
+      .call(document.getElementsByTagName("a"), (tag) =>
+        tag.href.includes("app.wiremock.cloud"),
+      )
+      .forEach((aTag) => {
+        console.log("found a tag");
+        const url = new URL(aTag.href);
+
+        url.searchParams.set("aId", window.aId);
+
+        if (funnelParam) {
+          url.searchParams.set("funnelData", funnelParam);
+        }
+
+        aTag.href = url.toString();
+      });
+  });
+</script>
+{% endif %}
+
+<meta http-equiv="cleartype" content="on" />
+
+<link
+  rel="shortcut icon"
+  type="image/x-icon"
+  href="{{ '/images/favicon.svg' | absolute_url }}"
+/>
