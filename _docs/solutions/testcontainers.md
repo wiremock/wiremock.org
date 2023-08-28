@@ -7,7 +7,7 @@ logo: /images/logos/technology/testcontainers.svg
 hide-disclaimer: true
 ---
 
-The WireMock community provides integration modules for [Testcontainers](testcontainers.org)
+The WireMock community provides integration modules for [Testcontainers](https://testcontainers.com/)
 They allow provisioning the WireMock server as a standalone container within your tests,
 based on [WireMock Docker](https://github.com/wiremock/wiremock-docker).
 The intent is to support all the functionality supported by WireMock.
