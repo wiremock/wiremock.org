@@ -1,6 +1,6 @@
 url: "https://wiremock.org/3.x"
 destination: "./tmp/site_3x"
-wiremock_version: 3.0.0-beta-14
+wiremock_version: 3.0.0-beta-15
 wiremock_preview_site: true
 wiremock_baseline: 3.x
 wiremock_preview: true
