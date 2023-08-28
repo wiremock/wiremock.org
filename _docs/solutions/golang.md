@@ -12,7 +12,7 @@ hide-disclaimer: true
 
 ## Testcontainers module for Go
 
-The WireMock community provides a [Testcontainers for Go](https://golang.testcontainers.org/) module
+The WireMock community provides a [Testcontainers for Go module](https://github.com/wiremock/wiremock-testcontainers-go) module
 which allows using WireMock single-shot containers within Golang tests.
 This module can run any [WireMock Docker](https://github.com/wiremock/wiremock-docker) compatible images,
 see the [documentation](https://github.com/wiremock/wiremock-testcontainers-go) for detailed usage guidelines and examples.
@@ -21,57 +21,71 @@ Example:
 
 ```golang
 import (
- // ...
- "github.com/wiremock/wiremock-testcontainers-go"
+  "context"
+  . "github.com/wiremock/wiremock-testcontainers-go"
+  "testing"
 )
 
 func TestWireMock(t *testing.T) {
- // Create Container and clean it up upon completion
- ctx := context.Background()
- container, err := RunContainer(ctx,
-  WithMappingFile("hello", filepath.Join("testdata", "hello-world.json")),
- )
- if err != nil {
-  t.Fatal(err)
- }
- t.Cleanup(func() {
-  if err := container.Terminate(ctx); err != nil {
-   t.Fatalf("failed to terminate container: %s", err)
-  }
- })
+	// Create Container
+	ctx := context.Background()
+	container, err := RunContainerAndStopOnCleanup(ctx,
+		WithMappingFile("hello", "hello-world.json"),
+	)
+	if err != nil {
+		t.Fatal(err)
+	}
 
- uri, err := GetURI(ctx, container)
- if err != nil {
-  t.Fatal(err, "unable to get container endpoint")
- }
-
- // Checks
-statusCode, out, err := SendHttpGet(uri, "/hello")
- if err != nil {
-  t.Fatal(err, "Failed to get a response")
- }
- if statusCode != 200 {
-  t.Fatalf("expected HTTP-200 but got %d", statusCode)
- }
- if string(out) != "Hello, world!" {
-  t.Fatalf("expected 'Hello, world!' but got %v", string(out))
- }
+	// Send the HTTP GET request to the mocked API
+	statusCode, out, err := SendHttpGet(container, "/hello", nil)
+	if err != nil {
+		t.Fatal(err, "Failed to get a response")
+	}
+	// Verify the response
+	if statusCode != 200 {
+		t.Fatalf("expected HTTP-200 but got %d", statusCode)
+	}
+	if string(out) != "Hello, world!" {
+		t.Fatalf("expected 'Hello, world!' but got %v", string(out))
+	}
 }
 ```
 
 References:
 
 - [GitHub Repository](https://github.com/wiremock/wiremock-testcontainers-go)
+- [Testcontainers for Go](https://golang.testcontainers.org/)
 
-## Golang WireMock admin client
+## Go WireMock - WireMock REST API client
 
-A simple Golang client for [WireMock Administrative REST API](../../standalone/administration)
-that allows configuring WireMock API endpoints in your code and tests.
+The Golang client library to stub API resources in WireMock using its [Administrative REST API](../../standalone/administration).
+The project connects to the instance and allows setting up stubs and response templating, or using administrative API to extract observability data.
 
 References:
 
 - [Documentation](https://pkg.go.dev/github.com/wiremock/go-wiremock)
 - [GitHub Repository](https://github.com/wiremock/go-wiremock)
+
+Example:
+
+```golang
+func TestSome(t *testing.T) {
+    wiremockClient := wiremock.NewClient("http://0.0.0.0:8080")
+    defer wiremockClient.Reset()
+
+    wiremockClient.StubFor(wiremock.Post(wiremock.URLPathEqualTo("/user")).
+    WithQueryParam("name", wiremock.EqualTo("John Doe")).
+    WillReturnResponse(
+        wiremock.NewResponse().
+            WithJSONBody(map[string]interface{}{
+                "code":   400,
+                "detail": "detail",
+            }).
+            WithHeader("Content-Type", "application/json").
+            WithStatus(http.StatusBadRequest),
+    ))
+}
+```
 
 ## Useful pages
 
