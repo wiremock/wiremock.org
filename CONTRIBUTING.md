@@ -18,11 +18,17 @@ Do not hesitate to ask there if you hit an obstacle.
 
 ## Key locations
 
-### WireMock 3.x
+### WireMock 3 docs
 
-WireMock Java 3.x documentation (`wiremock.org/3.x`), including API specifications and other resources is located in the
-[`3.0.0-beta` branch](https://github.com/wiremock/wiremock.org/tree/3.0.0-beta)
-that i included as a submodule and build by the CD flow.
+WireMock Java 3.x documentation, including API specifications and other resources is located in the
+[`main` branch](https://github.com/wiremock/wiremock.org/tree/main).
+
+### WireMock 2.x docs archive
+
+WireMock Java 2.x documentation (`wiremock.org/2.x`) documentation archive,
+including API specifications and other resources is located in the
+[`2.x` branch](https://github.com/wiremock/wiremock.org/tree/2.x)
+that is included as a submodule and build by the CD flow.
 To update the documentation, submit pull requests against the branch,
 and they will be included into the main release line.
 
@@ -69,14 +75,14 @@ The websites have slightly different layouts to help users navigate (links, head
 
 Alternative baselines are managed in the `main` branch,
 but the content comes from other Git branches.
-For example, if the `3.x` baseline is a preview one...
+For example, if the `4.x` baseline is a preview one...
 
-- There is a branch in the repository, for example `3.0.0-beta` for `3.x`
-- There is a `wiremorg.org/3.x` entry on the website.
+- There is a branch in the repository, for example `4.x` for WireMock 4
+- There is a `wiremorg.org/4.x` entry on the website.
   It is included from the branch via Git submodules and packaging scripts in GitHub Actions
-- For this version, there is a `_config-3.x.yml` file that defines configuration overrides for this version
+- For this version, there is a `_config-4.x.yml` file that defines configuration overrides for this version
 - To build and test the baseline on a local machine, one needs to include the overrides config file into `jekyll build` and `jekyll serve` commands.
-  For example, `bundle exec jekyll serve --config '_config.yml,_config-3.x.yml'`.
+  For example, `bundle exec jekyll serve --config '_config.yml,_config-4.x.yml'`.
 
 ## Checking for broken links
 

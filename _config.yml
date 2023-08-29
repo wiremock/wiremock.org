@@ -223,9 +223,9 @@ collections:
     docs:
         output: true
         permalink: /docs/:path/
-    docs-3x:
+    docs-2x:
         output: true
-        permalink: /docs/3.x/:path/
+        permalink: /docs/2.x/:path/
 
 # HTML Compression
 # - http://jch.penibelst.de/
@@ -234,9 +234,9 @@ compress_html:
     ignore:
         envs: development
 
-wiremock_version: 2.35.0
-wiremock_beta_version: 3.0.0-beta-15
-wiremock_baseline: 2.x
+wiremock_version: 3.0.0
+#wiremock_beta_version: 3.0.0-beta-15
+wiremock_baseline: 3.x
 pageEditPrefix: https://github.com/wiremock/wiremock.org/edit/main/
 
 community_slack:

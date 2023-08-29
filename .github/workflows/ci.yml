@@ -3,9 +3,9 @@ name: Continuous Integration
 on:
   push:
     # Not needed for main, we have CD there
-    branches: [ "3.0.0-beta" ]
+    branches: [ "2.x" ]
   pull_request:
-    branches: [ "main", "3.0.0-beta" ]
+    branches: [ "main", "2.x" ]
   workflow_dispatch:
 
 jobs:
@@ -39,8 +39,8 @@ jobs:
       - name: Build 3.x with Jekyll
         # Outputs to the './_site' directory by default
         run: |
-          cd .submodules/wiremock.org-3.x
-          bundle exec jekyll build --config '_config.yml,_config-3.x.yml' --baseurl "${{ steps.pages.outputs.base_path }}/3.x"
+          cd .submodules/wiremock.org-2.x
+          bundle exec jekyll build --config '_config.yml,_config-2.x.yml' --baseurl "${{ steps.pages.outputs.base_path }}/2.x"
         env:
           JEKYLL_ENV: development
 # TODO: Uncomment when cleaned up (if ever)
@@ -52,5 +52,3 @@ jobs:
       - name: Upload artifact
         # Automatically uploads an artifact from the './_site' directory by default
         uses: actions/upload-pages-artifact@v1
-
- 
