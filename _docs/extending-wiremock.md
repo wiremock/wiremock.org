@@ -22,6 +22,7 @@ At present, the following extension interfaces are available:
 * `StubLifecycleListener`: Listen for changes to the stub mappings. See [Transforming responses](extensibility/listening-for-stub-changes/).
 * `TemplateHelperProviderExtension`: Provide custom Handlebars helpers to the template engine. See [Transforming responses](extensibility/adding-template-helpers/).
 * `TemplateModelDataProviderExtension`: Provide additional data to the model passed to response templates. See [Transforming responses](extensibility/adding-template-model-data/).
+* `MappingsLoaderExtension`: Provide additional source to load the stub mappings. See [Adding Mappings Loader](extensibility/adding-mappings-loader/).
 
 The interfaces in this list ending with `V2` supercede deprecated equivalents with an older, more restrictive interface. Additionally `ServeEventListener` deprecates `PostServeAction`.
 
