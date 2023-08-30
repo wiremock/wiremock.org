@@ -43,6 +43,9 @@ jobs:
           bundle exec jekyll build --config '../../_config.yml,../../_config-2.x.yml' --baseurl "${{ steps.pages.outputs.base_path }}/2.x"
         env:
           JEKYLL_ENV: development
+# TODO: Add 3.x build? It is just a config file tweak, so maybe better to not slowdown for now
+
+
 # TODO: Uncomment when cleaned up (if ever)
 #      - name: Validate HTML and links
 #        uses: anishathalye/proof-html@v2
