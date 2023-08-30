@@ -16,6 +16,9 @@ main:
           subnavLink: "/external-resources"
         - name: "WireMock 2.x (Archive)"
           subnavLink: "/2.x/docs/"
+          wiremock_baseline: 2.x
+        - name: "WireMock 3.x"
+          subnavLink: "/2.x/docs/"
           wiremock_baseline: 3.x
 
     - title: "Need Help?"
