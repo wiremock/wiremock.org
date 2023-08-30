@@ -8,15 +8,15 @@ main:
       subnavLinks:
         - name: "WireMock"
           subnavLink: "/docs/"
-        - name: "WireMock 3.x (Preview)"
-          subnavLink: "/3.x/docs/"
-          wiremock_baseline: 3.x
         - name: "Mock API Templates"
           subnavLink: "/docs/mock-api-templates"
         - name: "WireMock Cloud"  
           subnavLink: "https://docs.wiremock.io/getting-started/?utm_source=wiremock.org&utm_medium=masthead_doc-links&utm_campaign=2022_baseline"
         - name: "External Resources"
           subnavLink: "/external-resources"
+        - name: "WireMock 2.x (Archive)"
+          subnavLink: "/2.x/docs/"
+          wiremock_baseline: 3.x
 
     - title: "Need Help?"
       link: "/support"
