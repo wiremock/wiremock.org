@@ -40,7 +40,7 @@ docker run -it --rm -p 8080:8080 --name wiremock \
 <dependency>
     <groupId>org.wiremock</groupId>
     <artifactId>wiremock-standalone</artifactId>
-    <version>{{ site.wiremock_beta_version }}</version>
+    <version>{{ site.wiremock_version }}</version>
     <scope>test</scope>
 </dependency>
 ```
@@ -48,7 +48,7 @@ docker run -it --rm -p 8080:8080 --name wiremock \
 ### Gradle
 
 ```groovy
-testImplementation "org.wiremock:wiremock-standalone:{{ site.wiremock_beta_version }}"
+testImplementation "org.wiremock:wiremock-standalone:{{ site.wiremock_version }}"
 ```
 
 Learn more in the [Docker guide](../docker).
@@ -56,5 +56,5 @@ Learn more in the [Docker guide](../docker).
 ### Direct download
 
 If you want to run WireMock as a standalone process you can
-<a id="wiremock-standalone-download" href="https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/{{ site.wiremock_beta_version }}/wiremock-standalone-{{ site.wiremock_beta_version }}.jar">download the standalone JAR from
+<a id="wiremock-standalone-download" href="https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/{{ site.wiremock_version }}/wiremock-standalone-{{ site.wiremock_version }}.jar">download the standalone JAR from
 here</a>
