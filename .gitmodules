@@ -1,4 +1,4 @@
-[submodule "website-3.0"]
-	path = .submodules/wiremock.org-3.x
+[submodule "website-2.x"]
+	path = .submodules/wiremock.org-2.x
 	url = https://github.com/wiremock/wiremock.org.git
-	branch = 3.0.0-beta
+	branch = 2.x

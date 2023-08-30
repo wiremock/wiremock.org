@@ -48,19 +48,19 @@ jobs:
         run: bundle exec jekyll build --config '_config.yml' --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
-      - name: Build 3.x with Jekyll
+      - name: Build 2.x with Jekyll
         # Outputs to the './_site' directory by default
         run: |
-          cd .submodules/wiremock.org-3.x
-          bundle exec jekyll build --config '_config.yml,_config-3.x.yml' --baseurl "${{ steps.pages.outputs.base_path }}"
+          cd .submodules/wiremock.org-2.x
+          bundle exec jekyll build --config '../../_config.yml,../../_config-2.x.yml' --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
       - name: Deploy 3.x to the website
         # Outputs to the './_site' directory by default
         run: |
           ruby .scripts/merge-sitemaps.rb
-          mkdir _site/3.x
-          cp -R .submodules/wiremock.org-3.x/tmp/site_3x/* _site/3.x/
+          mkdir _site/2.x
+          cp -R .submodules/wiremock.org-2.x/tmp/site_2x/* _site/2.x/
         env:
           JEKYLL_ENV: production
 # TODO: Uncomment when cleaned up (if ever)
