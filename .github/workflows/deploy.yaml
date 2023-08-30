@@ -52,7 +52,7 @@ jobs:
         # Outputs to the './_site' directory by default
         run: |
           cd .submodules/wiremock.org-2.x
-          bundle exec jekyll build --config '_config.yml,_config-2.x.yml' --baseurl "${{ steps.pages.outputs.base_path }}"
+          bundle exec jekyll build --config '../../_config.yml,../../_config-2.x.yml' --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
       - name: Deploy 3.x to the website
