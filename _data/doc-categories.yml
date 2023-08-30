@@ -74,6 +74,7 @@ extensibility:
     - extensibility/adding-template-model-data
     - extensibility/listening-for-stub-changes
     - extensibility/listening-for-settings-changes
+    - extensibility/adding-mappings-loader
     - stub-metadata
     - webhooks-and-callbacks
 
