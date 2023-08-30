@@ -12,10 +12,10 @@ description: The WireMock server can be run in its own process, and configured v
 The WireMock server can be run in its own process, and configured via
 the Java API, JSON over HTTP or JSON files.
 
-Once you have [downloaded the standalone JAR](https://repo1.maven.org/maven2/com/github/tomakehurst/wiremock-jre8-standalone/{{ site.wiremock_version }}/wiremock-jre8-standalone-{{ site.wiremock_version }}.jar) you can run it simply by doing this:
+Once you have [downloaded the standalone JAR](../../download) you can run it simply by doing this:
 
 ```bash
-$ java -jar wiremock-jre8-standalone-{{ site.wiremock_version }}.jar
+$ java -jar wiremock-standalone-{{ site.wiremock_version }}.jar
 ```
 
 ## Command line options
@@ -179,6 +179,9 @@ The last of these will cause chunked encoding to be used only when a stub define
 `--proxy-timeout`: Set the timeout for requests to the proxy in milliseconds
 
 `--proxy-pass-through`: Flag used in browser-caching in order to enable or disable pass through unmatched requests to the target indicated by the original requests. By default, this flag is enabled and let the requests pass through.
+
+`--filename-template`: Set filename template in handlebar format. For endpoint: `GET /pets/{id}` using the format: `{{{method}}}-{{{url}}}.json` output will be `get-pets-id.json`. Default format: `{{{method}}}-{{{path}}}-{{{id}}}.json` hence by default template filename will be: `get-pets-id-1.json`.   
+Note: introduced in [3.0.0-beta-8](https://github.com/wiremock/wiremock/releases/tag/3.0.0-beta-8).
 
 `--help`: Show command line help
 

@@ -182,7 +182,7 @@ WireMock.updateSettings(WireMock.getSettings().copy().proxyPassThrough(false).bu
 
 ### Browser proxying of HTTPS
 
-wiremock-jre8 allows forward proxying, stubbing & recording of HTTPS traffic.
+WireMock allows forward proxying, stubbing & recording of HTTPS traffic.
 
 This happens automatically when browser proxying is enabled.
 
@@ -232,13 +232,13 @@ This would present a substantial security risk, so by default WireMock will veri
 You can trust specific hosts as follows:
 
 ```bash
-$ java -jar wiremock-jre8-standalone-{{ site.wiremock_version }}.jar --enable-browser-proxying --trust-proxy-target localhost --trust-proxy-target dev.mycorp.com
+$ java -jar wiremock-standalone-{{ site.wiremock_version }}.jar --enable-browser-proxying --trust-proxy-target localhost --trust-proxy-target dev.mycorp.com
 ```
 
 or if you're not interested in security you can trust all hosts:
 
 ```bash
-$ java -jar wiremock-jre8-standalone-{{ site.wiremock_version }}.jar --enable-browser-proxying --trust-all-proxy-targets
+$ java -jar wiremock-standalone-{{ site.wiremock_version }}.jar --enable-browser-proxying --trust-all-proxy-targets
 ```
 
 Additional trusted public certificates can also be added to the keystore

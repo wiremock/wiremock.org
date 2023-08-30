@@ -65,6 +65,15 @@ extensibility:
   link: /docs/extending-wiremock/
   pages:
     - extending-wiremock
+    - extensibility/filtering-requests
+    - extensibility/transforming-responses
+    - extensibility/custom-matching
+    - extensibility/listening-for-serve-events
+    - extensibility/extending-the-admin-api
+    - extensibility/adding-template-helpers
+    - extensibility/adding-template-model-data
+    - extensibility/listening-for-stub-changes
+    - extensibility/listening-for-settings-changes
     - stub-metadata
     - webhooks-and-callbacks
 

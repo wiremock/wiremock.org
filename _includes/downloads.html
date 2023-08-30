@@ -86,8 +86,8 @@
               <p class="codeTabDescription">Add the following to your project's <strong>pom.xml</strong> dependencies:</p>
 {% highlight xml %}
 <dependency>
-  <groupId>com.github.tomakehurst</groupId>
-  <artifactId>wiremock-jre8</artifactId>
+  <groupId>org.wiremock</groupId>
+  <artifactId>wiremock</artifactId>
   <version>{{ site.wiremock_version }}</version>
   <scope>test</scope>
 </dependency>
@@ -97,14 +97,14 @@
           <div class="codeSnippet" data-snippettab="gradle groovy">
             <p class="codeTabDescription">Add the following to your project's <strong>build.gradle</strong>:</p>
 {% highlight groovy %}
-testImplementation "com.github.tomakehurst:wiremock-jre8:{{ site.wiremock_version }}"
+testImplementation "org.wiremock:wiremock:{{ site.wiremock_version }}"
 {% endhighlight %}
             <p class="codeTabDescription" style="margin-top:2rem;">Then follow the next steps for <a href="{{ '/docs/junit-jupiter/' | absolute_url }}">JUnit 5+</a> or <a href="{{ '/docs/java-usage/' | absolute_url }}">plain Java</a>.</p>
           </div>
           <div class="codeSnippet" data-snippettab="gradle kotlin">
             <p class="codeTabDescription">Add the following to your project's <strong>build.gradle.kts</strong>:</p>
 {% highlight kotlin %}
-testImplementation("com.github.tomakehurst:wiremock-jre8:{{ site.wiremock_version }}")
+testImplementation("org.wiremock:wiremock:{{ site.wiremock_version }}")
 {% endhighlight %}
             <p class="codeTabDescription" style="margin-top:2rem;">Then follow the next steps for <a href="{{ '/docs/junit-jupiter/' | absolute_url }}">JUnit 5+</a> or <a href="{{ 'docs/java-usage/' | absolute_url }}">plain Java</a>.</p>
           </div>
@@ -112,16 +112,16 @@ testImplementation("com.github.tomakehurst:wiremock-jre8:{{ site.wiremock_versio
             <p class="codeTabDescription">Add the following to your project’s <strong>build.sbt</strong>:</p>
 {% highlight scala %}
 libraryDependencies +=
-  "com.github.tomakehurst" % "wiremock-jre8" % "{{ site.wiremock_version }}" % Test
+  "org.wiremock" % "wiremock" % "{{ site.wiremock_version }}" % Test
 {% endhighlight %}
           </div>
           <div class="codeSnippet" data-snippettab="standalone">
             <p class="codeTabDescription">
-              Download the <a id="wiremock-standalone-download" href="https://repo1.maven.org/maven2/com/github/tomakehurst/wiremock-jre8-standalone/{{ site.wiremock_version }}/wiremock-jre8-standalone-{{ site.wiremock_version }}.jar">latest standalone JAR</a>
+              Download the <a id="wiremock-standalone-download" href="https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/{{ site.wiremock_version }}/wiremock-standalone-{{ site.wiremock_version }}.jar">latest standalone JAR</a>
               then run the following in a terminal:
             </p>
 {% highlight bash %}
-java -jar wiremock-jre8-standalone-{{ site.wiremock_version }}.jar
+java -jar wiremock-standalone-{{ site.wiremock_version }}.jar
 {% endhighlight %}
             <p class="codeTabDescription" style="margin-top:2rem;">Learn more in the <a href="{{ 'docs/running-standalone/' | absolute_url }}">running standalone guide.</a></p>
           </div>
