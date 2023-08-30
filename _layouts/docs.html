@@ -50,11 +50,13 @@ layout: default
       </header>
 
       {% if site.wiremock_baseline == site.data.baselines.current.id %} 
-      <div style="background-color: #f2f2f2;border: #c8c8c8 1px solid;padding: 8px;margin-bottom:32px;">
-        This document is for the WireMock {{ site.data.baselines.current.id }} baseline.
-        See the documentation for WireMock {{ site.data.baselines.preview.id }} preview 
-        <a href="{{  page.url | prepend: site.data.baselines.preview.absoluteUrl }}">here</a>
-      </div>
+        {% if site.data.baselines.preview.id %}
+        <div style="background-color: #f2f2f2;border: #c8c8c8 1px solid;padding: 8px;margin-bottom:32px;">
+          This document is for the WireMock {{ site.data.baselines.current.id }} baseline.
+          See the documentation for WireMock {{ site.data.baselines.preview.id }} preview 
+          <a href="{{  page.url | prepend: site.data.baselines.preview.absoluteUrl }}">here</a>
+        </div>
+        {% endif %}
       {% else %}
         {% if site.wiremock_baseline == site.data.baselines.preview.id %} 
         <div style="background-color: #f2f2f2;border: #c8c8c8 1px solid;padding: 8px;margin-bottom:32px;">
