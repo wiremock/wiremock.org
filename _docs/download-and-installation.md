@@ -25,9 +25,16 @@ conflicting versions of its dependencies. The standalone JAR is also runnable (s
 
 ## Standalone Service
 
-### WireMock 3.x Beta (recommended)
+### Docker
 
-#### Maven
+Run the following in a terminal:
+
+```bash
+docker run -it --rm -p 8080:8080 --name wiremock \
+  wiremock/wiremock:{{ site.wiremock_version }}
+```
+
+### Maven
 
 ```xml
 <dependency>
@@ -38,45 +45,15 @@ conflicting versions of its dependencies. The standalone JAR is also runnable (s
 </dependency>
 ```
 
-#### Gradle
+### Gradle
 
 ```groovy
 testImplementation "org.wiremock:wiremock-standalone:{{ site.wiremock_beta_version }}"
 ```
 
-### WireMock 2.x Stable
-
-#### Docker
-
-Run the following in a terminal:
-
-```bash
-docker run -it --rm \
-  -p 8080:8080 \
-  --name wiremock \
-  wiremock/wiremock:{{ site.wiremock_version }}
-```
-
 Learn more in the [Docker guide](../docker).
 
-#### Maven - stable
-
-```xml
-<dependency>
-    <groupId>com.github.tomakehurst</groupId>
-    <artifactId>wiremock-jre8-standalone</artifactId>
-    <version>{{ site.wiremock_version }}</version>
-    <scope>test</scope>
-</dependency>
-```
-
-#### Gradle - stable
-
-```groovy
-testImplementation "com.github.tomakehurst:wiremock-jre8-standalone:{{ site.wiremock_version }}"
-```
-
-## Direct download
+### Direct download
 
 If you want to run WireMock as a standalone process you can
 <a id="wiremock-standalone-download" href="https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/{{ site.wiremock_beta_version }}/wiremock-standalone-{{ site.wiremock_beta_version }}.jar">download the standalone JAR from
