@@ -12,10 +12,43 @@ responses for requests matching criteria. These are described in detail in [Requ
 
 ## Basic stubbing
 
-The following code will configure a response with a status of 200 to be
-returned when the relative URL exactly matches `/some/thing` (including
-query parameters). The body of the response will be "Hello world!" and a
+You can configure stubs using JSON configuration files or code:
+
+1. Via a `.json` file under the `mappings` directory
+2. Via a POST request to
+`http://<host>:<port>/__admin/mappings` with the JSON as a body
+3. From code using one of the SDKs
+
+**Example.**
+To configure a response with a status of 200 to be returned
+when the relative URL exactly matches `/some/thing` (including query parameters).
+The body of the response will be "Hello world!" and a
 `Content-Type` header will be sent with a value of `text-plain`.
+
+{% codetabs %}
+
+{% codetab JSON %}
+
+```json
+{
+  "request": {
+    "method": "GET",
+    "url": "/some/thing"
+  },
+
+  "response": {
+    "status": 200,
+    "body": "Hello, world!",
+    "headers": {
+        "Content-Type": "text/plain"
+    }
+  }
+}
+```
+
+{% endcodetab %}
+
+{% codetab Java %}
 
 ```java
 @Test
@@ -30,31 +63,38 @@ public void exactUrlOnly() {
 }
 ```
 
-> **note**
->
-> If you'd prefer to use slightly more BDDish language in your tests you
-> can replace `stubFor` with `givenThat`.
+{% endcodetab %}
 
-To create the stub described above via the JSON API, the following
-document can either be posted to
-`http://<host>:<port>/__admin/mappings` or placed in a file with a
-`.json` extension under the `mappings` directory:
+{% codetab Python %}
 
-```json
-{
-    "request": {
-        "method": "GET",
-        "url": "/some/thing"
-    },
-    "response": {
-        "status": 200,
-        "body": "Hello world!",
-        "headers": {
-            "Content-Type": "text/plain"
-        }
-    }
-}
+```python
+Mappings.create_mapping(
+    Mapping(
+        request=MappingRequest(method=HttpMethods.GET, url="/some/thing"),
+        response=MappingResponse(status=200, body="Hello, world!", headers=("Content-Type", "text/plain")),
+    )
+)
 ```
+
+{% endcodetab %}
+
+{% codetab Golang %}
+
+```go
+wiremockClient.StubFor(wiremock.Get(wiremock.URLPathEqualTo("/some/thing")).
+        WillReturnResponse(
+            wiremock.NewResponse().
+                WithStatus(http.StatusOK).
+                WithBody("Hello, world!").
+                WithHeader("Content-Type", "text/plain")))
+```
+
+{% endcodetab %}
+
+{% endcodetabs %}
+
+In Java, if you'd prefer to use slightly more BDDish language in your tests,
+you can replace `stubFor` with `givenThat`.
 
 ### Java Shortcuts
 
