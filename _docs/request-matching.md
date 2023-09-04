@@ -8,21 +8,26 @@ description: WireMock supports matching of requests to stubs and verification qu
 
 WireMock enables flexible definition of a [mock API](/) by supporting rich matching of incoming requests. Stub matching and verification queries can use the following request attributes:
 
--   URL
--   HTTP Method
--   Query parameters
--   Form parameters
--   Headers
--   Basic authentication (a special case of header matching)
--   Cookies
--   Request body
--   Multipart/form-data
+- URL
+- HTTP Method
+- Query parameters
+- Form parameters
+- Headers
+- Basic authentication (a special case of header matching)
+- Cookies
+- Request body
+- Multipart/form-data
 
 Here's an example showing all attributes being matched using WireMock's in-built match operators. It is also possible to write [custom matching logic](../extending-wiremock#custom-request-matchers) if
 you need more precise control:
 
 ## Request with XML Body
-Java:
+
+Code:
+
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 stubFor(any(urlPathEqualTo("/everything"))
@@ -41,7 +46,31 @@ stubFor(any(urlPathEqualTo("/everything"))
   .willReturn(aResponse()));
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab Python %}
+
+```python
+print("Hello, world!")
+```
+
+{% endcodetab %}
+
+{% codetab Go %}
+
+```golang
+fmt.Println("Hello, world!")
+```
+
+{% endcodetab %}
+
+{% endcodetabs %}
+
+Configuration file:
+
+{% codetabs %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -100,6 +129,14 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% codetab YAML %}
+
+{% endcodetab %}
+
+{% endcodetabs %}
+
 ## Request with Form Parameters
 
 ```java
@@ -125,7 +162,6 @@ stubFor(post(urlPathEqualTo("/mock"))
     }
 }
 ```
-
 
 The following sections describe each type of matching strategy in detail.
 
@@ -664,7 +700,7 @@ JSON:
 
 Request body example:
 
-```
+```json
 // matching
 { "things": { "name": "RequiredThing" } }
 { "things": [ { "name": "Required" }, { "name": "Wiremock" } ] }
@@ -701,7 +737,7 @@ JSON:
 
 Request body example:
 
-```
+```json
 // matching
 { "things": [ { "name": "RequiredThing" }, { "name": "Wiremock" } ] }
 // not matching
@@ -1340,14 +1376,14 @@ JSON:
 <div id="all-truncations"></div>
 The full list of available truncations is:
 
--   `first minute of hour`
--   `first hour of day`
--   `first day of month`
--   `first day of next month`
--   `last day of month`
--   `first day of year`
--   `first day of next year`
--   `last day of year`
+- `first minute of hour`
+- `first hour of day`
+- `first day of month`
+- `first day of next month`
+- `last day of month`
+- `first day of year`
+- `first day of next year`
+- `last day of year`
 
 ## Logical AND and OR
 
@@ -1487,7 +1523,6 @@ This would match the following JSON request body:
 }
 ```
 
-
 ### Matching Header/Query parameter containing multiple values
 
 You can match multiple values of a query parameter or header with below provided matchers.
@@ -1501,7 +1536,7 @@ stubFor(get(urlPathEqualTo("/things"))
     .willReturn(ok()));
 ```
 
-```json 
+```json
 {
   "mapping": {
     "request" : {
@@ -1607,7 +1642,6 @@ stubFor(get(urlPathEqualTo("/things"))
 }
 ```
 
-
 ```java
 //values of id must conform to the match expressions
 stubFor(get(urlPathEqualTo("/things"))
@@ -1617,6 +1651,7 @@ stubFor(get(urlPathEqualTo("/things"))
     notContaining("3")
     )).willReturn(ok()));
 ```
+
 ```json
 {
   "mapping": {

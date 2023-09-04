@@ -29,7 +29,79 @@ layout: default
       visibility: visible;
     }
 
+
+    /* Code tabs inspired by https://github.com/clustergarage/jekyll-code-tabs/pull/5 */
+    .tab {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+    }
+
+    .tab button {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+    }
+
+    .tab button:hover {
+      background-color: #ddd;
+    }
+
+    .tab button.active {
+      background-color: #ccc;
+    }
+
+    .tabcontent {
+      display: none;
+      padding: 6px 12px;
+      border: 1px solid #ccc;
+      border-top: none;
+    }
+
+    .tabcontent {
+      animation: fadeEffect 0.5s; /* Fading effect takes 1 second */
+    }
+
+    @keyframes fadeEffect {
+      from {opacity: 0.5;}
+      to {opacity: 1;}
+    }
+
   </style>
+
+  <!-- For rendering code tabs without UIKit in the original Code Tabs plugin, also with grouping  -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function(){
+      document.getElementById("default").click();
+    });
+
+    function showTab(evt, tabId) {
+      // Declare all variables
+      var i, tabcontent, tablinks;
+      var currentTab = evt.currentTarget
+      var codeblock = currentTab.parentElement.parentElement
+
+      // Get all elements with class="tabcontent" and hide them
+      tabcontent = codeblock.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+
+      // Get all elements with class="tablinks" and remove the class "active"
+      tablinks = codeblock.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+
+      // Show the current tab, and add an "active" class to the button that opened the tab
+      codeblock.querySelector("#"+tabId).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+  </script>
   
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
