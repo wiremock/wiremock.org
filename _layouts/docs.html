@@ -76,7 +76,10 @@ layout: default
   <!-- For rendering code tabs without UIKit in the original Code Tabs plugin, also with grouping  -->
   <script>
     document.addEventListener("DOMContentLoaded", function(){
-      document.getElementById("default").click();
+      var defaultTabs = document.querySelectorAll("#codeblock-default-selection")
+      for (i = 0; i < defaultTabs.length; i++) {
+        defaultTabs[i].click();
+      }
     });
 
     function showTab(evt, tabId) {
