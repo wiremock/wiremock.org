@@ -25,10 +25,6 @@ you need more precise control:
 
 Code:
 
-{% codetabs %}
-
-{% codetab Java %}
-
 ```java
 stubFor(any(urlPathEqualTo("/everything"))
   .withHeader("Accept", containing("xml"))
@@ -46,31 +42,7 @@ stubFor(any(urlPathEqualTo("/everything"))
   .willReturn(aResponse()));
 ```
 
-{% endcodetab %}
-
-{% codetab Python %}
-
-```python
-print("Hello, world!")
-```
-
-{% endcodetab %}
-
-{% codetab Go %}
-
-```golang
-fmt.Println("Hello, world!")
-```
-
-{% endcodetab %}
-
-{% endcodetabs %}
-
 Configuration file:
-
-{% codetabs %}
-
-{% codetab JSON %}
 
 ```json
 {
@@ -128,14 +100,6 @@ Configuration file:
     }
 }
 ```
-
-{% endcodetab %}
-
-{% codetab YAML %}
-
-{% endcodetab %}
-
-{% endcodetabs %}
 
 ## Request with Form Parameters
 
