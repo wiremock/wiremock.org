@@ -16,8 +16,9 @@ module Jekyll
 <div class=codeblock>
     <div class="tab">
         <% environment['codetabs'].each_with_index do |(key, _), index| %> 
-        <button class="tablinks" id="<%= index == 0 ? 'codeblock-default-selection' : '' %>" onclick="showTab(event, '<%= key %>')"><%= key %></button>
+        <button class="tablinks codeblock-option-selector" id="<%= index == 0 ? 'codeblock-default-selection' : '' %>" onclick="showTab(event, '<%= key %>')"><%= key %></button>
         <% end %>
+        <button class="codeblock-copybutton" onclick="copyCodeTabToClipboard(event)">Copy</button>
     </div>
                     
     <!-- Tab content -->

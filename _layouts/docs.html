@@ -38,13 +38,20 @@ layout: default
     }
 
     .tab button {
-      background-color: inherit;
-      float: left;
+      background-color: inherit; 
       border: none;
       outline: none;
       cursor: pointer;
       padding: 14px 16px;
       transition: 0.3s;
+    }
+
+    .codeblock-option-selector {
+      float: left;
+    }
+
+    .codeblock-copybutton {
+      float: right;
     }
 
     .tab button:hover {
@@ -103,6 +110,20 @@ layout: default
       // Show the current tab, and add an "active" class to the button that opened the tab
       codeblock.querySelector("#"+tabId).style.display = "block";
       evt.currentTarget.className += " active";
+    }
+
+    function copyCodeTabToClipboard(evt) {
+      var range = document.createRange();
+      var currentTab = evt.currentTarget
+      var activeTab = currentTab.parentElement.querySelector("button.active")
+      var tabId = activeTab.textContent
+
+      var codeblock = currentTab.parentElement.parentElement.querySelector("#"+tabId)
+      range.selectNode(codeblock);
+      window.getSelection().removeAllRanges(); // clear current selection
+      window.getSelection().addRange(range); // to select text
+      document.execCommand("copy");
+      window.getSelection().removeAllRanges();// to deselect
     }
   </script>
   
