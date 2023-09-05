@@ -8,7 +8,7 @@ description: Adding custom Handlebars helpers to the template system via extensi
 Extensions that implement the `TemplateHelperProviderExtension` interface provide additional Handlebars helpers to the templating system:
 
 ```java
-.extensions(
+new WireMockServer(wireMockConfig().extensions(
     new TemplateHelperProviderExtension() {
         @Override
         public String getName() {
@@ -21,5 +21,16 @@ Extensions that implement the `TemplateHelperProviderExtension` interface provid
             return Map.of("string-length", helper);
         }
     }
-);
+));
 ```
+
+This custom `string-length` helper will return the string length of the supplied parameter and is used like this:
+
+{% raw %}
+
+```
+{{string-length 'abcde'}}
+{{string-length request.body}}
+```
+
+{% endraw %}

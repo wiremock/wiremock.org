@@ -30,6 +30,13 @@ WireMockServer wm =
 
 See [the command line docs](../standalone/java-jar/#command-line-options) for the standalone equivalents of these parameters.
 
+
+## Customising and extending the template engine
+
+Custom Handlebars helpers can be registered via an extension point. See [Adding Template Helpers](../extensibility/adding-template-helpers/) for details.
+
+Similarly custom model data providers can be registered as extensions. See [Adding Template Model Data](../extensibility/adding-template-model-data/) for details.
+
 ## Applying templating in local mode
 
 When templating is enabled in local mode you must add it to each stub to which you require templating to be applied.
@@ -908,32 +915,3 @@ public WireMockRule wm = new WireMockRule(options()
 The regular expressions are matched in a case-insensitive manner.
 
 If no permitted system key patterns are set, a single default of `wiremock.*` will be used.
-
-## Custom helpers
-
-Custom Handlebars helpers can be registered with the transformer on construction:
-
-```java
-Helper<String> stringLengthHelper = new Helper<String>() {
-    @Override
-    public Object apply(String context, Options options) throws IOException {
-        return context.length();
-    }
-};
-
-@Rule
-public WireMockRule wm = new WireMockRule(
-    options().extensions(new ResponseTemplateTransformer(false, "string-length", stringLengthHelper))
-);
-```
-
-This custom `string-length` helper will return the string length of the supplied parameter and is used like this:
-
-{% raw %}
-
-```
-{{string-length 'abcde'}}
-{{string-length request.body}}
-```
-
-{% endraw %}
