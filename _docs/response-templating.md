@@ -10,21 +10,30 @@ Response headers and bodies, as well as proxy URLs, can optionally be rendered u
 to be used in generating the response e.g. to pass the value of a request ID header as a response header or
 render an identifier from part of the URL in the response body.
 
-## Enabling response templating
+## Enabling/disabling response templating
 
-When starting WireMock programmatically, response templating can be enabled by adding `ResponseTemplateTransformer` as an extension e.g.
+Response templating is enabled by default in local mode when WireMock is started programmatically, meaning that it will only be applied to stubs that have the `response-template` transformer added to them (see [below](#applying-templating-in-local-mode) for details).
+
+Templating can be applied globally (without having to explicitly add `response-template`) via a startup option:
 
 ```java
-@Rule
-public WireMockRule wm = new WireMockRule(options()
-    .extensions(new ResponseTemplateTransformer(false))
-);
+WireMockServer wm =
+    new WireMockServer(options().globalTemplating(true));
 ```
 
-The boolean constructor parameter indicates whether the extension should be applied globally. If true, all stub mapping responses will be rendered as templates prior
-to being served.
+It can also be disabled completely via a startup option:
 
-Otherwise the transformer will need to be specified on each stub mapping by its name `response-template`:
+```java
+WireMockServer wm =
+    new WireMockServer(options().templatingEnabled(false));
+```
+
+See [the command line docs](../standalone/java-jar/#command-line-options) for the standalone equivalents of these parameters.
+
+## Applying templating in local mode
+
+When templating is enabled in local mode you must add it to each stub to which you require templating to be applied.
+This is done by adding `response-template` to the set of transformers on the response.
 
 ### Java
 
@@ -40,6 +49,7 @@ wm.stubFor(get(urlPathEqualTo("/templated"))
 {% endraw %}
 
 {% raw %}
+
 
 ### JSON
 
@@ -57,26 +67,12 @@ wm.stubFor(get(urlPathEqualTo("/templated"))
 
 {% endraw %}
 
-Command line parameters can be used to enable templating when running WireMock [standalone](../running-standalone#command-line-options).
-
 ## Template caching
 
 By default, all templated fragments (headers, bodies and proxy URLs) are cached in their compiled form for performance,
 since compilation can be expensive for larger templates.
 
-The size of the cache is not limited by default, but can be a construction time:
-
-```java
-@Rule
-public WireMockRule wm = new WireMockRule(options()
-    .extensions(ResponseTemplateTransformer.builder()
-                                .global(false)
-                                .maxCacheEntries(3L)
-                                .build())
-);
-```
-
-Setting the limit to 0 will disable caching completely.
+**TODO:** document programmatic limiting of the cache size once [#2357](https://github.com/wiremock/wiremock/issues/2357) is fixed.
 
 ## Proxying
 
