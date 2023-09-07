@@ -4,6 +4,7 @@ title: WireMock and Python
 meta_title: Python Solutions | WireMock
 description: Additional solutions for WireMock when using Python
 logo: /images/logos/technology/python.svg
+hide-disclaimer: true
 ---
 
 
@@ -28,4 +29,4 @@ This project is a part of WireMock's GitHub organization.
 This project implements the Robot Framework keywords to interact with WireMock through HTTP.
 
 - [Documentation](https://tyrjola.github.io/docs/robotframework-wiremock.html)
-- [GitHub Repository](https://github.com/tyrjola/robotframework-wiremock)
+- [GitHub Repository](https://github.com/wiremock/robotframework-wiremock)
