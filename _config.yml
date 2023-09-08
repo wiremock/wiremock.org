@@ -234,7 +234,7 @@ compress_html:
     ignore:
         envs: development
 
-wiremock_version: 3.0.3
+wiremock_version: 3.0.4
 wiremock_baseline: 3.x
 pageEditPrefix: https://github.com/wiremock/wiremock.org/edit/main/
 
