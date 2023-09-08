@@ -105,25 +105,24 @@ Configuration file:
 
 ```java
 stubFor(post(urlPathEqualTo("/mock"))
-.withFormParam("tool", equalTo("WireMock"))
-.withBasicAuth("jeff@example.com", "jeffteenjefftyjeff")
-)
-.willReturn(aResponse()));
+  .withFormParam("tool", equalTo("WireMock"))
+).willReturn(ok()));
 ```
 
 ```json
 {
-    "request": {
-        "urlPath": "/mock",
-        "method": "POST",
-      "formParameters": {
-            "tool": {
-                "equalTo": "WireMock"
-            }
-        },
-    "response": {
-        "status": 200
+  "request": {
+    "urlPath": "/mock",
+    "method": "POST",
+    "formParameters": {
+      "tool": {
+        "equalTo": "WireMock"
+      }
     }
+  },
+  "response": {
+    "status": 200
+  }
 }
 ```
 
