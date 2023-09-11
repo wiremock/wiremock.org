@@ -76,10 +76,17 @@ wm.stubFor(get(urlPathEqualTo("/templated"))
 
 ## Template caching
 
-By default, all templated fragments (headers, bodies and proxy URLs) are cached in their compiled form for performance,
+All templated fragments (headers, bodies and proxy URLs) are cached in their compiled form for performance,
 since compilation can be expensive for larger templates.
 
-**TODO:** document programmatic limiting of the cache size once [#2357](https://github.com/wiremock/wiremock/issues/2357) is fixed.
+By default the capacity of this cache is not limited but a limit can be set via the startup options:
+
+```java
+WireMockServer wm =
+    new WireMockServer(options().withMaxTemplateCacheEntries(10000));
+```
+
+See [the command line docs](../standalone/java-jar/#command-line-options) for the equivalent configuration setting when running standalone.
 
 ## Proxying
 
