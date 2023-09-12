@@ -1,7 +1,7 @@
 
 
 
-var wiremock_notification_shown = localStorage.getItem("wiremock_notification_showns");
+var wiremock_notification_shown = localStorage.getItem("wiremock_notification_shown");
 var notifications = [
     {   
     content: {
@@ -16,7 +16,6 @@ var notifications = [
 if (wiremock_notification_shown == null) {
     localStorage.setItem("wiremock_notification_shown", true);
 
-   
     $.notify.addStyle("wiremock_notification_with_link", {
         html: 
             "<div>" +
