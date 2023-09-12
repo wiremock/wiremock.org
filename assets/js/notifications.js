@@ -5,7 +5,7 @@ var wiremock_notification_shown = localStorage.getItem("wiremock_notification_sh
 var notifications = [
     {   
     content: {
-        title: "Online Webinar on September 26: " +
+        title: "Online Webinar on September 26th: " +
         "An Intro to Mock-Based API Prototyping and Developer Portals with Tom Akehurst " +
         "<a href='https://www.wiremock.io/webinars/developer-portals?utm_medium=referral&utm_source=wiremock.org&utm_content=notification' target='_blank'>Learn More</a>",
         },
