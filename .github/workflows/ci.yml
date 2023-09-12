@@ -3,9 +3,9 @@ name: Continuous Integration
 on:
   push:
     # Not needed for main, we have CD there
-    branches: [ "3.0.0-beta" ]
+    branches: [ "2.x" ]
   pull_request:
-    branches: [ "main", "3.0.0-beta" ]
+    branches: [ "main", "2.x"]
   workflow_dispatch:
 
 jobs:
