@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Extending WireMock - Overview
+title: Extending WireMock
 meta_title: Extending WireMock via custom code | WireMock
 toc_rank: 110
 redirect_from: "/extending-wiremock.html"
@@ -13,15 +13,15 @@ Each extension point is defined by an interface that extends from `Extension` an
 
 At present, the following extension interfaces are available:
 * `RequestFilterV2`/`AdminRequestFilterV2`/`StubRequestFilterV2`: Intercept requests, modifying them or taking alternative actions based on their content.
-* `ResponseDefinitionTransformerV2`: Modify the response definition used to generate a response. See [Transforming responses](extensibility/transforming-responses/).
-* `ResponseTransformerV2`: Modify the response served to the client. See [Transforming responses](extensibility/transforming-responses/).
-* `ServeEventListener`: Listen for events at various points in the request processing lifecycle. See [Transforming responses](extensibility/listening-for-serve-events/).
-* `AdminApiExtension`: Add admin API functions. See [Transforming responses](extensibility/extending-the-admin-api/).
-* `RequestMatcherExtension`: Implement custom request matching logic. See [Transforming responses](extensibility/custom-matching/).
-* `GlobalSettingsListener`: Listen for changes to the settings object. See [Transforming responses](extensibility/listening-for-settings-changes/).
-* `StubLifecycleListener`: Listen for changes to the stub mappings. See [Transforming responses](extensibility/listening-for-stub-changes/).
-* `TemplateHelperProviderExtension`: Provide custom Handlebars helpers to the template engine. See [Transforming responses](extensibility/adding-template-helpers/).
-* `TemplateModelDataProviderExtension`: Provide additional data to the model passed to response templates. See [Transforming responses](extensibility/adding-template-model-data/).
+* `ResponseDefinitionTransformerV2`: Modify the response definition used to generate a response. See [Transforming responses](../extensibility/transforming-responses/).
+* `ResponseTransformerV2`: Modify the response served to the client. See [Transforming responses](../extensibility/transforming-responses/).
+* `ServeEventListener`: Listen for events at various points in the request processing lifecycle. See [Listening for Serve Events](../extensibility/listening-for-serve-events/).
+* `AdminApiExtension`: Add admin API functions. See [Admin API Extensions](../extensibility/extending-the-admin-api/).
+* `RequestMatcherExtension`: Implement custom request matching logic. See [Custom matching](../extensibility/custom-matching/).
+* `GlobalSettingsListener`: Listen for changes to the settings object. See [Listening for Settings Changes](../extensibility/listening-for-settings-changes/).
+* `StubLifecycleListener`: Listen for changes to the stub mappings. See [Listening for Stub Changes](../extensibility/listening-for-stub-changes/).
+* `TemplateHelperProviderExtension`: Provide custom Handlebars helpers to the template engine. See [Adding Template Helpers](../extensibility/adding-template-helpers/).
+* `TemplateModelDataProviderExtension`: Provide additional data to the model passed to response templates. See [Adding Template Model Data](../extensibility/adding-template-model-data/).
 
 The interfaces in this list ending with `V2` supercede deprecated equivalents with an older, more restrictive interface. Additionally `ServeEventListener` deprecates `PostServeAction`.
 
@@ -87,7 +87,10 @@ Several types of extension act on WireMock's request processing: `RequestFilterV
 The primary method in each of these takes the current `ServeEvent` as a parameter and sub-events can be attached to this:
 
 ```java
-serveEvent.appendSubEvent("JSON_PARSE_WARNING", Map.of("message", "Single quotes are not permitted"));
+serveEvent.appendSubEvent(
+  "JSON_PARSE_WARNING",
+  Map.of("message", "Single quotes are not permitted")
+);
 ```
 
 The second parameter to `appendSubEvent()` can be a Map or object containing any data required.
