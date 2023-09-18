@@ -12,57 +12,16 @@ of events or perform long-running processing asynchronously without blocking.
 
 ## Enabling webhooks
 
-Webhooks are provided via a WireMock extension, so this must be added when starting WireMock.
+Prior to WireMock 3.1.0 webhooks were provided via an extension and needed to be explicitly enabled. See [the 2.x docs](https://wiremock.org/2.x/docs/webhooks-and-callbacks/) for details on how to do this.
 
-### Java
+From version 3.1.0 the webhooks extension is part of WireMock's core and enabled by default.
 
-If you're starting WireMock programmatically the webhooks extension must be added to your classpath.
+### Old vs. new extension point
 
-Maven:
+The revised version of webhooks in 3.1.0 makes use of the new `ServeEventListener` extension point.
+This article shows how to use this newer extension point, however the legacy `PostServeAction` interface is still supported for backwards compatibility.
 
-```xml
-<dependency>
-    <groupId>org.wiremock</groupId>
-    <artifactId>wiremock-webhooks-extension</artifactId>
-    <version>{{ site.wiremock_version }}</version>
-    <scope>test</scope>
-</dependency>
-```
-
-Gradle:
-
-```groovy
-testCompile "org.wiremock:wiremock-webhooks-extension:{{ site.wiremock_version }}"
-```
-
-Then when creating the `WireMockServer` or `WireMockRule` the extension must be passed via the configuration object
-in the constructor:
-
-```java
-@Rule
-public WireMockRule wm = new WireMockRule(wireMockConfig().extensions(Webhooks.class));
-```
-
-### Standalone
-
-To use the webhooks extension with standalone WireMock you must download the extension JAR file and add it to the Java classpath
-on the startup command line:
-
-#### macOs / Linux:
-```bash
-java -cp wiremock-standalone-{{ site.wiremock_version }}.jar:wiremock-webhooks-extension-{{ site.wiremock_version }}.jar \
-  wiremock.Run --extensions org.wiremock.webhooks.Webhooks
-```
-
-#### Windows:
-```bat
-java -cp wiremock-standalone-{{ site.wiremock_version }}.jar;wiremock-webhooks-extension-{{ site.wiremock_version }}.jar \
-  wiremock.Run --extensions org.wiremock.webhooks.Webhooks
-```
-
-You can [download the webhooks extension JAR here](https://repo1.maven.org/maven2/org/wiremock/wiremock-webhooks-extension/{{ site.wiremock_version }}/wiremock-webhooks-extension-{{ site.wiremock_version }}.jar).
-
-## A simple, single webhook
+## Creating a simple, single webhook
 
 You can trigger a single webhook request to a fixed URL, with fixed data like this:
 
@@ -74,7 +33,7 @@ import static org.wiremock.webhooks.Webhooks.*;
 
 wm.stubFor(post(urlPathEqualTo("/something-async"))
     .willReturn(ok())
-    .withPostServeAction("webhook", webhook()
+    .withServeEventListener("webhook", webhook()
         .withMethod(POST)
         .withUrl("http://my-target-host/callback")
         .withHeader("Content-Type", "application/json")
@@ -93,7 +52,7 @@ JSON:
     "response": {
         "status": 200
     },
-    "postServeActions": [
+    "serveEventListeners": [
         {
             "name": "webhook",
             "parameters": {
@@ -136,7 +95,7 @@ Java:
 ```java
 wm.stubFor(post(urlPathEqualTo("/templating"))
       .willReturn(ok())
-      .withPostServeAction("webhook", webhook()
+      .withServeEventListener("webhook", webhook()
           .withMethod(POST)
           .withUrl("http://my-target-host/callback")
           .withHeader("Content-Type", "application/json")
@@ -159,7 +118,7 @@ JSON:
     "response": {
         "status": 200
     },
-    "postServeActions": [
+    "serveEventListeners": [
         {
             "name": "webhook",
             "parameters": {
@@ -193,7 +152,7 @@ Java:
 ```java
 wm.stubFor(post(urlPathEqualTo("/something-async"))
       .willReturn(ok())
-      .withPostServeAction("webhook", webhook()
+      .withServeEventListener("webhook", webhook()
           .withMethod("{{jsonPath originalRequest.body '$.callbackMethod'}}")
           .withUrl("{{jsonPath originalRequest.body '$.callbackUrl'}}"))
   );
@@ -214,7 +173,7 @@ JSON:
     "response": {
         "status": 200
     },
-    "postServeActions": [
+    "serveEventListeners": [
         {
             "name": "webhook",
             "parameters": {
@@ -239,7 +198,7 @@ Java:
 ```java
 wm.stubFor(post(urlPathEqualTo("/delayed"))
     .willReturn(ok())
-    .withPostServeAction("webhook", webhook()
+    .withServeEventListener("webhook", webhook()
       .withFixedDelay(1000)
       .withMethod(RequestMethod.GET)
       .withUrl("http://my-target-host/callback")
@@ -258,7 +217,7 @@ JSON:
     "response": {
         "status": 200
     },
-    "postServeActions": [
+    "serveEventListeners": [
         {
             "name": "webhook",
             "parameters": {
@@ -281,7 +240,7 @@ Java:
 ```java
 wm.stubFor(post(urlPathEqualTo("/delayed"))
     .willReturn(ok())
-    .withPostServeAction("webhook", webhook()
+    .withServeEventListener("webhook", webhook()
       .withDelay(new UniformDistribution(500, 1000))
       .withMethod(RequestMethod.GET)
       .withUrl("http://my-target-host/callback")
@@ -300,7 +259,7 @@ JSON:
     "response": {
         "status": 200
     },
-    "postServeActions": [
+    "serveEventListeners": [
         {
             "name": "webhook",
             "parameters": {
@@ -314,5 +273,24 @@ JSON:
             }
         }
     ]
+}
+```
+
+## Extending webhooks
+
+Webhook behaviour can be further customised in code via an extension point.
+
+This works in a similar fashion to response transformation. The extension class implements the `WebhookTransformer` interface and is then loaded via
+the extension mechanism (see [Extending WireMock](https://wiremock.org/docs/extending-wiremock/)).
+
+```java
+public class MyWebhookTransformer implements WebhookTransformer {
+
+  @Override
+  public WebhookDefinition transform(
+    ServeEvent serveEvent,
+    WebhookDefinition webhookDefinition) {
+    // build and return a new WebhookDefinition with some custom changes
+  }
 }
 ```
