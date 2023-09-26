@@ -2,6 +2,9 @@
 layout: single
 title: WireMock in Hacktoberfest
 meta_title: "Contribute to WireMock during Hacktoberfest 2023!"
+og_image: events/hacktoberfest/wiremock_hacktoberfest_opengraph.png
+header:
+  image: events/hacktoberfest/wiremock_hacktoberfest_header.png
 description: |
     Hacktoberfest is a month-long celebration of open source software which happens as a global online hackathon.
     This October, WireMock will participate, and we invite you to join us,
@@ -20,8 +23,6 @@ This October the WireMock project will join the 10th edition of this worldwide e
 Regardless of their experience and background, everyone can support open source by contributing changes.
 All contributors will receive special digital awards.
 In WireMock, we are also happy to offer special swag to the most active contributors to the WireMock open source ecosystem!
-
-![Hacktoberfest Header](/images/events/hacktoberfest/wiremock_hacktoberfest_header.png)
 
 ## Get Started
 
