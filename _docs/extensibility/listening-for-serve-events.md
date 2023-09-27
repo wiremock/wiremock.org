@@ -11,4 +11,57 @@ The `ServeEventListener` interface (which deprecates `PostServeAction`) supports
 
 ## Listening for specific lifecycle events
 
-TODO
+The `ServeEventListener` interface has a set of callback methods that can be implemented for specific points in the request lifecycle. These have no-op defaults, so you can override just the ones that are relevant:
+
+```java
+public class MyServeEventListener implements ServeEventListener {
+
+    @Override
+    public void beforeMatch(ServeEvent serveEvent, Parameters parameters) {
+        // Do something before request matching
+    }
+
+    @Override
+    public void afterMatch(ServeEvent serveEvent, Parameters parameters) {
+        // Do something after request matching
+    }
+
+    @Override
+    public void beforeResponseSent(ServeEvent serveEvent, Parameters parameters) {
+        // Do something before the response is sent to the client
+    }
+
+    @Override
+    public void afterComplete(ServeEvent serveEvent, Parameters parameters) {
+        // Do something after the response has been sent to the client
+    }
+
+    @Override
+    public String getName() {
+        return "my-listener";
+    }
+}
+```
+
+## Listening for all lifecycle events
+
+The alternative approach you can take is to listen for all events along with a request phase value indicating when the event fired:
+
+```java
+public class MyServeEventListener implements ServeEventListener {
+
+    @Override
+    public void onEvent(
+        RequestPhase requestPhase,
+        ServeEvent serveEvent,
+        Parameters parameters) {
+        
+        log.debug("Received serve event in phase " + requestPhase);
+    }
+
+    @Override
+    public String getName() {
+        return "my-listener";
+    }
+}
+```

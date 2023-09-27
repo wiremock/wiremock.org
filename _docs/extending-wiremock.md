@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Extending WireMock - Overview
+title: Extending WireMock
 meta_title: Extending WireMock via custom code | WireMock
 toc_rank: 110
 redirect_from: "/extending-wiremock.html"
@@ -88,7 +88,10 @@ Several types of extension act on WireMock's request processing: `RequestFilterV
 The primary method in each of these takes the current `ServeEvent` as a parameter and sub-events can be attached to this:
 
 ```java
-serveEvent.appendSubEvent("JSON_PARSE_WARNING", Map.of("message", "Single quotes are not permitted"));
+serveEvent.appendSubEvent(
+  "JSON_PARSE_WARNING",
+  Map.of("message", "Single quotes are not permitted")
+);
 ```
 
 The second parameter to `appendSubEvent()` can be a Map or object containing any data required.

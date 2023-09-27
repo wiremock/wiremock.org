@@ -24,7 +24,7 @@ Once that's running visit the recorder UI page at [http://localhost:8080/\_\_adm
 
 ![Recorder UI]({{ '/images/recorder-screenshot.png' | absolute_url }})
 
-Enter the URL you wish to record from in the target URL field and click the Record button. You can use `http://examples.wiremockapi.cloud/` to try it out.
+Enter the URL you wish to record from in the target URL field and click the Record button. You can use `http://examples.wiremockapi.cloud` to try it out.
 
 Now you need to make a request through WireMock to the target API so that it can be recorded. If you're using the example URL, you can generate a request using curl:
 

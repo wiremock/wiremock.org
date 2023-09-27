@@ -29,8 +29,56 @@ layout: default
       visibility: visible;
     }
 
+
+    /* Code tabs inspired by https://github.com/clustergarage/jekyll-code-tabs/pull/5 */
+    .tab {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+    }
+
+    .tab button {
+      background-color: inherit; 
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+    }
+
+    .codeblock-option-selector {
+      float: left;
+    }
+
+    .codeblock-copybutton {
+      float: right;
+    }
+
+    .tab button:hover {
+      background-color: #ddd;
+    }
+
+    .tab button.active {
+      background-color: #ccc;
+    }
+
+    .tabcontent {
+      display: none;
+      padding: 6px 12px;
+      border: 1px solid #ccc;
+      border-top: none;
+    }
+
+    .tabcontent {
+      animation: fadeEffect 0.5s; /* Fading effect takes 1 second */
+    }
+
+    @keyframes fadeEffect {
+      from {opacity: 0.5;}
+      to {opacity: 1;}
+    }
+
   </style>
-  
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     {% if page.seo_title %}<meta itemprop="headline" content="{{ page.seo_title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
@@ -50,11 +98,13 @@ layout: default
       </header>
 
       {% if site.wiremock_baseline == site.data.baselines.current.id %} 
-      <div style="background-color: #f2f2f2;border: #c8c8c8 1px solid;padding: 8px;margin-bottom:32px;">
-        This document is for the WireMock {{ site.data.baselines.current.id }} baseline.
-        See the documentation for WireMock {{ site.data.baselines.preview.id }} preview 
-        <a href="{{  page.url | prepend: site.data.baselines.preview.absoluteUrl }}">here</a>
-      </div>
+        {% if site.data.baselines.preview.id %}
+        <div style="background-color: #f2f2f2;border: #c8c8c8 1px solid;padding: 8px;margin-bottom:32px;">
+          This document is for the WireMock {{ site.data.baselines.current.id }} baseline.
+          See the documentation for WireMock {{ site.data.baselines.preview.id }} preview 
+          <a href="{{  page.url | prepend: site.data.baselines.preview.absoluteUrl }}">here</a>
+        </div>
+        {% endif %}
       {% else %}
         {% if site.wiremock_baseline == site.data.baselines.preview.id %} 
         <div style="background-color: #f2f2f2;border: #c8c8c8 1px solid;padding: 8px;margin-bottom:32px;">
