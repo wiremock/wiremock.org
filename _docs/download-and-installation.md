@@ -6,6 +6,13 @@ toc_rank: 13
 description: >
     WireMock is available as a standalone service (for Docker of Java), Java library
     and integrations for modern languages and technology stacks.
+redirect_from: 
+    - "/download.html"
+    - "/download/"
+    - "/downloads.html"
+    - "/downloads/"
+    - "/docs/download.html"
+    - "/docs/download/"
 ---
 
 
@@ -25,59 +32,36 @@ conflicting versions of its dependencies. The standalone JAR is also runnable (s
 
 ## Standalone Service
 
-### WireMock 3.x Beta (recommended)
+### Docker
 
-#### Maven
+Run the following in a terminal:
+
+```bash
+docker run -it --rm -p 8080:8080 --name wiremock \
+  wiremock/wiremock:{{ site.wiremock_version }}
+```
+
+### Maven
 
 ```xml
 <dependency>
     <groupId>org.wiremock</groupId>
     <artifactId>wiremock-standalone</artifactId>
-    <version>{{ site.wiremock_beta_version }}</version>
-    <scope>test</scope>
-</dependency>
-```
-
-#### Gradle
-
-```groovy
-testImplementation "org.wiremock:wiremock-standalone:{{ site.wiremock_beta_version }}"
-```
-
-### WireMock 2.x Stable
-
-#### Docker
-
-Run the following in a terminal:
-
-```bash
-docker run -it --rm \
-  -p 8080:8080 \
-  --name wiremock \
-  wiremock/wiremock:{{ site.wiremock_version }}
-```
-
-Learn more in the [Docker guide](../docker).
-
-#### Maven - stable
-
-```xml
-<dependency>
-    <groupId>com.github.tomakehurst</groupId>
-    <artifactId>wiremock-jre8-standalone</artifactId>
     <version>{{ site.wiremock_version }}</version>
     <scope>test</scope>
 </dependency>
 ```
 
-#### Gradle - stable
+### Gradle
 
 ```groovy
-testImplementation "com.github.tomakehurst:wiremock-jre8-standalone:{{ site.wiremock_version }}"
+testImplementation "org.wiremock:wiremock-standalone:{{ site.wiremock_version }}"
 ```
 
-## Direct download
+Learn more in the [Docker guide](../docker).
+
+### Direct download
 
 If you want to run WireMock as a standalone process you can
-<a id="wiremock-standalone-download" href="https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/{{ site.wiremock_beta_version }}/wiremock-standalone-{{ site.wiremock_beta_version }}.jar">download the standalone JAR from
+<a id="wiremock-standalone-download" href="https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/{{ site.wiremock_version }}/wiremock-standalone-{{ site.wiremock_version }}.jar">download the standalone JAR from
 here</a>
