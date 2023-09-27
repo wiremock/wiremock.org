@@ -60,6 +60,12 @@ configuration:
     - advanced/deploy-to-servlet-container
     - advanced/java7
 
+protocols:
+  title: Protocols
+  pages:
+    - webhooks-and-callbacks
+    - grpc
+
 extensibility:
   title: Extensibility
   link: /docs/extending-wiremock/
@@ -75,7 +81,6 @@ extensibility:
     - extensibility/listening-for-stub-changes
     - extensibility/listening-for-settings-changes
     - stub-metadata
-    - webhooks-and-callbacks
 
 reference:
   title: Reference

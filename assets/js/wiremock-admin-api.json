@@ -5042,14 +5042,10 @@
                     "properties": {
                       "fixedDelay": {
                         "type": "number"
-                      },
-                      "proxyPassThrough": {
-                        "type": "boolean"
                       }
                     },
                     "example": {
-                      "fixedDelay": 500,
-                      "proxyPassThrough": false
+                      "fixedDelay": 500
                     }
                   }
                 ]
