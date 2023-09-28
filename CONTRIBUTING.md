@@ -13,7 +13,7 @@ General WireMock contributing guide is available [here](https://github.com/wirem
 ## Discussing changes
 
 Make sure to join the community Slack as documented in the contributing guide.
-After that, all changes can be discussed in the `#help-contributing` channel.
+After that, all changes can be discussed in the `#help-contributing` or `#documentation` channels.
 Do not hesitate to ask there if you hit an obstacle.
 
 ## Key locations
@@ -31,6 +31,60 @@ including API specifications and other resources is located in the
 that is included as a submodule and build by the CD flow.
 To update the documentation, submit pull requests against the branch,
 and they will be included into the main release line.
+
+## Editing
+
+### Code Tabs
+
+To reduce vertical space and provide examples by multiple technology stacks,
+we added support for code tabs in the documentation.
+It is a custom Jekyll plugin providing the `{% codetabs %}` macro in Markdown.
+See the example here: https://wiremock.org/docs/stubbing/ .
+
+Example:
+
+```markdown
+    {% codetabs %}
+    
+    {% codetab JSON %}
+    
+    ```json
+    {
+      "request": {
+        "method": "GET",
+        "url": "/some/thing"
+      }
+      "response": {
+        "status": 200,
+        "body": "Hello, world!",
+        "headers": {
+            "Content-Type": "text/plain"
+        }
+      }
+    }
+    ```
+    
+    {% endcodetab %}
+    
+    {% codetab Java %}
+    
+    ```java
+    @Test
+    public void exactUrlOnly() {
+        stubFor(get(urlEqualTo("/some/thing"))
+                .willReturn(aResponse()
+                    .withHeader("Content-Type", "text/plain").withBody("Hello world!")));
+    }
+    ```
+    
+    {% endcodetab %}
+    
+    {% endcodetabs %}
+```
+
+
+When editing the existing code, make sure to also copy-edit text around it to ensure consistency.
+Example of a patch: [PR #165 - Code tabs in stubbing overview](https://github.com/wiremock/wiremock.org/pull/165).
 
 ## Preparing the developer environment
 
