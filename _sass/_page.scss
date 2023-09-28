@@ -14,6 +14,10 @@
     @include breakpoint($x-large) {
         max-width: $x-large;
     }
+
+    @include breakpoint($x2-large) {
+        max-width: $x2-large;
+    }
 }
 
 .custom-doc-wrapper {
@@ -36,6 +40,11 @@
             @include full();
         }
     }
+}
+
+.page-wide {
+    @extend .page;
+    @include suffix(0 of 12);
 }
 
 .page__title {
@@ -141,6 +150,10 @@
 
             @include breakpoint($x-large) {
                 max-width: $x-large;
+            }
+
+            @include breakpoint($x2-large) {
+                max-width: $x2-large;
             }
         }
 
