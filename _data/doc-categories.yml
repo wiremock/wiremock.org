@@ -52,19 +52,20 @@ record-playback:
   pages:
     - record-playback
 
-configuration:
-  title: Advanced use-cases
-  pages:
-    - https
-    - multi-domain-mocking
-    - advanced/deploy-to-servlet-container
-    - advanced/java7
-
 protocols:
   title: Protocols
   pages:
     - webhooks-and-callbacks
     - grpc
+    - solutions/graphql
+    - https
+
+configuration:
+  title: Advanced use-cases
+  pages:
+    - multi-domain-mocking
+    - advanced/deploy-to-servlet-container
+    - advanced/java7
 
 extensibility:
   title: Extensibility
