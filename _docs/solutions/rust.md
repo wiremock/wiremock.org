@@ -79,7 +79,7 @@ References:
 ## Testcontainers module
 
 We are interested in providing a Testcontainers for Rust module that
-would provide SDK for the official [WireMock Docker images]().
+would provide SDK for the official [WireMock Docker images](../../docker).
 This module is on our roadmap but have not been published yet,
 see [wiremock/ecosystem #8](https://github.com/wiremock/ecosystem/issues/8).
 Contributions are welcome!
