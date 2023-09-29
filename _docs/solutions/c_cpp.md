@@ -34,7 +34,6 @@ Initializing WireMock:
 int main() {
     printf("Creating new container: %s\n", DEFAULT_WIREMOCK_IMAGE);
     int requestId = tc_wm_new_default_container();
-    //FIXME: This method is bogus
     tc_wm_with_mapping(requestId, "test_data/hello.json", "hello");
     tc_with_file(requestId, "test_data/hello.json", "/home/wiremock/mappings/hello2.json");
     struct tc_run_container_return ret = tc_run_container(requestId);
