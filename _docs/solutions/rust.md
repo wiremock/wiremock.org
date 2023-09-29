@@ -75,3 +75,11 @@ References:
 - Crates: [`stubr`](https://crates.io/crates/stubr)
 - [Documentation](https://beltram.github.io/stubr/html/)
 - [GitHub Repository](https://github.com/beltram/stubr)
+
+## Testcontainers module
+
+We are interested in providing a Testcontainers for Rust module that
+would provide SDK for the official [WireMock Docker images]().
+This module is on our roadmap but have not been published yet,
+see [wiremock/ecosystem #8](https://github.com/wiremock/ecosystem/issues/8).
+Contributions are welcome!
