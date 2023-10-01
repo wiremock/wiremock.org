@@ -32,16 +32,20 @@ conflicting versions of its dependencies. The standalone JAR is also runnable (s
 
 ## Standalone Service
 
-### Docker
-
 Run the following in a terminal:
+
+{% codetabs %}
+
+{% codetab Docker %}
 
 ```bash
 docker run -it --rm -p 8080:8080 --name wiremock \
   wiremock/wiremock:{{ site.wiremock_version }}
 ```
 
-### Maven
+{% endcodetab %}
+
+{% codetab Maven %}
 
 ```xml
 <dependency>
@@ -52,11 +56,17 @@ docker run -it --rm -p 8080:8080 --name wiremock \
 </dependency>
 ```
 
-### Gradle
+{% endcodetab %}
+
+{% codetab Gradle Groovy %}
 
 ```groovy
 testImplementation "org.wiremock:wiremock-standalone:{{ site.wiremock_version }}"
 ```
+
+{% endcodetab %}
+
+{% endcodetabs %}
 
 Learn more in the [Docker guide](../docker).
 
