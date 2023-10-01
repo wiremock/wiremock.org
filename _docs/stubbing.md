@@ -141,7 +141,9 @@ you want the stub mapping to match on any request method.
 In addition to the status code, the status message can optionally also
 be set.
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 @Test
@@ -157,7 +159,9 @@ public void statusMessage() {
 }
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -172,6 +176,10 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 ## Stub priority
 
 It is sometimes the case that you'll want to declare two or more stub
@@ -183,6 +191,10 @@ useful to exert more control.
 One example of this might be where you want to define a catch-all stub
 for any URL that doesn't match any more specific cases. Adding a
 priority to a stub mapping facilitates this:
+
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 //Catch-all case
@@ -196,7 +208,9 @@ stubFor(get(urlEqualTo("/api/specific-resource")).atPriority(1) //1 is highest
             .withBody("Resource state")));
 ```
 
-Priority is set via the `priority` attribute in JSON:
+{% endcodetab %}
+
+{% codetab Json %}
 
 ```json
 {
@@ -211,13 +225,19 @@ Priority is set via the `priority` attribute in JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 When unspecified, stubs default to a priority of `5`[<sup>^</sup>](https://github.com/wiremock/wiremock/blob/master/src/main/java/com/github/tomakehurst/wiremock/stubbing/StubMapping.java#L37) where `1` is the highest priority and Java `Integer.MAX_VALUE` (i.e., `2147483647`) is the minimum priority.
 
 ## Sending response headers
 
 In addition to matching on request headers, it's also possible to send response headers.
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 stubFor(get(urlEqualTo("/whatever"))
@@ -229,7 +249,9 @@ stubFor(get(urlEqualTo("/whatever"))
                 .withHeader("Cache-Control", "no-cache")));
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -248,11 +270,17 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 ## Specifying the response body
 
 The simplest way to specify a response body is as a string literal.
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 stubFor(get(urlEqualTo("/body"))
@@ -260,7 +288,9 @@ stubFor(get(urlEqualTo("/body"))
                 .withBody("Literal text to put in the body")));
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -274,6 +304,10 @@ JSON:
     }
 }
 ```
+
+{% endcodetab %}
+
+{% endcodetabs %}
 
 If you're specifying a JSON body via the JSON API, you can avoid having to escape it like this:
 
@@ -293,13 +327,19 @@ under the current directory in which the server was started. To make
 your stub use the file, simply call `bodyFile()` on the response builder
 with the file's path relative to `__files`:
 
+{% codetabs %}
+
+{% codetab Java %}
+
 ```java
 stubFor(get(urlEqualTo("/body-file"))
         .willReturn(aResponse()
                 .withBodyFile("path/to/myfile.xml")));
 ```
 
-Or
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -314,6 +354,10 @@ Or
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 > **note**
 >
 > Body file paths should always be relative i.e. not have a leading /
@@ -325,8 +369,14 @@ Or
 > sets, whether by JVM configuration or body file encoding will most
 > likely produce strange behaviour.
 
-A response body in binary format can be specified as a `byte[]` via an
-overloaded `body()`:
+A response body in binary format can be specified as a `byte[]` via an 
+overloaded `body()` in Java.
+
+JSON API accepts this as a base64 string (to avoid stupidly long JSON documents):
+
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 stubFor(get(urlEqualTo("/binary-body"))
@@ -334,8 +384,9 @@ stubFor(get(urlEqualTo("/binary-body"))
                 .withBody(new byte[] { 1, 2, 3, 4 })));
 ```
 
-The JSON API accepts this as a base64 string (to avoid stupidly long
-JSON documents):
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -350,13 +401,19 @@ JSON documents):
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 ## Default response for unmapped requests
 
 When a request cannot be mapped to a response, Wiremock returns an HTML response with a 404 status code.
 
 It is possible to customize the response by catching all URLs with a low priority.
 
-In Java
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 stubFor(any(anyUrl())
@@ -366,7 +423,9 @@ stubFor(any(anyUrl())
                         .withBody("{\"status\":\"Error\",\"message\":\"Endpoint not found\"}")));
 ```
 
-In JSON
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -385,6 +444,10 @@ In JSON
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 ## Saving stubs
 
 Stub mappings which have been created can be persisted to the `mappings`
@@ -397,9 +460,13 @@ request with an empty body to
 
 ## Editing stubs
 
-Existing stub mappings can be modified, provided they have been assigned an ID.
+In Java, Existing stub mappings can be modified, provided they have been assigned an ID.
 
-In Java:
+To do the equivalent via the JSON API, `PUT` the edited stub mapping to `/__admin/mappings/{id}`
+
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 wireMockServer.stubFor(get(urlEqualTo("/edit-this"))
@@ -417,7 +484,9 @@ wireMockServer.editStub(get(urlEqualTo("/edit-this"))
 assertThat(testClient.get("/edit-this").content(), is("Modified"));
 ```
 
-To do the equivalent via the JSON API, `PUT` the edited stub mapping to `/__admin/mappings/{id}`:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -430,6 +499,10 @@ To do the equivalent via the JSON API, `PUT` the edited stub mapping to `/__admi
     }
 }
 ```
+
+{% endcodetab %}
+
+{% endcodetabs %}
 
 ## File serving
 
@@ -492,9 +565,13 @@ Via the HTTP client a mapping can be retrieved by sending a `GET` to `http://<ho
 
 ## Bulk importing stubs
 
-Multiple stubs can be imported in one call.
+In Java, Multiple stubs can be imported in one call. 
 
-Java:
+The equivalent can be carried out Via the JSON API, `POST` the to `/__admin/mappings/import`:
+
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 WireMock.importStubs(stubImport()
@@ -505,7 +582,9 @@ WireMock.importStubs(stubImport()
     .deleteAllExistingStubsNotInImport());
 ```
 
-Via the JSON API, `POST` the to `/__admin/mappings/import`:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -537,6 +616,10 @@ Via the JSON API, `POST` the to `/__admin/mappings/import`:
     }
 }
 ```
+
+{% endcodetab %}
+
+{% endcodetabs %}
 
 ### Existing stubs policy
 
