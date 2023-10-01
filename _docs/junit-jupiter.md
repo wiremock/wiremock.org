@@ -168,7 +168,15 @@ The JUnit Jupiter extension can be configured to enable "proxy mode" which simpl
 ### Declarative
 
 In declarative mode this is done by setting the `proxyMode = true` in the annotation declaration. Then, provided your app's
-HTTP client honours the JVM's proxy system properties, you can specify different domain (host) names when creating stubs:
+HTTP client honours the JVM's proxy system properties, you can specify different domain (host) names when creating stubs.
+
+### Programmatic
+
+Proxy mode can be enabled via the extension builder when using the programmatic form.
+
+{% codetabs %}
+
+{% codetab Declarative %}
 
 ```java
 @WireMockTest(proxyMode = true)
@@ -205,9 +213,9 @@ public class JUnitJupiterExtensionJvmProxyDeclarativeTest {
 }
 ```
 
-### Programmatic
+{% endcodetab %}
 
-Proxy mode can be enabled via the extension builder when using the programmatic form:
+{% codetab Programmatic %}
 
 ```java
 public class JUnitJupiterProgrammaticProxyTest {
@@ -247,6 +255,10 @@ public class JUnitJupiterProgrammaticProxyTest {
   }
 }
 ```
+
+{% endcodetab %}
+
+{% endcodetabs %}
 
 ## Subclassing the extension
 
