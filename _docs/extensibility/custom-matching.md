@@ -70,12 +70,18 @@ public class BodyLengthMatcher extends RequestMatcherExtension {
 
 Then define a stub with it:
 
+{% codetabs %}
+
+{% codetab Java %}
+
 ```java
 stubFor(requestMatching("body-too-long", Parameters.one("maxLength", 2048))
         .willReturn(aResponse().withStatus(422)));
 ```
 
-or via JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -93,6 +99,10 @@ or via JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 ### Combining standard and custom request matchers
 
 An inline custom matcher can be used in combination with standard matchers in the following way:
@@ -108,7 +118,9 @@ WireMock server. An exception will be thrown if attempting to use an inline cust
 
 Custom matchers defined as extensions can also be combined with standard matchers.
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 stubFor(get(urlPathMatching("/the/.*/one"))
@@ -116,7 +128,9 @@ stubFor(get(urlPathMatching("/the/.*/one"))
         .willReturn(ok()));
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -135,3 +149,7 @@ JSON:
     }
 }
 ```
+
+{% endcodetab %}
+
+{% endcodetabs %}
