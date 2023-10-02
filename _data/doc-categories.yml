@@ -6,7 +6,7 @@ setup:
     - quickstart/java-junit
     - download-and-installation
     - getting-started
-    - frequently-asked-questions
+    - faq
 
 standalone:
   title: WireMock Standalone
