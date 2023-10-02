@@ -37,7 +37,7 @@ In WireMock, we are also happy to offer special swag to the most active contribu
 
 ## Scope
 
-Regardless of your expertise and time you could dedicate, there’re opportunities to [participate](../participate) and help the project!
+Regardless of your expertise and time you could dedicate, there’re opportunities to [participate](../../participate) and help the project!
 You can help make WireMock a better tool and community in a number of ways, Basically, anything -as-code counts if submitted via a pull request:
 
 - Contribute new features, bug fixes or enhancements
