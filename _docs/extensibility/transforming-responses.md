@@ -64,6 +64,10 @@ intend to register them via an instance as described below.
 
 Parameters are supplied on a per stub mapping basis:
 
+{% codetabs %}
+
+{% codetab Java %}
+
 ```java
 stubFor(get(urlEqualTo("/transform")).willReturn(
         aResponse()
@@ -71,7 +75,9 @@ stubFor(get(urlEqualTo("/transform")).willReturn(
                 .withTransformerParameter("inner", ImmutableMap.of("thing", "value")))); // ImmutableMap is from Guava, but any Map will do
 ```
 
-or:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -91,6 +97,10 @@ or:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 ### Non-global transformations
 
 By default transformations will be applied globally. If you only want
@@ -106,6 +116,10 @@ public boolean applyGlobally() {
 
 Then you add the transformation to specific stubs via its name:
 
+{% codetabs %}
+
+{% codetab Java %}
+
 ```java
 stubFor(get(urlEqualTo("/local-transform")).willReturn(aResponse()
         .withStatus(200)
@@ -113,7 +127,9 @@ stubFor(get(urlEqualTo("/local-transform")).willReturn(aResponse()
         .withTransformers("my-transformer", "other-transformer")));
 ```
 
-or:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -128,6 +144,9 @@ or:
     }
 }
 ```
+{% endcodetab %}
+
+{% endcodetabs %}
 
 The Java API also has a convenience method for adding transformers and
 parameters in one call:
