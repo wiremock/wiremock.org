@@ -32,7 +32,7 @@ In WireMock, we are also happy to offer special swag to the most active contribu
 3. **IMPORTANT:** Fill in the [WireMock registration form](https://docs.google.com/forms/d/e/1FAIpQLSeBiJSYV4PNFYOH1Jo9PSheOYKxqV2NJE3LELL9a_fYq4fpfw/viewform?usp=sf_link)
    to participate in the swag raffle or
    if you contribute to the repositories outside the official GitHub org
-4. Check out the [WireMock contributing guidelines](../participate) and look for the linked issues
+4. Check out the [WireMock contributing guidelines](../../participate) and look for the linked issues
 5. Join us for the grand opening event on October 2nd, or watch the recording!
 
 ## Quick Issues
