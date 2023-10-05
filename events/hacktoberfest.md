@@ -35,6 +35,15 @@ In WireMock, we are also happy to offer special swag to the most active contribu
 4. Check out the [WireMock contributing guidelines](../participate) and look for the linked issues
 5. Join us for the grand opening event on October 2nd, or watch the recording!
 
+## Quick Issues
+
+Here are quick issue search queries that help to find issues open for grabs:
+
+- [Good First Issues](https://github.com/search?q=org%3Awiremock+label%3A%22good+first+issue%22+is%3Aissue+is%3Aopen+&type=issues&s=&o=desc) - this is what you can start from
+- [Issues Marked for Hacktoberfest by maintainers](https://github.com/search?q=org%3Awiremock+label%3Ahacktoberfest%2C%22help+wanted%22+is%3Aissue+is%3Aopen+&type=issues&s=&o=desc) - might be challenging, but important for the community
+
+We will do our best to replenish the issues as they get closed.
+
 ## Scope
 
 Regardless of your expertise and time you could dedicate, there’re opportunities to [participate](../../participate) and help the project!
