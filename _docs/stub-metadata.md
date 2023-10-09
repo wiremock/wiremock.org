@@ -12,7 +12,9 @@ It is possible to attach arbitrary metadata to stub mappings, which can be later
 
 Data under the `metadata` key is a JSON object (represented in Java by a `Map<String, ?>`). It can be added to a stub mapping on creation.
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 stubFor(get("/with-metadata")
@@ -25,7 +27,9 @@ stubFor(get("/with-metadata")
 ));
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -46,19 +50,27 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 ## Search for stubs by metadata
 
 Stubs can be found by matching against their metadata using the same matching strategies as when [matching HTTP requests](../request-matching/).
 The most useful matcher for this is `matchesJsonPath`:
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 List<StubMapping> stubs =
     findStubsByMetadata(matchingJsonPath("$.singleItem", containing("123")));
 ```
 
-API:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 POST /__admin/mappings/find-by-metadata
@@ -71,21 +83,29 @@ POST /__admin/mappings/find-by-metadata
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 ## Remove stubs by metadata
 
 Similarly, stubs with matching metadata can be removed:
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 removeStubsByMetadata(matchingJsonPath("$.singleItem", containing("123")));
 ```
 
-API:
+{% endcodetab %}
 
-```json
+{% codetab JSON %}
+
 POST /__admin/mappings/remove-by-metadata
 
+```json
 {
     "matchesJsonPath" : {
       "expression" : "$.singleItem",
@@ -93,6 +113,10 @@ POST /__admin/mappings/remove-by-metadata
     }
 }
 ```
+
+{% endcodetab %}
+
+{% endcodetabs %}
 
 ## Remove request journal events by metadata
 
