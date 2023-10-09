@@ -103,10 +103,9 @@ removeStubsByMetadata(matchingJsonPath("$.singleItem", containing("123")));
 
 {% codetab JSON %}
 
-```json
-
 POST /__admin/mappings/remove-by-metadata
 
+```json
 {
     "matchesJsonPath" : {
       "expression" : "$.singleItem",
