@@ -33,7 +33,7 @@ In WireMock, we are also happy to offer special swag to the most active contribu
    to participate in the swag raffle or
    if you contribute to the repositories outside the official GitHub org
 4. Check out the [WireMock contributing guidelines](../../participate) and look for the linked issues
-5. Join us for the grand opening event on October 2nd, or watch the recording!
+5. Join us for the grand opening event on October 2nd, or watch [the recording](https://www.youtube.com/watch?v=7V_GLLsVQQM)!
 
 ## Quick Issues
 
@@ -44,7 +44,20 @@ Here are quick issue search queries that help to find issues open for grabs:
 
 We will do our best to replenish the issues as they get closed.
 
-## Scope
+## Featured projects
+
+During Hacktoberfest 2023, we would like to focus on the following projects:
+
+- WireMock developer and operations experience - improving support for core use-cases including support for more configuration formats,
+  observability, additional matchers, [State Extension](https://github.com/wiremock/wiremock-extension-state) enhancements, etc., etc.
+  [Open Issues](https://github.com/search?q=org%3Awiremock+label%3Ahacktoberfest%2C%22help+wanted%22+is%3Aissue+is%3Aopen+repo%3Awiremock&type=issues&s=&o=desc)
+- WireMock 3 adoption and compatibility in downstream libraries and adapters
+- [Python WireMock](https://github.com/wiremock/python-wiremock/) - deeper Python ecosystem integrations
+- WireMock and Testcontainers for different technology stacks
+- Create new and improve API Mock Templates ([HOWTO](https://www.wiremock.io/post/how-to-contributing-to-wiremock-api-templates-library))
+- Documentation clean-up and improvements - [GitHub Repo](https://github.com/wiremock/wiremock.org)
+
+## Full Scope
 
 Regardless of your expertise and time you could dedicate, there’re opportunities to [participate](../../participate) and help the project!
 You can help make WireMock a better tool and community in a number of ways, Basically, anything -as-code counts if submitted via a pull request:
