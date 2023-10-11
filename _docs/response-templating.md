@@ -631,6 +631,19 @@ Likewise decimals can be produced with or without bounds:
 
 {% endraw %}
 
+## Fake data helpers
+
+These helpers produce random fake data of the desired types available in the [Data Faker library]([url](https://github.com/datafaker-net/datafaker)).
+
+{% raw %}
+
+```handlebars
+{{random 'Name.first_name'}}
+{{random 'Address.postcode_by_state.AL' }}
+```
+
+{% endraw %}
+
 ## Math helper
 
 The `math` (or maths, depending where you are) helper performs common arithmetic operations. It can accept integers, decimals
