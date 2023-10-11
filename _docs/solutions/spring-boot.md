@@ -61,4 +61,4 @@ from Pivotal's blog shows how WireMock can be used to test Spring apps that use 
 
 ## Useful pages
 
-- [WireMock on Java and JVM](https://wiremock.org/3.x/docs/solutions/jvm/) - Most of JVM generic solutions are applicable to Spring Boot  development too
+- [WireMock on Java and JVM](../jvm/) - Most of JVM generic solutions are applicable to Spring Boot  development too
