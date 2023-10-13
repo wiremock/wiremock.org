@@ -36,10 +36,10 @@ booleans, maps and lists) can be used.
 
 ## Response definition transformation
 
-To transform `ResponseDefinition` extend the `ResponseDefinitionTransformerV2` class:
+To transform `ResponseDefinition` implement the `ResponseDefinitionTransformerV2` interface:
 
 ```java
-public static class ExampleTransformer extends ResponseDefinitionTransformerV2 {
+public static class ExampleTransformer implements ResponseDefinitionTransformerV2 {
 
         @Override
         public ResponseDefinition transform(ServeEvent serveEvent) {
@@ -165,7 +165,7 @@ A response transformer extension class is identical to `ResponseDefinitionTransf
 This transformer is the best option if you want to transform the response from a proxy call.
 
 ```java
-public static class StubResponseTransformerWithParams extends ResponseTransformerV2 {
+public static class StubResponseTransformerWithParams implements ResponseTransformerV2 {
 
         @Override
         public Response transform(Response response, ServeEvent serveEvent) {
