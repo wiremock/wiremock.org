@@ -48,14 +48,24 @@ We will do our best to replenish the issues as they get closed.
 
 During Hacktoberfest 2023, we would like to focus on the following projects:
 
-- WireMock developer and operations experience - improving support for core use-cases including support for more configuration formats,
+- **WireMock developer and operations experience** -
+  improving support for core use-cases including support for more configuration formats,
   observability, additional matchers, [State Extension](https://github.com/wiremock/wiremock-extension-state) enhancements, etc., etc.
   [Open Issues](https://github.com/search?q=org%3Awiremock+label%3Ahacktoberfest%2C%22help+wanted%22+is%3Aissue+is%3Aopen+repo%3Awiremock&type=issues&s=&o=desc)
-- WireMock 3 adoption and compatibility in downstream libraries and adapters
-- [Python WireMock](https://github.com/wiremock/python-wiremock/) - deeper Python ecosystem integrations
-- WireMock and Testcontainers for different technology stacks
-- Create new and improve API Mock Templates ([HOWTO](https://www.wiremock.io/post/how-to-contributing-to-wiremock-api-templates-library))
-- Documentation clean-up and improvements - [GitHub Repo](https://github.com/wiremock/wiremock.org)
+- **WireMock 3 adoption and compatibility** in downstream libraries and adapters
+- **WireMock for Python projects** - deeper Python ecosystem integrations in
+  [Python WireMock](https://github.com/wiremock/python-wiremock/)
+  and other projects
+- **WireMock and Testcontainers** -
+  Let's make the existing Testcontainers modules better and create new ones for different technology stacks!
+  ([Open Issues](https://github.com/search?q=org%3Awiremock+is%3Aissue+is%3Aopen+label%3Atestcontainers++&type=issues&s=&o=desc))
+- **API Mock Templates** - Create new templates and improve the existing ones,
+  enhance the [Mock API Templates Library](https://library.wiremock.org/) ([HOWTO](https://www.wiremock.io/post/how-to-contributing-to-wiremock-api-templates-library))
+- **Documentation clean-up and improvements** - We want to make user and developer documentation better,
+  including new pages, styling and even new services for extension documentation.
+  ( [Good First Issues](https://github.com/search?q=org%3Awiremock+is%3Aissue+is%3Aopen++label%3Adocumentation+label%3A%22good+first+issue%22+&type=issues&s=&o=desc),
+    [All Open Issues](https://github.com/search?q=org%3Awiremock+label%3Adocumentation+is%3Aissue+is%3Aopen+&type=issues&s=&o=desc),
+    [Contributing to Documentation](https://github.com/wiremock/community/tree/main/contributing#contributing-to-documentation))
 
 ## Full Scope
 
