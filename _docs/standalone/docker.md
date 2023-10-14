@@ -37,6 +37,19 @@ docker run -it --rm \
   --https-port 8443 --verbose
 ```
 
+#### Command line argument in environment variable WIREMOCK_OPTIONS
+
+The Docker image supports passing command line arguments [standalone version](../java-jar#command-line-options) as the environment variable.
+Environment variable WIREMOCK_OPTIONS can be passed to container consisting of all command line arguments e.g.:
+
+```sh
+docker run -it --rm \
+  -e WIREMOCK_OPTIONS='--https-port 8443 --verbose'
+  -p 8443:8443 \
+  --name wiremock \
+  wiremock/wiremock:{{ site.wiremock_version }}
+```
+
 ### Mounting stub mapping files
 
 Inside the container, the WireMock uses `/home/wiremock` as the root from which it reads the `mappings` and `__files` directories.
