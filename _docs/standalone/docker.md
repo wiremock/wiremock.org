@@ -40,7 +40,7 @@ docker run -it --rm \
 #### Passing command line arguments as environment variable
 
 The Docker image supports passing command line arguments [standalone version](../java-jar#command-line-options) as the environment variable.
-Environment variable WIREMOCK_OPTIONS can be passed to container consisting of all command line arguments e.g.:
+Environment variable `WIREMOCK_OPTIONS` can be passed to container consisting of all command line arguments e.g.:
 
 ```sh
 docker run -it --rm \
