@@ -633,7 +633,7 @@ Likewise decimals can be produced with or without bounds:
 
 ## Fake data helpers
 
-This helper produces random fake data of the desired types available in the [Data Faker library](https://github.com/datafaker-net/datafaker). Due to the size of this library, this helper has been provided via `RandomExtension`.    
+This helper produces random fake data of the desired types available in the [Data Faker library](https://github.com/datafaker-net/datafaker). Due to the size of this library, this helper has been provided via [`RandomExtension`](https://github.com/Shreya-7/wiremock-faker-extension).    
 {% raw %}
 
 ```handlebars
