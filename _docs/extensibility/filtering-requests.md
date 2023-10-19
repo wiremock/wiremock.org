@@ -11,7 +11,7 @@ This supports a number of use cases including: authentication, URL rewriting and
 To intercept stub requests, create a class that extends `StubRequestFilter`. For instance, to perform simple authentication:
 
 ```java
-public class SimpleAuthRequestFilter extends StubRequestFilterV2 {
+public class SimpleAuthRequestFilter implements StubRequestFilterV2 {
 
     @Override
     public RequestFilterAction filter(Request request, ServeEvent serveEvent) {
