@@ -44,7 +44,7 @@ Environment variable `WIREMOCK_OPTIONS` can be passed to container consisting of
 
 ```sh
 docker run -it --rm \
-  -e WIREMOCK_OPTIONS='--https-port 8443 --verbose'
+  -e WIREMOCK_OPTIONS='--https-port 8443 --verbose' \
   -p 8443:8443 \
   --name wiremock \
   wiremock/wiremock:{{ site.wiremock_version }}
