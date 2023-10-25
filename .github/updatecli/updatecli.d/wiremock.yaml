@@ -1,23 +1,23 @@
-name: 'docs: bump wiremock version used in the documentation'
+name: 'Bump WireMock version'
 pipelineid: "wiremock"
 
 actions:
   default:
-    title: 'docs: update Wiremock version to {{ source "wiremock" }}'
+    title: 'docs: update WireMock version to {{ source "wiremock" }}'
     kind: github/pullrequest
     scmid: default
     spec:
       automerge: false
       mergemethod: squash
       labels:
-        - chore
+        - documentation
 
 scms:
   default:
     kind: github
     spec:
       user: wiremock-bot
-      email: bot@wiremock.io
+      email: release-bot@wiremock.org
       owner: wiremock
       repository: wiremock.org
       token: '{{ requiredEnv "GITHUB_TOKEN" }}'
@@ -26,7 +26,7 @@ scms:
 
 sources:
   wiremock:
-    name: Get latest Wiremock version
+    name: Get latest WireMock version
     kind: githubrelease
     spec:
       owner: wiremock
@@ -45,7 +45,7 @@ conditions:
 
 targets:
   wiremock_version:
-    name: 'docs: update Wiremock version to {{ source "wiremock" }}'
+    name: 'docs: update WireMock version to {{ source "wiremock" }}'
     kind: yaml
     scmid: default
     spec:
@@ -53,7 +53,7 @@ targets:
       key: "$.wiremock_version"
 
   wiremock_baseline:
-    name: 'docs: update Wiremock baseline to {{ source "wiremock" }}'
+    name: 'docs: update WireMock baseline to {{ source "wiremock" }}'
     kind: yaml
     scmid: default
     spec:
