@@ -909,8 +909,8 @@ then you can use the `ResponseTemplateTransformer` when constructing the respons
 The `ResponseTemplateTransformer` accepts four arguments:
 1. The `TemplateEngine`
 2. If templating can be applied globally
-3. The `FileSource`
-4. A list of `TemplateModelDataProviderExtension` objects
+3. The `FileSource` which is a list of files that can be used for relative references in stub definitions
+4. A list of `TemplateModelDataProviderExtension` objects which are additional metadata providers which will be injected into the model and consumed in the downstream resolution if needed
 
 ```java
 @Rule
