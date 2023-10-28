@@ -903,22 +903,26 @@ Environment variables and system properties can be printed:
 
 {% endraw %}
 
-To avoid disclosure of sensitive variables, only permitted variables can be read. Permitted variable names
-are defined via a set of regular expressions. These can be configured when constructing the response template extension:
+If you want to add permitted extensions to your rule,
+then you can use the `ResponseTemplateTransformer` when constructing the response template extension.
+
+The `ResponseTemplateTransformer` accepts four arguments:
+1. The `TemplateEngine`
+2. If templating can be applied globally
+3. The `FileSource` which is a list of files that can be used for relative references in stub definitions
+4. A list of `TemplateModelDataProviderExtension` objects which are additional metadata providers which will be injected into the model and consumed in the downstream resolution if needed
 
 ```java
 @Rule
 public WireMockRule wm = new WireMockRule(options()
         .dynamicPort()
         .withRootDirectory(defaultTestFilesRoot())
-        .extensions(new ResponseTemplateTransformer.Builder()
-                .global(true)
-                .permittedSystemKeys("allowed.*","also_permitted.*")
-                .build()
+        .extensions(new ResponseTemplateTransformer(
+              getTemplateEngine(),
+              options.getResponseTemplatingGlobal(),
+              getFiles(),
+              templateModelProviders
+            )
         )
 );
 ```
-
-The regular expressions are matched in a case-insensitive manner.
-
-If no permitted system key patterns are set, a single default of `wiremock.*` will be used.
