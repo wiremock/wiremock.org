@@ -1,0 +1,66 @@
+name: 'Bump WireMock version'
+pipelineid: "wiremock"
+
+actions:
+  default:
+    title: 'docs: update WireMock version to {{ source "wiremock" }}'
+    kind: github/pullrequest
+    scmid: default
+    spec:
+      automerge: false
+      mergemethod: squash
+      labels:
+        - documentation
+
+scms:
+  default:
+    kind: github
+    spec:
+      user: wiremock-bot
+      email: release-bot@wiremock.org
+      owner: wiremock
+      repository: wiremock.org
+      token: '{{ requiredEnv "GITHUB_TOKEN" }}'
+      username: '{{ requiredEnv "GITHUB_ACTOR" }}'
+      branch: main
+
+sources:
+  wiremock:
+    name: Get latest WireMock version
+    kind: githubrelease
+    spec:
+      owner: wiremock
+      repository:  wiremock 
+      token: '{{ requiredEnv "GITHUB_TOKEN" }}'
+      versionfilter:
+        kind: semver
+
+conditions:
+  docker:
+    name: 'Check that a docker image is available for the latest version'
+    kind: dockerimage
+    spec:
+      image: wiremock/wiremock
+      architecture: amd64
+
+targets:
+  wiremock_version:
+    name: 'docs: update WireMock version to {{ source "wiremock" }}'
+    kind: yaml
+    scmid: default
+    spec:
+      file: _config.yml
+      key: "$.wiremock_version"
+
+  wiremock_baseline:
+    name: 'docs: update WireMock baseline to {{ source "wiremock" }}'
+    kind: yaml
+    scmid: default
+    spec:
+      file: _config.yml
+      key: "$.wiremock_baseline"
+    transformers:
+      - findsubmatch:
+          pattern: '^(\d*).'
+          captureindex: 1
+      - addsuffix: '.x'
