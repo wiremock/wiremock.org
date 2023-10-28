@@ -103,7 +103,7 @@ ENTRYPOINT ["/docker-entrypoint.sh", "--global-response-templating", "--disable-
 
 Configuration in compose file is similar to Dockerfile definition
 
-```YAML
+```yaml
 # Sample compose file
 version: "3"
 services:
@@ -113,4 +113,17 @@ services:
     entrypoint: ["/docker-entrypoint.sh", "--global-response-templating", "--disable-gzip", "--verbose"]
 ```
 
+You can also mount your local `__files` and `mappings` files into the container e.g:
 
+```yaml
+# Sample compose file
+version: "3"
+services:
+  wiremock:
+    image: "wiremock/wiremock:latest"
+    container_name: my_wiremock
+    volumes:
+      - ./__files:/home/wiremock/__files
+      - ./mappings:/home/wiremock/mappings
+    entrypoint: ["/docker-entrypoint.sh", "--global-response-templating", "--disable-gzip", "--verbose"]
+```
