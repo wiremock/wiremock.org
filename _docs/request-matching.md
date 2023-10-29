@@ -23,7 +23,9 @@ you need more precise control:
 
 ## Request with XML Body
 
-Code:
+{% codetabs %}
+
+{% codetab Code %}
 
 ```java
 stubFor(any(urlPathEqualTo("/everything"))
@@ -42,7 +44,9 @@ stubFor(any(urlPathEqualTo("/everything"))
   .willReturn(aResponse()));
 ```
 
-Configuration file:
+{% endcodetab %}
+
+{% codetab Configuration %}
 
 ```json
 {
@@ -101,13 +105,25 @@ Configuration file:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 ## Request with Form Parameters
+
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 stubFor(post(urlPathEqualTo("/mock"))
   .withFormParam("tool", equalTo("WireMock"))
 ).willReturn(ok()));
 ```
+
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -126,6 +142,10 @@ stubFor(post(urlPathEqualTo("/mock"))
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 The following sections describe each type of matching strategy in detail.
 
 ## URL matching
@@ -136,13 +156,17 @@ It is usually preferable to match on path only if you want to match multiple que
 
 ### Equality matching on path and query
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 urlEqualTo("/your/url?and=query")
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -154,15 +178,23 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 ### Regex matching on path and query
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 urlMatching("/your/([a-z]*)\\?and=query")
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -174,15 +206,23 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 ### Equality matching on the path only
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 urlPathEqualTo("/your/url")
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -194,15 +234,24 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
+
 ### Regex matching on the path only
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 urlPathMatching("/your/([a-z]*)")
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -213,6 +262,10 @@ JSON:
   ...
 }
 ```
+
+{% endcodetab %}
+
+{% endcodetabs %}
 
 ### Path templates
 
@@ -225,7 +278,9 @@ When the path template URL match type is used this enables
 
 To match any request URL that conforms to the path template, you can do the following.
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 stubFor(
@@ -233,7 +288,9 @@ stubFor(
       .willReturn(ok()));
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -248,7 +305,15 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 To further constrain the match to specific values of the path variables you can add match clauses for some or all of the variables in the path expression.
+
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 stubFor(
@@ -258,7 +323,10 @@ stubFor(
       .willReturn(ok()));
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
+
 
 ```json
 {
@@ -280,6 +348,9 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
 
 ## Matching other attributes
 
@@ -289,13 +360,17 @@ All request attributes other than the URL can be matched using the following set
 
 Deems a match if the entire attribute value equals the expected value.
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 .withHeader("Content-Type", equalTo("application/json"))
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -312,17 +387,25 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 ### Case-insensitive equality
 
 Deems a match if the entire attribute value equals the expected value, ignoring case.
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 .withHeader("Content-Type", equalToIgnoreCase("application/json"))
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -340,11 +423,17 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 ### Binary Equality
 
 Deems a match if the entire binary attribute value equals the expected value. Unlike the above equalTo operator, this compares byte arrays (or their equivalent base64 representation).
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 // Specifying the expected value as a byte array
@@ -354,7 +443,9 @@ Java:
 .withRequestBody(binaryEqualTo("AQID"))
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -369,17 +460,25 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 ### Substring (contains)
 
 Deems a match if the a portion of the attribute value equals the expected value.
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 .withCookie("my_profile", containing("johnsmith@example.com"))
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -396,17 +495,25 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 ### Negative substring (does not contain)
 
 Deems a match if the attribute value does not contain the expected value.
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 .withCookie("my_profile", notContaining("johnsmith@example.com"))
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -423,17 +530,25 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 ### Regular expression
 
 Deems a match if the entire attribute value matched the expected regular expression.
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 .withQueryParam("search_term", matching("^(.*)wiremock([A-Za-z]+)$"))
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -450,15 +565,23 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 It is also possible to perform a negative match i.e. the match succeeds when the attribute value does not match the regex:
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 .withQueryParam("search_term", notMatching("^(.*)wiremock([A-Za-z]+)$"))
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -475,17 +598,25 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 ### JSON equality
 
 Deems a match if the attribute (most likely the request body in practice) is valid JSON and is a semantic match for the expected value.
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 .withRequestBody(equalToJson("{ \"total_results\": 4 }"))
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -499,6 +630,10 @@ JSON:
   ...
 }
 ```
+
+{% endcodetab %}
+
+{% endcodetabs %}
 
 JSON with string literal:
 
@@ -515,17 +650,25 @@ JSON with string literal:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 #### Less strict matching
 
 By default different array orderings and additional object attributes will trigger a non-match. However, both of these conditions can be disabled individually.
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 .withRequestBody(equalToJson("{ \"total_results\": 4  }", true, true))
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -541,6 +684,10 @@ JSON:
   ...
 }
 ```
+
+{% endcodetab %}
+
+{% endcodetabs %}
 
 #### Placeholders
 
@@ -570,13 +717,17 @@ Deems a match if the attribute value is valid JSON and matches the [JSON Path](h
 
 Deems a match if the attribute value is present in the JSON.
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 .withRequestBody(matchingJsonPath("$.name"))
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -591,6 +742,10 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 Request body example:
 
 ```
@@ -604,13 +759,17 @@ Request body example:
 
 Deems a match if the attribute value equals the expected value.
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 .withRequestBody(matchingJsonPath("$.things[?(@.name == 'RequiredThing')]"))
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -624,6 +783,10 @@ JSON:
   ...
 }
 ```
+
+{% endcodetab %}
+
+{% endcodetabs %}
 
 Request body example:
 
@@ -640,13 +803,17 @@ Request body example:
 
 Deems a match if the attribute value matches the regex expected value.
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 .withRequestBody(matchingJsonPath("$.things[?(@.name =~ /Required.*/i)]"))
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -661,6 +828,10 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetab JSON %}
+
 Request body example:
 
 ```json
@@ -673,17 +844,25 @@ Request body example:
 { "things": [ { "name": "Thing" }, { "name": "Wiremock" } ] }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 #### Size matching
 
 Deems a match if the attribute size matches the expected size.
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 .withRequestBody(matchingJsonPath("$[?(@.things.size() == 2)]"))
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -698,6 +877,10 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 Request body example:
 
 ```json
@@ -711,13 +894,17 @@ Request body example:
 
 The JSONPath matcher can be combined with another matcher, such that the value returned from the JSONPath query is evaluated against it:
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 .withRequestBody(matchingJsonPath("$..todoItem", containing("wash")))
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -735,6 +922,10 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 Since WireMock's matching operators all work on strings, the value selected by the JSONPath expression will be coerced to a string before the match is evaluated. This true even if the returned value
 is an object or array. A benefit of this is that this allows a sub-document to be selected using JSONPath, then matched using the `equalToJson` operator. E.g. for the following request body:
 
@@ -748,13 +939,19 @@ is an object or array. A benefit of this is that this allows a sub-document to b
 
 The following will match:
 
+{% codetabs %}
+
+{% codetab Java %}
+
 ```java
 .withRequestBody(matchingJsonPath("$.outer", equalToJson("{                \n" +
                                                          "   \"inner\": 42 \n" +
                                                          "}")))
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -772,17 +969,25 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 ### XML equality
 
 Deems a match if the attribute value is valid XML and is semantically equal to the expected XML document. The underlying engine for determining XML equality is [XMLUnit](http://www.xmlunit.org/).
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 .withRequestBody(equalToXml("<thing>Hello</thing>"))
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -797,11 +1002,17 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 #### Use of placeholders
 
 The XMLUnit [placeholders](https://github.com/xmlunit/user-guide/wiki/Placeholders) feature is supported in WireMock. For example, when comparing the XML documents, you can ignore some text nodes.
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 .withRequestBody(
@@ -809,7 +1020,9 @@ Java:
 )
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -825,11 +1038,17 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetab %}
+
 When the actual request body is `<message><id>123456</id><content>Hello</content></message>`, it will be deemed a match.
 
 If the default placeholder delimiters `${` and `}` can not be used, you can specify custom delimiters (using regular expressions). For example
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 .withRequestBody(
@@ -841,7 +1060,9 @@ Java:
 )
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -859,11 +1080,17 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 #### Excluding specific types of comparison
 
 You can further tune how XML documents are compared for equality by disabling specific [XMLUnit comparison types](https://www.xmlunit.org/api/java/2.7.0/org/xmlunit/diff/ComparisonType.html).
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 import static org.xmlunit.diff.ComparisonType.*;
@@ -875,7 +1102,9 @@ import static org.xmlunit.diff.ComparisonType.*;
 )
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -890,6 +1119,10 @@ JSON:
   ...
 }
 ```
+
+{% endcodetab %}
+
+{% endcodetabs %}
 
 The full list of comparison types used by default is as follows:
 
@@ -911,13 +1144,17 @@ The full list of comparison types used by default is as follows:
 
 Deems a match if the attribute value is valid XML and matches the XPath expression supplied. An XML document will be considered to match if any elements are returned by the XPath evaluation. WireMock delegates to Java's in-built XPath engine (via XMLUnit), therefore up to (at least) Java 8 it supports XPath version 1.0.
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 .withRequestBody(matchingXPath("/todo-list[count(todo-item) = 3]"))
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -932,12 +1169,18 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 The above example will select elements based on their local name if used with a namespaced XML document.
 
 If you need to be able to select elements based on their namespace in addition to their name you can declare the prefix
 to namespace URI mappings and use them in your XPath expression:
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 .withRequestBody(matchingXPath("/stuff:outer/more:inner[.=111]")
@@ -945,7 +1188,9 @@ Java:
   .withXPathNamespace("more", "http://more.example.com"))
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -964,17 +1209,25 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 #### Nested value matching
 
 The XPath matcher described above can be combined with another matcher, such that the value returned from the XPath query is evaluated against it:
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 .withRequestBody(matchingXPath("//todo-item/text()", containing("wash")))
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -992,18 +1245,26 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 If multiple nodes are returned from the XPath query, all will be evaluated and the returned match will be the one with the shortest distance.
 
 If the XPath expression returns an XML element rather than a value, this will be rendered as an XML string before it is passed to the value matcher.
 This can be usefully combined with the `equalToXml` matcher e.g.
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 .withRequestBody(matchingXPath("//todo-item", equalToXml("<todo-item>Do the washing</todo-item>")))
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -1021,11 +1282,17 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 ### Absence
 
 Deems a match if the attribute specified is absent from the request.
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 .withCookie("session", absent())
@@ -1033,7 +1300,9 @@ Java:
 .withHeader("X-Absent", absent())
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -1060,12 +1329,18 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 ## Multipart/form-data
 
 Deems a match if a multipart value is valid and matches any or all the multipart pattern matchers supplied. As a Multipart is a 'mini' HTTP request in itself all existing Header and Body content matchers can by applied to a Multipart pattern.
 A Multipart pattern can be defined as matching `ANY` request multiparts or `ALL`. The default matching type is `ANY`.
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 stubFor(...)
@@ -1078,7 +1353,9 @@ stubFor(...)
   )
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -1104,19 +1381,27 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 ## Basic Authentication
 
 Although matching on HTTP basic authentication could be supported via a
 correctly encoded `Authorization` header, you can also do this more simply
 via the API.
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 stubFor(get(urlEqualTo("/basic-auth")).withBasicAuth("user", "pass")
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -1134,6 +1419,10 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 ## Dates and times
 
 Dates and times can be matched in several ways. Three comparison operators are available: `before`, `after` and
@@ -1146,7 +1435,9 @@ actual dates can be truncated in various ways.
 
 You can match an incoming date/time against a fixed value e.g. "match if the X-Munged-Date request header is after x":
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 stubFor(post("/dates")
@@ -1159,7 +1450,9 @@ stubFor(post("/dates")
   .willReturn(ok()));
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -1178,11 +1471,17 @@ JSON:
 }
 ```
 
+{% codetab %}
+
+{% endcodetabs %}
+
 ### Offset
 
 You can also match in incoming value against the current date/time or an offset from it:
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 stubFor(post("/dates")
@@ -1191,7 +1490,9 @@ stubFor(post("/dates")
   .willReturn(ok()));
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -1212,6 +1513,10 @@ JSON:
     }
 }
 ```
+
+{% endcodetab %}
+
+{% endcodetabs %}
 
 ### Local vs. Zoned
 
@@ -1238,7 +1543,9 @@ HTTP RFCs 1123, 1036 and asctime (taken from C but also valid for specifying HTT
 It is also possible to specify your own format using
 [Java's date format strings](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#patterns).
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 stubFor(post("/dates")
@@ -1247,7 +1554,9 @@ stubFor(post("/dates")
   .willReturn(ok()));
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -1264,6 +1573,10 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 ### Truncation
 
 Both the expected and actual date/times can be truncated in various ways e.g. to the first hour of the day. When using
@@ -1274,7 +1587,9 @@ Truncation is useful if you want to create expressions like "before the end of t
 It can usefully be combined with offsetting so e.g. if the match required is "after the 15th of this month" we could do
 as follows.
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 stubFor(post("/dates")
@@ -1285,7 +1600,9 @@ stubFor(post("/dates")
   .willReturn(ok()));
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -1305,7 +1622,15 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 Truncating the actual value can be useful when checking for equality with literal date/times e.g. to say "is in March 2020":
+
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 stubFor(post("/dates")
@@ -1316,7 +1641,9 @@ stubFor(post("/dates")
   .willReturn(ok()));
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -1336,6 +1663,10 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 <div id="all-truncations"></div>
 The full list of available truncations is:
 
@@ -1352,7 +1683,9 @@ The full list of available truncations is:
 
 You can combine two or more matchers in an AND expression.
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 // Both statements are equivalent
@@ -1369,7 +1702,9 @@ stubFor(get(urlPathEqualTo("/and"))
     .willReturn(ok()));
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -1392,9 +1727,15 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 Similarly you can also construct an OR expression.
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 // Both statements are equivalent
@@ -1411,7 +1752,9 @@ stubFor(get(urlPathEqualTo("/or"))
     .willReturn(ok()));
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -1434,6 +1777,10 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 ### Combining date matchers as JSONPath/XPath sub-matchers
 
 As an example of how various matchers can be combined, suppose we want to match if a field named `date` in a JSON request body
@@ -1442,7 +1789,9 @@ is a date/time between two points.
 We can do this by extracting the field using `matchesJsonPath` then matching the result
 of this against the `before` and `after` matchers AND'd together.
 
-Java:
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 stubFor(post("/date-range")
@@ -1452,7 +1801,9 @@ stubFor(post("/date-range")
     .willReturn(ok()));
 ```
 
-JSON:
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -1478,6 +1829,10 @@ JSON:
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 This would match the following JSON request body:
 
 ```json
@@ -1492,12 +1847,20 @@ You can match multiple values of a query parameter or header with below provided
 
 Exactly matcher exactly matches multiple values or patterns and make sure that it does not contain any other value.
 
+{% codetabs %}
+
+{% codetab Java %}
+
 ```java
 // There must be 3 values of id exactly whose values are 1, 2, and 3
 stubFor(get(urlPathEqualTo("/things"))
     .withQueryParam("id", havingExactly("1", "2", "3"))
     .willReturn(ok()));
 ```
+
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -1527,6 +1890,14 @@ stubFor(get(urlPathEqualTo("/things"))
   }
 }
 ```
+
+{% endcodetab %}
+
+{% endcodetabs %}
+
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 // There must be 3 values of id exactly whose values conform to the match expressions
@@ -1538,6 +1909,10 @@ stubFor(get(urlPathEqualTo("/things"))
     )).willReturn(ok()));
 ```
 
+{% endcodetab %}
+
+{% codetab JSON %}
+
 ```json
 {
   "mapping": {
@@ -1567,7 +1942,15 @@ stubFor(get(urlPathEqualTo("/things"))
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
 Includes matcher matches multiple values or patterns specified and may contain other values as well.
+
+{% codetabs %}
+
+{% codetab Java %}
 
 ```java
 // The values of id must include 1, 2, and 3.
@@ -1575,6 +1958,10 @@ stubFor(get(urlPathEqualTo("/things"))
       .withQueryParam("id", including("1", "2", "3")) 
       .willReturn(ok()));
 ```
+
+{% endcodetab %}
+
+{% codetab JSON %}
 
 ```json
 {
@@ -1605,6 +1992,14 @@ stubFor(get(urlPathEqualTo("/things"))
 }
 ```
 
+{% endcodetab %}
+
+{% endcodetabs %}
+
+{% codetabs %}
+
+{% codetab Java %}
+
 ```java
 //values of id must conform to the match expressions
 stubFor(get(urlPathEqualTo("/things"))
@@ -1614,6 +2009,10 @@ stubFor(get(urlPathEqualTo("/things"))
     notContaining("3")
     )).willReturn(ok()));
 ```
+
+{% endcodetab %}
+
+{% endcodetab JSON %}
 
 ```json
 {
@@ -1643,3 +2042,7 @@ stubFor(get(urlPathEqualTo("/things"))
   }
 }
 ```
+
+{% endcodetab %}
+
+{% endcodetabs %}
