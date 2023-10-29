@@ -2012,7 +2012,7 @@ stubFor(get(urlPathEqualTo("/things"))
 
 {% endcodetab %}
 
-{% endcodetab JSON %}
+{% codetab JSON %}
 
 ```json
 {
