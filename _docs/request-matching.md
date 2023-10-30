@@ -650,10 +650,6 @@ JSON with string literal:
 }
 ```
 
-{% endcodetab %}
-
-{% endcodetabs %}
-
 #### Less strict matching
 
 By default different array orderings and additional object attributes will trigger a non-match. However, both of these conditions can be disabled individually.
