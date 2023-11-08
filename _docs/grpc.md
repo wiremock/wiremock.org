@@ -81,6 +81,13 @@ mockGreetingService.stubFor(
         .willReturn(json("{ "greeting": "Hi Tom from JSON" }")));
 ```
 
+and to verify the interaction:
+
+```java
+mockGreetingService.verifyThat(
+    method("greeting")
+        .withRequestMessage(equalToJson("{ \"name\": \"Tom\" }")));
+```
 
 Or with a templated response:
 
@@ -91,6 +98,14 @@ mockGreetingService.stubFor(
         .willReturn(
             jsonTemplate(
                 "{ \"greeting\": \"Hello {{jsonPath request.body '$.name'}}\" }")));
+```
+
+and to verify the interaction:
+
+```java
+mockGreetingService.verifyThat(
+    method("greeting")
+        .withRequestMessage(equalToJson("{ \"name\": \"Tom\" }")));
 ```
 
 ### Stubbing via Java message objects
@@ -104,6 +119,14 @@ mockGreetingService.stubFor(
         .willReturn(message(HelloResponse.newBuilder().setGreeting("OK"))));
 ```
 
+and to verify the interaction:
+
+```java
+mockGreetingService.verifyThat(
+    method("greeting")
+        .withRequestMessage(equalToMessage(HelloRequest.newBuilder().setName("Tom"))));
+```
+
 ### Non-OK responses
 
 You can return gRPC error codes instead of an OK response:
@@ -115,6 +138,14 @@ mockGreetingService.stubFor(
             HelloRequest.newBuilder().setName("Prereq failure")
         ))
         .willReturn(Status.FAILED_PRECONDITION, "Failed on some prerequisite"));
+```
+
+and to verify the interaction:
+
+```java
+mockGreetingService.verifyThat(
+    method("greeting")
+        .withRequestMessage(equalToMessage(HelloRequest.newBuilder().setName("Prereq failure"))));
 ```
 
 ## More examples
