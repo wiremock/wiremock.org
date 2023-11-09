@@ -2,6 +2,8 @@
 // Imports
 
 // We need access to some basic font settings for handling media-queries.
+@use "sass:math";
+
 @import "compass/typography/vertical_rhythm";
 
 // For now, we also need this...
@@ -143,7 +145,7 @@ $rem-with-px-fallback               : true !default;
   $width,
   $context : $total-columns
 ) {
-  @return percentage($width / columns-width($context));
+  @return percentage(math.div($width, columns-width($context)));
 }
 
 // Return the total space occupied by multiple columns and associated gutters.
@@ -225,19 +227,19 @@ $rem-with-px-fallback               : true !default;
 ){
   $font-size  : if(unit($ems) == 'rem', $base-font-size, $font-size);
   $unit       : unit($font-size);
-  $mult       : $ems / ($ems * 0 + 1);
+  $mult       : math.div($ems, $ems * 0 + 1);
 
   @if $unit == 'px' {
-    @return $font-size / $browser-default-font-size-px * $mult * 1em;
+    @return math.div($font-size, $browser-default-font-size-px) * $mult * 1em;
   }
   @else if $unit == '%' {
-    @return $font-size / $browser-default-font-size-percent * $mult * 1em;
+    @return math.div($font-size, $browser-default-font-size-percent) * $mult * 1em;
   }
   @else if $unit == 'em' {
-    @return $font-size / 1em * $mult * 1em;
+    @return math.div($font-size, 1em) * $mult * 1em;
   }
   @else if $unit == 'pt' {
-    @return $font-size / $browser-default-font-size-pt * $mult * 1em;
+    @return math.div($font-size, $browser-default-font-size-pt) * $mult * 1em;
   }
   @else {
     @warn 'Variable $base-font-size does not have a valid font unit. Valid units for fonts in CSS are px, pt, em, and %.';
@@ -347,7 +349,7 @@ $rem-with-px-fallback               : true !default;
   $return   : false;
 
   @if comparable($min, $column-width) {
-    $return : ceil(($min + $gutter-width) / ($column-width + $gutter-width));
+    $return : ceil(math.div($min + $gutter-width, $column-width + $gutter-width));
   } @else {
     @warn "Can't determine a layout, becuse #{$min} and #{$column-width} are not comparable.";
   }

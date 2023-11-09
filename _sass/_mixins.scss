@@ -2,6 +2,8 @@
    MIXINS
    ========================================================================== */
 
+@use "sass:math";
+
 %tab-focus {
   // Default
   outline: thin dotted $warning-color;
@@ -15,7 +17,7 @@
    ========================================================================== */
 
 @function em($target, $context: $doc-font-size) {
-  @return ($target / $context) * 1em;
+  @return math.div($target, $context) * 1em;
 }
 
 

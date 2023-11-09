@@ -5,6 +5,8 @@
 // ------------
 // Set a spanning element using shorthand syntax.
 // - $span  : <span>
+@use "sass:math";
+
 @mixin span(
   $span
 ) {
@@ -153,7 +155,7 @@
     @if $_math == static {
       $width: $span-sum * valid-column-math($_math, $_column-width);
     } @else {
-      $width: percentage($span-sum / $context);
+      $width: percentage(math.div($span-sum, $context));
     }
   } @else {
     $width: $n;
