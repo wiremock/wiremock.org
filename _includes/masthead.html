@@ -1,253 +1,85 @@
-
-<style>
-  .navlink {
-    position: relative !important;
-    color: #7d93bd;
-    padding-bottom: 0;
-    cursor: pointer;
-    font-family: "Ubuntu";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-  }
-
-  .navlink a {
-    padding: 0 !important;
-    margin: 0 0 5px 0;
-    width: fit-content !important;
-    height: 32px;
-  }
-
-  .navlink-image {
-    width: 20px;
-    filter: invert(47%);
-    vertical-align: middle;
-  }
-
-  .divSubNav {
-    position: relative;
-    cursor: default;
-    padding: 10px 15px;
-    display: none;
-    position: absolute;
-    content: "";
-    left: 0;
-    top: 32px;
-    width: fit-content;
-    background: #FFFFFF;
-    box-shadow: 0px -5px 20px rgba(210, 223, 249, 0.5);
-  }
-
-  .divSubNav::before {
-    position: absolute;
-    content: "";
-    left: 15px;
-    width: 0; 
-    height: 0; 
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-bottom: 7px solid #fff;
-    top: -7px;
-  }
-
-  .divSubNav a {
-    padding: 0 !important;
-    margin: 0 0 5px 0;
-    width: fit-content !important;
-  }
-
-  .divSubNav a:last-child {
-    margin-bottom: 0;
-  }
-
-  .divSubNav a::before {
-    background: none !important;
-  }
-
-  .navlink:hover > .divSubNav {
-    display: block;
-  }
-
-  .navHover::before {
-    background: unset !important;
-  }
-
-  .navlink::before {
-    background: unset !important;
-  }
-
-  .navlink a::before {
-    background: unset !important;
-  }
-
-  .wiremock-cloud-logo-navbar-item {
-    padding-left: 20px;
-    padding-top: 0;
-  }
-
-  .wiremock-cloud-logo-navbar-item div span {
-    text-align: right;
-  }
-  
-  .wiremock-cloud-logo-navbar {
-    margin: 0;
-    background: unset !important;
-  }
-
-  .wiremock-cloud-logo-navbar div {
-    border-color: #0FB2EF;
-    background-color: #E4F0F7;
-    border-style: solid;
-    border-radius: 8px;
-    border-width: 4px;
-    align-items: center;
-    justify-content: center;
-    margin: 0;    
-    height: 45px;
-    position: relative;
-  }
-
-  .wiremock-cloud-logo-navbar div img {
-    vertical-align: middle;
-    width: 100%;
-    background-color: #E4F0F7;
-    height: 36px;
-    padding: 4px;
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-
-  .wiremock-cloud-logo-navbar div div {
-    font-size: x-small;
-    font-weight: bold;
-    position: absolute;
-    bottom: 2px;
-    left: 4px;
-    border-style: none;
-    height: fit-content;
-  }
-
-  .wiremock-cloud-logo-note {
-    margin-left: auto;
-    margin-right: 4em;
-    float: right;
-    font-size: small;
-  }
-
-  .masthead_notifications {
-    width: 100%;
-  }
-
-  @media (max-width: 1023px) {
-    .wiremock-cloud-logo-note {
-      display: none;
-    }
-  }
-</style>
-
-<div class="masthead_notifications">
-</div>
+<div class="masthead_notifications"></div>
 <div class="masthead">
-  <div class="masthead__inner-wrap">
-    <div class="masthead__menu">
-      <a href="{{ '/' | absolute_url }}"><img src="{{ '/images/wireMockLogo.png' | absolute_url }}" style="width: 160px; height: 20px" /></a>
-      <nav id="site-nav" class="greedy-nav">
-        <!-- <button><div class="navicon"></div></button> -->
-        <ul class="visible-links">
-          
-          {% for menuItem in site.data.navigation.main %}
-            {% if menuItem.link contains 'http' %}
-              {% assign effectiveLink = menuItem.link %}
-              {% else %}
-              {% assign effectiveLink = menuItem.link | absolute_url %}
-            {% endif %}
-            
-            <li class="masthead__menu-item">
-              <span class="navlink">
-              {% if menuItem.link %}
-                {% if menuItem.new_window %}
-                <a href="{{ effectiveLink }}" target="_blank">
-                {% else %}
-                <a href="{{ effectiveLink }}">
-                {% endif %}
-                {% if menuItem.icon %}
-                  <img class="navlink-image" src="{{ menuItem.icon | absolute_url }}"/>
-                {% endif %}
-                  {{ menuItem.title }}
-                </a>
-              {% else %}
-                {% if menuItem.icon %}
-                  <img class="navlink-image" src="{{ menuItem.icon | absolute_url }}"/>
-                {% endif %}
-                {{ menuItem.title }}
-              {% endif %}
-
-              {% if menuItem.subnav %}
-                <div class="divSubNav">
-                  {% for subnavigation in menuItem.subnavLinks %}
-                    {% if subnavigation.wiremock_baseline %}
-                      <!-- Show the preview link -->
-                      {% if site.wiremock_baseline != subnavigation.wiremock_baseline %}
-                      <a href="{{ subnavigation.subnavLink | absolute_url }}">
-                        {{ subnavigation.name }}
-                      </a>
-                      {% endif %}
-                    {% else %}
-                      <!-- General link -->
-                      <a href="{{ subnavigation.subnavLink | absolute_url }}">
-                        {{ subnavigation.name }}
-                      </a>
-                    {% endif %}
-                  {% endfor %}
-                </div>
-              {% endif %}
-              </span>
-            </li>
-          {% endfor %}
-
-          <!-- TODO: merge into the main control -->
-          <style>
-              
-
-              
-          </style>
-
-          <li class="masthead__menu-item wiremock-cloud-logo-navbar-item">
-            <div>
-              <a class="wiremock-cloud-logo-navbar" href="{{page.header_signup_link | default: site.header_signup_link}}" title="WireMock Cloud">
-                <div>
-                  <img alt="WireMock Cloud" src="{{ '/images/wiremock-cloud/wiremock_cloud_logo.png' | absolute_url }}"/>
-                  <div>Start for Free*</div>
-                </div>
-              </a>
-            </div>
-          </li>
-        </ul>
-        
-      </nav>
+  <a href="{{ '/' | absolute_url }}" class="masthead__logo"><img src="{{ '/images/wireMockLogo.png' | absolute_url }}" /></a>
+  <nav id="site-nav" class="masthead__nav">
+    <!-- <button><div class="navicon"></div></button> -->
+    <ul class="visible-links">
       
-      <img id="hamburgerMenuIcon" class="hamburgerMenuIcon" src="{{ '/images/hamburgerMenuIcon.svg' | absolute_url }}" />
-      <div id="overlay-menu" class="overlay-menu"></div>
-      <div class="mobile-menu-wrapper">
-        <img id="closeMenuIcon" class="closeMenuIcon" src="{{ '/images/closeMenuIcon.svg' | absolute_url }}" />
-        <ul>
-          <li><a href="{{ '/docs' | absolute_url }}">Documentation</a></li>
-          <li>
-            <a href="https://wiremock.io?utm_source=wiremock.org&utm_medium=masthead&utm_campaign=homepage_2022_baseline" title="WireMock Cloud">
-              <img src="{{ '/images/wiremock-cloud/wiremock_cloud_logo.png' | absolute_url }}" alt="WireMock Cloud" style="vertical-align: middle;height: 28px"/><br>
-              WireMock Cloud
+      {% for menuItem in site.data.navigation.main %}
+        {% if menuItem.link contains 'http' %}
+          {% assign effectiveLink = menuItem.link %}
+          {% else %}
+          {% assign effectiveLink = menuItem.link | absolute_url %}
+        {% endif %}
+        
+        <li class="masthead__menu-item">
+          <span class="navlink">
+          {% if menuItem.link %}
+            {% if menuItem.new_window %}
+              <a href="{{ effectiveLink }}" target="_blank">
+            {% else %}
+              <a href="{{ effectiveLink }}">
+            {% endif %}
+              {{ menuItem.title }}
             </a>
-          </li>
-          
-          <li><a href="{{ '/support' | absolute_url }}">Need Help?</a></li>
-          <li><a href="https://slack.wiremock.org/" target="_blank">Community Slack</a></li>
-          <li><a href="https://github.com/wiremock/wiremock" target="_blank">GitHub</a></li>
-          <li><a href="https://twitter.com/wiremockorg">Twitter</a></li>
-          <li><a href="https://github.com/wiremock/community/blob/main/contributing/README.md" target="_blank">Contributing</a></li>
-        </ul>
-      </div>
-    </div>
+          {% else %}
+            {{ menuItem.title }}
+          {% endif %}
+
+          {% if menuItem.subnav %}
+            <div class="divSubNav">
+              <div class="divSubNav__inner">
+              {% for subnavigation in menuItem.subnavLinks %}
+                {% if subnavigation.wiremock_baseline %}
+                  <!-- Show the preview link -->
+                  {% if site.wiremock_baseline != subnavigation.wiremock_baseline %}
+                  <a href="{{ subnavigation.subnavLink | absolute_url }}">
+                    {{ subnavigation.name }}
+                  </a>
+                  {% endif %}
+                {% else %}
+                  <!-- General link -->
+                  <a href="{{ subnavigation.subnavLink | absolute_url }}">
+                    {{ subnavigation.name }}
+                  </a>
+                {% endif %}
+              {% endfor %}
+              </div>
+            </div>
+          {% endif %}
+          </span>
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
+
+  <div class="masthead__cta">
+    <a href="{{page.header_signup_link | default: site.header_signup_link}}" title="WireMock Cloud">
+      Go to WM Cloud
+    </a>
+    <span class="masthead__cta-note">Free forever. No credit card needed</span>
+  </div>
+  
+  <button class="hamburgerMenuIcon">
+    <img id="hamburgerMenuIcon" src="{{ '/images/hamburgerMenuIcon.svg' | absolute_url }}" />
+  </button>
+  <div id="overlay-menu" class="overlay-menu"></div>
+  <div class="mobile-menu-wrapper">
+    <img id="closeMenuIcon" class="closeMenuIcon" src="{{ '/images/closeMenuIcon.svg' | absolute_url }}" />
+    <ul>
+      <li><a href="{{ '/docs' | absolute_url }}">Documentation</a></li>
+      <li>
+        <a href="https://wiremock.io?utm_source=wiremock.org&utm_medium=masthead&utm_campaign=homepage_2022_baseline" title="WireMock Cloud">
+          <img src="{{ '/images/wiremock-cloud/wiremock_cloud_logo.png' | absolute_url }}" alt="WireMock Cloud" style="vertical-align: middle;height: 28px"/><br>
+          WireMock Cloud
+        </a>
+      </li>
+      
+      <li><a href="{{ '/support' | absolute_url }}">Need Help?</a></li>
+      <li><a href="https://slack.wiremock.org/" target="_blank">Community Slack</a></li>
+      <li><a href="https://github.com/wiremock/wiremock" target="_blank">GitHub</a></li>
+      <li><a href="https://twitter.com/wiremockorg">Twitter</a></li>
+      <li><a href="https://github.com/wiremock/community/blob/main/contributing/README.md" target="_blank">Contributing</a></li>
+    </ul>
   </div>
 </div>
-
-<div class="wiremock-cloud-logo-note">* Free forever. No credit card needed</div>

@@ -14,8 +14,8 @@ $indent-var: 1.3em;
 
 /* system typefaces */
 $serif: Georgia, Times, serif;
-$sans-serif: "Lato", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial,
-    sans-serif;
+$sans-serif: "DMSans", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial,
+  sans-serif;
 $monospace: "Source Code Pro", Monaco, Consolas, "Lucida Console", monospace;
 
 /* sans serif typefaces */
@@ -132,20 +132,20 @@ $right-sidebar-width: 300px;
 $right-sidebar-width-wide: 400px;
 
 $susy: (
-    columns: 12,
-    // column-width: 90px,
-    gutters: 1/4,
-    math: fluid,
-    output: float,
-    gutter-position: after,
-    container: $large,
-    global-box-sizing: border-box,
-    // debug: (
-    //   image: show,
-    //   color: blue,
-    //   output: overlay,
-    //   toggle: top right,
-    // ),,,,,,,,,,,,,,,,,,,,,,,,,,,
+  columns: 12,
+  // column-width: 90px,
+  gutters: 1/4,
+  math: fluid,
+  output: float,
+  gutter-position: after,
+  container: $large,
+  global-box-sizing: border-box,
+  // debug: (
+  //   image: show,
+  //   color: blue,
+  //   output: overlay,
+  //   toggle: top right,
+  // ),,,,,,,,,,,,,,,,,,,,,,,,,,,
 );
 
 /*
