@@ -36,10 +36,15 @@ html {
 }
 
 .container {
+  max-width: calc(100vw - $p-m);
   max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 1em;
+  padding: 0 $p-l;
+
+  @include breakpoint($medium) {
+    padding: 0;
+  }
 }
 
 .btn-card-info {
@@ -1045,10 +1050,6 @@ html {
 }
 
 @media (max-width: 1280px) {
-  // .home-header-wrapper,
-  .container {
-    width: 1024px;
-  }
   .apis-wrapper {
     .apis-card {
       width: 180px;
@@ -1091,11 +1092,6 @@ html {
 }
 
 @media (max-width: 1023px) {
-  // .home-header-wrapper,
-  .container {
-    width: 90%;
-  }
-
   .home-header-footer {
     flex-direction: column;
     align-items: center;
@@ -1289,52 +1285,53 @@ html {
 
   &__boxes {
     @media (min-width: 920px) {
-      padding: 40px 0;
+      padding: $p-xl 0;
       display: flex;
+      gap: $p-3xl;
     }
+  }
+
+  &__icon {
+    padding: $p-s;
+    margin-bottom: $p-l;
+    display: block;
+    border-radius: 100px;
+    background: linear-gradient(
+      135deg,
+      #fff 0%,
+      rgba(255, 255, 255, 0.2) 47.4%,
+      rgba(255, 255, 255, 0) 100%
+    );
   }
 
   &__box {
     display: grid;
     flex-direction: column;
-    flex: 1 0 50%;
     padding: 20px 20px;
-    margin-bottom: 20px;
+    margin-bottom: $p-l;
     grid-template-rows: min-content 1fr min-content;
+    background-color: $light-gray;
+    border-radius: 10px;
 
     &--alt {
-      background: #e4f0f7;
-      border-radius: 15px;
-    }
-
-    p {
-      font-family: "Ubuntu";
-      font-size: 20px;
-      font-style: normal;
-      font-weight: 400;
-      color: #18253d;
-      margin-top: 1rem;
+      background: $blue;
+      border-radius: 10px;
+      color: $light-gray;
     }
 
     @media (min-width: 920px) {
-      padding: 40px;
+      padding: $p-xl;
       margin-bottom: 0;
-      padding: 20px;
-
-      p {
-        font-size: 16px;
-      }
     }
   }
 
   &__heading {
-    margin: 0 0 10px;
-    font-size: 24px;
-    color: #18253d;
+    margin: 0 0 $p-m;
+    font-size: $type-size-3;
 
     @media (min-width: 920px) {
-      margin-bottom: 20px;
-      font-size: 50px;
+      font-size: $type-size-2;
+      margin-bottom: $p-l;
     }
   }
 }

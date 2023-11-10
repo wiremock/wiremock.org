@@ -72,8 +72,9 @@ $head-border-bottom: #f0f5ff;
 $gray: #666666;
 $dark-gray: mix(#000, $gray, 40%);
 $darker-gray: mix(#000, $gray, 60%);
-$light-gray: mix(#fff, $gray, 50%);
+$light-gray: #f8f7f9;
 $lighter-gray: mix(#fff, $gray, 90%);
+$blue: #2d69f6;
 
 $body-color: #fff;
 $background-color: #fff;
@@ -115,7 +116,7 @@ $mocklab-dark-green: #036334;
 
 /* links */
 $head-nav-links: #7d93bd;
-$link-color: #2d69f6;
+$link-color: $blue;
 $link-color-hover: mix(#000, $link-color, 25%);
 $link-color-visited: mix(#fff, $link-color, 25%);
 $masthead-link-color: $orange;
