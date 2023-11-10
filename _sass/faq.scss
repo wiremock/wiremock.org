@@ -1,25 +1,48 @@
 .faq {
   margin: 0 auto;
-  padding: 0 5em;
+
+  @include breakpoint($medium) {
+    display: grid;
+    grid-template-columns: 15% 1fr;
+    gap: 160px;
+
+    &__title {
+      margin: 0;
+      padding: 0;
+      font-size: 32px;
+      line-height: 40px;
+      font-weight: 700;
+    }
+  }
 }
 
 .faq-list {
   dt {
     font-size: 20px;
     color: #000;
-    font-weight: bold;
+    font-weight: 500;
 
-    &:before {
-      content: '';
-      border-left: transparent;
-      border-right: transparent;
-      border-bottom: 10px solid #000;
+    @include breakpoint($medium) {
+      padding: 20px 0;
+      font-size: 24px;
+      line-height: 32px;
+
+      &:first-child {
+        padding-top: 0;
+      }
     }
+  }
+
+  &__icon {
+    align-self: flex-end;
+    @include fa-icon();
+    @extend .fa-plus;
+    color: #2d69f6;
   }
 
   dt {
     &.faq-list--collapsed {
-      margin-bottom: 12px;
+      border-bottom: 2px solid #dbd8df;
 
       & + dd {
         display: none;
@@ -27,28 +50,21 @@
     }
 
     &.faq-list--expanded {
-      .faq-list-arrow {
-        transform: rotate(45deg);
-      }
+      border-bottom: none;
 
       & + dd {
+        border-bottom: 2px solid #dbd8df;
         display: block;
       }
     }
   }
 
   dd {
-    margin: 0 0 16px 0;
-  }
+    margin: 0;
 
-  &-arrow {
-    border: solid black;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 3px;
-    transform: rotate(-45deg);
-    top: -4px;
-    margin-right: 10px;
-    position: relative;
+    @include breakpoint($medium) {
+      padding-bottom: 20px;
+    }
   }
 }
+

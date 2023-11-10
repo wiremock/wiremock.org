@@ -68,7 +68,7 @@ $body-color: #fff;
 $background-color: #fff;
 $code-background-color: #fafafa;
 $code-background-color-dark: $light-gray;
-$text-color: $gray;
+$text-color: #0f0f0f;
 $border-color: $lighter-gray;
 
 $primary-color: $gray;
@@ -134,7 +134,7 @@ $right-sidebar-width-wide: 400px;
 $susy: (
   columns: 12,
   // column-width: 90px,
-  gutters: 1*0.25,
+  gutters: 1 * 0.25,
   math: fluid,
   output: float,
   gutter-position: after,
