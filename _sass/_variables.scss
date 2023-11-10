@@ -43,13 +43,24 @@ $type-size-6: 0.75em; // ~12px
 $type-size-7: 0.6875em; // ~11px
 $type-size-8: 0.625em; // ~10px
 
+$type-sizes: $type-size-1, $type-size-2, $type-size-3, $type-size-4,
+  $type-size-5, $type-size-6, $type-size-7, $type-size-8;
+
+@for $i from 1 through length($type-sizes) {
+  $size: nth($type-sizes, $i);
+
+  .t-#{$i + 1} {
+    --font-size: $size;
+  }
+}
+
 /*
    Colors
    ========================================================================== */
 
 $general-background: #f0f5ff;
 $dark-milk: #7d93bd;
-$dark-blue: #263248;
+$dark-blue: #2d69f6;
 $light-blue: #7e8aa2;
 $very-light-blue: #becdea;
 $orange: #ff9800;
@@ -104,7 +115,7 @@ $mocklab-dark-green: #036334;
 
 /* links */
 $head-nav-links: #7d93bd;
-$link-color: $info-color;
+$link-color: #2d69f6;
 $link-color-hover: mix(#000, $link-color, 25%);
 $link-color-visited: mix(#fff, $link-color, 25%);
 $masthead-link-color: $orange;
@@ -157,3 +168,10 @@ $box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125);
 $navicon-width: 28px;
 $navicon-height: 4px;
 $global-transition: all 0.2s ease-in-out;
+
+$p-s: 6px;
+$p-m: 12px;
+$p-l: 24px;
+$p-xl: 36px;
+$p-2xl: 48px;
+$p-3xl: 72px;

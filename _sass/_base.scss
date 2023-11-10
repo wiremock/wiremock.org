@@ -133,23 +133,23 @@ blockquote {
 
 /* links */
 
-a {
-  color: #0f0f0f;
-  text-decoration: none;
-
-  &:focus {
-    @extend %tab-focus;
-  }
-
-  &:hover,
-  &:active {
-    outline: 0;
-  }
-
-  &:hover {
-    color: #3f3f3f;
-  }
-}
+// a {
+//   color: #0f0f0f;
+//   text-decoration: none;
+//
+//   &:focus {
+//     @extend %tab-focus;
+//   }
+//
+//   &:hover,
+//   &:active {
+//     outline: 0;
+//   }
+//
+//   &:hover {
+//     color: #3f3f3f;
+//   }
+// }
 
 /* code */
 
