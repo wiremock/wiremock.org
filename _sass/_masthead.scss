@@ -11,7 +11,7 @@
   max-width: 1280px;
   margin: 0 auto;
   display: grid;
-  padding: 12px 0;
+  padding: $p-m 0;
   grid-template-columns: 254px 1fr auto;
   font-size: 16px;
   line-height: 24px;
@@ -19,7 +19,7 @@
   font-family: "DMSans";
 
   @include breakpoint($medium) {
-    padding: 35px 0;
+    padding: $p-xl 0;
   }
 }
 
@@ -133,6 +133,14 @@ schedule-demo-nav-mobile {
 
 .mobile-menu-wrapper {
   display: none;
+
+  a:not(.btn) {
+    display: block;
+    padding: $p-m 0;
+    font-size: $type-size-4;
+    color: $text-color;
+    text-decoration: none;
+  }
 }
 
 .overlay-menu {
@@ -153,8 +161,9 @@ schedule-demo-nav-mobile {
 
   .closeMenuIcon {
     position: absolute;
-    right: 12px;
-    top: 12px;
+    right: 16px;
+    top: 16px;
+    width: 18px;
   }
 
   .mobile-menu-wrapper {
@@ -164,7 +173,7 @@ schedule-demo-nav-mobile {
     right: -250px;
     top: 0;
     height: 100%;
-    width: 250px;
+    width: 50vw;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     z-index: 100;
@@ -200,6 +209,7 @@ schedule-demo-nav-mobile {
     &.active-menu {
       display: block;
       right: 0;
+      width: 80vw;
     }
   }
   .overlay-menu {
@@ -229,18 +239,23 @@ schedule-demo-nav-mobile {
 
 .navlink {
   position: relative !important;
-  color: #7d93bd;
   padding-bottom: 0;
   cursor: pointer;
-}
 
-.navlink a {
-  color: #0f0f0f;
-  padding: 0 !important;
-  margin: 0 0 5px 0;
-  width: fit-content !important;
-  height: 32px;
-  font-weight: 500;
+  &:hover {
+    & > a {
+      color: $link-color;
+    }
+  }
+
+  a {
+    padding: 0 !important;
+    margin: 0 0 5px 0;
+    width: fit-content !important;
+    height: 32px;
+    font-weight: 500;
+    color: $text-color;
+  }
 }
 
 .navlink-image {
@@ -285,6 +300,10 @@ schedule-demo-nav-mobile {
   padding: 0 !important;
   margin: 0 0 5px 0;
   width: fit-content !important;
+
+  &:hover {
+    color: $link-color;
+  }
 }
 
 .divSubNav a:last-child {

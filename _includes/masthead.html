@@ -54,7 +54,7 @@
   </nav>
 
   <div class="masthead__cta">
-    <a href="{{page.header_signup_link | default: site.header_signup_link}}" title="WireMock Cloud" class="btn t-3">
+    <a href="{{page.header_signup_link | default: site.header_signup_link}}" title="WireMock Cloud" class="btn t-6">
       Go to WM Cloud
     </a>
     <span class="masthead__cta-note">Free forever. No credit card needed</span>
@@ -68,16 +68,31 @@
     <img id="closeMenuIcon" class="closeMenuIcon" src="{{ '/images/closeMenuIcon.svg' | absolute_url }}" />
     <ul>
       <li>
-        <a href="https://wiremock.io?utm_source=wiremock.org&utm_medium=masthead&utm_campaign=homepage_2022_baseline" title="WireMock Cloud" class="mobile-menu-wrapper__cta">
+        <a href="https://wiremock.io?utm_source=wiremock.org&utm_medium=masthead&utm_campaign=homepage_2022_baseline" title="WireMock Cloud" class="btn t-5">
           Go to WM Cloud
         </a>
       </li>
-      <li><a href="{{ '/docs' | absolute_url }}">Documentation</a></li>
-      <li><a href="{{ '/support' | absolute_url }}">Need Help?</a></li>
-      <li><a href="https://slack.wiremock.org/" target="_blank">Community Slack</a></li>
-      <li><a href="https://github.com/wiremock/wiremock" target="_blank">GitHub</a></li>
-      <li><a href="https://twitter.com/wiremockorg">Twitter</a></li>
-      <li><a href="https://github.com/wiremock/community/blob/main/contributing/README.md" target="_blank">Contributing</a></li>
+      {% for menuItem in site.data.navigation.main %}
+        {% if menuItem.link contains 'http' %}
+          {% assign effectiveLink = menuItem.link %}
+          {% else %}
+          {% assign effectiveLink = menuItem.link | absolute_url %}
+        {% endif %}
+        
+        <li>
+          {% if menuItem.link %}
+            {% if menuItem.new_window %}
+              <a href="{{ effectiveLink }}" target="_blank">
+            {% else %}
+              <a href="{{ effectiveLink }}">
+            {% endif %}
+              {{ menuItem.title }}
+            </a>
+          {% else %}
+            {{ menuItem.title }}
+          {% endif %}
+        </li>
+      {% endfor %}
     </ul>
   </div>
 </div>

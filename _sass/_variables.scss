@@ -50,7 +50,7 @@ $type-sizes: $type-size-1, $type-size-2, $type-size-3, $type-size-4,
   $size: nth($type-sizes, $i);
 
   .t-#{$i + 1} {
-    --font-size: $size;
+    --font-size: #{$size};
   }
 }
 
