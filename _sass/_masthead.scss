@@ -45,7 +45,7 @@
   text-align: center;
   display: none;
 
-  @include breakpoint($medium) {
+  @include breakpoint($large) {
     display: block;
   }
 
@@ -165,8 +165,8 @@ schedule-demo-nav-mobile {
 
   .closeMenuIcon {
     position: absolute;
-    right: 30px;
-    top: 20px;
+    right: 12px;
+    top: 12px;
   }
 
   .mobile-menu-wrapper {
@@ -184,7 +184,31 @@ schedule-demo-nav-mobile {
     -moz-transition: right 0.2s linear;
     -o-transition: right 0.2s linear;
     transition: right 0.2s linear;
-    padding: 30px;
+    padding: 38px 24px;
+
+    &__cta {
+      display: block;
+      margin-bottom: 4px;
+      padding: 14px 24px;
+      margin-left: auto;
+      background: #2d69f6;
+      color: white;
+      border-radius: 4px;
+      background-color: #2d69f6;
+      text-decoration: none;
+      text-align: center;
+
+      &:hover {
+        color: #fafafa;
+      }
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
     &.active-menu {
       display: block;
       right: 0;

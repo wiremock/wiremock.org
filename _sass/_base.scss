@@ -134,6 +134,9 @@ blockquote {
 /* links */
 
 a {
+  color: #0f0f0f;
+  text-decoration: none;
+
   &:focus {
     @extend %tab-focus;
   }
@@ -141,6 +144,10 @@ a {
   &:hover,
   &:active {
     outline: 0;
+  }
+
+  &:hover {
+    color: #3f3f3f;
   }
 }
 
@@ -353,4 +360,3 @@ input[type="submit"],
 .archive__item-teaser {
   transition: $global-transition;
 }
-
