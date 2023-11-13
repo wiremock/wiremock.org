@@ -159,6 +159,8 @@ kbd,
 samp,
 pre {
   font-family: $monospace;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
 }
 
 pre {
