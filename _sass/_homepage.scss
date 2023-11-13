@@ -9,7 +9,7 @@ html {
 
   .home-header-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     margin-top: 2.5rem;
     padding: 0;
   }
@@ -17,6 +17,7 @@ html {
   @include breakpoint($medium) {
     .home-header-container {
       gap: $p-3xl;
+      flex-direction: row;
     }
   }
 }
@@ -372,6 +373,7 @@ html {
 
         @include breakpoint($medium) {
           grid-template-columns: auto;
+          grid-auto-rows: max-content;
         }
 
         li {
@@ -384,14 +386,22 @@ html {
           }
 
           @include breakpoint($medium) {
+            position: relative;
             padding: $p-m;
+            border-right: none;
 
             &:last-child {
               border-bottom: 1px solid #dbd8df;
             }
 
-            &.active-tab-example {
-              border-right: none;
+            &.active-tab-example:after {
+              content: "";
+              position: absolute;
+              right: -1px;
+              width: 1px;
+              background: white;
+              top: 0;
+              bottom: 0;
             }
           }
         }
@@ -403,7 +413,6 @@ html {
 
         @include breakpoint($medium) {
           padding: $p-l;
-          border-left: none;
         }
       }
     }
@@ -663,6 +672,7 @@ html {
   .key-features-card {
     text-align: center;
     margin-bottom: $p-l;
+    font-weight: 500;
 
     .key-features__icon {
       margin-bottom: $p-l;
