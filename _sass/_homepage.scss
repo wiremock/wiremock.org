@@ -3,10 +3,6 @@ html {
 }
 .home-header-wrapper {
   background: linear-gradient(#fff 100%, rgba(210, 223, 249, 0));
-
-  @media (min-width: 2000px) {
-    width: 1280px;
-  }
   position: relative;
   margin-left: auto;
   margin-right: auto;
@@ -16,9 +12,11 @@ html {
     flex-direction: row;
     margin-top: 2.5rem;
     padding: 0;
+  }
 
-    @media (max-width: 1023px) {
-      flex-direction: column;
+  @include breakpoint($medium) {
+    .home-header-container {
+      gap: $p-3xl;
     }
   }
 }
@@ -65,9 +63,6 @@ html {
   background: #f59121;
   text-decoration: none;
   font-weight: 700;
-}
-.btnGetStarted {
-  background: #0fb2ef;
 }
 .btnLearnMore {
   margin-left: 20px;
@@ -654,69 +649,68 @@ html {
 }
 
 .key-features-wrapper {
+  padding: $p-2xl;
+  color: $light-gray;
+  background: #0b4f6c;
+
   .keyFeaturesTXT {
-    margin: 0;
-    text-align: center;
-    font-family: "Ubuntu";
-    font-style: normal;
-    font-weight: bold;
-    color: #18253d;
-    font-size: 28px;
-    border-bottom: none;
+    margin-bottom: $p-l;
+    font-size: $type-size-1;
 
     @media (min-width: 768px) {
       font-size: 50px;
     }
   }
+
   .keyFeaturesInfo {
+    margin-bottom: $p-xl;
     text-align: center;
-    padding: 20px 20px 30px 20px;
-    max-width: 1150px;
-    margin: 0 auto;
   }
-  .key-features-grid {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    justify-items: center;
-    row-gap: 90px;
-  }
+
   .padding-grid-top {
     padding-top: 50px !important;
   }
-  .key-features-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 288px;
-    height: 158px;
-    background-color: #fff;
-    border: 1px solid #d2dff9;
-    border-radius: 8px;
-    padding: 20px;
-    filter: drop-shadow(0px 10px 0px rgba(210, 223, 249, 0.3));
 
-    img {
-      width: 40px;
-      height: 40px;
-      margin-bottom: 20px;
+  .key-features-card {
+    text-align: center;
+    margin-bottom: $p-l;
+
+    .key-features__icon {
+      margin-bottom: $p-l;
+      display: inline-block;
+      padding: $p-m;
+      border-radius: 100%;
+      background: linear-gradient(140deg, #ffffff, #ffffff33, #ffffff00);
+
+      img {
+        filter: brightness(0) invert(1);
+      }
     }
 
     p {
-      font-family: "Ubuntu";
-      font-style: normal;
-      font-weight: normal;
-      font-size: 15px;
-      margin: 0;
-      padding: 0;
-      color: #000;
-      text-align: center;
+      margin: 0 $p-l;
     }
   }
-  .key-features-btn-full {
-    display: flex;
-    justify-content: center;
-    padding-top: 20px;
-    padding-bottom: 40px;
+
+  @include breakpoint($medium) {
+    text-align: center;
+
+    .key-features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      justify-items: center;
+      gap: $p-l;
+      margin: 0 $p-xl;
+    }
+
+    .key-features-card {
+      text-align: left;
+      width: 100%;
+
+      p {
+        margin: 0;
+      }
+    }
   }
 }
 
@@ -1082,11 +1076,6 @@ html {
       }
     }
   }
-  .key-features-wrapper {
-    .key-features-grid {
-      grid-template-columns: auto;
-    }
-  }
 
   .apis-wrapper {
     .apis-card-wrapper {
@@ -1178,11 +1167,6 @@ html {
       }
     }
   }
-  .key-features-grid {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-  }
 }
 
 .home-hero {
@@ -1251,23 +1235,4 @@ html {
       margin-bottom: $p-l;
     }
   }
-}
-
-.hr {
-  margin-top: 40px;
-  margin-bottom: 40px;
-  max-width: 90%;
-
-  @media (min-width: 920px) {
-    margin-top: 60px;
-    margin-bottom: 60px;
-  }
-
-  @media (min-width: 2000px) {
-    width: 1280px;
-  }
-
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
 }
