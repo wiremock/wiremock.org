@@ -8,7 +8,7 @@
 
 .btn {
   /* default button */
-  display: inline-block;
+  display: block;
   margin-bottom: 0.25em;
   padding: $p-m $p-l;
   color: #fff !important;
@@ -22,8 +22,12 @@
   border-radius: $border-radius;
   cursor: pointer;
 
+  @include breakpoint($medium) {
+    display: inline-block;
+  }
+
   &:hover {
-    background-color: mix(white, #000, 20%);
+    background: darken($dark-blue, 20%);
   }
 
   .icon {
@@ -53,8 +57,8 @@
     background-color: #fff;
 
     &:hover {
-      color: #fff !important;
-      border-color: $gray;
+      background-color: #eee;
+      color: $text-color !important;
     }
   }
 

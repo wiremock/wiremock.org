@@ -51,6 +51,7 @@ $type-sizes: $type-size-1, $type-size-2, $type-size-3, $type-size-4,
 
   .t-#{$i + 1} {
     --font-size: #{$size};
+    font-size: #{$size};
   }
 }
 
@@ -62,6 +63,7 @@ $general-background: #f0f5ff;
 $dark-milk: #7d93bd;
 $dark-blue: #2d69f6;
 $light-blue: #7e8aa2;
+$lighter-blue: #c3ecfb;
 $very-light-blue: #becdea;
 $orange: #ff9800;
 
