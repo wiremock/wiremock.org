@@ -19,6 +19,7 @@ html {
       gap: $p-3xl;
       flex-direction: row;
     }
+
     .home-header-hero-text {
       flex: 0 1 50%;
     }
@@ -1153,6 +1154,11 @@ html {
     }
   }
 
+  &__image {
+    margin-bottom: $p-l;
+    width: 100%;
+  }
+
   &__boxes {
     @media (min-width: 920px) {
       padding: $p-xl 0;
@@ -1183,6 +1189,10 @@ html {
     grid-template-rows: min-content 1fr min-content;
     background-color: $light-gray;
     border-radius: 10px;
+
+    &__box--b {
+      grid-template-rows: auto min-content 1fr min-content;
+    }
 
     &--alt {
       background: $blue;
