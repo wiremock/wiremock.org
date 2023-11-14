@@ -19,6 +19,9 @@ html {
       gap: $p-3xl;
       flex-direction: row;
     }
+    .home-header-hero-text {
+      flex: 0 1 50%;
+    }
   }
 }
 
@@ -553,7 +556,6 @@ html {
 
   .wiremock-cloud-details {
     flex: 0 0 50%;
-    padding: $p-l;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -1174,6 +1176,7 @@ html {
 
   &__box {
     display: grid;
+    flex: 0 1 50%;
     flex-direction: column;
     padding: 20px 20px;
     margin-bottom: $p-l;
