@@ -560,6 +560,7 @@ html {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: $p-l;
 
     .logo {
       display: block;
