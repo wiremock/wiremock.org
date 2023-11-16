@@ -16,7 +16,6 @@
 }
 
 .code-tabs-main-example pre {
-  margin: 0 auto;
   text-align: left;
 }
 
@@ -24,7 +23,10 @@
   display: none;
   width: 100%;
   position: relative;
-  padding: $p-l;
+
+  @include breakpoint($medium) {
+    padding: $p-l;
+  }
 
   &.activeCodeSnippet {
     display: block;
