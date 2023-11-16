@@ -333,8 +333,25 @@ html {
 }
 
 .code-tabs-wrapper {
+  margin-bottom: 70px;
+  background-color: $general-background;
+  border-radius: 50px;
+  width: 100%;
+  padding: 0;
+
   .code-tabs-row {
     display: flex;
+  }
+  .code-tabs-sidebar-wrapper {
+    display: none;
+
+    @include breakpoint($medium) {
+      display: block;
+    }
+  }
+  .code-tabs-sidebar {
+    margin: 45px 45px;
+    width: 170px;
   }
 
   .code-tabs-example-card {
@@ -357,54 +374,59 @@ html {
   }
 
   .code-tabs-main {
-    .code-tabs-main-wrapper {
-      background: none;
-      display: grid;
-      grid-template-rows: auto auto;
+    border-radius: 10px;
+    width: 100%;
+    background-color: #f8fafe;
 
-      @include breakpoint($medium) {
-        grid-template-rows: auto;
-        grid-template-columns: auto 1fr;
-      }
+    .code-tabs-main-wrapper {
+      margin: $p-l;
 
       ul {
-        margin: 0;
+        margin: 0 0 $p-l 0;
         padding: 0;
-        display: grid;
-        list-style: none;
-        grid-template-columns: repeat(3, 1fr);
+        display: flex;
 
         @include breakpoint($medium) {
-          grid-template-columns: auto;
-          grid-auto-rows: max-content;
+          margin: 0;
         }
 
         li {
+          display: inline;
+          position: relative;
+          cursor: pointer;
+          padding: 14px 20px;
           margin: 0;
-          border: 1px solid #dbd8df;
-          border-bottom: none;
-
-          &.active-tab-example {
-            font-weight: 700;
-          }
+          color: #18253d;
 
           @include breakpoint($medium) {
+            margin-left: 20px;
+          }
+
+          &:first-child {
+            margin-left: 0;
+          }
+
+          &.active-tab-example {
             position: relative;
-            padding: $p-m;
-            border-right: none;
+            font-weight: bold;
+            background-color: #fff;
+            border: 1px solid #d2dff9;
+            border-radius: 8px;
 
-            &:last-child {
-              border-bottom: 1px solid #dbd8df;
-            }
+            @include breakpoint($medium) {
+              border: 1px solid #d2dff9;
+              border-bottom: 1px solid #fff;
+              border-radius: 8px 8px 0px 0px;
 
-            &.active-tab-example:after {
-              content: "";
-              position: absolute;
-              right: -1px;
-              width: 1px;
-              background: white;
-              top: 0;
-              bottom: 0;
+              &:after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: -1px;
+                right: 0;
+                height: 1px;
+                background: #fff;
+              }
             }
           }
         }
@@ -412,10 +434,12 @@ html {
 
       .code-tabs-main-example {
         border: 1px solid #d2dff9;
+        border-radius: 7px;
         background-color: #fff;
+        min-height: 420px;
 
         @include breakpoint($medium) {
-          padding: $p-l;
+          border-radius: 0px 7px 7px 7px;
         }
       }
     }
@@ -719,7 +743,6 @@ html {
 .downloads-wrapper {
   margin-top: $p-3xl;
   margin-bottom: $p-3xl;
-  text-align: center;
 }
 
 .apis-wrapper {
@@ -998,17 +1021,6 @@ html {
       padding-right: 10px;
     }
   }
-  .code-tabs-wrapper {
-    .code-tabs-main {
-      .code-tabs-main-wrapper {
-        ul {
-          li {
-            padding: 14px 10px;
-          }
-        }
-      }
-    }
-  }
 
   .wiremock-cloud-robot {
     width: 58% !important;
@@ -1021,7 +1033,7 @@ html {
     ul {
       flex-wrap: wrap;
       display: flex;
-      margin-bottom: -11px !important;
+      margin-bottom: $p-l;
     }
   }
 }
@@ -1046,17 +1058,6 @@ html {
 
     .client-wrapper {
       margin-left: 0;
-    }
-  }
-
-  .code-tabs-row {
-    .code-tabs-sidebar-wrapper {
-      display: none;
-    }
-  }
-  .code-tabs-wrapper {
-    .code-tabs-main {
-      border-top-left-radius: 50px;
     }
   }
 
