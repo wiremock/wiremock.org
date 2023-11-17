@@ -6,6 +6,8 @@
 // $location  : The grid column to isolate in, relative to the container;
 // $context   : [optional] The context (columns spanned by parent).
 // $from      : The start direction of your layout (e.g. 'left' for ltr languages)
+@use "sass:math";
+
 @mixin isolate(
   $location,
   $context: $total-columns,
@@ -32,7 +34,7 @@
 ) {
   $to: opposite-position($from);
   $location: 1;
-  $line: floor($context / $columns);
+  $line: floor(math.div($context, $columns));
 
   @include span-columns($columns, $context, $from: $from, $style: $style);
   margin-#{$to}: -100%;

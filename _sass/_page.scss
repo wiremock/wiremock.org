@@ -3,211 +3,210 @@
    ========================================================================== */
 
 #main {
-    @include container;
-    @include clearfix;
-    margin-top: 2em;
-    padding-left: 1em;
-    padding-right: 1em;
-    animation: intro 0.3s both;
-    animation-delay: 0.35s;
+  @include container;
+  @include clearfix;
+  margin-top: 2em;
+  padding-left: 1em;
+  padding-right: 1em;
+  animation: intro 0.3s both;
+  animation-delay: 0.35s;
 
-    @include breakpoint($x-large) {
-        max-width: $x-large;
-    }
+  @include breakpoint($x-large) {
+    max-width: $x-large;
+  }
 
-    @include breakpoint($x2-large) {
-        max-width: $x2-large;
-    }
+  @include breakpoint($x2-large) {
+    max-width: $x2-large;
+  }
 }
 
 .custom-doc-wrapper {
-    height: 100vh;
+  height: 100vh;
 }
 
 .page {
-    @include breakpoint($large) {
-        @include span(10 of 12 last);
-        @include prefix(0.5 of 12);
-        @include suffix(2 of 12);
-    }
+  @include breakpoint($large) {
+    @include span(10 of 12 last);
+    @include prefix(0.5 of 12);
+    @include suffix(2 of 12);
+  }
 
-    .page__inner-wrap {
-        @include full();
+  .page__inner-wrap {
+    @include full();
 
-        .page__content,
-        .page__meta,
-        .page__share {
-            @include full();
-        }
+    .page__content,
+    .page__meta,
+    .page__share {
+      @include full();
     }
+  }
 }
 
 .page-wide {
-    @extend .page;
-    @include suffix(0 of 12);
+  @extend .page;
+  @include suffix(0 of 12);
 }
 
 .page__title {
-    margin-top: 0;
-    line-height: 1;
-    color: $light-blue;
+  margin-top: 0;
+  line-height: 1;
 
-    & + .page__meta {
-        margin-top: -0.5em;
-    }
+  & + .page__meta {
+    margin-top: -0.5em;
+  }
 }
 
 .page__lead {
-    font-family: $global-font-family;
-    font-size: $type-size-4;
+  font-family: $global-font-family;
+  font-size: $type-size-4;
 }
 
 .page__content {
-    h2 {
-        padding-bottom: 0.5em;
-        border-bottom: 1px solid $border-color;
+  h2 {
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid $border-color;
+  }
+
+  p,
+  li,
+  dl {
+    font-size: 1em;
+  }
+
+  /* paragraph indents */
+  p {
+    margin: 0 0 $indent-var;
+
+    // sibling indentation
+    @if $paragraph-indent == true {
+      & + p {
+        text-indent: $indent-var;
+        margin-top: -($indent-var);
+      }
     }
+  }
 
-    p,
-    li,
-    dl {
-        font-size: 1em;
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
     }
+  }
 
-    /* paragraph indents */
-    p {
-        margin: 0 0 $indent-var;
+  dt {
+    margin-top: 1em;
+    font-family: $sans-serif;
+    font-weight: bold;
+  }
 
-        // sibling indentation
-        @if $paragraph-indent == true {
-            & + p {
-                text-indent: $indent-var;
-                margin-top: -($indent-var);
-            }
-        }
-    }
+  dd {
+    margin-left: 1em;
+    font-family: $sans-serif;
+    font-size: $type-size-6;
+  }
 
-    a {
-        text-decoration: none;
+  .small {
+    font-size: $type-size-6;
+  }
 
-        &:hover {
-            text-decoration: underline;
+  /* blockquote citations */
+  blockquote + .small {
+    margin-top: -1.5em;
+    padding-left: 1.25rem;
+  }
 
-            img {
-                box-shadow: 0 0 10px rgba(#000, 0.25);
-            }
-        }
-    }
-
-    dt {
-        margin-top: 1em;
-        font-family: $sans-serif;
-        font-weight: bold;
-    }
-
-    dd {
-        margin-left: 1em;
-        font-family: $sans-serif;
-        font-size: $type-size-6;
-    }
-
-    .small {
-        font-size: $type-size-6;
-    }
-
-    /* blockquote citations */
-    blockquote + .small {
-        margin-top: -1.5em;
-        padding-left: 1.25rem;
-    }
+  [class^="language-"] {
+    margin-bottom: $p-l;
+  }
 }
 
 .page__hero {
+  position: relative;
+  margin-bottom: 2em;
+  @include clearfix;
+  animation: intro 0.3s both;
+  animation-delay: 0.25s;
+
+  &--overlay {
     position: relative;
     margin-bottom: 2em;
+    padding: 3em 0;
     @include clearfix;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     animation: intro 0.3s both;
     animation-delay: 0.25s;
 
-    &--overlay {
-        position: relative;
-        margin-bottom: 2em;
-        padding: 3em 0;
-        @include clearfix;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        animation: intro 0.3s both;
-        animation-delay: 0.25s;
-
-        a {
-            color: #fff;
-        }
-
-        .wrapper {
-            padding-left: 1em;
-            padding-right: 1em;
-
-            @include breakpoint($x-large) {
-                max-width: $x-large;
-            }
-
-            @include breakpoint($x2-large) {
-                max-width: $x2-large;
-            }
-        }
-
-        .page__title,
-        .page__meta,
-        .page__lead,
-        .btn {
-            color: $very-light-blue;
-            text-shadow: 1px 1px 4px rgba(#000, 0.5);
-        }
-
-        .page__lead {
-            max-width: $large;
-        }
-
-        .page__title {
-            font-size: $type-size-2;
-
-            @include breakpoint($small) {
-                font-size: $type-size-1;
-            }
-        }
+    a {
+      color: #fff;
     }
+
+    .wrapper {
+      padding-left: 1em;
+      padding-right: 1em;
+
+      @include breakpoint($x-large) {
+        max-width: $x-large;
+      }
+
+      @include breakpoint($x2-large) {
+        max-width: $x2-large;
+      }
+    }
+
+    .page__title,
+    .page__meta,
+    .page__lead,
+    .btn {
+      color: $very-light-blue;
+      text-shadow: 1px 1px 4px rgba(#000, 0.5);
+    }
+
+    .page__lead {
+      max-width: $large;
+    }
+
+    .page__title {
+      font-size: $type-size-2;
+
+      @include breakpoint($small) {
+        font-size: $type-size-1;
+      }
+    }
+  }
 }
 
 .page__hero-image {
-    width: 100%;
-    height: auto;
-    -ms-interpolation-mode: bicubic;
+  width: 100%;
+  height: auto;
+  -ms-interpolation-mode: bicubic;
 }
 
 .page__hero-caption {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin: 0 auto;
-    padding: 2px 5px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 0 auto;
+  padding: 2px 5px;
+  color: #fff;
+  font-family: $caption-font-family;
+  font-size: $type-size-7;
+  background: #000;
+  text-align: right;
+  z-index: 5;
+  opacity: 0.5;
+  border-radius: $border-radius 0 $border-radius 0;
+
+  @include breakpoint($large) {
+    padding: 5px 10px;
+  }
+
+  a {
     color: #fff;
-    font-family: $caption-font-family;
-    font-size: $type-size-7;
-    background: #000;
-    text-align: right;
-    z-index: 5;
-    opacity: 0.5;
-    border-radius: $border-radius 0 $border-radius 0;
-
-    @include breakpoint($large) {
-        padding: 5px 10px;
-    }
-
-    a {
-        color: #fff;
-        text-decoration: none;
-    }
+    text-decoration: none;
+  }
 }
 
 /*
@@ -215,28 +214,28 @@
    ========================================================================== */
 
 .page__share {
-    margin-top: 2em;
-    padding-top: 1em;
-    border-top: 1px solid $border-color;
+  margin-top: 2em;
+  padding-top: 1em;
+  border-top: 1px solid $border-color;
 
-    @include breakpoint(max-width $small) {
-        .btn span {
-            border: 0;
-            clip: rect(0 0 0 0);
-            height: 1px;
-            margin: -1px;
-            overflow: hidden;
-            padding: 0;
-            position: absolute;
-            width: 1px;
-        }
+  @include breakpoint(max-width $small) {
+    .btn span {
+      border: 0;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
     }
+  }
 }
 
 .page__share-title {
-    margin-bottom: 10px;
-    font-size: $type-size-6;
-    text-transform: uppercase;
+  margin-bottom: 10px;
+  font-size: $type-size-6;
+  text-transform: uppercase;
 }
 
 /*
@@ -244,26 +243,29 @@
    ========================================================================== */
 
 .page__meta {
-    margin-top: 2em;
-    color: mix(#fff, $gray, 25%);
-    font-family: $sans-serif;
-    font-size: $type-size-6;
+  margin-top: 2em;
+  margin-bottom: $p-l;
+  color: mix(#fff, $gray, 25%);
+  font-family: $sans-serif;
+  font-size: $type-size-6;
 
-    p {
-        margin: 0;
-    }
+  p {
+    margin: 0;
+  }
 
-    a {
-        color: inherit;
-    }
-    margin-bottom: 10px;
+  a {
+    color: inherit;
+  }
 }
 
 .page__meta-title {
-    font-size: small;
-    text-transform: uppercase;
+  font-size: small;
+  text-transform: uppercase;
+  padding-bottom: 20px;
+
+  &:not(:first-child) {
     padding-left: 20px;
-    padding-bottom: 20px;
+  }
 }
 
 /*
@@ -271,28 +273,28 @@
    ========================================================================== */
 
 .page__taxonomy {
-    .sep {
-        display: none;
-    }
+  .sep {
+    display: none;
+  }
 
-    strong {
-        margin-right: 10px;
-    }
+  strong {
+    margin-right: 10px;
+  }
 }
 
 .page__taxonomy-item {
-    display: inline-block;
-    margin-right: 5px;
-    margin-bottom: 8px;
-    padding: 5px 10px;
-    text-decoration: none;
-    border: 1px solid $light-gray;
-    border-radius: $border-radius;
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 8px;
+  padding: 5px 10px;
+  text-decoration: none;
+  border: 1px solid $light-gray;
+  border-radius: $border-radius;
 
-    &:hover {
-        text-decoration: none;
-        color: $link-color-hover;
-    }
+  &:hover {
+    text-decoration: none;
+    color: $link-color-hover;
+  }
 }
 
 /*
@@ -300,16 +302,16 @@
    ========================================================================== */
 
 .page__comments {
-    @include full();
+  @include full();
 }
 
 .page__comments-title {
-    margin-top: 2rem;
-    margin-bottom: 10px;
-    padding-top: 2rem;
-    font-size: $type-size-6;
-    border-top: 1px solid $border-color;
-    text-transform: uppercase;
+  margin-top: 2rem;
+  margin-bottom: 10px;
+  padding-top: 2rem;
+  font-size: $type-size-6;
+  border-top: 1px solid $border-color;
+  text-transform: uppercase;
 }
 
 /*
@@ -317,31 +319,31 @@
    ========================================================================== */
 
 .page__related {
-    margin-top: 2em;
-    padding-top: 1em;
-    border-top: 1px solid $border-color;
-    @include clearfix();
-    float: left;
+  margin-top: 2em;
+  padding-top: 1em;
+  border-top: 1px solid $border-color;
+  @include clearfix();
+  float: left;
 
-    @include breakpoint($large) {
-        @include pre(2.5 of 12);
-    }
+  @include breakpoint($large) {
+    @include pre(2.5 of 12);
+  }
 
-    a {
-        color: inherit;
-        text-decoration: none;
-    }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 }
 
 .page__related-title {
-    margin-bottom: 10px;
-    font-size: $type-size-6;
-    text-transform: uppercase;
+  margin-bottom: 10px;
+  font-size: $type-size-6;
+  text-transform: uppercase;
 }
 
 .boxed-image {
-    border: solid 1px $lighter-gray;
-    padding: 0.5rem;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+  border: solid 1px $lighter-gray;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }

@@ -1,6 +1,8 @@
 // Background Grid Syntax
 // ======================
 
+@use "sass:math";
+
 $susy-overlay-grid-head-exists: false;
 
 
@@ -156,16 +158,16 @@ $susy-overlay-grid-head-exists: false;
   $_light         : lighten($_color, 15%);
 
   $_end           : 1 + $_gutters;
-  $_after         : percentage(1/$_end);
+  $_after         : percentage(math.div(1, $_end));
   $_stops         : ();
   $_size          : span(1 $grid wide);
 
   @if is-inside($grid) {
     $_stops: $_color, $_light;
   } @else if is-split($grid) {
-    $_split: $_gutters/2;
-    $_before: percentage($_split/$_end);
-    $_after: percentage((1 + $_split)/$_end);
+    $_split: $_gutters*0.5;
+    $_before: percentage(math.div($_split, $_end));
+    $_after: percentage(math.div(1 + $_split, $_end));
     $_stops: $_trans $_before, $_color $_before, $_light $_after, $_trans $_after;
   } @else {
     $_stops: $_color, $_light $_after, $_trans $_after;

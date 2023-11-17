@@ -30,6 +30,7 @@ search: false
 @import "navigation";
 @import "footer";
 @import "syntax";
+@import "notify";
 
 @import "forms";
 
@@ -47,5 +48,7 @@ search: false
 @import "vendor/magnific-popup/magnific-popup";
 @import "print";
 @import "faq";
+
+@import "code";
 
 @import "mocklab-popup";

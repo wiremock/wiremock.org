@@ -6,6 +6,8 @@
 // Create an isolated gallery
 // - $span        : <span>
 // - [$selector]  : child | of-type
+@use "sass:math";
+
 @mixin gallery(
   $span,
   $selector: child
@@ -21,7 +23,7 @@
 
   $inside       : is-inside($span);
   $from         : from($flow);
-  $line         : floor($context / $n);
+  $line         : floor(math.div($context, $n));
   $symmetrical  : is-symmetrical($columns);
 
   $output: (

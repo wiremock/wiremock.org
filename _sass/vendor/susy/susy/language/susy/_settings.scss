@@ -4,6 +4,8 @@
 // Susy Language Defaults
 // ----------------------
 // - PRIVATE
+@use "sass:math";
+
 @include susy-defaults((
   container: auto,
   math: fluid,
@@ -90,7 +92,7 @@ $susy-keywords: (
 
   @if type-of($_gutters) == list and length($_gutters) > 0 {
     $_gutters: (
-      gutters: nth($_gutters, 2) / nth($_gutters, 1),
+      gutters: math.div(nth($_gutters, 2), nth($_gutters, 1)),
       column-width: nth($_gutters, 1),
     );
   } @else {

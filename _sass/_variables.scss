@@ -14,8 +14,8 @@ $indent-var: 1.3em;
 
 /* system typefaces */
 $serif: Georgia, Times, serif;
-$sans-serif: "Lato", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial,
-    sans-serif;
+$sans-serif: "DMSans", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial,
+  sans-serif;
 $monospace: "Source Code Pro", Monaco, Consolas, "Lucida Console", monospace;
 
 /* sans serif typefaces */
@@ -43,14 +43,27 @@ $type-size-6: 0.75em; // ~12px
 $type-size-7: 0.6875em; // ~11px
 $type-size-8: 0.625em; // ~10px
 
+$type-sizes: $type-size-1, $type-size-2, $type-size-3, $type-size-4,
+  $type-size-5, $type-size-6, $type-size-7, $type-size-8;
+
+@for $i from 1 through length($type-sizes) {
+  $size: nth($type-sizes, $i);
+
+  .t-#{$i + 1} {
+    --font-size: #{$size};
+    font-size: #{$size};
+  }
+}
+
 /*
    Colors
    ========================================================================== */
 
 $general-background: #f0f5ff;
 $dark-milk: #7d93bd;
-$dark-blue: #263248;
+$dark-blue: #2d69f6;
 $light-blue: #7e8aa2;
+$lighter-blue: #c3ecfb;
 $very-light-blue: #becdea;
 $orange: #ff9800;
 
@@ -61,14 +74,15 @@ $head-border-bottom: #f0f5ff;
 $gray: #666666;
 $dark-gray: mix(#000, $gray, 40%);
 $darker-gray: mix(#000, $gray, 60%);
-$light-gray: mix(#fff, $gray, 50%);
+$light-gray: #f8f7f9;
 $lighter-gray: mix(#fff, $gray, 90%);
+$blue: #2d69f6;
 
 $body-color: #fff;
 $background-color: #fff;
 $code-background-color: #fafafa;
 $code-background-color-dark: $light-gray;
-$text-color: $gray;
+$text-color: #0f0f0f;
 $border-color: $lighter-gray;
 
 $primary-color: $gray;
@@ -104,7 +118,7 @@ $mocklab-dark-green: #036334;
 
 /* links */
 $head-nav-links: #7d93bd;
-$link-color: $info-color;
+$link-color: $blue;
 $link-color-hover: mix(#000, $link-color, 25%);
 $link-color-visited: mix(#fff, $link-color, 25%);
 $masthead-link-color: $orange;
@@ -132,20 +146,20 @@ $right-sidebar-width: 300px;
 $right-sidebar-width-wide: 400px;
 
 $susy: (
-    columns: 12,
-    // column-width: 90px,
-    gutters: 1/4,
-    math: fluid,
-    output: float,
-    gutter-position: after,
-    container: $large,
-    global-box-sizing: border-box,
-    // debug: (
-    //   image: show,
-    //   color: blue,
-    //   output: overlay,
-    //   toggle: top right,
-    // ),,,,,,,,,,,,,,,,,,,,,,,,,,,
+  columns: 12,
+  // column-width: 90px,
+  gutters: 1 * 0.25,
+  math: fluid,
+  output: float,
+  gutter-position: after,
+  container: $large,
+  global-box-sizing: border-box,
+  // debug: (
+  //   image: show,
+  //   color: blue,
+  //   output: overlay,
+  //   toggle: top right,
+  // ),,,,,,,,,,,,,,,,,,,,,,,,,,,
 );
 
 /*
@@ -157,3 +171,10 @@ $box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125);
 $navicon-width: 28px;
 $navicon-height: 4px;
 $global-transition: all 0.2s ease-in-out;
+
+$p-s: 6px;
+$p-m: 12px;
+$p-l: 24px;
+$p-xl: 36px;
+$p-2xl: 48px;
+$p-3xl: 72px;

@@ -8,12 +8,12 @@
 
 .btn {
   /* default button */
-  display: inline-block;
+  display: block;
   margin-bottom: 0.25em;
-  padding: 0.5em 1em;
+  padding: $p-m $p-l;
   color: #fff !important;
   font-family: $sans-serif;
-  font-size: $type-size-6;
+  font-size: var(--font-size, $type-size-6);
   font-weight: bold;
   text-align: center;
   text-decoration: none;
@@ -23,7 +23,12 @@
   cursor: pointer;
 
   &:hover {
-    background-color: mix(white, #000, 20%);
+    transform: scale(1.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.24);
+  }
+
+  @include breakpoint($medium) {
+    display: inline-block;
   }
 
   .icon {
@@ -48,14 +53,9 @@
   /* for dark backgrounds */
 
   &--inverse {
-    color: $gray !important;
+    color: $text-color !important;
     border: 1px solid $light-gray !important; // override
     background-color: #fff;
-
-    &:hover {
-      color: #fff !important;
-      border-color: $gray;
-    }
   }
 
   /* light outline */
@@ -118,11 +118,8 @@
 
   /* social buttons */
 
-  $social:
-  (facebook, $facebook-color),
-  (twitter, $twitter-color),
-  (google-plus, $google-plus-color),
-  (linkedin, $linkedin-color);
+  $social: (facebook, $facebook-color), (twitter, $twitter-color),
+    (google-plus, $google-plus-color), (linkedin, $linkedin-color);
 
   @each $socialnetwork, $color in $social {
     &--#{$socialnetwork} {
