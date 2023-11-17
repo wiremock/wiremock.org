@@ -22,12 +22,13 @@
   border-radius: $border-radius;
   cursor: pointer;
 
-  @include breakpoint($medium) {
-    display: inline-block;
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.24);
   }
 
-  &:hover {
-    background: darken($dark-blue, 20%);
+  @include breakpoint($medium) {
+    display: inline-block;
   }
 
   .icon {
@@ -55,11 +56,6 @@
     color: $text-color !important;
     border: 1px solid $light-gray !important; // override
     background-color: #fff;
-
-    &:hover {
-      background-color: #eee;
-      color: $text-color !important;
-    }
   }
 
   /* light outline */
