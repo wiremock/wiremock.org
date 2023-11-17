@@ -1,0 +1,18 @@
+.notifyjs-corner {
+  position: absolute !important;
+  top: 0;
+  margin: 0 !important;
+  right: 0;
+
+  .notifyjs-wrapper,
+  .notifyjs-container {
+    margin: 0 !important;
+  }
+
+  .notifyjs-wiremock_notification_with_link-info {
+    border: none !important;
+    border-radius: 0 !important;
+    background-image: none !important;
+    text-align: center;
+  }
+}
