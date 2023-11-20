@@ -38,15 +38,13 @@ and they will be included into the main release line.
 
 To reduce vertical space and provide examples by multiple technology stacks,
 we added support for code tabs in the documentation.
-It is a custom Jekyll plugin providing the `{% codetabs %}` macro in Markdown.
 See the example here: https://wiremock.org/docs/stubbing/ .
 
 Example:
 
 ```markdown
-    {% codetabs %}
     
-    {% codetab JSON %}
+=== "JSON"
     
     ```json
     {
@@ -64,9 +62,8 @@ Example:
     }
     ```
     
-    {% endcodetab %}
     
-    {% codetab Java %}
+=== "Java"
     
     ```java
     @Test
@@ -77,14 +74,9 @@ Example:
     }
     ```
     
-    {% endcodetab %}
-    
-    {% endcodetabs %}
 ```
 
-
 When editing the existing code, make sure to also copy-edit text around it to ensure consistency.
-Example of a patch: [PR #165 - Code tabs in stubbing overview](https://github.com/wiremock/wiremock.org/pull/165).
 
 ## Preparing the developer environment
 

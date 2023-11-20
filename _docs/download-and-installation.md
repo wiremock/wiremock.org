@@ -34,39 +34,29 @@ conflicting versions of its dependencies. The standalone JAR is also runnable (s
 
 Run the following in a terminal:
 
-{% codetabs %}
+=== "Docker"
 
-{% codetab Docker %}
+    ```bash
+    docker run -it --rm -p 8080:8080 --name wiremock \
+    wiremock/wiremock:{{ site.wiremock_version }}
+    ```
 
-```bash
-docker run -it --rm -p 8080:8080 --name wiremock \
-  wiremock/wiremock:{{ site.wiremock_version }}
-```
+=== "Maven"
 
-{% endcodetab %}
+    ```xml
+    <dependency>
+        <groupId>org.wiremock</groupId>
+        <artifactId>wiremock-standalone</artifactId>
+        <version>{{ site.wiremock_version }}</version>
+        <scope>test</scope>
+    </dependency>
+    ```
 
-{% codetab Maven %}
+=== "Gradle Groovy"
 
-```xml
-<dependency>
-    <groupId>org.wiremock</groupId>
-    <artifactId>wiremock-standalone</artifactId>
-    <version>{{ site.wiremock_version }}</version>
-    <scope>test</scope>
-</dependency>
-```
-
-{% endcodetab %}
-
-{% codetab Gradle Groovy %}
-
-```groovy
-testImplementation "org.wiremock:wiremock-standalone:{{ site.wiremock_version }}"
-```
-
-{% endcodetab %}
-
-{% endcodetabs %}
+    ```groovy
+    testImplementation "org.wiremock:wiremock-standalone:{{ site.wiremock_version }}"
+    ```
 
 Learn more in the [Docker guide](../docker).
 

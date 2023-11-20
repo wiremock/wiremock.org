@@ -129,44 +129,36 @@ you want the stub mapping to match on any request method.
 In addition to the status code, the status message can optionally also
 be set.
 
-{% codetabs %}
+=== "Java"
 
-{% codetab Java %}
+    ```java
+    @Test
+    public void statusMessage() {
+        stubFor(get(urlEqualTo("/some/thing"))
+                .willReturn(aResponse()
+                    .withStatus(200)
+                    .withStatusMessage("Everything was just fine!")
+                    .withHeader("Content-Type", "text/plain")));
 
-```java
-@Test
-public void statusMessage() {
-    stubFor(get(urlEqualTo("/some/thing"))
-            .willReturn(aResponse()
-                .withStatus(200)
-                .withStatusMessage("Everything was just fine!")
-                .withHeader("Content-Type", "text/plain")));
-
-    assertThat(testClient.get("/some/thing").statusCode(), is(200));
-    assertThat(testClient.get("/some/thing/else").statusCode(), is(404));
-}
-```
-
-{% endcodetab %}
-
-{% codetab JSON %}
-
-```json
-{
-    "request": {
-        "method": "GET",
-        "url": "/some/thing"
-    },
-    "response": {
-        "status": 200,
-        "statusMessage": "Everything was just fine!"
+        assertThat(testClient.get("/some/thing").statusCode(), is(200));
+        assertThat(testClient.get("/some/thing/else").statusCode(), is(404));
     }
-}
-```
+    ```
 
-{% endcodetab %}
+=== "JSON"
 
-{% endcodetabs %}
+    ```json
+    {
+        "request": {
+            "method": "GET",
+            "url": "/some/thing"
+        },
+        "response": {
+            "status": 200,
+            "statusMessage": "Everything was just fine!"
+        }
+    }
+    ```
 
 ## Stub priority
 
@@ -180,42 +172,34 @@ One example of this might be where you want to define a catch-all stub
 for any URL that doesn't match any more specific cases. Adding a
 priority to a stub mapping facilitates this:
 
-{% codetabs %}
+=== "Java"
 
-{% codetab Java %}
+    ```java
+    //Catch-all case
+    stubFor(get(urlMatching("/api/.*")).atPriority(5)
+        .willReturn(aResponse().withStatus(401)));
 
-```java
-//Catch-all case
-stubFor(get(urlMatching("/api/.*")).atPriority(5)
-    .willReturn(aResponse().withStatus(401)));
+    //Specific case
+    stubFor(get(urlEqualTo("/api/specific-resource")).atPriority(1) //1 is highest
+        .willReturn(aResponse()
+                .withStatus(200)
+                .withBody("Resource state")));
+    ```
 
-//Specific case
-stubFor(get(urlEqualTo("/api/specific-resource")).atPriority(1) //1 is highest
-    .willReturn(aResponse()
-            .withStatus(200)
-            .withBody("Resource state")));
-```
+=== "JSON"
 
-{% endcodetab %}
-
-{% codetab Json %}
-
-```json
-{
-    "priority": 1,
-    "request": {
-        "method": "GET",
-        "url": "/api/specific-resource"
-    },
-    "response": {
-        "status": 200
+    ```json
+    {
+        "priority": 1,
+        "request": {
+            "method": "GET",
+            "url": "/api/specific-resource"
+        },
+        "response": {
+            "status": 200
+        }
     }
-}
-```
-
-{% endcodetab %}
-
-{% endcodetabs %}
+    ```
 
 When unspecified, stubs default to a priority of `5`[<sup>^</sup>](https://github.com/wiremock/wiremock/blob/master/src/main/java/com/github/tomakehurst/wiremock/stubbing/StubMapping.java#L37) where `1` is the highest priority and Java `Integer.MAX_VALUE` (i.e., `2147483647`) is the minimum priority.
 
@@ -223,79 +207,63 @@ When unspecified, stubs default to a priority of `5`[<sup>^</sup>](https://githu
 
 In addition to matching on request headers, it's also possible to send response headers.
 
-{% codetabs %}
+=== "Java"
 
-{% codetab Java %}
+    ```java
+    stubFor(get(urlEqualTo("/whatever"))
+            .willReturn(aResponse()
+                    .withStatus(200)
+                    .withHeader("Content-Type", "application/json")
+                    .withHeader("Set-Cookie", "session_id=91837492837")
+                    .withHeader("Set-Cookie", "split_test_group=B") // You can call withHeader more than once for the same header if multiple values are required
+                    .withHeader("Cache-Control", "no-cache")));
+    ```
 
-```java
-stubFor(get(urlEqualTo("/whatever"))
-        .willReturn(aResponse()
-                .withStatus(200)
-                .withHeader("Content-Type", "application/json")
-                .withHeader("Set-Cookie", "session_id=91837492837")
-                .withHeader("Set-Cookie", "split_test_group=B") // You can call withHeader more than once for the same header if multiple values are required
-                .withHeader("Cache-Control", "no-cache")));
-```
+=== "JSON"
 
-{% endcodetab %}
-
-{% codetab JSON %}
-
-```json
-{
-    "request": {
-        "method": "GET",
-        "url": "/whatever"
-    },
-    "response": {
-        "status": 200,
-        "headers": {
-            "Content-Type": "text/plain",
-            "Set-Cookie": ["session_id=91837492837", "split_test_group=B"],
-            "Cache-Control": "no-cache"
+    ```json
+    {
+        "request": {
+            "method": "GET",
+            "url": "/whatever"
+        },
+        "response": {
+            "status": 200,
+            "headers": {
+                "Content-Type": "text/plain",
+                "Set-Cookie": ["session_id=91837492837", "split_test_group=B"],
+                "Cache-Control": "no-cache"
+            }
         }
     }
-}
-```
-
-{% endcodetab %}
-
-{% endcodetabs %}
+    ```
 
 ## Specifying the response body
 
 The simplest way to specify a response body is as a string literal.
 
-{% codetabs %}
+=== "Java" %}"
 
-{% codetab Java %}
+    ```java
+    stubFor(get(urlEqualTo("/body"))
+            .willReturn(aResponse()
+                    .withBody("Literal text to put in the body")));
+    ```
 
-```java
-stubFor(get(urlEqualTo("/body"))
-        .willReturn(aResponse()
-                .withBody("Literal text to put in the body")));
-```
+=== "JSON"
 
-{% endcodetab %}
-
-{% codetab JSON %}
-
-```json
-{
-    "request": {
-        "method": "GET",
-        "url": "/body"
-    },
-    "response": {
-        "status": 200,
-        "body": "Literal text to put in the body"
+    ```json
+    {
+        "request": {
+            "method": "GET",
+            "url": "/body"
+        },
+        "response": {
+            "status": 200,
+            "body": "Literal text to put in the body"
+        }
     }
-}
 ```
-
-{% endcodetab %}
-
-{% endcodetabs %}
 
 If you're specifying a JSON body via the JSON API, you can avoid having to escape it like this:
 
@@ -315,9 +283,7 @@ under the current directory in which the server was started. To make
 your stub use the file, simply call `bodyFile()` on the response builder
 with the file's path relative to `__files`:
 
-{% codetabs %}
-
-{% codetab Java %}
+=== "Java"
 
 ```java
 stubFor(get(urlEqualTo("/body-file"))
@@ -325,26 +291,20 @@ stubFor(get(urlEqualTo("/body-file"))
                 .withBodyFile("path/to/myfile.xml")));
 ```
 
-{% endcodetab %}
+=== "JSON"
 
-{% codetab JSON %}
-
-```json
-{
-    "request": {
-        "method": "GET",
-        "url": "/body-file"
-    },
-    "response": {
-        "status": 200,
-        "bodyFileName": "path/to/myfile.xml"
+    ```json
+    {
+        "request": {
+            "method": "GET",
+            "url": "/body-file"
+        },
+        "response": {
+            "status": 200,
+            "bodyFileName": "path/to/myfile.xml"
+        }
     }
-}
-```
-
-{% endcodetab %}
-
-{% endcodetabs %}
+    ```
 
 > **note**
 >
@@ -362,36 +322,28 @@ overloaded `body()` in Java.
 
 JSON API accepts this as a base64 string (to avoid stupidly long JSON documents):
 
-{% codetabs %}
+=== "Java"
 
-{% codetab Java %}
+    ```java
+    stubFor(get(urlEqualTo("/binary-body"))
+            .willReturn(aResponse()
+                    .withBody(new byte[] { 1, 2, 3, 4 })));
+    ```
 
-```java
-stubFor(get(urlEqualTo("/binary-body"))
-        .willReturn(aResponse()
-                .withBody(new byte[] { 1, 2, 3, 4 })));
-```
+=== "JSON"
 
-{% endcodetab %}
-
-{% codetab JSON %}
-
-```json
-{
-    "request": {
-        "method": "GET",
-        "url": "/binary-body"
-    },
-    "response": {
-        "status": 200,
-        "base64Body": "WUVTIElOREVFRCE="
+    ```json
+    {
+        "request": {
+            "method": "GET",
+            "url": "/binary-body"
+        },
+        "response": {
+            "status": 200,
+            "base64Body": "WUVTIElOREVFRCE="
+        }
     }
-}
-```
-
-{% endcodetab %}
-
-{% endcodetabs %}
+    ```
 
 ## Default response for unmapped requests
 
@@ -399,42 +351,34 @@ When a request cannot be mapped to a response, Wiremock returns an HTML response
 
 It is possible to customize the response by catching all URLs with a low priority.
 
-{% codetabs %}
+=== "Java"
 
-{% codetab Java %}
+    ```java
+    stubFor(any(anyUrl())
+                    .atPriority(10)
+                    .willReturn(aResponse()
+                            .withStatus(404)
+                            .withBody("{\"status\":\"Error\",\"message\":\"Endpoint not found\"}")));
+    ```
 
-```java
-stubFor(any(anyUrl())
-                .atPriority(10)
-                .willReturn(aResponse()
-                        .withStatus(404)
-                        .withBody("{\"status\":\"Error\",\"message\":\"Endpoint not found\"}")));
-```
+=== "JSON"
 
-{% endcodetab %}
-
-{% codetab JSON %}
-
-```json
-{
-    "priority": 10,
-    "request": {
-        "method": "ANY",
-        "urlPattern": ".*"
-    },
-    "response": {
-        "status": 404,
-        "jsonBody": { "status": "Error", "message": "Endpoint not found" },
-        "headers": {
-            "Content-Type": "application/json"
+    ```json
+    {
+        "priority": 10,
+        "request": {
+            "method": "ANY",
+            "urlPattern": ".*"
+        },
+        "response": {
+            "status": 404,
+            "jsonBody": { "status": "Error", "message": "Endpoint not found" },
+            "headers": {
+                "Content-Type": "application/json"
+            }
         }
     }
-}
-```
-
-{% endcodetab %}
-
-{% endcodetabs %}
+    ```
 
 ## Saving stubs
 
@@ -452,45 +396,37 @@ In Java, Existing stub mappings can be modified, provided they have been assigne
 
 To do the equivalent via the JSON API, `PUT` the edited stub mapping to `/__admin/mappings/{id}`
 
-{% codetabs %}
+=== "Java"
 
-{% codetab Java %}
+    ```java
+    wireMockServer.stubFor(get(urlEqualTo("/edit-this"))
+        .withId(id)
+        .willReturn(aResponse()
+            .withBody("Original")));
 
-```java
-wireMockServer.stubFor(get(urlEqualTo("/edit-this"))
-    .withId(id)
-    .willReturn(aResponse()
-        .withBody("Original")));
+    assertThat(testClient.get("/edit-this").content(), is("Original"));
 
-assertThat(testClient.get("/edit-this").content(), is("Original"));
+    wireMockServer.editStub(get(urlEqualTo("/edit-this"))
+        .withId(id)
+        .willReturn(aResponse()
+            .withBody("Modified")));
 
-wireMockServer.editStub(get(urlEqualTo("/edit-this"))
-    .withId(id)
-    .willReturn(aResponse()
-        .withBody("Modified")));
+    assertThat(testClient.get("/edit-this").content(), is("Modified"));
+    ```
 
-assertThat(testClient.get("/edit-this").content(), is("Modified"));
-```
+=== "JSON"
 
-{% endcodetab %}
-
-{% codetab JSON %}
-
-```json
-{
-    "request": {
-        "urlPath": "/edit-me",
-        "method": "ANY"
-    },
-    "response": {
-        "status": 200
+    ```json
+    {
+        "request": {
+            "urlPath": "/edit-me",
+            "method": "ANY"
+        },
+        "response": {
+            "status": 200
+        }
     }
-}
-```
-
-{% endcodetab %}
-
-{% endcodetabs %}
+    ```
 
 ## File serving
 
@@ -557,57 +493,49 @@ In Java, Multiple stubs can be imported in one call.
 
 The equivalent can be carried out Via the JSON API, `POST` the to `/__admin/mappings/import`:
 
-{% codetabs %}
+=== "Java"
 
-{% codetab Java %}
+    ```java
+    WireMock.importStubs(stubImport()
+        .stub(get("/one").willReturn(ok()))
+        .stub(post("/two").willReturn(ok("Body content")))
+        .stub(put("/three").willReturn(ok()))
+        .ignoreExisting()
+        .deleteAllExistingStubsNotInImport());
+    ```
 
-```java
-WireMock.importStubs(stubImport()
-    .stub(get("/one").willReturn(ok()))
-    .stub(post("/two").willReturn(ok("Body content")))
-    .stub(put("/three").willReturn(ok()))
-    .ignoreExisting()
-    .deleteAllExistingStubsNotInImport());
-```
+=== "JSON"
 
-{% endcodetab %}
-
-{% codetab JSON %}
-
-```json
-{
-    "mappings": [
-        {
-            "request": {
-                "method": "GET",
-                "url": "/one"
+    ```json
+    {
+        "mappings": [
+            {
+                "request": {
+                    "method": "GET",
+                    "url": "/one"
+                },
+                "response": {
+                    "status": 200
+                }
             },
-            "response": {
-                "status": 200
+            {
+                "id": "8c5db8b0-2db4-4ad7-a99f-38c9b00da3f7",
+                "request": {
+                    "url": "/two"
+                },
+                "response": {
+                    "status": 200,
+                    "body": "Body content"
+                }
             }
-        },
-        {
-            "id": "8c5db8b0-2db4-4ad7-a99f-38c9b00da3f7",
-            "request": {
-                "url": "/two"
-            },
-            "response": {
-                "status": 200,
-                "body": "Body content"
-            }
+        ],
+
+        "importOptions": {
+            "duplicatePolicy": "IGNORE",
+            "deleteAllNotInImport": true
         }
-    ],
-
-    "importOptions": {
-        "duplicatePolicy": "IGNORE",
-        "deleteAllNotInImport": true
     }
-}
-```
-
-{% endcodetab %}
-
-{% endcodetabs %}
+    ```
 
 ### Existing stubs policy
 

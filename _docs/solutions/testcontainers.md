@@ -76,105 +76,95 @@ Node.js, Rust, Haskell, Ruby, etc.
 
 Examples of using the Testcontainers Modules for different languages and Testcontainers modules:
 
-{% codetabs %}
+=== "Java"
 
-{% codetab Java %}
+    ```java
+    import org.junit.jupiter.api.*;
+    import org.testcontainers.junit.jupiter.*;
+    import org.wiremock.integrations.testcontainers.testsupport.http.*;
+    import static org.assertj.core.api.Assertions.assertThat;
 
-```java
-import org.junit.jupiter.api.*;
-import org.testcontainers.junit.jupiter.*;
-import org.wiremock.integrations.testcontainers.testsupport.http.*;
-import static org.assertj.core.api.Assertions.assertThat;
+    @Testcontainers
+    class WireMockContainerJunit5Test {
 
-@Testcontainers
-class WireMockContainerJunit5Test {
+        @Container
+        WireMockContainer wiremockServer = new WireMockContainer("2.35.0")
+                .withMapping("hello", WireMockContainerJunit5Test.class, "hello-world.json");
 
-    @Container
-    WireMockContainer wiremockServer = new WireMockContainer("2.35.0")
-            .withMapping("hello", WireMockContainerJunit5Test.class, "hello-world.json");
-
-    @Test
-    void helloWorld() throws Exception {
-        String url = wiremockServer.getUrl("/hello");
-        HttpResponse response = new TestHttpClient().get(url);
-        assertThat(response.getBody())
-                .as("Wrong response body")
-                .contains("Hello, world!");
+        @Test
+        void helloWorld() throws Exception {
+            String url = wiremockServer.getUrl("/hello");
+            HttpResponse response = new TestHttpClient().get(url);
+            assertThat(response.getBody())
+                    .as("Wrong response body")
+                    .contains("Hello, world!");
+        }
     }
-}
-```
+    ```
 
-{% endcodetab %}
+=== "Python"
 
-{% codetab Python %}
+    ```python
+    import pytest
+    from wiremock.testing.testcontainer import wiremock_container
 
-```python
-import pytest
-from wiremock.testing.testcontainer import wiremock_container
+    @pytest.fixture(scope="session") # (1)
+    def wm_server():
+        with wiremock_container(secure=False) as wm:
+            Config.base_url = wm.get_url("__admin") # (2)=
+            Mappings.create_mapping(
+                Mapping(
+                    request=MappingRequest(method=HttpMethods.GET, url="/hello"),
+                    response=MappingResponse(status=200, body="hello"),
+                    persistent=False,
+                )
+            ) # (3)
+            yield wm
 
-@pytest.fixture(scope="session") # (1)
-def wm_server():
-    with wiremock_container(secure=False) as wm:
-        Config.base_url = wm.get_url("__admin") # (2)=
-        Mappings.create_mapping(
-            Mapping(
-                request=MappingRequest(method=HttpMethods.GET, url="/hello"),
-                response=MappingResponse(status=200, body="hello"),
-                persistent=False,
-            )
-        ) # (3)
-        yield wm
+    def test_get_hello_world(wm_server): # (4)
+        resp1 = requests.get(wm_server.get_url("/hello"), verify=False)
+        assert resp1.status_code == 200
+        assert resp1.content == b"hello"
+    ```
 
-def test_get_hello_world(wm_server): # (4)
-    resp1 = requests.get(wm_server.get_url("/hello"), verify=False)
-    assert resp1.status_code == 200
-    assert resp1.content == b"hello"
-```
+=== "Golang"
 
-{% endcodetab %}
+    ```golang
+    package testcontainers_wiremock_quickstart
 
-{% codetab Golang %}
+    import (
+        "context"
+        "testing"
 
-```golang
-package testcontainers_wiremock_quickstart
+        . "github.com/wiremock/wiremock-testcontainers-go"
+    )
 
-import (
-	"context"
-	"testing"
+    func TestWireMock(t *testing.T) {
+        ctx := context.Background()
+        mappingFileName := "hello-world.json"
 
-	. "github.com/wiremock/wiremock-testcontainers-go"
-)
+        container, err := RunContainerAndStopOnCleanup(ctx, t,
+            WithMappingFile(mappingFileName),
+        )
+        if err != nil {
+            t.Fatal(err)
+        }
 
-func TestWireMock(t *testing.T) {
-	ctx := context.Background()
-	mappingFileName := "hello-world.json"
+        statusCode, out, err := SendHttpGet(container, "/hello", nil)
+        if err != nil {
+            t.Fatal(err, "Failed to get a response")
+        }
 
-	container, err := RunContainerAndStopOnCleanup(ctx, t,
-		WithMappingFile(mappingFileName),
-	)
-	if err != nil {
-		t.Fatal(err)
-	}
+        // Verify the response
+        if statusCode != 200 {
+            t.Fatalf("expected HTTP-200 but got %d", statusCode)
+        }
 
-	statusCode, out, err := SendHttpGet(container, "/hello", nil)
-	if err != nil {
-		t.Fatal(err, "Failed to get a response")
-	}
-
-	// Verify the response
-	if statusCode != 200 {
-		t.Fatalf("expected HTTP-200 but got %d", statusCode)
-	}
-
-	if string(out) != "Hello, world!" {
-		t.Fatalf("expected 'Hello, world!' but got %s", out)
-	}
-}
-```
-
-{% endcodetab %}
-
-{% endcodetabs %}
+        if string(out) != "Hello, world!" {
+            t.Fatalf("expected 'Hello, world!' but got %s", out)
+        }
+    }
+    ```
 
 ## Coming soon
 
@@ -182,8 +172,6 @@ The following modules are under prototyping at the moment: `.NET`, `Rust`.
 A lot more features can be implemented in the listed modules,
 and any contributions are welcome!
 If you are interested, join us on the [community Slack](http://slack.wiremock.org/).
-
-## Learn More
 
 ## References
 

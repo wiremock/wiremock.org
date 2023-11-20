@@ -70,38 +70,30 @@ public class BodyLengthMatcher extends RequestMatcherExtension {
 
 Then define a stub with it:
 
-{% codetabs %}
+=== "Java"
 
-{% codetab Java %}
+    ```java
+    stubFor(requestMatching("body-too-long", Parameters.one("maxLength", 2048))
+            .willReturn(aResponse().withStatus(422)));
+    ```
 
-```java
-stubFor(requestMatching("body-too-long", Parameters.one("maxLength", 2048))
-        .willReturn(aResponse().withStatus(422)));
-```
+=== "JSON"
 
-{% endcodetab %}
-
-{% codetab JSON %}
-
-```json
-{
-    "request": {
-        "customMatcher": {
-            "name": "body-too-long",
-            "parameters": {
-                "maxLength": 2048
+    ```json
+    {
+        "request": {
+            "customMatcher": {
+                "name": "body-too-long",
+                "parameters": {
+                    "maxLength": 2048
+                }
             }
+        },
+        "response": {
+            "status": 422
         }
-    },
-    "response": {
-        "status": 422
     }
-}
-```
-
-{% endcodetab %}
-
-{% endcodetabs %}
+    ```
 
 ### Combining standard and custom request matchers
 
@@ -118,9 +110,7 @@ WireMock server. An exception will be thrown if attempting to use an inline cust
 
 Custom matchers defined as extensions can also be combined with standard matchers.
 
-{% codetabs %}
-
-{% codetab Java %}
+=== "Java"
 
 ```java
 stubFor(get(urlPathMatching("/the/.*/one"))
@@ -128,28 +118,22 @@ stubFor(get(urlPathMatching("/the/.*/one"))
         .willReturn(ok()));
 ```
 
-{% endcodetab %}
+=== "JSON"
 
-{% codetab JSON %}
-
-```json
-{
-    "request": {
-        "urlPathPattern": "/the/.*/one",
-        "method": "GET",
-        "customMatcher": {
-            "name": "path-contains-param",
-            "parameters": {
-                "path": "correct"
+    ```json
+    {
+        "request": {
+            "urlPathPattern": "/the/.*/one",
+            "method": "GET",
+            "customMatcher": {
+                "name": "path-contains-param",
+                "parameters": {
+                    "path": "correct"
+                }
             }
+        },
+        "response": {
+            "status": 200
         }
-    },
-    "response": {
-        "status": 200
     }
-}
-```
-
-{% endcodetab %}
-
-{% endcodetabs %}
+    ```

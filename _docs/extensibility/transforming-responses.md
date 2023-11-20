@@ -64,42 +64,34 @@ intend to register them via an instance as described below.
 
 Parameters are supplied on a per stub mapping basis:
 
-{% codetabs %}
+=== "Java"
 
-{% codetab Java %}
+    ```java
+    stubFor(get(urlEqualTo("/transform")).willReturn(
+            aResponse()
+                    .withTransformerParameter("newValue", 66)
+                    .withTransformerParameter("inner", ImmutableMap.of("thing", "value")))); // ImmutableMap is from Guava, but any Map will do
+    ```
 
-```java
-stubFor(get(urlEqualTo("/transform")).willReturn(
-        aResponse()
-                .withTransformerParameter("newValue", 66)
-                .withTransformerParameter("inner", ImmutableMap.of("thing", "value")))); // ImmutableMap is from Guava, but any Map will do
-```
+=== "JSON"
 
-{% endcodetab %}
-
-{% codetab JSON %}
-
-```json
-{
-    "request": {
-        "url": "/transform",
-        "method": "GET"
-    },
-    "response": {
-        "status": 200,
-        "transformerParameters": {
-            "newValue": 66,
-            "inner": {
-                "thing": "value"
+    ```json
+    {
+        "request": {
+            "url": "/transform",
+            "method": "GET"
+        },
+        "response": {
+            "status": 200,
+            "transformerParameters": {
+                "newValue": 66,
+                "inner": {
+                    "thing": "value"
+                }
             }
         }
     }
-}
-```
-
-{% endcodetab %}
-
-{% endcodetabs %}
+    ```
 
 ### Non-global transformations
 
@@ -116,37 +108,30 @@ public boolean applyGlobally() {
 
 Then you add the transformation to specific stubs via its name:
 
-{% codetabs %}
+=== "Java"
 
-{% codetab Java %}
+    ```java
+    stubFor(get(urlEqualTo("/local-transform")).willReturn(aResponse()
+            .withStatus(200)
+            .withBody("Original body")
+            .withTransformers("my-transformer", "other-transformer")));
+    ```
 
-```java
-stubFor(get(urlEqualTo("/local-transform")).willReturn(aResponse()
-        .withStatus(200)
-        .withBody("Original body")
-        .withTransformers("my-transformer", "other-transformer")));
-```
+=== "JSON"
 
-{% endcodetab %}
-
-{% codetab JSON %}
-
-```json
-{
-    "request": {
-        "method": "GET",
-        "url": "/local-transform"
-    },
-    "response": {
-        "status": 200,
-        "body": "Original body",
-        "transformers": ["my-transformer", "other-transformer"]
+    ```json
+    {
+        "request": {
+            "method": "GET",
+            "url": "/local-transform"
+        },
+        "response": {
+            "status": 200,
+            "body": "Original body",
+            "transformers": ["my-transformer", "other-transformer"]
+        }
     }
-}
-```
-{% endcodetab %}
-
-{% endcodetabs %}
+    ```
 
 The Java API also has a convenience method for adding transformers and
 parameters in one call:

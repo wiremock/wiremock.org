@@ -115,13 +115,14 @@ plugins:
 
 nav:
   - Getting started:
+      - Overview: overview
+      - "Quick Start: API Mocking with Java and JUnit 4": quickstart/java-junit
+      - Download and Installation: download-and-installation
+      - WireMock Tutorials: getting-started
+      - FAQ: faq
+
 #    link: /docs/overview
-      - overview
-      - quickstart/java-junit
-      - download-and-installation
-      - getting-started
-      - faq
-  
+
   - WireMock Standalone:
     # link: /docs/standalone
       - standalone/docker

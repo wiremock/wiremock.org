@@ -26,37 +26,29 @@ To send the requests, we will use the embedded HTTP client available in Java 11+
 If you want to add a Java 1.8 test, you will need to add an external HTTP Client implementation
 like [Apache HttpClient](https://hc.apache.org/httpcomponents-client-5.2.x/#).
 
-{% codetabs %}
+=== "Maven"
 
-{% codetab Maven %}
+    ```xml
+    <dependency>
+        <groupId>org.wiremock</groupId>
+        <artifactId>wiremock</artifactId>
+        <version>{{ site.wiremock_version }}</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.assertj</groupId>
+        <artifactId>assertj-core</artifactId>
+        <version>3.24.2</version>
+        <scope>test</scope>
+    </dependency>
+    ```
 
-```xml
-<dependency>
-    <groupId>org.wiremock</groupId>
-    <artifactId>wiremock</artifactId>
-    <version>{{ site.wiremock_version }}</version>
-    <scope>test</scope>
-</dependency>
-<dependency>
-    <groupId>org.assertj</groupId>
-    <artifactId>assertj-core</artifactId>
-    <version>3.24.2</version>
-    <scope>test</scope>
-</dependency>
-```
+=== "Gradle Groovy"
 
-{% endcodetab %}
-
-{% codetab Gradle Groovy %}
-
-```groovy
-testImplementation "org.wiremock:wiremock:{{ site.wiremock_version }}"
-testImplementation "org.assertj:assertj-core:3.24.2"
-```
-
-{% endcodetab %}
-
-{% endcodetabs %}
+    ```groovy
+    testImplementation "org.wiremock:wiremock:{{ site.wiremock_version }}"
+    testImplementation "org.assertj:assertj-core:3.24.2"
+    ```
 
 ## Add the WireMock rule
 
