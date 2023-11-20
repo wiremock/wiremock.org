@@ -125,69 +125,68 @@ nav:
 
   - WireMock Standalone:
     # link: /docs/standalone
-      - standalone/docker
-      - standalone/java-jar
-      - standalone/administration
+      - Running in Docker: standalone/docker
+      - Running as a Standalone Process: standalone/java-jar
+      - Administration API: standalone/administration
   
   - Java Usage:
     # link: /docs/solutions/jvm/
-      - junit-jupiter
-      - junit-extensions
-      - spring-boot
-      - java-usage
-      - configuration
-      - running-without-http-server
-      - android
+      - JUnit 5+ Jupiter: junit-jupiter
+      - JUnit 4 and Vintage: junit-extensions
+      - Spring Boot: spring-boot
+      - Plain Java: java-usage
+      - Java configuration: configuration
+      - Running without the HTTP Server: running-without-http-server
       
   - Stubbing & Verifying:
     #link: /docs/stubbing
-      - stubbing
-      - request-matching
-      - response-templating
-      - simulating-faults
-      - stateful-behaviour
-      - proxying
-      - verifying
+      - Stubbing: stubbing
+      - Request Matching: request-matching
+      - Response Templating: response-templating
+      - Simulating Faults: simulating-faults
+      - Stateful Behaviour: stateful-behaviour
+      - Proxying: proxying
+      - Verifying: verifying
   
   - Templating:
     # link: /docs/mock-api-templates
-      - mock-api-templates
-      - mock-api-templates/usage
+      - WireMock API Templates Library: mock-api-templates
+      - Using Mock API Templates: mock-api-templates/usage
   
   - Record & Playback:
     #link: /docs/record-playback/
-      - record-playback
+      - Record and Playback: record-playback
   
   - Protocols:
-      - webhooks-and-callbacks
-      - grpc
-      - solutions/graphql
-      - https
+      - Webhooks and Callbacks: webhooks-and-callbacks
+      - Mocking gRPC services: grpc
+      - WireMock and GraphQL: solutions/graphql
+      - Serving HTTPs: https
   
   - Advanced use-cases:
-      - multi-domain-mocking
-      - advanced/deploy-to-servlet-container
-      - advanced/java7
+      - Multi-domain Mocking: multi-domain-mocking
+      - Deploying into a servlet container: advanced/deploy-to-servlet-container
+      - "WireMock on Java 1.7": advanced/java7
   
   - Extensibility:
     # link: /docs/extending-wiremock/
-      - extending-wiremock
-      - extensibility/filtering-requests
-      - extensibility/transforming-responses
-      - extensibility/custom-matching
-      - extensibility/listening-for-serve-events
-      - extensibility/extending-the-admin-api
-      - extensibility/adding-template-helpers
-      - extensibility/adding-template-model-data
-      - extensibility/listening-for-stub-changes
-      - extensibility/listening-for-settings-changes
-      - extensibility/adding-mappings-loader
-      - stub-metadata
+      - Extending WireMock: extending-wiremock
+      - Filtering and Modifying Requests: extensibility/filtering-requests
+      - Transforming Responses: extensibility/transforming-responses
+      - Custom Matching: extensibility/custom-matching
+      - Listening for Serve Events: extensibility/listening-for-serve-events
+      - Admin API Extensions: extensibility/extending-the-admin-api
+      - Adding Template Helpers: extensibility/adding-template-helpers
+      - Adding Template Model Data: extensibility/adding-template-model-data
+      - Listening for Stub Changes: extensibility/listening-for-stub-changes
+      - Listening for Settings Changes: extensibility/listening-for-settings-changes
+      - Mappings Loader Extensions: extensibility/adding-mappings-loader
+      - Stub Metadata: stub-metadata
   
   - Reference:
     # pages:
-      - standalone/admin-api-reference
-      - mock-api-templates
+      - Admin API: standalone/admin-api-reference
+      - WireMock API Templates Library: mock-api-templates
 
   - Extensions:
     - Features:
