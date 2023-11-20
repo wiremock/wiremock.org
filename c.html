@@ -24,11 +24,36 @@ header_signup_link: "https://www.wiremock.io/product?utm_source=wiremock.org&utm
     <div class="home-hero__boxes">
       <div class="home-hero__box">
         <h2 class="home-hero__heading">
-          <img
-            src="/assets/svg/source.svg"
-            alt="source"
-            class="home-hero__icon"
-          />
+          <div class="fake-osx-chrome">
+            <div class="fake-osx-chrome-title-bar">
+              <span
+                class="dot"
+                style="background: #ed6a5e; border-color: #ad473e"
+              ></span>
+              <span
+                class="dot"
+                style="background: #f4bf4f; border-color: #9e7930"
+              ></span>
+              <span
+                class="dot"
+                style="background: #62c856; border-color: #408636"
+              ></span>
+            </div>
+            <div class="fake-osx-chrome-content-pane">
+{% highlight json %} 
+{ 
+  "request": { 
+    "method": "GET", 
+    "url": "/wiremock"
+  }, 
+  "response": { 
+    "status": 200, 
+    "body": "Easy!" 
+  }
+} 
+{% endhighlight %}
+            </div>
+          </div>
           Open Source
         </h2>
         <p>
@@ -42,11 +67,10 @@ header_signup_link: "https://www.wiremock.io/product?utm_source=wiremock.org&utm
         </div>
       </div>
       <div class="home-hero__box home-hero__box--alt">
-        <h2 class="home-hero__heading">
+        <h2 class="home-hero__heading home-hero__heading--c">
           <img
-            src="/assets/svg/cloud.svg"
+            src="{{ '/images/wiremock-cloud/hero-dash.png' | absolute_url }}"
             alt="cloud"
-            class="home-hero__icon"
           />
           Cloud
         </h2>

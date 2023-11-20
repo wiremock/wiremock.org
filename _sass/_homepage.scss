@@ -15,6 +15,20 @@ html {
   }
 
   @include breakpoint($medium) {
+    &--b {
+      margin-bottom: 70px;
+
+      .container {
+        display: grid;
+        grid-template-rows: minmax(min-content, 200px) minmax(
+            min-content,
+            calc(100vh - 350px)
+          );
+        align-content: space-evenly;
+        height: 100%;
+      }
+    }
+
     .home-header-container {
       gap: $p-3xl;
       flex-direction: row;
@@ -22,6 +36,7 @@ html {
 
     .home-header-hero-text {
       flex: 0 1 50%;
+      padding: $p-xl;
     }
   }
 }
@@ -89,14 +104,17 @@ html {
 
 .fake-osx-chrome {
   width: 100%;
-  box-shadow: 3px 3px 7px 0px;
+  margin-bottom: $p-l;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.24);
   border-radius: 8px;
 }
 
 .fake-osx-chrome-title-bar {
+  display: flex;
+  gap: 5px;
+  padding: 10px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  padding: 10px;
   padding-left: 15px;
   background-color: #223746;
 
@@ -104,6 +122,19 @@ html {
     content: "";
     display: table;
     clear: both;
+  }
+}
+
+.fake-osx-chrome-content-pane {
+  font-size: 16px;
+
+  .highlight {
+    margin: 0;
+    background: white;
+
+    pre {
+      margin: 0;
+    }
   }
 }
 
@@ -1063,11 +1094,16 @@ html {
   }
 
   .wiremock-cloud-wrapper {
+    padding: $p-l;
     flex-direction: column;
     align-items: center;
 
     .wiremock-cloud-vLine {
       display: none;
+    }
+
+    .wiremock-cloud-img {
+      padding: 0;
     }
 
     .wiremock-cloud-details {
@@ -1166,6 +1202,7 @@ html {
       padding: $p-xl 0;
       display: flex;
       gap: $p-3xl;
+      align-items: center;
     }
   }
 
@@ -1192,10 +1229,6 @@ html {
     background-color: $light-gray;
     border-radius: 10px;
 
-    &__box--b {
-      grid-template-rows: auto min-content 1fr min-content;
-    }
-
     &--alt {
       background: $blue;
       border-radius: 10px;
@@ -1215,6 +1248,12 @@ html {
     @media (min-width: 920px) {
       font-size: $type-size-2;
       margin-bottom: $p-l;
+    }
+
+    &--c {
+      img {
+        margin-bottom: $p-l;
+      }
     }
   }
 }
