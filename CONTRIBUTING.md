@@ -32,7 +32,33 @@ that is included as a submodule and build by the CD flow.
 To update the documentation, submit pull requests against the branch,
 and they will be included into the main release line.
 
-## Editing
+## Documentation
+
+The documentation is built using 
+[MkDocs](https://www.mkdocs.org/),
+[mkdocs-multirepo-plugin](https://github.com/jdoiro3/mkdocs-multirepo-plugin/tree/main) and
+[Material for MkDocs](https://squidfunk.github.io/mkdocs-material)
+
+### Building
+
+Requirements:
+
+- Python and PiP, recent versions
+
+```shell
+pip install -r requirements.txt
+mkdocs build
+```
+
+### Local development
+
+To serve the site locally:
+
+```shell
+mkdocs serve
+```
+
+Note that the multi-repo site maybe quite slow during the first build.
 
 ### Code Tabs
 
@@ -78,7 +104,9 @@ Example:
 
 When editing the existing code, make sure to also copy-edit text around it to ensure consistency.
 
-## Preparing the developer environment
+## Main site
+
+### Preparing the developer environment
 
 The website is powered by Jekyll, and hence the Ruby developer environment is needed.
 It is recommended to use `Ruby 2.7.6` because of the known compatibility issues between recent Jekyll version and Ruby 3.
@@ -90,7 +118,7 @@ Prerequisites:
 - Ruby 2.7.6
 - Bundler 2.4.10
 
-## Building the website
+### Building the website
 
 ```bash
 # Install the dependencies including Jekyll
@@ -102,7 +130,7 @@ bundle exec jekyll build --config '_config.yml'
 
 Note that `_config_preview.yml' is used to disable analytics in the deployed versions
 
-## Running the website locally
+### Running the website locally
 
 You can run the website locally and get live preview of the changes
 on the website and in the documentation contents.
