@@ -130,6 +130,8 @@ exclude:
     - tmp
     # Served via symbolic links
     - .submodules
+    # Delegated to MkDocs
+    - _docs
 keep_files:
     - .git
     - .svn

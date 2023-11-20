@@ -1,5 +1,4 @@
 ---
-layout: docs
 title: Overview
 meta_title: WireMock Overview and Basics
 toc_rank: 1

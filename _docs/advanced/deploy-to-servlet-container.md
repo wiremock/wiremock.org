@@ -1,5 +1,4 @@
 ---
-layout: docs
 title: Deploying into a servlet container
 meta_title: Deploying into a servlet container | WireMock
 description: "WireMock can be packaged up as a WAR and deployed into a servlet

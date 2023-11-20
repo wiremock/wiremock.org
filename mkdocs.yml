@@ -1,0 +1,224 @@
+site_name: WireMock Documentation
+site_description: >-
+  WireMock Documentation.
+copyright: Copyright &copy; 2023 - WireMock Contributors
+docs_dir: _docs
+
+# Build
+site_dir: _site-docs
+
+
+theme:
+  name: material
+  highlightjs: true
+  features:
+    - announce.dismiss
+    - content.action.edit
+    - content.action.view
+    - content.code.annotate
+    - content.code.copy
+    # - content.code.select
+    # - content.tabs.link
+    - content.tooltips
+    # - header.autohide
+    # - navigation.expand
+    - navigation.footer
+    # NOT compatible qith toc.integrate
+    # - navigation.indexes
+    - navigation.path
+    # - navigation.instant
+    # - navigation.instant.prefetch
+    # - navigation.instant.progress
+    # - navigation.prune
+    - navigation.sections
+    - navigation.expand
+    #- navigation.tabs
+    # - navigation.tabs.sticky
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+    - toc.integrate
+  font:
+    text: DM Sans
+    code: Roboto Mono
+  favicon: images/logos/wiremock/logo_small.svg
+  logo: images/logos/wiremock/logo_wide.svg
+
+extra:
+  social:
+    - icon: fontawesome/brands/slack
+      link: https://slack.wiremock.org/
+      name: WireMock Community Slack
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/wiremockorg
+      name: WireMock on Twitter
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/wiremock/
+      name: WireMock on LinkedIn
+    - icon: fontawesome/brands/mastodon
+      link: https://fosstodon.org/@wiremock
+      name: WireMock on Fosstodon
+  
+    
+extra_css:
+  - assets/css/wiremock.css
+
+plugins:
+  - search
+  - multirepo:
+      # TODO: Change to True once works
+      cleanup: false
+      keep_docs_dir: false
+      nav_repos:
+        - name: graphql
+          import_url: 'https://github.com/wiremock/wiremock-graphql-extension?branch=main&edit_uri=/blob/main/'
+          imports: [ /README.md, docs/* ]
+        - name: grpc
+          import_url: 'https://github.com/wiremock/wiremock-grpc-extension?branch=main&edit_uri=/blob/main/'
+          imports: [ /README.md, docs/* ]
+        - name: state
+          import_url: 'https://github.com/wiremock/wiremock-extension-state?branch=develop&edit_uri=/blob/develop/'
+          imports: [ /README.md, docs/*  ]
+ 
+          
+        # Outside WireMock GitHub org
+        - name: 9cookies
+          import_url: 'https://github.com/9cookies/wiremock-extensions?branch=master&edit_uri=/blob/master/'
+          imports: [ /*.md ]
+        - name: jwt
+          import_url: 'https://github.com/MasonM/wiremock-jwt-extension?branch=master&edit_uri=/blob/master/'
+          imports: [ /README.md ]
+        - name: cors
+          import_url: 'https://github.com/RichieLoco/WiremockCorsExtension?branch=master&edit_uri=/blob/master/'
+          imports: [ /README.md ]
+        - name: stub-mapping-tracker
+          import_url: 'https://github.com/MasonM/wiremock-stub-mapping-tracker?branch=master&edit_uri=/blob/master/'
+          imports: [ /README.md ]
+        - name: prometheus
+          import_url: 'https://github.com/mikeskali/wiremock-metrics?branch=master&edit_uri=/blob/master/'
+          imports: [ /README.md ]
+        - name: record-delay
+          import_url: 'https://github.com/anuragashok/wiremock-extension-record-delay?branch=main&edit_uri=/blob/main/'
+          imports: [ /README.md ]
+        
+        # System
+        - name: community
+          import_url: 'https://github.com/wiremock/community?branch=main&edit_uri=/blob/main/'
+          imports: [ contributing/* ]
+        - name: dotgithub
+          import_url: 'https://github.com/wiremock/.github?branch=main&edit_uri=/blob/main/'
+          imports: [ CONTRIBUTING.md, SECURITY.md, CODE_OF_CONDUCT.md ]
+        
+
+nav:
+  - Getting started:
+#    link: /docs/overview
+      - overview
+      - quickstart/java-junit
+      - download-and-installation
+      - getting-started
+      - faq
+  
+  - WireMock Standalone:
+    # link: /docs/standalone
+      - standalone/docker
+      - standalone/java-jar
+      - standalone/administration
+  
+  - Java Usage:
+    # link: /docs/solutions/jvm/
+      - junit-jupiter
+      - junit-extensions
+      - spring-boot
+      - java-usage
+      - configuration
+      - running-without-http-server
+      - android
+      
+  - Stubbing & Verifying:
+    #link: /docs/stubbing
+      - stubbing
+      - request-matching
+      - response-templating
+      - simulating-faults
+      - stateful-behaviour
+      - proxying
+      - verifying
+  
+  - Templating:
+    # link: /docs/mock-api-templates
+      - mock-api-templates
+      - mock-api-templates/usage
+  
+  - Record & Playback:
+    #link: /docs/record-playback/
+      - record-playback
+  
+  - Protocols:
+      - webhooks-and-callbacks
+      - grpc
+      - solutions/graphql
+      - https
+  
+  - Advanced use-cases:
+      - multi-domain-mocking
+      - advanced/deploy-to-servlet-container
+      - advanced/java7
+  
+  - Extensibility:
+    # link: /docs/extending-wiremock/
+      - extending-wiremock
+      - extensibility/filtering-requests
+      - extensibility/transforming-responses
+      - extensibility/custom-matching
+      - extensibility/listening-for-serve-events
+      - extensibility/extending-the-admin-api
+      - extensibility/adding-template-helpers
+      - extensibility/adding-template-model-data
+      - extensibility/listening-for-stub-changes
+      - extensibility/listening-for-settings-changes
+      - extensibility/adding-mappings-loader
+      - stub-metadata
+  
+  - Reference:
+    # pages:
+      - standalone/admin-api-reference
+      - mock-api-templates
+
+  - Extensions:
+    - Features:
+      - gRPC: grpc/README.md
+      - GraphQL: graphql/README.md
+      - Response Template Transformer: wiremock/_docs/response-templating.md
+      - State: state/README.md
+      - Webhooks: wiremock/_docs/webhooks-and-callbacks.md
+
+      # Outside WireMock GitHub org
+      - CORS protection: cors/README.md
+      - JSON Web Tokens (JWT): jwt/README.md
+      - JSON Body Transformer: 9cookies/json-body-transformer.md
+      - Request Time Matcher: 9cookies/request-time-matcher.md
+      
+    - Operations Extensions:
+      - Prometheus Metrics: prometheus/README.md
+
+    - Developer Extensions:
+      - Callback Simulator: 9cookies/callback-simulator.md
+      - Keywords: 9cookies/keywords.md
+      - Stub Mapping Tracker: stub-mapping-tracker/README.md
+      - Record Delay Capture: record-delay/README.md
+
+  - General:
+      Security: dotgithub/SECURITY.md
+
+  - Contributing:
+    - Contributor Guide: community/contributing/README.md 
+    - Hacktoberfest 2023: dotgithub/CONTRIBUTING.md
+    - Creating Extensions: wiremock/_docs/extending-wiremock.md
+    - Code of Conduct: dotgithub/CODE_OF_CONDUCT.md
+
+
+    
