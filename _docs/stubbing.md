@@ -25,73 +25,61 @@ when the relative URL exactly matches `/some/thing` (including query parameters)
 The body of the response will be "Hello world!" and a
 `Content-Type` header will be sent with a value of `text-plain`.
 
-{% codetabs %}
+=== "JSON"
 
-{% codetab JSON %}
+    ```json
+    {
+    "request": {
+        "method": "GET",
+        "url": "/some/thing"
+    },
 
-```json
-{
-  "request": {
-    "method": "GET",
-    "url": "/some/thing"
-  },
-
-  "response": {
-    "status": 200,
-    "body": "Hello, world!",
-    "headers": {
-        "Content-Type": "text/plain"
+    "response": {
+        "status": 200,
+        "body": "Hello, world!",
+        "headers": {
+            "Content-Type": "text/plain"
+        }
     }
-  }
-}
-```
+    }
+    ```
 
-{% endcodetab %}
+=== "Java"
 
-{% codetab Java %}
+    ```java
+    @Test
+    public void exactUrlOnly() {
+        stubFor(get(urlEqualTo("/some/thing"))
+                .willReturn(aResponse()
+                    .withHeader("Content-Type", "text/plain")
+                    .withBody("Hello world!")));
 
-```java
-@Test
-public void exactUrlOnly() {
-    stubFor(get(urlEqualTo("/some/thing"))
-            .willReturn(aResponse()
-                .withHeader("Content-Type", "text/plain")
-                .withBody("Hello world!")));
+        assertThat(testClient.get("/some/thing").statusCode(), is(200));
+        assertThat(testClient.get("/some/thing/else").statusCode(), is(404));
+    }
+    ```
 
-    assertThat(testClient.get("/some/thing").statusCode(), is(200));
-    assertThat(testClient.get("/some/thing/else").statusCode(), is(404));
-}
-```
+=== "Python"
 
-{% endcodetab %}
-
-{% codetab Python %}
-
-```python
-Mappings.create_mapping(
-    Mapping(
-        request=MappingRequest(method=HttpMethods.GET, url="/some/thing"),
-        response=MappingResponse(status=200, body="Hello, world!", headers=("Content-Type", "text/plain")),
+    ```python
+    Mappings.create_mapping(
+        Mapping(
+            request=MappingRequest(method=HttpMethods.GET, url="/some/thing"),
+            response=MappingResponse(status=200, body="Hello, world!", headers=("Content-Type", "text/plain")),
+        )
     )
-)
-```
+    ```
 
-{% endcodetab %}
+=== "Golang"
 
-{% codetab Golang %}
-
-```go
-wiremockClient.StubFor(wiremock.Get(wiremock.URLPathEqualTo("/some/thing")).
-        WillReturnResponse(
-            wiremock.NewResponse().
-                WithStatus(http.StatusOK).
-                WithBody("Hello, world!").
-                WithHeader("Content-Type", "text/plain")))
-```
-
-{% endcodetab %}
-
-{% endcodetabs %}
+    ```go
+    wiremockClient.StubFor(wiremock.Get(wiremock.URLPathEqualTo("/some/thing")).
+            WillReturnResponse(
+                wiremock.NewResponse().
+                    WithStatus(http.StatusOK).
+                    WithBody("Hello, world!").
+                    WithHeader("Content-Type", "text/plain")))
+    ```
 
 In Java, if you'd prefer to use slightly more BDDish language in your tests,
 you can replace `stubFor` with `givenThat`.

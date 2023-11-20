@@ -17,8 +17,8 @@ theme:
     - content.action.view
     - content.code.annotate
     - content.code.copy
-    # - content.code.select
-    # - content.tabs.link
+    - content.code.select
+    - content.tabs.link
     - content.tooltips
     # - header.autohide
     # - navigation.expand
@@ -71,7 +71,7 @@ plugins:
   - multirepo:
       # TODO: Change to True once works
       cleanup: false
-      keep_docs_dir: false
+      keep_docs_dir: true
       nav_repos:
         - name: graphql
           import_url: 'https://github.com/wiremock/wiremock-graphql-extension?branch=main&edit_uri=/blob/main/'
@@ -212,7 +212,7 @@ nav:
       - Record Delay Capture: record-delay/README.md
 
   - General:
-      Security: dotgithub/SECURITY.md
+    - Security: dotgithub/SECURITY.md
 
   - Contributing:
     - Contributor Guide: community/contributing/README.md 
@@ -220,5 +220,14 @@ nav:
     - Creating Extensions: wiremock/_docs/extending-wiremock.md
     - Code of Conduct: dotgithub/CODE_OF_CONDUCT.md
 
-
-    
+ # Markdown
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
