@@ -3,7 +3,7 @@
 Repository that stores the WireMock website and documentation.
 Powered by Jekyll and Markdown.
 The website uses the [Minimal Mistakes Theme](https://mmistakes.github.io/minimal-mistakes/) for Jekyll.
-The documentation is built using 
+The documentation is built using
 [MkDocs](https://www.mkdocs.org/),
 [mkdocs-multirepo-plugin](https://github.com/jdoiro3/mkdocs-multirepo-plugin/tree/main) and
 [Material for MkDocs](https://squidfunk.github.io/mkdocs-material)
