@@ -1,0 +1,47 @@
+:root {
+    --wm-blue: #0FB2EF;
+    --wm-orange: #FF9505;
+    --wm-light-blue: #F0F5FF;
+  }
+
+.wm-button {
+    height: 100%;
+    right: 0;
+    padding: 0 0.5rem;
+    outline: none;
+    height: 40px;
+    background-color: var(--wm-light-blue);
+    border: 3px solid var(--wm-blue);
+    border-radius: 5px;
+    font-weight: bold;
+    color: var(--wm-blue);
+    cursor: pointer;
+}
+
+.wm-left {
+    float: left;
+}
+
+.wy-side-nav-search {
+    background-color: var(--wm-blue);
+}
+
+.md-nav__item--section>.md-nav__link[for] {
+    color: var(--wm-blue);
+}
+
+.md-typeset h1 {
+    color: var(--wm-blue); 
+}
+
+h2 {
+    color: var(--wm-blue); 
+}
+
+h3 {
+    color: var(--wm-blue); 
+}
+
+h4 {
+    color: var(--wm-blue); 
+}

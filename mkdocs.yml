@@ -44,7 +44,7 @@ theme:
   font:
     text: DM Sans
     code: Roboto Mono
-  favicon: images/logos/wiremock/logo_small.svg
+  favicon: assets/images/favicon.svg
   logo: images/logos/wiremock/logo_wide.svg
 
 extra:
