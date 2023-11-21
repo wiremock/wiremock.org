@@ -32,7 +32,7 @@ theme:
     # - navigation.prune
     - navigation.sections
     - navigation.expand
-    #- navigation.tabs
+    - navigation.tabs
     # - navigation.tabs.sticky
     - navigation.top
     - navigation.tracking
@@ -114,79 +114,50 @@ plugins:
         
 
 nav:
-  - Getting started:
-      - Overview: overview
-      - "Quick Start: API Mocking with Java and JUnit 4": quickstart/java-junit
-      - Download and Installation: download-and-installation
-      - WireMock Tutorials: getting-started
-      - FAQ: faq
-
-#    link: /docs/overview
-
-  - WireMock Standalone:
-    # link: /docs/standalone
-      - Running in Docker: standalone/docker
-      - Running as a Standalone Process: standalone/java-jar
-      - Administration API: standalone/administration
-  
-  - Java Usage:
-    # link: /docs/solutions/jvm/
-      - JUnit 5+ Jupiter: junit-jupiter
-      - JUnit 4 and Vintage: junit-extensions
-      - Spring Boot: spring-boot
-      - Plain Java: java-usage
-      - Java configuration: configuration
-      - Running without the HTTP Server: running-without-http-server
-      
-  - Stubbing & Verifying:
-    #link: /docs/stubbing
-      - Stubbing: stubbing
-      - Request Matching: request-matching
-      - Response Templating: response-templating
-      - Simulating Faults: simulating-faults
-      - Stateful Behaviour: stateful-behaviour
-      - Proxying: proxying
-      - Verifying: verifying
-  
-  - Templating:
-    # link: /docs/mock-api-templates
-      - WireMock API Templates Library: mock-api-templates
-      - Using Mock API Templates: mock-api-templates/usage
-  
-  - Record & Playback:
-    #link: /docs/record-playback/
-      - Record and Playback: record-playback
-  
-  - Protocols:
-      - Webhooks and Callbacks: webhooks-and-callbacks
-      - Mocking gRPC services: grpc
-      - WireMock and GraphQL: solutions/graphql
-      - Serving HTTPs: https
-  
-  - Advanced use-cases:
-      - Multi-domain Mocking: multi-domain-mocking
-      - Deploying into a servlet container: advanced/deploy-to-servlet-container
-      - "WireMock on Java 1.7": advanced/java7
-  
-  - Extensibility:
-    # link: /docs/extending-wiremock/
-      - Extending WireMock: extending-wiremock
-      - Filtering and Modifying Requests: extensibility/filtering-requests
-      - Transforming Responses: extensibility/transforming-responses
-      - Custom Matching: extensibility/custom-matching
-      - Listening for Serve Events: extensibility/listening-for-serve-events
-      - Admin API Extensions: extensibility/extending-the-admin-api
-      - Adding Template Helpers: extensibility/adding-template-helpers
-      - Adding Template Model Data: extensibility/adding-template-model-data
-      - Listening for Stub Changes: extensibility/listening-for-stub-changes
-      - Listening for Settings Changes: extensibility/listening-for-settings-changes
-      - Mappings Loader Extensions: extensibility/adding-mappings-loader
-      - Stub Metadata: stub-metadata
-  
-  - Reference:
-    # pages:
-      - Admin API: standalone/admin-api-reference
-      - WireMock API Templates Library: mock-api-templates
+  - Using WireMock:
+    - Getting started:
+        - Overview: overview.md
+        - "Quick Start: API Mocking with Java and JUnit 4": quickstart/java-junit.md
+        - Download and Installation: download-and-installation.md
+        - WireMock Tutorials: getting-started.md
+        - FAQ: faq.md
+    - WireMock Standalone:
+        - Running in Docker: standalone/docker.md
+        - Running as a Standalone Process: standalone/java-jar.md
+        - Administration API: standalone/administration.md
+    - Java Usage:
+        - JUnit 5+ Jupiter: junit-jupiter.md
+        - JUnit 4 and Vintage: junit-extensions.md
+        - Spring Boot: spring-boot.md
+        - Plain Java: java-usage.md
+        - Java configuration: configuration.md
+        - Running without the HTTP Server: running-without-http-server  .md
+    - Stubbing & Verifying:
+        - Stubbing: stubbing.md
+        - Request Matching: request-matching.md
+        - Response Templating: response-templating.md
+        - Simulating Faults: simulating-faults.md
+        - Stateful Behaviour: stateful-behaviour.md
+        - Proxying: proxying.md
+        - Verifying: verifying.md
+    - Templating:
+        - WireMock API Templates Library: mock-api-templates.md
+        - Using Mock API Templates: mock-api-templates/usage.md
+    - Record & Playback:
+        - Record and Playback: record-playback.md
+    - Protocols:
+        - Webhooks and Callbacks: webhooks-and-callbacks.md
+        - Mocking gRPC services: grpc.md
+        - WireMock and GraphQL: solutions/graphql.md
+        - Serving HTTPs: https.md
+    - Advanced use-cases:
+        - Multi-domain Mocking: multi-domain-mocking.md
+        - Deploying into a servlet container: advanced/deploy-to-servlet-container.md
+        - "WireMock on Java 1.7": advanced/java7.md
+    - Reference:
+        - Admin API: standalone/admin-api-reference.md
+        - Security: dotgithub/SECURITY.md
+        - WireMock API Templates Library: mock-api-templates.md
 
   - Extensions:
     - Features:
@@ -195,25 +166,32 @@ nav:
       - Response Template Transformer: wiremock/_docs/response-templating.md
       - State: state/README.md
       - Webhooks: wiremock/_docs/webhooks-and-callbacks.md
-
-      # Outside WireMock GitHub org
       - CORS protection: cors/README.md
       - JSON Web Tokens (JWT): jwt/README.md
       - JSON Body Transformer: 9cookies/json-body-transformer.md
       - Request Time Matcher: 9cookies/request-time-matcher.md
-      
     - Operations Extensions:
       - Prometheus Metrics: prometheus/README.md
-
     - Developer Extensions:
       - Callback Simulator: 9cookies/callback-simulator.md
       - Keywords: 9cookies/keywords.md
       - Stub Mapping Tracker: stub-mapping-tracker/README.md
       - Record Delay Capture: record-delay/README.md
 
-  - General:
-    - Security: dotgithub/SECURITY.md
-
+  - Extending WireMock:
+    - Extending WireMock: extending-wiremock.md
+    - Filtering and Modifying Requests: extensibility/filtering-requests.md
+    - Transforming Responses: extensibility/transforming-responses.md
+    - Custom Matching: extensibility/custom-matching.md
+    - Listening for Serve Events: extensibility/listening-for-serve-events.md
+    - Admin API Extensions: extensibility/extending-the-admin-api.md
+    - Adding Template Helpers: extensibility/adding-template-helpers.md
+    - Adding Template Model Data: extensibility/adding-template-model-data.md
+    - Listening for Stub Changes: extensibility/listening-for-stub-changes.md
+    - Listening for Settings Changes: extensibility/listening-for-settings-changes.md
+    - Mappings Loader Extensions: extensibility/adding-mappings-loader.md
+    - Stub Metadata: stub-metadata.md
+  
   - Contributing:
     - Contributor Guide: community/contributing/README.md 
     - Hacktoberfest 2023: dotgithub/CONTRIBUTING.md
