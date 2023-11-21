@@ -9,11 +9,11 @@ og_image: solutions/testcontainers/testcontainers_c_opengraph.png
 
 ## Testcontainers for C/C++ module
 
-<img src="{{ '/images/solutions/testcontainers/testcontainers_c_logo_wide.png' | absolute_url }}" alt="Testcontainers C" style="width: 60%; height: auto; margin-top: 1em;"/>
+<img src="/images/solutions/testcontainers/testcontainers_c_logo_wide.png" alt="Testcontainers C" style="width: 60%; height: auto; margin-top: 1em;"/>
 
 Recently we created an experimental WireMock module for
 [Testcontainers for C/C++](https://github.com/oleg-nenashev/testcontainers-c).
-It allows provisioning the WireMock server as a standalone container within your tests, based on [WireMock Docker](/docker).
+It allows provisioning the WireMock server as a standalone container within your tests, based on [WireMock Docker](../standalone/docker.md).
 It allows using WireMock with all popular C/C++ testing frameworks
 like Google Test, CTest, Doctest, QtTest or CppUnit.
 

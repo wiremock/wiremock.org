@@ -63,4 +63,3 @@ References:
 
 - [Documentation](https://kotest.io/docs/extensions/wiremock.html)
 - [GitHub repo: kotest/kotest-extensions-wiremock](https://github.com/kotest/kotest-extensions-wiremock)
-

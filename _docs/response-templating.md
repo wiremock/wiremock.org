@@ -28,14 +28,14 @@ WireMockServer wm =
     new WireMockServer(options().templatingEnabled(false));
 ```
 
-See [the command line docs](../standalone/java-jar/#command-line-options) for the standalone equivalents of these parameters.
+See [the command line docs](./standalone/java-jar.md#command-line-options) for the standalone equivalents of these parameters.
 
 
 ## Customising and extending the template engine
 
-Custom Handlebars helpers can be registered via an extension point. See [Adding Template Helpers](../extensibility/adding-template-helpers/) for details.
+Custom Handlebars helpers can be registered via an extension point. See [Adding Template Helpers](./extensibility/adding-template-helpers.md) for details.
 
-Similarly custom model data providers can be registered as extensions. See [Adding Template Model Data](../extensibility/adding-template-model-data/) for details.
+Similarly custom model data providers can be registered as extensions. See [Adding Template Model Data](./extensibility/adding-template-model-data.md) for details.
 
 ## Applying templating in local mode
 
@@ -86,7 +86,7 @@ WireMockServer wm =
     new WireMockServer(options().withMaxTemplateCacheEntries(10000));
 ```
 
-See [the command line docs](../standalone/java-jar/#command-line-options) for the equivalent configuration setting when running standalone.
+See [the command line docs](./standalone/java-jar.md#command-line-options) for the equivalent configuration setting when running standalone.
 
 ## Proxying
 
@@ -557,7 +557,7 @@ Dates can be truncated to e.g. first day of month using the `truncateDate` helpe
 
 {% endraw %}
 
-See the [full list of truncations here](../request-matching#all-truncations).
+See the [full list of truncations here](./request-matching.md#all-truncations).
 
 ## Random value helper
 

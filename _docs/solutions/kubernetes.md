@@ -35,4 +35,4 @@ References:
 
 ## Useful pages
 
-- [WireMock and Golang](../golang) - There's WireMock for Golang developers too!
+- [WireMock and Golang](./golang.md) - There's WireMock for Golang developers too!

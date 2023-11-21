@@ -47,7 +47,7 @@ describe('Integration with WireMock', () => {
 ## WireMock REST Client
 
 The WireMock REST client is a lightweight module to interact with a running
-WireMock server based on its [OpenAPI 3.0 spec](../../api) via REST API.
+WireMock server based on its [OpenAPI 3.0 spec](../standalone/admin-api-reference.md) via REST API.
 Note that this library is maintained outside the WireMock organization on GitHub.
 
 - [GitHUb Repository](https://github.com/kwoding/wiremock-rest-client)

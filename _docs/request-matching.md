@@ -6,7 +6,8 @@ toc_rank: 61
 description: WireMock supports matching of requests to stubs and verification queries using the following attributes.
 ---
 
-WireMock enables flexible definition of a [mock API](/) by supporting rich matching of incoming requests. Stub matching and verification queries can use the following request attributes:
+WireMock enables flexible definition of a mock APIs by supporting rich matching of incoming requests.
+Stub matching and verification queries can use the following request attributes:
 
 - URL
 - HTTP Method
@@ -18,7 +19,7 @@ WireMock enables flexible definition of a [mock API](/) by supporting rich match
 - Request body
 - Multipart/form-data
 
-Here's an example showing all attributes being matched using WireMock's in-built match operators. It is also possible to write [custom matching logic](../extending-wiremock#custom-request-matchers) if
+Here's an example showing all attributes being matched using WireMock's in-built match operators. It is also possible to write [custom matching logic](./extending-wiremock.md#custom-request-matchers) if
 you need more precise control:
 
 ## Request with XML Body
@@ -221,7 +222,7 @@ WireMock from 3.0.0 onwards supports matching on URL path templates conforming t
 When the path template URL match type is used this enables
 
 1. The ability to match path variables in the same way as query parameters, headers etc.
-2. The ability to reference path variables by name in [response templates](../response-templating/#the-request-model).
+2. The ability to reference path variables by name in [response templates](./response-templating.md#the-request-model).
 
 To match any request URL that conforms to the path template, you can do the following.
 

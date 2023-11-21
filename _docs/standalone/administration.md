@@ -21,4 +21,4 @@ post a request with an empty body to `http://<host>:<port>/__admin/shutdown`.
 
 ## Full specification
 
-The full specification is available [here](../admin-api-reference).
+The full specification is available [here](./admin-api-reference.md).

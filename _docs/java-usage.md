@@ -24,9 +24,9 @@ wireMockServer.start();
 wireMockServer.stop();
 ```
 
-For more details of the `options()` builder accepted by the constructor see [Configuration](../configuration/) for details.
+For more details of the `options()` builder accepted by the constructor see [Configuration](./configuration.md) for details.
 
-As with stubbing and verification via the [JUnit rule](../junit-rule/) you can call the
+As with stubbing and verification via the [JUnit rule](./junit-extensions.md) you can call the
 stubbing/verifying DSL from the server object as an alternative to
 calling the client.
 

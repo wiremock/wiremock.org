@@ -30,9 +30,9 @@ WireMock supports several approaches for creating mock APIs - in code, via its R
 
 ### What makes WireMock unique?
 
-WireMock has a rich [matching system](../request-matching/), allowing any part of an incoming request to be matched against complex and precise criteria.
+WireMock has a rich [matching system](./request-matching.md), allowing any part of an incoming request to be matched against complex and precise criteria.
 Responses of any complexity can be dynamically generated via the Handlebars based templating system.
-Finally, WireMock is easy to integrate into any workflow due to its numerous [extension points](../extending-wiremock/) and comprehensive APIs.
+Finally, WireMock is easy to integrate into any workflow due to its numerous [extension points](./extending-wiremock.md) and comprehensive APIs.
 
 ### Is WireMock open source?
 
@@ -50,8 +50,8 @@ WireMock is completely free under the Apache 2.0 license.
 This question is valid especially when it is getting difficult to keep track of what test case(s) a particular mock was meant for.
 
 #### Potential solutions
-- Create your stubs (or most of them at least) in the test cases themselves, then [reset them](../stubbing/#reset) each time.
-- Use the [`metadata` element](../stub-metadata/) in the stub data to tag stubs with info relating them to specific test cases.
+- Create your stubs (or most of them at least) in the test cases themselves, then [reset them](./stubbing.md#reset) each time.
+- Use the [`metadata` element](./stub-metadata.md) in the stub data to tag stubs with info relating them to specific test cases.
 
 #### Potential solutions for WireMock standalone
 - Use configuration-as-code, and store your definitions in a repository. You can have a hierarchical structure of Mappings and Files to specify teams.

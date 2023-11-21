@@ -70,7 +70,7 @@ JSON:
 
 ## Using data from the original request
 
-Webhooks use the same [templating system](../response-templating/) as WireMock responses. This means that any of the
+Webhooks use the same [templating system](./response-templating.md) as WireMock responses. This means that any of the
 configuration fields can be provided with a template expression which will be resolved before firing the webhook.
 
 Similarly to response templates the original request data is available, although in this case it is named `originalRequest`.
@@ -189,7 +189,7 @@ JSON:
 
 ## Adding delays
 
-A fixed or random delay can be added before the webhook call is made, using the same style of [delay parameters as stubs](../simulating-faults/).
+A fixed or random delay can be added before the webhook call is made, using the same style of [delay parameters as stubs](./simulating-faults.md).
 
 ### Fixed delays
 

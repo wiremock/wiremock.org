@@ -78,7 +78,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-...
+// ...
 
 @Test
 public void exampleTest() {
@@ -142,7 +142,7 @@ int httpsPort = wireMockRule.httpsPort();
 
 ## Further reading
 
-- For more details on verifying requests and stubbing responses, see [Stubbing](../../stubbing) and [Verifying](../../verifying/)
-- For more information on the JUnit rules see [The JUnit 4 Rule](../../junit-4/).
+- For more details on verifying requests and stubbing responses, see [Stubbing](./../stubbing.md) and [Verifying](./../verifying.md)
+- For more information on the JUnit rules see [The JUnit 4 Rule](./../junit-extensions.md).
 - For many more examples of JUnit tests check out the
 [WireMock's own acceptance tests](https://github.com/wiremock/wiremock/tree/master/src/test/java/com/github/tomakehurst/wiremock)

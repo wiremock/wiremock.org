@@ -38,7 +38,7 @@ or via JSON over HTTP for the standalone service.
 
 ## Getting Started
 
-Check out WireMock Quick-starts and tutorials [here](../getting-started).
+Check out WireMock Quick-starts and tutorials [here](./getting-started.md).
 
 ## WireMock Ecosystem
 

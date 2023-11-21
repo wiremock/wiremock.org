@@ -13,7 +13,7 @@ hide-disclaimer: true
 **Python WireMock** is a library that allows users to interact with a WireMock instance from within a Python project.
 Key features include:
 
-- [Testcontainers Python](../testcontainers) module to easily start WireMock server for your tests
+- [Testcontainers Python](./testcontainers.md) module to easily start WireMock server for your tests
 - REST API Client for a standalone WireMock Java server
 - Support for most of the major WireMock features (more on their way soon)
 

@@ -14,13 +14,13 @@ and there are plenty of solutions when developing applications powered by the Ja
 
 _WireMock_, also known as _WireMock Java_ is the flagman implementation of WireMock functionality and specifications,
 maintained on the WireMock GitHub organization.
-It is included into many distributions (including [WireMock Docker](../docker)), test framework adapters and products.
+It is included into many distributions (including [WireMock Docker](../standalone/docker.md)), test framework adapters and products.
 Most of the documentation on this website is about _WireMock Java_, unless specified explicitly.
 
 Usage:
 
-- [Running WireMock as a Standalone server](../../running-standalone)
-- [Using WireMock in plain Java without frameworks](../../java-usage)
+- [Running WireMock as a Standalone server](../standalone.md)
+- [Using WireMock in plain Java without frameworks](./../java-usage.md)
 
 References:
 
@@ -31,24 +31,24 @@ References:
 WireMock has integrations with many popular Java test frameworks
 for unit and integration testing.
 
-- [JUnit 5+ and Jupiter](../../junit-5)
-- [JUnit 4 and Vintage](../../junit-4)
+- [JUnit 5+ and Jupiter](../junit-jupiter.md)
+- [JUnit 4 and Vintage](../junit-extensions.md)
 - [Testcontainers Java](https://github.com/wiremock/wiremock-testcontainers-java)
 - [Spock](https://github.com/felipefzdz/spock-wiremock-extension) - maintained outside WireMock's organization on GitHub
 
 ## WireMock Extensions
 
-_WireMock Java_ is [extensible](../../extending-wiremock),
+_WireMock Java_ is [extensible](../extending-wiremock.md),
 and there is a number of available extensions that can be included into WireMock
 to extend its functionality, including but not limited to request filters, observability, storage, etc.
 
 A few popular extensions:
 
 - Response Template Transformer
-  - [Documentation](../../response-templating)
+  - [Documentation](../response-templating.md)
   - This extension is a built-in part of the WireMock Java, but needs to be enabled explicitly
 - Webhooks
-  - [Documentation](../../webhooks-and-callbacks/)
+  - [Documentation](../webhooks-and-callbacks.md)
 - JSON Body Transformer, Callback Simulator, Request time matcher
   - [9cookies/wiremock-extensions](https://github.com/9cookies/wiremock-extensions)
 Active
@@ -60,9 +60,9 @@ Active
 Here are references to particular JVM technologies and languages,
 sorted by alphabet:
 
-- [Android](../android)
+- [Android](./android.md)
 - [Clojure](https://docs.google.com/document/d/1TQccT9Bk-o2lvRVN8_mMaGttaOnwbYFLkn0DsmwGIOA/edit#heading=h.gvb3rxc1ab9p)
-- [Groovy](../groovy)
-- [Kotlin](../kotlin)
+- [Groovy](./groovy.md)
+- [Kotlin](./kotlin.md)
 - [Scala](https://docs.google.com/document/d/1TQccT9Bk-o2lvRVN8_mMaGttaOnwbYFLkn0DsmwGIOA/edit#heading=h.gvb3rxc1ab9p)
-- [Spring Boot](../spring-boot)
+- [Spring Boot](./spring-boot.md)

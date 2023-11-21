@@ -17,11 +17,11 @@ Both approaches are described in more detail below.
 
 The fastest way to get started with WireMock's recorder is to use the simple web UI provided.
 
-First, start an instance of [WireMock running standalone](../running-standalone).
+First, start an instance of [WireMock running standalone](./standalone.md).
 Once that's running visit the recorder UI page at [http://localhost:8080/\_\_admin/recorder](http://localhost:8080/__admin/recorder)
 (assuming you started WireMock on the default port of 8080).
 
-![Recorder UI]({{ '/images/recorder-screenshot.png' | absolute_url }})
+![Recorder UI](images/recorder-screenshot.png)
 
 Enter the URL you wish to record from in the target URL field and click the Record button. You can use `http://examples.wiremockapi.cloud` to try it out.
 
@@ -96,7 +96,7 @@ Snapshotting is effectively "recording after the fact". Rather than starting rec
 into stub mappings.
 
 An implication of this order of events is that if you want to record an external API, you'll need to have configured proxying before you start generating traffic.
-See [Proxying](../proxying) for details on proxy configuration, but in summary this can be achieved by creating a proxy mapping via the API or Java DSL:
+See [Proxying](./proxying.md) for details on proxy configuration, but in summary this can be achieved by creating a proxy mapping via the API or Java DSL:
 
 Java:
 
@@ -268,7 +268,7 @@ The following sections will detail each parameter in turn:
 
 ### Filtering
 
-`filters` supports selection of requests to be recorded according to the same [request matcher](../request-matching) format used elsewhere in WireMock.
+`filters` supports selection of requests to be recorded according to the same [request matcher](./request-matching.md) format used elsewhere in WireMock.
 
 Additionally, when snapshotting the `ids` parameter allows specific serve events to be selected by ID.
 
@@ -328,7 +328,7 @@ What happens when the recorder sees two identical requests that produce differen
 
 There are two ways to handle this. Setting `repeatsAsScenarios` to `false` means that after the first request, subsequent identical ones will be ignored.
 
-However, when set to `true` (which is the default if omitted), multiple identical requests will be added to a [Scenario](../stateful-behaviour), meaning that when
+However, when set to `true` (which is the default if omitted), multiple identical requests will be added to a [Scenario](./stateful-behaviour.md), meaning that when
 playing back, a series of requests matching this stub will yield the same series of responses captured during recording. If more requests are made after the end of the series
 is reached, the last response will continue to be returned.
 
@@ -336,7 +336,7 @@ is reached, the last response will continue to be returned.
 
 If you need even more control over how your recorded stubs are generated, you can write one or more custom transformers that will be applied to stubs as they are captured.
 
-A transformer is an implementations of `StubMappingTransformer` and needs to be registered when starting WireMock as described in [Extending WireMock](../extending-wiremock).
+A transformer is an implementations of `StubMappingTransformer` and needs to be registered when starting WireMock as described in [Extending WireMock](./extending-wiremock.md).
 
 Transformer implementations supply a name, and this is used to identify them in the `transformers` parameter e.g.
 

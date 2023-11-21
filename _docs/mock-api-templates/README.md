@@ -23,7 +23,7 @@ and get a running mock in seconds - on your local machine or in the cloud.
 2. Choose a template you need. There are categories and search capabilities at your disposal
 3. Click the _Download WireMock JSON_ button to download the JSON file
 4. Use the JSON file to configure your WireMock instance
-   See [Using Templates](./usage)
+   See [Using Templates](./usage.md)
 
 ## Using templates in WireMock Cloud
 

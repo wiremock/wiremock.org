@@ -13,14 +13,14 @@ Check out the guidelines below.
 
 At the moment, we provide the following quick starts for beginners:
 
-- [API Mocking with Java and JUnit 4](../quickstart/java-junit)
-- [Downloading and Installing WireMock](../download-and-installation)
+- [API Mocking with Java and JUnit 4](./quickstart/java-junit.md)
+- [Downloading and Installing WireMock](./download-and-installation.md)
 
 <!-- TODO: Add standalone in Docker -->
 
 ## Featured tutorials
 
-Here are some good tutorials from the [External Resources](/external-resources) you can use:
+Here are some good tutorials from the [External Resources](../external-resources) you can use:
 
 - [WireMock Basics Workshop](https://github.com/basdijkstra/wiremock-workshop), by Bas Dijkstra
 - [Running your acceptance tests in Kubernetes using WireMock](https://blog.sebastian-daschner.com/entries/acceptance_tests_wiremock_kubernetes), by Sebastian Daschner

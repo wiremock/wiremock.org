@@ -9,7 +9,7 @@ description: The WireMock server can be run in its own process, and configured v
 The WireMock server can be run in its own process, and configured via
 the Java API, JSON over HTTP or JSON files.
 
-Once you have [downloaded the standalone JAR](../../download) you can run it simply by doing this:
+Once you have [downloaded the standalone JAR](./../download-and-installation.md) you can run it simply by doing this:
 
 ```bash
 $ java -jar wiremock-standalone-{{ site.wiremock_version }}.jar
@@ -47,8 +47,8 @@ sets the keystore password value. The key manager password can be set with the (
 `--https-truststore`: Path to a keystore file containing client public
 certificates, proxy target public certificates & private keys to use when
 authenticate with a proxy target that require client authentication. Can be a path to a file or a resource on the classpath. See
-[HTTPS configuration](../../configuration#https-configuration)
-and [Running as a browser proxy](../../proxying#running-as-a-browser-proxy) for
+[HTTPS configuration](./../configuration.md#https-configuration)
+and [Running as a browser proxy](./../proxying.md#running-as-a-browser-proxy) for
 details.
 
 `--truststore-type`: The HTTPS trust store type. Usually JKS or PKCS12.
@@ -57,7 +57,7 @@ details.
 to "password" if not specified.
 
 `--https-require-client-cert`: Force clients to authenticate with a
-client certificate. See [HTTPS](../../https/) for details.
+client certificate. See [HTTPS](./../https.md) for details.
 
 `--verbose`: Turn on verbose logging to stdout
 
@@ -65,10 +65,10 @@ client certificate. See [HTTPS](../../https/) for details.
 `__files` reside. This defaults to the current directory.
 
 `--record-mappings`: Record incoming requests as stub mappings. See
-[Record and Playback](../../record-playback/).
+[Record and Playback](./../record-playback.md).
 
 `--match-headers`: When in record mode, capture request headers with the
-keys specified. See [Record and Playback](../../record-playback/).
+keys specified. See [Record and Playback](./../record-playback.md).
 
 `--proxy-all`: Proxy all requests through to another base URL e.g.
 `--proxy-all="http://api.someservice.com"` Typically used in conjunction
@@ -90,7 +90,7 @@ internet access via an opaque proxy). e.g.
 e.g. `--proxy-via http://username:password@webproxy.mycorp.com:8080/`.
 
 `--enable-browser-proxying`: Run as a browser proxy. See
-[Running as a browser proxy](../../proxying#running-as-a-browser-proxy).
+[Running as a browser proxy](./../proxying.md#running-as-a-browser-proxy).
 
 `--ca-keystore`: A key store containing a root Certificate Authority private key
 and certificate that can be used to sign generated certificates when
@@ -144,7 +144,7 @@ Recommended when using WireMock for performance testing with delays, as it allow
 Effective only with `asynchronousResponseEnabled=true`. Defaults to 10.
 
 `--extensions`: Extension class names e.g.
-com.mycorp.HeaderTransformer,com.mycorp.BodyTransformer. See [Extending WireMock](../../extending-wiremock/).
+com.mycorp.HeaderTransformer,com.mycorp.BodyTransformer. See [Extending WireMock](./../extending-wiremock.md).
 
 `--print-all-network-traffic`: Print all raw incoming and outgoing network traffic to console.
 
@@ -169,9 +169,9 @@ The last of these will cause chunked encoding to be used only when a stub define
 
 `--logged-response-body-size-limit`: Set a limit in bytes beyond which response bodies in the log will be truncated. When enabled this helps avoid out of memory errors when serving large response bodies.
 
-`--allow-proxy-targets`: Limit the permitted targets for proxying to and recording from the supplied addressess. This parameter takes a comma-separated list of single IP addresses, IP address ranges and hostname wildcards. See [this article](../../configuration#preventing-proxying-to-and-recording-from-specific-target-addresses) for details.
+`--allow-proxy-targets`: Limit the permitted targets for proxying to and recording from the supplied addressess. This parameter takes a comma-separated list of single IP addresses, IP address ranges and hostname wildcards. See [this article](./../configuration.md#preventing-proxying-to-and-recording-from-specific-target-addresses) for details.
 
-`--deny-proxy-targets`: Prevent proxying to and recording from the supplied addressess. This parameter takes a comma-separated list of single IP addresses, IP address ranges and hostname wildcards. Note: if both `--allow-proxy-targets` and this parameter are set, the allow list will be evaluated first. See [this article](../../configuration#preventing-proxying-to-and-recording-from-specific-target-addresses) for details.
+`--deny-proxy-targets`: Prevent proxying to and recording from the supplied addressess. This parameter takes a comma-separated list of single IP addresses, IP address ranges and hostname wildcards. Note: if both `--allow-proxy-targets` and this parameter are set, the allow list will be evaluated first. See [this article](./../configuration.md#preventing-proxying-to-and-recording-from-specific-target-addresses) for details.
 
 `--proxy-timeout`: Set the timeout for requests to the proxy in milliseconds
 
@@ -217,7 +217,7 @@ $ curl http://localhost:8080/get/this
 Here it is!
 ```
 
-The full stubbing API syntax is described in [Stubbing](../../stubbing/).
+The full stubbing API syntax is described in [Stubbing](./../stubbing.md).
 
 ## JSON file configuration
 
@@ -248,7 +248,7 @@ $ curl http://localhost:8080/api/mytest
 More content
 ```
 
-See [stubbing](../../stubbing/) and [verifying](../../verifying/) for more on the JSON API.
+See [stubbing](./../stubbing.md) and [verifying](./../verifying.md) for more on the JSON API.
 
 ### Multi-stub JSON files
 

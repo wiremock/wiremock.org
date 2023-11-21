@@ -18,7 +18,7 @@ This guide explains how to run an API template after you've downloaded the JSON 
 java -jar wiremock-jre8-standalone-{{ site.wiremock_version }}.jar
 ```
 
-See [this page](../../standalone/java-jar) for general details on running WireMock standalone.
+See [this page](./../standalone/java-jar.md) for general details on running WireMock standalone.
 
 ## In WireMock Docker
 
@@ -34,7 +34,7 @@ docker run -it --rm \
   wiremock/wiremock:{{ site.wiremock_version }}
 ```
 
-See [this page](../../standalone/java-jar) for general details on running WireMock Docker.
+See [this page](./../standalone/java-jar.md) for general details on running WireMock Docker.
 
 ## Plain Java
 
@@ -49,7 +49,7 @@ WireMockServer wm =
   );
 ```
 
-See [this](../../java-usage/) for general details on running WireMock in embedded Java.
+See [this](./../java-usage.md) for general details on running WireMock in embedded Java.
 
 ## JUnit
 
@@ -62,11 +62,11 @@ To do the same thing using the JUnit Jupiter extension:
             .build();
 ```
 
-See [this](../../junit-jupiter/) for general details on running WireMock with JUnit 5+ Jupiter.
+See [this](./../junit-jupiter.md) for general details on running WireMock with JUnit 5+ Jupiter.
 
 ## Pushing to a remotely running WireMock server
 
-The mock API JSON can be pushed to a remotely running WireMock server via its [Admin API](../../standalone/administration).
+The mock API JSON can be pushed to a remotely running WireMock server via its [Admin API](./../standalone/administration.md).
 
 For instance if the WireMock server is running on `wiremock.dev.mycompany.com` port 8080, you can POST the JSON file to it e.g.
 

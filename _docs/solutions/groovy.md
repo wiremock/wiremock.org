@@ -45,4 +45,4 @@ def "test using groovy truth if you need at least one request and shows example 
 
 ## Useful pages
 
-- [WireMock on Java and JVM](../solutions/jvm) - Most of JVM generic solutions are applicable to Groovy development too
+- [WireMock on Java and JVM](./jvm.md) - Most of JVM generic solutions are applicable to Groovy development too

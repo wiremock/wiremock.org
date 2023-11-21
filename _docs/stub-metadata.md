@@ -48,7 +48,7 @@ Data under the `metadata` key is a JSON object (represented in Java by a `Map<St
 
 ## Search for stubs by metadata
 
-Stubs can be found by matching against their metadata using the same matching strategies as when [matching HTTP requests](../request-matching/).
+Stubs can be found by matching against their metadata using the same matching strategies as when [matching HTTP requests](./request-matching.md).
 The most useful matcher for this is `matchesJsonPath`:
 
 === "Java"
@@ -96,4 +96,4 @@ Similarly, stubs with matching metadata can be removed:
 
 ## Remove request journal events by metadata
 
-See [Removing items from the journal](../verifying#by-criteria)
+See [Removing items from the journal](./verifying.md#by-criteria)

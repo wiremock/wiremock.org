@@ -55,7 +55,7 @@ References:
 
 ## Go WireMock - WireMock REST API client
 
-The Golang client library to stub API resources in WireMock using its [Administrative REST API](../../standalone/administration).
+The Golang client library to stub API resources in WireMock using its [Administrative REST API](../standalone/administration.md).
 The project connects to the instance and allows setting up stubs and response templating, or using administrative API to extract observability data.
 
 References:
@@ -86,5 +86,5 @@ func TestSome(t *testing.T) {
 
 ## Useful pages
 
-- [WireMock and Docker](../docker)
-- [WireMock and Kubernetes](../kubernetes)
+- [WireMock and Docker](../standalone/docker.md)
+- [WireMock and Kubernetes](./kubernetes.md)

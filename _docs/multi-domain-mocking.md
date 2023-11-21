@@ -23,7 +23,7 @@ The following sections detail how to achieve this in various deployment contexts
 ## Configuring for JUnit Jupiter
 
 The simplest way to enable this mode if you're using JUnit Jupiter it to toggle it on via the `WireMockExtension`. See the
-[Junit Jupiter Proxy Mode](../junit-jupiter#proxy-mode) for details.
+[Junit Jupiter Proxy Mode](./junit-jupiter.md#proxy-mode) for details.
 
 ## Configuring for JUnit 4.x
 

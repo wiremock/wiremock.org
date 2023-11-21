@@ -25,6 +25,6 @@ References:
 
 ## Useful pages
 
-- [WireMock and Kotlin](../kotlin) - Android ecosystem embraces Kotlin as a development language,
+- [WireMock and Kotlin](./kotlin.md) - Android ecosystem embraces Kotlin as a development language,
   and there are some additional tooling available
-- [WireMock on Java and JVM](../jvm) - Some of JVM generic solutions are applicable to Android development too
+- [WireMock on Java and JVM](./jvm.md) - Some of JVM generic solutions are applicable to Android development too

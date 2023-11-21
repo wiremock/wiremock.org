@@ -15,7 +15,7 @@ All the modules are under active development.
 If there is no module implemented for your technology stack,
 a `GenericContainer` implementation from Testcontainers can be used.
 For features that are not implemented yet in Module APIs for your language,
-it is possible to use the [Administrative REST API](../../standalone/administration).
+it is possible to use the [Administrative REST API](../standalone/administration.md).
 Feedback and contributions are welcome!
 
 See WireMock on the [Testcontainers modules listing](https://testcontainers.com/modules/wiremock/).
@@ -46,17 +46,17 @@ for all documentation and examples.
 Golang implementation is a multi-platform library that includes the Testcontainers module only.
 The module's full documentation and examples are available in its
 [GitHub Repository](https://github.com/wiremock/wiremock-testcontainers-go).
-There is a separate library for the CLI, see the [Golang Solutions page](../golang).
+There is a separate library for the CLI, see the [Golang Solutions page](./golang.md).
 
 ## Experimental modules
 
 **C/C++ and other native languages.**
 We created a WireMock module for
 [Testcontainers for C/C++](https://github.com/oleg-nenashev/testcontainers-c).
-It allows provisioning the WireMock server as a standalone container within your tests, based on [WireMock Docker](/docker).
+It allows provisioning the WireMock server as a standalone container within your tests, based on [WireMock Docker](../standalone/docker.md).
 It allows using WireMock with all popular C/C++ testing frameworks
 like Google Test, CTest, Doctest, QtTest or CppUnit.
-Read More: [C/C++ Solutions Page](../c_cpp).
+Read More: [C/C++ Solutions Page](./c_cpp.md).
 
 ## Other Languages
 
