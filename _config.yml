@@ -104,6 +104,7 @@ author:
 include:
     - .htaccess
     - _pages
+    - _redirects
 exclude:
     - vendor/
     - "*.sublime-project"

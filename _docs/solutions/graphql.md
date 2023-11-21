@@ -5,9 +5,6 @@ meta_title: "GraphQL Solutions | WireMock"
 description: "Additional solutions for WireMock when using Golang"
 logo: /images/logos/technology/graphql.svg
 og_image: solutions/graphql/wiremock_graphql_opengraph.png
-redirect_from:
-- "/graphql.html"
-- "/graphql/"
 hide-disclaimer: true
 ---
 

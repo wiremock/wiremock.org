@@ -111,7 +111,25 @@ plugins:
         - name: dotgithub
           import_url: 'https://github.com/wiremock/.github?branch=main&edit_uri=/blob/main/'
           imports: [ CONTRIBUTING.md, SECURITY.md, CODE_OF_CONDUCT.md ]
-        
+  - redirects:
+      redirect_maps:
+        'android.md': 'solutions/android.md'
+        'go.md': 'solutions/golang.md'
+        'solutions/go.md': 'solutions/golang.md'
+        'graphql.md': 'solutions/go.md'
+        'testcontainers.md': 'solutions/testcontainers.md'
+        'spring-boot.md': 'solutions/spring-boot.md'
+        'api.md': 'standalone/admin-api-reference.md'
+        'download.md': 'download-and-installation.md'
+        'tutorials.md': 'getting-started.md'
+        'plain-java.md': 'java-usage.md'
+        'junit-rule.md': 'junit-extensions.md'
+        'junit-4.md': 'junit-extensions.md'
+        'junit-5.md': 'junit-jupiter.md'
+        'docker.md': 'standalone/docker.md'
+        'solutions/docker.md': 'standalone/docker.md'
+        'running-standalone.md': 'java-jar.md'
+        'support.md': '../support'
 
 nav:
   - Using WireMock:

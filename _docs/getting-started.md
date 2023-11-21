@@ -3,9 +3,6 @@ layout: docs
 title: WireMock Tutorials
 meta_title: Listing of WireMock Quick Starts and Tutorials
 toc_rank: 10
-redirect_from:
-    - "/getting-started.html"
-    - "/docs/tutorials.html"
 description: Provides links to WireMock tutorials and other entry materials
 ---
 

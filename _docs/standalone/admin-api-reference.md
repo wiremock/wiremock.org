@@ -4,10 +4,6 @@ title: Admin API Reference
 meta_title: WireMock Admin REST API Documentation | WireMock
 toc_rank: 120
 description: The WireMock admin API is described in OpenAPI 3.0.
-redirect_from:
-    - "/wiremock-admin-api.html"
-    - "/docs/api.html"
-    - "/docs/api/"
 ---
 
 The WireMock admin API is described in [OpenAPI 3.0](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md). The spec file plus an instance of Swagger UI can be accessed from a running WireMock instance under `/__admin/docs/`, e.g. `http://localhost:8080/__admin/docs/`.

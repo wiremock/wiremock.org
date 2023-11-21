@@ -6,9 +6,6 @@ description: Mocking gRPC services with WireMock
 og_image: solutions/grpc/wiremock_grpc_opengraph.png
 header:
   image: solutions/grpc/header.png
-redirect_from:
-- "/grpc.html"
-- "/grpc/"
 ---
 
 WireMock 3.2.0+ supports mocking of gRPC services via the

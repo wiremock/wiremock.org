@@ -3,7 +3,6 @@ layout: docs
 title: Verifying
 meta_title: Verifying whether specific HTTP requests were made | WireMock
 toc_rank: 60
-redirect_from: "/verifying.html"
 description: Verifying and querying requests relies on the request journal, which is an in-memory log of received requests. This can be disabled for load testing.
 ---
 

@@ -6,13 +6,6 @@ toc_rank: 13
 description: >
     WireMock is available as a standalone service (for Docker of Java), Java library
     and integrations for modern languages and technology stacks.
-redirect_from: 
-    - "/download.html"
-    - "/download/"
-    - "/downloads.html"
-    - "/downloads/"
-    - "/docs/download.html"
-    - "/docs/download/"
 ---
 
 

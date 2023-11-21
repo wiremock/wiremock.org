@@ -3,11 +3,6 @@ layout: docs
 title: Running as a Standalone Process
 meta_title: Run an API Mock Server as a Standalone Process | WireMock
 toc_rank: 41
-redirect_from: 
-    - "/running-standalone.html"
-    - "/running-standalone/"
-    - "/docs/running-standalone.html"
-    - "/docs/running-standalone/"
 description: The WireMock server can be run in its own process, and configured via the Java API, JSON over HTTP or JSON files.
 ---
 

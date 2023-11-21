@@ -5,11 +5,6 @@ meta_title: "Testcontainers Solutions | WireMock"
 description: "Additional solutions for WireMock when using Testcontainers"
 logo: /images/logos/technology/testcontainers.svg
 hide-disclaimer: true
-redirect_from:
-- "/docs/testcontainers.html"
-- "/docs/testcontainers/"
-- "/testcontainers.html"
-- "/testcontainers/"
 ---
 
 The WireMock community provides modules for [Testcontainers](https://testcontainers.com/).

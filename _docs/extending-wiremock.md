@@ -3,7 +3,6 @@ layout: docs
 title: Extending WireMock
 meta_title: Extending WireMock via custom code | WireMock
 toc_rank: 110
-redirect_from: "/extending-wiremock.html"
 description: You can register the extension programmatically via its class name, class or an instance
 ---
 

@@ -1,0 +1,5 @@
+{
+    "search.exclude": {
+      "**/wiremock.org-2.x/**": true
+    }
+  }

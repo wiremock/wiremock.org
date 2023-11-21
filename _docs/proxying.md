@@ -3,7 +3,6 @@ layout: docs
 title: Proxying
 meta_title: Proxying and proxy stub mappings | WireMock
 toc_rank: 65
-redirect_from: "/proxying.html"
 description: Proxy responses are defined in exactly the same manner as stubs, meaning that the same request matching criteria can be used.
 ---
 

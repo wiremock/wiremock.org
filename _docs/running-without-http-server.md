@@ -3,7 +3,6 @@ layout: docs
 title: Running without the HTTP Server
 meta_title: Running WireMock without an HTTP Server | WireMock
 toc_rank: 42
-redirect_from: "/running-without-http-server.html"
 description: Running WireMock inside a Java process, without running the inbuilt HTTP layer.
 ---
 

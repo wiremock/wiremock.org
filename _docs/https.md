@@ -2,7 +2,6 @@
 layout: docs
 title: Serving HTTPs
 meta_title: Using WireMock with HTTPs using self-signed or custom certificates | WireMock
-redirect_from: "/https.html"
 description: WireMock can optionally accept requests over HTTPS. By default it will serve its own self-signed TLS certificate.
 ---
 

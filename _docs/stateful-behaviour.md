@@ -2,7 +2,6 @@
 layout: docs
 title: Stateful Behaviour
 meta_title: Simulating Stateful Behavior for Testing | WireMock
-redirect_from: "/stateful-behaviour.html"
 description: Most web services tend to have some state, which changes as you and others interact with it.
 ---
 

@@ -3,7 +3,6 @@ layout: docs
 title: Simulating Faults
 meta_title: Simulating faults in API behavior | WireMock
 toc_rank: 80
-redirect_from: "/simulating-faults.html"
 description: One of the main reasons it’s beneficial to use web service fakes when testing is to inject faulty behaviour that might be difficult to get the real service to produce on demand.
 ---
 
