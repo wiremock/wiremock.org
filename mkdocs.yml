@@ -146,10 +146,10 @@ nav:
     - Java Usage:
         - JUnit 5+ Jupiter: junit-jupiter.md
         - JUnit 4 and Vintage: junit-extensions.md
-        - Spring Boot: spring-boot.md
+        - Spring Boot: solutions/spring-boot.md
         - Plain Java: java-usage.md
         - Java configuration: configuration.md
-        - Running without the HTTP Server: running-without-http-server  .md
+        - Running without the HTTP Server: running-without-http-server.md
     - Stubbing & Verifying:
         - Stubbing: stubbing.md
         - Request Matching: request-matching.md
