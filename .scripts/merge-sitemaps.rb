@@ -13,14 +13,16 @@ File.open( ".submodules/wiremock.org-2.x/tmp/site_2x/sitemap.xml", 'r' ) do |f2|
     content_2x.slice!( -1 ) 
 end
 
-File.open( "./tmp/site_3x/sitemap.xml", 'r' ) do |f3|
-    content_3x = (IO.readlines f3)
-    content_3x.slice!( 0..11 )
-    content_3x.slice!( -1 ) 
-end
+#File.open( "./tmp/site_3x/sitemap.xml", 'r' ) do |f3|
+#    content_3x = (IO.readlines f3)
+#    content_3x.slice!( 0..11 )
+#    content_3x.slice!( -1 ) 
+#end
+
+# TODO: Add MkDocs sitemap
 
 File.open( "_site/sitemap.xml", 'w' ) do |f4|
-    f4.write ( header + content_main + content_2x + content_3x + footer ).join()
+    f4.write ( header + content_main + content_2x + footer ).join()
 end
 
 

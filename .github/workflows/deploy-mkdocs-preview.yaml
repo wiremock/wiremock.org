@@ -70,24 +70,24 @@ jobs:
         # Outputs to the './_site' directory by default
         run: |
           cd .submodules/wiremock.org-2.x
-          bundle exec jekyll build --config '../../_config.yml,../../_config-2.x.yml,../../_config-oleg-nenashev-2.x.yml'' --baseurl "${{ steps.pages.outputs.base_path }}"
+          bundle exec jekyll build --config '../../_config.yml,../../_config-2.x.yml,../../_config-oleg-nenashev-2.x.yml' --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
-      - name: Build 3.x with Jekyll
+      #- name: Build 3.x with Jekyll
         # We use the same as the root build, but with additional config
-        run: |
-          bundle exec jekyll build --config '_config.yml,_config-3.x.yml,_config-oleg-nenashev-3.x.yml' --baseurl "${{ steps.pages.outputs.base_path }}"
-        env:
-          JEKYLL_ENV: production
+      #  run: |
+      #    bundle exec jekyll build --config '_config.yml,_config-3.x.yml,_config-oleg-nenashev-3.x.yml' --baseurl "${{ steps.pages.outputs.base_path }}"
+      #  env:
+      #    JEKYLL_ENV: production
       - name: Deploy version branches to the website
         run: |
           ruby .scripts/merge-sitemaps.rb
           mkdir _site/2.x
           cp -R .submodules/wiremock.org-2.x/tmp/site_2x/* _site/2.x/
-          mkdir _site/3.x
-          cp -R tmp/site_3x/* _site/3.x/
           mkdir _site/docs
           cp -R _site-docs/* _site/docs/
+          mkdir -p _site/3.x/docs
+          cp -R _site-docs/* _site/3.x/docs/
 # TODO: Uncomment when cleaned up (if ever)
 #      - name: Validate HTML and links
 #        uses: anishathalye/proof-html@v2
