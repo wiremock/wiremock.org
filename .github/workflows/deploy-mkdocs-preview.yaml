@@ -1,4 +1,4 @@
-name: Deploy Jekyll site to Pages
+name: Deploy Preview to GitHub Pages
 
 on:
   # Runs on pushes targeting the default branch
@@ -46,7 +46,7 @@ jobs:
       
       - name: Build with Jekyll
         # Outputs to the './_site' directory by default
-        run: bundle exec jekyll build --config '_config.yml._config-oleg-nenashev.yml' --baseurl "${{ steps.pages.outputs.base_path }}"
+        run: bundle exec jekyll build --config '_config.yml,_config-oleg-nenashev.yml' --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
       
