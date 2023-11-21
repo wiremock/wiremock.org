@@ -36,6 +36,23 @@ jobs:
         run: bundle exec jekyll build --config '_config.yml' --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: development
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+          
+      - name: Install and configure Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: 1.5.1
+     
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+    
+      - name: Build the docs
+        run: mkdocs build
+      
       - name: Build 2.x with Jekyll
         # Outputs to the './_site' directory by default
         run: |
@@ -52,6 +69,7 @@ jobs:
 #        with:
 #          directory: ./_site
 #          enforce_https: false
-      - name: Upload artifact
-        # Automatically uploads an artifact from the './_site' directory by default
-        uses: actions/upload-pages-artifact@v1
+
+#      - name: Upload artifact
+#        # Automatically uploads an artifact from the './_site' directory by default
+#        uses: actions/upload-pages-artifact@v1
