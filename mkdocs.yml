@@ -159,7 +159,7 @@ nav:
         - Proxying: proxying.md
         - Verifying: verifying.md
     - Templating:
-        - WireMock API Templates Library: mock-api-templates.md
+        - WireMock API Templates Library: mock-api-templates/README.md
         - Using Mock API Templates: mock-api-templates/usage.md
     - Record & Playback:
         - Record and Playback: record-playback.md
