@@ -116,7 +116,7 @@ plugins:
         'android.md': 'solutions/android.md'
         'go.md': 'solutions/golang.md'
         'solutions/go.md': 'solutions/golang.md'
-        'graphql.md': 'solutions/go.md'
+        'graphql.md': 'solutions/graphql.md'
         'testcontainers.md': 'solutions/testcontainers.md'
         'spring-boot.md': 'solutions/spring-boot.md'
         'api.md': 'standalone/admin-api-reference.md'
@@ -128,7 +128,7 @@ plugins:
         'junit-5.md': 'junit-jupiter.md'
         'docker.md': 'standalone/docker.md'
         'solutions/docker.md': 'standalone/docker.md'
-        'running-standalone.md': 'java-jar.md'
+        'running-standalone.md': 'standalone/java-jar.md'
         'support.md': '../support'
 
 nav:
