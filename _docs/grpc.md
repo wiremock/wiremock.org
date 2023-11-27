@@ -123,8 +123,8 @@ For a more complete set of examples, see the [Java demo project](https://github.
 
 ### Setup
 
-Download the <a id="wiremock-standalone-download" href="https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/{{ site.wiremock_version }}/wiremock-standalone-{{ site.wiremock_version }}.jar">standalone JAR</a> at version 3.2.0 or above 
- and the <a id="wiremock-standalone-download" href="https://repo1.maven.org/maven2/org/wiremock/wiremock-grpc-extension-standalone/{{ site.grpc_extension_version }}/wiremock-grpc-extension-standalone-{{ site.grpc_extension_version }}.jar">gRPC extension JAR</a> into your working directory.
+Download the <a id="wiremock-standalone-download" href="https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/{{ versions.wiremock_version }}/wiremock-standalone-{{ versions.wiremock_version }}.jar">standalone JAR</a> at version 3.2.0 or above
+ and the <a id="wiremock-standalone-download" href="https://repo1.maven.org/maven2/org/wiremock/wiremock-grpc-extension-standalone/{{ versions.grpc_extension_version }}/wiremock-grpc-extension-standalone-{{ versions.grpc_extension_version }}.jar">gRPC extension JAR</a> into your working directory.
 
 Create a WireMock data directory with a subdirectory for stub mappings and one for descriptor files:
 
@@ -141,7 +141,7 @@ protoc --descriptor_set_out wiremock/grpc/services.dsc ExampleServices.proto
 Run WireMock with both on the classpath:
 
 ```bash
-java -cp wiremock-standalone-{{ site.wiremock_version }}.jar:wiremock-grpc-extension-standalone-{{ site.grpc_extension_version }}.jar \
+java -cp wiremock-standalone-{{ versions.wiremock_version }}.jar:wiremock-grpc-extension-standalone-{{ versions.grpc_extension_version }}.jar \
   wiremock.Run \
   --root-dir wiremock-data
 ```

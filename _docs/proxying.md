@@ -140,7 +140,7 @@ you to modify specific AJAX requests or swap out CSS/Javascript files.
 To configure your browser to proxy via WireMock, first start WireMock with browser proxying enabled:
 
 ```bash
-$ java -jar wiremock-standalone-{{ site.wiremock_version }}.jar --enable-browser-proxying --port 9999
+$ java -jar wiremock-standalone-{{ versions.wiremock_version }}.jar --enable-browser-proxying --port 9999
 ```
 
 Then open your browser's proxy settings and point them to the running server:
@@ -232,13 +232,13 @@ This would present a substantial security risk, so by default WireMock will veri
 You can trust specific hosts as follows:
 
 ```bash
-$ java -jar wiremock-standalone-{{ site.wiremock_version }}.jar --enable-browser-proxying --trust-proxy-target localhost --trust-proxy-target dev.mycorp.com
+$ java -jar wiremock-standalone-{{ versions.wiremock_version }}.jar --enable-browser-proxying --trust-proxy-target localhost --trust-proxy-target dev.mycorp.com
 ```
 
 or if you're not interested in security you can trust all hosts:
 
 ```bash
-$ java -jar wiremock-standalone-{{ site.wiremock_version }}.jar --enable-browser-proxying --trust-all-proxy-targets
+$ java -jar wiremock-standalone-{{ versions.wiremock_version }}.jar --enable-browser-proxying --trust-all-proxy-targets
 ```
 
 Additional trusted public certificates can also be added to the keystore

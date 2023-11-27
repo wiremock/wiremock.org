@@ -12,7 +12,7 @@ the Java API, JSON over HTTP or JSON files.
 Once you have [downloaded the standalone JAR](./../download-and-installation.md) you can run it simply by doing this:
 
 ```bash
-$ java -jar wiremock-standalone-{{ site.wiremock_version }}.jar
+$ java -jar wiremock-standalone-{{ versions.wiremock_version }}.jar
 ```
 
 ## Command line options

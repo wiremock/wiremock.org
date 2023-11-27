@@ -15,7 +15,7 @@ From version 2.31.0 WireMock has an [official Docker image](https://hub.docker.c
 docker run -it --rm \
   -p 8080:8080 \
   --name wiremock \
-  wiremock/wiremock:{{ site.wiremock_version }}
+  wiremock/wiremock:{{ versions.wiremock_version }}
 ```
 
 > Access [http://localhost:8080/\_\_admin/mappings](http://localhost:8080/__admin/mappings) to display the mappings (empty set)
@@ -29,7 +29,7 @@ These can be passed to the container by appending them to the end of the command
 docker run -it --rm \
   -p 8443:8443 \
   --name wiremock \
-  wiremock/wiremock:{{ site.wiremock_version }} \
+  wiremock/wiremock:{{ versions.wiremock_version }} \
   --https-port 8443 --verbose
 ```
 
@@ -43,7 +43,7 @@ docker run -it --rm \
   -e WIREMOCK_OPTIONS='--https-port 8443 --verbose' \
   -p 8443:8443 \
   --name wiremock \
-  wiremock/wiremock:{{ site.wiremock_version }}
+  wiremock/wiremock:{{ versions.wiremock_version }}
 ```
 
 ### Mounting stub mapping files
@@ -58,7 +58,7 @@ docker run -it --rm \
   -p 8080:8080 \
   --name wiremock \
   -v $PWD:/home/wiremock \
-  wiremock/wiremock:{{ site.wiremock_version }}
+  wiremock/wiremock:{{ versions.wiremock_version }}
 ```
 
 ### Running with extensions
@@ -66,7 +66,7 @@ docker run -it --rm \
 [WireMock extensions](../extending-wiremock.md) are packaged as JAR files. In order to use them they need to be made
 available at runtime and WireMock must be configured to enable them.
 
-For example, to use the [Webhooks extension](../webhooks-and-callbacks.md) we would first download [wiremock-webhooks-extension-{{ site.wiremock_version }}.jar](https://repo1.maven.org/maven2/org/wiremock/wiremock-webhooks-extension/{{ site.wiremock_version }}/wiremock-webhooks-extension-{{ site.wiremock_version }}.jar)
+For example, to use the [Webhooks extension](../webhooks-and-callbacks.md) we would first download [wiremock-webhooks-extension-{{ versions.wiremock_version }}.jar](https://repo1.maven.org/maven2/org/wiremock/wiremock-webhooks-extension/{{ versions.wiremock_version }}/wiremock-webhooks-extension-{{ versions.wiremock_version }}.jar)
 into the `extensions` directory under our working directory.
 
 Then when starting Docker we would mount the extensions directory to `/var/wiremock/extensions` and enable the webhooks extension

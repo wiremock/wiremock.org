@@ -32,7 +32,7 @@ like [Apache HttpClient](https://hc.apache.org/httpcomponents-client-5.2.x/#).
     <dependency>
         <groupId>org.wiremock</groupId>
         <artifactId>wiremock</artifactId>
-        <version>{{ site.wiremock_version }}</version>
+        <version>{{ versions.wiremock_version }}</version>
         <scope>test</scope>
     </dependency>
     <dependency>
@@ -46,7 +46,7 @@ like [Apache HttpClient](https://hc.apache.org/httpcomponents-client-5.2.x/#).
 === "Gradle Groovy"
 
     ```groovy
-    testImplementation "org.wiremock:wiremock:{{ site.wiremock_version }}"
+    testImplementation "org.wiremock:wiremock:{{ versions.wiremock_version }}"
     testImplementation "org.assertj:assertj-core:3.24.2"
     ```
 

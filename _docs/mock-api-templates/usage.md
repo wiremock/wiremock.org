@@ -15,7 +15,7 @@ This guide explains how to run an API template after you've downloaded the JSON 
 3. The JSON will be automatically loaded at startup, via the command line
 
 ```bash
-java -jar wiremock-jre8-standalone-{{ site.wiremock_version }}.jar
+java -jar wiremock-jre8-standalone-{{ versions.wiremock_version }}.jar
 ```
 
 See [this page](./../standalone/java-jar.md) for general details on running WireMock standalone.
@@ -31,7 +31,7 @@ docker run -it --rm \
   -p 8080:8080 \
   --name wiremock \
   -v $PWD:/home/wiremock \
-  wiremock/wiremock:{{ site.wiremock_version }}
+  wiremock/wiremock:{{ versions.wiremock_version }}
 ```
 
 See [this page](./../standalone/java-jar.md) for general details on running WireMock Docker.
