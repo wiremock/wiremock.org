@@ -1,6 +1,7 @@
 site_name: WireMock Documentation
 site_description: >-
   WireMock Documentation.
+site_url: https://wiremock.org/docs
 copyright: Copyright &copy; 2023 - WireMock Contributors
 docs_dir: _docs
 repo_url: https://github.com/wiremock/wiremock.org
@@ -80,6 +81,9 @@ plugins:
   - search
   - autorefs
   - render_swagger
+  # OpenGraphs
+  - social:
+      # custom_layouts_dir is commercial feature
   - multirepo:
       # TODO: Change to True once works
       cleanup: false
