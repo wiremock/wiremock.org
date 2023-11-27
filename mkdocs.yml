@@ -44,7 +44,6 @@ theme:
     - search.share
     - search.suggest
     - toc.follow
-    - toc.integrate
   font:
     text: DM Sans
     code: Roboto Mono
@@ -79,6 +78,7 @@ plugins:
   # FIXME: SCSS compilation errors in @math, so now the CSS is copied over
   #- extra-sass
   - search
+  - autorefs
   - render_swagger
   - multirepo:
       # TODO: Change to True once works
@@ -242,3 +242,5 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true
+  - toc:
+      permalink: '#'
