@@ -10,6 +10,7 @@ site_dir: _site-docs
 
 theme:
   name: material
+  custom_dir: _docs_theme
   highlightjs: true
   features:
     - announce.dismiss
@@ -65,8 +66,13 @@ extra:
     
 extra_css:
   - assets/css/wiremock.css
+  #FIXME: It will not work well due to the style collision, a refactoring is needed
+  #- assets/css/main.css
+  #- assets/css/main.css.map
 
 plugins:
+  # FIXME: SCSS compilation errors in @math, so now the CSS is copied over
+  #- extra-sass
   - search
   - multirepo:
       # TODO: Change to True once works
@@ -215,6 +221,8 @@ nav:
     - Hacktoberfest 2023: dotgithub/CONTRIBUTING.md
     - Creating Extensions: wiremock/_docs/extending-wiremock.md
     - Code of Conduct: dotgithub/CODE_OF_CONDUCT.md
+
+  - Go to WM Cloud: https://www.wiremock.io/product?utm_source=wiremock.org&utm_medium=referral&utm_campaign=docs_navbar
 
  # Markdown
 markdown_extensions:
