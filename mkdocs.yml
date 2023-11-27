@@ -74,6 +74,7 @@ plugins:
   # FIXME: SCSS compilation errors in @math, so now the CSS is copied over
   #- extra-sass
   - search
+  - render_swagger
   - multirepo:
       # TODO: Change to True once works
       cleanup: false
