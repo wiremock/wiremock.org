@@ -22,7 +22,7 @@ docker run -it --rm \
 
 ### Start with command line arguments
 
-The Docker image supports exactly the same set of command line arguments as the [standalone version](../standalone/java-jar.md#command-line-options).
+The Docker image supports exactly the same set of command line arguments as the [standalone version](./java-jar.md#command-line-options).
 These can be passed to the container by appending them to the end of the command e.g.:
 
 ```sh
@@ -35,7 +35,7 @@ docker run -it --rm \
 
 #### Passing command line arguments as environment variable
 
-Starting from `3.2.0-2`, the Docker image supports passing command line arguments [standalone version](../java-jar.md#command-line-options) as the environment variable.
+Starting from `3.2.0-2`, the Docker image supports passing command line arguments [standalone version](./java-jar.md#command-line-options) as the environment variable.
 Environment variable `WIREMOCK_OPTIONS` can be passed to container consisting of all command line arguments e.g.:
 
 ```sh
