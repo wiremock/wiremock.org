@@ -22,7 +22,7 @@ html {
         display: grid;
         grid-template-rows: minmax(min-content, 200px) minmax(
             min-content,
-            calc(100vh - 350px)
+                        calc(100vh - 350px)
           );
         align-content: space-evenly;
         height: 100%;
@@ -41,6 +41,7 @@ html {
       }
     }
   }
+}
 
   #openSourceCard:hover {
     border: 1px solid #18253d;
@@ -1147,7 +1148,6 @@ html {
       display: none !important;
     }
   }
-}
 
 @media (max-width: 560px) {
   .clients-wrapper {
