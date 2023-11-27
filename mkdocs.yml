@@ -85,37 +85,46 @@ plugins:
       cleanup: false
       keep_docs_dir: true
       nav_repos:
-        - name: graphql
+        - name: graphql-extension
           import_url: 'https://github.com/wiremock/wiremock-graphql-extension?branch=main&edit_uri=/blob/main/'
           imports: [ /README.md, docs/* ]
-        - name: grpc
+        - name: grpc-extension
           import_url: 'https://github.com/wiremock/wiremock-grpc-extension?branch=main&edit_uri=/blob/main/'
           imports: [ /README.md, docs/* ]
-        - name: state
+        - name: state-extension
           import_url: 'https://github.com/wiremock/wiremock-extension-state?branch=develop&edit_uri=/blob/develop/'
           imports: [ /README.md, docs/*  ]
  
           
         # Outside WireMock GitHub org
-        - name: 9cookies
+        - name: 9cookies-extension
           import_url: 'https://github.com/9cookies/wiremock-extensions?branch=master&edit_uri=/blob/master/'
           imports: [ /*.md ]
-        - name: jwt
+        - name: jwt-extension
           import_url: 'https://github.com/MasonM/wiremock-jwt-extension?branch=master&edit_uri=/blob/master/'
           imports: [ /README.md ]
-        - name: cors
+        - name: cors-extension
           import_url: 'https://github.com/RichieLoco/WiremockCorsExtension?branch=master&edit_uri=/blob/master/'
           imports: [ /README.md ]
-        - name: stub-mapping-tracker
+        - name: stub-mapping-tracker-extension
           import_url: 'https://github.com/MasonM/wiremock-stub-mapping-tracker?branch=master&edit_uri=/blob/master/'
           imports: [ /README.md ]
-        - name: prometheus
+        - name: prometheus-extension
           import_url: 'https://github.com/mikeskali/wiremock-metrics?branch=master&edit_uri=/blob/master/'
           imports: [ /README.md ]
-        - name: record-delay
+        - name: record-delay-extension
           import_url: 'https://github.com/anuragashok/wiremock-extension-record-delay?branch=main&edit_uri=/blob/main/'
           imports: [ /README.md ]
-        
+        - name: velocity-transformer-extension
+          import_url: 'https://github.com/adamyork/wiremock-velocity-transformer?branch=master&edit_uri=/blob/master/'
+          imports: [ /README.md ]
+        - name: unused-stubs-extension
+          import_url: 'https://github.com/MasonM/wiremock-unused-stubs-extension?branch=master&edit_uri=/blob/master/'
+          imports: [ /README.md ]
+        - name: metrics-extension
+          import_url: 'https://github.com/rasklaad/wiremock-metrics?branch=master&edit_uri=/blob/master/'
+          imports: [ /README.MD ]
+
         # System
         - name: community
           import_url: 'https://github.com/wiremock/community?branch=main&edit_uri=/blob/main/'
@@ -155,7 +164,7 @@ nav:
         - Running in Docker: standalone/docker.md
         - Running as a Standalone Process: standalone/java-jar.md
         - Administrating WireMock: standalone/administration.md
-        - Admit REST API Specification: standalone/admin-api-reference/
+        - Admin REST API Specification: standalone/admin-api-reference.md
     - Java Usage:
         - JUnit 5+ Jupiter: junit-jupiter.md
         - JUnit 4 and Vintage: junit-extensions.md
@@ -188,26 +197,30 @@ nav:
     - Reference:
         - Admin API: standalone/admin-api-reference.md
         - Security: dotgithub/SECURITY.md
-        - WireMock API Templates Library: mock-api-templates.md
+        - WireMock API Templates Library: mock-api-templates/README.md
 
   - Extensions:
+    - WireMock Extensions: extensions/README.md
     - Features:
-      - gRPC: grpc/README.md
-      - GraphQL: graphql/README.md
-      - Response Template Transformer: wiremock/_docs/response-templating.md
-      - State: state/README.md
-      - Webhooks: wiremock/_docs/webhooks-and-callbacks.md
-      - CORS protection: cors/README.md
-      - JSON Web Tokens (JWT): jwt/README.md
-      - JSON Body Transformer: 9cookies/json-body-transformer.md
-      - Request Time Matcher: 9cookies/request-time-matcher.md
+      - gRPC: grpc-extension/README.md
+      - GraphQL: graphql-extension/README.md
+      - State: state-extension/README.md
+      - Response Template Transformer: response-templating.md
+      - Velocity Response Transformer: velocity-transformer-extension/README.md
+      - Webhooks: webhooks-and-callbacks.md
+      - CORS protection: cors-extension/README.md
+      - JSON Web Tokens (JWT): jwt-extension/README.md
+      - JSON Body Transformer: 9cookies-extension/json-body-transformer.md
+      - Request Time Matcher: 9cookies-extension/request-time-matcher.md
+      - Unused Stubs: unused-stubs-extension/README.md
     - Operations Extensions:
-      - Prometheus Metrics: prometheus/README.md
+      - Metrics Extension: metrics-extension/README.MD
+      - Prometheus Metrics: prometheus-extension/README.md
     - Developer Extensions:
-      - Callback Simulator: 9cookies/callback-simulator.md
-      - Keywords: 9cookies/keywords.md
-      - Stub Mapping Tracker: stub-mapping-tracker/README.md
-      - Record Delay Capture: record-delay/README.md
+      - Callback Simulator: 9cookies-extension/callback-simulator.md
+      - Keywords: 9cookies-extension/keywords.md
+      - Stub Mapping Tracker: stub-mapping-tracker-extension/README.md
+      - Record Delay Capture: record-delay-extension/README.md
 
   - Extending WireMock:
     - Extending WireMock: extending-wiremock.md
@@ -223,16 +236,18 @@ nav:
     - Mappings Loader Extensions: extensibility/adding-mappings-loader.md
     - Stub Metadata: stub-metadata.md
   
-  - Contributing:
+  - Community:
     - Participate in WireMock: participate.md
     - Contributor Guide: community/contributing/README.md 
     - Hacktoberfest 2023: dotgithub/CONTRIBUTING.md
-    - Creating Extensions: wiremock/_docs/extending-wiremock.md
+    - Creating Extensions: extending-wiremock.md
     - Code of Conduct: dotgithub/CODE_OF_CONDUCT.md
 
   - Resources:
     - Community Resources: resources/README.md
     - Community Slack: https://slack.wiremock.org/
+    - WireMock Support: dotgithub/SUPPORT.md
+    - Reporting Security Issues: dotgithub/SECURITY.md
     - External Resources: resources/external.md
 
   - Go to WM Cloud: https://www.wiremock.io/product?utm_source=wiremock.org&utm_medium=referral&utm_campaign=docs_navbar

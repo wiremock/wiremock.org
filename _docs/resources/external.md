@@ -22,26 +22,8 @@ https://github.com/automatictester/wiremock-maven-plugin
 Maciej Walkowiak has built a library providing zero-config, fully declarative Spring Boot integration with WireMock in JUnit 5 tests:
 https://github.com/maciejwalkowiak/wiremock-spring-boot
 
-@GenerateWireMockStub for Spring REST controllers, built by Lukasz Gryzbon, makes the creation of WireMock stubs for tests safe and effortless:
+`@GenerateWireMockStub` for Spring REST controllers, built by Lukasz Gryzbon, makes the creation of WireMock stubs for tests safe and effortless:
 https://github.com/lsd-consulting/spring-wiremock-stub-generator
-
-## Extensions
-
-Simulate webhooks with this extension:
-https://github.com/wiremock/wiremock-webhooks-extension
-
-Some folks at Open Table have written a response transformer for injecting data from the request body into the response:
-https://github.com/opentable/wiremock-body-transformer
-
-In a similar vein, Adam York has written a response transformer utilising 
-Velocity templates:
-https://github.com/adamyork/wiremock-velocity-transformer
-
-Mason Malone has built an extension for matching requests based on the contents of JSON web tokens:
-https://github.com/MasonM/wiremock-jwt-extension
-
-Also from Mason, an extension for finding and removing unused stub mappings:
-https://github.com/MasonM/wiremock-unused-stubs-extension
 
 Felipe Fernández has built a Spock extension to enhance automation around record and replay functionality:
 https://github.com/felipefzdz/spock-wiremock-extension
@@ -49,10 +31,15 @@ https://github.com/felipefzdz/spock-wiremock-extension
 Automate configuration of stubs, given JAX-RS annotated resources, with this extension:
 https://github.com/tomasbjerre/wiremock-jaxrs
 
-Monitor JVM metrics and wiremock response time:
-https://github.com/rasklaad/wiremock-metrics
+## WireMock Extensions
+
+Listing of WireMock Extensions is now available on the documentation site
+[here](../extensions/README.md).
 
 ## Other languages
+
+Most of the language integrations are linked from the [Documentation Root](../index.html).
+Below there are some technologies that are yet to be added.
 
 PHP client by Rowan Hill:
 https://github.com/rowanhill/wiremock-php
@@ -62,19 +49,6 @@ https://rubygems.org/gems/service_mock
 
 Groovy binding by Tom Jankes:
 https://github.com/tomjankes/wiremock-groovy
-
-Python client by Cody Lee:
-https://pypi.python.org/pypi/wiremock/1.1.1
-
-NodeJS wrapper:
-https://www.npmjs.com/package/wiremock
-
-NodeJS + TypeScript client:
-https://www.npmjs.com/package/wiremock-captain
-
-Articles
-Sam Edwards has been hugely helpful in getting WireMock onto the Android platform and helping others do so. Here is his blog post explaining how to write an Espresso test using WireMock as your app's back-end:
-http://handstandsam.com/2016/01/30/running-wiremock-on-android/
 
 Dusan Dević at Yenlo wrote a useful guide to testing error conditions in the WSO2 ESB using Wiremock:
 https://www.yenlo.com/blog/wso2torial-error-handling-in-wso2-esb-with-wiremock
@@ -108,12 +82,9 @@ https://skillsmatter.com/skillscasts/5810-building-fault-tolerant-microservices
 Daniel Bryant's excellent QCon presentation “The Seven Deadly Sins of Microservices” covers the full gamut of microservice anti-patterns seen in the wild, with some sound advice on how to fix them. WireMock and Saboteur get an honourable mention in the testing discussion:
 https://www.infoq.com/presentations/7-sins-microservices
 
-The folks at Intuit have built a very impressive and ambitious testing 
+The folks at Intuit have built a very impressive and ambitious testing
 setup, using WireMock to isolate individual services. Here's a talk they did at AWS:Reinvent:
 https://www.youtube.com/watch?list=PLhr1KZpdzuke5pqzTvI2ZxwP8-NwLACuU&v=sUsh3EnzKKk
-
-Michael Bailey was the first person to publicly demonstrate the possibility of running WireMock on Android. Here's his presentation at Google's GTAC conference on the testing setup used by his team at Amex:
-https://www.youtube.com/watch?v=-xQCNf_5NNM
 
 Tom and Rob Elliot gave a join talk at Skillsmatter about patterns for readable and scalable tests with WireMock, and an approach for unit testing a CDN:
 https://skillsmatter.com/skillscasts/6853-scalable-management-of-test-data-making-tests-readable

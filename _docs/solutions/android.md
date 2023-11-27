@@ -23,6 +23,11 @@ References:
 
 <!-- TODO: Talk to Sam and have a fork repo/branch -->
 
+## Presentation by Michael Bailey
+
+Michael Bailey was the first person to publicly demonstrate the possibility of running WireMock on Android. Here's his presentation at Google's GTAC conference on the testing setup used by his team at Amex:
+[https://www.youtube.com/watch?v=-xQCNf_5NNM](https://www.youtube.com/watch?v=-xQCNf_5NNM)
+
 ## Useful pages
 
 - [WireMock and Kotlin](./kotlin.md) - Android ecosystem embraces Kotlin as a development language,
