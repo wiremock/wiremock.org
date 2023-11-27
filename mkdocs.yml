@@ -96,9 +96,14 @@ plugins:
           import_url: 'https://github.com/wiremock/wiremock-grpc-extension?branch=main&edit_uri=/blob/main/'
           imports: [ /README.md, docs/* ]
         - name: state-extension
-          import_url: 'https://github.com/wiremock/wiremock-extension-state?branch=develop&edit_uri=/blob/develop/'
+          import_url: 'https://github.com/wiremock/wiremock-state-extension?branch=develop&edit_uri=/blob/develop/'
           imports: [ /README.md, docs/*  ]
- 
+        - name: otel-extension
+          import_url: 'https://github.com/wiremock/wiremock-otel-extension?branch=main&edit_uri=/blob/main/'
+          imports: [ /README.md ]
+        - name: faker-extension
+          import_url: 'https://github.com/wiremock/wiremock-faker-extension?branch=main&edit_uri=/blob/main/'
+          imports: [ /README.md ]
           
         # Outside WireMock GitHub org
         - name: 9cookies-extension
@@ -211,6 +216,7 @@ nav:
       - State: state-extension/README.md
       - Response Template Transformer: response-templating.md
       - Velocity Response Transformer: velocity-transformer-extension/README.md
+      - Data Faker: faker-extension/README.md
       - Webhooks: webhooks-and-callbacks.md
       - CORS protection: cors-extension/README.md
       - JSON Web Tokens (JWT): jwt-extension/README.md
@@ -220,6 +226,7 @@ nav:
     - Operations Extensions:
       - Metrics Extension: metrics-extension/README.MD
       - Prometheus Metrics: prometheus-extension/README.md
+      - OpenTelemetry: otel-extension/README.md
     - Developer Extensions:
       - Callback Simulator: 9cookies-extension/callback-simulator.md
       - Keywords: 9cookies-extension/keywords.md
