@@ -3,11 +3,14 @@ site_description: >-
   WireMock Documentation.
 copyright: Copyright &copy; 2023 - WireMock Contributors
 docs_dir: _docs
+repo_url: https://github.com/wiremock/wiremock.org
+repo_name: WireMock Docs on GitHub
+edit_uri: edit/main/_docs/
 
 # Build
 site_dir: _site-docs
 
-
+# Theme
 theme:
   name: material
   custom_dir: _docs_theme
@@ -47,6 +50,8 @@ theme:
     code: Roboto Mono
   favicon: assets/images/favicon.svg
   logo: images/logos/wiremock/logo_wide.svg
+  icon:
+    repo: fontawesome/brands/github
 
 extra:
   social:
@@ -149,7 +154,8 @@ nav:
     - WireMock Standalone:
         - Running in Docker: standalone/docker.md
         - Running as a Standalone Process: standalone/java-jar.md
-        - Administration API: standalone/administration.md
+        - Administrating WireMock: standalone/administration.md
+        - Admit REST API Specification: standalone/admin-api-reference/
     - Java Usage:
         - JUnit 5+ Jupiter: junit-jupiter.md
         - JUnit 4 and Vintage: junit-extensions.md
