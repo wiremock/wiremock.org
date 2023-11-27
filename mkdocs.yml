@@ -224,10 +224,16 @@ nav:
     - Stub Metadata: stub-metadata.md
   
   - Contributing:
+    - Participate in WireMock: participate.md
     - Contributor Guide: community/contributing/README.md 
     - Hacktoberfest 2023: dotgithub/CONTRIBUTING.md
     - Creating Extensions: wiremock/_docs/extending-wiremock.md
     - Code of Conduct: dotgithub/CODE_OF_CONDUCT.md
+
+  - Resources:
+    - Community Resources: resources/README.md
+    - Community Slack: https://slack.wiremock.org/
+    - External Resources: resources/external.md
 
   - Go to WM Cloud: https://www.wiremock.io/product?utm_source=wiremock.org&utm_medium=referral&utm_campaign=docs_navbar
 
