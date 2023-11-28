@@ -85,8 +85,8 @@ extra_css:
   #- assets/css/main.css.map
 
 plugins:
-  # FIXME: SCSS compilation errors in @math, so now the CSS is copied over
-  #- extra-sass
+  # FIXME: SCSS compilation errors in @math, so we cannot take full wiremock.org SCSS
+  - extra-sass
   - search
   - autorefs
   - macros
@@ -270,8 +270,6 @@ nav:
     - WireMock Support: dotgithub/SUPPORT.md
     - Reporting Security Issues: dotgithub/SECURITY.md
     - External Resources: resources/external.md
-
-  - Go to WM Cloud: https://www.wiremock.io/product?utm_source=wiremock.org&utm_medium=referral&utm_campaign=docs_navbar
 
  # Markdown
 markdown_extensions:

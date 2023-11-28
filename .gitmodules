@@ -2,3 +2,7 @@
 	path = .submodules/wiremock.org-2.x
 	url = https://github.com/wiremock/wiremock.org.git
 	branch = 2.x
+[submodule "extra_sass\\vendor\\breakpoint"]
+	path = extra_sass\\vendor\\breakpoint
+	url = https://github.com/at-import/breakpoint.git
+	branch = main
