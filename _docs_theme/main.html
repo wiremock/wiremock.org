@@ -104,16 +104,18 @@
         {% for nav_item in nav %}
           {{ item.render(nav_item) }}
         {% endfor %}
-      </ul>
-    </div>
-        
+      
 
+        <li class="md-tabs__item">
         <!-- Repository information -->
         {% if config.repo_url %}
           <div class="md-header__source" data-md-component="header">
             {% include "partials/source.html" %}
           </div>
         {% endif %}
+        </li>
+      </ul>
+    </div>
       
   </nav>
 {% endblock %}

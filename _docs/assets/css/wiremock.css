@@ -51,3 +51,8 @@ h4 {
 .md-header {
     background-color: var(--wm-white);
 }
+
+body > div.md-container > nav > div > ul > li:last-child {
+    position: absolute;
+    right: 1em;
+}
