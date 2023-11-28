@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block header %}
+<header class="md-header" data-md-component="header">
   <div class="masthead">
     <a href="https://wiremock.org/" class="masthead__logo">
       <svg xmlns="http://www.w3.org/2000/svg" width="254" height="30" viewBox="0 0 254 30" fill="none">
@@ -14,7 +15,8 @@
         <path d="M9.1661 29.5022H17.823L22.7334 13.9971L27.6074 29.5022H36.2643L45.4304 0.404175H36.8099L31.9358 15.8261L27.0618 0.404175H18.4049L13.4945 15.8261L8.62049 0.404175H0L9.1661 29.5022Z" fill="#0FB2EF"/>
       </svg>
     </a>
-    <nav id="site-nav" class="masthead__nav">
+    <nav id="site-nav" class="masthead__nav md-header__inner md-grid"
+         aria-label="{{ lang.t('header') }}">
       <!-- <button><div class="navicon"></div></button> -->
       <ul class="visible-links">
         <li class="masthead__menu-item">
@@ -58,21 +60,35 @@
           </span>
         </li>
       </ul>
+
+    
+      <!-- Button to open search modal -->
+      {% if "material/search" in config.plugins %}
+      <label class="md-header__button md-icon" for="__search">
+        {% set icon = config.theme.icon.search or "material/magnify" %}
+        {% include ".icons/" ~ icon ~ ".svg" %}
+      </label>
+
+      <!-- Search interface -->
+      {% include "partials/search.html" %}
+      {% endif %}
+      
+      <div class="masthead__cta"> <a href="https://wiremock.io/product?utm_source=wiremock.org&utm_medium=masthead&utm_campaign=homepage_2022_baseline" title="WireMock Cloud" class="btn t-6"> Go to WM Cloud </a> <span class="masthead__cta-note">Free forever. No credit card needed</span></div>
+      <button class="hamburgerMenuIcon"> <img id="hamburgerMenuIcon" src="https://wiremock.org/images/hamburgerMenuIcon.svg" /> </button>
+      <div id="overlay-menu" class="overlay-menu"></div>
+      <div class="mobile-menu-wrapper">
+        <img id="closeMenuIcon" class="closeMenuIcon" src="https://wiremock.org/images/closeMenuIcon.svg" />
+        <ul>
+          <li> <a href="https://wiremock.io?utm_source=wiremock.org&utm_medium=masthead&utm_campaign=homepage_2022_baseline" title="WireMock Cloud" class="btn t-5"> Go to WM Cloud </a></li>
+          <li> <a href="https://wiremock.org/docs"> Docs </a></li>
+          <li> <a href="https://wiremock.org/support"> Need Help? </a></li>
+          <li> <a href="https://wiremock.org/participate"> Participate </a></li>
+          <li> <a href="https://wiremock.org/external-resources"> Resources </a></li>
+        </ul>
+      </div>
     </nav>
-    <div class="masthead__cta"> <a href="https://wiremock.io/product?utm_source=wiremock.org&utm_medium=masthead&utm_campaign=homepage_2022_baseline" title="WireMock Cloud" class="btn t-6"> Go to WM Cloud </a> <span class="masthead__cta-note">Free forever. No credit card needed</span></div>
-    <button class="hamburgerMenuIcon"> <img id="hamburgerMenuIcon" src="https://wiremock.org/images/hamburgerMenuIcon.svg" /> </button>
-    <div id="overlay-menu" class="overlay-menu"></div>
-    <div class="mobile-menu-wrapper">
-      <img id="closeMenuIcon" class="closeMenuIcon" src="https://wiremock.org/images/closeMenuIcon.svg" />
-      <ul>
-        <li> <a href="https://wiremock.io?utm_source=wiremock.org&utm_medium=masthead&utm_campaign=homepage_2022_baseline" title="WireMock Cloud" class="btn t-5"> Go to WM Cloud </a></li>
-        <li> <a href="https://wiremock.org/docs"> Docs </a></li>
-        <li> <a href="https://wiremock.org/support"> Need Help? </a></li>
-        <li> <a href="https://wiremock.org/participate"> Participate </a></li>
-        <li> <a href="https://wiremock.org/external-resources"> Resources </a></li>
-      </ul>
-    </div>
   </div>
+</header>
 {% endblock %}
 
 {% block tabs %}
@@ -90,16 +106,7 @@
         {% endfor %}
       </ul>
     </div>
-        <!-- Button to open search modal -->
-        {% if "material/search" in config.plugins %}
-          <label class="md-header__button md-icon" for="__search">
-            {% set icon = config.theme.icon.search or "material/magnify" %}
-            {% include ".icons/" ~ icon ~ ".svg" %}
-          </label>
-
-          <!-- Search interface -->
-          {% include "partials/search.html" %}
-        {% endif %}
+        
 
         <!-- Repository information -->
         {% if config.repo_url %}
