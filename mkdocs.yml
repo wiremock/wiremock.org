@@ -85,7 +85,6 @@ extra_css:
   #- assets/css/main.css.map
 
 plugins:
-  # FIXME: SCSS compilation errors in @math, so we cannot take full wiremock.org SCSS
   - extra-sass
   - search
   - autorefs
@@ -147,7 +146,7 @@ plugins:
         # System
         - name: community
           import_url: 'https://github.com/wiremock/community?branch=main&edit_uri=/blob/main/'
-          imports: [ contributing/* ]
+          imports: [ "*" ]
         - name: dotgithub
           import_url: 'https://github.com/wiremock/.github?branch=main&edit_uri=/blob/main/'
           imports: [ CONTRIBUTING.md, SECURITY.md, CODE_OF_CONDUCT.md ]
@@ -259,14 +258,21 @@ nav:
   
   - Community:
     - Participate in WireMock: participate.md
+    - Community Slack: https://slack.wiremock.org/
     - Contributor Guide: community/contributing/README.md 
     - Hacktoberfest 2023: dotgithub/CONTRIBUTING.md
     - Creating Extensions: extending-wiremock.md
+    - Governance: community/governance/README.md
     - Code of Conduct: dotgithub/CODE_OF_CONDUCT.md
 
   - Resources:
     - Community Resources: resources/README.md
     - Community Slack: https://slack.wiremock.org/
+    - Events:
+        Overview: community/events/README.md
+        Hacktoberfest: community/events/hacktoberfest/README.md
+        Archives: https://www.youtube.com/@WireMockChannel/playlists
+        Speaking: community/contributing/README.md#help-to-spread-the-word
     - WireMock Support: dotgithub/SUPPORT.md
     - Reporting Security Issues: dotgithub/SECURITY.md
     - External Resources: resources/external.md
