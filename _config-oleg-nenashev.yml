@@ -12,3 +12,10 @@ analytics:
       enabled: true
   vwo:
       enabled: true
+
+# TODO: Update plugin code to support more fancy navigation
+breadcrumbs:
+  root:
+    hide: true
+    image: true
+    imagePath: /wiremock.org/images/logos/doc-sections/home.svg
