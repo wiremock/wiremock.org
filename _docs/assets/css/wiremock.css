@@ -50,6 +50,11 @@ h4 {
 
 .md-header {
     background-color: var(--wm-white);
+    margin: 0 auto;
+}
+
+.md-search {
+    padding: 0.2rem 2rem;
 }
 
 body > div.md-container > nav > div > ul > li:last-child {
