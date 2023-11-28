@@ -204,6 +204,7 @@ nav:
     - Record & Playback:
         - Record and Playback: record-playback.md
     - Protocols:
+        - Supported Protocols: protocols/README.md
         - Webhooks and Callbacks: webhooks-and-callbacks.md
         - Mocking gRPC services: grpc.md
         - WireMock and GraphQL: solutions/graphql.md

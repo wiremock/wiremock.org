@@ -1,92 +1,31 @@
 setup:
   title: Getting started
   link: /docs/overview
-  pages:
-    - overview
-    - quickstart/java-junit
-    - download-and-installation
-    - getting-started
-    - faq
 
 standalone:
   title: WireMock Standalone
   link: /docs/standalone
-  pages:
-    - standalone/docker
-    - standalone/java-jar
-    - standalone/administration
 
 java:
   title: Java Usage
   link: /docs/solutions/jvm/
-  pages:
-    - junit-jupiter
-    - junit-extensions
-    - spring-boot
-    - java-usage
-    - configuration
-    - running-without-http-server
-    - android
     
 stubbing-and-verifying:
   title: Stubbing & Verifying
   link: /docs/stubbing
-  pages:
-    - stubbing
-    - request-matching
-    - response-templating
-    - simulating-faults
-    - stateful-behaviour
-    - proxying
-    - verifying
 
 templating:
   title: Templating
   link: /docs/mock-api-templates
-  pages:
-    - mock-api-templates
-    - mock-api-templates/usage
 
 record-playback:
   title: Record & Playback
   link: /docs/record-playback/
-  pages:
-    - record-playback
 
 protocols:
   title: Protocols
-  pages:
-    - webhooks-and-callbacks
-    - grpc
-    - solutions/graphql
-    - https
-
-configuration:
-  title: Advanced use-cases
-  pages:
-    - multi-domain-mocking
-    - advanced/deploy-to-servlet-container
-    - advanced/java7
+  link: /docs/protocols
 
 extensibility:
   title: Extensibility
   link: /docs/extending-wiremock/
-  pages:
-    - extending-wiremock
-    - extensibility/filtering-requests
-    - extensibility/transforming-responses
-    - extensibility/custom-matching
-    - extensibility/listening-for-serve-events
-    - extensibility/extending-the-admin-api
-    - extensibility/adding-template-helpers
-    - extensibility/adding-template-model-data
-    - extensibility/listening-for-stub-changes
-    - extensibility/listening-for-settings-changes
-    - extensibility/adding-mappings-loader
-    - stub-metadata
-
-reference:
-  title: Reference
-  pages:
-    - standalone/admin-api-reference
-    - mock-api-templates
