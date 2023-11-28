@@ -29,7 +29,7 @@ Add the extension JAR dependency to your project:
 Gradle:
 
 ```gradle
-implementation 'org.wiremock:wiremock-grpc-extension:{{ site.grpc_extension_version }}'
+implementation 'org.wiremock:wiremock-grpc-extension:{{ versions.grpc_extension_version }}'
 ```
 
 Maven:
@@ -38,7 +38,7 @@ Maven:
 <dependency>
     <groupId>org.wiremock</groupId>
     <artifactId>wiremock-grpc-extension</artifactId>
-    <version>{{ site.grpc_extension_version }}</version>
+    <version>{{ versions.grpc_extension_version }}</version>
 </dependency>
 ```
 
@@ -78,8 +78,9 @@ mockGreetingService.stubFor(
         .willReturn(json("{ "greeting": "Hi Tom from JSON" }")));
 ```
 
-
 Or with a templated response:
+
+{% raw %}
 
 ```java
 mockGreetingService.stubFor(
@@ -89,6 +90,8 @@ mockGreetingService.stubFor(
             jsonTemplate(
                 "{ \"greeting\": \"Hello {{jsonPath request.body '$.name'}}\" }")));
 ```
+
+{% endraw %}
 
 ### Stubbing via Java message objects
 

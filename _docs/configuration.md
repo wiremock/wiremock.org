@@ -241,17 +241,22 @@ The ruleset is built and applied as follows:
 
 ## Filename template
 
-WireMock can set up specific filename template format based on stub information. 
-The main rule for set up specify stub metadata information in handlebar format. 
-For instance for endpoint `PUT /hosts/{id}` and format `{{{method}}}-{{{request.url}}}.json`
-will be generated: `put-hosts-id.json` filename. Default template: `{{{method}}}-{{{path}}}-{{{id}}}.json`.
+WireMock can set up specific filename template format based on stub information.
+The main rule for set up specify stub metadata information in handlebar format.
+For instance for endpoint `PUT /hosts/{id}` and format
+{% raw %} `{{{method}}}-{{{request.url}}}.json`{% endraw %}
+will be generated: `put-hosts-id.json` filename.
+Default template: {% raw %} `{{{method}}}-{{{path}}}-{{{id}}}.json` {% endraw %}.
+
+{% raw %}
 
 ```java
 .filenameTemplate("{{{request.url}}}-{{{request.url}}}.json")
 ```
 
-Note: starting from [3.0.0-beta-8](https://github.com/wiremock/wiremock/releases/tag/3.0.0-beta-8)
+{% endraw %}
 
+Note: starting from [3.0.0-beta-8](https://github.com/wiremock/wiremock/releases/tag/3.0.0-beta-8)
 
 ## Listening for raw traffic
 

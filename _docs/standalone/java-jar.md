@@ -169,15 +169,15 @@ The last of these will cause chunked encoding to be used only when a stub define
 
 `--logged-response-body-size-limit`: Set a limit in bytes beyond which response bodies in the log will be truncated. When enabled this helps avoid out of memory errors when serving large response bodies.
 
-`--allow-proxy-targets`: Limit the permitted targets for proxying to and recording from the supplied addressess. This parameter takes a comma-separated list of single IP addresses, IP address ranges and hostname wildcards. See [this article](./../configuration.md#preventing-proxying-to-and-recording-from-specific-target-addresses) for details.
+`--allow-proxy-targets`: Limit the permitted targets for proxying to and recording from the supplied addresses. This parameter takes a comma-separated list of single IP addresses, IP address ranges and hostname wildcards. See [this article](./../configuration.md#preventing-proxying-to-and-recording-from-specific-target-addresses) for details.
 
-`--deny-proxy-targets`: Prevent proxying to and recording from the supplied addressess. This parameter takes a comma-separated list of single IP addresses, IP address ranges and hostname wildcards. Note: if both `--allow-proxy-targets` and this parameter are set, the allow list will be evaluated first. See [this article](./../configuration.md#preventing-proxying-to-and-recording-from-specific-target-addresses) for details.
+`--deny-proxy-targets`: Prevent proxying to and recording from the supplied addresses. This parameter takes a comma-separated list of single IP addresses, IP address ranges and hostname wildcards. Note: if both `--allow-proxy-targets` and this parameter are set, the allow list will be evaluated first. See [this article](./../configuration.md#preventing-proxying-to-and-recording-from-specific-target-addresses) for details.
 
 `--proxy-timeout`: Set the timeout for requests to the proxy in milliseconds
 
 `--proxy-pass-through`: Flag used in browser-caching in order to enable or disable pass through unmatched requests to the target indicated by the original requests. By default, this flag is enabled and let the requests pass through.
 
-`--filename-template`: Set filename template in handlebar format. For endpoint: `GET /pets/{id}` using the format: `{{{method}}}-{{{url}}}.json` output will be `get-pets-id.json`. Default format: `{{{method}}}-{{{path}}}-{{{id}}}.json` hence by default template filename will be: `get-pets-id-1.json`.   
+`--filename-template`: Set filename template in handlebar format. For endpoint: `GET /pets/{id}` using the format: {% raw %} `{{{method}}}-{{{url}}}.json` {% endraw %} output will be `get-pets-id.json`. Default format: {% raw %} `{{{method}}}-{{{path}}}-{{{id}}}.json` {% endraw %} hence by default template filename will be: `get-pets-id-1.json`.
 Note: introduced in [3.0.0-beta-8](https://github.com/wiremock/wiremock/releases/tag/3.0.0-beta-8).
 
 `--help`: Show command line help
