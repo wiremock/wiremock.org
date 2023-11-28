@@ -1,2 +1,14 @@
 url: "https://oleg-nenashev.github.io/"
 baseurl: "wiremock.org/"
+
+# Analytics
+analytics:
+  google:
+      # gtag
+      id: "G-F923LHBYYT"
+
+  # MS Clarity
+  clarity:
+      enabled: true
+  vwo:
+      enabled: true

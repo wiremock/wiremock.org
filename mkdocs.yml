@@ -73,7 +73,10 @@ extra:
     - icon: fontawesome/brands/mastodon
       link: https://fosstodon.org/@wiremock
       name: WireMock on Fosstodon
-  
+  analytics:
+    provider: google
+    # FIXME: Update when in Production
+    property: G-QSLQ4RWTRP
     
 extra_css:
   - assets/css/wiremock.css
