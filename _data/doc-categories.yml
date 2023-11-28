@@ -23,8 +23,12 @@ record-playback:
   link: /docs/record-playback/
 
 protocols:
-  title: Protocols
+  title: Supported Protocols
   link: /docs/protocols
+
+extensions:
+  title: WireMock Extensions
+  link: /docs/extensions
 
 extensibility:
   title: Extensibility
