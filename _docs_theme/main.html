@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 
 {% block header %}
-  {{ super() }}
-
   <div class="masthead">
     <a href="https://wiremock.org/" class="masthead__logo">
       <svg xmlns="http://www.w3.org/2000/svg" width="254" height="30" viewBox="0 0 254 30" fill="none">
@@ -78,6 +76,37 @@
 {% endblock %}
 
 {% block tabs %}
-  {{ super() }}  
+  {% import "partials/tabs-item.html" as item with context %}
 
+  <!-- Navigation tabs -->
+  <nav
+    class="md-tabs"
+    aria-label="{{ lang.t('tabs') }}"
+    data-md-component="tabs">
+    <div class="md-grid">
+      <ul class="md-tabs__list">
+        {% for nav_item in nav %}
+          {{ item.render(nav_item) }}
+        {% endfor %}
+      </ul>
+    </div>
+        <!-- Button to open search modal -->
+        {% if "material/search" in config.plugins %}
+          <label class="md-header__button md-icon" for="__search">
+            {% set icon = config.theme.icon.search or "material/magnify" %}
+            {% include ".icons/" ~ icon ~ ".svg" %}
+          </label>
+
+          <!-- Search interface -->
+          {% include "partials/search.html" %}
+        {% endif %}
+
+        <!-- Repository information -->
+        {% if config.repo_url %}
+          <div class="md-header__source" data-md-component="header">
+            {% include "partials/source.html" %}
+          </div>
+        {% endif %}
+      
+  </nav>
 {% endblock %}
