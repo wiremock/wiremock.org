@@ -2,7 +2,7 @@ site_name: WireMock Documentation
 site_description: >-
   WireMock Documentation.
 # FIXME: replace by production file
-site_url: https://oleg-nenashev.github.io/wiremock.org/docs/
+site_url: https://oleg-nenashev.github.io/wiremock.org/docs
 copyright: Copyright &copy; 2023 - WireMock Contributors
 docs_dir: _docs
 repo_url: https://github.com/wiremock/wiremock.org
@@ -62,7 +62,7 @@ extra:
     grpc_extension_version: 0.4.0
   social:
     - icon: fontawesome/brands/slack
-      link: https://slack.wiremock.org/
+      link: community/slack.md
       name: WireMock Community Slack
     - icon: fontawesome/brands/twitter
       link: https://twitter.com/wiremockorg
@@ -259,7 +259,7 @@ nav:
   
   - Community:
     - Participate in WireMock: participate.md
-    - Community Slack: https://slack.wiremock.org/
+    - Community Slack: community/slack.md
     - Contributor Guide: community/contributing/README.md 
     - Hacktoberfest 2023: dotgithub/CONTRIBUTING.md
     - Creating Extensions: extending-wiremock.md
@@ -268,7 +268,7 @@ nav:
 
   - Resources:
     - Community Resources: resources/README.md
-    - Community Slack: https://slack.wiremock.org/
+    - Community Slack: community/slack.md
     - Events:
         Overview: community/events/README.md
         Hacktoberfest: community/events/hacktoberfest/README.md

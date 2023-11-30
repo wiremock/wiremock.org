@@ -3,7 +3,7 @@
 {% block header %}
 <header class="md-header" data-md-component="header">
   <div class="masthead">
-    <a href="https://wiremock.org/" class="masthead__logo">
+    <a href="{{ config.site_url }}.." class="masthead__logo">
       <svg xmlns="http://www.w3.org/2000/svg" width="254" height="30" viewBox="0 0 254 30" fill="none">
         <path d="M174.761 30C183.971 30 190.65 23.3195 190.65 14.8963C190.691 6.59751 183.971 0 174.761 0C165.552 0 158.831 6.51452 158.831 14.8963C158.831 23.195 165.552 30 174.761 30ZM168.373 14.8963C168.373 11.0373 171.235 8.13278 174.761 8.13278C178.246 8.13278 181.108 10.9959 181.108 14.8963C181.15 18.8382 178.287 21.8672 174.761 21.8672C171.235 21.8672 168.373 18.8382 168.373 14.8963Z" fill="#FF9505"/>
         <path d="M207.83 29.917C215.422 29.917 219.57 25.7261 220.815 23.195L214.675 19.0041C214.011 20.2075 212.518 22.2407 208.287 22.2407C204.595 22.2407 201.442 19.4606 201.442 15.0622C201.442 10.5809 204.719 7.67635 208.37 7.71784C211.813 7.75933 213.555 9.46058 214.468 10.8299L220.815 6.22406C218.907 3.15353 214.509 0.124482 207.83 0.124482C199.202 0.124482 191.9 6.0166 191.9 15.0622C191.9 24.1909 199.077 29.917 207.83 29.917Z" fill="#FF9505"/>
@@ -21,30 +21,39 @@
       <ul class="visible-links">
         <li class="masthead__menu-item">
           <span class="navlink">
-            <a href="https://wiremock.org/docs"> Docs </a>
+            <a href="{{ config.site_url }}"> Docs </a>
             <div class="divSubNav">
               <div class="divSubNav__inner">
-                <!-- General link --> <a href="https://wiremock.org/docs/"> WireMock </a> <!-- General link --> <a href="https://wiremock.org/docs/mock-api-templates"> Mock API Templates </a> <!-- General link --> <a href="https://docs.wiremock.io/getting-started/?utm_source=wiremock.org&utm_medium=masthead_doc-links&utm_campaign=2022_baseline"> WireMock Cloud </a> <!-- General link --> <a href="https://wiremock.org/external-resources"> External Resources </a> <!-- Show the preview link --> <a href="https://wiremock.org/2.x/docs/"> WireMock 2.x (Archive) </a> <!-- Show the preview link -->
+                <!-- General link --> <a href="{{ config.site_url }}"> WireMock </a>
+                <a href="{{ config.site_url }}/mock-api-templates"> Mock API Templates </a> 
+                <a href="https://docs.wiremock.io/getting-started/?utm_source=wiremock.org&utm_medium=masthead_doc-links&utm_campaign=2022_baseline"> WireMock Cloud </a> <!-- General link --> <a href="https://wiremock.org/external-resources"> External Resources </a> <!-- Show the preview link -->
+                <a href="{{ config.site_url }}/../2.x/docs/"> WireMock 2.x (Archive) </a>
               </div>
             </div>
           </span>
         </li>
         <li class="masthead__menu-item">
           <span class="navlink">
-            <a href="https://wiremock.org/support"> Need Help? </a>
+            <a href="{{ config.site_url }}/../support"> Need Help? </a>
             <div class="divSubNav">
               <div class="divSubNav__inner">
-                <!-- General link --> <a href="https://slack.wiremock.org/"> Q&A on Slack </a> <!-- General link --> <a href="https://stackoverflow.com/questions/tagged/wiremock"> StackOverflow </a> <!-- General link --> <a href="https://wiremock.org/support/commercial"> Commercial Options </a>
+                <!-- General link --> <a href="{{ config.site_url }}/community/slack"> Q&A on Slack </a> 
+                <a href="https://stackoverflow.com/questions/tagged/wiremock"> StackOverflow </a> 
+                <a href="{{ config.site_url }}/../support/commercial"> Commercial Options </a>
               </div>
             </div>
           </span>
         </li>
         <li class="masthead__menu-item">
           <span class="navlink">
-            <a href="https://wiremock.org/participate"> Participate </a>
+            <a href="{{ config.site_url }}/participate"> Participate </a>
             <div class="divSubNav">
               <div class="divSubNav__inner">
-                <!-- General link --> <a href="https://slack.wiremock.org/"> Community Slack </a> <!-- General link --> <a href="https://github.com/wiremock/community/blob/main/contributing/README.md"> Contributor Guide </a> <!-- General link --> <a href="https://github.com/wiremock/"> Our GitHub </a> <!-- General link --> <a href="https://github.com/wiremock/wiremock.org"> This Website </a> <!-- General link --> <a href="https://github.com/wiremock/.github/blob/main/CODE_OF_CONDUCT.md"> Code of Conduct </a>
+                <!-- General link --> <a href="{{ config.site_url }}/community/slack"> Community Slack </a>
+                <a href="{{ config.site_url }}/community/contributing/README.md"> Contributor Guide </a> 
+                <a href="https://github.com/wiremock/"> Our GitHub org</a>
+                <a href="https://github.com/wiremock/wiremock.org"> This Website repo </a> <!-- General link -->
+                <a href="{{ config.site_url }}/dotgithub/CODE_OF_CONDUCT"> Code of Conduct </a>
               </div>
             </div>
           </span>
@@ -74,16 +83,16 @@
       {% endif %}
       
       <div class="masthead__cta"> <a href="https://wiremock.io/product?utm_source=wiremock.org&utm_medium=masthead&utm_campaign=homepage_2022_baseline" title="WireMock Cloud" class="btn t-6"> Go to WM Cloud </a> <span class="masthead__cta-note">Free forever. No credit card needed</span></div>
-      <button class="hamburgerMenuIcon"> <img id="hamburgerMenuIcon" src="https://wiremock.org/images/hamburgerMenuIcon.svg" /> </button>
+      <button class="hamburgerMenuIcon"> <img id="hamburgerMenuIcon" src="{{ config.site_url }}/images/hamburgerMenuIcon.svg" /> </button>
       <div id="overlay-menu" class="overlay-menu"></div>
       <div class="mobile-menu-wrapper">
-        <img id="closeMenuIcon" class="closeMenuIcon" src="https://wiremock.org/images/closeMenuIcon.svg" />
+        <img id="closeMenuIcon" class="closeMenuIcon" src="{{ config.site_url }}/images/closeMenuIcon.svg" />
         <ul>
           <li> <a href="https://wiremock.io?utm_source=wiremock.org&utm_medium=masthead&utm_campaign=homepage_2022_baseline" title="WireMock Cloud" class="btn t-5"> Go to WM Cloud </a></li>
-          <li> <a href="https://wiremock.org/docs"> Docs </a></li>
-          <li> <a href="https://wiremock.org/support"> Need Help? </a></li>
-          <li> <a href="https://wiremock.org/participate"> Participate </a></li>
-          <li> <a href="https://wiremock.org/external-resources"> Resources </a></li>
+          <li> <a href="{{ config.site_url }}"> Docs </a></li>
+          <li> <a href="{{ config.site_url }}/../support"> Need Help? </a></li>
+          <li> <a href="{{ config.site_url }}/participate"> Participate </a></li>
+          <li> <a href="{{ config.site_url }}/resources/external"> Resources </a></li>
         </ul>
       </div>
     </nav>
