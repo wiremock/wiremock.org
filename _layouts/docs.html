@@ -141,16 +141,12 @@ layout: default
       </section>
 
       <footer class="page__meta">
-        <a class="page__meta-title" href="{{ page.path | prepend: site.pageEditPrefix }}" target="_blank">
-            <img width="16px" src= "/images/logos/doc-sections/edit.svg" />
-            Improve this page
-        </a>
         <a class="page__meta-title" href="{{ 'https://github.com/wiremock/wiremock.org/issues/new?labels=bug&template=3-bug.yml&page=' | append: page.url | append: '&title=Issue on ' | append: page.title }}" target="_blank">
-            <img width="16px" src= "/images/logos/doc-sections/bug.svg" />
+            <img width="16px" src= "{{ '/images/logos/doc-sections/bug.svg' | absolute_url }}" />
             Report an issue
         </a>
         <a class="page__meta-title" href="http://slack.wiremock.org/" target="_blank">
-            <img width="16px" src= "/images/logos/doc-sections/slack.svg" />
+            <img width="16px" src= "{{ '/images/logos/doc-sections/slack.svg' | absolute_url }}" />
             Ask on Slack
         </a>
         {% if site.data.ui-text[site.locale].meta_label %}
