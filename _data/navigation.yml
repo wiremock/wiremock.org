@@ -30,8 +30,10 @@ main:
           subnavLink: "/docs/community/slack"
         - name: "StackOverflow"
           subnavLink: "https://stackoverflow.com/questions/tagged/wiremock"
+        - name: "Community Support"
+          subnavLink: "/docs/resources/community-support"
         - name: "Commercial Options"
-          subnavLink: "/support/commercial"
+          subnavLink: "/docs/resources/commercial-support"
 
     - title: "Participate"
       link: '/participate'
@@ -41,16 +43,16 @@ main:
         - name: "Community Slack"
           subnavLink: "/docs/community/slack"
         - name: "Contributor Guide"
-          subnavLink: "https://github.com/wiremock/community/blob/main/contributing/README.md"
-        - name: "Our GitHub"
+          subnavLink: "/docs/community/contributing"
+        - name: "Our GitHub org"
           subnavLink: "https://github.com/wiremock/"
-        - name: "This Website"
+        - name: "This Website repo"
           subnavLink: "https://github.com/wiremock/wiremock.org"
         - name: "Code of Conduct"
-          subnavLink: "https://github.com/wiremock/.github/blob/main/CODE_OF_CONDUCT.md"
+          subnavLink: "/docs/dotgithub/CODE_OF_CONDUCT"
     
     - title: "Resources"
-      link: "/external-resources"
+      link: "/docs/resources/external"
       icon: "/images/logos/doc-sections/plusnew.svg"
       subnav: "resources"
       subnavLinks:
@@ -65,7 +67,7 @@ main:
         - name: "Slack Archive"
           subnavLink: "https://community.wiremock.io/"
         - name: "External Resources"
-          subnavLink: "/external-resources"
+          subnavLink: "/docs/resources/external"
 
 # TODO: re-enable once/if there are more commercial offerings
 #    - title: "Commercial Offerings"

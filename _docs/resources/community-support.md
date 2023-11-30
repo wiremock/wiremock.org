@@ -1,9 +1,8 @@
 ---
-layout: support
-title: Support
-meta_title: How to get WireMock support
-description: Community Assistance, Enterprise and commercial support and consulting options
+description: How to get community assistance if you are a WireMock user
 ---
+
+# WireMock Community Support
 
 WireMock is an open source project.
 In accordance with the [Apache License 2.0](https://github.com/wiremock/wiremock/blob/master/LICENSE.txt),
@@ -12,7 +11,7 @@ At the same time, you can get some assistance through WireMock community channel
 and contribute to helping other users too.
 There are also vendors that provide commercial support for WireMock.
 
-## WireMock Community
+## Community Support
 
 If you’re looking for help or advice,
 you can find a community of users and contributors on the WireMock community Slack channels.
@@ -27,4 +26,4 @@ Every community member is welcome to participate, help to triage and answer the 
 
 ## Commercial support, trainings and consulting
 
-See [this page](./commercial).
+See [this page](./commercial-support.md).
