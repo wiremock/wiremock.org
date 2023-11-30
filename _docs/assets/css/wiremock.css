@@ -61,3 +61,33 @@ body > div.md-container > nav > div > ul > li:last-child {
     position: absolute;
     right: 1em;
 }
+
+.slack-help-box {
+    background-color: #f2f2f2;
+    border: #c8c8c8 1px solid;
+    padding: 8px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    display: inline;
+    margin-bottom: 1cm;
+}
+
+.slack-help-box a {
+    font-size: normal;
+    width: max-content;
+    height: max-content;
+    color: black;
+    text-decoration: none !important; 
+}
+
+.slack-help-box a div {
+    display: inline;
+    padding-right: 10px;
+    color: inherit;
+}
+
+.slack-help-box a div img {
+    vertical-align: sub;
+    height: 22px;
+    width: 22px;
+};
