@@ -58,7 +58,13 @@ To serve the site locally:
 mkdocs serve
 ```
 
-Note that the multi-repo site maybe quite slow during the first build.
+> **WARNING:** Note that the multi-repo site maybe quite slow during the
+> first build and then during the rebuilds.
+> You can disable it for local development just by commenting out the plugin section in `mkdocs.yml`
+> The same goes to the SCSS compiler which cannot be disabled.
+> There are [jdoiro3/mkdocs-multirepo-plugin #129](https://github.com/jdoiro3/mkdocs-multirepo-plugin/issues/129)
+> and [orzih/mkdocs-extra-sass-plugin #6](https://github.com/orzih/mkdocs-extra-sass-plugin/issues/6)
+> submitted to improve the developer experience.
 
 ### Code Tabs
 
