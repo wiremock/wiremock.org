@@ -41,9 +41,13 @@ The documentation is built using
 
 ### Building
 
+The documentation website uses some sources from submodules,
+so make sure to pull them before building the site.
+
 Requirements:
 
 - Python and PiP, recent versions
+- Submodules are pulled in your local git clone
 
 ```shell
 pip install -r requirements.txt
