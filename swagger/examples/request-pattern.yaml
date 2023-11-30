@@ -1,5 +1,0 @@
-method: POST
-url: "/resource"
-headers:
-  Content-Type:
-    matches: ".*/xml"
