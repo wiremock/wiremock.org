@@ -244,7 +244,7 @@ pageEditPrefix: https://github.com/wiremock/wiremock.org/edit/main/
 grpc_extension_version: 0.4.0
 
 community_slack:
-  join_url: https://slack.wiremock.org/
+  join_url: /docs/community/slack
 
 # Default link for wiremock signup button in header
 # This can be overridden in pages using frontmatter start_link variable

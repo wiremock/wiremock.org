@@ -27,7 +27,7 @@ main:
       subnav: "help"
       subnavLinks:
         - name: "Q&A on Slack"
-          subnavLink: "https://slack.wiremock.org/"
+          subnavLink: "/docs/community/slack"
         - name: "StackOverflow"
           subnavLink: "https://stackoverflow.com/questions/tagged/wiremock"
         - name: "Commercial Options"
@@ -39,7 +39,7 @@ main:
       subnav: "participate"
       subnavLinks:
         - name: "Community Slack"
-          subnavLink: "https://slack.wiremock.org/"
+          subnavLink: "/docs/community/slack"
         - name: "Contributor Guide"
           subnavLink: "https://github.com/wiremock/community/blob/main/contributing/README.md"
         - name: "Our GitHub"

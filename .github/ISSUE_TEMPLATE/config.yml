@@ -1,7 +1,7 @@
 blank_issues_enabled: true
 contact_links:
   - name: '🛟 Help on Slack'
-    url: https://slack.wiremock.org/
+    url: https://wiremock.org/docs/community/slack
     about: |
       You can ask questions on the community Slack in the '#help' or '#help-contributing' channels.
       Please do not raise GitHub issues for questions.
