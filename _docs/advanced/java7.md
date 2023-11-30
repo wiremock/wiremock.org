@@ -1,9 +1,10 @@
 ---
-layout: docs
-title: WireMock on Java 1.7
-meta_title: "Using old WireMock versions with Java 1.7"
-description: Recent WireMock versions do not support Java 1.7, but you can run older versions to achieve that
+description: >
+    Recent WireMock versions do not support Java 1.7,
+    but you can run older versions to achieve that
 ---
+
+# Using old WireMock versions with Java 1.7
 
 > **WARNING:** Recent WireMock versions do not support Java 1.7, but you can run older versions to achieve that.
 > The Java 7 version was deprecated in the 2.x line and version 2.27.2 is the last release available.

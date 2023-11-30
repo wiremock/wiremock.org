@@ -1,9 +1,8 @@
 ---
-layout: docs
-title: "Quick Start: API Mocking with Java and JUnit 4"
-meta_title: "API Mocking QuickStart with Java and JUnit 4 | WireMock" 
-description: "Shows how to write your API Client first test with WireMock and JUnit"
+description: "Shows how to write your API Client first test with WireMock and JUnit 4"
 ---
+
+# Quick Start: API Mocking with Java and JUnit 4
 
 In this guide we will write an API Unit test with WireMock and JUnit 4.
 

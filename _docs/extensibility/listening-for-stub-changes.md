@@ -1,9 +1,8 @@
 ---
-layout: docs
-title: Listening for Stub Changes
-meta_title: Listening for Stub Changes
 description: Listening for Stub Changes
 ---
+
+# Listening for Stub Changes
 
 You can subscribe to changes in the state of WireMock's stubs via the `StubLifecycleListener` extension point.
 

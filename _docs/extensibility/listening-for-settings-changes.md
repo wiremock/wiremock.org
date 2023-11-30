@@ -1,9 +1,8 @@
 ---
-layout: docs
-title: Listening for Settings Changes
-meta_title: Listening for Settings Changes
 description: Listening for Settings Changes
 ---
+
+# Listening for Settings Changes
 
 You can listen for changes to the global settings object.
 

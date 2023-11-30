@@ -1,10 +1,11 @@
 ---
-layout: docs
-title: Record and Playback (Legacy)
-meta_title: Record and Playback (Legacy) | WireMock
-toc_rank: 71
-description: Create stub mappings by recording them while you send requests. This can be used to quickly capture a collection of responses from a real service then use them offline in your tests.
+description: >
+    Create stub mappings by recording them while you send requests.
+    This can be used to quickly capture a collection of responses from a real service
+    then use them offline in your tests.
 ---
+
+# Record and Playback (Legacy)
 
 **WireMock has the ability to create stub mappings by recording them
 while you send requests. This can be used to quickly capture a

@@ -1,9 +1,10 @@
 ---
-layout: docs
-title: 'JUnit 4 and Vintage'
-meta_title: Using Junit 4 and Vintage to Manage WireMock instances | WireMock
-description: WireMock includes a JUnit rule, compatible with JUnit 4.x and JUnit 5 Vintage. This provides a convenient way to manage one or more WireMock instances in your test cases.
+description: >
+    WireMock includes a JUnit Rule, compatible with JUnit 4.x and JUnit 5 Vintage.
+    This provides a convenient way to manage one or more WireMock instances in your test cases.
 ---
+
+# Using WireMock in JUnit 4 and Vintage
 
 WireMock includes a JUnit rule, compatible with JUnit 4.x and JUnit 5 Vintage.
 This provides a convenient way to manage one or more WireMock instances in your

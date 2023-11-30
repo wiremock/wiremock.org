@@ -1,10 +1,10 @@
 ---
-layout: docs
-title: Stubbing
-meta_title: Returning stubbed HTTP responses to specific requests | WireMock
-toc_rank: 50
-description: A core feature of WireMock is the ability to return canned HTTP responses for requests matching criteria. These are described in detail in Request Matching.
+description: >
+    A core feature of WireMock is the ability to return canned HTTP responses for requests matching criteria.
+    These are described in detail in Request Matching.
 ---
+
+# Returning stubbed HTTP responses to specific requests
 
 A core feature of WireMock [API mocking](./overview.md) is the ability to return canned HTTP
 responses for requests matching criteria. These are described in detail in [Request Matching](./request-matching.md).

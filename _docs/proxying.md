@@ -1,10 +1,8 @@
 ---
-layout: docs
-title: Proxying
-meta_title: Proxying and proxy stub mappings | WireMock
-toc_rank: 65
 description: Proxy responses are defined in exactly the same manner as stubs, meaning that the same request matching criteria can be used.
 ---
+
+# Proxying and proxy stub mappings 
 
 WireMock has the ability to selectively proxy requests through to
 other hosts. This supports a proxy/intercept setup where requests are by

@@ -1,10 +1,9 @@
 ---
-layout: docs
-title: Frequently Asked Questions
-meta_title: "Frequently Asked Questions in WireMock"
 description: >
     Frequently asked questions and best practices regarding anything WireMock.
 ---
+
+# Frequently Asked Questions
 
 Here, you can find information about what API mocking and WireMock are, as well as recommendations and best practices for different challenges in various areas of WireMock.
 

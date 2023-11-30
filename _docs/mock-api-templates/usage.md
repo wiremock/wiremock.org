@@ -1,10 +1,8 @@
 ---
-layout: docs
-title: Using Mock API Templates
-meta_title: Using Mock API Templates
-toc_rank: 66
 description: This guide explains how to run an API template after you've downloaded the JSON file from the library page
 ---
+
+# Using Mock API Templates
 
 This guide explains how to run an API template after you've downloaded the JSON file from the library page.
 

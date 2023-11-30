@@ -1,12 +1,10 @@
 ---
-layout: docs
-title: WireMock Standalone
-meta_title: WireMock as a Standalone Service
-toc_rank: 41
 description: > 
     WireMock can be run as a standalone service.
     We provide the JAR file and Docker image distributions for it.
 ---
+
+# WireMock as a Standalone Service
 
 WireMock can run as a standalone service,
 configured via the Java API, JSON over HTTP or JSON files.

@@ -1,9 +1,8 @@
 ---
-layout: docs
-title: Filtering and Modifying Requests
-meta_title: Filtering and Modifying Requests
 description: Filtering and modifying requests via extensions
 ---
+
+# Filtering and Modifying Requests
 
 Requests to both stubs and the admin API can be intercepted and either modified or halted with an immediate response.
 This supports a number of use cases including: authentication, URL rewriting and request header injection.

@@ -1,9 +1,8 @@
 ---
-layout: docs
-title: Transforming Responses
-meta_title: Transforming response definitions and responses
 description: Transforming response definitions and responses via extensions
 ---
+
+# Transforming response definitions and responses
 
 Sometimes, returning wholly static responses to stub requests isn't
 practical e.g. when there are transaction IDs being passed between

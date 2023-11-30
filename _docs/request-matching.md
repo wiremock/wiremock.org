@@ -1,10 +1,10 @@
 ---
-layout: docs
-title: Request Matching
-meta_title: Matching and filtering HTTP requests in WireMock | WireMock
-toc_rank: 61
-description: WireMock supports matching of requests to stubs and verification queries using the following attributes.
+description: >
+  WireMock supports matching of requests to stubs and verification queries
+  using the following attributes.
 ---
+
+# Matching and filtering HTTP requests in WireMock
 
 WireMock enables flexible definition of a mock APIs by supporting rich matching of incoming requests.
 Stub matching and verification queries can use the following request attributes:

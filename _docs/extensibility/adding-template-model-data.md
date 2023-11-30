@@ -1,9 +1,8 @@
 ---
-layout: docs
-title: Adding Template Model Data
-meta_title: Adding Template Model Data
 description: Adding extra elements to the template model during request processing
 ---
+
+# Adding Template Model Data
 
 Extensions that implement the `TemplateHelperProviderExtension` interface provide additional Handlebars helpers to the templating system:
 

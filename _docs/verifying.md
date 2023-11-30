@@ -1,10 +1,11 @@
 ---
-layout: docs
-title: Verifying
-meta_title: Verifying whether specific HTTP requests were made | WireMock
-toc_rank: 60
-description: Verifying and querying requests relies on the request journal, which is an in-memory log of received requests. This can be disabled for load testing.
+description: >
+    Verifying and querying requests relies on the request journal,
+    which is an in-memory log of received requests.
+    This can be disabled for load testing.
 ---
+
+# Verifying whether specific HTTP requests were made
 
 The WireMock server records all requests it receives in memory (at
 least until it is [reset](./stubbing.md#reset)). This makes it possible to verify that

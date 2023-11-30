@@ -1,9 +1,8 @@
 ---
-layout: docs
-title: "Java configuration"
-meta_title: Configuring WireMock in Java | WireMock
 description: Configuring WireMock progammatically in Java.
 ---
+
+# Configuring WireMock in Java
 
 Both `WireMockServer` and the `WireMockRule` take a configuration builder as the parameter to their constructor e.g.
 

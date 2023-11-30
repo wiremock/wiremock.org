@@ -1,9 +1,10 @@
 ---
-layout: docs
-title: Running in Docker
-meta_title: Configuring and running WireMock in Docker | WireMock
-description: The Docker image supports exactly the same set of command line arguments as the standalone version. These can be passed to the container by appending them to the end of the command.
+description: >
+  The Docker image supports exactly the same set of command line arguments as the standalone version.
+  These can be passed to the container by appending them to the end of the command.
 ---
+
+# Configuring and running WireMock in Docker
 
 From version 2.31.0 WireMock has an [official Docker image](https://hub.docker.com/r/wiremock/wiremock).
 

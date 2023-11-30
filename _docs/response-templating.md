@@ -1,10 +1,10 @@
 ---
-layout: docs
-title: Response Templating
-meta_title: Mock API Response Templating | WireMock
-toc_rank: 71
-description: Response headers and bodies, as well as proxy URLs, can optionally be rendered using Handlebars templates.
+description: >
+    Response headers and bodies, as well as proxy URLs,
+    can optionally be rendered using Handlebars templates.
 ---
+
+# Mock API Response Templating
 
 Response headers and bodies, as well as proxy URLs, can optionally be rendered using [Handlebars templates](http://handlebarsjs.com/). This enables attributes of the request
 to be used in generating the response e.g. to pass the value of a request ID header as a response header or

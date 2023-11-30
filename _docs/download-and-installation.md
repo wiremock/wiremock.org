@@ -1,13 +1,11 @@
 ---
-layout: docs
-title: Download and Installation
-meta_title: "How to Download and Install WireMock"
-toc_rank: 13
 description: >
-    WireMock is available as a standalone service (for Docker of Java), Java library
-    and integrations for modern languages and technology stacks.
+    WireMock is available as a standalone service for Docker or Java,
+    Java library, NPM package or SaaS.
+    Learn how to download and install WireMock.
 ---
 
+# Download and Installation
 
 ## Download options
 

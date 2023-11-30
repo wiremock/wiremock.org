@@ -1,12 +1,11 @@
 ---
-layout: docs
-title: Mocking gRPC services
-meta_title: Mocking gRPC services
-description: Mocking gRPC services with WireMock
+description: >
+  WireMock 3.2.0+ supports mocking of gRPC services via the WireMock extension for gRPC.
 og_image: solutions/grpc/wiremock_grpc_opengraph.png
-header:
-  image: solutions/grpc/header.png
+hero: solutions/grpc/header.png
 ---
+
+# Mocking gRPC services
 
 WireMock 3.2.0+ supports mocking of gRPC services via the
 [WireMock extension for gRPC](https://github.com/wiremock/wiremock-grpc-extension).

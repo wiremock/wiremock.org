@@ -1,9 +1,10 @@
 ---
-layout: docs
-title: Stateful Behaviour
-meta_title: Simulating Stateful Behavior for Testing | WireMock
-description: Most web services tend to have some state, which changes as you and others interact with it.
+description: >
+    Most web services tend to have some state,
+    which changes as you and others interact with it.
 ---
+
+# Simulating Stateful Behavior for Testing 
 
 **Most web services tend to have some state, which changes as you and
 others interact with it. So it's pretty useful to be able to simulate

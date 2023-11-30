@@ -1,9 +1,8 @@
 ---
-layout: docs
-title: Adding Template Helpers
-meta_title: Adding custom template helpers
 description: Adding custom Handlebars helpers to the template system via extensions
 ---
+
+# Adding Custom Template Helpers
 
 Extensions that implement the `TemplateHelperProviderExtension` interface provide additional Handlebars helpers to the templating system:
 

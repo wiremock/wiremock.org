@@ -1,9 +1,11 @@
 ---
-layout: docs
-title: Record and Playback
-meta_title: Record and Playback an API to Create a Mock | WireMock
-description: WireMock can create stub mappings from requests it has received. Combined with its proxying feature this allows you to “record” stub mappings from interaction with existing APIs.
+description: >
+  WireMock can create stub mappings from requests it has received.
+  Combined with its proxying feature this allows you to “record” stub mappings
+  from interaction with existing APIs.
 ---
+
+# Record and Playback an API to Create a Mock
 
 WireMock can create stub mappings from requests it has received. Combined with its proxying feature this allows you to "record"
 stub mappings from interaction with existing APIs.

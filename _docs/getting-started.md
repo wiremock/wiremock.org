@@ -1,10 +1,10 @@
 ---
-layout: docs
-title: WireMock Tutorials
-meta_title: Listing of WireMock Quick Starts and Tutorials
-toc_rank: 10
-description: Provides links to WireMock tutorials and other entry materials
+description: >
+    How to get started with WireMock?
+    This page provides links to WireMock tutorials and other entry materials
 ---
+
+# WireMock Tutorials
 
 Getting Started with WireMock in your project?
 Check out the guidelines below.

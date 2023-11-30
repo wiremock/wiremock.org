@@ -1,12 +1,10 @@
 ---
-layout: docs
-title: WireMock API Templates Library
-meta_title: WireMock API Templates Library
-toc_rank: 66
 description: >
     The library.wiremock.org site provides a catalog of API Templates
     that can be used with both WireMock or WireMock Cloud.
 ---
+
+# WireMock API Templates Library
 
 The [library.wiremock.org](https://library.wiremock.org) site provides a catalog of API Templates
 that can be used with both

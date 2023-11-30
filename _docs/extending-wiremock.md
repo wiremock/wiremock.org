@@ -1,12 +1,13 @@
 ---
-layout: docs
-title: Extending WireMock
-meta_title: Extending WireMock via custom code | WireMock
-toc_rank: 110
-description: You can register the extension programmatically via its class name, class or an instance
+description: >
+  How to create new WireMock extensions in your code,
+  and how to create and package redistributable extensions.
 ---
 
+# Extending WireMock
+
 WireMock can be customised via a variety of extension points.
+You can register the extension programmatically via its class name, class or an instance.
 
 Each extension point is defined by an interface that extends from `Extension` and extension implementations are loaded at startup time.
 

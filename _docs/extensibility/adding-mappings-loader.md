@@ -1,9 +1,8 @@
 ---
-layout: docs
-title: Mappings Loader Extensions
-meta_title: Mappings Loader Extensions
 description: Adding additional source of loading mappings via extensions.
 ---
+
+# Mappings Loader Extensions
 
 Additional source to load the stub mappings can be configured by implementing `MappingsLoaderExtension`.
 

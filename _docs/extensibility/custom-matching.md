@@ -1,9 +1,8 @@
 ---
-layout: docs
-title: Custom Matching
-meta_title: Adding custom request matchers
 description: Adding custom request matchers via extensions
 ---
+
+# Adding custom request matchers
 
 If WireMock's standard set of request matching strategies isn't
 sufficient, you can register one or more request matcher classes

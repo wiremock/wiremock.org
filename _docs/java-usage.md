@@ -1,9 +1,10 @@
 ---
-layout: docs
-title: Plain Java
-meta_title: Use WireMock from Java or other JVM languages | WireMock
-description: If you want to use WireMock from Java (or any other JVM language) outside of JUnit you can programmatically create, start and stop the server.
+description: >
+    If you want to use WireMock from Java (or any other JVM language) outside of JUnit
+    you can programmatically create, start and stop the server.
 ---
+
+# Using WireMock from plain Java and other JVM Languages
 
 If you're not using JUnit or neither of the WireMock rules manage its
 lifecycle in a suitable way you can construct and start the server
