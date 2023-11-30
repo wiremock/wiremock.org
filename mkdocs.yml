@@ -3,6 +3,7 @@ site_description: >-
   WireMock Documentation.
 # FIXME: replace by production file
 site_url: https://oleg-nenashev.github.io/wiremock.org/docs
+site_2x_url: https://oleg-nenashev.github.io/wiremock.org/2.x
 copyright: Copyright &copy; 2023 - WireMock Contributors
 docs_dir: _docs
 repo_url: https://github.com/wiremock/wiremock.org
