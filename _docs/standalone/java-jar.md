@@ -329,7 +329,7 @@ src/main/resources/wiremock-stuff/mappings
 You could then run the packaged JAR as:
 
 ```
-java -jar custom-wiremock.jar --load-resources-from-classpath 'wiremock-stuff'
+java -jar custom-wiremock.jar --load-resources-from-classpath wiremock-stuff
 ```
 
 Which will load your files and mappings from the packaged JAR.
