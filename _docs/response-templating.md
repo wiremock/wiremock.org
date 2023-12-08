@@ -631,6 +631,18 @@ Likewise decimals can be produced with or without bounds:
 
 {% endraw %}
 
+## Fake data helpers
+
+This helper produces random fake data of the desired types available in the [Data Faker library](https://github.com/datafaker-net/datafaker). Due to the size of this library, this helper has been provided via [`RandomExtension`](https://github.com/wiremock/wiremock-faker-extension).    
+{% raw %}
+
+```handlebars
+{{random 'Name.first_name'}}
+{{random 'Address.postcode_by_state.AL' }}
+```
+
+{% endraw %}
+
 ## Math helper
 
 The `math` (or maths, depending where you are) helper performs common arithmetic operations. It can accept integers, decimals
@@ -926,3 +938,7 @@ public WireMockRule wm = new WireMockRule(options()
         )
 );
 ```
+
+The regular expressions are matched in a case-insensitive manner.
+If no permitted system key patterns are set, a single default of `wiremock.*` will be used.
+
