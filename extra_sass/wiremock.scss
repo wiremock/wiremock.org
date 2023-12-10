@@ -58,6 +58,12 @@ h4 {
     @include breakpoint(960px) {
         background-color: var(--wm-white);
     }
+
+    .md-header__button {
+        @include breakpoint(960px) {
+            color: var(--wm-blue-deep);
+        }
+    }
 }
 
 .md-search {

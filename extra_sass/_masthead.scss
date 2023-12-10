@@ -50,6 +50,12 @@
     @include breakpoint($large) {
       display: block;
     }
+      
+    .btn {
+      @include breakpoint($large) {
+        width: 8.7rem;
+      }
+    }
   
     &-note {
       display: block;
