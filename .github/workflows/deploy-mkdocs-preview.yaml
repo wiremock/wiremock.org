@@ -84,6 +84,7 @@ jobs:
           ruby .scripts/merge-sitemaps.rb
           mkdir _site/2.x
           cp -R .submodules/wiremock.org-2.x/tmp/site_2x/* _site/2.x/
+          mkdir -p _site/docs
           cp -R _site-docs/* _site/docs/
           mkdir -p _site/3.x/docs
           cp -R _site-docs/* _site/3.x/docs/
