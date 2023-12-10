@@ -79,12 +79,6 @@ extra:
     # FIXME: Update when in Production
     property: G-QSLQ4RWTRP
     
-extra_css:
-  - assets/css/wiremock.css
-  #FIXME: It will not work well due to the style collision, a refactoring is needed
-  #- assets/css/main.css
-  #- assets/css/main.css.map
-
 plugins:
   - extra-sass
   - search
