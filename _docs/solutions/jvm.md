@@ -26,43 +26,42 @@ References:
 
 - [WireMock Java on GitHub](https://github.com/wiremock/wiremock)
 
-## Integrations with test frameworks
-
-WireMock has integrations with many popular Java test frameworks
-for unit and integration testing.
-
-- [JUnit 5+ and Jupiter](../junit-jupiter.md)
-- [JUnit 4 and Vintage](../junit-extensions.md)
-- [Testcontainers Java](https://github.com/wiremock/wiremock-testcontainers-java)
-- [Spock](https://github.com/felipefzdz/spock-wiremock-extension) - maintained outside WireMock's organization on GitHub
-
 ## WireMock Extensions
 
 _WireMock Java_ is [extensible](../extending-wiremock.md),
 and there is a number of available extensions that can be included into WireMock
 to extend its functionality, including but not limited to request filters, observability, storage, etc.
 
-A few popular extensions:
+See the list of WireMock Extensions [here](../extensions/README.md).
 
-- Response Template Transformer
-  - [Documentation](../response-templating.md)
-  - This extension is a built-in part of the WireMock Java, but needs to be enabled explicitly
-- Webhooks
-  - [Documentation](../webhooks-and-callbacks.md)
-- JSON Body Transformer, Callback Simulator, Request time matcher
-  - [9cookies/wiremock-extensions](https://github.com/9cookies/wiremock-extensions)
-Active
-- CORS Protection Extension
-  - [RichieLoco/WiremockCorsExtension](https://github.com/RichieLoco/WiremockCorsExtension)
+## Integrations
 
-## Solutions specific to JVM technologies
+### Integrations with test frameworks
 
-Here are references to particular JVM technologies and languages,
-sorted by alphabet:
+WireMock has integrations with many popular Java test frameworks
+for unit and integration testing.
 
-- [Android](./android.md)
-- [Clojure](https://docs.google.com/document/d/1TQccT9Bk-o2lvRVN8_mMaGttaOnwbYFLkn0DsmwGIOA/edit#heading=h.gvb3rxc1ab9p)
-- [Groovy](./groovy.md)
+- [JUnit 5+ and Jupiter](../junit-jupiter.md)
+- [JUnit 4 and Vintage](../junit-extensions.md)
+- [Testcontainers for Java](./testcontainers.md)
+- [Spock](https://github.com/felipefzdz/spock-wiremock-extension) - maintained outside WireMock's organization on GitHub
+
+### By JVM language
+
+In addition to core Java, WireMock offers specialized integrations
+(e.g. DSL Bindings or test framework libraries)
+for the following languages:
+
 - [Kotlin](./kotlin.md)
 - [Scala](https://docs.google.com/document/d/1TQccT9Bk-o2lvRVN8_mMaGttaOnwbYFLkn0DsmwGIOA/edit#heading=h.gvb3rxc1ab9p)
+- [Clojure](https://docs.google.com/document/d/1TQccT9Bk-o2lvRVN8_mMaGttaOnwbYFLkn0DsmwGIOA/edit#heading=h.gvb3rxc1ab9p)
+- [Groovy](./groovy.md)
+
+### By JVM Framework
+
 - [Spring Boot](./spring-boot.md)
+- [Quarkus](./quarkus.md)
+
+## Related topics
+
+- [WireMock on Android](./android.md)
