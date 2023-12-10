@@ -38,7 +38,7 @@ Listing of WireMock Extensions is now available on the documentation site
 
 ## Other languages
 
-Most of the language integrations are linked from the [Documentation Root](../index.html).
+Most of the language integrations are linked from the [Documentation Root](../README.md).
 Below there are some technologies that are yet to be added.
 
 PHP client by Rowan Hill:

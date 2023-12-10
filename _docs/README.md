@@ -6,61 +6,20 @@ description: >
   Additionally, stubs can be configured via JSON files. Read the full doc here.
 ---
 
+WireMock is a popular open-source tool for API mock testing,
+with over 5 million downloads per month.
+It can help you to create stable test and
+development environments, isolate yourself from flakey 3rd parties and
+simulate APIs that don't exist yet.
+
 <style>
-  .grid-container {
-    display: grid;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 2rem;
-    max-width: 160rem;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fill, 15rem);
-    vertical-align: middle;
-  }
-
-  .card {
-    display: flex;
-    border: 0.2rem solid;
-    border-radius: 1rem;
-    height: 6rem;
-    width: 15rem;
-    font-size: large;
-    font-weight: 600;
-    vertical-align: middle;
-    align-items: center;
-  }
-
-  .card-use-case {
-    font-size: large;
-  }
-
-  .card > img {
-    width: 4rem;
-    height: auto;
-    border-style: none;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-right: 10px;
-    margin-left: 10px;
+  /* Hide Navigation sidebar but keep TOC */
+  .md-sidebar--primary {
+    width: 0
   }
 </style>
 
-<p>
-  WireMock is a popular open-source tool for API mock testing, with over 5
-  million downloads per month. It can help you to create stable test and
-  development environments, isolate yourself from flakey 3rd parties and
-  simulate APIs that don't exist yet.
-</p>
-<!--
-</p>
-    At its core it is web server that can be primed to serve canned responses to particular requests (stubbing) and
-    that captures incoming requests so that they can be checked later (verification).
-    It also has an assortment of other useful features including record/playback of interactions with other APIs, injection of faults and delays,
-    simulation of stateful behavior.
-</p>
--->
-
-<h2>Getting Started</h2>
+## Getting Started
 
 <div class="grid-container">
   <a class="card" href="./overview">
@@ -83,14 +42,11 @@ description: >
   </a>
 </div>
 
-<h2>Distributions</h2>
+## Distributions
 
-<p>
-  WireMock provides the following generic distributions that allow running it as
-  a
-  <a href="./standalone">standalone server</a>
-  in a container or within a Java Virtual Machine.
-</p>
+WireMock provides the following generic distributions that allow running it as a
+[standalone server](./standalone.md)
+in a container or within a Java Virtual Machine.
 
 <div class="grid-container">
   <a class="card" href="./running-standalone">
@@ -121,12 +77,10 @@ description: >
   </a>
 </div>
 
-<h2>By use-case</h2>
+## By use-case
 
-<p>
-  Below you can find links to the documentation for WireMock key use-cases. You
-  can find more documentation pages on the sidebar.
-</p>
+Below you can find links to the documentation for WireMock key use-cases.
+You can find more documentation pages on the sidebar.
 
 <div class="grid-container">
   <a class="card card-use-case" href="./request-matching">
@@ -167,7 +121,7 @@ description: >
   </a>
   <!-- On the landing but no Root page
     <a class="card card-use-case" href="./">
-        <img src="{{ '/images/httpIcon.svg' | absolute_url }}" alt="WireMock java, python, htt APIs" />
+        <img src="/images/httpIcon.svg" alt="WireMock java, python, htt APIs" />
         Java, Python, HTTP and JSON file APIs
     </a>
     -->
@@ -187,13 +141,11 @@ description: >
   </a>
 </div>
 
-<h2>By protocol</h2>
+## By protocol
 
-<p>
-  WireMock can serve all HTTP-based protocols and REST API. Through built-in
-  features and extensions, it provides additional capabilities for widely used
-  protocols.
-</p>
+WireMock can serve all HTTP-based protocols and REST API. 
+Through built-in features and extensions,
+it provides additional capabilities for widely used protocols.
 
 <div class="grid-container">
   <a class="card" href="./webhooks-and-callbacks">
@@ -214,12 +166,10 @@ description: >
   </a>
 </div>
 
-<h2>By technology</h2>
+## By technology
 
-<p>
-  There are also solutions and guides for particular technologies and
-  frameworks, provided by the WireMock community and external contributors.
-</p>
+There are also solutions and guides for particular technologies and frameworks,
+provided by the WireMock community and external contributors.
 
 <div class="grid-container">
   <a class="card" href="./solutions/jvm">

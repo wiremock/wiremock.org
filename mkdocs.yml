@@ -164,6 +164,7 @@ plugins:
         'solutions/docker.md': 'standalone/docker.md'
         'running-standalone.md': 'standalone/java-jar.md'
         'support.md': '../support'
+        'solutions.md': "README.md"
 
 nav:
   - Using WireMock:
