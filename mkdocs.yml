@@ -213,7 +213,7 @@ nav:
         - Admin API: standalone/admin-api-reference.md
         - Security: dotgithub/SECURITY.md
         - WireMock API Templates Library: mock-api-templates/README.md
-
+        
   - Extensions:
     - WireMock Extensions: extensions/README.md
     - Features:
@@ -239,7 +239,21 @@ nav:
       - Stub Mapping Tracker: stub-mapping-tracker-extension/README.md
       - Record Delay Capture: record-delay-extension/README.md
 
-  - Extending WireMock:
+  - Integrations:
+    - WireMock Solution Pages: solutions/README.md
+    - Java and JVM Languages: solutions/jvm.md
+    - gRPC: grpc.md
+    - GraphQL: solutions/graphql.md
+    - Python: solutions/python.md
+    - Node.js: solutions/nodejs.md
+    - .NET: solutions/dotnet.md
+    - Golang: solutions/golang.md
+    - Rust: solutions/rust.md
+    - Kubernetes: solutions/kubernetes.md
+    - Testcontainers: solutions/testcontainers.md
+    - C/C++: solutions/c_cpp.md
+
+  - Developer Guide:
     - Extending WireMock: extending-wiremock.md
     - Filtering and Modifying Requests: extensibility/filtering-requests.md
     - Transforming Responses: extensibility/transforming-responses.md
