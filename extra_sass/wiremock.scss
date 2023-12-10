@@ -1,6 +1,9 @@
+@import "vendor/breakpoint/stylesheets/breakpoint";
+
 :root {
     --wm-blue: #0FB2EF;
     --wm-blue-dark: #2D69F6;
+    --wm-blue-deep: #4051B5;
     --wm-orange: #FF9505;
     --wm-light-blue: #F0F5FF;
     --wm-white: #FFFFFF;
@@ -49,8 +52,12 @@ h4 {
 }
 
 .md-header {
-    background-color: var(--wm-white);
-    margin: 0 auto;
+    background-color: var(--wm-blue-deep);
+    margin: 0 0;
+
+    @include breakpoint(960px) {
+        background-color: var(--wm-white);
+    }
 }
 
 .md-search {
