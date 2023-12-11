@@ -772,6 +772,53 @@ JSON:
 }
 ```
 
+### JSON schema
+
+Deems a match if the value conforms to the expected JSON schema.
+
+By default the [V202012](https://json-schema.org/draft/2020-12/schema){:target="{{site.data.misc.blank}}"} version of the JSON schema spec will be used, but this can be changed to one of `V4`, `V6`, `V7`, `V201909`, `V202012` via the `schemaVersion` parameter.
+
+Java:
+
+```java
+stubFor(
+  post(urlPathEqualTo("/schema-match"))
+    .withRequestBody(matchingJsonSchema("{\n" +
+        "  \"type\": \"object\",\n" +
+        "  \"required\": [\n" +
+        "    \"name\"\n" +
+        "  ],\n" +
+        "  \"properties\": {\n" +
+        "    \"name\": {\n" +
+        "      \"type\": \"string\"\n" +
+        "    },\n" +
+        "    \"tag\": {\n" +
+        "      \"type\": \"string\"\n" +
+        "    }\n" +
+        "  }\n" +
+        "}"))
+    .willReturn(ok()));
+```
+
+JSON:
+
+```json
+{
+  "request" : {
+    "urlPath" : "/schema-match",
+    "method" : "POST",
+    "bodyPatterns" : [ {
+      "matchesJsonSchema" : "{\n  \"type\": \"object\",\n  \"required\": [\n    \"name\"\n  ],\n  \"properties\": {\n    \"name\": {\n      \"type\": \"string\"\n    },\n    \"tag\": {\n      \"type\": \"string\"\n    }\n  }\n}",
+      "schemaVersion" : "V202012"
+    } ]
+  },
+  "response" : {
+    "status" : 200
+  }
+}
+```
+
+
 ### XML equality
 
 Deems a match if the attribute value is valid XML and is semantically equal to the expected XML document. The underlying engine for determining XML equality is [XMLUnit](http://www.xmlunit.org/).
