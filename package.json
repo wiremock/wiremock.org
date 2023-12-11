@@ -25,6 +25,6 @@
     "serve": "npm run apidocs && npm run watch:all",
     "build:css": "npm run scss && npm run autoprefixer",
     "build:js": "npm run uglify",
-    "build:all": "npm run build:css && npm run build:js",
+    "build:all": "npm run build:css && npm run build:js"
   }
 }
