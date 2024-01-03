@@ -103,4 +103,5 @@ jobs:
           aws-region: us-east-1
       - name: Deploy to Amplify
         run: |
-          ./deploy-amplify.sh
+          pwd
+          bash -x ./deploy-amplify.sh
