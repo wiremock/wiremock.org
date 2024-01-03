@@ -34,7 +34,11 @@ jobs:
           cache-version: 3 # Increment this number if you need to re-download cached gems
       
       - name:  Update RubyGems and Co
-        run: gem update --system
+        run: |
+          gem uninstall rubygems-update
+          gem install rubygems-update
+          update_rubygems
+          gem update --system
       - name: Install Ruby Bundles
         run: bundle install
       - name: Build with Jekyll
