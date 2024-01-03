@@ -32,9 +32,7 @@ jobs:
           bundler: '2.4.10'
           bundler-cache: false # runs 'bundle install' and caches installed gems automatically
           cache-version: 3 # Increment this number if you need to re-download cached gems
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v3
+      
       - name:  Update RubyGems and Co
         run: gem update --system
       - name: Install Ruby Bundles
