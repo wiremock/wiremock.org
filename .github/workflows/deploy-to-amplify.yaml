@@ -36,7 +36,7 @@ jobs:
       - name:  Update RubyGems and Co
         run: |
           gem uninstall rubygems-update
-          gem install rubygems-update
+          gem install rubygems-update -v 3.4.22
           update_rubygems
           gem update --system
       - name: Install Ruby Bundles
