@@ -42,9 +42,6 @@ jobs:
       - name: Install Ruby Bundles
         run: bundle install
 
-      - name: Build the docs site
-        run: mkdocs build
-
       - name: Build with Jekyll
         # Outputs to the './_site' directory by default
         run: bundle exec jekyll build --config '_config.yml' --baseurl "${{ steps.pages.outputs.base_path }}"
@@ -63,6 +60,23 @@ jobs:
           bundle exec jekyll build --config '_config.yml,_config-3.x.yml' --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+        
+      - name: Install and configure Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: 1.5.1
+   
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+  
+      - name: Build the docs site
+        run: mkdocs build
+
       - name: Deploy version branches to the website
         run: |
           ruby .scripts/merge-sitemaps.rb
