@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -eo pipefail
+
 rm -f wiremock-org-amplify.zip
 zip -r wiremock-org-amplify.zip _site/*
 

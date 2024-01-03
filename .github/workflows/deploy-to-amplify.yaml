@@ -99,5 +99,4 @@ jobs:
 
       - name: Deploy to Amplify
         run: |
-          ls -l
           bash -x ./deploy-amplify.sh    
