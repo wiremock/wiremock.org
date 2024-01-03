@@ -22,6 +22,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - uses: aws-actions/configure-aws-credentials@v4.0.1
+        with:
+          role-to-assume: arn:aws:iam::499333472133:role/GitHub-wiremock.org-Deploy
+          aws-region: us-east-1
+
       - name: Checkout
         uses: actions/checkout@v3
         with:
@@ -92,16 +97,7 @@ jobs:
 #          directory: ./_site
 #          enforce_https: false
 
-  # Deployment job
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - uses: aws-actions/configure-aws-credentials@v4.0.1
-        with:
-          role-to-assume: arn:aws:iam::499333472133:role/GitHub-wiremock.org-Deploy
-          aws-region: us-east-1
       - name: Deploy to Amplify
         run: |
           ls -l
-          bash -x ./deploy-amplify.sh
+          bash -x ./deploy-amplify.sh    
