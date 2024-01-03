@@ -41,6 +41,10 @@ jobs:
           gem update --system
       - name: Install Ruby Bundles
         run: bundle install
+
+      - name: Build the docs site
+        run: mkdocs build
+
       - name: Build with Jekyll
         # Outputs to the './_site' directory by default
         run: bundle exec jekyll build --config '_config.yml' --baseurl "${{ steps.pages.outputs.base_path }}"
