@@ -3,7 +3,7 @@
 set -eo pipefail
 
 rm -f wiremock-org-amplify.zip
-zip -q -r wiremock-org-amplify.zip _site/*
+(cd _site && zip -q -r ../wiremock-org-amplify.zip *)
 
 deploymentData=$(aws amplify create-deployment --app-id d1rkup1qsf4ckf --branch-name prod)
 jobId=$(echo $deploymentData | jq -r '.jobId')

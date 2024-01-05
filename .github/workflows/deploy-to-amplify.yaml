@@ -83,6 +83,9 @@ jobs:
       - name: Build the docs site
         run: mkdocs build
 
+      - name: Copy docs into _site
+        run: cp -r _site-docs _site/docs
+
       - name: Deploy version branches to the website
         run: |
           ruby .scripts/merge-sitemaps.rb
