@@ -14,13 +14,15 @@
     animation: intro 0.3s both;
     animation-delay: 0.15s;
     z-index: 20;
-    max-width: 1280px;
+    margin: 0 auto;
+    padding: 12px 0;
+    max-width: 61rem;
     display: grid;
     grid-template-columns: 254px 1fr auto;
     font-size: 16px;
     line-height: 24px;
     align-items: center;
-    font-family: "DMSans";
+    font-family: "DM Sans";
   }
   
   .masthead__nav {
