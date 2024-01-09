@@ -100,7 +100,7 @@ public void exampleTest() {
     // Setup HTTP POST request (with HTTP Client embedded in Java 11+)
     final HttpClient client = HttpClient.newBuilder().build();
     final HttpRequest request = HttpRequest.newBuilder()
-        .uri(wiremockServer.getRequestURI("/my/resource"))
+        .uri(wiremockServer.url("/my/resource"))
         .header("Content-Type", "text/xml")
         .POST().build();
 
