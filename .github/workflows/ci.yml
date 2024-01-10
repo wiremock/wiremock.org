@@ -28,7 +28,9 @@ jobs:
         id: pages
         uses: actions/configure-pages@v3
       - name:  Update RubyGems and Co
-        run: gem update --system
+        run: |
+          gem install rubygems-update --version  2.7.2
+          gem update --system
       - name: Install Ruby Bundles
         run: bundle install
       - name: Build with Jekyll
