@@ -1,6 +1,5 @@
 ---
-description: >
-  WireMock supports matching of requests to stubs and verification queries
+description: WireMock supports matching of requests to stubs and verification queries
   using the following attributes.
 ---
 
@@ -777,7 +776,7 @@ JSON:
 
 Deems a match if the value conforms to the expected JSON schema.
 
-By default the [V202012](https://json-schema.org/draft/2020-12/schema){:target="{{site.data.misc.blank}}"} version of the JSON schema spec will be used, but this can be changed to one of `V4`, `V6`, `V7`, `V201909`, `V202012` via the `schemaVersion` parameter.
+By default the [V202012](https://json-schema.org/draft/2020-12/schema) version of the JSON schema spec will be used, but this can be changed to one of `V4`, `V6`, `V7`, `V201909`, `V202012` via the `schemaVersion` parameter.
 
 Java:
 

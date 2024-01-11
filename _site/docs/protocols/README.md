@@ -1,6 +1,5 @@
 ---
-description: >
-WireMock supports not just REST API over HTTP, but many other protocols.
+description: WireMock supports not just REST API over HTTP, but many other protocols.
 ---
 
 # Using protocols in WireMock
