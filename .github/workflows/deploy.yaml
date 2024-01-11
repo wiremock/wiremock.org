@@ -40,7 +40,7 @@ jobs:
         id: pages
         uses: actions/configure-pages@v3
       - name:  Update RubyGems and Co
-        run: gem update --system
+        run: gem update
       - name: Install Ruby Bundles
         run: bundle install
       - name: Build with Jekyll
