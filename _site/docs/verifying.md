@@ -20,10 +20,10 @@ Like stubbing, verification also uses WireMock's [Request Matching](./request-ma
 ## Verification failures, console output and IntelliJ
 
 When verifying via the Java API all failed verifications will result in a `VerificationException` being thrown.
-![Verification exception](images/verification-exception.png)
+![Verification exception](../images/verification-exception.png)
 
 The message text in the exception is formatted to enable IntelliJ's failure comparison view:
-![Comparison failure](images/idea-comparison-failure.png)
+![Comparison failure](../images/idea-comparison-failure.png)
 
 ## Verifying in Java
 

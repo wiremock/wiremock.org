@@ -29,7 +29,7 @@ and we minimize the entry bar where possible.
 Right now there are now contributor license agreements or anything else that would
 be an additional obstacle.
 
-1. Join the [WireMock Slack](./community/slack.md),
+1. Join the [WireMock Slack](../community/slack.md),
    especially the `#help-contributing` channel that is dedicated to help the newcomers.
 2. Check out the _Contributing Guide_ below. It describes all ways to contribute
 3. Just do it!
@@ -45,7 +45,7 @@ Note that many repositories and areas have specialized contributor guidelines th
 ## Need help?
 
 If you want to contribute in any way to WireMock itself or its ecosystem and got stuck,
-do not hesitate to ask on the `#help-contributing` channel on the [WireMock Slack](./community/slack.md).
+do not hesitate to ask on the `#help-contributing` channel on the [WireMock Slack](../community/slack.md).
 The sole purpose of this channel is to resolve obstacles and route any questions
 regarding the contributions.
 From technical questions to permissions and blog post draft reviews,

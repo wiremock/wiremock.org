@@ -23,7 +23,7 @@ First, start an instance of [WireMock running standalone](./standalone.md).
 Once that's running visit the recorder UI page at [http://localhost:8080/\_\_admin/recorder](http://localhost:8080/__admin/recorder)
 (assuming you started WireMock on the default port of 8080).
 
-![Recorder UI](images/recorder-screenshot.png)
+![Recorder UI](../images/recorder-screenshot.png)
 
 Enter the URL you wish to record from in the target URL field and click the Record button. You can use `http://examples.wiremockapi.cloud` to try it out.
 

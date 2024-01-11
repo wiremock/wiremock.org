@@ -34,11 +34,11 @@ https://github.com/tomasbjerre/wiremock-jaxrs
 ## WireMock Extensions
 
 Listing of WireMock Extensions is now available on the documentation site
-[here](../extensions/README.md).
+[here](../docs/extensions/README.md).
 
 ## Other languages
 
-Most of the language integrations are linked from the [Documentation Root](../README.md).
+Most of the language integrations are linked from the [Documentation Root](../docs/README.md).
 Below there are some technologies that are yet to be added.
 
 PHP client by Rowan Hill:

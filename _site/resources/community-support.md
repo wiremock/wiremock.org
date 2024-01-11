@@ -26,4 +26,4 @@ Every community member is welcome to participate, help to triage and answer the 
 
 ## Commercial support, trainings and consulting
 
-See [this page](./commercial-support.md).
+See [this page](commercial-support.md).

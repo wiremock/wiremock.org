@@ -7,7 +7,7 @@ description: How to get WireMock enterprise and commercial support with SLA, tra
 WireMock is an open source project.
 In accordance with the [Apache License 2.0](https://github.com/wiremock/wiremock/blob/master/LICENSE.txt),
 in general there is no support or guarantees provided for it.
-You can get some [community assistance](./community-support.md) through the WireMock community channels,
+You can get some [community assistance](community-support.md) through the WireMock community channels,
 and contribute to helping other users too.
 At the same time, there are vendors that provide commercial support for WireMock.
 

@@ -5,7 +5,7 @@ site_description: >-
 site_url: https://oleg-nenashev.github.io
 site_2x_url: https://oleg-nenashev.github.io
 copyright: Copyright &copy; 2023 - WireMock Contributors
-docs_dir: _docs
+docs_dir: _site
 repo_url: https://github.com/wiremock/wiremock.org
 repo_name: WireMock Docs on GitHub
 edit_uri: edit/main/_docs/
