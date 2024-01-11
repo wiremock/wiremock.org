@@ -42,7 +42,19 @@
   }
   
   .masthead__logo {
-    margin-left: 12px;
+    display: flex;
+
+    svg {
+      max-width: 60vw;
+    }
+
+    @include breakpoint($medium-wide) {
+      margin-left: 12px;
+
+      svg {
+        width: auto;
+      }
+    }
   }
   
   .masthead__cta {
