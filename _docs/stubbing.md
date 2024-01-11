@@ -133,8 +133,26 @@ stubFor(put("/status-only")
 More DSL examples [can be found here](https://github.com/tomakehurst/wiremock/tree/master/src/test/java/ignored/Examples.java#374).
 
 HTTP methods currently supported are:
-`GET, POST, PUT, DELETE, HEAD, TRACE, OPTIONS`. You can specify `ANY` if
-you want the stub mapping to match on any request method.
+`GET, POST, PUT, DELETE, HEAD, TRACE, OPTIONS, GET_OR_HEAD`. You can specify `ANY` if
+you want the stub mapping to match on any request method. `GET_OR_HEAD` is a special
+method that could be used to match incoming requests for both `GET` or `HEAD` http
+method. It can be used the following way
+
+{% codetabs %}
+
+{% codetab Java %}
+
+```java
+@Test
+public void getOrHeadDemo() {
+	stubFor(getOrHead(urlEqualTo("/get-or-head-test"))
+            .willReturn(okJson("{\"key\": \"value\"}")));
+	
+	assertThat(testClient.get("/get-or-head-test").statusCode(), is(200));
+}
+```
+
+{% endcodetab %}
 
 ### Setting the response status message
 
