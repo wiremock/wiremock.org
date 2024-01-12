@@ -1,27 +1,30 @@
+
 <header class="md-header" data-md-component="header">
     <div class="masthead">
 
         <nav class="masthead__nav md-header__inner md-grid">
+            {% if staticPage is not defined %}
+                <!-- Button to open drawer -->
+                <label class="md-header__button md-icon" for="__drawer">
+                    {% set icon = config.theme.icon.menu or "material/menu" %}
+                    {% include ".icons/" ~ icon ~ ".svg" %}
+                </label>
 
-            <!-- Button to open drawer -->
-            <label class="md-header__button md-icon" for="__drawer">
-                {% set icon = config.theme.icon.menu or "material/menu" %}
-                {% include ".icons/" ~ icon ~ ".svg" %}
-            </label>
 
+                <!-- Logo -->
+                <label class="md-nav__title" for="__drawer">
+                    <a
+                            href="{{ config.extra.homepage | d(nav.homepage.url, true) | url }}"
+                            title="{{ config.site_name | e }}"
+                            class="md-nav__button md-logo"
+                            aria-label="{{ config.site_name }}"
+                            data-md-component="logo"
+                    >
+                        {% include "partials/logo.html" %}
+                    </a>
+                </label>
+            {% endif %}
 
-            <!-- Logo -->
-            <label class="md-nav__title" for="__drawer">
-                <a
-                        href="{{ config.extra.homepage | d(nav.homepage.url, true) | url }}"
-                        title="{{ config.site_name | e }}"
-                        class="md-nav__button md-logo"
-                        aria-label="{{ config.site_name }}"
-                        data-md-component="logo"
-                >
-                    {% include "partials/logo.html" %}
-                </a>
-            </label>
 
             <a href="{{ config.site_url }}.." class="masthead__logo">
                 <svg xmlns="http://www.w3.org/2000/svg" width="254" height="30" viewBox="0 0 254 30" fill="none">
@@ -106,7 +109,7 @@
                 </ul>
             </nav>
 
-            {% if ("material/search" in config.plugins) and (noSearch is not defined) %}
+            {% if ("material/search" in config.plugins) and (staticPage is not defined) %}
             <label class="md-header__button md-icon" for="__search">
                 {% set icon = config.theme.icon.search or "material/magnify" %}
                 {% include ".icons/" ~ icon ~ ".svg" %}
