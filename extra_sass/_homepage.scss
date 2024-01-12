@@ -1245,6 +1245,7 @@ html {
   &__heading {
     margin: 0 0 $p-m;
     font-size: $type-size-3;
+    color: unset;
 
     @media (min-width: 920px) {
       font-size: $type-size-2;

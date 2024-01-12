@@ -1,0 +1,18 @@
+// As its not easy to override the main material themes contents we need to do some nasty modification to styles
+// This file contains the overrides we need to make a minimal static page in the style of the original site
+
+.static {
+  font-family: "DMSans", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
+  color: #0f0f0f;
+  font-size: 18px;
+  line-height: 1.5;
+
+  a {
+    text-decoration: none;
+  }
+
+  .md-nav__button {
+    display: none;
+  }
+}
+

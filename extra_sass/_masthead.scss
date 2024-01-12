@@ -23,6 +23,10 @@
     line-height: 24px;
     align-items: center;
     font-family: "DM Sans";
+
+    .md-search {
+      padding: 0;
+    }
   }
   
   .masthead__nav {
@@ -60,9 +64,11 @@
   .masthead__cta {
     text-align: center;
     display: none;
-  
+
     @include breakpoint($medium-wide) {
       display: block;
+      margin-left: $p-xl;
+
     }
       
     .btn {

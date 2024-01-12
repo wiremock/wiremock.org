@@ -1,4 +1,5 @@
-<!doctype html>
+{% import "partials/language.html" as lang with context %}
+<!doctype html lang="{{ lang.t('language') }}" class="no-js">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,10 +7,18 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    {% for path in config.theme.css %}
+    <link rel="stylesheet" href="{{ path | url }}" />
+    {% endfor %}
+    {% for path in config.extra_css %}
+    <link rel="stylesheet" href="{{ path | url }}" />
+    {% endfor %}
+    <link href="https://fonts.googleapis.com/css?family=DM+Sans:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet">
 </head>
-<body>
+<body class="static">
 
-{% partial "partials/header.html" %}
+{% set noSearch = true %}
+{% include "partials/header.html" %}
 
 {% block content %}
     {{ page.content }}
