@@ -139,7 +139,7 @@ template: static.html
 </div>
 <div id="wiremock-cloud-learn-more">
   <div class="container">
-    <a id="a-wiremock-cloud" href="#wiremock-cloud-learn-more">z</a>
+    <a id="a-wiremock-cloud" href="#wiremock-cloud-learn-more"></a>
     <div class="wiremock-cloud-wrapper">
       <div class="wiremock-cloud-img-wrapper">
         <img
@@ -152,7 +152,7 @@ template: static.html
 
       <div id="wiremock-cloud" class="wiremock-cloud-details">
         <img
-          src="/assets/svg/cloud-logo.svg"
+          src="/images/svg/cloud-logo.svg"
           |
           alt="wiremock cloud logo"
           class="logo"
@@ -261,7 +261,18 @@ template: static.html
       WireMock is available as a standalone service, Java library and
       integrations for modern languages and technology stacks.
     </p>
-  </div>
+
+<div id="open-source-get-started" class="container code-tabs-wrapper"><div class="code-tabs-row"><div class="code-tabs-sidebar-wrapper"><div class="code-tabs-sidebar"><div class="code-tabs-example-card"> <img src="https://wiremock.org/images/maven.png" alt="Maven"></div><div class="code-tabs-example-card"> <img src="https://wiremock.org/images/elephantIcon.png" alt="Gradle"></div><div class="code-tabs-example-card"> <img src="https://wiremock.org/images/kotlin.png" alt="Kotlin"></div><div class="code-tabs-example-card"> <img src="https://wiremock.org/images/sbt.png" alt="SBT"></div><div class="code-tabs-example-card"> <img src="https://wiremock.org/images/java.png" alt="Java"></div><div class="code-tabs-example-card"> <img src="https://wiremock.org/images/docker.png" alt="Docker"></div></div></div><div class="code-tabs-main"><div class="code-tabs-main-wrapper"><ul><li class="active-tab-example">Maven</li><li class="">Gradle Groovy</li><li>Gradle Kotlin</li><li>Scala SBT</li><li>Standalone</li><li>Docker</li></ul><div class="code-tabs-main-example"><div class="codeSnippet activeCodeSnippet" data-snippettab="maven"><p class="codeTabDescription">Add the following to your project's <strong>pom.xml</strong> dependencies:</p><figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.wiremock<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>wiremock<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>3.3.1<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span></code></pre></figure><p class="codeTabDescription" style="margin-top:2rem;">Then follow the next steps for <a href="https://wiremock.org/docs/junit-jupiter/">JUnit 5+</a> or <a href="https://wiremock.org/docs/java-usage/">plain Java</a>.</p></div><div class="codeSnippet" data-snippettab="gradle groovy"><p class="codeTabDescription">Add the following to your project's <strong>build.gradle</strong>:</p><figure class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">testImplementation</span> <span class="s2">"org.wiremock:wiremock:3.3.1"</span></code></pre></figure><p class="codeTabDescription" style="margin-top:2rem;">Then follow the next steps for <a href="https://wiremock.org/docs/junit-jupiter/">JUnit 5+</a> or <a href="https://wiremock.org/docs/java-usage/">plain Java</a>.</p></div><div class="codeSnippet" data-snippettab="gradle kotlin"><p class="codeTabDescription">Add the following to your project's <strong>build.gradle.kts</strong>:</p><figure class="highlight"><pre><code class="language-kotlin" data-lang="kotlin"><span class="nf">testImplementation</span><span class="p">(</span><span class="s">"org.wiremock:wiremock:3.3.1"</span><span class="p">)</span></code></pre></figure><p class="codeTabDescription" style="margin-top:2rem;">Then follow the next steps for <a href="https://wiremock.org/docs/junit-jupiter/">JUnit 5+</a> or <a href="https://wiremock.org/docs/java-usage/">plain Java</a>.</p></div><div class="codeSnippet" data-snippettab="scala sbt"><p class="codeTabDescription">Add the following to your project’s <strong>build.sbt</strong>:</p><figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="n">libraryDependencies</span> <span class="o">+=</span>
+  <span class="s">"org.wiremock"</span> <span class="o">%</span> <span class="s">"wiremock"</span> <span class="o">%</span> <span class="s">"3.3.1"</span> <span class="o">%</span> <span class="nc">Test</span></code></pre></figure></div><div class="codeSnippet" data-snippettab="standalone"><p class="codeTabDescription"> Download the <a id="wiremock-standalone-download" href="https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/3.3.1/wiremock-standalone-3.3.1.jar">latest standalone JAR</a> then run the following in a terminal:</p><figure class="highlight"><pre><code class="language-bash" data-lang="bash">java <span class="nt">-jar</span> wiremock-standalone-3.3.1.jar</code></pre></figure><p class="codeTabDescription" style="margin-top:2rem;">Learn more in the <a href="https://wiremock.org/docs/running-standalone/">running standalone guide.</a></p></div><div class="codeSnippet" data-snippettab="docker"><p class="codeTabDescription">Run the following in a terminal:</p><figure class="highlight"><pre><code class="language-bash" data-lang="bash">docker run <span class="nt">-it</span> <span class="nt">--rm</span> <span class="se">\</span>
+  <span class="nt">-p</span> 8080:8080 <span class="se">\</span>
+  <span class="nt">--name</span> wiremock <span class="se">\</span>
+  wiremock/wiremock:3.3.1</code></pre></figure><p class="codeTabDescription" style="margin-top:2rem;">Learn more in the <a href="https://wiremock.org/docs/docker/">Docker guide.</a></p></div></div></div></div></div></div>
+</div>
 
   <div class="faq-wrapper">
     <div class="container faq">

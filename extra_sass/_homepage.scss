@@ -1,3 +1,4 @@
+
 html {
   scroll-behavior: smooth;
 }
@@ -38,6 +39,11 @@ html {
       .home-header-hero-text {
         flex: 0 1 50%;
         padding: $p-xl;
+
+        h2 {
+          font-size: 1.25em;
+          color: unset;
+        }
       }
     }
   }
@@ -399,6 +405,10 @@ html {
       border-radius: 100px;
       margin-top: 20px;
 
+      img {
+        width: 100%;
+      }
+
       &:nth-child(even) {
         margin-left: auto;
       }
@@ -597,8 +607,9 @@ html {
       padding: 0;
 
       li {
+        margin-bottom: 0.5em;
         padding-left: $p-l;
-        background: url("/assets/svg/bullet.svg") no-repeat left center;
+        background: url("/images/svg/bullet.svg") no-repeat left center;
       }
     }
 
@@ -626,6 +637,7 @@ html {
 
       .heading {
         margin-bottom: $p-l;
+        color: unset;
       }
 
       .p-margin-wiremock-cloud {
@@ -712,6 +724,7 @@ html {
     background: #0b4f6c;
 
     .keyFeaturesTXT {
+      color: unset;
       margin-bottom: $p-l;
       font-size: $type-size-1;
 
@@ -776,6 +789,11 @@ html {
   .downloads-wrapper {
     margin-top: $p-3xl;
     margin-bottom: $p-3xl;
+
+    h2 {
+      margin: 0 0 12px 0;
+      color: unset;
+    }
   }
 
   .apis-wrapper {

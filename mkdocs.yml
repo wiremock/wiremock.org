@@ -13,6 +13,12 @@ edit_uri: edit/main/_docs/
 # Build
 site_dir: _site-docs
 
+extra_javascript:
+  - js/jquery/jquery=1.12.1.min.js
+  - js/faq.js
+  - js/codeTab.js
+  - js/code-tabs.js
+
 # Theme
 theme:
   name: material
