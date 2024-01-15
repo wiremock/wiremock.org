@@ -11,6 +11,10 @@
   line-height: 1.5;
   margin: 0;
 
+  .md-header {
+    background: none !important;
+  }
+
   a {
     text-decoration: none;
 
@@ -28,7 +32,6 @@
 
     footer {
       margin: 1em auto;
-      padding: 0 1em 2em;
 
       @include breakpoint($x-large) {
         max-width: $x-large;

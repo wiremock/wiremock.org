@@ -47,14 +47,13 @@
   
   .masthead__logo {
     display: flex;
+    margin-left: 12px;
 
     svg {
       max-width: 60vw;
     }
 
     @include breakpoint($medium-wide) {
-      margin-left: 12px;
-
       svg {
         width: auto;
       }
@@ -174,11 +173,16 @@
   .overlay-menu {
     display: none;
   }
-  
+
+  #site-nav {
+    margin-right: 24px;
+  }
+
   @media (max-width: 1279px) {
     #site-nav,
     .social-links {
       display: none;
+      margin-right: 24px;
     }
   
     .hamburgerMenuIcon {
@@ -199,7 +203,7 @@
       display: block;
       background-color: #fff;
       position: fixed;
-      right: -50vw;
+      right: -65vw;
       top: 0;
       height: 100%;
       width: 50vw;
