@@ -136,7 +136,10 @@ HTTP methods currently supported are:
 `GET, POST, PUT, DELETE, HEAD, TRACE, OPTIONS, GET_OR_HEAD`. You can specify `ANY` if
 you want the stub mapping to match on any request method. `GET_OR_HEAD` is a special
 method that could be used to match incoming requests for both `GET` or `HEAD` http
-method. It can be used the following way
+method. A ```HEAD``` request will result in the same behaviour expected from a web server i.e.
+the ```Content-Type``` and ```Content-Length``` headers will be emitted but no response body.
+A detailed guide about various HTTP methods can be found [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods).
+```GET_OR_HEAD``` can be used the following way
 
 {% codetabs %}
 
