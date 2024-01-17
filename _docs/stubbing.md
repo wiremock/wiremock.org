@@ -157,6 +157,8 @@ public void getOrHeadDemo() {
 
 {% endcodetab %}
 
+{% endcodetabs %}
+
 ### Setting the response status message
 
 In addition to the status code, the status message can optionally also
