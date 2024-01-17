@@ -800,7 +800,38 @@ stubFor(
     .willReturn(ok()));
 ```
 
-JSON:
+JSON (supported in 3.4+):
+
+```json
+{
+  "request" : {
+    "urlPath" : "/schema-match",
+    "method" : "POST",
+    "bodyPatterns" : [ {
+      "matchesJsonSchema" : {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "tag": {
+            "type": "string"
+          }
+        }
+      },
+      "schemaVersion" : "V202012"
+    } ]
+  },
+  "response" : {
+    "status" : 200
+  }
+}
+```
+
+JSON with string literal:
 
 ```json
 {
