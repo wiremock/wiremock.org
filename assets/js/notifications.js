@@ -1,22 +1,7 @@
 var wiremock_notification_shown = localStorage.getItem(
   "wiremock_notification_shown",
 );
-var notifications = [
-  {
-    content: {
-      title:
-        "Join us for Hacktoberfest 2023! " +
-        "Adopt WireMock in your projects and contribute to open source. " +
-        "<a href='https://www.wiremock.io/post/hacktoberfest-2023?utm_medium=referral&utm_source=wiremock.org&utm_content=notification' target='_blank'>Learn More</a>",
-    },
-    layout: {
-      style: "wiremock_notification_with_link",
-      position: "top",
-      className: "info",
-      autoHide: false,
-    },
-  },
-];
+var notifications = [];
 
 if (wiremock_notification_shown == null) {
   localStorage.setItem("wiremock_notification_shown", true);
