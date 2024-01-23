@@ -5,7 +5,8 @@
 @import "_syntax";
 
 .static {
-  font-family: "DMSans", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
+  font-family: "DMSans", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial,
+    sans-serif;
   color: #0f0f0f;
   font-size: 18px;
   line-height: 1.5;
@@ -101,8 +102,8 @@
 }
 
 .code-tabs-main-example .highlight {
-  background: #F0F5FF;
-  border: 1px solid #D2DFF9;
+  background: #f0f5ff;
+  border: 1px solid #d2dff9;
   box-sizing: border-box;
   border-radius: 8px;
 }
@@ -123,15 +124,20 @@
 }
 
 .codeSnippet.activeCodeSnippet {
-display: block;
+  display: block;
 }
 
 .code-tabs-main {
   width: 1018px;
 }
 
-@media (max-width:670px) {
+@media (max-width: 670px) {
   .code-tabs-main {
     width: 100% !important;
   }
+}
+
+.content {
+  max-width: 980px;
+  margin: 0 auto 60px auto;
 }

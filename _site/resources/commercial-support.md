@@ -1,5 +1,6 @@
 ---
 description: How to get WireMock enterprise and commercial support with SLA, training and consulting options
+template: standalone.html
 ---
 
 # Commercial Support for WireMock
@@ -32,9 +33,10 @@ You can find more info about WireMock Cloud support plans [here](https://www.wir
 WireMocha is a plugin for IntelliJ based IDEs, and has tools for WireMock specific static code analysis (in the Java and JSON DSLs), code generation, stubbing, and many others to overall simplify the work with WireMock.
 
 Two prominent code generation features, beside a handful of smaller ones, can help you:
+
 - generate a scenario's Java and JSON stub implementations by simply modeling its states and transitions in a dedicated tool window,
 - generate and preview the Java version of JSON stub mappings on-the-fly during editing JSON mapping files. It can speed
-up migration from JSON to Java implementation.
+  up migration from JSON to Java implementation.
 
 JSON schemas are also associated to JSON mapping files, and are joined with various language injections. They provide additional syntax highlighting (e.g. Handlebars, XPath, ...) and validation, as well as code completion that can greatly speed up the implementation and maintenance of JSON mapping files.
 
