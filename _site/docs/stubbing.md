@@ -1,13 +1,13 @@
 ---
 description: >
-    A core feature of WireMock is the ability to return canned HTTP responses for requests matching criteria.
+    A core feature of WireMock is the ability to return canned HTTP responses for requests that match criteria.
     These are described in detail in Request Matching.
 ---
 
 # Returning stubbed HTTP responses to specific requests
 
 A core feature of WireMock [API mocking](./overview.md) is the ability to return canned HTTP
-responses for requests matching criteria. These are described in detail in [Request Matching](./request-matching.md).
+responses for requests that match criteria. These are described in detail in [Request Matching](./request-matching.md).
 
 ## Basic stubbing
 
@@ -457,16 +457,16 @@ where `id` is the UUID of the stub mapping, found in its `id` field.
 ## Reset
 
 The WireMock server can be reset at any time, removing all stub mappings
-and deleting the request log. If you're using either of the JUnit rules
-this will happen automatically at the start of every test case. However
+and deleting the request log. If you're using either of the JUnit rules,
+this will happen automatically at the start of every test case. However,
 you can do it yourself via a call to `WireMock.reset()` in Java or
 sending a `POST` request with an empty body to
 `http://<host>:<port>/__admin/reset`.
 
 To reset just the stub mappings leaving the request log intact send a `DELETE` to `http://<host>:<port>/__admin/mappings`.
 
-If you've created some file based stub mappings to be loaded at startup
-and you don't want these to disappear when you do a reset you can call
+If you've created some file-based stub mappings to be loaded at startup
+and you don't want these to disappear when you do a reset, you can call
 `WireMock.resetToDefault()` instead, or post an empty request to
 `http://<host>:<port>/__admin/mappings/reset`.
 

@@ -1,8 +1,6 @@
 ---
 description: >
-  WireMock can create stub mappings from requests it has received.
-  Combined with its proxying feature this allows you to “record” stub mappings
-  from interaction with existing APIs.
+  Create and record stub mappings 
 ---
 
 # Record and Playback an API to Create a Mock
@@ -10,35 +8,35 @@ description: >
 WireMock can create stub mappings from requests it has received. Combined with its proxying feature this allows you to "record"
 stub mappings from interaction with existing APIs.
 
-Two approaches are available: Recording or snapshotting. The same results can be achieved with either, so which you choose should depend on whatever
-fits best with your workflow. If you're new to WireMock, recording is probably the simplest option for getting started.
+The following two approaches available, and are described in detail below:
 
-Both approaches are described in more detail below.
+- Recording.
+- Snapshotting. 
+
+The same results can be achieved with either approach, you can choose the best
+fit with your workflow and preferences. However, if you're new to WireMock, recording is the simplest option for getting started.
 
 ## Quick start
 
-The fastest way to get started with WireMock's recorder is to use the simple web UI provided.
+To get started with WireMock's recorder, use the simple web UI provided:
 
-First, start an instance of [WireMock running standalone](./standalone.md).
-Once that's running visit the recorder UI page at [http://localhost:8080/\_\_admin/recorder](http://localhost:8080/__admin/recorder)
+1. Start an instance of [WireMock running standalone](./standalone.md).
+2. Visit the recorder UI page at [http://localhost:8080/\_\_admin/recorder](http://localhost:8080/__admin/recorder)
 (assuming you started WireMock on the default port of 8080).
 
 ![Recorder UI](../images/recorder-screenshot.png)
 
-Enter the URL you wish to record from in the target URL field and click the Record button. You can use `http://examples.wiremockapi.cloud` to try it out.
-
-Now you need to make a request through WireMock to the target API so that it can be recorded. If you're using the example URL, you can generate a request using curl:
+3. Enter the target URL from which to record and click *Record*. You can use `http://examples.wiremockapi.cloud` to try it out.
+4. Make a request through WireMock to the target API so that it can be recorded. If you're using the example URL, you can generate a request using curl:
 
 ```bash
 $ curl http://localhost:8080/recordables/123
 ```
+5. Click *stop*. 
 
-Now click stop. You should see a message indicating that one stub was captured.
+WireMock snads a message indicating the stub creation, and also stores a file (created during startup), named something like `recordables_123-40a93c4a-d378-4e07-8321-6158d5dbcb29.json`, for eahc new stub, in the `_admoin/mappings` directory. You can find the mapping at [http://localhost:8080/\_\_admin/mappings](http://localhost:8080/__admin/mappings).
 
-You should also see that a file has been created called something like `recordables_123-40a93c4a-d378-4e07-8321-6158d5dbcb29.json`
-under the `mappings` directory created when WireMock started up, and that a new mapping has appeared at [http://localhost:8080/\_\_admin/mappings](http://localhost:8080/__admin/mappings).
-
-Requesting the same URL again (possibly disabling your wifi first if you want firm proof) will now serve the recorded result:
+Requesting the same URL again (for firm proof, consider disabling your wifi first) will now serve the recorded result:
 
 ```
 $ curl http://localhost:8080/recordables/123
@@ -48,49 +46,49 @@ $ curl http://localhost:8080/recordables/123
 }
 ```
 
-> **note**
->
-> Stub mappings will only be created at the point that the recording is stopped.
+!!! warning
 
-> **note**
->
-> "Playback" doesn't require any explicit action. Recorded stubs will start being served immediately after recording is stopped.
+    Stub mappings will only be created at the point that the recording is stopped.
+
+!!! note
+
+    "Playback" doesn't require any explicit action. Recorded stubs will start being served immediately after recording is stopped.
 
 ## Recording
 
 Recording can also be started and stopped via WireMock's JSON API and Java DSL.
 
-Java:
+=== "Java"
 
-```java
-// Static DSL
-WireMock.startRecording("http://examples.wiremockapi.cloud/");
-List<StubMapping> recordedMappings = WireMock.stopRecording();
+    ```java
+    // Static DSL
+    WireMock.startRecording("http://examples.wiremockapi.cloud/");
+    List<StubMapping> recordedMappings = WireMock.stopRecording();
 
-// Client instance
-WireMock wireMockClient = new WireMock(8080);
-wireMockClient.startStubRecording("http://examples.wiremockapi.cloud/");
-List<StubMapping> recordedMappings = wireMockClient.stopStubRecording();
+    // Client instance
+    WireMock wireMockClient = new WireMock(8080);
+    wireMockClient.startStubRecording("http://examples.wiremockapi.cloud/");
+    List<StubMapping> recordedMappings = wireMockClient.stopStubRecording();
 
-// Directly
-WireMockServer wireMockServer = new WireMockServer();
-wireMockServer.start();
-wireMockServer.startRecording("http://examples.wiremockapi.cloud/");
-List<StubMapping> recordedMappings = wireMockServer.stopRecording();
-```
+    // Directly
+    WireMockServer wireMockServer = new WireMockServer();
+    wireMockServer.start();
+    wireMockServer.startRecording("http://examples.wiremockapi.cloud/");
+    List<StubMapping> recordedMappings = wireMockServer.stopRecording();
+    ```
 
-API:
+=== "API"
 
-```json
-POST /__admin/recordings/start
-{
-  "targetBaseUrl": "http://examples.wiremockapi.cloud/"
-}
-```
+    ```json
+    POST /__admin/recordings/start
+    {
+      "targetBaseUrl": "http://examples.wiremockapi.cloud/"
+    }
+    ```
 
-```
-POST /__admin/recordings/stop
-```
+    ```
+    POST /__admin/recordings/stop
+    ```
 
 ## Snapshotting
 
@@ -100,171 +98,174 @@ into stub mappings.
 An implication of this order of events is that if you want to record an external API, you'll need to have configured proxying before you start generating traffic.
 See [Proxying](./proxying.md) for details on proxy configuration, but in summary this can be achieved by creating a proxy mapping via the API or Java DSL:
 
-Java:
+=== "Java"
 
-```java
-stubFor(proxyAllTo("http://examples.wiremockapi.cloud/").atPriority(1));
-```
+    ```java
+    stubFor(proxyAllTo("http://examples.wiremockapi.cloud/").atPriority(1));
+    ```
 
-API:
+=== "API"
 
-```json
-POST /__admin/mappings
-{
-    "priority": 1,
-    "request": {
-        "method": "ANY"
-    },
-    "response": {
-        "proxyBaseUrl" : "http://examples.wiremockapi.cloud/"
+    ```json
+    POST /__admin/mappings
+    {
+        "priority": 1,
+        "request": {
+            "method": "ANY"
+        },
+        "response": {
+            "proxyBaseUrl" : "http://examples.wiremockapi.cloud/"
+        }
     }
-}
-```
+    ```
 
-> **note**
->
-> You can still take snapshots without a proxy stub configured.
-> You might want to do this e.g. if you want to capture requests made by your application under test that you can then modify by hand to provide the appropriate responses.
+!!! note
+
+  You can still take snapshots without a proxy stub configured.
+  You might want to do this e.g. if you want to capture requests made by your application under test that you can then modify by hand to provide the appropriate responses.
 
 Once you have made some requests through WireMock (which you can view under http://localhost:8080/\_\_admin/requests) you can trigger a snapshot to generate stub mappings:
 
-Java:
+=== "Java"
 
-```java
-// Static DSL
-List<StubMapping> recordedMappings = WireMock.snapshotRecord();
+    ```java
+    // Static DSL
+    List<StubMapping> recordedMappings = WireMock.snapshotRecord();
 
-// Client instance
-WireMock wireMockClient = new WireMock(8080);
-List<StubMapping> recordedMappings = wireMockClient.takeSnapshotRecording();
+    // Client instance
+    WireMock wireMockClient = new WireMock(8080);
+    List<StubMapping> recordedMappings = wireMockClient.takeSnapshotRecording();
 
-// Directly
-WireMockServer wireMockServer = new WireMockServer();
-wireMockServer.start();
-List<StubMapping> recordedMappings = wireMockServer.snapshotRecord();
-```
+    // Directly
+    WireMockServer wireMockServer = new WireMockServer();
+    wireMockServer.start();
+    List<StubMapping> recordedMappings = wireMockServer.snapshotRecord();
+    ```
 
-API:
+=== "API"
 
-```
-POST /__admin/recordings/snapshot
-{}
-```
+    ```
+    POST /__admin/recordings/snapshot
+    {}
+    ```
 
 ## Customising your recordings
 
 The default recording behaviour can be tweaked in a number of ways by passing a "record spec" to the record or snapshot actions.
 
-In Java this achieved using the DSL:
+In Java you use the DSL, and when using the API, send a POST to `_admin/recordings/start`
 
-```java
-startRecording(
-      recordSpec()
-          .forTarget("http://examples.wiremockapi.cloud/")
-          .onlyRequestsMatching(getRequestedFor(urlPathMatching("/api/.*")))
-          .captureHeader("Accept")
-          .captureHeader("Content-Type", true)
-          .extractBinaryBodiesOver(10240)
-          .extractTextBodiesOver(2048)
-          .makeStubsPersistent(false)
-          .ignoreRepeatRequests()
-          .transformers("modify-response-header")
-          .transformerParameters(Parameters.one("headerValue", "123"))
-          .matchRequestBodyWithEqualToJson(false, true)
-  );
-```
 
-And via the API:
+=== "Java"
 
-```json
-POST /__admin/recordings/start
-{
-  "targetBaseUrl" : "http://examples.wiremockapi.cloud/",
-  "filters" : {
-    "urlPathPattern" : "/api/.*",
-    "method" : "GET",
-    "allowNonProxied": true
-  },
-  "captureHeaders" : {
-    "Accept" : { },
-    "Content-Type" : {
-      "caseInsensitive" : true
+    ```java
+    startRecording(
+          recordSpec()
+              .forTarget("http://examples.wiremockapi.cloud/")
+              .onlyRequestsMatching(getRequestedFor(urlPathMatching("/api/.*")))
+              .captureHeader("Accept")
+              .captureHeader("Content-Type", true)
+              .extractBinaryBodiesOver(10240)
+              .extractTextBodiesOver(2048)
+              .makeStubsPersistent(false)
+              .ignoreRepeatRequests()
+              .transformers("modify-response-header")
+              .transformerParameters(Parameters.one("headerValue", "123"))
+              .matchRequestBodyWithEqualToJson(false, true)
+      );
+    ```
+
+=== "API"
+
+    ```json
+    POST /__admin/recordings/start
+    {
+      "targetBaseUrl" : "http://examples.wiremockapi.cloud/",
+      "filters" : {
+        "urlPathPattern" : "/api/.*",
+        "method" : "GET",
+        "allowNonProxied": true
+      },
+      "captureHeaders" : {
+        "Accept" : { },
+        "Content-Type" : {
+          "caseInsensitive" : true
+        }
+      },
+      "requestBodyPattern" : {
+        "matcher" : "equalToJson",
+        "ignoreArrayOrder" : false,
+        "ignoreExtraElements" : true
+      },
+      "extractBodyCriteria" : {
+        "textSizeThreshold" : "2048",
+        "binarySizeThreshold" : "10240"
+      },
+      "persist" : false,
+      "repeatsAsScenarios" : false,
+      "transformers" : [ "modify-response-header" ],
+      "transformerParameters" : {
+        "headerValue" : "123"
+      }
     }
-  },
-  "requestBodyPattern" : {
-    "matcher" : "equalToJson",
-    "ignoreArrayOrder" : false,
-    "ignoreExtraElements" : true
-  },
-  "extractBodyCriteria" : {
-    "textSizeThreshold" : "2048",
-    "binarySizeThreshold" : "10240"
-  },
-  "persist" : false,
-  "repeatsAsScenarios" : false,
-  "transformers" : [ "modify-response-header" ],
-  "transformerParameters" : {
-    "headerValue" : "123"
-  }
-}
-```
+    ```
 
 The same specification can also be passed when snapshotting:
 
-Java:
+=== "Java"
 
-```java
-snapshotRecord(
-      recordSpec()
-          .onlyRequestsMatching(getRequestedFor(urlPathMatching("/api/.*")))
-          .onlyRequestIds(singletonList(UUID.fromString("40a93c4a-d378-4e07-8321-6158d5dbcb29")))
-          .allowNonProxied(true)
-          .captureHeader("Accept")
-          .captureHeader("Content-Type", true)
-          .extractBinaryBodiesOver(10240)
-          .extractTextBodiesOver(2048)
-          .makeStubsPersistent(false)
-          .ignoreRepeatRequests()
-          .transformers("modify-response-header")
-          .transformerParameters(Parameters.one("headerValue", "123"))
-          .chooseBodyMatchTypeAutomatically()
-  );
-```
+    ```java
+    snapshotRecord(
+          recordSpec()
+              .onlyRequestsMatching(getRequestedFor(urlPathMatching("/api/.*")))
+              .onlyRequestIds(singletonList(UUID.fromString("40a93c4a-d378-4e07-8321-6158d5dbcb29")))
+              .allowNonProxied(true)
+              .captureHeader("Accept")
+              .captureHeader("Content-Type", true)
+              .extractBinaryBodiesOver(10240)
+              .extractTextBodiesOver(2048)
+              .makeStubsPersistent(false)
+              .ignoreRepeatRequests()
+              .transformers("modify-response-header")
+              .transformerParameters(Parameters.one("headerValue", "123"))
+              .chooseBodyMatchTypeAutomatically()
+      );
+    ```
 
-API:
+=== "API"
 
-```json
-POST /__admin/recordings/snapshot
-{
-  "filters" : {
-    "urlPathPattern" : "/api/.*",
-    "method" : "GET",
-    "ids" : [ "40a93c4a-d378-4e07-8321-6158d5dbcb29" ]
-  },
-  "captureHeaders" : {
-    "Accept" : { },
-    "Content-Type" : {
-      "caseInsensitive" : true
+    ```json
+    POST /__admin/recordings/snapshot
+    {
+      "filters" : {
+        "urlPathPattern" : "/api/.*",
+        "method" : "GET",
+        "ids" : [ "40a93c4a-d378-4e07-8321-6158d5dbcb29" ]
+      },
+      "captureHeaders" : {
+        "Accept" : { },
+        "Content-Type" : {
+          "caseInsensitive" : true
+        }
+      },
+      "requestBodyPattern" : {
+        "matcher" : "equalToJson",
+        "ignoreArrayOrder" : false,
+        "ignoreExtraElements" : true
+      },
+      "extractBodyCriteria" : {
+        "textSizeThreshold" : "2 kb",
+        "binarySizeThreshold" : "1 Mb"
+      },
+      "outputFormat" : "FULL",
+      "persist" : false,
+      "repeatsAsScenarios" : false,
+      "transformers" : [ "modify-response-header" ],
+      "transformerParameters" : {
+        "headerValue" : "123"
+      }
     }
-  },
-  "requestBodyPattern" : {
-    "matcher" : "equalToJson",
-    "ignoreArrayOrder" : false,
-    "ignoreExtraElements" : true
-  },
-  "extractBodyCriteria" : {
-    "textSizeThreshold" : "2 kb",
-    "binarySizeThreshold" : "1 Mb"
-  },
-  "outputFormat" : "FULL",
-  "persist" : false,
-  "repeatsAsScenarios" : false,
-  "transformers" : [ "modify-response-header" ],
-  "transformerParameters" : {
-    "headerValue" : "123"
-  }
-}
-```
+    ```
 
 The following sections will detail each parameter in turn:
 
@@ -378,6 +379,6 @@ If you want to always match request bodies with `equalTo` case-insensitively, re
   }
 ```
 
-> **note**
->
-> The `targetBaseUrl` parameter will be ignored when snapshotting and the `filters/ids` parameter will be ignored when recording.
+!!! note
+
+    The `targetBaseUrl` parameter will be ignored when snapshotting and the `filters/ids` parameter will be ignored when recording.

@@ -1,32 +1,32 @@
 ---
 description: >
-    Regardless of your expertise and time you could dedicate, there're opportunities to participate 
-    in the project and its community!
+    opportunities to participate in the WireMock project and community!
 ---
 
 # Participate in the WireMock community
 
 WireMock exists and continues to thrive due to the efforts of over 150 contributors,
 and we continue to welcome contributions to its evolution.
-Regardless of your expertise and time you could dedicate, there're opportunities to participate and help the project!
+
+You can avail yourself of opportunities to participate in the project regardless of your expertise and amount of time you can dedicate. 
 
 ## Ways to contribute
 
-You can help make WireMock a better tool and community in a number of ways:
+You can choose from numerous opportunites to help make WireMock a better tool:
 
-- Spread the word about WireMock, share your stories and contributions
-- Help other WireMock users, e.g. by sharing your expertise or answering questions on community channels
-- Write or improve documentation
-- Raise an issue if you discover a bug
-- Contribute new features, bug fixes or enhancements
-- Improve WireMock user and developer experience
+- Spread the word about WireMock, share your stories and contributions.
+- Help other WireMock users, e.g. by sharing your expertise or answering questions on community channels.
+- Write or improve documentation.
+- Raise an issue if you discover a bug.
+- Contribute new features, bug fixes or enhancements.
+- Improve WireMock user and developer experience.
 - Create cool artwork!
 
 ## Quick Start
 
 We try to make contributing to WireMock easy for everyone,
 and we minimize the entry bar where possible.
-Right now there are now contributor license agreements or anything else that would
+Right now there are no contributor license agreements or anything else that would
 be an additional obstacle.
 
 1. Join the [WireMock Slack](../community/slack.md),
@@ -37,18 +37,17 @@ be an additional obstacle.
 ## Contributing Guide
 
 Our main resource is the [Contributor Guide](https://github.com/wiremock/community/tree/main/contributing).
-As well as other community materials,
+Along with other community materials,
 we keep it on GitHub in the [wiremock/community](https://github.com/wiremock/community) so everyone can easily access and edit the materials.
 
 Note that many repositories and areas have specialized contributor guidelines that could also help.
 
 ## Need help?
 
-If you want to contribute in any way to WireMock itself or its ecosystem and got stuck,
+If you want to contribute in any way to WireMock or its ecosystem and get stuck,
 do not hesitate to ask on the `#help-contributing` channel on the [WireMock Slack](../community/slack.md).
-The sole purpose of this channel is to resolve obstacles and route any questions
-regarding the contributions.
-From technical questions to permissions and blog post draft reviews,
+The sole purpose of this channel is to resolve obstacles and route any questions that arise regarding the contributions.
+From technical questions, to permissions, to blog post draft reviews,
 any query is welcome!
 
 Some activities like Advocacy and Documentation have their own channels on Slack,

@@ -62,6 +62,8 @@ To serve the site locally:
 mkdocs serve
 ```
 
+NOTE: on some OS's you might need to cd into your local clone and run 'git submodule init' and 'git submodule update' to get all of the plugins working properly.
+
 > **WARNING:** Note that the multi-repo site maybe quite slow during the
 > first build and then during the rebuilds.
 > You can disable it for local development just by commenting out the plugin section in `mkdocs.yml`

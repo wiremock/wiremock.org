@@ -1,11 +1,13 @@
 ---
-description: WireMock supports matching of requests to stubs and verification queries
-  using the following attributes.
+description: Match requests to stubs and verify queries
+  using request attributes.
 ---
 
 # Matching and filtering HTTP requests in WireMock
 
-WireMock enables flexible definition of a mock APIs by supporting rich matching of incoming requests.
+WireMock enables flexible definition of a mock APIs by supporting rich matching of incoming requests. 
+You can make use of WireMock's in-built match operators, or set up [custom matching](./extending-wiremock.md#custom-request-matchers).
+
 Stub matching and verification queries can use the following request attributes:
 
 - URL
@@ -18,115 +20,118 @@ Stub matching and verification queries can use the following request attributes:
 - Request body
 - Multipart/form-data
 
-Here's an example showing all attributes being matched using WireMock's in-built match operators. It is also possible to write [custom matching logic](./extending-wiremock.md#custom-request-matchers) if
-you need more precise control:
+If you need more precise control, you can set up the stubs and configuration using the patterns given in the following examples.
 
 ## Request with XML Body
 
-Code:
+== "Java code"
 
-```java
-stubFor(any(urlPathEqualTo("/everything"))
-  .withHeader("Accept", containing("xml"))
-  .withCookie("session", matching(".*12345.*"))
-  .withQueryParam("search_term", equalTo("WireMock"))
-  .withBasicAuth("jeff@example.com", "jeffteenjefftyjeff")
-  .withRequestBody(equalToXml("<search-results />"))
-  .withRequestBody(matchingXPath("//search-results"))
-  .withMultipartRequestBody(
-  	aMultipart()
-  		.withName("info")
-  		.withHeader("Content-Type", containing("charset"))
-  		.withBody(equalToJson("{}"))
-  )
-  .willReturn(aResponse()));
-```
+    ```java
+    stubFor(any(urlPathEqualTo("/everything"))
+      .withHeader("Accept", containing("xml"))
+      .withCookie("session", matching(".*12345.*"))
+      .withQueryParam("search_term", equalTo("WireMock"))
+      .withBasicAuth("jeff@example.com", "jeffteenjefftyjeff")
+      .withRequestBody(equalToXml("<search-results />"))
+      .withRequestBody(matchingXPath("//search-results"))
+      .withMultipartRequestBody(
+      	aMultipart()
+      		.withName("info")
+      		.withHeader("Content-Type", containing("charset"))
+      		.withBody(equalToJson("{}"))
+      )
+      .willReturn(aResponse()));
+    ```
 
-Configuration file:
+=== "JSON configuration file"
 
-```json
-{
-    "request": {
-        "urlPath": "/everything",
-        "method": "ANY",
-        "headers": {
-            "Accept": {
-                "contains": "xml"
-            }
-        },
-        "queryParameters": {
-            "search_term": {
-                "equalTo": "WireMock"
-            }
-        },
-        "cookies": {
-            "session": {
-                "matches": ".*12345.*"
-            }
-        },
-        "bodyPatterns": [
-            {
-                "equalToXml": "<search-results />"
+    ```json
+    {
+        "request": {
+            "urlPath": "/everything",
+            "method": "ANY",
+            "headers": {
+                "Accept": {
+                    "contains": "xml"
+                }
             },
-            {
-                "matchesXPath": "//search-results"
-            }
-        ],
-        "multipartPatterns": [
-            {
-                "matchingType": "ANY",
-                "headers": {
-                    "Content-Disposition": {
-                        "contains": "name=\"info\""
-                    },
-                    "Content-Type": {
-                        "contains": "charset"
-                    }
+            "queryParameters": {
+                "search_term": {
+                    "equalTo": "WireMock"
+                }
+            },
+            "cookies": {
+                "session": {
+                    "matches": ".*12345.*"
+                }
+            },
+            "bodyPatterns": [
+                {
+                    "equalToXml": "<search-results />"
                 },
-                "bodyPatterns": [
-                    {
-                        "equalToJson": "{}"
-                    }
-                ]
+                {
+                    "matchesXPath": "//search-results"
+                }
+            ],
+            "multipartPatterns": [
+                {
+                    "matchingType": "ANY",
+                    "headers": {
+                        "Content-Disposition": {
+                            "contains": "name=\"info\""
+                        },
+                        "Content-Type": {
+                            "contains": "charset"
+                        }
+                    },
+                    "bodyPatterns": [
+                        {
+                            "equalToJson": "{}"
+                        }
+                    ]
+                }
+            ],
+            "basicAuthCredentials": {
+                "username": "jeff@example.com",
+                "password": "jeffteenjefftyjeff"
             }
-        ],
-        "basicAuthCredentials": {
-            "username": "jeff@example.com",
-            "password": "jeffteenjefftyjeff"
+        },
+        "response": {
+            "status": 200
         }
-    },
-    "response": {
-        "status": 200
     }
-}
-```
+    ```
 
 ## Request with Form Parameters
 
-```java
-stubFor(post(urlPathEqualTo("/mock"))
-  .withFormParam("tool", equalTo("WireMock"))
-).willReturn(ok()));
-```
+=== "Java code"
 
-```json
-{
-  "request": {
-    "urlPath": "/mock",
-    "method": "POST",
-    "formParameters": {
-      "tool": {
-        "equalTo": "WireMock"
+    ```java
+    stubFor(post(urlPathEqualTo("/mock"))
+      .withFormParam("tool", equalTo("WireMock"))
+    ).willReturn(ok()));
+    ```
+
+=== "JSON configuration"
+
+    ```json
+    {
+      "request": {
+        "urlPath": "/mock",
+        "method": "POST",
+        "formParameters": {
+          "tool": {
+            "equalTo": "WireMock"
+          }
+        }
+      },
+      "response": {
+        "status": 200
       }
     }
-  },
-  "response": {
-    "status": 200
-  }
-}
-```
+    ```
 
-The following sections describe each type of matching strategy in detail.
+The following sections contain examples of each type of matching strategy.
 
 ## URL matching
 
@@ -136,83 +141,83 @@ It is usually preferable to match on path only if you want to match multiple que
 
 ### Equality matching on path and query
 
-Java:
+=== "Java code"
 
-```java
-urlEqualTo("/your/url?and=query")
-```
+    ```java
+    urlEqualTo("/your/url?and=query")
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-  "request": {
-    "url": "/your/url?and=query"
-    ...
-  },
-  ...
-}
-```
+    ```json
+    {
+      "request": {
+        "url": "/your/url?and=query"
+        ...
+      },
+      ...
+    }
+    ```
 
 ### Regex matching on path and query
 
-Java:
+=== "Java code"
 
-```java
-urlMatching("/your/([a-z]*)\\?and=query")
-```
+    ```java
+    urlMatching("/your/([a-z]*)\\?and=query")
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-  "request": {
-    "urlPattern": "/your/([a-z]*)\\?and=query"
-    ...
-  },
-  ...
-}
-```
+    ```json
+    {
+      "request": {
+        "urlPattern": "/your/([a-z]*)\\?and=query"
+        ...
+      },
+      ...
+    }
+    ```
 
 ### Equality matching on the path only
 
-Java:
+=== "Java code"
 
-```java
-urlPathEqualTo("/your/url")
-```
+    ```java
+    urlPathEqualTo("/your/url")
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-  "request": {
-    "urlPath": "/your/url"
-    ...
-  },
-  ...
-}
-```
+    ```json
+    {
+      "request": {
+        "urlPath": "/your/url"
+        ...
+      },
+      ...
+    }
+    ```
 
 ### Regex matching on the path only
 
-Java:
+=== "Java code"
 
-```java
-urlPathMatching("/your/([a-z]*)")
-```
+    ```java
+    urlPathMatching("/your/([a-z]*)")
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-  "request": {
-    "urlPathPattern": "/your/([a-z]*)"
-    ...
-  },
-  ...
-}
-```
+    ```json
+    {
+      "request": {
+        "urlPathPattern": "/your/([a-z]*)"
+        ...
+      },
+      ...
+    }
+    ```
 
 ### Path templates
 
@@ -225,60 +230,62 @@ When the path template URL match type is used this enables
 
 To match any request URL that conforms to the path template, you can do the following.
 
-Java:
+=== "Java code"
 
-```java
-stubFor(
-    get(urlPathTemplate("/contacts/{contactId}/addresses/{addressId}"))
-      .willReturn(ok()));
-```
+    ```java
+    stubFor(
+        get(urlPathTemplate("/contacts/{contactId}/addresses/{addressId}"))
+          .willReturn(ok()));
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-  "request": {
-    "urlPathTemplate": "/contacts/{contactId}/addresses/{addressId}"
-    "method" : "GET",
+    ```json
+    {
+      "request": {
+        "urlPathTemplate": "/contacts/{contactId}/addresses/{addressId}"
+        "method" : "GET",
 
-  },
-  "response" : {
-    "status" : 200
-  }
-}
-```
+      },
+      "response" : {
+        "status" : 200
+      }
+    }
+    ```
 
 To further constrain the match to specific values of the path variables you can add match clauses for some or all of the variables in the path expression.
 
-```java
-stubFor(
-    get(urlPathTemplate("/contacts/{contactId}/addresses/{addressId}"))
-      .withPathParam("contactId", equalTo("12345"))
-      .withPathParam("addressId", equalTo("99876"))
-      .willReturn(ok()));
-```
+=== "Java code"
 
-JSON:
+    ```java
+    stubFor(
+        get(urlPathTemplate("/contacts/{contactId}/addresses/{addressId}"))
+          .withPathParam("contactId", equalTo("12345"))
+          .withPathParam("addressId", equalTo("99876"))
+          .willReturn(ok()));
+    ```
 
-```json
-{
-  "request" : {
-    "urlPathTemplate" : "/v1/contacts/{contactId}/addresses/{addressId}",
-    "method" : "GET",
-    "pathParameters" : {
-      "contactId" : {
-        "equalTo" : "12345"
+=== "JSON configuration"
+
+    ```json
+    {
+      "request" : {
+        "urlPathTemplate" : "/v1/contacts/{contactId}/addresses/{addressId}",
+        "method" : "GET",
+        "pathParameters" : {
+          "contactId" : {
+            "equalTo" : "12345"
+          },
+          "addressId" : {
+            "equalTo" : "99876"
+          }
+        }
       },
-      "addressId" : {
-        "equalTo" : "99876"
+      "response" : {
+        "status" : 200
       }
     }
-  },
-  "response" : {
-    "status" : 200
-  }
-}
-```
+    ```
 
 
 ## Matching other attributes
@@ -289,258 +296,258 @@ All request attributes other than the URL can be matched using the following set
 
 Deems a match if the entire attribute value equals the expected value.
 
-Java:
+=== "Java code"
 
-```java
-.withHeader("Content-Type", equalTo("application/json"))
-```
+    ```java
+    .withHeader("Content-Type", equalTo("application/json"))
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-  "request": {
-    ...
-    "headers": {
-      "Content-Type": {
-        "equalTo": "application/json"
-      }
+    ```json
+    {
+      "request": {
+        ...
+        "headers": {
+          "Content-Type": {
+            "equalTo": "application/json"
+          }
+        }
+        ...
+      },
+      ...
     }
-    ...
-  },
-  ...
-}
-```
+    ```
 
 ### Case-insensitive equality
 
 Deems a match if the entire attribute value equals the expected value, ignoring case.
 
-Java:
+=== "Java code"
 
-```java
-.withHeader("Content-Type", equalToIgnoreCase("application/json"))
-```
+    ```java
+    .withHeader("Content-Type", equalToIgnoreCase("application/json"))
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-  "request": {
-    ...
-    "headers": {
-      "Content-Type": {
-        "equalTo": "application/json",
-        "caseInsensitive": true
-      }
+    ```json
+    {
+      "request": {
+        ...
+        "headers": {
+          "Content-Type": {
+            "equalTo": "application/json",
+            "caseInsensitive": true
+          }
+        }
+        ...
+      },
+      ...
     }
-    ...
-  },
-  ...
-}
-```
+    ```
 
 ### Binary Equality
 
 Deems a match if the entire binary attribute value equals the expected value. Unlike the above equalTo operator, this compares byte arrays (or their equivalent base64 representation).
 
-Java:
+=== "Java code"
 
-```java
-// Specifying the expected value as a byte array
-.withRequestBody(binaryEqualTo(new byte[] { 1, 2, 3 }))
+    ```java
+    // Specifying the expected value as a byte array
+    .withRequestBody(binaryEqualTo(new byte[] { 1, 2, 3 }))
 
-// Specifying the expected value as a base64 String
-.withRequestBody(binaryEqualTo("AQID"))
-```
+    // Specifying the expected value as a base64 String
+    .withRequestBody(binaryEqualTo("AQID"))
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-  "request": {
-    ...
-    "bodyPatterns" : [{
-        "binaryEqualTo" : "AQID" // Base 64
-    }]
-    ...
-  },
-  ...
-}
-```
+    ```json
+    {
+      "request": {
+        ...
+        "bodyPatterns" : [{
+            "binaryEqualTo" : "AQID" // Base 64
+        }]
+        ...
+      },
+      ...
+    }
+    ```
 
 ### Substring (contains)
 
 Deems a match if the a portion of the attribute value equals the expected value.
 
-Java:
+=== "Java code"
 
-```java
-.withCookie("my_profile", containing("johnsmith@example.com"))
-```
+    ```java
+    .withCookie("my_profile", containing("johnsmith@example.com"))
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-  "request": {
-    ...
-    "cookies" : {
-      "my_profile" : {
-        "contains" : "johnsmith@example.com"
-      }
+    ```json
+    {
+      "request": {
+        ...
+        "cookies" : {
+          "my_profile" : {
+            "contains" : "johnsmith@example.com"
+          }
+        }
+        ...
+      },
+      ...
     }
-    ...
-  },
-  ...
-}
-```
+    ```
 
 ### Negative substring (does not contain)
 
 Deems a match if the attribute value does not contain the expected value.
 
-Java:
+=== "Java code"
 
-```java
-.withCookie("my_profile", notContaining("johnsmith@example.com"))
-```
+    ```java
+    .withCookie("my_profile", notContaining("johnsmith@example.com"))
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-  "request": {
-    ...
-    "cookies" : {
-      "my_profile" : {
-        "doesNotContain" : "johnsmith@example.com"
-      }
+    ```json
+    {
+      "request": {
+        ...
+        "cookies" : {
+          "my_profile" : {
+            "doesNotContain" : "johnsmith@example.com"
+          }
+        }
+        ...
+      },
+      ...
     }
-    ...
-  },
-  ...
-}
-```
+    ```
 
 ### Regular expression
 
 Deems a match if the entire attribute value matched the expected regular expression.
 
-Java:
+=== "Java code"
 
-```java
-.withQueryParam("search_term", matching("^(.*)wiremock([A-Za-z]+)$"))
-```
+    ```java
+    .withQueryParam("search_term", matching("^(.*)wiremock([A-Za-z]+)$"))
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-  "request": {
-    ...
-    "queryParameters" : {
-      "search_term" : {
-        "matches" : "^(.*)wiremock([A-Za-z]+)$"
-      }
+    ```json
+    {
+      "request": {
+        ...
+        "queryParameters" : {
+          "search_term" : {
+            "matches" : "^(.*)wiremock([A-Za-z]+)$"
+          }
+        }
+        ...
+      },
+      ...
     }
-    ...
-  },
-  ...
-}
-```
+    ```
 
 It is also possible to perform a negative match i.e. the match succeeds when the attribute value does not match the regex:
 
-Java:
+=== "Java code"
 
-```java
-.withQueryParam("search_term", notMatching("^(.*)wiremock([A-Za-z]+)$"))
-```
+    ```java
+    .withQueryParam("search_term", notMatching("^(.*)wiremock([A-Za-z]+)$"))
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-  "request": {
-    ...
-    "queryParameters" : {
-      "search_term" : {
-        "doesNotMatch" : "^(.*)wiremock([A-Za-z]+)$"
-      }
+    ```json
+    {
+      "request": {
+        ...
+        "queryParameters" : {
+          "search_term" : {
+            "doesNotMatch" : "^(.*)wiremock([A-Za-z]+)$"
+          }
+        }
+        ...
+      },
+      ...
     }
-    ...
-  },
-  ...
-}
-```
+    ```
 
 ### JSON equality
 
 Deems a match if the attribute (most likely the request body in practice) is valid JSON and is a semantic match for the expected value.
 
-Java:
+=== "Java code"
 
-```java
-.withRequestBody(equalToJson("{ \"total_results\": 4 }"))
-```
+    ```java
+    .withRequestBody(equalToJson("{ \"total_results\": 4 }"))
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-  "request": {
-    ...
-    "bodyPatterns" : [ {
-      "equalToJson" : { "total_results": 4 }
-    } ]
-    ...
-  },
-  ...
-}
-```
+    ```json
+    {
+      "request": {
+        ...
+        "bodyPatterns" : [ {
+          "equalToJson" : { "total_results": 4 }
+        } ]
+        ...
+      },
+      ...
+    }
+    ```
 
 JSON with string literal:
 
-```json
-{
-  "request": {
-    ...
-    "bodyPatterns" : [ {
-      "equalToJson" : "{ \"total_results\": 4 }"
-    } ]
-    ...
-  },
-  ...
-}
-```
+    ```json
+    {
+      "request": {
+        ...
+        "bodyPatterns" : [ {
+          "equalToJson" : "{ \"total_results\": 4 }"
+        } ]
+        ...
+      },
+      ...
+    }
+    ```
 
 #### Less strict matching
 
 By default different array orderings and additional object attributes will trigger a non-match. However, both of these conditions can be disabled individually.
 
-Java:
+=== "Java code"
 
-```java
-.withRequestBody(equalToJson("{ \"total_results\": 4  }", true, true))
-```
+    ```java
+    .withRequestBody(equalToJson("{ \"total_results\": 4  }", true, true))
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-  "request": {
-    ...
-    "bodyPatterns" : [ {
-      "equalToJson" : "{ \"total_results\": 4  }",
-      "ignoreArrayOrder" : true,
-      "ignoreExtraElements" : true
-    } ]
-    ...
-  },
-  ...
-}
-```
+    ```json
+    {
+      "request": {
+        ...
+        "bodyPatterns" : [ {
+          "equalToJson" : "{ \"total_results\": 4  }",
+          "ignoreArrayOrder" : true,
+          "ignoreExtraElements" : true
+        } ]
+        ...
+      },
+      ...
+    }
+    ```
 
 #### Placeholders
 
@@ -549,15 +556,15 @@ This allows specific attributes to be treated as wildcards, rather than an exact
 
 For instance, the following:
 
-```json
-{ "id": "${json-unit.any-string}" }
-```
+    ```json
+    { "id": "${json-unit.any-string}" }
+    ```
 
 would match a request with a JSON body of:
 
-```json
-{ "id": "abc123" }
-```
+    ```json
+    { "id": "abc123" }
+    ```
 
 It's also possible to use placeholders that constrain the expected value by type or regular expression.
 See [the JsonUnit placeholders documentation](https://github.com/lukas-krecan/JsonUnit#typeplc) for the full syntax.
@@ -570,170 +577,170 @@ Deems a match if the attribute value is valid JSON and matches the [JSON Path](h
 
 Deems a match if the attribute value is present in the JSON.
 
-Java:
+=== "Java code"
 
-```java
-.withRequestBody(matchingJsonPath("$.name"))
-```
+    ```java
+    .withRequestBody(matchingJsonPath("$.name"))
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-  "request": {
-    ...
-    "bodyPatterns" : [ {
-      "matchesJsonPath" : "$.name"
-    } ]
-    ...
-  },
-  ...
-}
-```
+    ```json
+    {
+      "request": {
+        ...
+        "bodyPatterns" : [ {
+          "matchesJsonPath" : "$.name"
+        } ]
+        ...
+      },
+      ...
+    }
+    ```
 
 Request body example:
 
-```
-// matching
-{ "name": "Wiremock" }
-// not matching
-{ "price": 15 }
-```
+    ```
+    // matching
+    { "name": "Wiremock" }
+    // not matching
+    { "price": 15 }
+    ```
 
 #### Equality matching
 
 Deems a match if the attribute value equals the expected value.
 
-Java:
+=== "Java code"
 
-```java
-.withRequestBody(matchingJsonPath("$.things[?(@.name == 'RequiredThing')]"))
-```
+    ```java
+    .withRequestBody(matchingJsonPath("$.things[?(@.name == 'RequiredThing')]"))
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-  "request": {
-    ...
-    "bodyPatterns" : [ {
-      "matchesJsonPath" : "$.things[?(@.name == 'RequiredThing')]"
-    } ]
-    ...
-  },
-  ...
-}
-```
+    ```json
+    {
+      "request": {
+        ...
+        "bodyPatterns" : [ {
+          "matchesJsonPath" : "$.things[?(@.name == 'RequiredThing')]"
+        } ]
+        ...
+      },
+      ...
+    }
+    ```
 
-Request body example:
+=== "Request body example"
 
-```
-// matching
-{ "things": { "name": "RequiredThing" } }
-{ "things": [ { "name": "RequiredThing" }, { "name": "Wiremock" } ] }
-// not matching
-{ "price": 15 }
-{ "things": { "name": "Wiremock" } }
-```
+    ```
+    // matching
+    { "things": { "name": "RequiredThing" } }
+    { "things": [ { "name": "RequiredThing" }, { "name": "Wiremock" } ] }
+    // not matching
+    { "price": 15 }
+    { "things": { "name": "Wiremock" } }
+    ```
 
 #### Regex matching
 
 Deems a match if the attribute value matches the regex expected value.
 
-Java:
+=== "Java code"
 
-```java
-.withRequestBody(matchingJsonPath("$.things[?(@.name =~ /Required.*/i)]"))
-```
+    ```java
+    .withRequestBody(matchingJsonPath("$.things[?(@.name =~ /Required.*/i)]"))
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-  "request": {
-    ...
-    "bodyPatterns" : [ {
-      "matchesJsonPath" : "$.things[?(@.name =~ /Required.*/i)]"
-    } ]
-    ...
-  },
-  ...
-}
-```
+    ```json
+    {
+      "request": {
+        ...
+        "bodyPatterns" : [ {
+          "matchesJsonPath" : "$.things[?(@.name =~ /Required.*/i)]"
+        } ]
+        ...
+      },
+      ...
+    }
+    ```
 
-Request body example:
+=== "Request body example"
 
-```json
-// matching
-{ "things": { "name": "RequiredThing" } }
-{ "things": [ { "name": "Required" }, { "name": "Wiremock" } ] }
-// not matching
-{ "price": 15 }
-{ "things": { "name": "Wiremock" } }
-{ "things": [ { "name": "Thing" }, { "name": "Wiremock" } ] }
-```
+    ```json
+    // matching
+    { "things": { "name": "RequiredThing" } }
+    { "things": [ { "name": "Required" }, { "name": "Wiremock" } ] }
+    // not matching
+    { "price": 15 }
+    { "things": { "name": "Wiremock" } }
+    { "things": [ { "name": "Thing" }, { "name": "Wiremock" } ] }
+    ```
 
 #### Size matching
 
 Deems a match if the attribute size matches the expected size.
 
-Java:
+=== "Java code"
 
-```java
-.withRequestBody(matchingJsonPath("$[?(@.things.size() == 2)]"))
-```
+    ```java
+    .withRequestBody(matchingJsonPath("$[?(@.things.size() == 2)]"))
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-  "request": {
-    ...
-    "bodyPatterns" : [ {
-      "matchesJsonPath" : "$[?(@.things.size() == 2)]"
-    } ]
-    ...
-  },
-  ...
-}
-```
+    ```json
+    {
+      "request": {
+        ...
+        "bodyPatterns" : [ {
+          "matchesJsonPath" : "$[?(@.things.size() == 2)]"
+        } ]
+        ...
+      },
+      ...
+    }
+    ```
 
 Request body example:
 
-```json
-// matching
-{ "things": [ { "name": "RequiredThing" }, { "name": "Wiremock" } ] }
-// not matching
-{ "things": [ { "name": "RequiredThing" } ] }
-```
+    ```json
+    // matching
+    { "things": [ { "name": "RequiredThing" }, { "name": "Wiremock" } ] }
+    // not matching
+    { "things": [ { "name": "RequiredThing" } ] }
+    ```
 
 #### Nested value matching
 
 The JSONPath matcher can be combined with another matcher, such that the value returned from the JSONPath query is evaluated against it:
 
-Java:
+=== "Java code"
 
-```java
-.withRequestBody(matchingJsonPath("$..todoItem", containing("wash")))
-```
+    ```java
+    .withRequestBody(matchingJsonPath("$..todoItem", containing("wash")))
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-  "request": {
-    ...
-    "bodyPatterns" : [ {
-      "matchesJsonPath" : {
-         "expression": "$..todoItem",
-         "contains": "wash"
-      }
-    } ]
-    ...
-  },
-  ...
-}
-```
+    ```json
+    {
+      "request": {
+        ...
+        "bodyPatterns" : [ {
+          "matchesJsonPath" : {
+             "expression": "$..todoItem",
+             "contains": "wash"
+          }
+        } ]
+        ...
+      },
+      ...
+    }
+    ```
 
 Since WireMock's matching operators all work on strings, the value selected by the JSONPath expression will be coerced to a string before the match is evaluated. This true even if the returned value
 is an object or array. A benefit of this is that this allows a sub-document to be selected using JSONPath, then matched using the `equalToJson` operator. E.g. for the following request body:
@@ -748,29 +755,31 @@ is an object or array. A benefit of this is that this allows a sub-document to b
 
 The following will match:
 
-```java
-.withRequestBody(matchingJsonPath("$.outer", equalToJson("{                \n" +
-                                                         "   \"inner\": 42 \n" +
-                                                         "}")))
-```
+=== "Java code"
 
-JSON:
+    ```java
+    .withRequestBody(matchingJsonPath("$.outer", equalToJson("{                \n" +
+                                                             "   \"inner\": 42 \n" +
+                                                             "}")))
+    ```
 
-```json
-{
-  "request": {
-    ...
-    "bodyPatterns" : [ {
-      "matchesJsonPath" : {
-         "expression": "$.outer",
-         "equalToJson": "{ \"inner\": 42 }"
-      }
-    } ]
-    ...
-  },
-  ...
-}
-```
+=== "JSON configuration"
+
+    ```json
+    {
+      "request": {
+        ...
+        "bodyPatterns" : [ {
+          "matchesJsonPath" : {
+             "expression": "$.outer",
+             "equalToJson": "{ \"inner\": 42 }"
+          }
+        } ]
+        ...
+      },
+      ...
+    }
+    ```
 
 ### JSON schema
 
@@ -778,165 +787,165 @@ Deems a match if the value conforms to the expected JSON schema.
 
 By default the [V202012](https://json-schema.org/draft/2020-12/schema) version of the JSON schema spec will be used, but this can be changed to one of `V4`, `V6`, `V7`, `V201909`, `V202012` via the `schemaVersion` parameter.
 
-Java:
+=== "Java code"
 
-```java
-stubFor(
-  post(urlPathEqualTo("/schema-match"))
-    .withRequestBody(matchingJsonSchema("{\n" +
-        "  \"type\": \"object\",\n" +
-        "  \"required\": [\n" +
-        "    \"name\"\n" +
-        "  ],\n" +
-        "  \"properties\": {\n" +
-        "    \"name\": {\n" +
-        "      \"type\": \"string\"\n" +
-        "    },\n" +
-        "    \"tag\": {\n" +
-        "      \"type\": \"string\"\n" +
-        "    }\n" +
-        "  }\n" +
-        "}"))
-    .willReturn(ok()));
-```
+    ```java
+    stubFor(
+      post(urlPathEqualTo("/schema-match"))
+        .withRequestBody(matchingJsonSchema("{\n" +
+            "  \"type\": \"object\",\n" +
+            "  \"required\": [\n" +
+            "    \"name\"\n" +
+            "  ],\n" +
+            "  \"properties\": {\n" +
+            "    \"name\": {\n" +
+            "      \"type\": \"string\"\n" +
+            "    },\n" +
+            "    \"tag\": {\n" +
+            "      \"type\": \"string\"\n" +
+            "    }\n" +
+            "  }\n" +
+            "}"))
+        .willReturn(ok()));
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-  "request" : {
-    "urlPath" : "/schema-match",
-    "method" : "POST",
-    "bodyPatterns" : [ {
-      "matchesJsonSchema" : "{\n  \"type\": \"object\",\n  \"required\": [\n    \"name\"\n  ],\n  \"properties\": {\n    \"name\": {\n      \"type\": \"string\"\n    },\n    \"tag\": {\n      \"type\": \"string\"\n    }\n  }\n}",
-      "schemaVersion" : "V202012"
-    } ]
-  },
-  "response" : {
-    "status" : 200
-  }
-}
-```
+    ```json
+    {
+      "request" : {
+        "urlPath" : "/schema-match",
+        "method" : "POST",
+        "bodyPatterns" : [ {
+          "matchesJsonSchema" : "{\n  \"type\": \"object\",\n  \"required\": [\n    \"name\"\n  ],\n  \"properties\": {\n    \"name\": {\n      \"type\": \"string\"\n    },\n    \"tag\": {\n      \"type\": \"string\"\n    }\n  }\n}",
+          "schemaVersion" : "V202012"
+        } ]
+      },
+      "response" : {
+        "status" : 200
+      }
+    }
+    ```
 
 
 ### XML equality
 
 Deems a match if the attribute value is valid XML and is semantically equal to the expected XML document. The underlying engine for determining XML equality is [XMLUnit](http://www.xmlunit.org/).
 
-Java:
+=== "Java code"
 
-```java
-.withRequestBody(equalToXml("<thing>Hello</thing>"))
-```
+    ```java
+    .withRequestBody(equalToXml("<thing>Hello</thing>"))
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-  "request": {
-    ...
-    "bodyPatterns" : [ {
-      "equalToXml" : "<thing>Hello</thing>"
-    } ]
-    ...
-  },
-  ...
-}
-```
+    ```json
+    {
+      "request": {
+        ...
+        "bodyPatterns" : [ {
+          "equalToXml" : "<thing>Hello</thing>"
+        } ]
+        ...
+      },
+      ...
+    }
+    ```
 
 #### Use of placeholders
 
 The XMLUnit [placeholders](https://github.com/xmlunit/user-guide/wiki/Placeholders) feature is supported in WireMock. For example, when comparing the XML documents, you can ignore some text nodes.
 
-Java:
+=== "Java code"
 
-```java
-.withRequestBody(
-    equalToXml("<message><id>${xmlunit.ignore}</id><content>Hello</content></message>", true)
-)
-```
+    ```java
+    .withRequestBody(
+        equalToXml("<message><id>${xmlunit.ignore}</id><content>Hello</content></message>", true)
+    )
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-  "request": {
-    ...
-    "bodyPatterns" : [ {
-      "equalToXml" : "<message><id>${xmlunit.ignore}</id><content>Hello</content></message>",
-      "enablePlaceholders" : true
-    } ]
-    ...
-  },
-  ...
-}
-```
+    ```json
+    {
+      "request": {
+        ...
+        "bodyPatterns" : [ {
+          "equalToXml" : "<message><id>${xmlunit.ignore}</id><content>Hello</content></message>",
+          "enablePlaceholders" : true
+        } ]
+        ...
+      },
+      ...
+    }
+    ```
 
 When the actual request body is `<message><id>123456</id><content>Hello</content></message>`, it will be deemed a match.
 
 If the default placeholder delimiters `${` and `}` can not be used, you can specify custom delimiters (using regular expressions). For example
 
-Java:
+=== "Java code"
 
-```java
-.withRequestBody(
-    equalToXml("<message><id>[[xmlunit.ignore]]</id><content>Hello</content></message>",
-               true,
-               "\\[\\[",
-               "]]"
+    ```java
+    .withRequestBody(
+        equalToXml("<message><id>[[xmlunit.ignore]]</id><content>Hello</content></message>",
+                   true,
+                   "\\[\\[",
+                   "]]"
+        )
     )
-)
-```
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-  "request": {
-    ...
-    "bodyPatterns" : [ {
-      "equalToXml" : "<message><id>[[xmlunit.ignore]]</id><content>Hello</content></message>",
-      "enablePlaceholders" : true,
-      "placeholderOpeningDelimiterRegex" : "\\[\\[",
-      "placeholderClosingDelimiterRegex" : "]]"
-    } ]
-    ...
-  },
-  ...
-}
-```
+    ```json
+    {
+      "request": {
+        ...
+        "bodyPatterns" : [ {
+          "equalToXml" : "<message><id>[[xmlunit.ignore]]</id><content>Hello</content></message>",
+          "enablePlaceholders" : true,
+          "placeholderOpeningDelimiterRegex" : "\\[\\[",
+          "placeholderClosingDelimiterRegex" : "]]"
+        } ]
+        ...
+      },
+      ...
+    }
+    ```
 
 #### Excluding specific types of comparison
 
 You can further tune how XML documents are compared for equality by disabling specific [XMLUnit comparison types](https://www.xmlunit.org/api/java/2.7.0/org/xmlunit/diff/ComparisonType.html).
 
-Java:
+=== "Java code"
 
-```java
-import static org.xmlunit.diff.ComparisonType.*;
+    ```java
+    import static org.xmlunit.diff.ComparisonType.*;
 
-...
-
-.withRequestBody(equalToXml("<thing>Hello</thing>")
-    .exemptingComparisons(NAMESPACE_URI, ELEMENT_TAG_NAME)
-)
-```
-
-JSON:
-
-```json
-{
-  "request": {
     ...
-    "bodyPatterns" : [ {
-      "equalToXml" : "<thing>Hello</thing>",
-      "exemptedComparisons": ["NAMESPACE_URI", "ELEMENT_TAG_NAME"]
-    } ]
-    ...
-  },
-  ...
-}
-```
+
+    .withRequestBody(equalToXml("<thing>Hello</thing>")
+        .exemptingComparisons(NAMESPACE_URI, ELEMENT_TAG_NAME)
+    )
+    ```
+
+=== "JSON configuration"
+
+    ```json
+    {
+      "request": {
+        ...
+        "bodyPatterns" : [ {
+          "equalToXml" : "<thing>Hello</thing>",
+          "exemptedComparisons": ["NAMESPACE_URI", "ELEMENT_TAG_NAME"]
+        } ]
+        ...
+      },
+      ...
+    }
+    ```
 
 The full list of comparison types used by default is as follows:
 
@@ -958,198 +967,198 @@ The full list of comparison types used by default is as follows:
 
 Deems a match if the attribute value is valid XML and matches the XPath expression supplied. An XML document will be considered to match if any elements are returned by the XPath evaluation. WireMock delegates to Java's in-built XPath engine (via XMLUnit), therefore up to (at least) Java 8 it supports XPath version 1.0.
 
-Java:
+=== "Java code"
 
-```java
-.withRequestBody(matchingXPath("/todo-list[count(todo-item) = 3]"))
-```
+    ```java
+    .withRequestBody(matchingXPath("/todo-list[count(todo-item) = 3]"))
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-  "request": {
-    ...
-    "bodyPatterns" : [ {
-      "matchesXPath" : "/todo-list[count(todo-item) = 3]"
-    } ]
-    ...
-  },
-  ...
-}
-```
+    ```json
+    {
+      "request": {
+        ...
+        "bodyPatterns" : [ {
+          "matchesXPath" : "/todo-list[count(todo-item) = 3]"
+        } ]
+        ...
+      },
+      ...
+    }
+    ```
 
 The above example will select elements based on their local name if used with a namespaced XML document.
 
 If you need to be able to select elements based on their namespace in addition to their name you can declare the prefix
 to namespace URI mappings and use them in your XPath expression:
 
-Java:
+=== "Java code"
 
-```java
-.withRequestBody(matchingXPath("/stuff:outer/more:inner[.=111]")
-  .withXPathNamespace("stuff", "http://stuff.example.com")
-  .withXPathNamespace("more", "http://more.example.com"))
-```
+    ```java
+    .withRequestBody(matchingXPath("/stuff:outer/more:inner[.=111]")
+      .withXPathNamespace("stuff", "http://stuff.example.com")
+      .withXPathNamespace("more", "http://more.example.com"))
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-  "request": {
-    ...
-    "bodyPatterns" : [ {
-      "matchesXPath" : "/stuff:outer/more:inner[.=111]",
-      "xPathNamespaces" : {
-        "stuff" : "http://stuff.example.com",
-        "more"  : "http://more.example.com"
-      }
-    } ]
-    ...
-  },
-  ...
-}
-```
+    ```json
+    {
+      "request": {
+        ...
+        "bodyPatterns" : [ {
+          "matchesXPath" : "/stuff:outer/more:inner[.=111]",
+          "xPathNamespaces" : {
+            "stuff" : "http://stuff.example.com",
+            "more"  : "http://more.example.com"
+          }
+        } ]
+        ...
+      },
+      ...
+    }
+    ```
 
 #### Nested value matching
 
 The XPath matcher described above can be combined with another matcher, such that the value returned from the XPath query is evaluated against it:
 
-Java:
+=== "Java code"
 
-```java
-.withRequestBody(matchingXPath("//todo-item/text()", containing("wash")))
-```
+    ```java
+    .withRequestBody(matchingXPath("//todo-item/text()", containing("wash")))
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-  "request": {
-    ...
-    "bodyPatterns" : [ {
-      "matchesXPath" : {
-         "expression": "//todo-item/text()",
-         "contains": "wash"
-      }
-    } ]
-    ...
-  },
-  ...
-}
-```
+    ```json
+    {
+      "request": {
+        ...
+        "bodyPatterns" : [ {
+          "matchesXPath" : {
+             "expression": "//todo-item/text()",
+             "contains": "wash"
+          }
+        } ]
+        ...
+      },
+      ...
+    }
+    ```
 
 If multiple nodes are returned from the XPath query, all will be evaluated and the returned match will be the one with the shortest distance.
 
 If the XPath expression returns an XML element rather than a value, this will be rendered as an XML string before it is passed to the value matcher.
 This can be usefully combined with the `equalToXml` matcher e.g.
 
-Java:
+=== "Java code"
 
-```java
-.withRequestBody(matchingXPath("//todo-item", equalToXml("<todo-item>Do the washing</todo-item>")))
-```
+    ```java
+    .withRequestBody(matchingXPath("//todo-item", equalToXml("<todo-item>Do the washing</todo-item>")))
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-  "request": {
-    ...
-    "bodyPatterns" : [ {
-      "matchesXPath" : {
-         "expression": "//todo-item",
-         "equalToXml": "<todo-item>Do the washing</todo-item>"
-      }
-    } ]
-    ...
-  },
-  ...
-}
-```
+    ```json
+    {
+      "request": {
+        ...
+        "bodyPatterns" : [ {
+          "matchesXPath" : {
+             "expression": "//todo-item",
+             "equalToXml": "<todo-item>Do the washing</todo-item>"
+          }
+        } ]
+        ...
+      },
+      ...
+    }
+    ```
 
 ### Absence
 
 Deems a match if the attribute specified is absent from the request.
 
-Java:
+=== "Java code"
 
-```java
-.withCookie("session", absent())
-.withQueryParam("search_term", absent())
-.withHeader("X-Absent", absent())
-```
+    ```java
+    .withCookie("session", absent())
+    .withQueryParam("search_term", absent())
+    .withHeader("X-Absent", absent())
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-  "request": {
-    ...
-    "headers" : {
-      "X-Absent" : {
-        "absent" : true
-      }
-    },
-    "queryParameters" : {
-      "search_term" : {
-        "absent" : true
-      }
-    },
-    "cookies" : {
-      "session" : {
-        "absent" : true
-      }
+    ```json
+    {
+      "request": {
+        ...
+        "headers" : {
+          "X-Absent" : {
+            "absent" : true
+          }
+        },
+        "queryParameters" : {
+          "search_term" : {
+            "absent" : true
+          }
+        },
+        "cookies" : {
+          "session" : {
+            "absent" : true
+          }
+        }
+        ...
+      },
+      ...
     }
-    ...
-  },
-  ...
-}
-```
+    ```
 
 ## Multipart/form-data
 
 Deems a match if a multipart value is valid and matches any or all the multipart pattern matchers supplied. As a Multipart is a 'mini' HTTP request in itself all existing Header and Body content matchers can by applied to a Multipart pattern.
 A Multipart pattern can be defined as matching `ANY` request multiparts or `ALL`. The default matching type is `ANY`.
 
-Java:
+=== "Java code"
 
-```java
-stubFor(...)
-  ...
-  .withMultipartRequestBody(
-  	aMultipart()
-  		.withName("info")
-  		.withHeader("Content-Type", containing("charset"))
-  		.withMultipartBody(equalToJson("{}"))
-  )
-```
+    ```java
+    stubFor(...)
+      ...
+      .withMultipartRequestBody(
+      	aMultipart()
+      		.withName("info")
+      		.withHeader("Content-Type", containing("charset"))
+      		.withMultipartBody(equalToJson("{}"))
+      )
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-  "request": {
-    ...
-    "multipartPatterns" : [ {
-      "matchingType" : "ANY",
-      "headers" : {
-        "Content-Disposition" : {
-          "contains" : "name=\"info\""
-        },
-        "Content-Type" : {
-          "contains" : "charset"
-        }
+    ```json
+    {
+      "request": {
+        ...
+        "multipartPatterns" : [ {
+          "matchingType" : "ANY",
+          "headers" : {
+            "Content-Disposition" : {
+              "contains" : "name=\"info\""
+            },
+            "Content-Type" : {
+              "contains" : "charset"
+            }
+          },
+          "bodyPatterns" : [ {
+            "equalToJson" : "{}"
+          } ]
+        } ],
+        ...
       },
-      "bodyPatterns" : [ {
-        "equalToJson" : "{}"
-      } ]
-    } ],
-    ...
-  },
-  ...
-}
-```
+      ...
+    }
+    ```
 
 ## Basic Authentication
 
@@ -1157,29 +1166,29 @@ Although matching on HTTP basic authentication could be supported via a
 correctly encoded `Authorization` header, you can also do this more simply
 via the API.
 
-Java:
+=== "Java code"
 
-```java
-stubFor(get(urlEqualTo("/basic-auth")).withBasicAuth("user", "pass")
-```
+    ```java
+    stubFor(get(urlEqualTo("/basic-auth")).withBasicAuth("user", "pass")
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-    "request": {
-        "method": "GET",
-        "url": "/basic-auth",
-        "basicAuth": {
-            "username": "user",
-            "password": "pass"
+    ```json
+    {
+        "request": {
+            "method": "GET",
+            "url": "/basic-auth",
+            "basicAuth": {
+                "username": "user",
+                "password": "pass"
+            }
+        },
+        "response": {
+            "status": 200
         }
-    },
-    "response": {
-        "status": 200
     }
-}
-```
+    ```
 
 ## Dates and times
 
@@ -1193,72 +1202,72 @@ actual dates can be truncated in various ways.
 
 You can match an incoming date/time against a fixed value e.g. "match if the X-Munged-Date request header is after x":
 
-Java:
+=== "Java code"
 
-```java
-stubFor(post("/dates")
-  .withHeader("X-Munged-Date", after("2021-05-01T00:00:00Z"))
-  .willReturn(ok()));
+    ```java
+    stubFor(post("/dates")
+      .withHeader("X-Munged-Date", after("2021-05-01T00:00:00Z"))
+      .willReturn(ok()));
 
-// You can also use a ZonedDateTime or LocalDateTime object
-stubFor(post("/dates")
-  .withHeader("X-Munged-Date", after(ZonedDateTime.parse("2021-05-01T00:00:00Z")))
-  .willReturn(ok()));
-```
+    // You can also use a ZonedDateTime or LocalDateTime object
+    stubFor(post("/dates")
+      .withHeader("X-Munged-Date", after(ZonedDateTime.parse("2021-05-01T00:00:00Z")))
+      .willReturn(ok()));
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-    "request": {
-        "url": "/dates",
-        "method": "POST",
-        "headers": {
-            "X-Munged-Date": {
-                "after": "2021-05-01T00:00:00Z"
+    ```json
+    {
+        "request": {
+            "url": "/dates",
+            "method": "POST",
+            "headers": {
+                "X-Munged-Date": {
+                    "after": "2021-05-01T00:00:00Z"
+                }
             }
+        },
+        "response": {
+            "status": 200
         }
-    },
-    "response": {
-        "status": 200
     }
-}
-```
+    ```
 
 ### Offset
 
 You can also match in incoming value against the current date/time or an offset from it:
 
-Java:
+=== "Java code"
 
-```java
-stubFor(post("/dates")
-  .withHeader("X-Munged-Date", beforeNow().expectedOffset(3, DateTimeUnit.DAYS))
-  .withHeader("X-Finalised-Date", before("now +2 months")) // This form and beforeNow() are equivalent
-  .willReturn(ok()));
-```
+    ```java
+    stubFor(post("/dates")
+      .withHeader("X-Munged-Date", beforeNow().expectedOffset(3, DateTimeUnit.DAYS))
+      .withHeader("X-Finalised-Date", before("now +2 months")) // This form and beforeNow() are equivalent
+      .willReturn(ok()));
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-    "request": {
-        "url": "/dates",
-        "method": "POST",
-        "headers": {
-            "X-Munged-Date": {
-                "before": "now +3 days"
-            },
-            "X-Finalised-Date": {
-                // This is equivalent to "now +2 months"
-                "before": "now",
-                "expectedOffset": 2,
-                "expectedOffsetUnit": "months"
+    ```json
+    {
+        "request": {
+            "url": "/dates",
+            "method": "POST",
+            "headers": {
+                "X-Munged-Date": {
+                    "before": "now +3 days"
+                },
+                "X-Finalised-Date": {
+                    // This is equivalent to "now +2 months"
+                    "before": "now",
+                    "expectedOffset": 2,
+                    "expectedOffsetUnit": "months"
+                }
             }
         }
     }
-}
-```
+    ```
 
 ### Local vs. Zoned
 
@@ -1285,31 +1294,31 @@ HTTP RFCs 1123, 1036 and asctime (taken from C but also valid for specifying HTT
 It is also possible to specify your own format using
 [Java's date format strings](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#patterns).
 
-Java:
+=== "Java code"
 
-```java
-stubFor(post("/dates")
-  .withHeader("X-Munged-Date",
-    equalToDateTime("2021-06-24T00:00:00").actualFormat("dd/MM/yyyy"))
-  .willReturn(ok()));
-```
+    ```java
+    stubFor(post("/dates")
+      .withHeader("X-Munged-Date",
+        equalToDateTime("2021-06-24T00:00:00").actualFormat("dd/MM/yyyy"))
+      .willReturn(ok()));
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-    "request": {
-        "url": "/dates",
-        "method": "POST",
-        "headers": {
-            "X-Munged-Date": {
-                "equalToDateTime": "2021-06-24T00:00:00",
-                "actualFormat": "dd/MM/yyyy"
+    ```json
+    {
+        "request": {
+            "url": "/dates",
+            "method": "POST",
+            "headers": {
+                "X-Munged-Date": {
+                    "equalToDateTime": "2021-06-24T00:00:00",
+                    "actualFormat": "dd/MM/yyyy"
+                }
             }
         }
     }
-}
-```
+    ```
 
 ### Truncation
 
@@ -1321,67 +1330,69 @@ Truncation is useful if you want to create expressions like "before the end of t
 It can usefully be combined with offsetting so e.g. if the match required is "after the 15th of this month" we could do
 as follows.
 
-Java:
+=== "Java code"
 
-```java
-stubFor(post("/dates")
-  .withRequestBody(matchingJsonPath(
-      "$.completedDate",
-      after("now +15 days").truncateExpected(FIRST_DAY_OF_MONTH))
-  )
-  .willReturn(ok()));
-```
+    ```java
+    stubFor(post("/dates")
+      .withRequestBody(matchingJsonPath(
+          "$.completedDate",
+          after("now +15 days").truncateExpected(FIRST_DAY_OF_MONTH))
+      )
+      .willReturn(ok()));
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-    "request": {
-        "url": "/dates",
-        "method": "POST",
-        "bodyPatterns": [
-            {
-                "matchesJsonPath": {
-                    "expression": "$.completedDate",
-                    "after": "now +15 days",
-                    "truncateExpected": "first day of month"
+    ```json
+    {
+        "request": {
+            "url": "/dates",
+            "method": "POST",
+            "bodyPatterns": [
+                {
+                    "matchesJsonPath": {
+                        "expression": "$.completedDate",
+                        "after": "now +15 days",
+                        "truncateExpected": "first day of month"
+                    }
                 }
-            }
-        ]
+            ]
+        }
     }
-}
-```
+    ```
 
 Truncating the actual value can be useful when checking for equality with literal date/times e.g. to say "is in March 2020":
 
-```java
-stubFor(post("/dates")
-  .withRequestBody(matchingJsonPath(
-    "$.completedDate",
-    equalToDateTime("2020-03-01T00:00:00Z").truncateActual(FIRST_DAY_OF_MONTH))
-  )
-  .willReturn(ok()));
-```
+=== "Java code"
 
-JSON:
+    ```java
+    stubFor(post("/dates")
+      .withRequestBody(matchingJsonPath(
+        "$.completedDate",
+        equalToDateTime("2020-03-01T00:00:00Z").truncateActual(FIRST_DAY_OF_MONTH))
+      )
+      .willReturn(ok()));
+    ```
 
-```json
-{
-    "request": {
-        "url": "/dates",
-        "method": "POST",
-        "bodyPatterns": [
-            {
-                "matchesJsonPath": {
-                    "expression": "$.completedDate",
-                    "equalToDateTime": "2020-03-01T00:00:00Z",
-                    "truncateActual": "first day of month"
+=== "JSON configuration"
+
+    ```json
+    {
+        "request": {
+            "url": "/dates",
+            "method": "POST",
+            "bodyPatterns": [
+                {
+                    "matchesJsonPath": {
+                        "expression": "$.completedDate",
+                        "equalToDateTime": "2020-03-01T00:00:00Z",
+                        "truncateActual": "first day of month"
+                    }
                 }
-            }
-        ]
+            ]
+        }
     }
-}
-```
+    ```
 
 <div id="all-truncations"></div>
 The full list of available truncations is:
@@ -1399,87 +1410,87 @@ The full list of available truncations is:
 
 You can combine two or more matchers in an AND expression.
 
-Java:
+=== "Java code"
 
-```java
-// Both statements are equivalent
+    ```java
+    // Both statements are equivalent
 
-stubFor(get(urlPathEqualTo("/and"))
-    .withHeader("X-Some-Value", and(
-        matching("[a-z]+"),
-        containing("magicvalue"))
-    )
-    .willReturn(ok()));
+    stubFor(get(urlPathEqualTo("/and"))
+        .withHeader("X-Some-Value", and(
+            matching("[a-z]+"),
+            containing("magicvalue"))
+        )
+        .willReturn(ok()));
 
-stubFor(get(urlPathEqualTo("/and"))
-    .withHeader("X-Some-Value", matching("[a-z]+").and(containing("magicvalue")))
-    .willReturn(ok()));
-```
+    stubFor(get(urlPathEqualTo("/and"))
+        .withHeader("X-Some-Value", matching("[a-z]+").and(containing("magicvalue")))
+        .willReturn(ok()));
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-    "request": {
-        "urlPath": "/and",
-        "method": "GET",
-        "headers": {
-            "X-Some-Value": {
-                "and": [
-                    {
-                        "matches": "[a-z]+"
-                    },
-                    {
-                        "contains": "magicvalue"
-                    }
-                ]
+    ```json
+    {
+        "request": {
+            "urlPath": "/and",
+            "method": "GET",
+            "headers": {
+                "X-Some-Value": {
+                    "and": [
+                        {
+                            "matches": "[a-z]+"
+                        },
+                        {
+                            "contains": "magicvalue"
+                        }
+                    ]
+                }
             }
         }
     }
-}
-```
+    ```
 
 Similarly you can also construct an OR expression.
 
-Java:
+=== "Java code"
 
-```java
-// Both statements are equivalent
+    ```java
+    // Both statements are equivalent
 
-stubFor(get(urlPathEqualTo("/or"))
-  .withQueryParam("search", or(
-        matching("[a-z]+"),
-        absent())
-  )
-  .willReturn(ok()));
+    stubFor(get(urlPathEqualTo("/or"))
+      .withQueryParam("search", or(
+            matching("[a-z]+"),
+            absent())
+      )
+      .willReturn(ok()));
 
-stubFor(get(urlPathEqualTo("/or"))
-    .withQueryParam("search", matching("[a-z]+").or(absent()))
-    .willReturn(ok()));
-```
+    stubFor(get(urlPathEqualTo("/or"))
+        .withQueryParam("search", matching("[a-z]+").or(absent()))
+        .willReturn(ok()));
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-    "request": {
-        "urlPath": "/or",
-        "method": "GET",
-        "queryParameters": {
-            "search": {
-                "or": [
-                    {
-                        "matches": "[a-z]+"
-                    },
-                    {
-                        "absent": true
-                    }
-                ]
+    ```json
+    {
+        "request": {
+            "urlPath": "/or",
+            "method": "GET",
+            "queryParameters": {
+                "search": {
+                    "or": [
+                        {
+                            "matches": "[a-z]+"
+                        },
+                        {
+                            "absent": true
+                        }
+                    ]
+                }
             }
         }
     }
-}
-```
+    ```
 
 ### Combining date matchers as JSONPath/XPath sub-matchers
 
@@ -1489,49 +1500,49 @@ is a date/time between two points.
 We can do this by extracting the field using `matchesJsonPath` then matching the result
 of this against the `before` and `after` matchers AND'd together.
 
-Java:
+=== "Java code"
 
-```java
-stubFor(post("/date-range")
-    .withRequestBody(matchingJsonPath("$.date",
-        before("2022-01-01T00:00:00").and(
-        after("2020-01-01T00:00:00"))))
-    .willReturn(ok()));
-```
+    ```java
+    stubFor(post("/date-range")
+        .withRequestBody(matchingJsonPath("$.date",
+            before("2022-01-01T00:00:00").and(
+            after("2020-01-01T00:00:00"))))
+        .willReturn(ok()));
+    ```
 
-JSON:
+=== "JSON configuration"
 
-```json
-{
-    "request": {
-        "url": "/date-range",
-        "method": "POST",
-        "bodyPatterns": [
-            {
-                "matchesJsonPath": {
-                    "expression": "$.date",
-                    "and": [
-                        {
-                            "before": "2022-01-01T00:00:00"
-                        },
-                        {
-                            "after": "2020-01-01T00:00:00"
-                        }
-                    ]
+    ```json
+    {
+        "request": {
+            "url": "/date-range",
+            "method": "POST",
+            "bodyPatterns": [
+                {
+                    "matchesJsonPath": {
+                        "expression": "$.date",
+                        "and": [
+                            {
+                                "before": "2022-01-01T00:00:00"
+                            },
+                            {
+                                "after": "2020-01-01T00:00:00"
+                            }
+                        ]
+                    }
                 }
-            }
-        ]
+            ]
+        }
     }
-}
-```
+    ```
 
-This would match the following JSON request body:
+===  "match the following JSON request body:
 
-```json
-{
-    "date": "2021-01-01T00:00:00"
-}
-```
+    ```json
+    {
+        "date": "2021-01-01T00:00:00"
+    }
+    ```
 
 ### Matching Header/Query parameter containing multiple values
 
@@ -1539,154 +1550,170 @@ You can match multiple values of a query parameter or header with below provided
 
 Exactly matcher exactly matches multiple values or patterns and make sure that it does not contain any other value.
 
-```java
-// There must be 3 values of id exactly whose values are 1, 2, and 3
-stubFor(get(urlPathEqualTo("/things"))
-    .withQueryParam("id", havingExactly("1", "2", "3"))
-    .willReturn(ok()));
-```
+=== "Java code exact match"
 
-```json
-{
-  "mapping": {
-    "request" : {
-      "urlPath" : "/things",
-      "method" : "GET",
-      "queryParameters" : {
-        "id" : {
-          "hasExactly" : [
-            {
-              "equalTo": "1"
-            },
-            {
-              "equalTo": "2"
-            },
-            {
-              "equalTo": "3"
-            }
-          ]
-        }
-      }
-    },
-    "response" : {
-      "status" : 200
-    }
-  }
-}
-```
-
-```java
-// There must be 3 values of id exactly whose values conform to the match expressions
+    ```java
+    // There must be 3 values of id exactly whose values are 1, 2, and 3
     stubFor(get(urlPathEqualTo("/things"))
-    .withQueryParam("id", havingExactly(
-    equalTo("1"),
-    containing("2"),
-    notContaining("3")
-    )).willReturn(ok()));
-```
+        .withQueryParam("id", havingExactly("1", "2", "3"))
+        .willReturn(ok()));
+    ```
 
-```json
-{
-  "mapping": {
-    "request" : {
-      "urlPath" : "/things",
-      "method" : "GET",
-      "queryParameters" : {
-        "id" : {
-          "hasExactly" : [
-            {
-              "equalTo": "1"
-            },
-            {
-              "contains": "2"
-            },
-            {
-              "doesNotContain": "3"
+===  "JSON configuration exact natch"
+
+    ```json
+    {
+      "mapping": {
+        "request" : {
+          "urlPath" : "/things",
+          "method" : "GET",
+          "queryParameters" : {
+            "id" : {
+              "hasExactly" : [
+                {
+                  "equalTo": "1"
+                },
+                {
+                  "equalTo": "2"
+                },
+                {
+                  "equalTo": "3"
+                }
+              ]
             }
-          ]
+          }
+        },
+        "response" : {
+          "status" : 200
         }
       }
-    },
-    "response" : {
-      "status" : 200
     }
-  }
-}
-```
+    ```
+
+=== "Java code including *notContaining*"
+
+    ```java
+    // There must be 3 values of id exactly whose values conform to the match expressions
+        stubFor(get(urlPathEqualTo("/things"))
+        .withQueryParam("id", havingExactly(
+        equalTo("1"),
+        containing("2"),
+        notContaining("3")
+        )).willReturn(ok()));
+    ```
+
+=== "JSON configuration with *notContaining*"
+
+    ```json
+    {
+      "mapping": {
+        "request" : {
+          "urlPath" : "/things",
+          "method" : "GET",
+          "queryParameters" : {
+            "id" : {
+              "hasExactly" : [
+                {
+                  "equalTo": "1"
+                },
+                {
+                  "contains": "2"
+                },
+                {
+                  "doesNotContain": "3"
+                }
+              ]
+            }
+          }
+        },
+        "response" : {
+          "status" : 200
+        }
+      }
+    }
+    ```
 
 Includes matcher matches multiple values or patterns specified and may contain other values as well.
 
-```java
-// The values of id must include 1, 2, and 3.
-stubFor(get(urlPathEqualTo("/things"))
-      .withQueryParam("id", including("1", "2", "3")) 
-      .willReturn(ok()));
-```
+=== "Java code"
 
-```json
-{
-  "mapping": {
-    "request" : {
-      "urlPath" : "/things",
-      "method" : "GET",
-      "queryParameters" : {
-        "id" : {
-          "includes" : [
-            {
-              "equalTo": "1"
-            },
-            {
-              "equalTo": "2"
-            },
-            {
-              "equalTo": "3"
+    ```java
+    // The values of id must include 1, 2, and 3.
+    stubFor(get(urlPathEqualTo("/things"))
+          .withQueryParam("id", including("1", "2", "3")) 
+          .willReturn(ok()));
+    ```
+
+=== "JSON configuration"
+
+    ```json
+    {
+      "mapping": {
+        "request" : {
+          "urlPath" : "/things",
+          "method" : "GET",
+          "queryParameters" : {
+            "id" : {
+              "includes" : [
+                {
+                  "equalTo": "1"
+                },
+                {
+                  "equalTo": "2"
+                },
+                {
+                  "equalTo": "3"
+                }
+              ]
             }
-          ]
+          }
+        },
+        "response" : {
+          "status" : 200
         }
       }
-    },
-    "response" : {
-      "status" : 200
     }
-  }
-}
-```
+    ```
 
-```java
-//values of id must conform to the match expressions
-stubFor(get(urlPathEqualTo("/things"))
-    .withQueryParam("id", including(
-    equalTo("1"),
-    containing("2"),
-    notContaining("3")
-    )).willReturn(ok()));
-```
+=== "Java code including *notContaining*"
 
-```json
-{
-  "mapping": {
-    "request" : {
-      "urlPath" : "/things",
-      "method" : "GET",
-      "queryParameters" : {
-        "id" : {
-          "includes" : [
-            {
-              "equalTo": "1"
-            },
-            {
-              "contains": "2"
-            },
-            {
-              "doesNotContain": "3"
+    ```java
+    //values of id must conform to the match expressions
+    stubFor(get(urlPathEqualTo("/things"))
+        .withQueryParam("id", including(
+        equalTo("1"),
+        containing("2"),
+        notContaining("3")
+        )).willReturn(ok()));
+    ```
+
+=== "JSON configuration"
+
+    ```json
+    {
+      "mapping": {
+        "request" : {
+          "urlPath" : "/things",
+          "method" : "GET",
+          "queryParameters" : {
+            "id" : {
+              "includes" : [
+                {
+                  "equalTo": "1"
+                },
+                {
+                  "contains": "2"
+                },
+                {
+                  "doesNotContain": "3"
+                }
+              ]
             }
-          ]
+          }
+        },
+        "response" : {
+          "status" : 200
         }
       }
-    },
-    "response" : {
-      "status" : 200
     }
-  }
-}
-```
+    ```

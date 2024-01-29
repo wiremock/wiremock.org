@@ -1,12 +1,12 @@
 ---
 description: >
-    It is possible to attach arbitrary metadata to stub mappings,
-    which can be later used to search or deletion, or simply retrieval.
+    attach arbitrary metadata to stub mappings,
+    for use in later search, deletion, or retrieval.
 ---
 
 # Associating and using metadata with API stubs
 
-It is possible to attach arbitrary metadata to stub mappings, which can be later used to search or deletion, or simply retrieval.
+It is possible to attach arbitrary metadata to stub mappings, which can be later used for search, deletion, or retrieval.
 
 ## Adding metadata to stubs
 

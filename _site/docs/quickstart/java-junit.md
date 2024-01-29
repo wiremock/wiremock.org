@@ -1,10 +1,11 @@
 ---
-description: "Shows how to write your API Client first test with WireMock and JUnit 4"
+description: 
+    Write a test API Client with WireMock and JUnit 4
 ---
 
 # Quick Start: API Mocking with Java and JUnit 4
 
-In this guide we will write an API Unit test with WireMock and JUnit 4.
+This guide shows you how to write an API Unit test with WireMock and JUnit 4.
 
 ## Prerequisites
 
@@ -115,7 +116,7 @@ Let's change the port numbers as an example.
 
 ```java
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
-...
+///...
 
 @Rule
 public WireMockRule wireMockRule = new WireMockRule(wireMockConfig().port(8089).httpsPort(8443));

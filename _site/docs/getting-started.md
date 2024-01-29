@@ -1,6 +1,6 @@
 ---
 description: >
-    How to get started with WireMock?
+    How to get started with WireMock
     This page provides links to WireMock tutorials and other entry materials
 ---
 

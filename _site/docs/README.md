@@ -9,7 +9,7 @@ description: >
 WireMock is a popular open-source tool for API mock testing,
 with over 5 million downloads per month.
 It can help you to create stable test and
-development environments, isolate yourself from flakey 3rd parties and
+development environments, isolate you from flakey 3rd parties, and
 simulate APIs that don't exist yet.
 
 <style>

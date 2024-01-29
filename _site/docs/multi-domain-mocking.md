@@ -1,31 +1,32 @@
 ---
-description: A typical usage pattern is to run a WireMock instance per API you need to mock and configure your app to treat these instances as endpoints.
+description: WireMock allows for several approaches to mocking APIs, including multi-domain mocking.
 ---
 
 # Multi-domain API Mocking with WireMock
 
-A typical usage pattern is to run a WireMock instance per API you need to mock and configure your app to treat these instances
-as endpoints.
+While running a WireMock instance per API is typical, and requires that you mock and configure your app to treat the instances as endpoints, you can also mock multiple APIs in a single instance by the use of proxying and hostname matching features.
 
-However, it's also possible to mock multiple APIs in a single instance via the use of the proxying and hostname matching features.
-There are two advantages of this approach - lower overhead (memory, startup/shutdown time), and no need to modify each base URL in your app's
-configuration. It can also avoid some of the headaches associated with binding to random ports.
+There are advantages of this approach: 
 
-The key steps to enabling this configuration are:
+- lower overhead (memory, startup/shutdown time).
+- no need to modify each base URL in your app's configuration. 
+- avoid some of the headaches associated with binding to random ports.
 
-1. Enable browser (forward) proxying via `.enableBrowserProxying(true)` in the startup options.
+Key steps to enabling this configuration are:
+
+1. Enable browser (forward) proxying using `.enableBrowserProxying(true)` in the startup options.
 2. Configure the JVM's proxy settings to point to the WireMock instance using `JvmProxyConfigurer`.
 
 The following sections detail how to achieve this in various deployment contexts.
 
 ## Configuring for JUnit Jupiter
 
-The simplest way to enable this mode if you're using JUnit Jupiter it to toggle it on via the `WireMockExtension`. See the
+The simplest way to enable this mode if you're using JUnit Jupiter it to toggle it on using the `WireMockExtension`. See the
 [Junit Jupiter Proxy Mode](./junit-jupiter.md#proxy-mode) for details.
 
 ## Configuring for JUnit 4.x
 
-To use this mode with the JUnit 4.x rule we:
+To use this mode with the JUnit 4.x rule:
 
 1. Create the rule as usual with browser proxying enabled.
 2. Ensure our HTTP client (the one used by our app to talk to the API we're mocking) honours the system properties relating to proxy servers.
@@ -78,10 +79,10 @@ public class MultiDomainJUnit4Test {
 
 ## Configuring for other Java
 
-To use this mode from Java code we:
+To use this mode from Java code:
 
 1. Create and start a `WireMockServer` instance with browser proxying enabled.
-2. Ensure our HTTP client (the one used by our app to talk to the API we're mocking) honours the system properties relating to proxy servers
+2. Ensure our HTTP client (the one used by our app to talk to the API we're mocking) honours the system properties relating to proxy servers.
 3. Set the proxy properties using `JvmProxyConfigurer` before each bit of work and unset them afterwards.
 4. Specify the host name we're targeting when creating stubs.
 

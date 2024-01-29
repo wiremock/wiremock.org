@@ -5,27 +5,26 @@ description: >
 
 # Frequently Asked Questions
 
-Here, you can find information about what API mocking and WireMock are, as well as recommendations and best practices for different challenges in various areas of WireMock.
+In this FAQ, you can find information about what API mocking and WireMock are, along with recommendations and best practices for different challenges in various areas of WireMock.
 
 ## API mocking and WireMock as a service
 
 ### What is WireMock?
 
-WireMock is a free API mocking tool that can be run as a standalone server, or in a hosted version via the [WireMock Cloud](https://wiremock.io/) managed service.
+WireMock is a free API mocking tool that you can run as a standalone server, or in a hosted version via the [WireMock Cloud](https://wiremock.io/) managed service.
 
 ### What is API mocking?
 
-API mocking involves creating a simple simulation of an API, accepting the same types of request and returning identically structured responses as the real thing,
-enabling fast and reliable development and testing.
+API mocking involves enabling fast and reliable development and testing by creating a simple simulation of an API and using it to accept requests and return responses that are identically structured to those used in the real API. 
 
 ### When do you need to mock APIs?
 
-API mocking is typically used during development and testing as it allows you to build your app without worrying about 3rd party APIs or sandboxes breaking.
-It can also be used to rapidly prototype APIs that don’t exist yet.
+Because it allows you to focus on building your app without worrying about 3rd party APIs or sandboxes breaking, API mocking is typically used during development and testing. 
+Another important use is rapid prototyping of APIs that don’t yet exist.
 
 ### How do you create an API mock?
 
-WireMock supports several approaches for creating mock APIs - in code, via its REST API, as JSON files and by recording HTTP traffic proxied to another destination.
+WireMock supports several approaches for creating mock APIs--in code, via its REST API, as JSON files, and by recording HTTP traffic proxied to another destination.
 
 ### What makes WireMock unique?
 
@@ -44,9 +43,9 @@ WireMock is completely free under the Apache 2.0 license.
 
 ## Technical questions
 
-### How to manage many mocks across different use cases and teams?
+### How do I manage many mocks across different use cases and teams?
 
-This question is valid especially when it is getting difficult to keep track of what test case(s) a particular mock was meant for.
+This question tends to arise at the point when it gets difficult to keep track of the intended test case(s) for which specific mocks were built.
 
 #### Potential solutions
 - Create your stubs (or most of them at least) in the test cases themselves, then [reset them](./stubbing.md#reset) each time.

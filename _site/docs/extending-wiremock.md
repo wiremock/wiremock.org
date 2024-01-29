@@ -1,15 +1,15 @@
 ---
 description: >
-  How to create new WireMock extensions in your code,
-  and how to create and package redistributable extensions.
+  creating and sharing WireMock extensions.
 ---
 
 # Extending WireMock
 
-WireMock can be customised via a variety of extension points.
-You can register the extension programmatically via its class name, class or an instance.
+You can customise WireMock using a variety of extension points. You can create, package, and share reusable extensions.
 
-Each extension point is defined by an interface that extends from `Extension` and extension implementations are loaded at startup time.
+You have the option of registering extensions programmatically using the class name, class, or an instance.
+
+An interface defines each extension point, extendibg from `Extension`. Extension implementations load at startup time.
 
 At present, the following extension interfaces are available:
 * `RequestFilterV2`/`AdminRequestFilterV2`/`StubRequestFilterV2`: Intercept requests, modifying them or taking alternative actions based on their content.
@@ -28,8 +28,8 @@ The interfaces in this list ending with `V2` supercede deprecated equivalents wi
 
 ## Registering Extensions
 
-You can directly register the extension programmatically via its class name,
-class or an instance:
+You can directly register the extension programmatically using its class name,
+class, or an instance:
 
 ```java
 new WireMockServer(wireMockConfig()
@@ -72,14 +72,14 @@ Services currently available to extension factories are:
 
 ## Extension registration via service loading
 
-Extensions that are packaged with the relevant [Java service loader framework](https://docs.oracle.com/javase/8/docs/api/java/util/ServiceLoader.html) metadata
-will be loaded automatically if they are placed on the classpath.
+Iif they are placed on the classpath, extensions that are packaged with the relevant [Java service loader framework](https://docs.oracle.com/javase/8/docs/api/java/util/ServiceLoader.html) metadata
+will load automatically.
 
-See [https://github.com/wiremock/wiremock/tree/master/test-extension](https://github.com/wiremock/wiremock/tree/master/test-extension) for an example of such an extension.
+For an example of such an extension, see [https://github.com/wiremock/wiremock/tree/master/test-extension](https://github.com/wiremock/wiremock/tree/master/test-extension).
 
 ## Attaching sub-events during request processing
 
-Sub-events are a used to report interesting/useful information during request processing. WireMock attaches the diff report generated when a request is not matched as a sub-event, and custom extension can exploit this approach to surface e.g. diagnostic and validation data in the serve event log, where it can be retrieved later via the API or exported to monitoring/observability tools via listeners.
+You can make use of sub-events to report interesting/useful information during request processing. WireMock attaches the diff report generated when a request is not matched as a sub-event, and custom extension can exploit this approach to surface e.g. diagnostic and validation data in the serve event log, where it can be retrieved later via the API or exported to monitoring/observability tools via listeners.
 
 
 Several types of extension act on WireMock's request processing: `RequestFilterV2` (and its stub/admin sub-interfaces), `ResponseDefinitionTransformer`, `ResponseTransformer` and `ServeEventListener`.

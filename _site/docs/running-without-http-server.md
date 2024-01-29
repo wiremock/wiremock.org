@@ -1,16 +1,20 @@
 ---
-description: Running WireMock inside a Java process, without running the inbuilt HTTP layer.
+description: Run WireMock inside Java without the inbuilt HTTP layer.
 ---
 
 # Running WireMock without an HTTP Server
 
-If you want to run Wiremock inside another process, such as wrapping it in a serverless function such as on AWS Lambda, or using it as part of an application's integration tests, you previously would need to resort to [Running as a Standalone Process](./standalone/java-jar.md).
+You can run Wiremock inside another process, for example:
 
-This works well, but has the overhead of a full HTTP server and HTTP calls back and forth that in some cases may not be relevant, and adds a fair bit of overhead to each call, and the memory footprint of the application.
+- wrap it in a serverless function such as on AWS Lambda.
+- use it as part of an application's integration tests.
 
-Since Wiremock v2.32.0, the `DirectCallHttpServer` provides the ability to run a Wiremock server without ever interacting with an HTTP layer.
+[Running as a Standalone Process](./standalone/java-jar.md) works well, however, it has the overhead of a full HTTP server and HTTP calls back and forth that in some cases may not be relevant. and adds a fair bit of overhead to each call, and the memory footprint of the application.
 
-It can be constructed and used like so (example usage is adapted from `DirectCallHttpServerIntegrationTest`):
+
+Since Wiremock v2.32.0, the `DirectCallHttpServer` provides the ability to run a Wiremock server without interacting with an HTTP layer.
+
+Following is an example construction and use (adapted from `DirectCallHttpServerIntegrationTest`):
 
 ```java
 import com.github.tomakehurst.wiremock.WireMockServer;
@@ -35,4 +39,4 @@ Response response = server.stubRequest(request);
 // then use the `response`'s data, and map it accordingly
 ```
 
-Note that prior to Wiremock v2.32.0, you can use [the workaround as described by Jamie Tanna](https://www.jvt.me/posts/2021/04/29/wiremock-serverless/), which uses internal APIs for this.
+Note that prior to Wiremock v2.32.0, you can use [the workaround as described by Jamie Tanna](https://www.jvt.me/posts/2021/04/29/wiremock-serverless/), which uses internal APIs.

@@ -1,19 +1,25 @@
 ---
 description: >
-  WireMock includes a JUnit Jupiter extension which is used to manage the
-  lifecycle and configuration of one or more WireMock instances in your test case.
+  Use WireMock's JUnit Jupiter extension
 ---
 
 # Using WireMock in JUnit 5 (Jupiter)
 
-The JUnit 5+ Jupiter extension simplifies running of one or more WireMock instances in a Jupiter test class.
+Use WireMock's includes a JUnit Jupiter extension to: 
 
-It supports two modes of operation - declarative (simple, limited configuration options) and programmatic (less simple, very configurable).
-These are both explained in detail below.
+- simplify running of one or more WireMock instances from a Jupiter test class. 
+- manage the lifecycle and configuration of one or more WireMock instances in your test case.
+
+It supports two modes of operation: 
+
+- declarative (simple, wiht limited configuration options).
+- programmatic (less simple, and very configurable).
+
+These options are both explained in detail below.
 
 ## Basic usage - declarative
 
-The extension can be applied to your test class declaratively by annotating it with `@WireMockTest`. This will run a single
+Use `@WireMockTest`. to apply the extension to your test class declaratively by annotating it. This runs a single
 WireMock server, defaulting to a random port, HTTP only (no HTTPS).
 
 To get the running port number, base URL or a DSL instance you can declare a parameter of type `WireMockRuntimeInfo`
@@ -42,14 +48,13 @@ public class DeclarativeWireMockTest {
 
 ### WireMock server lifecycle
 
-In the above example a WireMock server will be started before the first test method in the test class and stopped after the
-last test method has completed.
+When the above example runs, the WireMock server starts up before the first test method in the test class, and stops after the last test method has completed.
 
-Stub mappings and requests will be reset before each test method.
+Stub mappings and requests are reset before each test method.
 
 ### Fixing the port number
 
-If you need to run WireMock on a fixed port you can pass this via the `httpPort` parameter to the extension annotation:
+To run WireMock on a fixed port, use the `httpPort` parameter to pass the extension annotation:
 
 ```java
 @WireMockTest(httpPort = 8080)
@@ -60,7 +65,7 @@ public class FixedPortDeclarativeWireMockTest {
 
 ### Enabling HTTPS
 
-You can also enable HTTPS via the `httpsEnabled` annotation parameter. By default a random port will be assigned:
+You can also enable HTTPS using the `httpsEnabled` annotation parameter. By default a random port is assigned:
 
 ```java
 @WireMockTest(httpsEnabled = true)
@@ -69,7 +74,7 @@ public class HttpsRandomPortDeclarativeWireMockTest {
 }
 ```
 
-But like with the HTTP port you can also fix the HTTPS port number via the `httpsPort` parameter:
+As with the HTTP port, you can also fix the HTTPS port number using the `httpsPort` parameter:
 
 ```java
 @WireMockTest(httpsEnabled = true, httpsPort = 8443)
@@ -117,16 +122,16 @@ public class ProgrammaticWireMockTest {
 
 ### Static vs. instance
 
-In the above example, as with the declarative form, each WireMock server will be started before the first test method in the test class and stopped after the
+In the above example, as with the declarative form, each WireMock server is started before the first test method in the test class and stopped after the
 last test method has completed, with a call to reset before each test method.
 
-However, if the extension fields are declared at the instance scope (without the `static` modifier) each WireMock server will
+However, if the extension fields are declared at the instance scope (without the `static` modifier) then each WireMock server will
 be created and started before each test method and stopped after the end of the test method.
 
 ### Configuring the static DSL
 
-If you want to use the static DSL with one of the instances you have registered programmatically you can declare
-this by calling `configureStaticDsl(true)` on the extension builder. The configuration will be automatically applied when the server is started:
+If you want to use the static DSL with one of the instances you have registered programmatically, you can declare
+this by calling `configureStaticDsl(true)` on the extension builder. The configuration is automatically applied when the server is started:
 
 ```java
 public class AutomaticStaticDslConfigTest {
@@ -171,7 +176,7 @@ HTTP client honours the JVM's proxy system properties, you can specify different
 
 ### Programmatic
 
-Proxy mode can be enabled via the extension builder when using the programmatic form.
+When using the programmatic form, enable proxy mode using the extension builder as in the following examples.
 
 === "Declarative"
 
@@ -253,8 +258,9 @@ Proxy mode can be enabled via the extension builder when using the programmatic 
 
 ## Subclassing the extension
 
-Like the JUnit 4.x rule, `WireMockExtension` can be subclassed in order to extend its behaviour by hooking into its lifecycle events.
-This can also be a good approach for creating a domain-specific API mock, by adding methods to stub and verify specific calls.
+To extend `WireMockExtension`, similar to what you can do in the JUnit 4.x rule, you can create subclasses by hooking into its lifecycle events.
+This is also a good approach for creating a domain-specific API mock--by adding methods to stubs and verifying specific calls.
+
 
 ```java
 public class MyMockApi extends WireMockExtension {
@@ -285,8 +291,12 @@ public class MyMockApi extends WireMockExtension {
 }
 ```
 
-Note the constructor, which takes the extension's builder as its parameter. By making this public, you can pass an instance
-of the builder in when constructing your extension as follows:
+!!! note 
+
+    The constructor takes the extension's builder as its parameter. 
+
+By making this public when constructing your extension, you can pass an instance
+of the builder in, as follows:
 
 ```java
   @RegisterExtension
@@ -297,5 +307,4 @@ of the builder in when constructing your extension as follows:
               .configureStaticDsl(true));
 ```
 
-This will ensure that all parameters from the builder will be set as they would if you had constructed an instance of
-`WireMockExtension` from it.
+This ensures that all parameters from the builder will be set as they would if you had constructed an instance of `WireMockExtension` from it.

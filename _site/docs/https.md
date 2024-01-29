@@ -1,13 +1,11 @@
 ---
 description: >
-    WireMock can optionally accept requests over HTTPS using self-signed or custom certificates.
-    By default it will serve its own self-signed TLS certificate.
+    Optional HTTPS transport
 ---
 
 # Serving HTTPs
 
-WireMock can optionally accept requests over HTTPs. By default it will serve its own self-signed TLS certificate, but this can be
-overridden if required by providing a keystore containing another certificate.
+As an option, WireMock can accept requests over HTTPs. By default, it serves its own self-signed TLS certificate, but you can override it as needed by providing a keystore containing another certificate.
 
 ## Handling HTTPS requests
 
@@ -19,7 +17,7 @@ HTTPS port:
 public WireMockRule wireMockRule = new WireMockRule(wireMockConfig().httpsPort(8443));
 ```
 
-To use your own keystore you can specify its path and optionally its
+To use your own keystore you can specify its path and, optionally, its
 password:
 
 ```java
@@ -31,13 +29,13 @@ public WireMockRule wireMockRule = new WireMockRule(wireMockConfig()
     .keyManagerPassword("verysecret")); // The password used to access individual keys in the keystore. Defaults to "password" if omitted
 ```
 
-The keystore type defaults to JKS, but this can be changed if you're using another keystore format e.g. Bouncycastle's BKS with Android:
+The keystore type defaults to JKS. To use a different keysotre format, specify it. For example, for Bouncycastle's BKS (with Android):
 
 ```java
 .keystoreType("BKS")
 ```
 
-To allow only HTTPS requests, disable HTTP by adding:
+To allow for only HTTPS requests, disable HTTP by adding the following rule:
 
 ```java
 @Rule
@@ -46,9 +44,10 @@ public WireMockRule wireMockRule = new WireMockRule(wireMockConfig().httpsPort(8
 
 ## Requiring client certificates
 
-To make WireMock require clients to authenticate via a certificate you
-need to supply a trust store containing the certs to trust and enable
-client auth:
+To make WireMock require clients to authenticate using a certificate, you must:
+
+- supply a trust store containing the certs to trust
+- enable client auth:
 
 ```java
 @Rule
@@ -59,14 +58,13 @@ public WireMockRule wireMockRule = new WireMockRule(wireMockConfig()
     .trustStorePassword("mostsecret")); // Defaults to "password" if omitted
 ```
 
-If you using WireMock as a proxy onto another system which requires client certificate authentication, you will also need to
-specify a trust store containing the certificate(s).
+If you using WireMock as a proxy onto another system that requires client certificate authentication, you must also specify a trust store containing the certificate(s).
 
-> **note**
->
-> Jetty requires client certificates to contain Subject Alternative Names.
-> See [this script](https://github.com/tomakehurst/wiremock/blob/master/scripts/create-client-cert.sh) for an example of how to build
-> a truststore containing a valid certificate (you'll probably want to edit the client-cert.conf file before running this).
+
+!!! note 
+
+    Jetty requires client certificates to contain Subject Alternative Names.
+    See [this script](https://github.com/tomakehurst/wiremock/blob/master/scripts/create-client-cert.sh) for an example of how to build a truststore containing a valid certificate (you'll probably want to edit the client-cert.conf file before running this).
 
 ## Common HTTPS issues
 

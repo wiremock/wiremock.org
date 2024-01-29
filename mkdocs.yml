@@ -309,4 +309,5 @@ markdown_extensions:
   - pymdownx.tabbed:
       alternate_style: true
   - toc:
+      title: On this page
       permalink: "#"

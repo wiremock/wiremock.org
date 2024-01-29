@@ -1,138 +1,138 @@
 ---
 description: >
-    Most web services tend to have some state,
-    which changes as you and others interact with it.
+    mocking states for Web services.
 ---
 
 # Simulating Stateful Behavior for Testing 
 
-**Most web services tend to have some state, which changes as you and
-others interact with it. So it's pretty useful to be able to simulate
-this when you've swapped a real service for a test double.**
+WireMock supports simulations of stateful behaviors of Web services. You can  make use of states that change during the time that 
+users interact with them.  
 
 ## Scenarios
 
-WireMock supports state via the notion of scenarios. A scenario is
-essentially a state machine whose states can be arbitrarily assigned. Its
-starting state is always `Scenario.STARTED`. Stub mappings can be
-configured to match on scenario state, such that stub A can be returned
-initially, then stub B once the next scenario state has been triggered.
+You manage mocking of stateful behavior using scenarios. A scenario is essentially a state machine whose states can be arbitrarily assigned. 
 
-For example, suppose we're writing a to-do list application consisting
-of a rich client of some kind talking to a REST service. We want to test
-that our UI can read the to-do list, add an item and refresh itself,
-showing the updated list.
+When working with scenarios: 
 
-In Java this could be set up like this:
+- the starting state is always `Scenario.STARTED`. 
+- stub mappings can be configured to match a scenario state, and run sequentially.
+-- for example, stub A can be returned initially, then stub B once the next scenario state has been triggered.
 
-```java
-@Test
-public void toDoListScenario() {
-    stubFor(get(urlEqualTo("/todo/items")).inScenario("To do list")
-            .whenScenarioStateIs(STARTED)
-            .willReturn(aResponse()
-                    .withBody("<items>" +
-                            "   <item>Buy milk</item>" +
-                            "</items>")));
+The following examples illustrate this concept, using a to-do list application that is a 
+rich client of some kind and sends requests to a REST service. This tests
+that the UI can read the to-do list, add an item, and refresh itself,
+showing the updated list:
 
-    stubFor(post(urlEqualTo("/todo/items")).inScenario("To do list")
-            .whenScenarioStateIs(STARTED)
-            .withRequestBody(containing("Cancel newspaper subscription"))
-            .willReturn(aResponse().withStatus(201))
-            .willSetStateTo("Cancel newspaper item added"));
+=== "Java"
 
-    stubFor(get(urlEqualTo("/todo/items")).inScenario("To do list")
-            .whenScenarioStateIs("Cancel newspaper item added")
-            .willReturn(aResponse()
-                    .withBody("<items>" +
-                            "   <item>Buy milk</item>" +
-                            "   <item>Cancel newspaper subscription</item>" +
-                            "</items>")));
+    ```java
+    @Test
+    public void toDoListScenario() {
+        stubFor(get(urlEqualTo("/todo/items")).inScenario("To do list")
+                .whenScenarioStateIs(STARTED)
+                .willReturn(aResponse()
+                        .withBody("<items>" +
+                                "   <item>Buy milk</item>" +
+                                "</items>")));
 
-    WireMockResponse response = testClient.get("/todo/items");
-    assertThat(response.content(), containsString("Buy milk"));
-    assertThat(response.content(), not(containsString("Cancel newspaper subscription")));
+        stubFor(post(urlEqualTo("/todo/items")).inScenario("To do list")
+                .whenScenarioStateIs(STARTED)
+                .withRequestBody(containing("Cancel newspaper subscription"))
+                .willReturn(aResponse().withStatus(201))
+                .willSetStateTo("Cancel newspaper item added"));
 
-    response = testClient.postWithBody("/todo/items", "Cancel newspaper subscription", "text/plain", "UTF-8");
-    assertThat(response.statusCode(), is(201));
+        stubFor(get(urlEqualTo("/todo/items")).inScenario("To do list")
+                .whenScenarioStateIs("Cancel newspaper item added")
+                .willReturn(aResponse()
+                        .withBody("<items>" +
+                                "   <item>Buy milk</item>" +
+                                "   <item>Cancel newspaper subscription</item>" +
+                                "</items>")));
 
-    response = testClient.get("/todo/items");
-    assertThat(response.content(), containsString("Buy milk"));
-    assertThat(response.content(), containsString("Cancel newspaper subscription"));
-}
-```
+        WireMockResponse response = testClient.get("/todo/items");
+        assertThat(response.content(), containsString("Buy milk"));
+        assertThat(response.content(), not(containsString("Cancel newspaper subscription")));
 
-The JSON equivalent for the above three stubs is:
+        response = testClient.postWithBody("/todo/items", "Cancel newspaper subscription", "text/plain", "UTF-8");
+        assertThat(response.statusCode(), is(201));
 
-```json
-{
-    "mappings": [
-        {
-            "scenarioName": "To do list",
-            "requiredScenarioState": "Started",
-            "request": {
-                "method": "GET",
-                "url": "/todo/items"
+        response = testClient.get("/todo/items");
+        assertThat(response.content(), containsString("Buy milk"));
+        assertThat(response.content(), containsString("Cancel newspaper subscription"));
+    }
+    ```
+
+=== "JSON"
+
+    ```json
+    {
+        "mappings": [
+            {
+                "scenarioName": "To do list",
+                "requiredScenarioState": "Started",
+                "request": {
+                    "method": "GET",
+                    "url": "/todo/items"
+                },
+                "response": {
+                    "status": 200,
+                    "body": "<items><item>Buy milk</item></items>"
+                }
             },
-            "response": {
-                "status": 200,
-                "body": "<items><item>Buy milk</item></items>"
-            }
-        },
-        {
-            "scenarioName": "To do list",
-            "requiredScenarioState": "Started",
-            "newScenarioState": "Cancel newspaper item added",
-            "request": {
-                "method": "POST",
-                "url": "/todo/items",
-                "bodyPatterns": [
-                    { "contains": "Cancel newspaper subscription" }
-                ]
+            {
+                "scenarioName": "To do list",
+                "requiredScenarioState": "Started",
+                "newScenarioState": "Cancel newspaper item added",
+                "request": {
+                    "method": "POST",
+                    "url": "/todo/items",
+                    "bodyPatterns": [
+                        { "contains": "Cancel newspaper subscription" }
+                    ]
+                },
+                "response": {
+                    "status": 201
+                }
             },
-            "response": {
-                "status": 201
+            {
+                "scenarioName": "To do list",
+                "requiredScenarioState": "Cancel newspaper item added",
+                "request": {
+                    "method": "GET",
+                    "url": "/todo/items"
+                },
+                "response": {
+                    "status": 200,
+                    "body": "<items><item>Buy milk</item><item>Cancel newspaper subscription</item></items>"
+                }
             }
-        },
-        {
-            "scenarioName": "To do list",
-            "requiredScenarioState": "Cancel newspaper item added",
-            "request": {
-                "method": "GET",
-                "url": "/todo/items"
-            },
-            "response": {
-                "status": 200,
-                "body": "<items><item>Buy milk</item><item>Cancel newspaper subscription</item></items>"
-            }
-        }
-    ]
-}
-```
+        ]
+    }
+    ```
 
 ## Getting scenario state
 
 The names, current state and possible states of all scenarios can be fetched.
 
-Java:
+=== "Java"
 
-```java
-List<Scenario> allScenarios = getAllScenarios();
-```
+    ```java
+    List<Scenario> allScenarios = getAllScenarios();
+    ```
 
-JSON:
+=== "JSON"
 
-```json
-GET /__admin/scenarios
-{
-  "scenarios" : [ {
-    "id" : "my_scenario",
-    "name" : "my_scenario",
-    "state" : "Started",
-    "possibleStates" : [ "Started", "state_2", "state_3" ]
-  } ]
-}
-```
+    ```json
+    GET /__admin/scenarios
+    {
+      "scenarios" : [ {
+        "id" : "my_scenario",
+        "name" : "my_scenario",
+        "state" : "Started",
+        "possibleStates" : [ "Started", "state_2", "state_3" ]
+      } ]
+    }
+    ```
 
 ## Resetting scenarios
 
@@ -163,19 +163,19 @@ The do the equivalent via the HTTP API, send an empty `PUT` to `/__admin/scenari
 
 ## Setting the state of an individual scenario
 
-You can also set the state of an individual scenario to a specific value.
+You can also set the state of an individual scenario to a specific value:
 
-Java:
+=== "Java"
 
-```java
-WireMock.setScenarioState("my_scenario", "state_2");
-```
+    ```java
+    WireMock.setScenarioState("my_scenario", "state_2");
+    ```
 
-HTTP:
+=== "HTTP"
 
-```json
-PUT /__admin/scenarios/my_scenario/state
-{
-    "state": "state_2"
-}
-```
+    ```json
+    PUT /__admin/scenarios/my_scenario/state
+    {
+        "state": "state_2"
+    }
+    ```

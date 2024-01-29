@@ -1,5 +1,5 @@
 ---
-description: This guide explains how to run an API template after you've downloaded the JSON file from the library page
+description: Run an API template after you've downloaded the JSON file from the library page.
 ---
 
 # Using Mock API Templates
@@ -9,8 +9,8 @@ This guide explains how to run an API template after you've downloaded the JSON 
 ## WireMock standalone JAR
 
 1. Create a folder called `mappings` if one doesn't already exist in the directory containing the standalone JAR file.
-2. Copy the downloaded JSON file into the `mappings` directory then  e.g.
-3. The JSON will be automatically loaded at startup, via the command line
+2. Copy the downloaded JSON file into the `mappings` directory.
+3. The JSON will be automatically loaded at startup, via the command line.
 
 ```bash
 java -jar wiremock-jre8-standalone-{{ versions.wiremock_version }}.jar
@@ -37,7 +37,7 @@ See [this page](./../standalone/java-jar.md) for general details on running Wire
 ## Plain Java
 
 If you're running WireMock embedded in a Java program or test suite
-you can place the JSON file in a folder called `mappings`
+you can place the JSON file in a folder called `mappings`,
 then set its parent as the WireMock server's root at startup.
 
 ```java

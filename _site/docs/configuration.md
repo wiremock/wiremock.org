@@ -1,10 +1,11 @@
 ---
-description: Configuring WireMock progammatically in Java.
+description: progammatic config in Java.
 ---
 
 # Configuring WireMock in Java
+// consider adding an introductory sentence here
 
-Both `WireMockServer` and the `WireMockRule` take a configuration builder as the parameter to their constructor e.g.
+Both `WireMockServer` and the `WireMockRule` take a configuration builder as the parameter to their constructor like this example:
 
 ```java
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
@@ -15,7 +16,7 @@ WireMockServer wm = new WireMockServer(options().port(2345));
 WireMockRule wm = new WireMockRule(options().port(2345));
 ```
 
-Every option has a sensible default, so only options that you require an override for should be specified.
+Every option has a sensible default, so only options for which you require an override should be specified.
 
 ## Network ports and binding
 
@@ -90,12 +91,9 @@ WireMock can accept HTTPS connections from clients, require a client to present 
 
 WireMock uses the trust store for three purposes:
 
-1. As a server, when requiring client auth, WireMock will trust the client if it
-   presents a public certificate in this trust store
-2. As a proxy, WireMock will use the private key & certificate in this key store
-   to authenticate its http client with target servers that require client auth
-3. As a proxy, WireMock will trust a target server if it presents a public
-   certificate in this trust store
+- As a server, when requiring client auth, WireMock will trust the client if it presents a public certificate in this trust store.
+- As a proxy, WireMock will use the private key & certificate in this key store to authenticate its http client with target servers that require client auth.
+- As a proxy, WireMock will trust a target server if it presents a public certificate in this trust store.
 
 ## Proxy settings
 
@@ -133,7 +131,7 @@ WireMock uses the trust store for three purposes:
 
 ## File locations
 
-WireMock, when started programmatically, will default to `src/test/resources` as a filesystem root if not configured otherwise.
+If not configured otherwise, WireMock defaults to the filesystem root `src/test/resources` upon startup.
 
 ```java
 // Set the root of the filesystem WireMock will look under for files and mappings
@@ -145,7 +143,7 @@ WireMock, when started programmatically, will default to `src/test/resources` as
 
 ## Request journal
 
-The request journal records requests received by WireMock. It is required by the verification features, so these will throw errors if it is disabled.
+ Wiremock contains a request journal that records all requests it receives. The verification features require this, and will throw errors if it is disabled.
 
 ```java
 // Do not record received requests. Typically needed during load testing to avoid JVM heap exhaustion.
@@ -183,9 +181,9 @@ For details see [Extending WireMock](./extending-wiremock.md).
 
 ## Transfer encoding
 
-By default WireMock will send all responses chunk encoded, meaning with a `Transfer-Encoding: chunked` header present and no `Content-Length` header.
+By default WireMock sends all responses chunk encoded, which means it has a `Transfer-Encoding: chunked` header present and no `Content-Length` header.
 
-This behaviour can be modified by setting a chunked encoding policy e.g.
+You can modify the encoding policy:
 
 ```java
 .useChunkedTransferEncoding(Options.ChunkedEncodingPolicy.BODY_FILE)
@@ -209,8 +207,7 @@ To enable automatic sending of CORS headers on stub responses, do the following:
 
 ## Limiting logged response body size
 
-By default, response bodies will be recorded in the journal in their entirety. This can result in out of memory errors when very large bodies are served so WireMock
-provides an option to limit the number of bytes of response bodies retained (truncating any that are larger).
+By default, the journal records each entire response body. To prevent out-of-memory errors when working with large response bodies, you can set a limit, in bytes, to the response body size, with the result that WireMock truncates the larger ones upon saving.
 
 ```java
 .maxLoggedResponseSize(100000) // bytes
@@ -218,16 +215,15 @@ provides an option to limit the number of bytes of response bodies retained (tru
 
 ## Preventing proxying to and recording from specific target addresses
 
-As a security measure WireMock can be configured to only permit proxying (and therefore recording) to certain addresses.
-This is achieved via a list of allowed address rules and a list of denied address rules, where the allowed list is evaluated first.
+For security, you can set limits on prxying from WireMock, using using rules lists that specify allowed and denied addresses. WireMock evaluates the allowed list first.
 
 Each rule can be one of the following:
 
 * A single IP address
-* An IP address range in the e.g. `10.1.1.1-10.2.2.2`
-* A hostname wildcard e.g. `dev-*.example.com`
+* An IP address range, as in `10.1.1.1-10.2.2.2`
+* A hostname wildcard, as in `dev-*.example.com`
 
-The ruleset is built and applied as follows:
+The ruleset is built and applied as in the following example:
 
 ```java
 .limitProxyTargets(NetworkAddressRules.builder()
@@ -240,7 +236,7 @@ The ruleset is built and applied as follows:
 
 ## Filename template
 
-WireMock can set up specific filename template format based on stub information.
+WireMock can set up specific filename template formats based on stub information.
 The main rule for set up specify stub metadata information in handlebar format.
 For instance for endpoint `PUT /hosts/{id}` and format
 {% raw %} `{{{method}}}-{{{request.url}}}.json`{% endraw %}
@@ -259,14 +255,14 @@ Note: starting from [3.0.0-beta-8](https://github.com/wiremock/wiremock/releases
 
 ## Listening for raw traffic
 
-If you would like to observe raw HTTP traffic to and from Jetty
-for debugging purposes you can use a `WiremockNetworkTrafficListener`.
+When debugging, you can observe raw HTTP traffic to and from Jetty
+ with a `WiremockNetworkTrafficListener`.
 
-One scenario where it can be useful is where Jetty
-alters the response from Wiremock before sending it to the client.
-(An example of that is where Jetty appends a --gzip postfix to the ETag response header
-if the response is gzipped.)
-Using WireMock's request listener extension points in this case would not show those alterations.
+ !!! Warning ""
+
+   Using WireMock's request listener extension points in some cases do not show some  alterations that Jetty can make, in the response from Wiremock, before sending it to the client. For example, if you set it to append a --gzip postfix to the ETag response header for gzipped responses, it does not show.
+
+
 
 To output all raw traffic to console use `ConsoleNotifyingWiremockNetworkTrafficListener`, for example:
 
@@ -274,6 +270,5 @@ To output all raw traffic to console use `ConsoleNotifyingWiremockNetworkTraffic
 .networkTrafficListener(new ConsoleNotifyingWiremockNetworkTrafficListener()));
 ```
 
-If you would like to collect the traffic
-and for example add it to your acceptance test's output,
+To collect raw traffic for other purposes, like adding to your acceptance test's output,
 you can use the `CollectingNetworkTrafficListener`.

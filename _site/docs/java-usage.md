@@ -1,19 +1,17 @@
 ---
 description: >
-    If you want to use WireMock from Java (or any other JVM language) outside of JUnit
-    you can programmatically create, start and stop the server.
+    At runtime, programmatically create, start and stop the server for using WireMock from Java.
 ---
 
-# Using WireMock from plain Java and other JVM Languages
+# Running WireMock from plain Java and other JVM Languages
 
-If you're not using JUnit or neither of the WireMock rules manage its
-lifecycle in a suitable way you can construct and start the server
-directly.
+Programmatically create, start, and stop the server for using WireMock from Java, outside of JUnit.
+
 
 ## The Server
 
 If you want to use WireMock from Java (or any other JVM language)
-outside of JUnit you can programmatically create, start and stop the
+outside of JUnit, you can programmatically create, start, and stop the
 server:
 
 ```java
@@ -25,23 +23,27 @@ wireMockServer.start();
 wireMockServer.stop();
 ```
 
+!!! info 
+
+    If you're neither using JUnit nor any of the WireMock rules, to suitably manage the 
+    server lifecycle, you can construct and start the server directly.
+
 For more details of the `options()` builder accepted by the constructor see [Configuration](./configuration.md) for details.
 
-As with stubbing and verification via the [JUnit rule](./junit-extensions.md) you can call the
-stubbing/verifying DSL from the server object as an alternative to
-calling the client.
+As an alternative to calling the client, you can call the stubbing/verifying DSL from the server object. 
+This works similarly to stubbing and verification using the [JUnit rule](./junit-extensions.md) 
 
 ### Managing ports
 
-If you've changed the port number and/or you're running the server on
-another host, you'll need to tell the client:
+To change the port number and/or you're running the server on
+another host, you must tell the client:
 
 ```java
 WireMock.configureFor("wiremock.host", 8089);
 ```
 
-And if you've deployed it into a servlet container under a path other
-than root you'll need to set that too:
+When you deploy into a servlet container under a path other
+than root, you need to set that too:
 
 ```java
 WireMock.configureFor("tomcat.host", 8080, "/wiremock");
@@ -63,8 +65,8 @@ configureFor("wiremock.host", 8089);
 stubFor(get(....));
 ```
 
-If you've deployed the server into a servlet container under a path
-other than root you'll need to set that too:
+As above, when you deploy the server into a servlet container under a path
+other than root, you'll need to set that too:
 
 ```java
 WireMock.configureFor("tomcat.host", 8080, "/wiremock");
@@ -72,8 +74,9 @@ WireMock.configureFor("tomcat.host", 8080, "/wiremock");
 
 ### Newing up
 
-Instances of `WireMock` can also be created. This is useful if you need
-to talk to more than one server instance.
+If you need to talk to more than one server instance, new `WireMock` instances are useful.
+
+Create a new instance as follows:
 
 ```java
 WireMock wireMock = new WireMock("some.host", 9090, "/wm"); // As above, 3rd param is for non-root servlet deployments

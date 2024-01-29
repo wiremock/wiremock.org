@@ -1,26 +1,21 @@
 ---
 description: >
-    Create stub mappings by recording them while you send requests.
-    This can be used to quickly capture a collection of responses from a real service
-    then use them offline in your tests.
+    Quickly capture stub mappings and response body content using WireMock's record and playback.
 ---
 
 # Record and Playback (Legacy)
 
-**WireMock has the ability to create stub mappings by recording them
-while you send requests. This can be used to quickly capture a
-collection of responses from a real service then use them offline in
-your tests.**
+You can quickly capture a collection of stub mappings and response body content using WireMock's record and playback.
 
 ## Recording
 
-Recording is done by starting the standalone runner like this:
+To start recording, start the standalone runner as in the following:
 
 ```bash
 $ java -jar wiremock-standalone-{{ versions.wiremock_version }}.jar --proxy-all="http://search.twitter.com" --record-mappings --verbose
 ```
 
-Once it's started you send requests to it as if it was the remote
+Once it's started, send requests to it as if it was the remote
 service:
 
 ```bash
@@ -35,14 +30,13 @@ latter for the body content.
 ### Capturing request headers
 
 Optionally, you can record request headers so that your stub mappings
-will match on those in addition to URL, method and body (if a POST or
-PUT). This is done by adding an extra parameter to the command line e.g.
+match on those in addition to URL, method and body (if a POST or
+PUT). This is done by adding an extra parameter to the command line, like 
 `--match-headers="Accept,Content-Type"`
 
-> **note**
->
-> The recorder will ignore any request matching one it has already
-> captured.
+!!! note
+
+    The recorder ignores any request matching one it has already captured.
 
 ## Playback
 
