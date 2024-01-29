@@ -10,7 +10,7 @@ of events or perform long-running processing asynchronously without blocking.
 
 ## Enabling webhooks
 
-Prior to WireMock 3.1.0 webhooks were provided via an extension and needed to be explicitly enabled. See [the 2.x docs](https://wiremock.org/2.x/docs/webhooks-and-callbacks/) for details on how to do this.
+Prior to WireMock 3.1.0, webhooks were provided using an extension and needed to be explicitly enabled. See [the 2.x docs](https://wiremock.org/2.x/docs/webhooks-and-callbacks/) for details on how to do this.
 
 From version 3.1.0 the webhooks extension is part of WireMock's core and enabled by default.
 
@@ -23,48 +23,48 @@ This article shows how to use this newer extension point, however the legacy `Po
 
 You can trigger a single webhook request to a fixed URL, with fixed data like this:
 
-Java:
+=== "Java"
 
-```java
-import static org.wiremock.webhooks.Webhooks.*;
-...
+    ```java
+    import static org.wiremock.webhooks.Webhooks.*;
+    ...
 
-wm.stubFor(post(urlPathEqualTo("/something-async"))
-    .willReturn(ok())
-    .withServeEventListener("webhook", webhook()
-        .withMethod(POST)
-        .withUrl("http://my-target-host/callback")
-        .withHeader("Content-Type", "application/json")
-        .withBody("{ \"result\": \"SUCCESS\" }"))
-  );
-```
+    wm.stubFor(post(urlPathEqualTo("/something-async"))
+        .willReturn(ok())
+        .withServeEventListener("webhook", webhook()
+            .withMethod(POST)
+            .withUrl("http://my-target-host/callback")
+            .withHeader("Content-Type", "application/json")
+            .withBody("{ \"result\": \"SUCCESS\" }"))
+      );
+    ```
 
-JSON:
+=== "JSON"
 
-```json
-{
-    "request": {
-        "urlPath": "/something-async",
-        "method": "POST"
-    },
-    "response": {
-        "status": 200
-    },
-    "serveEventListeners": [
-        {
-            "name": "webhook",
-            "parameters": {
-                "method": "POST",
-                "url": "http://my-target-host/callback",
-                "headers": {
-                    "Content-Type": "application/json"
-                },
-                "body": "{ \"result\": \"SUCCESS\" }"
+    ```json
+    {
+        "request": {
+            "urlPath": "/something-async",
+            "method": "POST"
+        },
+        "response": {
+            "status": 200
+        },
+        "serveEventListeners": [
+            {
+                "name": "webhook",
+                "parameters": {
+                    "method": "POST",
+                    "url": "http://my-target-host/callback",
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "body": "{ \"result\": \"SUCCESS\" }"
+                }
             }
-        }
-    ]
-}
-```
+        ]
+    }
+    ```
 
 ## Using data from the original request
 
@@ -86,104 +86,88 @@ For an original request body JSON like this:
 
 We could construct a JSON request body in the webhook like this:
 
-Java:
+=== "Java"
 
-{% raw %}
+    ```java
+    wm.stubFor(post(urlPathEqualTo("/templating"))
+          .willReturn(ok())
+          .withServeEventListener("webhook", webhook()
+              .withMethod(POST)
+              .withUrl("http://my-target-host/callback")
+              .withHeader("Content-Type", "application/json")
+              .withBody("{ \"message\": \"success\", \"transactionId\": \"{{jsonPath originalRequest.body '$.transactionId'}}\" }")
+      );
+    ```
 
-```java
-wm.stubFor(post(urlPathEqualTo("/templating"))
-      .willReturn(ok())
-      .withServeEventListener("webhook", webhook()
-          .withMethod(POST)
-          .withUrl("http://my-target-host/callback")
-          .withHeader("Content-Type", "application/json")
-          .withBody("{ \"message\": \"success\", \"transactionId\": \"{{jsonPath originalRequest.body '$.transactionId'}}\" }")
-  );
-```
+=== "JSON"
 
-{% endraw %}
-
-JSON:
-
-{% raw %}
-
-```json
-{
-    "request": {
-        "urlPath": "/templating",
-        "method": "POST"
-    },
-    "response": {
-        "status": 200
-    },
-    "serveEventListeners": [
-        {
-            "name": "webhook",
-            "parameters": {
-                "method": "POST",
-                "url": "http://my-target-host/callback",
-                "headers": {
-                    "Content-Type": "application/json"
-                },
-                "body": "{ \"message\": \"success\", \"transactionId\": \"{{jsonPath originalRequest.body '$.transactionId'}}\" }"
+    ```json
+    {
+        "request": {
+            "urlPath": "/templating",
+            "method": "POST"
+        },
+        "response": {
+            "status": 200
+        },
+        "serveEventListeners": [
+            {
+                "name": "webhook",
+                "parameters": {
+                    "method": "POST",
+                    "url": "http://my-target-host/callback",
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "body": "{ \"message\": \"success\", \"transactionId\": \"{{jsonPath originalRequest.body '$.transactionId'}}\" }"
+                }
             }
-        }
-    ]
-}
-```
+        ]
+    }
+    ```
 
-{% endraw %}
+!!! note
 
-> **note**
->
-> Webhook templates currently do not support system or environment variables.
+    Webhook templates currently do not support system or environment variables.
 
 ## Implementing a callback using templating
 
 To implement the callback pattern, where the original request contains the target to be called on completion of a long-running task,
 we can use templating on the URL and method.
 
-Java:
+=== "Java"
 
-{% raw %}
+    ```java
+    wm.stubFor(post(urlPathEqualTo("/something-async"))
+          .willReturn(ok())
+          .withServeEventListener("webhook", webhook()
+              .withMethod("{{jsonPath originalRequest.body '$.callbackMethod'}}")
+              .withUrl("{{jsonPath originalRequest.body '$.callbackUrl'}}"))
+      );
+    ```
 
-```java
-wm.stubFor(post(urlPathEqualTo("/something-async"))
-      .willReturn(ok())
-      .withServeEventListener("webhook", webhook()
-          .withMethod("{{jsonPath originalRequest.body '$.callbackMethod'}}")
-          .withUrl("{{jsonPath originalRequest.body '$.callbackUrl'}}"))
-  );
-```
+=== "JSON"
 
-{% endraw %}
-
-JSON:
-
-{% raw %}
-
-```json
-{
-    "request": {
-        "urlPath": "/something-async",
-        "method": "POST"
-    },
-    "response": {
-        "status": 200
-    },
-    "serveEventListeners": [
-        {
-            "name": "webhook",
-            "parameters": {
-                "method": "{{jsonPath originalRequest.body '$.callbackMethod'}}",
-                "url": "{{jsonPath originalRequest.body '$.callbackUrl'}}"
+    ```json
+    {
+        "request": {
+            "urlPath": "/something-async",
+            "method": "POST"
+        },
+        "response": {
+            "status": 200
+        },
+        "serveEventListeners": [
+            {
+                "name": "webhook",
+                "parameters": {
+                    "method": "{{jsonPath originalRequest.body '$.callbackMethod'}}",
+                    "url": "{{jsonPath originalRequest.body '$.callbackUrl'}}"
+                }
             }
-        }
-    ]
-}
-```
-
-{% endraw %}
+        ]
+    }
+    ```
 
 ## Adding delays
 
@@ -191,88 +175,88 @@ A fixed or random delay can be added before the webhook call is made, using the 
 
 ### Fixed delays
 
-Java:
+=== "Java"
 
-```java
-wm.stubFor(post(urlPathEqualTo("/delayed"))
-    .willReturn(ok())
-    .withServeEventListener("webhook", webhook()
-      .withFixedDelay(1000)
-      .withMethod(RequestMethod.GET)
-      .withUrl("http://my-target-host/callback")
-    )
-);
-```
+    ```java
+    wm.stubFor(post(urlPathEqualTo("/delayed"))
+        .willReturn(ok())
+        .withServeEventListener("webhook", webhook()
+          .withFixedDelay(1000)
+          .withMethod(RequestMethod.GET)
+          .withUrl("http://my-target-host/callback")
+        )
+    );
+    ```
 
-JSON:
+=== "JSON"
 
-```json
-{
-    "request": {
-        "urlPath": "/delayed",
-        "method": "POST"
-    },
-    "response": {
-        "status": 200
-    },
-    "serveEventListeners": [
-        {
-            "name": "webhook",
-            "parameters": {
-                "method": "GET",
-                "url": "http://my-target-host/callback",
-                "delay": {
-                    "type": "fixed",
-                    "milliseconds": 1000
+    ```json
+    {
+        "request": {
+            "urlPath": "/delayed",
+            "method": "POST"
+        },
+        "response": {
+            "status": 200
+        },
+        "serveEventListeners": [
+            {
+                "name": "webhook",
+                "parameters": {
+                    "method": "GET",
+                    "url": "http://my-target-host/callback",
+                    "delay": {
+                        "type": "fixed",
+                        "milliseconds": 1000
+                    }
                 }
             }
-        }
-    ]
-}
-```
+        ]
+    }
+    ```
 
 ### Random delays
 
-Java:
+=== "Java"
 
-```java
-wm.stubFor(post(urlPathEqualTo("/delayed"))
-    .willReturn(ok())
-    .withServeEventListener("webhook", webhook()
-      .withDelay(new UniformDistribution(500, 1000))
-      .withMethod(RequestMethod.GET)
-      .withUrl("http://my-target-host/callback")
-    )
-);
-```
+    ```java
+    wm.stubFor(post(urlPathEqualTo("/delayed"))
+        .willReturn(ok())
+        .withServeEventListener("webhook", webhook()
+          .withDelay(new UniformDistribution(500, 1000))
+          .withMethod(RequestMethod.GET)
+          .withUrl("http://my-target-host/callback")
+        )
+    );
+    ```
 
-JSON:
+=== "JSON"
 
-```json
-{
-    "request": {
-        "urlPath": "/delayed",
-        "method": "POST"
-    },
-    "response": {
-        "status": 200
-    },
-    "serveEventListeners": [
-        {
-            "name": "webhook",
-            "parameters": {
-                "method": "GET",
-                "url": "http://my-target-host/callback",
-                "delay": {
-                    "type": "uniform",
-                    "lower": 500,
-                    "upper": 1000
+    ```json
+    {
+        "request": {
+            "urlPath": "/delayed",
+            "method": "POST"
+        },
+        "response": {
+            "status": 200
+        },
+        "serveEventListeners": [
+            {
+                "name": "webhook",
+                "parameters": {
+                    "method": "GET",
+                    "url": "http://my-target-host/callback",
+                    "delay": {
+                        "type": "uniform",
+                        "lower": 500,
+                        "upper": 1000
+                    }
                 }
             }
-        }
-    ]
-}
-```
+        ]
+    }
+    ```
 
 ## Extending webhooks
 

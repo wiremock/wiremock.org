@@ -12,17 +12,18 @@ You have the option of registering extensions programmatically using the class n
 An interface defines each extension point, extendibg from `Extension`. Extension implementations load at startup time.
 
 At present, the following extension interfaces are available:
-* `RequestFilterV2`/`AdminRequestFilterV2`/`StubRequestFilterV2`: Intercept requests, modifying them or taking alternative actions based on their content.
-* `ResponseDefinitionTransformerV2`: Modify the response definition used to generate a response. See [Transforming responses](./extensibility/transforming-responses.md).
-* `ResponseTransformerV2`: Modify the response served to the client. See [Transforming responses](./extensibility/transforming-responses.md).
-* `ServeEventListener`: Listen for events at various points in the request processing lifecycle. See [Listening for Serve Events](./extensibility/listening-for-serve-events.md).
-* `AdminApiExtension`: Add admin API functions. See [Admin API Extensions](./extensibility/extending-the-admin-api.md).
-* `RequestMatcherExtension`: Implement custom request matching logic. See [Custom matching](./extensibility/custom-matching.md).
-* `GlobalSettingsListener`: Listen for changes to the settings object. See [Listening for Settings Changes](./extensibility/listening-for-settings-changes.md).
-* `StubLifecycleListener`: Listen for changes to the stub mappings. See [Listening for Stub Changes](./extensibility/listening-for-stub-changes.md).
-* `TemplateHelperProviderExtension`: Provide custom Handlebars helpers to the template engine. See [Adding Template Helpers](./extensibility/adding-template-helpers.md).
-* `TemplateModelDataProviderExtension`: Provide additional data to the model passed to response templates. See [Adding Template Model Data](./extensibility/adding-template-model-data.md).
-* `MappingsLoaderExtension`: Provide additional source to load the stub mappings. See [Adding Mappings Loader](./extensibility/adding-mappings-loader.md).
+
+- `RequestFilterV2`/`AdminRequestFilterV2`/`StubRequestFilterV2`: Intercept requests, modifying them or taking alternative actions based on their content.
+- `ResponseDefinitionTransformerV2`: Modify the response definition used to generate a response. See [Transforming responses](./extensibility/transforming-responses.md).
+- `ResponseTransformerV2`: Modify the response served to the client. See [Transforming responses](./extensibility/transforming-responses.md).
+- `ServeEventListener`: Listen for events at various points in the request processing lifecycle. See [Listening for Serve Events](./extensibility/listening-for-serve-events.md).
+- `AdminApiExtension`: Add admin API functions. See [Admin API Extensions](./extensibility/extending-the-admin-api.md).
+- `RequestMatcherExtension`: Implement custom request matching logic. See [Custom matching](./extensibility/custom-matching.md).
+- `GlobalSettingsListener`: Listen for changes to the settings object. See [Listening for Settings Changes](./extensibility/listening-for-settings-changes.md).
+- `StubLifecycleListener`: Listen for changes to the stub mappings. See [Listening for Stub Changes](./extensibility/listening-for-stub-changes.md).
+- `TemplateHelperProviderExtension`: Provide custom Handlebars helpers to the template engine. See [Adding Template Helpers](./extensibility/adding-template-helpers.md).
+- `TemplateModelDataProviderExtension`: Provide additional data to the model passed to response templates. See [Adding Template Model Data](./extensibility/adding-template-model-data.md).
+- `MappingsLoaderExtension`: Provide additional source to load the stub mappings. See [Adding Mappings Loader](./extensibility/adding-mappings-loader.md).
 
 The interfaces in this list ending with `V2` supercede deprecated equivalents with an older, more restrictive interface. Additionally `ServeEventListener` deprecates `PostServeAction`.
 
@@ -63,14 +64,14 @@ new WireMockServer(wireMockConfig()
 
 Services currently available to extension factories are:
 
-* `Admin`: the main WireMock functional interface for stubbing, verification and configuration tasks.
-* `Options`: the configuration object built at startup.
-* `Stores`: the root interface for gaining access to the various stores of WireMock's state and creating/using custom stores.
-* `FileSource`: the `__files` directory where larger response body files are often kept.
-* `Extensions`: the service for creating and providing extension implementations.
-* `TemplateEngine`: the Handlebars template engine.
+- `Admin`: the main WireMock functional interface for stubbing, verification and configuration tasks.
+- `Options`: the configuration object built at startup.
+- `Stores`: the root interface for gaining access to the various stores of WireMock's state and creating/using custom stores.
+- `FileSource`: the `__files` directory where larger response body files are often kept.
+- `Extensions`: the service for creating and providing extension implementations.
+- `TemplateEngine`: the Handlebars template engine.
 
-## Extension registration via service loading
+## Extension registration using service loading
 
 Iif they are placed on the classpath, extensions that are packaged with the relevant [Java service loader framework](https://docs.oracle.com/javase/8/docs/api/java/util/ServiceLoader.html) metadata
 will load automatically.
