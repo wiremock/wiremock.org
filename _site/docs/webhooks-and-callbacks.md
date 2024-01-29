@@ -10,7 +10,7 @@ of events or perform long-running processing asynchronously without blocking.
 
 ## Enabling webhooks
 
-Prior to WireMock 3.1.0, webhooks were provided using an extension and needed to be explicitly enabled. See [the 2.x docs](https://wiremock.org/2.x/docs/webhooks-and-callbacks/) for details on how to do this.
+Prior to WireMock 3.1.0 webhooks were provided via an extension and needed to be explicitly enabled. See [the 2.x docs](https://wiremock.org/2.x/docs/webhooks-and-callbacks/) for details on how to do this.
 
 From version 3.1.0 the webhooks extension is part of WireMock's core and enabled by default.
 
@@ -88,6 +88,8 @@ We could construct a JSON request body in the webhook like this:
 
 === "Java"
 
+{% raw %}
+
     ```java
     wm.stubFor(post(urlPathEqualTo("/templating"))
           .willReturn(ok())
@@ -99,7 +101,11 @@ We could construct a JSON request body in the webhook like this:
       );
     ```
 
+{% endraw %}
+
 === "JSON"
+
+{% raw %}
 
     ```json
     {
@@ -126,6 +132,8 @@ We could construct a JSON request body in the webhook like this:
     }
     ```
 
+{% endraw %}
+
 !!! note
 
     Webhook templates currently do not support system or environment variables.
@@ -137,6 +145,7 @@ we can use templating on the URL and method.
 
 === "Java"
 
+{% raw %}
     ```java
     wm.stubFor(post(urlPathEqualTo("/something-async"))
           .willReturn(ok())
@@ -145,9 +154,11 @@ we can use templating on the URL and method.
               .withUrl("{{jsonPath originalRequest.body '$.callbackUrl'}}"))
       );
     ```
+{% endraw %}
 
 === "JSON"
 
+{% raw %}
     ```json
     {
         "request": {
@@ -169,6 +180,8 @@ we can use templating on the URL and method.
     }
     ```
 
+{% endraw %}
+
 ## Adding delays
 
 A fixed or random delay can be added before the webhook call is made, using the same style of [delay parameters as stubs](./simulating-faults.md).
@@ -176,6 +189,8 @@ A fixed or random delay can be added before the webhook call is made, using the 
 ### Fixed delays
 
 === "Java"
+
+{% raw %}
 
     ```java
     wm.stubFor(post(urlPathEqualTo("/delayed"))
@@ -187,8 +202,11 @@ A fixed or random delay can be added before the webhook call is made, using the 
         )
     );
     ```
+{% endraw %}
 
 === "JSON"
+
+{% raw %}
 
     ```json
     {
@@ -214,10 +232,13 @@ A fixed or random delay can be added before the webhook call is made, using the 
         ]
     }
     ```
+{% endraw %}
 
 ### Random delays
 
 === "Java"
+
+{% raw %}
 
     ```java
     wm.stubFor(post(urlPathEqualTo("/delayed"))
@@ -229,9 +250,11 @@ A fixed or random delay can be added before the webhook call is made, using the 
         )
     );
     ```
+{% endraw %}
 
 === "JSON"
 
+{% raw %}
     ```json
     {
         "request": {
@@ -257,6 +280,7 @@ A fixed or random delay can be added before the webhook call is made, using the 
         ]
     }
     ```
+{% endraw %}
 
 ## Extending webhooks
 
