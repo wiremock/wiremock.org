@@ -24,7 +24,7 @@ If you need more precise control, you can set up the stubs and configuration usi
 
 ## Request with XML Body
 
-== "Java code"
+=== "Java code"
 
     ```java
     stubFor(any(urlPathEqualTo("/everything"))
@@ -507,7 +507,7 @@ Deems a match if the attribute (most likely the request body in practice) is val
     }
     ```
 
-JSON with string literal:
+=== "JSON with string literal"
 
     ```json
     {
@@ -598,7 +598,7 @@ Deems a match if the attribute value is present in the JSON.
     }
     ```
 
-Request body example:
+=== "Request body example"
 
     ```
     // matching
@@ -1536,7 +1536,7 @@ of this against the `before` and `after` matchers AND'd together.
     }
     ```
 
-===  "match the following JSON request body:
+===  "match the following JSON request body"
 
     ```json
     {

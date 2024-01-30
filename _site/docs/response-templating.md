@@ -44,14 +44,17 @@ When templating is enabled in local mode, you must add it to each stub to which 
 
 === "Java"
 
+{% raw %}
     ```java
     wm.stubFor(get(urlPathEqualTo("/templated"))
       .willReturn(aResponse()
           .withBody("{{request.path.[0]}}")
           .withTransformers("response-template")));
     ```
-
+{% endraw %}
 === "JSON"
+
+{% raw %}
 
     ```json
     {
@@ -64,6 +67,7 @@ When templating is enabled in local mode, you must add it to each stub to which 
         }
     }
     ```
+{% endraw %}
 
 
 ## Template caching
@@ -86,15 +90,18 @@ Templating also works when defining proxy URLs:
 
 === "Java"
 
+{% raw %}
     ```java
     wm.stubFor(get(urlPathEqualTo("/templated"))
       .willReturn(aResponse()
           .proxiedFrom("{{request.headers.X-WM-Proxy-Url}}")
           .withTransformers("response-template")));
     ```
+{% endraw %}
 
 === "JSON"
 
+{% raw %}
     ```json
     {
         "request": {
@@ -106,6 +113,7 @@ Templating also works when defining proxy URLs:
         }
     }
     ```
+{% endraw %}
 
 ## Templated body file
 
@@ -113,15 +121,18 @@ To dynamicaaly select a response, template the file path for the body file:
 
 === "Java"
 
+{% raw %}
     ```java
     wm.stubFor(get(urlPathMatching("/static/.*"))
       .willReturn(ok()
         .withBodyFile("files/{{request.pathSegments.[1]}}")));
 
     ```
+{% endraw %}
 
 === "JSON"
 
+{% raw %}
     ```json
     {
         "request": {
@@ -134,6 +145,7 @@ To dynamicaaly select a response, template the file path for the body file:
         }
     }
     ```
+{% endraw %}
 
 
 ## The request model
@@ -181,7 +193,7 @@ this easy to work with by wrapping these in a "list or single" type that returns
 For instance, given a request URL like `/multi-query?things=1&things=2&things=3` I can extract the query data in the following ways:
 
 
-
+{% raw %}
 ```handlebars
 {{request.query.things}} // Will return 1
 {{request.query.things.0}} // Will return 1
@@ -190,6 +202,7 @@ For instance, given a request URL like `/multi-query?things=1&things=2&things=3`
 {{request.query.things.[-1]}} // Will return 2
 {{request.query.things.last}} // Will return 3
 ```
+{% endraw %}
 
 
 
@@ -209,10 +222,11 @@ Probably the most common occurrence of this issue is with array-style query para
 URLs you're matching are of the form `/stuff?ids[]=111&ids[]=222&ids[]=333` then you can access these values as in the following:
 
 
-
+{% raw %}
 ```handlebars
 {{lookup request.query 'ids[].1'}} // Will return 222
 ```
+{% endraw %}
 
 
 
@@ -222,6 +236,7 @@ You can pass parameter values to the transformer as shown below (or dynamically 
 
 === "Java"
 
+{% raw %}
     ```java
     wm.stubFor(get(urlPathEqualTo("/templated"))
       .willReturn(aResponse()
@@ -229,9 +244,11 @@ You can pass parameter values to the transformer as shown below (or dynamically 
           .withTransformers("response-template")
           .withTransformerParameter("MyCustomParameter", "Parameter Value")));
     ```
+{% endraw %}
 
 === "JSON"
 
+{% raw %}
     ```json
     {
         "request": {
@@ -246,30 +263,34 @@ You can pass parameter values to the transformer as shown below (or dynamically 
         }
     }
     ```
+{% endraw %}
 
 These parameters can be referenced in template body content using the `parameters.` prefix:
 
-
-
+{% raw %}
 ```handlebars
 <h1>The MyCustomParameter value is {{parameters.MyCustomParameter}}</h1>
 ```
+{% endraw %}
 
 ## Handlebars helpers
 
 All of the standard helpers (template functions) provided by the [Java Handlebars implementation by jknack](https://github.com/jknack/handlebars.java)
 plus all of the [string helpers](https://github.com/jknack/handlebars.java/blob/master/handlebars/src/main/java/com/github/jknack/handlebars/helper/StringHelpers.java)
 and the [conditional helpers](https://github.com/jknack/handlebars.java/blob/master/handlebars/src/main/java/com/github/jknack/handlebars/helper/ConditionalHelpers.java)
-are available e.g.
+are available, for exmaple:
 
+{% raw %}
 ```handlebars
 {{capitalize request.query.search}}
 ```
+{% endraw %}
 
 ## Number and assignment helpers
 
 Variable assignment and number helpers are available:
 
+{% raw %}
 ```handlebars
 {{#assign 'myCapitalisedQuery'}}{{capitalize request.query.search}}{{/assign}}
 
@@ -281,6 +302,7 @@ Variable assignment and number helpers are available:
 
 {{stripes 3 'row-even' 'row-odd'}}
 ```
+{% endraw %}
 
 ## XPath helpers
 
@@ -296,15 +318,19 @@ For incoming requests that contain XML, use the `xPath` helper to extract values
 
 The following renders "Stuff" into the output:
 
+{% raw %}
 ```handlebars
 {{xPath request.body '/outer/inner/text()'}}
 ```
+{% endraw %}
 
 And given the same XML the following renders `<inner>Stuff</inner>`:
 
+{% raw %}
 ```handlebars
 {{xPath request.body '/outer/inner'}}
 ```
+{% endraw %}
 
 As a convenience, the `soapXPath` helper also exists for extracting values from SOAP bodies e.g. for the SOAP document:
 
@@ -320,9 +346,11 @@ As a convenience, the `soapXPath` helper also exists for extracting values from 
 
 The following renders "success" in the output:
 
+{% raw %}
 ```handlebars
 {{soapXPath request.body '/a/test/text()'}}
 ```
+{% endraw %}
 
 ### Using the output of `xPath` in other helpers
 
@@ -341,11 +369,13 @@ Referring to the node itself will cause it to be printed.
 
 A common use case for returned node objects is to iterate over the collection with the `each` helper:
 
+{% raw %}
 ```handlebars
 {{#each (xPath request.body '/things/item') as |node|}}
   name: {{node.name}}, text: {{node.text}}, ID attribute: {{node.attributes.id}}
 {{/each}}
 ```
+{% endraw %}
 
 ## JSONPath helper
 
@@ -361,21 +391,27 @@ It is similarly possible to extract JSON values or sub documents via JSONPath us
 
 The following will render "Stuff" into the output:
 
+{% raw %}
 ```handlebars
 {{jsonPath request.body '$.outer.inner'}}
 ```
+{% endraw %}
 
 And for the same JSON the following will render `{ "inner": "Stuff" }`:
 
+{% raw %}
 ```handlebars
 {{jsonPath request.body '$.outer'}}
 ```
+{% endraw %}
 
 Default value can be specified if the path evaluates to null or undefined:
 
+{% raw %}
 ```handlebars
 {{jsonPath request.body '$.size' default='M'}}
 ```
+{% endraw %}
 
 ## Parse JSON helper
 
@@ -384,6 +420,7 @@ otherwise the result will be returned.
 
 It can accept the JSON from a block:
 
+{% raw %}
 ```handlebars
 {{#parseJson 'parsedObj'}}
 {
@@ -394,25 +431,30 @@ It can accept the JSON from a block:
 {{!- Now we can access the object as usual --}}
 {{parsedObj.name}}
 ```
+{% endraw %}
 
 Or as a parameter:
 
+{% raw %}
 ```handlebars
 {{parseJson request.body 'bodyJson'}}
 {{bodyJson.name}}
 ```
+{% endraw %}
 
 Without assigning to a variable:
 
+{% raw %}
 ```handlebars
 {{lookup (parseJson request.body) 'name'}}
 ```
+{% endraw %}
 
 ## Date and time helpers
 
 A helper is present to render the current date/time, with the ability to specify the format ([via Java's SimpleDateFormat](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html)) and offset.
 
-
+{% raw %}
 ```handlebars
 {{now}}
 {{now offset='3 days'}}
@@ -420,23 +462,29 @@ A helper is present to render the current date/time, with the ability to specify
 {{now offset='1 years'}}
 {{now offset='10 years' format='yyyy-MM-dd'}}
 ```
+{% endraw %}
 
 Dates can be rendered in a specific timezone (the default is UTC):
 
+{% raw %}
 ```handlebars
 {{now timezone='Australia/Sydney' format='yyyy-MM-dd HH:mm:ssZ'}}
 ```
+{% endraw %}
 
 Pass `epoch` as the format to render the date as UNIX epoch time (in milliseconds), or `unix` as the format to render
 the UNIX timestamp in seconds.
 
+{% raw %}
 ```handlebars
 {{now offset='2 years' format='epoch'}}
 {{now offset='2 years' format='unix'}}
 ```
+{% endraw %}
 
 Dates can be parsed using the `parseDate` helper:
 
+{% raw %}
 ```handlebars
 // Attempts parsing using ISO8601, RFC 1123, RFC 1036 and ASCTIME formats.
 // We wrap in the date helper in order to print the result as a string.
@@ -448,14 +496,17 @@ Dates can be parsed using the `parseDate` helper:
 // Format can also be unix (epoch seconds) or epoch (epoch milliseconds)
 {{date (parseDate request.headers.MyDate format='unix')}}
 ```
+{% endraw %}
 
 Dates can be truncated to e.g. first day of month using the `truncateDate` helper:
 
+{% raw %}
 ```handlebars
 // If the MyDate header is Tue, 15 Jun 2021 15:16:17 GMT
 // then the result of the following will be 2021-06-01T00:00:00Z
 {{date (truncateDate (parseDate request.headers.MyDate) 'first day of month')}}
 ```
+{% endraw %}
 
 See the [full list of truncations here](./request-matching.md#all-truncations).
 
@@ -463,6 +514,7 @@ See the [full list of truncations here](./request-matching.md#all-truncations).
 
 Random strings of various kinds can be generated:
 
+{% raw %}
 ```handlebars
 {{randomValue length=33 type='ALPHANUMERIC'}}
 {{randomValue length=12 type='ALPHANUMERIC' uppercase=true}}
@@ -473,20 +525,25 @@ Random strings of various kinds can be generated:
 {{randomValue type='UUID'}}
 {{randomValue length=32 type='HEXADECIMAL' uppercase=true}}
 ```
+{% endraw %}
 
 ## Pick random helper
 
 A value can be randomly selected from a literal list:
 
+{% raw %}
 ```handlebars
 {{{pickRandom '1' '2' '3'}}}
 ```
+{% endraw %}
 
 Or from a list passed as a parameter:
 
+{% raw %}
 ```handlebars
 {{{pickRandom (jsonPath request.body '$.names')}}}
 ```
+{% endraw %}
 
 ## Random number helpers
 
@@ -495,30 +552,36 @@ we can use them for further work e.g. by doing arithemetic with the `math` helpe
 
 Random integers can be produced with lower and/or upper bounds, or neither:
 
+{% raw %}
 ```handlebars
 {{randomInt}}
 {{randomInt lower=5 upper=9}}
 {{randomInt upper=54323}}
 {{randomInt lower=-24}}
 ```
+{% endraw %}
 
 Likewise decimals can be produced with or without bounds:
 
+{% raw %}
 ```handlebars
 {{randomDecimal}}
 {{randomDecimal lower=-10.1 upper=-0.9}}
 {{randomDecimal upper=12.5}}
 {{randomDecimal lower=-24.01}}
 ```
+{% endraw %}
 
 ## Fake data helpers
 
 This helper produces random fake data of the desired types available in the [Data Faker library](https://github.com/datafaker-net/datafaker). Due to the size of this library, this helper has been provided via [`RandomExtension`](https://github.com/wiremock/wiremock-faker-extension).    
 
+{% raw %}
 ```handlebars
 {{random 'Name.first_name'}}
 {{random 'Address.postcode_by_state.AL' }}
 ```
+{% endraw %}
 
 ## Math helper
 
@@ -527,6 +590,7 @@ or strings as its operands and will always yield a number as its output rather t
 
 Addition, subtraction, multiplication, division and remainder (mod) are supported:
 
+{% raw %}
 ```handlebars
 {{math 1 '+' 2}}
 {{math 4 '-' 2}}
@@ -534,33 +598,40 @@ Addition, subtraction, multiplication, division and remainder (mod) are supporte
 {{math 8 '/' 2}}
 {{math 10 '%' 3}}
 ```
+{% endraw %}
 
 ## Range helper
 
 The `range` helper will produce an array of integers between the bounds specified:
 
+{% raw %}
 ```handlebars
 {{range 3 8}}
 {{range -2 2}}
 ```
+{% endraw %}
 
 This can be usefully combined with `randomInt` and `each` to output random length, repeating pieces of content e.g.
 
+{% raw %}
 ```handlebars
 {{#each (range 0 (randomInt lower=1 upper=10)) as |index|}}
 id: {{index}}
 {{/each}}
 ```
+{% endraw %}
 
 ## Array literal helper
 
 The `array` helper will produce an array from the list of parameters specified. The values can be any valid type.
 Providing no parameters will result in an empty array.
 
+{% raw %}
 ```handlebars
 {{array 1 'two' true}}
 {{array}}
 ```
+{% endraw %}
 
 ## Contains helper
 
@@ -569,17 +640,21 @@ contains the string passed in the second.
 
 It can be used as parameter to the `if` helper:
 
+{% raw %}
 ```handlebars
 {{#if (contains 'abcde' 'abc')}}YES{{/if}}
 {{#if (contains (array 'a' 'b' 'c') 'a')}}YES{{/if}}
 ```
+{% endraw %}
 
 Or as a block element on its own:
 
+{% raw %}
 ```handlebars
 {{#contains 'abcde' 'abc'}}YES{{/contains}}
 {{#contains (array 'a' 'b' 'c') 'a'}}YES{{/contains}}
 ```
+{% endraw %}
 
 ## Matches helper
 
@@ -588,20 +663,25 @@ regular expression passed in the second:
 
 Like the `contains` helper it can be used as parameter to the `if` helper:
 
+{% raw %}
 ```handlebars
 {{#if (matches '123' '[0-9]+')}}YES{{/if}}
 ```
+{% endraw %}
 
 Or as a block element on its own:
 
+{% raw %}
 ```handlebars
 {{#matches '123' '[0-9]+'}}YES{{/matches}}
 ```
+{% endraw %}
 
 ## String trim helper
 
 Use the `trim` helper to remove whitespace from the start and end of the input:
 
+{% raw %}
 ```handlebars
 {{trim request.headers.X-Padded-Header}}
 
@@ -611,11 +691,13 @@ Use the `trim` helper to remove whitespace from the start and end of the input:
 
 {{/trim}}
 ```
+{% endraw %}
 
 ## Base64 helper
 
 The `base64` helper can be used to base64 encode and decode values:
 
+{% raw %}
 ```handlebars
 {{base64 request.headers.X-Plain-Header}}
 {{base64 request.headers.X-Encoded-Header decode=true}}
@@ -632,11 +714,13 @@ Content to encode without padding
 Q29udGVudCB0byBkZWNvZGUK
 {{/base64}}
 ```
+{% endraw %}
 
 ## URL encoding helper
 
 The `urlEncode` helper can be used to URL encode and decode values:
 
+{% raw %}
 ```handlebars
 {{urlEncode request.headers.X-Plain-Header}}
 {{urlEncode request.headers.X-Encoded-Header decode=true}}
@@ -649,6 +733,7 @@ Content to encode
 Content%20to%20decode
 {{/urlEncode}}
 ```
+{% endraw %}
 
 ## Form helper
 
@@ -656,16 +741,20 @@ The `formData` helper parses its input as an HTTP form, returning an object cont
 The helper takes the input string and variable name as its required parameters, with an optional `urlDecode` parameter
 indicating that values should be URL decoded. The folowing example will parse the request body as a form, then output a single field `formField3`:
 
+{% raw %}
 ```handlebars
 {{formData request.body 'form' urlDecode=true}}{{form.formField3}}
 ```
+{% endraw %}
 
 If the form submitted has multiple values for a given field, these can be accessed by index:
 
+{% raw %}
 ```handlebars
 {{formData request.body 'form' urlDecode=true}}{{form.multiValueField.1}}, {{form.multiValueField.2}}
 {{formData request.body 'form' urlDecode=true}}{{form.multiValueField.first}}, {{form.multiValueField.last}}
 ```
+{% endraw %}
 
 ## Regular expression extract helper
 
@@ -673,48 +762,60 @@ The `regexExtract` helper supports extraction of values matching a regular expre
 
 A single value can be extracted like this:
 
+{% raw %}
 ```handlebars
 {{regexExtract request.body '[A-Z]+'}}"
 ```
+{% endraw %}
 
 Regex groups can be used to extract multiple parts into an object for later use (the last parameter is a variable name to which the object will be assigned):
 
+{% raw %}
 ```handlebars
 {{regexExtract request.body '([a-z]+)-([A-Z]+)-([0-9]+)' 'parts'}}
 {{parts.0}},{{parts.1}},{{parts.2}}
 ```
+{% endraw %}
 
 Optionally, a default value can be specified for when there is no match. When the regex does not match and no default is specified, an error will be thrown instead.
 
+{% raw %}
 ```handlebars
 {{regexExtract 'abc' '[0-9]+' default='my default value'}}
 ```
+{% endraw %}
 
 ## Size helper
 
 The `size` helper returns the size of a string, list or map:
 
+{% raw %}
 ```handlebars
 {{size 'abcde'}}
 {{size request.query.things}}
 ```
+{% endraw %}
 
 ## Hostname helper
 
 The local machine's hostname can be printed:
 
+{% raw %}
 ```handlebars
 {{hostname}}
 ```
+{% endraw %}
 
 ## System property helper
 
 Environment variables and system properties can be printed:
 
+{% raw %}
 ```handlebars
 {{systemValue type='ENVIRONMENT' key='PATH'}}
 {{systemValue type='PROPERTY' key='os.path'}}
 ```
+{% endraw %}
 
 If you want to add permitted extensions to your rule,
 then you can use the `ResponseTemplateTransformer` when constructing the response template extension.
@@ -725,6 +826,7 @@ The `ResponseTemplateTransformer` accepts four arguments:
 3. The `FileSource` which is a list of files that can be used for relative references in stub definitions
 4. A list of `TemplateModelDataProviderExtension` objects which are additional metadata providers which will be injected into the model and consumed in the downstream resolution if needed
 
+{% raw %}
 ```java
 @Rule
 public WireMockRule wm = new WireMockRule(options()
@@ -739,6 +841,7 @@ public WireMockRule wm = new WireMockRule(options()
         )
 );
 ```
+{% endraw %}
 
 !!! note
 
