@@ -212,7 +212,7 @@ You can create a stub mapping by posting to WireMock's HTTP API:
 ```bash
 $ curl -X POST \
 --data '{ "request": { "url": "/get/this", "method": "GET" }, "response": { "status": 200, "body": "Here it is!\n" }}' \
-http://localhost:8080/__admin/mappings/new
+http://localhost:8080/__admin/mappings
 ```
 
 And then fetch it back:
