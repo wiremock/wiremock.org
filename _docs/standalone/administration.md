@@ -10,7 +10,7 @@ You can find the key use-cases and the full specification below.
 
 ## Fetching all of your stub mappings (and checking WireMock is working)
 
-A GET request to the root admin URL e.g `http://localhost:8080/__admin`
+A GET request to the root admin URL e.g `http://localhost:8080/__admin/mappings`
 will return all currently registered stub mappings.
 This is a useful way to check whether WireMock is running on the host and port you expect.
 
