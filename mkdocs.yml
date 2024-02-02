@@ -11,7 +11,7 @@ repo_name: WireMock Docs on GitHub
 edit_uri: edit/main/_docs/
 
 # Build
-site_dir: _site-docs
+site_dir: _build
 
 extra_javascript:
   - js/jquery/jquery=1.12.1.min.js
