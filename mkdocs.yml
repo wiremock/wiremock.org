@@ -46,7 +46,6 @@ theme:
     # - navigation.prune
     - navigation.sections
     - navigation.expand
-    - navigation.tabs
     # - navigation.tabs.sticky
     - navigation.top
     - navigation.tracking
@@ -145,11 +144,11 @@ plugins:
         "solutions.md": "README.md"
 
 nav:
-  - Docs: '!import https://github.com/wiremock/wiremock?branch=docs-experiments&docs_dir=docs&config=mkdocs.yml'
+  - Docs: "!import https://github.com/wiremock/wiremock?branch=docs-experiments&docs_dir=docs&config=mkdocs.yml"
 
   - Extensions:
       - WireMock Extensions: docs/extensions/README.md
-      - gRPC: '!import https://github.com/wiremock/wiremock-grpc-extension?branch=docs-experiments&docs_dir=docs&config=mkdocs.yml'
+      - gRPC: "!import https://github.com/wiremock/wiremock-grpc-extension?branch=docs-experiments&docs_dir=docs&config=mkdocs.yml"
       - GraphQL: graphql-extension/README.md
       - State: state-extension/README.md
       - Response Template Transformer: docs/response-templating.md
