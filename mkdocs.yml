@@ -2,8 +2,8 @@ site_name: WireMock Documentation
 site_description: >-
   WireMock Documentation.
 # FIXME: replace by production file
-site_url: https://oleg-nenashev.github.io
-site_2x_url: https://oleg-nenashev.github.io
+site_url: https://wiremock.org
+site_2x_url: https://wiremock.org/2.x
 copyright: Copyright &copy; 2023 - WireMock Contributors
 docs_dir: _site
 repo_url: https://github.com/wiremock/wiremock.org
@@ -98,14 +98,14 @@ plugins:
   - multirepo:
       # TODO: Change to True once works
       cleanup: false
-      keep_docs_dir: true
+      keep_docs_dir: false
       nav_repos:
         - name: graphql-extension
           import_url: "https://github.com/wiremock/wiremock-graphql-extension?branch=main&edit_uri=/blob/main/"
           imports: [/README.md, docs/*]
-        - name: grpc-extension
-          import_url: "https://github.com/wiremock/wiremock-grpc-extension?branch=main&edit_uri=/blob/main/"
-          imports: [/README.md, docs/*]
+        # - name: grpc-extension
+        #   import_url: "https://github.com/wiremock/wiremock-grpc-extension?branch=main&edit_uri=/blob/main/"
+        #   imports: [/README.md, docs/*]
         - name: state-extension
           import_url: "https://github.com/wiremock/wiremock-state-extension?branch=develop&edit_uri=/blob/develop/"
           imports: [/README.md, docs/*]
@@ -115,35 +115,6 @@ plugins:
         - name: faker-extension
           import_url: "https://github.com/wiremock/wiremock-faker-extension?branch=main&edit_uri=/blob/main/"
           imports: [/README.md]
-
-        # Outside WireMock GitHub org
-        - name: 9cookies-extension
-          import_url: "https://github.com/9cookies/wiremock-extensions?branch=master&edit_uri=/blob/master/"
-          imports: [/*.md]
-        - name: jwt-extension
-          import_url: "https://github.com/MasonM/wiremock-jwt-extension?branch=master&edit_uri=/blob/master/"
-          imports: [/README.md]
-        - name: cors-extension
-          import_url: "https://github.com/RichieLoco/WiremockCorsExtension?branch=master&edit_uri=/blob/master/"
-          imports: [/README.md]
-        - name: stub-mapping-tracker-extension
-          import_url: "https://github.com/MasonM/wiremock-stub-mapping-tracker?branch=master&edit_uri=/blob/master/"
-          imports: [/README.md]
-        - name: prometheus-extension
-          import_url: "https://github.com/mikeskali/wiremock-metrics?branch=master&edit_uri=/blob/master/"
-          imports: [/README.md]
-        - name: record-delay-extension
-          import_url: "https://github.com/anuragashok/wiremock-extension-record-delay?branch=main&edit_uri=/blob/main/"
-          imports: [/README.md]
-        - name: velocity-transformer-extension
-          import_url: "https://github.com/adamyork/wiremock-velocity-transformer?branch=master&edit_uri=/blob/master/"
-          imports: [/README.md]
-        - name: unused-stubs-extension
-          import_url: "https://github.com/MasonM/wiremock-unused-stubs-extension?branch=master&edit_uri=/blob/master/"
-          imports: [/README.md]
-        - name: metrics-extension
-          import_url: "https://github.com/rasklaad/wiremock-metrics?branch=master&edit_uri=/blob/master/"
-          imports: [/README.MD]
 
         # System
         - name: community
@@ -174,77 +145,25 @@ plugins:
         "solutions.md": "README.md"
 
 nav:
-  - Using WireMock:
-      - Getting started:
-          - Overview: docs/overview.md
-          - "Quick Start: API Mocking with Java and JUnit 4": docs/quickstart/java-junit.md
-          - Download and Installation: docs/download-and-installation.md
-          - WireMock Tutorials: docs/getting-started.md
-          - FAQ: docs/faq.md
-      - WireMock Standalone:
-          - Running in Docker: docs/standalone/docker.md
-          - Running as a Standalone Process: docs/standalone/java-jar.md
-          - Administrating WireMock: docs/standalone/administration.md
-          - Admin REST API Specification: docs/standalone/admin-api-reference.md
-      - Java Usage:
-          - JUnit 5+ Jupiter: docs/junit-jupiter.md
-          - JUnit 4 and Vintage: docs/junit-extensions.md
-          - Spring Boot: docs/solutions/spring-boot.md
-          - Plain Java: docs/java-usage.md
-          - Java configuration: docs/configuration.md
-          - Running without the HTTP Server: docs/running-without-http-server.md
-      - Stubbing & Verifying:
-          - Stubbing: docs/stubbing.md
-          - Request Matching: docs/request-matching.md
-          - Response Templating: docs/response-templating.md
-          - Simulating Faults: docs/simulating-faults.md
-          - Stateful Behaviour: docs/stateful-behaviour.md
-          - Proxying: docs/proxying.md
-          - Verifying: docs/verifying.md
-      - Templating:
-          - WireMock API Templates Library: docs/mock-api-templates/README.md
-          - Using Mock API Templates: docs/mock-api-templates/usage.md
-      - Record & Playback:
-          - Record and Playback: docs/record-playback.md
-      - Protocols:
-          - Supported Protocols: docs/protocols/README.md
-          - Webhooks and Callbacks: docs/webhooks-and-callbacks.md
-          - Mocking gRPC services: docs/grpc.md
-          - WireMock and GraphQL: docs/solutions/graphql.md
-          - Serving HTTPs: docs/https.md
-      - Advanced use-cases:
-          - Multi-domain Mocking: docs/multi-domain-mocking.md
-          - Deploying into a servlet container: docs/advanced/deploy-to-servlet-container.md
-          - "WireMock on Java 1.7": docs/advanced/java7.md
-      - Reference:
-          - Admin API: docs/standalone/admin-api-reference.md
-          - Security: dotgithub/SECURITY.md
-          - WireMock API Templates Library: docs/mock-api-templates/README.md
+  - Docs: '!import https://github.com/wiremock/wiremock?branch=docs-experiments&docs_dir=docs&config=mkdocs.yml'
 
   - Extensions:
       - WireMock Extensions: docs/extensions/README.md
-      - Features:
-          - gRPC: grpc-extension/README.md
-          - GraphQL: graphql-extension/README.md
-          - State: state-extension/README.md
-          - Response Template Transformer: docs/response-templating.md
-          - Velocity Response Transformer: velocity-transformer-extension/README.md
-          - Data Faker: faker-extension/README.md
-          - Webhooks: webhooks-and-callbacks.md
-          - CORS protection: cors-extension/README.md
-          - JSON Web Tokens (JWT): jwt-extension/README.md
-          - JSON Body Transformer: 9cookies-extension/json-body-transformer.md
-          - Request Time Matcher: 9cookies-extension/request-time-matcher.md
-          - Unused Stubs: unused-stubs-extension/README.md
-      - Operations Extensions:
-          - Metrics Extension: metrics-extension/README.MD
-          - Prometheus Metrics: prometheus-extension/README.md
-          - OpenTelemetry: otel-extension/README.md
-      - Developer Extensions:
-          - Callback Simulator: 9cookies-extension/callback-simulator.md
-          - Keywords: 9cookies-extension/keywords.md
-          - Stub Mapping Tracker: stub-mapping-tracker-extension/README.md
-          - Record Delay Capture: record-delay-extension/README.md
+      - gRPC: '!import https://github.com/wiremock/wiremock-grpc-extension?branch=docs-experiments&docs_dir=docs&config=mkdocs.yml'
+      - GraphQL: graphql-extension/README.md
+      - State: state-extension/README.md
+      - Response Template Transformer: docs/response-templating.md
+      - Velocity Response Transformer: velocity-transformer-extension/README.md
+      - Data Faker: faker-extension/README.md
+      - Webhooks: webhooks-and-callbacks.md
+      - CORS protection: cors-extension/README.md
+      - JSON Web Tokens (JWT): jwt-extension/README.md
+      - JSON Body Transformer: 9cookies-extension/json-body-transformer.md
+      - Request Time Matcher: 9cookies-extension/request-time-matcher.md
+      - Unused Stubs: unused-stubs-extension/README.md
+      - Metrics Extension: metrics-extension/README.MD
+      - Prometheus Metrics: prometheus-extension/README.md
+      - OpenTelemetry: otel-extension/README.md
 
   - Integrations:
       - WireMock Solution Pages: docs/solutions/README.md
@@ -259,20 +178,6 @@ nav:
       - Kubernetes: docs/solutions/kubernetes.md
       - Testcontainers: docs/solutions/testcontainers.md
       - C/C++: docs/solutions/c_cpp.md
-
-  - Developer Guide:
-      - Extending WireMock: docs/extending-wiremock.md
-      - Filtering and Modifying Requests: docs/extensibility/filtering-requests.md
-      - Transforming Responses: docs/extensibility/transforming-responses.md
-      - Custom Matching: docs/extensibility/custom-matching.md
-      - Listening for Serve Events: docs/extensibility/listening-for-serve-events.md
-      - Admin API Extensions: docs/extensibility/extending-the-admin-api.md
-      - Adding Template Helpers: docs/extensibility/adding-template-helpers.md
-      - Adding Template Model Data: docs/extensibility/adding-template-model-data.md
-      - Listening for Stub Changes: docs/extensibility/listening-for-stub-changes.md
-      - Listening for Settings Changes: docs/extensibility/listening-for-settings-changes.md
-      - Mappings Loader Extensions: docs/extensibility/adding-mappings-loader.md
-      - Stub Metadata: docs/stub-metadata.md
 
   - Community:
       - Participate in WireMock: docs/participate.md

@@ -6,7 +6,7 @@ mkdocs-autorefs==0.5.0
 mkdocs-macros-plugin==1.0.5
 mkdocs-material==9.4.5
 mkdocs-material[imaging]==9.4.5
-mkdocs-multirepo-plugin==0.6.3
+mkdocs-multirepo-plugin==0.7.0
 mkdocs-redirects==1.2.1
 mkdocs-extra-sass-plugin==0.1.0
 mkdocs-render-swagger-plugin===0.1.1
