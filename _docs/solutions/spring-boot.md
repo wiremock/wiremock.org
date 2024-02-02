@@ -37,14 +37,14 @@ class TodoControllerTests {
     void aTest() {
         // returns a URL to WireMockServer instance
         env.getProperty("user-client.url"); 
-        wiremock.stubFor(stubFor(get("/todolist").willReturn(aResponse()
+        wiremock.stubFor(get("/todolist").willReturn(aResponse()
                 .withHeader("Content-Type", "application/json")
                 .withBody("""
                         [
                             { "id": 1, "userId": 1, "title": "my todo" },
                         ]
                         """)
-        )));
+        ));
     }
 }
 ```
