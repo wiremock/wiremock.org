@@ -1,112 +1,161 @@
 [
     {
-      "source": "/docs/android",
-      "target": "/docs/solutions/android",
-      "status": "301",
-      "condition": null,
-      "condition": null
+        "source": "/docs/android",
+        "target": "/docs/solutions/android",
+        "status": "301",
+        "condition": null,
+        "condition": null
     },
     {
-      "source": "/docs/go",
-      "target": "/docs/solutions/golang",
-      "status": "301",
-      "condition": null
+        "source": "/docs/go",
+        "target": "/docs/solutions/golang",
+        "status": "301",
+        "condition": null
     },
     {
-      "source": "/docs/solutions/go",
-      "target": "/docs/solutions/golang",
-      "status": "301",
-      "condition": null
+        "source": "/docs/solutions/go",
+        "target": "/docs/solutions/golang",
+        "status": "301",
+        "condition": null
     },
     {
-      "source": "/docs/graphql",
-      "target": "/docs/solutions/graphql",
-      "status": "301",
-      "condition": null
+        "source": "/docs/graphql",
+        "target": "/docs/solutions/graphql",
+        "status": "301",
+        "condition": null
     },
     {
-      "source": "/docs/testcontainers",
-      "target": "/docs/solutions/testcontainers",
-      "status": "301",
-      "condition": null
+        "source": "/docs/testcontainers",
+        "target": "/docs/solutions/testcontainers",
+        "status": "301",
+        "condition": null
     },
     {
-      "source": "/docs/spring-boot",
-      "target": "/docs/solutions/spring-boot",
-      "status": "301",
-      "condition": null
+        "source": "/docs/spring-boot",
+        "target": "/docs/solutions/spring-boot",
+        "status": "301",
+        "condition": null
     },
     {
-      "source": "/docs/api",
-      "target": "/docs/standalone/admin-api-reference",
-      "status": "301",
-      "condition": null
+        "source": "/docs/api",
+        "target": "/docs/standalone/admin-api-reference",
+        "status": "301",
+        "condition": null
     },
     {
-      "source": "/docs/download",
-      "target": "/docs/download-and-installation",
-      "status": "301",
-      "condition": null
+        "source": "/docs/download",
+        "target": "/docs/download-and-installation",
+        "status": "301",
+        "condition": null
     },
     {
-      "source": "/docs/tutorials",
-      "target": "/docs/getting-started",
-      "status": "301",
-      "condition": null
+        "source": "/docs/tutorials",
+        "target": "/docs/getting-started",
+        "status": "301",
+        "condition": null
     },
     {
-      "source": "/docs/plain-java",
-      "target": "/docs/java-usage",
-      "status": "301",
-      "condition": null
+        "source": "/docs/plain-java",
+        "target": "/docs/java-usage",
+        "status": "301",
+        "condition": null
     },
     {
-      "source": "/docs/junit-rule",
-      "target": "/docs/junit-extensions",
-      "status": "301",
-      "condition": null
+        "source": "/docs/junit-rule",
+        "target": "/docs/junit-extensions",
+        "status": "301",
+        "condition": null
     },
     {
-      "source": "/docs/junit-4",
-      "target": "/docs/junit-extensions",
-      "status": "301",
-      "condition": null
+        "source": "/docs/junit-4",
+        "target": "/docs/junit-extensions",
+        "status": "301",
+        "condition": null
     },
     {
-      "source": "/docs/junit-5",
-      "target": "/docs/junit-jupiter",
-      "status": "301",
-      "condition": null
+        "source": "/docs/junit-5",
+        "target": "/docs/junit-jupiter",
+        "status": "301",
+        "condition": null
     },
     {
-      "source": "/docs/docker",
-      "target": "/docs/standalone/docker",
-      "status": "301",
-      "condition": null
+        "source": "/docs/docker",
+        "target": "/docs/standalone/docker",
+        "status": "301",
+        "condition": null
     },
     {
-      "source": "/docs/solutions/docker",
-      "target": "/docs/standalone/docker",
-      "status": "301",
-      "condition": null
+        "source": "/docs/solutions/docker",
+        "target": "/docs/standalone/docker",
+        "status": "301",
+        "condition": null
     },
     {
-      "source": "/docs/running-standalone",
-      "target": "/docs/standalone/java-jar",
-      "status": "301",
-      "condition": null
+        "source": "/docs/running-standalone",
+        "target": "/docs/standalone/java-jar",
+        "status": "301",
+        "condition": null
     },
     {
-      "source": "/docs/support",
-      "target": "/docs/../support",
-      "status": "301",
-      "condition": null
+        "source": "/docs/support",
+        "target": "/docs/../support",
+        "status": "301",
+        "condition": null
     },
     {
-      "source": "/docs/solutions",
-      "target": "/docs/README",
-      "status": "301",
-      "condition": null
+        "source": "/docs/solutions",
+        "target": "/docs/README",
+        "status": "301",
+        "condition": null
+    },
+    {
+        "source": "/docs/stateful-behaviour.html",
+        "target": "/docs/stateful-behaviour",
+        "status": "301"
+    },
+    {
+        "source": "stubbing.html",
+        "target": "/docs/stubbing",
+        "status": "301"
+    },
+    {
+        "source": "simulating-faults.html",
+        "target": "/docs/simulating-faults",
+        "status": "301"
+    },
+    {
+        "source": "android.html",
+        "target": "/docs/solutions/android",
+        "status": "301"
+    },
+    {
+        "source": "proxying.html",
+        "target": "/docs/proxying",
+        "status": "301"
+    },
+    {
+        "source": "record-playback.html",
+        "target": "/docs/record-playback",
+        "status": "301"
+    },
+    {
+        "source": "verifying.html",
+        "target": "/docs/verifying",
+        "status": "301"
+    },
+    {
+        "source": "extending-wiremock.html",
+        "target": "/docs/extending-wiremock",
+        "status": "301"
+    },
+    {
+        "source": "https.html",
+        "target": "/docs/https",
+        "status": "301"
+    },
+    {
+        "source": "running-without-http-server.html",
+        "target": "/docs/running-without-http-server",
+        "status": "301"
     }
-  ]
-  
+]
