@@ -3,7 +3,6 @@
         "source": "/docs/android",
         "target": "/docs/solutions/android",
         "status": "301",
-        "condition": null,
         "condition": null
     },
     {
@@ -156,6 +155,126 @@
     {
         "source": "running-without-http-server.html",
         "target": "/docs/running-without-http-server",
+        "status": "301"
+    },
+    {
+        "source": "/download.html",
+        "target": "/docs/download-and-installation",
+        "status": "301"
+    },
+    {
+        "source": "/download/",
+        "target": "/docs/download-and-installation",
+        "status": "301"
+    },
+    {
+        "source": "/downloads.html",
+        "target": "/docs/download-and-installation",
+        "status": "301"
+    },
+    {
+        "source": "/downloads/",
+        "target": "/docs/download-and-installation",
+        "status": "301"
+    },
+    {
+        "source": "/docs/download.html",
+        "target": "/docs/download-and-installation",
+        "status": "301"
+    },
+    {
+        "source": "/docs/download/",
+        "target": "/docs/download-and-installation",
+        "status": "301"
+    },
+    {
+        "source": "/junit-rule.html",
+        "target": "/docs/junit-extensions",
+        "status": "301"
+    },
+    {
+        "source": "/docs/junit-rule/index.html",
+        "target": "/docs/junit-extensions",
+        "status": "301"
+    },
+    {
+        "source": "/docs/junit-rule/",
+        "target": "/docs/junit-extensions",
+        "status": "301"
+    },
+    {
+        "source": "/junit-rule/",
+        "target": "/docs/junit-extensions",
+        "status": "301"
+    },
+    {
+        "source": "/docs/junit-4.html",
+        "target": "/docs/junit-extensions",
+        "status": "301"
+    },
+    {
+        "source": "/getting-started.html",
+        "target": "/docs/getting-started",
+        "status": "301"
+    },
+    {
+        "source": "/docs/tutorials.html",
+        "target": "/docs/getting-started",
+        "status": "301"
+    },
+    {
+        "source": "/running-standalone.html",
+        "target": "/docs/standalone/java-jar",
+        "status": "301"
+    },
+    {
+        "source": "/running-standalone/",
+        "target": "/docs/standalone/java-jar",
+        "status": "301"
+    },
+    {
+        "source": "/docs/running-standalone.html",
+        "target": "/docs/standalone/java-jar",
+        "status": "301"
+    },
+    {
+        "source": "/docs/running-standalone/",
+        "target": "/docs/standalone/java-jar",
+        "status": "301"
+    },
+    {
+        "source": "/docs/solutions/docker.html",
+        "target": "/docs/standalone/docker",
+        "status": "301"
+    },
+    {
+        "source": "/docs/docker.html",
+        "target": "/docs/standalone/docker",
+        "status": "301"
+    },
+    {
+        "source": "/docs/docker/",
+        "target": "/docs/standalone/docker",
+        "status": "301"
+    },
+    {
+        "source": "/wiremock-admin-api.html",
+        "target": "/docs/standalone/admin-api-reference",
+        "status": "301"
+    },
+    {
+        "source": "/docs/api.html",
+        "target": "/docs/standalone/admin-api-reference",
+        "status": "301"
+    },
+    {
+        "source": "/docs/api/",
+        "target": "/docs/standalone/admin-api-reference",
+        "status": "301"
+    },
+    {
+        "source": "/docs/junit-5.html",
+        "target": "/docs/junit-jupiter",
         "status": "301"
     }
 ]
