@@ -1,53 +1,48 @@
 ---
 description: >
-    API Templates for both WireMock and WireMock Cloud; Oveview
+    API Templates library for WireMock and WireMock Cloud
 ---
 
-# WireMock API Templates Library
+# WireMock API templates library
 
-The [library.wiremock.org](https://library.wiremock.org) site provides templates
-that can be used with both
-[WireMock](https://wiremock.org/) and [WireMock Cloud](https://wiremock.io).
+Using a existing template from the templates library, you can quickly get an API mock running on your local machine or in the cloud.
 
-Browse our library of templates and examples for use in mocking APIs,
-find the examples that you need,
-and get a running mock in seconds&emdash;on your local machine or in the cloud.
+Browse the [library.wiremock.org](https://library.wiremock.org) site to view an extensive set of mock API templates and examples
+to use with both [WireMock](https://wiremock.org/) and [WireMock Cloud](https://wiremock.io).
+
 
 [![Mock API Templates Library](https://library.wiremock.org/images/logo/template-library-wide.png)](https://library.wiremock.org/)
 
-## Using templates in WireMock
+## Use a template in you WireMock instance
 
-1. Go to the [Mock API Templates Library](https://library.wiremock.org) site.
-2. Choose a template you need. There are categories and search capabilities at your disposal.
-3. Click the _Download WireMock JSON_ button to download the JSON file.
-4. Use the JSON file to configure your WireMock instance
-   See [Using Templates](./usage.md).
+The library provides categories and search capabilities for you to use in locating approriate options. For each option that you choose:
 
-## Using templates in WireMock Cloud
+1. Click the _Download WireMock JSON_ button to download the JSON file.
+2. Use the JSON file in your WireMock instance as indicated in [Using Templates](./usage.md).
+
+## Import templates into WireMock Cloud
 
 <!-- TODO: Replace by the page -->
 
-For WireMock Cloud there is also the _Run in WireMock Cloud_ button that
-allows you to quickly import a Mock API definition into your project.
+To quickly import a Mock API definition into your WireMock Cloud project, use the _Run in WireMock Cloud_ t
 
-## Editing and Adding templates
+## Editing and adding templates
 
 Template definitions can be found in another repository:
 [wiremock/api-template-library](https://github.com/wiremock/api-template-library).
 
 If you would like to edit the existing template
-or to contribute a new Mock API template,
-feel free to submit a pull request to
+or contribute a new mock API template, feel free to submit a pull request to
 [wiremock/api-template-library](https://github.com/wiremock/api-template-library).
 This is a public repository enables WireMock and WireMock Cloud users 
-to build their own Mock APIs based off a public template,
-e.g. for your public service.
+to build their own Mock APIs based off a public template.
 
-You can add a template to featured list by adding the `featured` tag in the metadata JSON.
+You can add a template to the featured list by adding the `featured` tag in the metadata JSON.
 If a template is somehow related to WireMock, please also use the `wiremock` tag.
 
-It may take some time to propagate changes to
-WireMock or WireMock Cloud.
+!!! note
+
+      Please know that it can take some time to propagate changes to WireMock or WireMock Cloud.
 
 ## References
 

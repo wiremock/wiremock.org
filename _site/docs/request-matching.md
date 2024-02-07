@@ -3,9 +3,10 @@ description: Match requests to stubs and verify queries
   using request attributes.
 ---
 
-# Matching and filtering HTTP requests in WireMock
+# Request matching
 
-WireMock enables flexible definition of a mock APIs by supporting rich matching of incoming requests. 
+WireMock enables flexible definition of a mock APIs by supporting rich matching and filtering of incoming requests. 
+
 You can make use of WireMock's in-built match operators, or set up [custom matching](./extending-wiremock.md#custom-request-matchers).
 
 Stub matching and verification queries can use the following request attributes:
@@ -1717,3 +1718,197 @@ Includes matcher matches multiple values or patterns specified and may contain o
       }
     }
     ```
+
+### Manage request template data with helpers
+
+Catgories of helpers for managing data while using results from response temaplates.
+
+#### Extract regular expression(s)
+
+To extract one or more values matching a regular expresson from a string use the `regexExtract` helper.
+
+Following are example Handlebar snippets.
+
+Extract a single value:
+
+{% raw %}
+```handlebars
+{{regexExtract request.body '[A-Z]+'}}"
+```
+{% endraw %}
+
+To extract multiple parts into an object for later use, use regex groups. The last parameter, here listed as `parts`, is the variable name for use in labelling results:
+
+{% raw %}
+```handlebars
+{{regexExtract request.body '([a-z]+)-([A-Z]+)-([0-9]+)' 'parts'}}
+{{parts.0}},{{parts.1}},{{parts.2}}
+```
+{% endraw %}
+
+For cases in which there might be no match, you can specify a default value. 
+
+{% raw %}
+```handlebars
+{{regexExtract 'abc' '[0-9]+' default='my default value'}}
+```
+{% endraw %}
+
+!!! warning
+
+    When the regex does not match and no default is specified, an error is thrown.
+
+!!! note
+
+    Matching of regular expressions is case-insensitive.
+    If no permitted system key patterns are set, a single default of `wiremock.*` is used.
+
+#### Get data size
+
+The `size` helper returns the size of a string, list or map:
+
+{% raw %}
+```handlebars
+{{size 'abcde'}}
+{{size request.query.things}}
+```
+{% endraw %}
+
+#### Trim string whitespace
+
+Use the `trim` helper to remove whitespace from the start and end of the input:
+
+{% raw %}
+```handlebars
+{{trim request.headers.X-Padded-Header}}
+
+{{#trim}}
+
+    Some stuff with whitespace
+
+{{/trim}}
+```
+{% endraw %}
+
+
+## Data types and comparisons using helpers
+
+#### Encode/decode in `base64` 
+
+Tto base64 encode and decode values, use the `base64` helper:
+
+{% raw %}
+```handlebars
+{{base64 request.headers.X-Plain-Header}}
+{{base64 request.headers.X-Encoded-Header decode=true}}
+
+{{#base64}}
+Content to encode
+{{/base64}}
+
+{{#base64 padding=false}}
+Content to encode without padding
+{{/base64}}
+
+{{#base64 decode=true}}
+Q29udGVudCB0byBkZWNvZGUK
+{{/base64}}
+```
+{% endraw %}
+
+
+#### `contains` helper
+
+The `contains` helper returns a boolean value indicating whether the string or array passed as the first parameter
+contains the string passed in the second.
+
+It can be used as parameter to the `if` helper:
+
+{% raw %}
+```handlebars
+{{#if (contains 'abcde' 'abc')}}YES{{/if}}
+{{#if (contains (array 'a' 'b' 'c') 'a')}}YES{{/if}}
+```
+{% endraw %}
+
+Or as a block element on its own:
+
+{% raw %}
+```handlebars
+{{#contains 'abcde' 'abc'}}YES{{/contains}}
+{{#contains (array 'a' 'b' 'c') 'a'}}YES{{/contains}}
+```
+{% endraw %}
+
+
+#### Boolean match
+
+The `matches` helper returns a boolean value indicating whether the string passed as the first parameter matches the regular expression passed in the second:
+
+Like the `contains` helper it can be used as parameter to the `if` helper:
+
+{% raw %}
+```handlebars
+{{#if (matches '123' '[0-9]+')}}YES{{/if}}
+```
+{% endraw %}
+
+Or as a block element on its own:
+
+{% raw %}
+```handlebars
+{{#matches '123' '[0-9]+'}}YES{{/matches}}
+```
+{% endraw %}
+
+#### Math helper
+
+The `math` (or maths, depending where you are) helper performs common arithmetic operations. It can accept integers, decimals
+or strings as its operands and will always yield a number as its output rather than a string.
+
+Addition, subtraction, multiplication, division and remainder (mod) are supported:
+
+{% raw %}
+```handlebars
+{{math 1 '+' 2}}
+{{math 4 '-' 2}}
+{{math 2 '*' 3}}
+{{math 8 '/' 2}}
+{{math 10 '%' 3}}
+```
+{% endraw %}
+
+#### Bounded integer array 
+
+The `range` helper will produce an array of integers between the bounds specified:
+
+{% raw %}
+```handlebars
+{{range 3 8}}
+{{range -2 2}}
+```
+{% endraw %}
+
+This can be usefully combined with `randomInt` and `each` to output random length, repeating pieces of content e.g.
+
+{% raw %}
+```handlebars
+{{#each (range 0 (randomInt lower=1 upper=10)) as |index|}}
+id: {{index}}
+{{/each}}
+```
+{% endraw %}
+
+#### Array literal
+
+The `array` helper will produce an array from the list of parameters specified. The values can be any valid type.
+Providing no parameters will result in an empty array.
+
+{% raw %}
+```handlebars
+{{array 1 'two' true}}
+{{array}}
+```
+{% endraw %}
+
+

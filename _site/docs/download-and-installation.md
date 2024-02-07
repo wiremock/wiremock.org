@@ -3,13 +3,20 @@ description: >
     download and install WireMock.
 ---
 
-# Download and Installation
+# Download and Install
 
-WireMock is available as a standalone service for Docker or Java, Java library, NPM package, or SaaS.
+WireMock is available as a standalone service for:  
+
+- Docker
+- Java
+- Java library
+- NPM package
+- SaaS
 
 ## Download options
 
 WireMock ditributes Java packages in two flavours:
+
 - a standard JAR containing just WireMock.
 - a standalone uber JAR containing WireMock plus all its dependencies.
 
@@ -50,6 +57,13 @@ Learn more in the [Docker guide](./standalone/docker.md).
 
 ### Direct download
 
-If you want to run WireMock as a standalone process you can
+To run WireMock as a standalone process you can
 <a id="wiremock-standalone-download" href="https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/{{ versions.wiremock_version }}/wiremock-standalone-{{ versions.wiremock_version }}.jar">download the standalone JAR from
 here</a>
+
+For next steps, take a look at:
+
+- the [Template library](https://library.wiremock.org).
+- WireMock [tutorials](./getting-started.md).
+- learn how to use [Request matching](./request-matching.md),
+- learn how to use [Response templates](./response-templating.md).

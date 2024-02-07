@@ -1,16 +1,20 @@
 ---
 description: >
     attach arbitrary metadata to stub mappings,
-    for use in later search, deletion, or retrieval.
+    to use later in search, deletion, or retrieval.
 ---
 
 # Associating and using metadata with API stubs
 
-It is possible to attach arbitrary metadata to stub mappings, which can be later used for search, deletion, or retrieval.
+You can attach arbitrary metadata to stub mappings, to be used later for any of the following:
+
+- search. 
+- deletion.
+- retrieval.
 
 ## Adding metadata to stubs
 
-Data under the `metadata` key is a JSON object (represented in Java by a `Map<String, ?>`). It can be added to a stub mapping on creation.
+Data under the `metadata` key is a JSON object, represented in Java by a `Map<String, ?>`, and can be added to a stub mapping on creation.
 
 === "Java"
 
@@ -48,7 +52,7 @@ Data under the `metadata` key is a JSON object (represented in Java by a `Map<St
 
 ## Search for stubs by metadata
 
-Stubs can be found by matching against their metadata using the same matching strategies as when [matching HTTP requests](./request-matching.md).
+To find stubs by matching against their metadata, use the same matching strategies as when you use [matching HTTP requests](./request-matching.md).
 The most useful matcher for this is `matchesJsonPath`:
 
 === "Java"

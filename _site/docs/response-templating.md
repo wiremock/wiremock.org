@@ -3,26 +3,30 @@ description: >
     Optional use of Handlebars templates for rendering response headers, bodies, and proxy URLs,
 ---
 
-# Mock API Response Templating
+# Control mock API templated responses using Handlebars 
 
-As an option, you can render response headers, bodies, and proxy URLs using [Handlebars templates](http://handlebarsjs.com/). With this option you 
-can make use of request attributes in generating responses, for example, you can:
+As an option, you can work with response headers, bodies, and proxy URLs using [Handlebars templates](http://handlebarsjs.com/). 
+This option supports:
 
-- pass the value of a request ID header as a response header.
-- render an identifier from part of the URL into the response body.
+- passing the value of a request ID header as a response header.
+- rendering an identifier from part of the URL into the response body.
 
-## Enabling/disabling response templating
+After applying Handlebars templates, you control the parameters that WireMock uses in generating mock responses with request attributes.
+
+## Enabling/disabling response template functionality
+
 
 Starting WireMock programmatically, by default, starts response templating that is applied to the stubs that have the `response-template` transformer added to them (see [below](#applying-templating-in-local-mode) for details).
 
-To apply templating globally (without having to explicitly add `response-template`), use the `globalTemplating` startup option and set it to true:
+
+To apply response templating globally, without having to explicitly add `response-template`, use the `globalTemplating` startup option and set it to true:
 
 ```java
 WireMockServer wm =
     new WireMockServer(options().globalTemplating(true));
 ```
 
-You can also be disabled templating completely by setting the `templatingEnabled` startup option to false:
+You can also disable templating completely by setting the `templatingEnabled` startup option to false:
 
 ```java
 WireMockServer wm =
@@ -34,7 +38,7 @@ See [the command line docs](./standalone/java-jar.md#command-line-options) for t
 
 ## Customising and extending the template engine
 
-You can register custom Handlebars helpers can be registered using an extension point. See [Adding Template Helpers](./extensibility/adding-template-helpers.md) for details.
+You can register custom Handlebars helpers using an extension point. See [Adding Template Helpers](./extensibility/adding-template-helpers.md) for details.
 
 Similarly, you can register custom model data providers as extensions. See [Adding Template Model Data](./extensibility/adding-template-model-data.md) for details.
 
@@ -82,7 +86,7 @@ WireMockServer wm =
     new WireMockServer(options().withMaxTemplateCacheEntries(10000));
 ```
 
-When running standalone, you can make eauivalent settings in [the command line](./standalone/java-jar.md#command-line-options).
+When running standalone, you can make equivalent settings in [the command line](./standalone/java-jar.md#command-line-options).
 
 ## Proxying
 
@@ -117,7 +121,7 @@ Templating also works when defining proxy URLs:
 
 ## Templated body file
 
-To dynamicaaly select a response, template the file path for the body file:
+To dynamically select a response, template the file path for the body file:
 
 === "Java"
 
@@ -150,7 +154,7 @@ To dynamicaaly select a response, template the file path for the body file:
 
 ## The request model
 
-The model of the request is supplied to the header and body templates. The following request attributes are available:
+The request data model controls both the header and body templates, making available the following request attributes:
 
 `request.url` - URL path and query
 
@@ -205,7 +209,6 @@ For instance, given a request URL like `/multi-query?things=1&things=2&things=3`
 {% endraw %}
 
 
-
 !!! note
 
     When using the `eq` helper with one-or-many values, you must use the indexed form, even if only one value is present.
@@ -227,8 +230,6 @@ URLs you're matching are of the form `/stuff?ids[]=111&ids[]=222&ids[]=333` then
 {{lookup request.query 'ids[].1'}} // Will return 222
 ```
 {% endraw %}
-
-
 
 ## Using transformer parameters
 
@@ -273,42 +274,54 @@ These parameters can be referenced in template body content using the `parameter
 ```
 {% endraw %}
 
-## Handlebars helpers
+### Handlebars helpers
 
-All of the standard helpers (template functions) provided by the [Java Handlebars implementation by jknack](https://github.com/jknack/handlebars.java)
-plus all of the [string helpers](https://github.com/jknack/handlebars.java/blob/master/handlebars/src/main/java/com/github/jknack/handlebars/helper/StringHelpers.java)
-and the [conditional helpers](https://github.com/jknack/handlebars.java/blob/master/handlebars/src/main/java/com/github/jknack/handlebars/helper/ConditionalHelpers.java)
-are available, for exmaple:
+When building your customs WireMock response templates, you can use of all of the standard [Handlebars](https://handlebarsjs.com/guide/) helpers provided by the following open source resources:
 
-{% raw %}
-```handlebars
-{{capitalize request.query.search}}
-```
-{% endraw %}
+- [Java Handlebars implementation by jknack](https://github.com/jknack/handlebars.java)
+- [string helpers](https://github.com/jknack/handlebars.java/blob/master/handlebars/src/main/java/com/github/jknack/handlebars/helper/StringHelpers.java)
+- [conditional helpers](https://github.com/jknack/handlebars.java/blob/master/handlebars/src/main/java/com/github/jknack/handlebars/helper/ConditionalHelpers.java)
+are available.
 
-## Number and assignment helpers
+There are numerous use cases in which you might want to use  test simple operations on strings. Changing capitalization provides simple examples of using conditional helpers:
 
-Variable assignment and number helpers are available:
+=== "Sentence cap"
 
 {% raw %}
-```handlebars
-{{#assign 'myCapitalisedQuery'}}{{capitalize request.query.search}}{{/assign}}
-
-{{isOdd 3}}
-{{isOdd 3 'rightBox'}}
-
-{{isEven 2}}
-{{isEven 4 'leftBox'}}
-
-{{stripes 3 'row-even' 'row-odd'}}
-```
+    ```handlebars
+    {{capitalize request.query.search}}
+    (1)
+    ```
 {% endraw %}
+
+=== "Word cap"
+
+{% raw %}
+    ```handlebars
+    {{capitalizeAll request.query.search}}
+    (2)
+    ```
+{% endraw %}
+
+=== "Lowercase"
+
+{% raw %}
+    ```handlebars
+    {{lowercase request.query.search}}
+    (3)
+    ```
+{% endraw %}
+
+1. Capitalizes the first letter in a string
+2. Capitalizes the first letter of each word in a string.
+3. Makes the entire string lowercase. 
+
 
 ## XPath helpers
 
-Additionally some helpers are available for working with JSON and XML.
+Helpers are available for working with JSON and XML:
 
-For incoming requests that contain XML, use the `xPath` helper to extract values or sub documents using an XPath 1.0 expression. For exampke, given the XML
+For incoming requests that contain XML, use the `xPath` helper to extract values or sub documents using an XPath 1.0 expression. For exampke, given the XML:
 
 ```xml
 <outer>
@@ -324,7 +337,7 @@ The following renders "Stuff" into the output:
 ```
 {% endraw %}
 
-And given the same XML the following renders `<inner>Stuff</inner>`:
+And given the same XML, the following renders `<inner>Stuff</inner>`:
 
 {% raw %}
 ```handlebars
@@ -377,7 +390,7 @@ A common use case for returned node objects is to iterate over the collection wi
 ```
 {% endraw %}
 
-## JSONPath helper
+### JSONPath helper
 
 It is similarly possible to extract JSON values or sub documents via JSONPath using the `jsonPath` helper. Given the JSON
 
@@ -413,7 +426,7 @@ Default value can be specified if the path evaluates to null or undefined:
 ```
 {% endraw %}
 
-## Parse JSON helper
+### Parse JSON helper
 
 The `parseJson` helper will parse the input into a map-of-maps. It will assign the result to a variable if a name is specified,
 otherwise the result will be returned.
@@ -452,7 +465,7 @@ Without assigning to a variable:
 
 ## Date and time helpers
 
-A helper is present to render the current date/time, with the ability to specify the format ([via Java's SimpleDateFormat](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html)) and offset.
+Helper to render the current date/time, with the ability to specify the format ([via Java's SimpleDateFormat](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html)) and offset.
 
 {% raw %}
 ```handlebars
@@ -510,7 +523,25 @@ Dates can be truncated to e.g. first day of month using the `truncateDate` helpe
 
 See the [full list of truncations here](./request-matching.md#all-truncations).
 
-## Random value helper
+## Number and assignment helpers
+
+Variable assignment and number helpers:
+
+{% raw %}
+```handlebars
+{{#assign 'myCapitalisedQuery'}}{{capitalize request.query.search}}{{/assign}}
+
+{{isOdd 3}}
+{{isOdd 3 'rightBox'}}
+
+{{isEven 2}}
+{{isEven 4 'leftBox'}}
+
+{{stripes 3 'row-even' 'row-odd'}}
+```
+{% endraw %}
+
+### Random value helpers
 
 Random strings of various kinds can be generated:
 
@@ -527,7 +558,7 @@ Random strings of various kinds can be generated:
 ```
 {% endraw %}
 
-## Pick random helper
+### Pick random helper
 
 A value can be randomly selected from a literal list:
 
@@ -545,7 +576,7 @@ Or from a list passed as a parameter:
 ```
 {% endraw %}
 
-## Random number helpers
+### Random number helpers
 
 These helpers produce random numbers of the desired type. By returning actual typed numbers rather than strings
 we can use them for further work e.g. by doing arithemetic with the `math` helper or randomising the bound in a `range`.
@@ -572,7 +603,7 @@ Likewise decimals can be produced with or without bounds:
 ```
 {% endraw %}
 
-## Fake data helpers
+### Random fake data helpers
 
 This helper produces random fake data of the desired types available in the [Data Faker library](https://github.com/datafaker-net/datafaker). Due to the size of this library, this helper has been provided via [`RandomExtension`](https://github.com/wiremock/wiremock-faker-extension).    
 
@@ -583,7 +614,7 @@ This helper produces random fake data of the desired types available in the [Dat
 ```
 {% endraw %}
 
-## Math helper
+### Math helper
 
 The `math` (or maths, depending where you are) helper performs common arithmetic operations. It can accept integers, decimals
 or strings as its operands and will always yield a number as its output rather than a string.
@@ -600,7 +631,7 @@ Addition, subtraction, multiplication, division and remainder (mod) are supporte
 ```
 {% endraw %}
 
-## Range helper
+### Range helper
 
 The `range` helper will produce an array of integers between the bounds specified:
 
@@ -618,6 +649,29 @@ This can be usefully combined with `randomInt` and `each` to output random lengt
 {{#each (range 0 (randomInt lower=1 upper=10)) as |index|}}
 id: {{index}}
 {{/each}}
+```
+{% endraw %}
+
+### Base64 helper
+
+The `base64` helper can be used to base64 encode and decode values:
+
+{% raw %}
+```handlebars
+{{base64 request.headers.X-Plain-Header}}
+{{base64 request.headers.X-Encoded-Header decode=true}}
+
+{{#base64}}
+Content to encode
+{{/base64}}
+
+{{#base64 padding=false}}
+Content to encode without padding
+{{/base64}}
+
+{{#base64 decode=true}}
+Q29udGVudCB0byBkZWNvZGUK
+{{/base64}}
 ```
 {% endraw %}
 
@@ -690,29 +744,6 @@ Use the `trim` helper to remove whitespace from the start and end of the input:
     Some stuff with whitespace
 
 {{/trim}}
-```
-{% endraw %}
-
-## Base64 helper
-
-The `base64` helper can be used to base64 encode and decode values:
-
-{% raw %}
-```handlebars
-{{base64 request.headers.X-Plain-Header}}
-{{base64 request.headers.X-Encoded-Header decode=true}}
-
-{{#base64}}
-Content to encode
-{{/base64}}
-
-{{#base64 padding=false}}
-Content to encode without padding
-{{/base64}}
-
-{{#base64 decode=true}}
-Q29udGVudCB0byBkZWNvZGUK
-{{/base64}}
 ```
 {% endraw %}
 

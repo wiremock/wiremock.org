@@ -1,30 +1,31 @@
 ---
 description: 
-    Write a test API Client with WireMock and JUnit 4
+    A simple test API Client with WireMock and JUnit 4
 ---
 
-# Quick Start: API Mocking with Java and JUnit 4
+# Quick Start: A simple test client
 
-This guide shows you how to write an API Unit test with WireMock and JUnit 4.
+This topic demonstrates how to write a simple API Unit test with WireMock and JUnit 4, for an ongoing project.
 
 ## Prerequisites
 
 - Java 11 or 17
-- Maven or Gradle, recent versions
+- Recent version of Maven or Gradle
 - A Java project, based on Maven and Gradle
-- A Unit test file which we will use as a playground
+- A Unit test file (example below) to use as a playground
 
 <!-- TODO: Would be nice to introduce an archetype or a clone-able demo repo -->
 
-## Add WireMock Dependency to your project
+## Add WireMock Dependencies to your project
 
-WireMock is distributed via Maven Central and can be included in your project using common build tools' dependency management.
-To add the standard WireMock JAR as a project dependency, put the dependencies below section of your build file.
+Maven Central ditributes WireMock, which can be included in your project using common build tools' dependency management.
 
-In our test, we will also use AssertJ to verify the responses.
-To send the requests, we will use the embedded HTTP client available in Java 11+.
-If you want to add a Java 1.8 test, you will need to add an external HTTP Client implementation
-like [Apache HttpClient](https://hc.apache.org/httpcomponents-client-5.2.x/#).
+In this test use:
+
+- AssertJ to verify the responses.
+- the embedded HTTP client available in Java 11+ to send the requests.
+
+To add the standard WireMock JAR as a project dependency, you can use one of the following dependencies snippets in your build file:
 
 === "Maven"
 
@@ -50,19 +51,23 @@ like [Apache HttpClient](https://hc.apache.org/httpcomponents-client-5.2.x/#).
     testImplementation "org.assertj:assertj-core:3.24.2"
     ```
 
+To support using a Java 1.8 test, you must add an external HTTP Client implementation
+like [Apache HttpClient](https://hc.apache.org/httpcomponents-client-5.2.x/#).
+
+
 ## Add the WireMock rule
 
-WireMock ships with some JUnit rules to manage the server's lifecycle
-and setup/tear-down tasks.
-
-To use WireMock's fluent API add the following import:
+To use WireMock's fluent API, add the following import:
 
 ```java
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 ```
 
-To automatically start and stop WireMock per-test case, add
-the following to your test class (or a superclass of it):
+WireMock ships with some JUnit rules to manage the server's lifecycle
+and setup/tear-down tasks.
+
+To automatically start and stop WireMock per test case, add
+the following, either to your test class, or a superclass of it:
 
 ```java
 @Rule
@@ -71,7 +76,7 @@ public WireMockRule wireMockRule = new WireMockRule(8089); // No-args constructo
 
 ## Write a test
 
-Now you're ready to write a test case like this:
+Now you're ready to write a test case like this example:
 
 ```java
 import java.net.http.HttpClient;
@@ -108,9 +113,10 @@ public void exampleTest() {
 
 ## Extend the test
 
-For a bit more control over the settings of the WireMock server created
-by the rule you can pass a fluently built Options object to either rule's constructor.
-Let's change the port numbers as an example.
+For more control over the WireMock server settings that the rule creates, 
+you can pass a fluently built Options object to the rule's constructor.
+
+In the following example, we change the port numbers.
 
 ### Change the port numbers
 
@@ -122,18 +128,19 @@ import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMoc
 public WireMockRule wireMockRule = new WireMockRule(wireMockConfig().port(8089).httpsPort(8443));
 ```
 
-### Random port numbers
+### Use random port numbers
 
 You can have WireMock (or more accurately the JVM) pick random, free
 HTTP and HTTPS ports.
-It is a great idea if you want to run your tests concurrently.
+
+This works well when running your tests concurrently.
 
 ```java
 @Rule
 public WireMockRule wireMockRule = new WireMockRule(wireMockConfig().dynamicPort().dynamicHttpsPort());
 ```
 
-Then find out which ports to use from your tests as follows:
+Then find out which ports to use from your tests, as follows:
 
 ```java
 int port = wireMockRule.port();

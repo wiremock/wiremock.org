@@ -177,14 +177,14 @@ nav:
   - Using WireMock:
       - Getting started:
           - Overview: docs/overview.md
-          - "Quick Start: API Mocking with Java and JUnit 4": docs/quickstart/java-junit.md
-          - Download and Installation: docs/download-and-installation.md
-          - WireMock Tutorials: docs/getting-started.md
+          - Set up a simple unit test: docs/quickstart/java-junit.md
+          - Download and install: docs/download-and-installation.md
+          - WireMock tutorials: docs/getting-started.md
           - FAQ: docs/faq.md
       - WireMock Standalone:
-          - Running in Docker: docs/standalone/docker.md
-          - Running as a Standalone Process: docs/standalone/java-jar.md
-          - Administrating WireMock: docs/standalone/administration.md
+          - Run as a Standalone Process: docs/standalone/java-jar.md
+          - Run in Docker: docs/standalone/docker.md
+          - Administer WireMock: docs/standalone/administration.md
           - Admin REST API Specification: docs/standalone/admin-api-reference.md
       - Java Usage:
           - JUnit 5+ Jupiter: docs/junit-jupiter.md
@@ -192,29 +192,29 @@ nav:
           - Spring Boot: docs/solutions/spring-boot.md
           - Plain Java: docs/java-usage.md
           - Java configuration: docs/configuration.md
-          - Running without the HTTP Server: docs/running-without-http-server.md
+          - Running without the HTTP server: docs/running-without-http-server.md
       - Stubbing & Verifying:
           - Stubbing: docs/stubbing.md
-          - Request Matching: docs/request-matching.md
-          - Response Templating: docs/response-templating.md
-          - Simulating Faults: docs/simulating-faults.md
-          - Stateful Behaviour: docs/stateful-behaviour.md
+          - Request matching: docs/request-matching.md
+          - Simulating faults: docs/simulating-faults.md
+          - Stateful behaviour: docs/stateful-behaviour.md
           - Proxying: docs/proxying.md
           - Verifying: docs/verifying.md
       - Templating:
           - WireMock API Templates Library: docs/mock-api-templates/README.md
-          - Using Mock API Templates: docs/mock-api-templates/usage.md
+          - Use Mock API Templates: docs/mock-api-templates/usage.md
+          - Work with response templates: docs/response-templating.md
       - Record & Playback:
           - Record and Playback: docs/record-playback.md
       - Protocols:
-          - Supported Protocols: docs/protocols/README.md
-          - Webhooks and Callbacks: docs/webhooks-and-callbacks.md
-          - Mocking gRPC services: docs/grpc.md
+          - Supported protocols: docs/protocols/README.md
+          - Webhooks and callbacks: docs/webhooks-and-callbacks.md
+          - Mock gRPC services: docs/grpc.md
           - WireMock and GraphQL: docs/solutions/graphql.md
-          - Serving HTTPs: docs/https.md
+          - Serve HTTPs: docs/https.md
       - Advanced use-cases:
-          - Multi-domain Mocking: docs/multi-domain-mocking.md
-          - Deploying into a servlet container: docs/advanced/deploy-to-servlet-container.md
+          - Multi-domain mocking: docs/multi-domain-mocking.md
+          - Deploy into a servlet container: docs/advanced/deploy-to-servlet-container.md
           - "WireMock on Java 1.7": docs/advanced/java7.md
       - Reference:
           - Admin API: docs/standalone/admin-api-reference.md
@@ -241,10 +241,10 @@ nav:
           - Prometheus Metrics: prometheus-extension/README.md
           - OpenTelemetry: otel-extension/README.md
       - Developer Extensions:
-          - Callback Simulator: 9cookies-extension/callback-simulator.md
+          - Callback simulator: 9cookies-extension/callback-simulator.md
           - Keywords: 9cookies-extension/keywords.md
-          - Stub Mapping Tracker: stub-mapping-tracker-extension/README.md
-          - Record Delay Capture: record-delay-extension/README.md
+          - Stub mapping tracker: stub-mapping-tracker-extension/README.md
+          - Record delay capture: record-delay-extension/README.md
 
   - Integrations:
       - WireMock Solution Pages: docs/solutions/README.md
@@ -260,7 +260,7 @@ nav:
       - Testcontainers: docs/solutions/testcontainers.md
       - C/C++: docs/solutions/c_cpp.md
 
-  - Developer Guide:
+  - Develop WireMook:
       - Extending WireMock: docs/extending-wiremock.md
       - Filtering and Modifying Requests: docs/extensibility/filtering-requests.md
       - Transforming Responses: docs/extensibility/transforming-responses.md
@@ -277,23 +277,23 @@ nav:
   - Community:
       - Participate in WireMock: docs/participate.md
       - Community Slack: community/slack.md
-      - Contributor Guide: community/contributing/README.md
+      - Contributor guide: community/contributing/README.md
       - Hacktoberfest 2023: dotgithub/CONTRIBUTING.md
-      - Creating Extensions: docs/extending-wiremock.md
+      - Creating extensions: docs/extending-wiremock.md
       - Governance: community/governance/README.md
-      - Code of Conduct: dotgithub/CODE_OF_CONDUCT.md
+      - Code of conduct: dotgithub/CODE_OF_CONDUCT.md
 
   - Resources:
-      - Community Resources: resources/README.md
+      - Community resources: resources/README.md
       - Community Slack: community/slack.md
       - Events:
           Overview: community/events/README.md
           Hacktoberfest: community/events/hacktoberfest/README.md
           Archives: https://www.youtube.com/@WireMockChannel/playlists
           Speaking: community/contributing/README.md#help-to-spread-the-word
-      - WireMock Support: dotgithub/SUPPORT.md
-      - Reporting Security Issues: dotgithub/SECURITY.md
-      - External Resources: resources/external.md
+      - WireMock support: dotgithub/SUPPORT.md
+      - Report security issues: dotgithub/SECURITY.md
+      - External resources: resources/external.md
 
   # Markdown
 markdown_extensions:
