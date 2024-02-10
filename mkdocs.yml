@@ -123,6 +123,24 @@ plugins:
 
 nav:
   - Docs: "!import https://github.com/wiremock/wiremock?branch=docs-experiments&docs_dir=docs&config=mkdocs.yml"
+
+  - Extensions:
+      - WireMock Extensions: docs/extensions/README.md
+      - gRPC: "!import https://github.com/wiremock/wiremock-grpc-extension?branch=docs-experiments&docs_dir=docs&config=mkdocs.yml"
+      - GraphQL: graphql-extension/README.md
+      - State: state-extension/README.md
+      - Response Template Transformer: docs/response-templating.md
+      - Velocity Response Transformer: velocity-transformer-extension/README.md
+      - Data Faker: faker-extension/README.md
+      - Webhooks: webhooks-and-callbacks.md
+      - CORS protection: cors-extension/README.md
+      - JSON Web Tokens (JWT): jwt-extension/README.md
+      - JSON Body Transformer: 9cookies-extension/json-body-transformer.md
+      - Request Time Matcher: 9cookies-extension/request-time-matcher.md
+      - Unused Stubs: unused-stubs-extension/README.md
+      - Metrics Extension: metrics-extension/README.MD
+      - Prometheus Metrics: prometheus-extension/README.md
+      - OpenTelemetry: otel-extension/README.md
   - Using WireMock:
       - Getting started:
           - Overview: docs/overview.md
