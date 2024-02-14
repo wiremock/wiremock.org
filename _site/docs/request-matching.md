@@ -7,6 +7,16 @@ description: Match requests to stubs and verify queries
 
 WireMock enables flexible definition of a mock APIs by supporting rich matching and filtering of incoming requests. 
 
+To understand how to set up request matching, you need to know how request matching works at runtime--for each incoming HTTP request, WireMock:
+
+- attempts a match against each stub in turn.
+- checks the stub’s cruteria against the request. 
+- if all criteria for a stub match, matching stops and that stub’s response definition is used to build and return a response.
+
+You can set priority (1=highest, 10=lowest) to control the order in which the stub list is scanned. Within a single priority, most recently added stubs are scanned first.
+
+If no stub matches the request the default 404 response is returned with a report showing the difference between the closest stub and the request.
+
 You can make use of WireMock's in-built match operators, or set up [custom matching](./extending-wiremock.md#custom-request-matchers).
 
 Stub matching and verification queries can use the following request attributes:
