@@ -3,7 +3,7 @@ description: >
     download and install WireMock.
 ---
 
-# Download and Install
+# Download, install, and integrate with your app
 
 WireMock is available as a standalone service for:  
 
@@ -67,3 +67,24 @@ For next steps, take a look at:
 - WireMock [tutorials](./getting-started.md).
 - learn how to use [Request matching](./request-matching.md),
 - learn how to use [Response templates](./response-templating.md).
+
+## Integrate WireMock into your app
+
+YOu have two options from which to choose:
+
+*Option 1*. Configure alternative endpoints. 
+
+For example, if your app’s config file contains the following:
+
+`stripe.api.baseUrl=https://api.stripe.com`
+
+replace it in your dev/test environment’s config with:
+
+`stripe.api.baseUrl=https://<wiremock-host>:<port>`
+
+
+*Option 2*. Forward proxying.
+
+Set your HTTP client’s proxy host and port to the WireMock proxy/port and start wiremock with browser proxying enabled.
+
+
