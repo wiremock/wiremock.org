@@ -653,3 +653,20 @@ This can be changed by setting `duplicatePolicy` in the JSON to `IGNORE` or call
 
 If you want to ensure that the only stubs loaded after the import has completed are the ones it contains, you can set
 `"deleteAllNotInImport": true` in the JSON or call `deleteAllExistingStubsNotInImport()` on the Java builder.
+
+### Disabling Gzip at the ResponseDefinitionBuilder
+
+If you want to user Gzip disabled response option at the ResponseDefinitionBuilder level.
+You can use `.withGzipDisabled(true)`
+
+```java
+
+wireMockServer.stubFor(get(urlEqualTo("/todo/items"))
+        .willReturn(aResponse()
+        .withStatus(200)
+        .withGzipDisabled(true)
+        .withBody(
+        "Here is some kind of response body"
+        + "Here is some kind of response body"
+        + "Here is some kind of response body")));
+```
