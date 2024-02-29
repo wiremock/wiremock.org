@@ -123,6 +123,7 @@ services:
     image: "wiremock/wiremock:latest"
     container_name: my_wiremock
     volumes:
+      - ./extensions:/var/wiremock/extensions
       - ./__files:/home/wiremock/__files
       - ./mappings:/home/wiremock/mappings
     entrypoint: ["/docker-entrypoint.sh", "--global-response-templating", "--disable-gzip", "--verbose"]
