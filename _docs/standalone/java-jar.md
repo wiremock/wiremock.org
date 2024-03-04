@@ -11,6 +11,8 @@ redirect_from:
 description: The WireMock server can be run in its own process, and configured via the Java API, JSON over HTTP or JSON files.
 ---
 
+<div class="cloud-callout"><a href="http://www.wiremock.io" target="_BLANK">This article is about WireMock open source. For unlimited scalability, support and Enterprise features - learn about WireMock Cloud.</a></div>
+
 The WireMock server can be run in its own process, and configured via
 the Java API, JSON over HTTP or JSON files.
 

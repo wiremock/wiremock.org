@@ -9,6 +9,8 @@ redirect_from:
   - "/docs/docker/"
 ---
 
+<div class="cloud-callout"><a href="http://www.wiremock.io" target="_BLANK">This article is about WireMock open source. For unlimited scalability, support and Enterprise features - learn about WireMock Cloud.</a></div>
+
 From version 2.31.0 WireMock has an [official Docker image](https://hub.docker.com/r/wiremock/wiremock).
 
 ## Getting started

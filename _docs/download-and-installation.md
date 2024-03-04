@@ -14,7 +14,8 @@ redirect_from:
     - "/docs/download.html"
     - "/docs/download/"
 ---
-
+    
+ <div class="cloud-callout"><a href="http://www.wiremock.io" target="_BLANK">To avoid any setup, maintenance and overhead, learn more about WireMock Cloud.</a></div>
 
 ## Download options
 
