@@ -6,7 +6,7 @@ toc_rank: 61
 description: WireMock supports matching of requests to stubs and verification queries using the following attributes.
 ---
 
-<div class="cloud-callout"><a href="http://www.wiremock.io" target="_BLANK">To go beyond request matching and build dynamic scenarios and more, learn about WireMock Cloud.</a></div>
+<div class="cloud-callout"><a href="https://www.wiremock.io" target="_BLANK">To go beyond request matching and build dynamic scenarios and more, learn about WireMock Cloud.</a></div>
 
 WireMock enables flexible definition of a [mock API](/) by supporting rich matching of incoming requests. Stub matching and verification queries can use the following request attributes:
 

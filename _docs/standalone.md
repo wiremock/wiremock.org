@@ -10,7 +10,7 @@ description: >
     We provide the JAR file and Docker image distributions for it.
 ---
 
-<div class="cloud-callout"><a href="http://www.wiremock.io" target="_BLANK">This article is about WireMock open source. For unlimited scalability, support and Enterprise features - learn about WireMock Cloud.</a></div>
+<div class="cloud-callout"><a href="https://www.wiremock.io" target="_BLANK">This article is about WireMock open source. For unlimited scalability, support and Enterprise features - learn about WireMock Cloud.</a></div>
 
 WireMock can run as a standalone service,
 configured via the Java API, JSON over HTTP or JSON files.
