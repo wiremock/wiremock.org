@@ -5,6 +5,8 @@ meta_title: Administration API in WireMock Standalone | WireMock
 description: Provides tips on managing standalone WireMock servers
 ---
 
+<div class="cloud-callout"><a href="https://www.wiremock.io" target="_BLANK">This article is about WireMock open source. For unlimited scalability, support and Enterprise features - learn about WireMock Cloud.</a></div>
+
 WireMock Standalone offers the REST API for administration, troubleshooting and analysis purposes.
 You can find the key use-cases and the full specification below.
 

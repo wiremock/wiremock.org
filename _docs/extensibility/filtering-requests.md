@@ -5,6 +5,8 @@ meta_title: Filtering and Modifying Requests
 description: Filtering and modifying requests via extensions
 ---
 
+<div class="cloud-callout"><a href="https://www.wiremock.io" target="_BLANK">If you need to protect your mock APIs with Enterprise-grade security options, learn about WireMock Cloud.</a></div>
+
 Requests to both stubs and the admin API can be intercepted and either modified or halted with an immediate response.
 This supports a number of use cases including: authentication, URL rewriting and request header injection.
 
