@@ -103,6 +103,12 @@
             color: $mocklab-dark-green;
         }
     }
+    
+    div.cloud-callout {
+        background: rgba(255, 152, 0, .5); 
+        padding: 1rem;
+        margin: 1rem 0 1rem 0;
+    }
 }
 
 div.cloud-callout {
