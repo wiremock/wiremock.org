@@ -7,6 +7,8 @@ redirect_from: "/verifying.html"
 description: Verifying and querying requests relies on the request journal, which is an in-memory log of received requests. This can be disabled for load testing.
 ---
 
+<div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-verifying&utm_id=cloud-callouts&utm_term=cloud-callouts-verifying" target="_BLANK">If you are interesting in auto-generating OpenAPI specs and documentation for collaborative prototying, learn about WireMock Cloud.</a></div>
+
 The WireMock server records all requests it receives in memory (at
 least until it is [reset](../stubbing#reset)). This makes it possible to verify that
 a request matching a specific pattern was received, and also to fetch

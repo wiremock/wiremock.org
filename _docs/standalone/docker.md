@@ -9,6 +9,8 @@ redirect_from:
   - "/docs/docker/"
 ---
 
+<div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-docker&utm_id=cloud-callouts&utm_term=cloud-callouts-docker" target="_BLANK">WireMock Cloud offers secure, publicly hosted mock APIs with nothing to install.</a></div>
+
 From version 2.31.0 WireMock has an [official Docker image](https://hub.docker.com/r/wiremock/wiremock).
 
 ## Getting started

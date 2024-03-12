@@ -8,6 +8,8 @@ description: >
     that can be used with both WireMock or WireMock Cloud.
 ---
 
+<div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-templates&utm_id=cloud-callouts&utm_term=cloud-callouts-templates" target="_BLANK">To easily share templates across teams or choose from thousands of popular 3rd party templates, learn more about WireMock Cloud.</a></div>
+
 The [library.wiremock.org](https://library.wiremock.org) site provides a catalog of API Templates
 that can be used with both
 [WireMock](https://wiremock.org/) or [WireMock Cloud](https://wiremock.io).
