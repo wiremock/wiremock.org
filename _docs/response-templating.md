@@ -30,6 +30,24 @@ WireMockServer wm =
 
 See [the command line docs](../standalone/java-jar/#command-line-options) for the standalone equivalents of these parameters.
 
+Response templating can also be disabled on a per-stub basis when using the `bodyFileName` element by adding the 
+`disableBodyFileTemplating` parameter to the `transformerParameters` object in the stub response definition.
+
+```json
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/test"
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "response.json",
+    "transformerParameters": {
+      "disableBodyFileTemplating": true
+    }
+  }
+}
+```
 
 ## Customising and extending the template engine
 
