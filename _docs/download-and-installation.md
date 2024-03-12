@@ -17,8 +17,6 @@ redirect_from:
 
 <div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-install&utm_id=cloud-callouts&utm_term=cloud-callouts-install" target="_BLANK">To create publicly hosted mock APIs without anything to install, learn more about WireMock Cloud.</a></div>
 
-To create publicly hosted mock APIs without anything to install, learn more about WireMock Cloud.
-
 ## Download options
 
 WireMock Java is distributed in two flavours - a standard JAR containing just WireMock, and a standalone uber JAR containing
