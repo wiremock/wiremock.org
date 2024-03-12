@@ -7,7 +7,7 @@ redirect_from: "/simulating-faults.html"
 description: One of the main reasons it’s beneficial to use web service fakes when testing is to inject faulty behaviour that might be difficult to get the real service to produce on demand.
 ---
 
-<div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts&utm_id=cloud-callouts&utm_term=cloud-callouts" target="_BLANK">To go beyond simulating faults and test product reliability in unexpected fault scenarios using Chaos Engineering, learn about WireMock Cloud.</a></div>
+<div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-faults&utm_id=cloud-callouts&utm_term=cloud-callouts-faults" target="_BLANK">To go beyond simulating faults and test product reliability in unexpected fault scenarios using Chaos Engineering, learn about WireMock Cloud.</a></div>
 
 **One of the main reasons it's beneficial to use web service fakes when
 testing is to inject faulty behaviour that might be difficult to get the

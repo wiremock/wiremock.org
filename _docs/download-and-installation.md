@@ -1,4 +1,4 @@
----
+open---
 layout: docs
 title: Download and Installation
 meta_title: "How to Download and Install WireMock"
@@ -15,7 +15,7 @@ redirect_from:
     - "/docs/download/"
 ---
 
-<div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts&utm_id=cloud-callouts&utm_term=cloud-callouts" target="_BLANK">To create publicly hosted mock APIs without anything to install, learn more about WireMock Cloud.</a></div>
+<div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-install&utm_id=cloud-callouts&utm_term=cloud-callouts-install" target="_BLANK">To create publicly hosted mock APIs without anything to install, learn more about WireMock Cloud.</a></div>
 
 To create publicly hosted mock APIs without anything to install, learn more about WireMock Cloud.
 

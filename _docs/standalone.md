@@ -10,7 +10,7 @@ description: >
     We provide the JAR file and Docker image distributions for it.
 ---
 
-<div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts&utm_id=cloud-callouts&utm_term=cloud-callouts" target="_BLANK">WireMock Cloud offers secure, publicly hosted mock APIs with nothing to install.</a></div>
+<div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-standalone&utm_id=cloud-callouts&utm_term=cloud-callouts-standalone" target="_BLANK">WireMock Cloud offers secure, publicly hosted mock APIs with nothing to install.</a></div>
 
 WireMock can run as a standalone service,
 configured via the Java API, JSON over HTTP or JSON files.
