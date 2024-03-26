@@ -18,6 +18,7 @@ At the moment, we provide the following quick starts for beginners:
 
 - [API Mocking with Java and JUnit 4](../quickstart/java-junit)
 - [Downloading and Installing WireMock](../download-and-installation)
+- [Using WireMock with Jetty 12](../jetty-12)
 
 <!-- TODO: Add standalone in Docker -->
 
