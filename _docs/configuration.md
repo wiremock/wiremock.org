@@ -130,6 +130,11 @@ WireMock uses the trust store for three purposes:
 
 // The type of the CA key store
 .caKeystoreType("JKS")
+
+// Which proxy encodings to proxy through to the target if the request contains an Accept-Encoding header
+// By default this is null, which means the header is sent to the target unchanged
+// If there is an Accept-Encoding header on the request, and it does not contain any of the supported proxy encodings, the header is not sent to the target.
+.withSupportedProxyEncodings("gzip", "deflate")
 ```
 
 ## File locations
