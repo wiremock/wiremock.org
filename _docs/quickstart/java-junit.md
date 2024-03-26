@@ -151,6 +151,6 @@ int httpsPort = wireMockRule.httpsPort();
 ## Further reading
 
 - For more details on verifying requests and stubbing responses, see [Stubbing](../../stubbing) and [Verifying](../../verifying/)
-- For more information on the JUnit rules see [The JUnit 4 Rule](../../junit-4/).
+- For more information on the JUnit 5 Jupiter extension see [JUnit 5+ Jupiter](../../junit-jupiter/); for previous JUnit versions you can use [the JUnit 4 Rule](../../junit-extensions/).
 - For many more examples of JUnit tests check out the
 [WireMock's own acceptance tests](https://github.com/wiremock/wiremock/tree/master/src/test/java/com/github/tomakehurst/wiremock)
