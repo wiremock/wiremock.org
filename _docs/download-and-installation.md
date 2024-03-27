@@ -4,10 +4,15 @@ title: Download and Installation
 meta_title: "How to Download and Install WireMock"
 toc_rank: 13
 description: >
-WireMock is available as a standalone service (for Docker of Java), Java library
-and integrations for modern languages and technology stacks.
-redirect_from: - "/download.html" - "/download/" - "/downloads.html" - "/downloads/" - "/docs/download.html" - "/docs/download/"
-
+  WireMock is available as a standalone service (for Docker of Java), Java library
+  and integrations for modern languages and technology stacks.
+redirect_from:
+  - "/download.html"
+  - "/download/"
+  - "/downloads.html"
+  - "/downloads/"
+  - "/docs/download.html"
+  - "/docs/download/"
 ---
 
 <div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-install&utm_id=cloud-callouts&utm_term=cloud-callouts-install" target="_BLANK">To create publicly hosted mock APIs without anything to install, learn more about WireMock Cloud.</a></div>
