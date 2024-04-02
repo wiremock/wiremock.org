@@ -30,7 +30,7 @@ WireMock ships with Jetty 11 by default but fully supports Jetty 12 as well with
 
 {% endcodetab %}
 
-{% codetab Gradle Groovy %}
+{% codetab Gradle %}
 
 ```groovy
 testImplementation "org.wiremock:wiremock-jetty12:{{ site.wiremock_version }}"

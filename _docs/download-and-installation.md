@@ -59,7 +59,7 @@ docker run -it --rm -p 8080:8080 --name wiremock \
 
 {% endcodetab %}
 
-{% codetab Gradle Groovy %}
+{% codetab Gradle %}
 
 ```groovy
 testImplementation "org.wiremock:wiremock-standalone:{{ site.wiremock_version }}"
