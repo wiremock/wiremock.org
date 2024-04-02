@@ -102,7 +102,7 @@ the request to the destination:
 stubFor(get(urlMatching(".*"))
         .willReturn(aResponse()
             .proxiedFrom("http://otherhost.com")
-            .withAdditionalRequestHeader("User-Agent", "Mozilla/5.0 (iPhone; U; CPU iPhone)"));
+            .withAdditionalRequestHeader("User-Agent", "Mozilla/5.0 (iPhone; U; CPU iPhone)")));
 ```
 
 or
@@ -123,6 +123,35 @@ or
 ```
 
 You can also add response headers via the same method as for non-proxy responses (see [Stubbing](../stubbing/)).
+
+# Remove headers
+
+It is possible to configure the proxy to remove headers before forwarding the reques to the destination
+([additional headers](#additional-headers) matching the removed headers will still be added).
+
+```java
+stubFor(get(urlMatching(".*"))
+        .willReturn(aResponse()
+            .proxiedFrom("http://otherhost.com")
+            .withRemoveRequestHeader("User-Agent")));
+```
+
+or
+
+```json
+{
+    "request": {
+        "method": "GET",
+        "urlPattern": ".*"
+    },
+    "response": {
+        "proxyBaseUrl": "http://otherhost.com",
+        "removeProxyRequestHeaders": [
+            "User-Agent"
+        ]
+    }
+}
+```
 
 ## Standalone shortcut
 
