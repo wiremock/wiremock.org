@@ -61,3 +61,11 @@ console.log(stubMappings);
 
 await wireMock.global.shutdown();
 ```
+
+## WireMock NPM package
+
+The WireMock NPM package is the WireMock standalone JAR packaged inside an NPM package. It has the exact same features as WireMock standalone and uses the same versioning.
+
+The main benefit of packaging it inside an NPM package is that the user will only need access to an NPM registry to use it. This is often the situation when working behind firewalls in organizations.
+
+- [GitHUb Repository](https://github.com/wiremock/wiremock-npm)
