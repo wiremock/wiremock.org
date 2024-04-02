@@ -38,7 +38,7 @@ testImplementation "org.wiremock:wiremock-jetty12:{{ site.wiremock_version }}"
 
 {% endcodetab %}
 
-{% endcodetab %}
+{% endcodetabs %}
 
 ## Limitations
 
