@@ -927,8 +927,21 @@ Environment variables and system properties can be printed:
 {% raw %}
 
 ```handlebars
+{{systemValue key='PATH'}} <!-- type defaults to ENVIRONMENT -->
 {{systemValue type='ENVIRONMENT' key='PATH'}}
 {{systemValue type='PROPERTY' key='os.path'}}
+```
+
+{% endraw %}
+
+Since 3.5 a default value can be supplied:
+
+{% raw %}
+
+```handlebars
+{{systemValue key='PATH' default='DEFAULT'}} <!-- type defaults to ENVIRONMENT -->
+{{systemValue type='ENVIRONMENT' key='PATH' default='DEFAULT'}}
+{{systemValue type='PROPERTY' key='os.path' default='DEFAULT'}}
 ```
 
 {% endraw %}
