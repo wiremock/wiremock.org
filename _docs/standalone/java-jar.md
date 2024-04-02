@@ -16,7 +16,7 @@ description: The WireMock server can be run in its own process, and configured v
 The WireMock server can be run in its own process, and configured via
 the Java API, JSON over HTTP or JSON files.
 
-Once you have [downloaded the standalone JAR](../../download) you can run it simply by doing this:
+Once you have [downloaded the standalone JAR](../../download-and-installation/) you can run it simply by doing this:
 
 ```bash
 $ java -jar wiremock-standalone-{{ site.wiremock_version }}.jar
