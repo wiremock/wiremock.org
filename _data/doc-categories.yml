@@ -26,6 +26,7 @@ java:
     - java-usage
     - configuration
     - running-without-http-server
+    - jetty-12
     - android
     
 stubbing-and-verifying:

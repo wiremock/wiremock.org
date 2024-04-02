@@ -59,6 +59,14 @@ See [Spring Cloud Contract WireMock](https://docs.spring.io/spring-cloud-contrac
 The article [Faking OAuth2 Single Sign-on in Spring](https://engineering.pivotal.io/post/faking_oauth_sso/)
 from Pivotal's blog shows how WireMock can be used to test Spring apps that use 3rd party OAuth2 login.
 
+
+## Jetty version issues when running WireMock and Spring together.
+
+WireMock's main artifact is built on Jetty 11, largely so that Java 11 support can be maintained. However, many Spring applications depend on Jetty 12 and the presence of both on the classpath causes WireMock to fail with a `ClassNotFoundException` or `NoClassDefFoundError` for Servlet API classes thrown during startup.
+
+To rectify this, WireMock now has a dedicated Jetty 12 artifact which can be added to your project's classpath. See the [Jetty 12 page](../../jetty-12/) for details.
+
+
 ## Useful pages
 
 - [WireMock on Java and JVM](../solutions/jvm) - Most of JVM generic solutions are applicable to Spring Boot  development too
