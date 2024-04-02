@@ -107,7 +107,7 @@ Configuration file:
 
 ```java
 stubFor(post(urlPathEqualTo("/mock"))
-  .withFormParam("tool", equalTo("WireMock"))
+        .withFormParam("tool", equalTo("WireMock")
 ).willReturn(ok()));
 ```
 
