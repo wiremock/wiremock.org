@@ -47,7 +47,7 @@ like [Apache HttpClient](https://hc.apache.org/httpcomponents-client-5.2.x/#).
 
 {% endcodetab %}
 
-{% codetab Gradle Groovy %}
+{% codetab Gradle %}
 
 ```groovy
 testImplementation "org.wiremock:wiremock:{{ site.wiremock_version }}"
