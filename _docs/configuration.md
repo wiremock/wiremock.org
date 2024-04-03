@@ -98,6 +98,20 @@ WireMock uses the trust store for three purposes:
 3. As a proxy, WireMock will trust a target server if it presents a public
    certificate in this trust store
 
+
+## HTTP/2 configuration
+
+HTTP/2 can be disabled separately for plain text (HTTP) and TLS (HTTPS):
+
+```java
+// Disable HTTP/2 over HTTP
+.http2PlainDisabled(true);
+
+// Disable HTTP/2 over HTTPS
+.http2TlsDisabled(true);
+```
+
+
 ## Proxy settings
 
 ```java
