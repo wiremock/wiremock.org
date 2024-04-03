@@ -540,15 +540,29 @@ This feature is also available with the standard JAR. To use it, define the file
 
 ## Removing stubs
 
-Stub mappings can be deleted via the Java API as follows:
+Stub mappings can be deleted via the Java API, either by passing the stub object or the stub ID:
 
 ```java
-StubMapping stubMapping = stubFor(get(urlEqualTo("/delete-me"))
-  .willReturn(aResponse().withStatus(200)));
-
-// Do things with the stub
+UUID stubId = UUID.randomUUID();
+StubMapping stubMapping = stubFor(get("/delete-me")
+        .withId(stubId)
+        .willReturn(ok()));
 
 removeStub(stubMapping);
+
+// or
+
+removeStub(stubId);
+```
+
+Where stubs have metadata set on them this can be used to remove them:
+
+```java
+stubFor(get("/delete-me")
+    .withMetadata(metadata().attr("tag", "payments"))
+    .willReturn(ok()));
+        
+removeStubsByMetadata(matchingJsonPath("$.tag", equalTo("payments")));
 ```
 
 They can be deleted via the HTTP API by issuing a `DELETE` to `http://<host>:<port>/__admin/mappings/{id}`
