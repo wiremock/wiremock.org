@@ -41,8 +41,8 @@ stubbing-and-verifying:
     - proxying
     - verifying
 
-templating:
-  title: Templating
+library:
+  title: Mock API Template Library
   link: /docs/mock-api-templates
   pages:
     - mock-api-templates
@@ -60,6 +60,7 @@ protocols:
     - webhooks-and-callbacks
     - grpc
     - solutions/graphql
+    - jwt
     - https
 
 configuration:
