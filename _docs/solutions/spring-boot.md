@@ -69,4 +69,4 @@ To rectify this, WireMock now has a dedicated Jetty 12 artifact which can be add
 
 ## Useful pages
 
-- [WireMock on Java and JVM](../solutions/jvm) - Most of JVM generic solutions are applicable to Spring Boot  development too
+- [WireMock on Java and JVM](../jvm) - Most of JVM generic solutions are applicable to Spring Boot  development too
