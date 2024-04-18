@@ -9,6 +9,10 @@ redirect_from:
 logo: /images/logos/technology/spring.svg
 ---
 
+<div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-solutionspringboot&utm_id=cloud-callouts&utm_term=cloud-callouts-solutionspringboot" target="_BLANK">Centralize and scale your API mocks with WireMock Cloud.</a></div>
+
+<div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-solutionsspringboot&utm_id=cloud-callouts&utm_term=cloud-callouts-solutionsspringboot" target="_BLANK">Centralize and scale your API mocks with WireMock Cloud.</a></div>
+
 ## WireMock Spring Boot
 
 [WireMock Spring Boot](https://github.com/maciejwalkowiak/wiremock-spring-boot) 

@@ -6,6 +6,8 @@ description: "Additional solutions for WireMock when using Groovy"
 logo: /images/logos/technology/groovy.svg
 ---
 
+<div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-solutionsgroovy&utm_id=cloud-callouts&utm_term=cloud-callouts-solutionsgroovy" target="_BLANK">Centralize and scale your API mocks with WireMock Cloud.</a></div>
+
 ## DSL Bindings
 
 There is a [Groovy DSL binding library](https://github.com/tomjankes/wiremock-groovy) 

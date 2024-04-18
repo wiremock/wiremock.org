@@ -7,6 +7,8 @@ redirect_from: "/proxying.html"
 description: Proxy responses are defined in exactly the same manner as stubs, meaning that the same request matching criteria can be used.
 ---
 
+<div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-proxying&utm_id=cloud-callouts&utm_term=cloud-callouts-proxying" target="_BLANK">Create stubs and scenarios with WireMock Cloud's intuitive editor and share with your team.</a></div>
+
 WireMock has the ability to selectively proxy requests through to
 other hosts. This supports a proxy/intercept setup where requests are by
 default proxied to another (possibly real, live) service, but where

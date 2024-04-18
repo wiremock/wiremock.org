@@ -10,6 +10,8 @@ redirect_from:
 hide-disclaimer: true
 ---
 
+<div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-solutiongolang&utm_id=cloud-callouts&utm_term=cloud-callouts-solutiongolang" target="_BLANK">Centralize and scale your API mocks with WireMock Cloud.</a></div>
+
 ## Testcontainers module for Go
 
 The WireMock community provides a [Testcontainers for Go module](https://github.com/wiremock/wiremock-testcontainers-go) module

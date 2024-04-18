@@ -6,6 +6,7 @@ description: "Additional solutions for WireMock when developing with Quarkus"
 logo: /images/logos/technology/quarkus.svg
 ---
 
+<div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-solutionquarkus&utm_id=cloud-callouts&utm_term=cloud-callouts-solutionquarkus" target="_BLANK">Centralize and scale your API mocks with WireMock Cloud.</a></div>
 
 ## WireMock Extension for Quarkus
 

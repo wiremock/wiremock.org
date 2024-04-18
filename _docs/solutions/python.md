@@ -7,6 +7,7 @@ logo: /images/logos/technology/python.svg
 hide-disclaimer: true
 ---
 
+<div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-solutionpython&utm_id=cloud-callouts&utm_term=cloud-callouts-solutionpython" target="_BLANK">Centralize and scale your API mocks with WireMock Cloud.</a></div>
 
 ## Python WireMock
 

@@ -11,6 +11,8 @@ redirect_from:
 hide-disclaimer: true
 ---
 
+<div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-solutiongraphql&utm_id=cloud-callouts&utm_term=cloud-callouts-solutiongraphql" target="_BLANK">Centralize and scale your API mocks with WireMock Cloud.</a></div>
+
 ## WireMock Extension
 
 There is a [GraphQL extension for WireMock](https://github.com/wiremock/wiremock-graphql-extension)

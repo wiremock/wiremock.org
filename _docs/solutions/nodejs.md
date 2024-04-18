@@ -6,6 +6,8 @@ description: Additional solutions for WireMock when using Node.js
 logo: /images/logos/technology/nodejs.svg
 ---
 
+<div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-solutionnode&utm_id=cloud-callouts&utm_term=cloud-callouts-solutionnode" target="_BLANK">Centralize and scale your API mocks with WireMock Cloud.</a></div>
+
 ## WireMock Captain
 
 WireMock Captain provides an easy interface for testing HTTP-based APIs.

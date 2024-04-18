@@ -6,6 +6,8 @@ redirect_from: "/stateful-behaviour.html"
 description: Most web services tend to have some state, which changes as you and others interact with it.
 ---
 
+<div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-stateful&utm_id=cloud-callouts&utm_term=cloud-callouts-stateful" target="_BLANK">Create stubs and scenarios with WireMock Cloud's intuitive editor and share with your team.</a></div>
+
 **Most web services tend to have some state, which changes as you and
 others interact with it. So it's pretty useful to be able to simulate
 this when you've swapped a real service for a test double.**

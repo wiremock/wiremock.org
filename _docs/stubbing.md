@@ -7,6 +7,8 @@ redirect_from: "/stubbing.html"
 description: A core feature of WireMock is the ability to return canned HTTP responses for requests matching criteria. These are described in detail in Request Matching.
 ---
 
+<div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-stubbing&utm_id=cloud-callouts&utm_term=cloud-callouts-stubbing" target="_BLANK">Create stubs and scenarios with WireMock Cloud's intuitive editor and share with your team.</a></div>
+
 A core feature of WireMock [API mocking]({{ '/' | absolute_url }}) is the ability to return canned HTTP
 responses for requests matching criteria. These are described in detail in [Request Matching](../request-matching/).
 

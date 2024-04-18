@@ -7,6 +7,8 @@ logo: /images/logos/technology/c.png
 og_image: solutions/testcontainers/testcontainers_c_opengraph.png
 ---
 
+<div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-solutioncpp&utm_id=cloud-callouts&utm_term=cloud-callouts-solutioncpp" target="_BLANK">Centralize and scale your API mocks with WireMock Cloud.</a></div>
+
 ## Testcontainers for C/C++ module
 
 <img src="{{ '/images/solutions/testcontainers/testcontainers_c_logo_wide.png' | absolute_url }}" alt="Testcontainers C" style="width: 60%; height: auto; margin-top: 1em;"/>

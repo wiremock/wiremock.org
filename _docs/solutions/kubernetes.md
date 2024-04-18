@@ -7,6 +7,8 @@ logo: /images/logos/technology/kubernetes.svg
 hide-disclaimer: true
 ---
 
+<div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-solutionk8s&utm_id=cloud-callouts&utm_term=cloud-callouts-solutionk8s" target="_BLANK">Centralize and scale your API mocks with WireMock Cloud.</a></div>
+
 ## WireMock Helm Chart (Experimental)
 
 There is an [experimental Helm Chart](https://wiremock.github.io/helm-charts/) for WireMock.

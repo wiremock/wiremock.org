@@ -5,6 +5,8 @@ meta_title: Configuring WireMock in Java | WireMock
 description: Configuring WireMock progammatically in Java.
 ---
 
+<div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-configuration&utm_id=cloud-callouts&utm_term=cloud-callouts-configuration" target="_BLANK">Centralize and scale your API mocks with WireMock Cloud.</a></div>
+
 Both `WireMockServer` and the `WireMockRule` take a configuration builder as the parameter to their constructor e.g.
 
 ```java
