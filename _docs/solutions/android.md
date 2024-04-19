@@ -8,6 +8,9 @@ redirect_from: "/docs/android.html"
 logo: /images/logos/technology/android.svg
 ---
 
+<div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-solutionandroid&utm_id=cloud-callouts&utm_term=cloud-callouts-solutionandroid" target="_BLANK">Centralize and scale your API mocks with WireMock Cloud.</a></div>
+
+
 ## Guide by Sam Edwards
 
 As documented by Sam Edwards in 2016,

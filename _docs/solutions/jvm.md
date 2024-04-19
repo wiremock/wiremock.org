@@ -7,6 +7,8 @@ logo: /images/logos/technology/java.svg
 hide-disclaimer: true
 ---
 
+<div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-solutionjvm&utm_id=cloud-callouts&utm_term=cloud-callouts-solutionjvm" target="_BLANK">Centralize and scale your API mocks with WireMock Cloud.</a></div>
+
 WireMock was originally created for Java development,
 and there are plenty of solutions when developing applications powered by the Java Virtual Machine.
 

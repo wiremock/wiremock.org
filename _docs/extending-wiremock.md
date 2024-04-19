@@ -7,6 +7,8 @@ redirect_from: "/extending-wiremock.html"
 description: You can register the extension programmatically via its class name, class or an instance
 ---
 
+<div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-extending&utm_id=cloud-callouts&utm_term=cloud-callouts-extending" target="_BLANK">Chaos testing, RBAC, dynamic state and more with WireMock Cloud.</a></div>
+
 WireMock can be customised via a variety of extension points.
 
 Each extension point is defined by an interface that extends from `Extension` and extension implementations are loaded at startup time.

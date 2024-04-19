@@ -5,6 +5,8 @@ meta_title: "API Mocking QuickStart with Java and JUnit 4 | WireMock"
 description: "Shows how to write your API Client first test with WireMock and JUnit"
 ---
 
+<div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-quickstartjunit&utm_id=cloud-callouts&utm_term=cloud-callouts-quickstartjunit" target="_BLANK">Centralize and scale your API mocks with WireMock Cloud.</a></div>
+
 In this guide we will write an API Unit test with WireMock and JUnit 4.
 
 ## Prerequisites

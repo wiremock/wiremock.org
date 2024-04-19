@@ -6,6 +6,8 @@ description: "Additional solutions for WireMock when using Rust"
 logo: /images/logos/technology/rust.svg
 ---
 
+<div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-solutionrust&utm_id=cloud-callouts&utm_term=cloud-callouts-solutionrust" target="_BLANK">Centralize and scale your API mocks with WireMock Cloud.</a></div>
+
 ## wiremock-rs. Server implementation in Rust
 
 [LukeMathWalker/wiremock-rs](https://github.com/LukeMathWalker/wiremock-rs) is an API Mock Server implementation in Rust.

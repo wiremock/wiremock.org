@@ -6,6 +6,7 @@ description: Additional solutions for WireMock when using Kotlin
 logo: /images/logos/technology/kotlin.svg
 ---
 
+<div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-solutionkotlin&utm_id=cloud-callouts&utm_term=cloud-callouts-solutionkotlin" target="_BLANK">Centralize and scale your API mocks with WireMock Cloud.</a></div>
 
 ## Kotlin DSL Bindings
 
