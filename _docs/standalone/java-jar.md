@@ -100,6 +100,10 @@ internet access via an opaque proxy). e.g.
 `--proxy-via webproxy.mycorp.com:8080`. Also supports proxy authentication,
 e.g. `--proxy-via http://username:password@webproxy.mycorp.com:8080/`.
 
+`--supported-proxy-encodings`: The set of acceptable compression methods represented in the `accept-encoding` request header 
+sent by WireMock when proxying or recording expressed as a comma-separated list e.g `gzip,deflate`. This is particularly useful if you want to avoid recording e.g. brotli compresssed responses
+that can't then be viewed in the request log or served with a different compression scheme on playback, which can be achieved via `--supported-proxy-encodings=identity`.
+
 `--enable-browser-proxying`: Run as a browser proxy. See
 [Running as a browser proxy](../../proxying#running-as-a-browser-proxy).
 
