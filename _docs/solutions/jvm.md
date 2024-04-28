@@ -66,5 +66,6 @@ sorted by alphabet:
 - [Clojure](https://docs.google.com/document/d/1TQccT9Bk-o2lvRVN8_mMaGttaOnwbYFLkn0DsmwGIOA/edit#heading=h.gvb3rxc1ab9p)
 - [Groovy](../groovy)
 - [Kotlin](../kotlin)
+- [Pact](../pact)
 - [Scala](https://docs.google.com/document/d/1TQccT9Bk-o2lvRVN8_mMaGttaOnwbYFLkn0DsmwGIOA/edit#heading=h.gvb3rxc1ab9p)
 - [Spring Boot](../spring-boot)
