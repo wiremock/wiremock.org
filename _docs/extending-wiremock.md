@@ -28,6 +28,10 @@ At present, the following extension interfaces are available:
 
 The interfaces in this list ending with `V2` supercede deprecated equivalents with an older, more restrictive interface. Additionally `ServeEventListener` deprecates `PostServeAction`.
 
+As of WireMock version `3.6.0`, the `Extension` interface has two new lifecycle methods called `start()` and `stop()`. 
+The `start()` method is called on each extension when the WireMock server first starts (just before the stub mappings 
+are loaded) and the `stop()` method is called when the server is stopped. This allows extensions to perform any
+initialisation or cleanup tasks.
 
 ## Registering Extensions
 
