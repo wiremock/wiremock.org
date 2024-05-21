@@ -786,6 +786,7 @@ You can also specify a `prefix` and `suffix` to be added to the start and end of
 
 ```handlebars
 {{arrayJoin ',' (array 'One' 'Two' 'Three') prefix='[' suffix=']'}} // [One,Two,Three]
+{{arrayJoin ' * ' (array 1 2 3) prefix='(' suffix=')'}} // (1 * 2 * 3)
 ```
 
 {% endraw %}
@@ -807,6 +808,21 @@ The `arrayJoin` helper can also be used as a block helper:
 "name{{item.id}}": "{{item.name}}"
 }
 {{/arrayJoin}}] // [{ "name1": "One" }, { "name2": "Two" }, { "name3": "Three" }]
+
+
+// or the same example with the prefix and suffix parameters
+{{#parseJson 'myThings'}}
+    [
+    { "id": 1, "name": "One" },
+    { "id": 2, "name": "Two" },
+    { "id": 3, "name": "Three" }
+    ]
+{{/parseJson}}
+{{#arrayJoin ',' myThings prefix='[' suffix=']' as |item|}}
+    {
+    "name{{item.id}}": "{{item.name}}"
+    }
+{{/arrayJoin}} // [{ "name1": "One" }, { "name2": "Two" }, { "name3": "Three" }]
 ```
 
 {% endraw %}
