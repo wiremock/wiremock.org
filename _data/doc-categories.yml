@@ -28,6 +28,7 @@ java:
     - running-without-http-server
     - jetty-12
     - android
+    - pact
     
 stubbing-and-verifying:
   title: Stubbing & Verifying
