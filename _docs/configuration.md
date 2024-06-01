@@ -294,3 +294,14 @@ To output all raw traffic to console use `ConsoleNotifyingWiremockNetworkTraffic
 If you would like to collect the traffic
 and for example add it to your acceptance test's output,
 you can use the `CollectingNetworkTrafficListener`.
+
+## HTTP Client
+If you want to increase the proxying performance of wiremock you can enable Connection reuse and increse max Connections
+
+```java
+// Maximum connections for Http Client
+.maxHttpClientConnections(1000);
+//Disable http connection reuse, `false` to enable
+.disableConnectionReuse(true)
+```
+

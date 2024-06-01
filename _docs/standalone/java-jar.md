@@ -195,6 +195,10 @@ The last of these will cause chunked encoding to be used only when a stub define
 `--filename-template`: Set filename template in handlebar format. For endpoint: `GET /pets/{id}` using the format: `{{{method}}}-{{{url}}}.json` output will be `get-pets-id.json`. Default format: `{{{method}}}-{{{path}}}-{{{id}}}.json` hence by default template filename will be: `get-pets-id-1.json`.   
 Note: introduced in [3.0.0-beta-8](https://github.com/wiremock/wiremock/releases/tag/3.0.0-beta-8).
 
+`--max-http-client-connections`: Maximum connections for Http Client. Defaults to 1000.
+
+`--disable-connection-reuse`: Disable http connection reuse. Defaults to `true`
+
 `--help`: Show command line help
 
 ## Configuring WireMock using the Java client
