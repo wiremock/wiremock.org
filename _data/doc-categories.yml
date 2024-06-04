@@ -78,7 +78,8 @@ extensibility:
     - extending-wiremock
     - extensibility/filtering-requests
     - extensibility/transforming-responses
-    - extensibility/custom-matching
+    - extensibility/custom-request-matching
+    - extensibility/custom-content-matching
     - extensibility/listening-for-serve-events
     - extensibility/extending-the-admin-api
     - extensibility/adding-template-helpers
