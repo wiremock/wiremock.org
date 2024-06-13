@@ -343,9 +343,10 @@ Variable assignment and number helpers are available:
 
 ## Val helper
 
-The `val` helper can be used to access values or provide a default if the value is not present. It can also be used to
-assign a value to a variable much like the `assign` helper.  The main difference between `val` and `assign` is that `val`
-will maintain the type of the date being assigned whereas `assign` will always assign a string.
+Released in WireMock version `3.6.0`, the `val` helper can be used to access values or provide a default if the value 
+is not present. It can also be used to assign a value to a variable much like the `assign` helper.  The main difference 
+between `val` and `assign` is that `val` will maintain the type of the date being assigned whereas `assign` will always 
+assign a string.
 
 {% raw %}
 
@@ -744,9 +745,9 @@ Providing no parameters will result in an empty array.
 {% endraw %}
 
 ## Array add & remove helpers
-The `arrayAdd` and `arrayRemove` helpers can be used to add or remove elements from an array based on a position value
-or the `start` or `end` keywords. If no position is specified, the element will be added or removed from the end of the 
-array.
+As of WireMock version `3.6.0`, the `arrayAdd` and `arrayRemove` helpers can be used to add or remove elements from an 
+array based on a position value or the `start` or `end` keywords. If no position is specified, the element will be 
+added or removed from the end of the array.
 
 {% raw %}
 
@@ -766,7 +767,8 @@ array.
 
 ## arrayJoin helper
 
-The `arrayJoin` helper will concatenate the values passed to it with the separator specified:
+Released in WireMock version `3.6.0`, the `arrayJoin` helper will concatenate the values passed to it with the 
+separator specified:
 
 {% raw %}
 
