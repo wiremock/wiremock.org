@@ -988,8 +988,8 @@ The full list of comparison types used by default is as follows:
 `ATTR_NAME_LOOKUP`
 
 #### Same child nodes with different content
-By default WireMock takes into account an order of identical child nodes. Meaning if actual request has different order of same node on same level than stub it won't be matched. 
-This can be changed by passing additional argument to the `equalToXml` method
+By default, WireMock takes into account an order of identical child nodes. Meaning if actual request has different order of same node on same level than stub it won't be matched.
+As of WireMock version `3.7.0`, this can be changed by passing additional argument to the `equalToXml` method
 
 Java:
 
@@ -1004,7 +1004,7 @@ Java:
   "request": {
     ...
     "bodyPatterns" : [ {
-      "equalToXml" : "<thing>Hello</thing>",
+      "equalToXml" : "<body><entry>1</entry><entry>2</entry></body>",
       "ignoreOrderOfSameNode": true
     } ]
     ...
