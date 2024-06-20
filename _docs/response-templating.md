@@ -181,7 +181,7 @@ wm.stubFor(get(urlPathMatching("/static/.*"))
 
 The model of the request is supplied to the header and body templates. The following request attributes are available:
 
-`request.id` - The unique ID of each request (introduced in WireMock version x.x.x)
+`request.id` - The unique ID of each request (introduced in WireMock version `3.7.0`)
 
 `request.url` - URL path and query
 
