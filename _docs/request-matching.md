@@ -987,6 +987,46 @@ The full list of comparison types used by default is as follows:
 `CHILD_LOOKUP`
 `ATTR_NAME_LOOKUP`
 
+#### Same child nodes with different content
+By default, WireMock takes into account an order of identical child nodes. Meaning if actual request has different order of same node on same level than stub it won't be matched.
+As of WireMock version `3.7.0`, this can be changed by passing additional argument to the `equalToXml` method
+
+Java:
+
+```java
+    .withRequestBody(equalToXml("<body>" +
+            "   <entry>1</entry>" +
+            "   <entry>2</entry>" +
+            "</body>",false,true))
+```
+```json
+{
+  "request": {
+    ...
+    "bodyPatterns" : [ {
+      "equalToXml" : "<body><entry>1</entry><entry>2</entry></body>",
+      "ignoreOrderOfSameNode": true
+    } ]
+    ...
+  },
+  ...
+}
+```
+This will make sure that stub above matches both of following requests:
+```xml
+<body>
+    <entry>2</entry>
+    <entry>1</entry>
+</body>
+```
+and 
+```xml
+<body>
+    <entry>1</entry>
+    <entry>2</entry>
+</body>
+```
+If third argument is passed as `false` then first xml will not match the stub
 ### XPath
 
 Deems a match if the attribute value is valid XML and matches the XPath expression supplied. An XML document will be considered to match if any elements are returned by the XPath evaluation. WireMock delegates to Java's in-built XPath engine (via XMLUnit), therefore up to (at least) Java 8 it supports XPath version 1.0.
