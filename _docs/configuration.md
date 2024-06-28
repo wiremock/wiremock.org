@@ -177,6 +177,16 @@ The request journal records requests received by WireMock. It is required by the
 .maxRequestJournalEntries(Optional.of(100))
 ```
 
+## Template Cache
+
+When response templating is enabled, compiled template fragments are cached to improve performance.  This setting allows
+you to configure the maximum number of entries to allow in the cache.  As of WireMock `3.7.0`, this defaults to 1000 
+cache entries.  Before WireMock `3.7.0` the default was unlimited
+
+```java
+.withMaxTemplateCacheEntries(100)
+```
+
 ## Notification (logging)
 
 WireMock wraps all logging in its own `Notifier` interface. It ships with no-op, Slf4j and console (stdout) implementations.
