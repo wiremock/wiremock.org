@@ -125,6 +125,9 @@ HTTP/2 can be disabled separately for plain text (HTTP) and TLS (HTTPS):
 
 // Send the Host header in the original request onwards to the system being proxied to
 .preserveHostHeader(false)
+    
+// As of WireMock `3.7.0`, when in proxy mode, this option will transfer the original `User-Agent` header from the client to the proxied service.
+.preserveUserAgentProxyHeader(true) 
 
  // Override the Host header sent when reverse proxying to another system (this and the previous parameter are mutually exclusive)
 .proxyHostHeader("my.otherdomain.com")

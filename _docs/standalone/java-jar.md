@@ -92,6 +92,9 @@ option is not present, the Host header value is deducted from the proxy
 URL. This option is only available if the `--proxy-all` option is
 specified.
 
+`--preserve-user-agent-proxy-header`: As of WireMock `3.7.0`, when in proxy mode, this option will transfer the 
+original `User-Agent` header from the client to the proxied service.
+
 `--proxy-via`: When proxying requests (either by using --proxy-all or by
 creating stub mappings that proxy to other hosts), route via another
 proxy server (useful when inside a corporate network that only permits
