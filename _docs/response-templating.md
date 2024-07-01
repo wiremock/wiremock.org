@@ -216,6 +216,18 @@ When the path template URL match type has been used you can additionally referen
 
 `request.body` - Request body text (avoid for non-text bodies)
 
+`request.bodyAsBase64` - As of WireMock `3.8.0`, the Base64 representation of the request body.
+
+`request.multipart` - As of WireMock `3.8.0`, if the request is a multipart request (boolean).
+
+`request.parts` - As of WireMock `3.8.0`, the individual parts of a multipart request are exposed via the template
+model. Each part can be referenced by its name and exposes a number of properties in the template model.  For example, 
+a multipart request with a name of `text` has the following properties available:
+* `request.parts.text.binary` - if the part is a binary type.
+* `request.parts.text.headers.<key>` - first value of a part header - `request.parts.text.headers.content-type`
+* `request.parts.text.body` - part body as text.
+* `request.parts.text.bodyAsBase64` - part body as base64.
+
 ### Values that can be one or many
 
 A number of HTTP elements (query parameters, form fields, headers) can be single or multiple valued. The template request model and built-in helpers attempt to make
