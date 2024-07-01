@@ -92,6 +92,9 @@ option is not present, the Host header value is deducted from the proxy
 URL. This option is only available if the `--proxy-all` option is
 specified.
 
+`--preserve-user-agent-proxy-header`: As of WireMock `3.7.0`, when in proxy mode, this option will transfer the 
+original `User-Agent` header from the client to the proxied service.
+
 `--proxy-via`: When proxying requests (either by using --proxy-all or by
 creating stub mappings that proxy to other hosts), route via another
 proxy server (useful when inside a corporate network that only permits
@@ -167,7 +170,8 @@ com.mycorp.HeaderTransformer,com.mycorp.BodyTransformer. See [Extending WireMock
 
 `--local-response-templating`: Enable rendering of response definitions using Handlebars templates for specific stub mappings.
 
-`--max-template-cache-entries`: Set the maximum number of compiled template fragments to cache. Only has any effect when response templating is enabled. Defaults to no limit.
+`--max-template-cache-entries`: Set the maximum number of compiled template fragments to cache. Only has any effect when response templating is enabled. As of WireMock `3.7.0`, this defaults to 1000
+cache entries.  Before WireMock `3.7.0` the default was unlimited.
 
 `--use-chunked-encoding`: Set the policy for sending responses with `Transfer-Encoding: chunked`. Valid values are `always`, `never` and `body_file`.
 The last of these will cause chunked encoding to be used only when a stub defines its response body from a file.

@@ -125,6 +125,9 @@ HTTP/2 can be disabled separately for plain text (HTTP) and TLS (HTTPS):
 
 // Send the Host header in the original request onwards to the system being proxied to
 .preserveHostHeader(false)
+    
+// As of WireMock `3.7.0`, when in proxy mode, this option will transfer the original `User-Agent` header from the client to the proxied service.
+.preserveUserAgentProxyHeader(true) 
 
  // Override the Host header sent when reverse proxying to another system (this and the previous parameter are mutually exclusive)
 .proxyHostHeader("my.otherdomain.com")
@@ -175,6 +178,16 @@ The request journal records requests received by WireMock. It is required by the
 
 // Limit the size of the request log (for the same reason as above).
 .maxRequestJournalEntries(Optional.of(100))
+```
+
+## Template Cache
+
+When response templating is enabled, compiled template fragments are cached to improve performance.  This setting allows
+you to configure the maximum number of entries to allow in the cache.  As of WireMock `3.7.0`, this defaults to 1000 
+cache entries.  Before WireMock `3.7.0` the default was unlimited
+
+```java
+.withMaxTemplateCacheEntries(100)
 ```
 
 ## Notification (logging)
