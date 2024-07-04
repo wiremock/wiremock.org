@@ -2,11 +2,12 @@
   "openapi": "3.0.0",
   "info": {
     "title": "WireMock",
-    "version": "2.35.0"
+    "version": "3.8.0",
+    "description": "WireMock offers a REST API for administration, troubleshooting and analysis purposes"
   },
   "externalDocs": {
     "description": "WireMock user documentation",
-    "url": "http://wiremock.org/docs/"
+    "url": "https://wiremock.org/docs/"
   },
   "servers": [
     {
@@ -19,7 +20,7 @@
       "description": "Operations on stub mappings",
       "externalDocs": {
         "description": "User documentation",
-        "url": "http://wiremock.org/docs/stubbing/"
+        "url": "https://wiremock.org/docs/stubbing/"
       }
     },
     {
@@ -27,7 +28,7 @@
       "description": "Logged requests and responses received by the mock service",
       "externalDocs": {
         "description": "User documentation",
-        "url": "http://wiremock.org/docs/verifying/"
+        "url": "https://wiremock.org/docs/verifying/"
       }
     },
     {
@@ -35,7 +36,7 @@
       "description": "Near misses allow querying of received requests or request patterns according to similarity",
       "externalDocs": {
         "description": "User documentation",
-        "url": "http://wiremock.org/docs/verifying/#near-misses"
+        "url": "https://wiremock.org/docs/verifying/#near-misses"
       }
     },
     {
@@ -43,7 +44,7 @@
       "description": "Stub mapping record and snapshot functions",
       "externalDocs": {
         "description": "User documentation",
-        "url": "http://wiremock.org/docs/record-playback/"
+        "url": "https://wiremock.org/docs/record-playback/"
       }
     },
     {
@@ -51,8 +52,12 @@
       "description": "Scenarios support modelling of stateful behaviour",
       "externalDocs": {
         "description": "User documentation",
-        "url": "http://wiremock.org/docs/stateful-behaviour/"
+        "url": "https://wiremock.org/docs/stateful-behaviour/"
       }
+    },
+    {
+      "name": "Files",
+      "description": "Manage the files used to support WireMock stubs"
     },
     {
       "name": "System",
@@ -62,6 +67,7 @@
   "paths": {
     "/__admin/mappings": {
       "get": {
+        "operationId": "getAllStubMappings",
         "summary": "Get all stub mappings",
         "tags": [
           "Stub Mappings"
@@ -206,6 +212,13 @@
                                   "additionalProxyRequestHeaders": {
                                     "type": "object",
                                     "description": "Extra request headers to send when proxying to another host."
+                                  },
+                                  "removeProxyRequestHeaders": {
+                                    "type": "array",
+                                    "description": "Request headers to remove when proxying to another host.",
+                                    "items": {
+                                      "type": "string"
+                                    }
                                   },
                                   "body": {
                                     "type": "string",
@@ -402,6 +415,7 @@
         }
       },
       "post": {
+        "operationId": "createNewStubMapping",
         "summary": "Create a new stub mapping",
         "tags": [
           "Stub Mappings"
@@ -518,6 +532,13 @@
                           "additionalProxyRequestHeaders": {
                             "type": "object",
                             "description": "Extra request headers to send when proxying to another host."
+                          },
+                          "removeProxyRequestHeaders": {
+                            "type": "array",
+                            "description": "Request headers to remove when proxying to another host.",
+                            "items": {
+                              "type": "string"
+                            }
                           },
                           "body": {
                             "type": "string",
@@ -778,6 +799,13 @@
                               "type": "object",
                               "description": "Extra request headers to send when proxying to another host."
                             },
+                            "removeProxyRequestHeaders": {
+                              "type": "array",
+                              "description": "Request headers to remove when proxying to another host.",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
                             "body": {
                               "type": "string",
                               "description": "The response body as a string. Only one of body, base64Body, jsonBody or bodyFileName may be specified."
@@ -932,6 +960,7 @@
         }
       },
       "delete": {
+        "operationId": "deleteAllStubMappings",
         "summary": "Delete all stub mappings",
         "tags": [
           "Stub Mappings"
@@ -945,6 +974,7 @@
     },
     "/__admin/mappings/reset": {
       "post": {
+        "operationId": "resetStubMappings",
         "summary": "Reset stub mappings",
         "description": "Restores stub mappings to the defaults defined back in the backing store",
         "tags": [
@@ -959,6 +989,7 @@
     },
     "/__admin/mappings/save": {
       "post": {
+        "operationId": "persistStubMappings",
         "summary": "Persist stub mappings",
         "description": "Save all persistent stub mappings to the backing store",
         "tags": [
@@ -973,6 +1004,7 @@
     },
     "/__admin/mappings/import": {
       "post": {
+        "operationId": "importStubMappings",
         "summary": "Import stub mappings",
         "description": "Import given stub mappings to the backing store",
         "tags": [
@@ -999,6 +1031,7 @@
         }
       ],
       "get": {
+        "operationId": "getStubMappingById",
         "summary": "Get stub mapping by ID",
         "tags": [
           "Stub Mappings"
@@ -1117,6 +1150,13 @@
                             "additionalProxyRequestHeaders": {
                               "type": "object",
                               "description": "Extra request headers to send when proxying to another host."
+                            },
+                            "removeProxyRequestHeaders": {
+                              "type": "array",
+                              "description": "Request headers to remove when proxying to another host.",
+                              "items": {
+                                "type": "string"
+                              }
                             },
                             "body": {
                               "type": "string",
@@ -1275,6 +1315,7 @@
         }
       },
       "put": {
+        "operationId": "updateStubMapping",
         "summary": "Update a stub mapping",
         "tags": [
           "Stub Mappings"
@@ -1391,6 +1432,13 @@
                           "additionalProxyRequestHeaders": {
                             "type": "object",
                             "description": "Extra request headers to send when proxying to another host."
+                          },
+                          "removeProxyRequestHeaders": {
+                            "type": "array",
+                            "description": "Request headers to remove when proxying to another host.",
+                            "items": {
+                              "type": "string"
+                            }
                           },
                           "body": {
                             "type": "string",
@@ -1651,6 +1699,13 @@
                               "type": "object",
                               "description": "Extra request headers to send when proxying to another host."
                             },
+                            "removeProxyRequestHeaders": {
+                              "type": "array",
+                              "description": "Request headers to remove when proxying to another host.",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
                             "body": {
                               "type": "string",
                               "description": "The response body as a string. Only one of body, base64Body, jsonBody or bodyFileName may be specified."
@@ -1808,6 +1863,7 @@
         }
       },
       "delete": {
+        "operationId": "deleteStubMapping",
         "summary": "Delete a stub mapping",
         "tags": [
           "Stub Mappings"
@@ -1824,6 +1880,7 @@
     },
     "/__admin/mappings/find-by-metadata": {
       "post": {
+        "operationId": "findStubMappingsByMetadata",
         "description": "Find stubs by matching on their metadata",
         "tags": [
           "Stub Mappings"
@@ -2075,6 +2132,13 @@
                                     "type": "object",
                                     "description": "Extra request headers to send when proxying to another host."
                                   },
+                                  "removeProxyRequestHeaders": {
+                                    "type": "array",
+                                    "description": "Request headers to remove when proxying to another host.",
+                                    "items": {
+                                      "type": "string"
+                                    }
+                                  },
                                   "body": {
                                     "type": "string",
                                     "description": "The response body as a string. Only one of body, base64Body, jsonBody or bodyFileName may be specified."
@@ -2272,6 +2336,7 @@
     },
     "/__admin/mappings/remove-by-metadata": {
       "post": {
+        "operationId": "removeStubMappingsByMetadata",
         "summary": "Delete stub mappings matching metadata",
         "tags": [
           "Stub Mappings"
@@ -2412,6 +2477,7 @@
     },
     "/__admin/requests": {
       "get": {
+        "operationId": "getAllRequestsInJournal",
         "summary": "Get all requests in journal",
         "tags": [
           "Requests"
@@ -2533,6 +2599,7 @@
         }
       },
       "delete": {
+        "operationId": "deleteAllRequestsInJournal",
         "summary": "Delete all requests in journal",
         "tags": [
           "Requests"
@@ -2546,6 +2613,7 @@
     },
     "/__admin/requests/{requestId}": {
       "get": {
+        "operationId": "getRequestById",
         "summary": "Get request by ID",
         "tags": [
           "Requests"
@@ -2602,6 +2670,7 @@
         }
       },
       "delete": {
+        "operationId": "deleteRequestById",
         "summary": "Delete request by ID",
         "tags": [
           "Requests"
@@ -2627,6 +2696,7 @@
     },
     "/__admin/requests/reset": {
       "post": {
+        "operationId": "emptyRequestJournal",
         "deprecated": true,
         "summary": "Empty the request journal",
         "tags": [
@@ -2641,6 +2711,7 @@
     },
     "/__admin/requests/count": {
       "post": {
+        "operationId": "countRequestsByCriteria",
         "summary": "Count requests by criteria",
         "description": "Count requests logged in the journal matching the specified criteria",
         "tags": [
@@ -2758,6 +2829,7 @@
     },
     "/__admin/requests/remove": {
       "post": {
+        "operationId": "removeRequestsByCriteria",
         "summary": "Remove requests by criteria",
         "description": "Removed requests logged in the journal matching the specified criteria",
         "tags": [
@@ -2897,6 +2969,7 @@
     },
     "/__admin/requests/remove-by-metadata": {
       "post": {
+        "operationId": "removeRequestsByMetadata",
         "summary": "Delete requests mappings matching metadata",
         "tags": [
           "Requests"
@@ -3072,6 +3145,7 @@
     },
     "/__admin/requests/find": {
       "post": {
+        "operationId": "findRequestsByCriteria",
         "summary": "Find requests by criteria",
         "description": "Retrieve details of requests logged in the journal matching the specified criteria",
         "tags": [
@@ -3211,6 +3285,7 @@
     },
     "/__admin/requests/unmatched": {
       "get": {
+        "operationId": "findUnmatchedRequests",
         "summary": "Find unmatched requests",
         "description": "Get details of logged requests that weren't matched by any stub mapping",
         "tags": [
@@ -3260,6 +3335,7 @@
     },
     "/__admin/requests/unmatched/near-misses": {
       "get": {
+        "operationId": "retrieveNearMissesForUnmatchedRequests",
         "description": "Retrieve near-misses for all unmatched requests",
         "tags": [
           "Near Misses"
@@ -3354,6 +3430,7 @@
     },
     "/__admin/near-misses/request": {
       "post": {
+        "operationId": "findNearMissesForRequest",
         "summary": "Find near misses matching specific request",
         "description": "Find at most 3 near misses for closest stub mappings to the specified request",
         "tags": [
@@ -3512,6 +3589,7 @@
     },
     "/__admin/near-misses/request-pattern": {
       "post": {
+        "operationId": "findNearMissesForRequestPattern",
         "summary": "Find near misses matching request pattern",
         "description": "Find at most 3 near misses for closest logged requests to the specified request pattern",
         "tags": [
@@ -3697,6 +3775,7 @@
     },
     "/__admin/recordings/start": {
       "post": {
+        "operationId": "startRecording",
         "summary": "Start recording",
         "description": "Begin recording stub mappings",
         "tags": [
@@ -3947,14 +4026,14 @@
                       "targetBaseUrl": {
                         "type": "string",
                         "description": "Target URL when using the record and playback API",
-                        "example": "http://examples.wiremockapi.cloud/"
+                        "example": "https://example.wiremock.org"
                       }
                     }
                   }
                 ]
               },
               "example": {
-                "targetBaseUrl": "http://examples.wiremockapi.cloud/",
+                "targetBaseUrl": "https://example.wiremock.org",
                 "filters": {
                   "urlPathPattern": "/api/.*",
                   "method": "GET"
@@ -3995,6 +4074,7 @@
     },
     "/__admin/recordings/stop": {
       "post": {
+        "operationId": "stopRecording",
         "summary": "Stop recording",
         "description": "End recording of stub mappings",
         "tags": [
@@ -4118,6 +4198,13 @@
                                   "additionalProxyRequestHeaders": {
                                     "type": "object",
                                     "description": "Extra request headers to send when proxying to another host."
+                                  },
+                                  "removeProxyRequestHeaders": {
+                                    "type": "array",
+                                    "description": "Request headers to remove when proxying to another host.",
+                                    "items": {
+                                      "type": "string"
+                                    }
                                   },
                                   "body": {
                                     "type": "string",
@@ -4293,6 +4380,7 @@
     },
     "/__admin/recordings/status": {
       "get": {
+        "operationId": "getRecordingStatus",
         "summary": "Get recording status",
         "tags": [
           "Recordings"
@@ -4324,6 +4412,7 @@
     },
     "/__admin/recordings/snapshot": {
       "post": {
+        "operationId": "takeRecordingSnapshot",
         "summary": "Take a snapshot recording",
         "tags": [
           "Recordings"
@@ -4740,6 +4829,13 @@
                                     "type": "object",
                                     "description": "Extra request headers to send when proxying to another host."
                                   },
+                                  "removeProxyRequestHeaders": {
+                                    "type": "array",
+                                    "description": "Request headers to remove when proxying to another host.",
+                                    "items": {
+                                      "type": "string"
+                                    }
+                                  },
                                   "body": {
                                     "type": "string",
                                     "description": "The response body as a string. Only one of body, base64Body, jsonBody or bodyFileName may be specified."
@@ -4914,6 +5010,7 @@
     },
     "/__admin/scenarios": {
       "get": {
+        "operationId": "getAllScenarios",
         "summary": "Get all scenarios",
         "tags": [
           "Scenarios"
@@ -4973,6 +5070,7 @@
     },
     "/__admin/scenarios/reset": {
       "post": {
+        "operationId": "resetAllScenarios",
         "summary": "Reset the state of all scenarios",
         "tags": [
           "Scenarios"
@@ -4984,8 +5082,101 @@
         }
       }
     },
+    "/__admin/files": {
+      "get": {
+        "operationId": "getAllFileNames",
+        "summary": "Get all file names",
+        "tags": [
+          "Files"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "example": [
+                    "file1.json",
+                    "file2.json",
+                    "file3.txt"
+                  ]
+                }
+              }
+            },
+            "description": "All scenarios"
+          }
+        }
+      }
+    },
+    "/__admin/files/{fileId}": {
+      "parameters": [
+        {
+          "description": "The name of the file",
+          "in": "path",
+          "name": "fileId",
+          "required": true,
+          "example": "file1.json",
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "operationId": "getFileById",
+        "summary": "Get file by ID",
+        "tags": [
+          "Files"
+        ],
+        "responses": {
+          "404": {
+            "description": "File not found"
+          },
+          "200": {
+            "description": "The contents of the file"
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateFileById",
+        "summary": "Update or create a file",
+        "tags": [
+          "Files"
+        ],
+        "requestBody": {
+          "content": {
+            "application/octet-stream": {
+              "schema": {
+                "type": "string",
+                "format": "byte"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK - contents of the request body as a string"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteFileById",
+        "summary": "Delete a file if it exists",
+        "tags": [
+          "Files"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/__admin/settings": {
       "post": {
+        "operationId": "updateGlobalSettings",
         "summary": "Update global settings",
         "tags": [
           "System"
@@ -5063,6 +5254,7 @@
     },
     "/__admin/reset": {
       "post": {
+        "operationId": "resetMappingsAndJournal",
         "summary": "Reset mappings and request journal",
         "description": "Reset mappings to the default state and reset the request journal",
         "tags": [
@@ -5075,15 +5267,106 @@
         }
       }
     },
-    "/__admin/shutdown": {
-      "post": {
-        "description": "Shutdown the WireMock server",
+    "/__admin/shutdown" : {
+      "post" : {
+        "operationId" : "shutdownServer",
+        "summary" : "Shutdown the WireMock server",
+        "description" : "Shutdown the WireMock server",
+        "tags" : [ "System" ],
+        "responses" : {
+          "200" : {
+            "description" : "Server will be shut down"
+          }
+        }
+      }
+    },
+    "/__admin/version": {
+      "get": {
+        "operationId": "getVersion",
+        "summary": "Return the version of the WireMock server",
+        "description": "Returns the version of the WireMock server",
         "tags": [
           "System"
         ],
         "responses": {
           "200": {
-            "description": "Server will be shut down"
+            "description": "Successfully returned the version of the WireMock server",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "version": {
+                      "type": "string",
+                      "example": "3.8.0"
+                    }
+                  }
+                },
+                "example": {
+                  "version": "3.8.0"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/__admin/health": {
+      "get": {
+        "operationId": "getHealth",
+        "summary": "Return the health of the WireMock server",
+        "description": "Returns the health of the WireMock server",
+        "tags": [
+          "System"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful health and uptime data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "The status of the server",
+                      "example": "healthy",
+                      "enum": [
+                        "healthy",
+                        "unhealthy"
+                      ]
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Longer message regarding the status of the server",
+                      "example": "Wiremock is ok"
+                    },
+                    "version": {
+                      "type": "string",
+                      "description": "The WireMock version",
+                      "example": "3.8.0"
+                    },
+                    "upTimeInSeconds": {
+                      "type": "integer",
+                      "description": "How long the server has been running",
+                      "example": 14355
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "description": "The current timestamp",
+                      "example": "2024-07-03T13:16:06.172362Z"
+                    }
+                  }
+                },
+                "example": {
+                  "status": "healthy",
+                  "message": "Wiremock is ok",
+                  "version": "3.8.0",
+                  "uptimeInSeconds": 14355,
+                  "timestamp": "2024-07-03T13:16:06.172362Z"
+                }
+              }
+            }
           }
         }
       }
@@ -5293,6 +5576,13 @@
                         "additionalProxyRequestHeaders": {
                           "type": "object",
                           "description": "Extra request headers to send when proxying to another host."
+                        },
+                        "removeProxyRequestHeaders": {
+                          "type": "array",
+                          "description": "Request headers to remove when proxying to another host.",
+                          "items": {
+                            "type": "string"
+                          }
                         },
                         "body": {
                           "type": "string",
@@ -5683,14 +5973,14 @@
                     "targetBaseUrl": {
                       "type": "string",
                       "description": "Target URL when using the record and playback API",
-                      "example": "http://examples.wiremockapi.cloud/"
+                      "example": "https://example.wiremock.org"
                     }
                   }
                 }
               ]
             },
             "example": {
-              "targetBaseUrl": "http://examples.wiremockapi.cloud/",
+              "targetBaseUrl": "https://example.wiremock.org",
               "filters": {
                 "urlPathPattern": "/api/.*",
                 "method": "GET"
@@ -6130,6 +6420,13 @@
                         "additionalProxyRequestHeaders": {
                           "type": "object",
                           "description": "Extra request headers to send when proxying to another host."
+                        },
+                        "removeProxyRequestHeaders": {
+                          "type": "array",
+                          "description": "Request headers to remove when proxying to another host.",
+                          "items": {
+                            "type": "string"
+                          }
                         },
                         "body": {
                           "type": "string",

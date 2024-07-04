@@ -1,4 +1,4 @@
-targetBaseUrl: http://examples.wiremockapi.cloud/
+targetBaseUrl: https://examples.wiremockapi.cloud/
 filters:
   urlPathPattern: "/api/.*"
   method: GET
