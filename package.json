@@ -1,6 +1,6 @@
 {
   "name": "wiremock-docs",
-  "version": "2.35.0",
+  "version": "3.8.0",
   "description": "WireMock documentation processor",
   "engines": {
     "node": ">= 0.10.0"
@@ -11,10 +11,10 @@
     "npm-run-all": "^1.7.0",
     "onchange": "^6.1.0",
     "postcss-cli": "^6.1.3",
-    "redoc": "2.0.0-rc.18",
+    "redoc": "2.1.5",
     "shx": "0.2.2",
-    "swagger-cli": "2.3.4",
     "swagger-ui-dist": "3.48.0",
+    "@redocly/cli": "^1.17.1",
     "to": "^0.2.9",
     "uglify-js": "^2.6.1"
   },
@@ -29,8 +29,8 @@
     "build:css": "npm run scss && npm run autoprefixer",
     "build:js": "npm run uglify",
     "build:all": "npm run build:css && npm run build:js",
-    "swaggerjson": "swagger-cli bundle -r -t json swagger/wiremock-admin-api.yaml > assets/js/wiremock-admin-api.json",
+    "openapijson": "redocly bundle --ext json swagger/wiremock-admin-api.yaml > assets/js/wiremock-admin-api.json",
     "redoc": "shx cp node_modules/redoc/bundles/redoc.standalone.js assets/js",
-    "apidocs": "npm-run-all swaggerjson redoc"
+    "apidocs": "npm-run-all openapijson redoc"
   }
 }

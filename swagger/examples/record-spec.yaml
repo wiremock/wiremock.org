@@ -1,4 +1,4 @@
-targetBaseUrl: https://examples.wiremockapi.cloud/
+targetBaseUrl: http://example.mocklab.io
 filters:
   urlPathPattern: "/api/.*"
   method: GET
