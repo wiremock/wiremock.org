@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: Custom Matching
+title: Custom Request Matching
 meta_title: Adding custom request matchers
 description: Adding custom request matchers via extensions
 ---
