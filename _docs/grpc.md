@@ -32,7 +32,7 @@ Add the extension JAR dependency to your project:
 Gradle:
 
 ```gradle
-implementation 'org.wiremock:wiremock-grpc-extension:{{ site.grpc_extension_version }}'
+testImplementation 'org.wiremock:wiremock-grpc-extension:{{ site.grpc_extension_version }}'
 ```
 
 Maven:
@@ -42,6 +42,7 @@ Maven:
     <groupId>org.wiremock</groupId>
     <artifactId>wiremock-grpc-extension</artifactId>
     <version>{{ site.grpc_extension_version }}</version>
+    <scope>test</scope>
 </dependency>
 ```
 
