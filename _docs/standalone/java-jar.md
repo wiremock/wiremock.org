@@ -145,7 +145,7 @@ requests. Defaults to 10.
 request journal (if enabled). When this limit is reached oldest entries
 will be discarded.
 
-`--max-http-client-connections` : Maximum connections for Http Client
+`--max-http-client-connections`: Maximum connections for Http Client. Defaults to 1000.
 
 `--jetty-acceptor-threads`: The number of threads Jetty uses for
 accepting requests.
@@ -192,7 +192,7 @@ The last of these will cause chunked encoding to be used only when a stub define
 
 `--disable-banner`: Prevent WireMock logo from being printed on startup
 
-`--disable-connection-reuse` : Disable http connection reuse
+`--disable-connection-reuse`: Disable http connection reuse. Defaults to `true`
 
 `--disable-extensions-scanning` : Prevent extensions from being scanned and loaded from the classpath
 
@@ -222,6 +222,7 @@ Note: introduced in [3.0.0-beta-8](https://github.com/wiremock/wiremock/releases
 `--timeout` : The default global timeout
 
 `--version` : Prints wiremock version information and exits
+
 
 `--help`: Show command line help
 
