@@ -234,11 +234,11 @@ compress_html:
     ignore:
         envs: development
 
-wiremock_version: 3.6.0
+wiremock_version: 3.9.1
 wiremock_baseline: 3.x
 pageEditPrefix: https://github.com/wiremock/wiremock.org/edit/main/
 
-grpc_extension_version: 0.6.0
+grpc_extension_version: 0.8.0
 
 community_slack:
   join_url: https://slack.wiremock.org/

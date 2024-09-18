@@ -181,6 +181,8 @@ wm.stubFor(get(urlPathMatching("/static/.*"))
 
 The model of the request is supplied to the header and body templates. The following request attributes are available:
 
+`request.id` - The unique ID of each request (introduced in WireMock version `3.7.0`)
+
 `request.url` - URL path and query
 
 `request.path` - URL path. This can be referenced in full or it can be treated as an array of path segments (like below) e.g. `request.path.3`.
@@ -213,6 +215,18 @@ When the path template URL match type has been used you can additionally referen
 `request.cookies.<key>.[<n>]` - nth value of a request cookie e.g. `request.cookies.JSESSIONID.2`
 
 `request.body` - Request body text (avoid for non-text bodies)
+
+`request.bodyAsBase64` - As of WireMock `3.8.0`, the Base64 representation of the request body.
+
+`request.multipart` - As of WireMock `3.8.0`, if the request is a multipart request (boolean).
+
+`request.parts` - As of WireMock `3.8.0`, the individual parts of a multipart request are exposed via the template
+model. Each part can be referenced by its name and exposes a number of properties in the template model.  For example, 
+a multipart request with a name of `text` has the following properties available:
+* `request.parts.text.binary` - if the part is a binary type.
+* `request.parts.text.headers.<key>` - first value of a part header - `request.parts.text.headers.content-type`
+* `request.parts.text.body` - part body as text.
+* `request.parts.text.bodyAsBase64` - part body as base64.
 
 ### Values that can be one or many
 
@@ -343,9 +357,10 @@ Variable assignment and number helpers are available:
 
 ## Val helper
 
-The `val` helper can be used to access values or provide a default if the value is not present. It can also be used to
-assign a value to a variable much like the `assign` helper.  The main difference between `val` and `assign` is that `val`
-will maintain the type of the date being assigned whereas `assign` will always assign a string.
+Released in WireMock version `3.6.0`, the `val` helper can be used to access values or provide a default if the value 
+is not present. It can also be used to assign a value to a variable much like the `assign` helper.  The main difference 
+between `val` and `assign` is that `val` will maintain the type of the date being assigned whereas `assign` will always 
+assign a string.
 
 {% raw %}
 
@@ -670,8 +685,115 @@ Likewise decimals can be produced with or without bounds:
 {{randomDecimal upper=12.5}}
 {{randomDecimal lower=-24.01}}
 ```
-
 {% endraw %}
+
+## Formatting numbers
+
+The `numberFormat` helper allows you to specify how numbers are printed. It supports
+a number of predefined formats, custom format strings and various other options
+including rounding mode, decimal places and locale.
+
+### Predefined formats
+`numberFormat` supports the following predefined formats:
+
+* `integer`
+* `currency`
+* `percent`
+
+Predefined formats can be affected by locale, so it's usually a good idea to explicitly
+specify this.
+
+For example, to format a decimal number as currency, specifically British pounds:
+
+{% raw %}
+```handlebars
+{{{numberFormat 123.4567 'currency' 'en_GB'}}}
+```
+{% endraw %}
+
+Output: `£123.46`.
+
+Alternatively, if we wanted to output the number as a percentage:
+
+{% raw %}
+```handlebars
+{{{numberFormat 123.4567 'percent' 'en_GB'}}}
+```
+{% endraw %}
+
+Output: `12,346%`.
+
+### Custom format string
+For maximum control over the number format you can specify a format string:
+
+{% raw %}
+```handlebars
+{{{numberFormat 123.4567 '###.000000' 'en_GB'}}}
+```
+{% endraw %}
+
+Output: `123.456700`.
+
+See the [Java DecimalFormat documentation](https://docs.oracle.com/javase/8/docs/api/java/text/DecimalFormat.html)
+for details on how to use format strings.
+
+
+### Configuring number of digits
+Separate from the format parameter, the number of digits before and after the
+decimal place can be bounded using one or more of four parameters:
+`maximumFractionDigits`, `minimumFractionDigits`, `maximumIntegerDigits`, `minimumIntegerDigits`.
+
+{% raw %}
+```handlebars
+{{{numberFormat 1234.567 maximumIntegerDigits=3 minimumFractionDigits=6}}}
+```
+{% endraw %}
+
+Output: `234.567000`.
+
+
+### Disabling grouping
+By default `numberFormat` will insert commas, periods etc. per the locale between
+groups of digits e.g. `1,234.5`.
+
+This behaviour can be disabled with `groupingUsed`.
+
+{% raw %}
+```handlebars
+{{{numberFormat 12345.678 groupingUsed=false}}}
+```
+{% endraw %}
+
+Output: `12345.678`.
+
+
+### Rounding mode
+The `roundingMode` parameter affects how numbers will be rounded up or down when
+it's necessary to do so.
+
+For instance, to always round down:
+
+{% raw %}
+```handlebars
+{{{numberFormat 1.239 roundingMode='down' maximumFractionDigits=2}}}
+```
+{% endraw %}
+
+Output: `1.23`.
+
+Available rounding modes are:
+
+* `up`
+* `down`
+* `half_up`
+* `half_down`
+* `half_even`
+* `ceiling`
+* `floor`.
+
+See the [Java RoundingMode documentation](https://docs.oracle.com/javase/8/docs/api/java/math/RoundingMode.html)
+for the exact meaning of each of these.
+
 
 ## Fake data helpers
 
@@ -744,9 +866,9 @@ Providing no parameters will result in an empty array.
 {% endraw %}
 
 ## Array add & remove helpers
-The `arrayAdd` and `arrayRemove` helpers can be used to add or remove elements from an array based on a position value
-or the `start` or `end` keywords. If no position is specified, the element will be added or removed from the end of the 
-array.
+As of WireMock version `3.6.0`, the `arrayAdd` and `arrayRemove` helpers can be used to add or remove elements from an 
+array based on a position value or the `start` or `end` keywords. If no position is specified, the element will be 
+added or removed from the end of the array.
 
 {% raw %}
 
@@ -766,7 +888,8 @@ array.
 
 ## arrayJoin helper
 
-The `arrayJoin` helper will concatenate the values passed to it with the separator specified:
+Released in WireMock version `3.6.0`, the `arrayJoin` helper will concatenate the values passed to it with the 
+separator specified:
 
 {% raw %}
 

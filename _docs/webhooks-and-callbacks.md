@@ -276,6 +276,61 @@ JSON:
 }
 ```
 
+## Observing webhook events
+As of WireMock `3.7.0`, successful webhook requests and responses are logged as Sub Events in the request log.  Any 
+errors that happen as part of the webhook request (not able to contact the target site or error in the handlebars
+template for example) are logged as error Sub Events in the request log. An example of a successful request/response
+webhook Sub Event:
+
+```json
+{
+    "subEvents": [
+        {
+          "type": "WEBHOOK_REQUEST",
+          "timeOffsetNanos": 0,
+          "data": {
+            "url": "/2865e463-1f98-4899-8837-90b89364a5dc",
+            "absoluteUrl": "https://example.com/2865e463-1f98-4899-8837-90b89364a5dc",
+            "method": "POST",
+            "headers": {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            },
+            "browserProxyRequest": false,
+            "loggedDate": 1719826613928,
+            "bodyAsBase64": "eyJvbGRTdGF0ZSI6IHt9LCAibmV3U3RhdGUiOiB7fX0=",
+            "body": "{\"oldState\": {}, \"newState\": {}}",
+            "scheme": "https",
+            "host": "example.com",
+            "port": 443,
+            "loggedDateString": "2024-07-01T09:36:53.928Z",
+            "queryParams": {},
+            "formParams": {}
+          }
+        },
+        {
+          "type": "WEBHOOK_RESPONSE",
+          "timeOffsetNanos": 0,
+          "data": {
+            "status": 200,
+            "headers": {
+              "Transfer-Encoding": "chunked",
+              "X-Token-Id": "2865e463-1f98-4899-8837-90b89364a5dc",
+              "Cache-Control": "no-cache, private",
+              "Server": "nginx",
+              "X-Request-Id": "f530c738-bc00-48f2-8382-2394c25a32c6",
+              "Vary": "Accept-Encoding",
+              "Date": "Mon, 01 Jul 2024 09:36:54 GMT",
+              "Content-Type": "text/html; charset=UTF-8"
+            },
+            "bodyAsBase64": "",
+            "body": ""
+          }
+        }
+      ]
+}
+```
+
 ## Extending webhooks
 
 Webhook behaviour can be further customised in code via an extension point.
