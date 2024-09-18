@@ -377,7 +377,7 @@ Note that it is not currently possible to load from the root of the classpath.
 
 ## Securing The WireMock Admin API
 
-You can start WireMock with the `--admin-api-basic-auth` command line option specifying your username and password in the standard `username:passord` format:
+You can start WireMock with the `--admin-api-basic-auth` command line option specifying your username and password in the standard `username:password` format:
 
 ```
 java -jar wiremock-standalone.jar --admin-api-basic-auth my-username:my-super-secret-password
