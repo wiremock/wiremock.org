@@ -26,6 +26,10 @@ $ java -jar wiremock-standalone-{{ site.wiremock_version }}.jar
 
 The following can optionally be specified on the command line:
 
+`--admin-api-basic-auth` : Require HTTP Basic authentication for admin API calls with the supplied credentials in `username:password` format
+
+`--admin-api-require-https` : Require HTTPS to be used to access the admin API
+
 `--port`: Set the HTTP port number e.g. `--port 9999`. Use `--port 0` to dynamically determine a port.
 
 `--disable-http`: Disable the HTTP listener, option available only if HTTPS is enabled.
@@ -141,6 +145,8 @@ requests. Defaults to 10.
 request journal (if enabled). When this limit is reached oldest entries
 will be discarded.
 
+`--max-http-client-connections` : Maximum connections for Http Client
+
 `--jetty-acceptor-threads`: The number of threads Jetty uses for
 accepting requests.
 
@@ -154,6 +160,10 @@ e.g. `--jetty-header-request-size 16384`, defaults to 8192K.
 
 `--jetty-header-response-size`: The Jetty buffer size for response headers,
 e.g. `--jetty-header-response-size 16384`, defaults to 8192K.
+
+`--jetty-idle-timeout` : Idle timeout in milliseconds for Jetty connections
+
+`--jetty-stop-timeout` : Timeout in milliseconds for Jetty to stop
 
 `--async-response-enabled`: Enable asynchronous request processing in Jetty.
 Recommended when using WireMock for performance testing with delays, as it allows much more efficient use of container threads and therefore higher throughput. Defaults to `false`.
@@ -182,6 +192,16 @@ The last of these will cause chunked encoding to be used only when a stub define
 
 `--disable-banner`: Prevent WireMock logo from being printed on startup
 
+`--disable-connection-reuse` : Disable http connection reuse
+
+`--disable-extensions-scanning` : Prevent extensions from being scanned and loaded from the classpath
+
+`--disable-optimize-xml-factories-loading` : Whether to disable optimize XML loading factories loading or not.
+
+`--disable-response-templating` : Disable processing of responses with Handlebars templates
+
+`--disable-strict-http-headers` : Whether to disable strict HTTP header handling of Jetty or not.
+
 `--permitted-system-keys`: Comma-separated list of regular expressions for names of permitted environment variables and system properties accessible from response templates. Only has any effect when templating is enabled. Defaults to `wiremock.*`.
 
 `--enable-stub-cors`: Enable automatic sending of cross-origin (CORS) response headers. Defaults to off.
@@ -198,6 +218,10 @@ The last of these will cause chunked encoding to be used only when a stub define
 
 `--filename-template`: Set filename template in handlebar format. For endpoint: `GET /pets/{id}` using the format: `{{{method}}}-{{{url}}}.json` output will be `get-pets-id.json`. Default format: `{{{method}}}-{{{path}}}-{{{id}}}.json` hence by default template filename will be: `get-pets-id-1.json`.   
 Note: introduced in [3.0.0-beta-8](https://github.com/wiremock/wiremock/releases/tag/3.0.0-beta-8).
+
+`--timeout` : The default global timeout
+
+`--version` : Prints wiremock version information and exits
 
 `--help`: Show command line help
 
@@ -350,7 +374,25 @@ Which will load your files and mappings from the packaged JAR.
 
 Note that it is not currently possible to load from the root of the classpath.
 
-### Shutting Down
+## Securing The WireMock Admin API
+
+You can start WireMock with the `--admin-api-basic-auth` command line option specifying your username and password in  
+the standard `username:passord` format:
+
+```
+java -jar wiremock-standalone.jar --admin-api-basic-auth my-username:my-super-secret-password
+```
+
+Any call made to the admin API after that will need the correct `Authorization` header included or a `401` will be 
+returned. The correct call will have the `Authorization` header with the word `Basic` followed by the Base64 
+representation of your `username:password` pair:
+
+```
+curl -X GET --location "http://localhost:8080/__admin/requests" \
+    -H "Authorization: Basic bXktdXNlcm5hbWU6bXktc3VwZXItc2VjcmV0LXBhc3N3b3Jk"
+```
+
+## Shutting Down
 
 To shutdown the server, either call `WireMock.shutdownServer()` or post
 a request with an empty body to `http://<host>:<port>/__admin/shutdown`.
