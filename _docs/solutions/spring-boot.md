@@ -15,7 +15,7 @@ logo: /images/logos/technology/spring.svg
 
 ## WireMock Spring Boot
 
-[WireMock Spring Boot](https://github.com/maciejwalkowiak/wiremock-spring-boot) 
+[WireMock Spring Boot](https://github.com/wiremock/wiremock-spring-boot)
 simplifies testing HTTP clients in Spring Boot & Junit 5 based integration tests.
 It includes fully declarative WireMock setup,
 supports multiple `WireMockServer` instances,
@@ -26,29 +26,23 @@ Example:
 
 ```java
 @SpringBootTest
-@EnableWireMock({
-    @ConfigureWireMock(name = "user-service", property = "user-client.url")
-})
-class TodoControllerTests {
+@EnableWireMock
+class DefaultInstanceTest {
 
-    @InjectWireMock("user-service")
-    private WireMockServer wiremock;
-    
-    @Autowired
-    private Environment env;
+    @Value("${wiremock.server.baseUrl}")
+    private String wiremockUrl;
 
     @Test
-    void aTest() {
-        // returns a URL to WireMockServer instance
-        env.getProperty("user-client.url"); 
-        wiremock.stubFor(get("/todolist").willReturn(aResponse()
-                .withHeader("Content-Type", "application/json")
-                .withBody("""
-                        [
-                            { "id": 1, "userId": 1, "title": "my todo" },
-                        ]
-                        """)
-        ));
+    void returnsTodos() {
+        WireMock.stubFor(get("/ping")
+            .willReturn(aResponse()
+                .withStatus(200)));
+
+        RestAssured
+        .when()
+            .get(this.wiremockUrl + "/ping")
+        .then()
+            .statusCode(200);
     }
 }
 ```
