@@ -104,7 +104,7 @@ Make sure to report those contributions in the [`#help-contributing`](https://sl
 ## Get WireMock Swag
 
 The WireMock Inc, a key contributor to WireMock and a vendor of
-[WireMock Cloud](https://www.wiremock.io/product),
+[WireMock Cloud](https://www.wiremock.io/cloud-overview),
 will be sponsoring stickers, T-Shirts and other swag to a few dozens of the most active contributors.
 The team will judge contributions not only by the number, but also by the quality
 and value for the WireMock ecosystem and its end users.
