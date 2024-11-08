@@ -1468,6 +1468,38 @@ The full list of available truncations is:
 - `first day of next year`
 - `last day of year`
 
+### Order of applying offset and truncation
+
+By default, the date/time truncation is applied first and the offset is applied afterwards. There are scenarios, though, where the order needs to be reversed. For instance, if we want to match with the last day of the next month then the truncation should be applied last. In this case the boolean property `applyTruncationLast` should be set to true:
+
+Java:
+
+```java
+stubFor(get(urlPathEqualTo("/resource"))
+  .withQueryParam("date", equalToDateTime("now +1 months").truncateExpected(LAST_DAY_OF_MONTH).applyTruncationLast(true))
+  .willReturn(ok()));
+```
+
+JSON:
+
+```json
+{
+    "request": {
+        "urlPath": "/resource",
+        "method": "GET",
+        "queryParameters": {
+            "date": {
+                "equalToDateTime": "now +1 months",
+                "truncateExpected": "last day of month",
+                "applyTruncationLast": true
+            }
+        }
+    }
+}
+```
+
+In the example above setting the `applyTruncationLast` property to true means that the expected date/time value will first be offset by one month and only afterwards truncated to the last day of that month. Which in turn means that if the current date is September 1st then the expected date will first be offset to October 1st and only then truncated to October 31st. Had the `applyTruncationLast` property been false (the default value) then the resulting expected date would be October 30th, one day off the date we were aiming for. 
+
 ## Logical AND and OR
 
 You can combine two or more matchers in an AND expression.
