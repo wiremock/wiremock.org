@@ -795,6 +795,89 @@ It may be convenient to default the array to an empty array if it does not exist
 
 {% endraw %}
 
+## Merging JSON objects
+
+The `jsonMerge` helper allows you to merge two json objects.
+Merging will recurse into any common keys where the values are both objects, but not into any array values,
+where the value in the second object will overwrite that in the first.
+
+Given these two objects:
+
+{% raw %}
+
+```handlebars
+{{#assign 'object1'}}
+    {
+    "id": 456,
+    "forename": "Robert",
+    "surname": "Smith",
+    "address": {
+    "number": "12"
+    },
+    "hobbies": [ "chess", "football" ]
+    }
+{{/assign}}
+{{#assign 'object2'}}
+    {
+    "forename": "Robert",
+    "nickname": "Bob",
+    "address": {
+    "street": "High Street"
+    },
+    "hobbies": [ "rugby" ]
+    }
+{{/assign}}
+```
+
+{% endraw %}
+
+{% raw %}
+
+```handlebars
+{{jsonMerge object1 object2}}
+```
+
+{% endraw %}
+
+will return this object:
+
+{% raw %}
+
+```json
+{
+    "id": 456,
+    "forename": "Robert",
+    "surname": "Smith",
+    "nickname": "Bob",
+    "address": {
+        "number": "12",
+        "street": "High Street"
+    },
+    "hobbies": [ "rugby" ]
+}
+```
+
+{% endraw %}
+
+Like the `jsonArrayAdd` helper, the second object can be provided as a block:
+
+{% raw %}
+
+```handlebars
+{{#jsonMerge object1}}
+{
+    "forename": "Robert",
+    "nickname": "Bob",
+    "address": {
+        "street": "High Street"
+    },
+    "hobbies": [ "rugby" ]
+}
+{{/jsonMerge}}
+```
+
+{% endraw %}
+
 ## Date and time helpers
 
 A helper is present to render the current date/time, with the ability to specify the format ([via Java's SimpleDateFormat](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html)) and offset.
