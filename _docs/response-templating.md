@@ -603,6 +603,60 @@ Without assigning to a variable:
 
 {% endraw %}
 
+## Write as JSON helper
+
+The `toJson` helper will convert any object into a JSON string.
+
+{% raw %}
+
+```handlebars
+{{toJson (array 1 2 3)}}
+```
+
+{% endraw %}
+
+emits
+
+{% raw %}
+
+```json
+[ 1, 2, 3 ]
+```
+
+{% endraw %}
+
+Given a request with the following headers:
+
+{% raw %}
+
+```
+Authorization: whatever
+Content-Type: text/plain
+```
+
+{% endraw %}
+
+{% raw %}
+
+```handlebars
+{{toJson request.headers}}
+```
+
+{% endraw %}
+
+will produce
+
+{% raw %}
+
+```json
+{
+  "Authorization" : "whatever",
+  "Content-Type" : "text/plain"
+}
+```
+
+{% endraw %}
+
 ## Format JSON helper
 
 The `formatJson` helper will rewrite the input JSON into a format of your choice.
