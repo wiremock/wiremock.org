@@ -461,9 +461,66 @@ A common use case for returned node objects is to iterate over the collection wi
 
 {% endraw %}
 
+## Format XML helper
+
+The `formatXml` helper will rewrite the input XML into a format of your choice.
+
+{% raw %}
+
+```handlebars
+{{#formatXml}}
+<foo><bar
+>wh</bar></foo
+>
+{{/formatXml}}
+```
+
+{% endraw %}
+
+By default, the input will be rewritten to a "pretty" format (new lines and indentation):
+
+{% raw %}
+
+```xml
+<foo>
+    <bar>wh</bar>
+</foo>
+```
+
+{% endraw %}
+
+The format can be controlled by supplying a `format` option:
+
+{% raw %}
+
+```handlebars
+{{#formatXml format='compact'}}
+<foo><bar
+>wh</bar></foo
+>
+{{/formatXml}}
+```
+
+{% endraw %}
+
+The available `format` options are `compact` (all whitespace removed) and `pretty`.
+
+The input XML can alternatively be supplied inline, or as a variable:
+
+{% raw %}
+
+```handlebars
+{{formatXml '{"foo":true,"bar":{"baz":false}}'}}
+
+{{#assign 'someXml'}} <foo>  <bar>wh</bar>  </foo> {{/assign}}
+{{formatXml someXml format='compact'}}
+```
+
+{% endraw %}
+
 ## JSONPath helper
 
-It is similarly possible to extract JSON values or sub documents via JSONPath using the `jsonPath` helper. Given the JSON
+Like the `xPath` helper, it is similarly possible to extract JSON values or sub documents via JSONPath using the `jsonPath` helper. Given the JSON
 
 ```json
 {
