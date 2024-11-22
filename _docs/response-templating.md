@@ -716,6 +716,85 @@ The input JSON can alternatively be supplied inline, or as a variable:
 
 {% endraw %}
 
+## Adding to a JSON Array
+
+The `jsonArrayAdd` helper allows you to append an element to an existing json array.
+
+Its simplest form just takes two parameters, the JSON array to append to and the JSON item to be added:
+
+{% raw %}
+
+```handlebars
+{{#assign 'existingArray'}}
+[
+    {
+        "id": 123,
+        "name": "alice"
+    }
+]
+{{/assign}}
+
+{{#assign 'newItem'}}
+{
+    "id": 321,
+    "name": "sam"
+}
+{{/assign}}
+
+{{jsonArrayAdd existingArray newItem}}
+```
+
+{% endraw %}
+
+The above template will produce the following JSON:
+
+{% raw %}
+
+```json
+[
+    {
+        "id": 123,
+        "name": "alice"
+    },
+    {
+        "id": 321,
+        "name": "sam"
+    }
+]
+```
+
+{% endraw %}
+
+You can also use it in block form to parse the contents of the block as the new item to add:
+
+{% raw %}
+
+```handlebars
+{{#jsonArrayAdd existingArray}}
+{
+    "id": 321,
+    "name": "sam"
+}
+{{/jsonArrayAdd}}
+```
+
+{% endraw %}
+
+It may be convenient to default the array to an empty array if it does not exist:
+
+{% raw %}
+
+```handlebars
+{{#jsonArrayAdd (val existingArray or='[]')}}
+{
+    "id": 321,
+    "name": "sam"
+}
+{{/jsonArrayAdd}}
+```
+
+{% endraw %}
+
 ## Date and time helpers
 
 A helper is present to render the current date/time, with the ability to specify the format ([via Java's SimpleDateFormat](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html)) and offset.
