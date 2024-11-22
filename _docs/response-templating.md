@@ -878,6 +878,82 @@ Like the `jsonArrayAdd` helper, the second object can be provided as a block:
 
 {% endraw %}
 
+## Removing from a JSON Array or Object
+
+The `jsonRemove` helper allows you to remove an element from an existing json array, or remove a key from an existing
+json object, by identifying it using a [json path](https://datatracker.ietf.org/doc/rfc9535/) expression.
+
+For instance, given an existing array like this:
+
+{% raw %}
+
+```handlebars
+{{#assign 'existingArray'}}
+[
+    { "id": 456, "name": "bob"},
+    { "id": 123, "name": "alice"},
+    { "id": 321, "name": "sam"}
+]
+{{/assign}}
+```
+
+{% endraw %}
+
+application of this helper, which selects the object with id `123`:
+
+{% raw %}
+
+```handlebars
+{{jsonRemove existingArray '$.[?(@.id == 123)]'}}
+```
+
+{% endraw %}
+
+will return this array:
+
+{% raw %}
+
+```json
+[
+    { "id": 456, "name": "bob"},
+    { "id": 321, "name": "sam"}
+]
+```
+
+{% endraw %}
+
+Given an object like this:
+
+{% raw %}
+
+```handlebars
+{{#assign 'existingObject'}}
+    { "id": 456, "name": "bob"}
+{{/assign}}
+```
+
+{% endraw %}
+
+application of this helper, which selects the key name:
+
+{% raw %}
+
+```handlebars
+{{jsonRemove existingObject '$.name'}}
+```
+
+{% endraw %}
+
+will return this object:
+
+{% raw %}
+
+```json
+{ "id": 456 }
+```
+
+{% endraw %}
+
 ## Date and time helpers
 
 A helper is present to render the current date/time, with the ability to specify the format ([via Java's SimpleDateFormat](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html)) and offset.
