@@ -546,6 +546,65 @@ Without assigning to a variable:
 
 {% endraw %}
 
+## Format JSON helper
+
+The `formatJson` helper will rewrite the input JSON into a format of your choice.
+
+{% raw %}
+
+```handlebars
+{{#formatJson}}{"foo":true,"bar":{"baz":false}}{{/formatJson}}
+```
+
+{% endraw %}
+
+By default, the input will be rewritten to a "pretty" format (new lines and indentation):
+
+{% raw %}
+
+```json
+{
+  "foo" : true,
+  "bar" : {
+    "baz" : false
+  }
+}
+```
+
+{% endraw %}
+
+The format can be controlled by supplying a `format` option:
+
+{% raw %}
+
+```handlebars
+{{#formatJson format='compact'}}
+{
+    "foo" : true,
+    "bar" : {
+        "baz" : false
+    }
+}
+{{/formatJson}}
+```
+
+{% endraw %}
+
+The available `format` options are `compact` (all whitespace removed) and `pretty`.
+
+The input JSON can alternatively be supplied inline, or as a variable:
+
+{% raw %}
+
+```handlebars
+{{formatJson '{"foo":true,"bar":{"baz":false}}'}}
+
+{{#assign 'someJson'}} { "foo": true, "bar": { "baz": false } } {{/assign}}
+{{formatJson someJson format='compact'}}
+```
+
+{% endraw %}
+
 ## Date and time helpers
 
 A helper is present to render the current date/time, with the ability to specify the format ([via Java's SimpleDateFormat](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html)) and offset.
