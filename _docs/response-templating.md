@@ -461,9 +461,66 @@ A common use case for returned node objects is to iterate over the collection wi
 
 {% endraw %}
 
+## Format XML helper
+
+The `formatXml` helper will rewrite the input XML into a format of your choice.
+
+{% raw %}
+
+```handlebars
+{{#formatXml}}
+<foo><bar
+>wh</bar></foo
+>
+{{/formatXml}}
+```
+
+{% endraw %}
+
+By default, the input will be rewritten to a "pretty" format (new lines and indentation):
+
+{% raw %}
+
+```xml
+<foo>
+    <bar>wh</bar>
+</foo>
+```
+
+{% endraw %}
+
+The format can be controlled by supplying a `format` option:
+
+{% raw %}
+
+```handlebars
+{{#formatXml format='compact'}}
+<foo><bar
+>wh</bar></foo
+>
+{{/formatXml}}
+```
+
+{% endraw %}
+
+The available `format` options are `compact` (all whitespace removed) and `pretty`.
+
+The input XML can alternatively be supplied inline, or as a variable:
+
+{% raw %}
+
+```handlebars
+{{formatXml '{"foo":true,"bar":{"baz":false}}'}}
+
+{{#assign 'someXml'}} <foo>  <bar>wh</bar>  </foo> {{/assign}}
+{{formatXml someXml format='compact'}}
+```
+
+{% endraw %}
+
 ## JSONPath helper
 
-It is similarly possible to extract JSON values or sub documents via JSONPath using the `jsonPath` helper. Given the JSON
+Like the `xPath` helper, it is similarly possible to extract JSON values or sub documents via JSONPath using the `jsonPath` helper. Given the JSON
 
 ```json
 {
@@ -542,6 +599,357 @@ Without assigning to a variable:
 
 ```handlebars
 {{lookup (parseJson request.body) 'name'}}
+```
+
+{% endraw %}
+
+## Write as JSON helper
+
+The `toJson` helper will convert any object into a JSON string.
+
+{% raw %}
+
+```handlebars
+{{toJson (array 1 2 3)}}
+```
+
+{% endraw %}
+
+emits
+
+{% raw %}
+
+```json
+[ 1, 2, 3 ]
+```
+
+{% endraw %}
+
+Given a request with the following headers:
+
+{% raw %}
+
+```
+Authorization: whatever
+Content-Type: text/plain
+```
+
+{% endraw %}
+
+{% raw %}
+
+```handlebars
+{{toJson request.headers}}
+```
+
+{% endraw %}
+
+will produce
+
+{% raw %}
+
+```json
+{
+  "Authorization" : "whatever",
+  "Content-Type" : "text/plain"
+}
+```
+
+{% endraw %}
+
+## Format JSON helper
+
+The `formatJson` helper will rewrite the input JSON into a format of your choice.
+
+{% raw %}
+
+```handlebars
+{{#formatJson}}{"foo":true,"bar":{"baz":false}}{{/formatJson}}
+```
+
+{% endraw %}
+
+By default, the input will be rewritten to a "pretty" format (new lines and indentation):
+
+{% raw %}
+
+```json
+{
+  "foo" : true,
+  "bar" : {
+    "baz" : false
+  }
+}
+```
+
+{% endraw %}
+
+The format can be controlled by supplying a `format` option:
+
+{% raw %}
+
+```handlebars
+{{#formatJson format='compact'}}
+{
+    "foo" : true,
+    "bar" : {
+        "baz" : false
+    }
+}
+{{/formatJson}}
+```
+
+{% endraw %}
+
+The available `format` options are `compact` (all whitespace removed) and `pretty`.
+
+The input JSON can alternatively be supplied inline, or as a variable:
+
+{% raw %}
+
+```handlebars
+{{formatJson '{"foo":true,"bar":{"baz":false}}'}}
+
+{{#assign 'someJson'}} { "foo": true, "bar": { "baz": false } } {{/assign}}
+{{formatJson someJson format='compact'}}
+```
+
+{% endraw %}
+
+## Adding to a JSON Array
+
+The `jsonArrayAdd` helper allows you to append an element to an existing json array.
+
+Its simplest form just takes two parameters, the JSON array to append to and the JSON item to be added:
+
+{% raw %}
+
+```handlebars
+{{#assign 'existingArray'}}
+[
+    {
+        "id": 123,
+        "name": "alice"
+    }
+]
+{{/assign}}
+
+{{#assign 'newItem'}}
+{
+    "id": 321,
+    "name": "sam"
+}
+{{/assign}}
+
+{{jsonArrayAdd existingArray newItem}}
+```
+
+{% endraw %}
+
+The above template will produce the following JSON:
+
+{% raw %}
+
+```json
+[
+    {
+        "id": 123,
+        "name": "alice"
+    },
+    {
+        "id": 321,
+        "name": "sam"
+    }
+]
+```
+
+{% endraw %}
+
+You can also use it in block form to parse the contents of the block as the new item to add:
+
+{% raw %}
+
+```handlebars
+{{#jsonArrayAdd existingArray}}
+{
+    "id": 321,
+    "name": "sam"
+}
+{{/jsonArrayAdd}}
+```
+
+{% endraw %}
+
+It may be convenient to default the array to an empty array if it does not exist:
+
+{% raw %}
+
+```handlebars
+{{#jsonArrayAdd (val existingArray or='[]')}}
+{
+    "id": 321,
+    "name": "sam"
+}
+{{/jsonArrayAdd}}
+```
+
+{% endraw %}
+
+## Merging JSON objects
+
+The `jsonMerge` helper allows you to merge two json objects.
+Merging will recurse into any common keys where the values are both objects, but not into any array values,
+where the value in the second object will overwrite that in the first.
+
+Given these two objects:
+
+{% raw %}
+
+```handlebars
+{{#assign 'object1'}}
+    {
+    "id": 456,
+    "forename": "Robert",
+    "surname": "Smith",
+    "address": {
+    "number": "12"
+    },
+    "hobbies": [ "chess", "football" ]
+    }
+{{/assign}}
+{{#assign 'object2'}}
+    {
+    "forename": "Robert",
+    "nickname": "Bob",
+    "address": {
+    "street": "High Street"
+    },
+    "hobbies": [ "rugby" ]
+    }
+{{/assign}}
+```
+
+{% endraw %}
+
+{% raw %}
+
+```handlebars
+{{jsonMerge object1 object2}}
+```
+
+{% endraw %}
+
+will return this object:
+
+{% raw %}
+
+```json
+{
+    "id": 456,
+    "forename": "Robert",
+    "surname": "Smith",
+    "nickname": "Bob",
+    "address": {
+        "number": "12",
+        "street": "High Street"
+    },
+    "hobbies": [ "rugby" ]
+}
+```
+
+{% endraw %}
+
+Like the `jsonArrayAdd` helper, the second object can be provided as a block:
+
+{% raw %}
+
+```handlebars
+{{#jsonMerge object1}}
+{
+    "forename": "Robert",
+    "nickname": "Bob",
+    "address": {
+        "street": "High Street"
+    },
+    "hobbies": [ "rugby" ]
+}
+{{/jsonMerge}}
+```
+
+{% endraw %}
+
+## Removing from a JSON Array or Object
+
+The `jsonRemove` helper allows you to remove an element from an existing json array, or remove a key from an existing
+json object, by identifying it using a [json path](https://datatracker.ietf.org/doc/rfc9535/) expression.
+
+For instance, given an existing array like this:
+
+{% raw %}
+
+```handlebars
+{{#assign 'existingArray'}}
+[
+    { "id": 456, "name": "bob"},
+    { "id": 123, "name": "alice"},
+    { "id": 321, "name": "sam"}
+]
+{{/assign}}
+```
+
+{% endraw %}
+
+application of this helper, which selects the object with id `123`:
+
+{% raw %}
+
+```handlebars
+{{jsonRemove existingArray '$.[?(@.id == 123)]'}}
+```
+
+{% endraw %}
+
+will return this array:
+
+{% raw %}
+
+```json
+[
+    { "id": 456, "name": "bob"},
+    { "id": 321, "name": "sam"}
+]
+```
+
+{% endraw %}
+
+Given an object like this:
+
+{% raw %}
+
+```handlebars
+{{#assign 'existingObject'}}
+    { "id": 456, "name": "bob"}
+{{/assign}}
+```
+
+{% endraw %}
+
+application of this helper, which selects the key name:
+
+{% raw %}
+
+```handlebars
+{{jsonRemove existingObject '$.name'}}
+```
+
+{% endraw %}
+
+will return this object:
+
+{% raw %}
+
+```json
+{ "id": 456 }
 ```
 
 {% endraw %}
