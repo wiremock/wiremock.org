@@ -1050,7 +1050,7 @@ A value can be randomly selected from a literal list:
 {% raw %}
 
 ```handlebars
-{{{pickRandom '1' '2' '3'}}}
+{{pickRandom '1' '2' '3'}}
 ```
 
 {% endraw %}
@@ -1060,7 +1060,30 @@ Or from a list passed as a parameter:
 {% raw %}
 
 ```handlebars
-{{{pickRandom (jsonPath request.body '$.names')}}}
+{{pickRandom (jsonPath request.body '$.names')}}
+```
+
+{% endraw %}
+
+If you desire multiple unique elements to be randomly pulled from the list, a `count` option can be supplied to the
+helper.
+In this case, the result will be a list, instead of a single value.
+For example, the following template:
+
+{% raw %}
+
+```handlebars
+{{pickRandom 1 2 3 4 5 count=3}}
+```
+
+{% endraw %}
+
+will produce a list similar to the following:
+
+{% raw %}
+
+```
+[3, 5, 2]
 ```
 
 {% endraw %}
