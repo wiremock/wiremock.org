@@ -463,7 +463,7 @@ A common use case for returned node objects is to iterate over the collection wi
 
 ## Format XML helper
 
-The `formatXml` helper will rewrite the input XML into a format of your choice.
+Introduced in WireMock version `3.10.0`, the `formatXml` helper will rewrite the input XML into a format of your choice.
 
 {% raw %}
 
@@ -605,7 +605,7 @@ Without assigning to a variable:
 
 ## Write as JSON helper
 
-The `toJson` helper will convert any object into a JSON string.
+Introduced in WireMock version `3.10.0`, the `toJson` helper will convert any object into a JSON string.
 
 {% raw %}
 
@@ -659,7 +659,7 @@ will produce
 
 ## Format JSON helper
 
-The `formatJson` helper will rewrite the input JSON into a format of your choice.
+As of WireMock version `3.10.0`, the `formatJson` helper will rewrite the input JSON into a format of your choice.
 
 {% raw %}
 
@@ -718,7 +718,7 @@ The input JSON can alternatively be supplied inline, or as a variable:
 
 ## Adding to a JSON Array
 
-The `jsonArrayAdd` helper allows you to append an element to an existing json array.
+Introduced in WireMock version `3.10.0`, the `jsonArrayAdd` helper allows you to append an element to an existing json array.
 
 Its simplest form just takes two parameters, the JSON array to append to and the JSON item to be added:
 
@@ -797,7 +797,7 @@ It may be convenient to default the array to an empty array if it does not exist
 
 ## Merging JSON objects
 
-The `jsonMerge` helper allows you to merge two json objects.
+Introduced in WireMock version `3.10.0`, the `jsonMerge` helper allows you to merge two json objects.
 Merging will recurse into any common keys where the values are both objects, but not into any array values,
 where the value in the second object will overwrite that in the first.
 
@@ -880,8 +880,8 @@ Like the `jsonArrayAdd` helper, the second object can be provided as a block:
 
 ## Removing from a JSON Array or Object
 
-The `jsonRemove` helper allows you to remove an element from an existing json array, or remove a key from an existing
-json object, by identifying it using a [json path](https://datatracker.ietf.org/doc/rfc9535/) expression.
+The `jsonRemove` helper was introduced in WireMock `3.10.0` and allows you to remove an element from an existing json 
+array, or remove a key from an existing json object, by identifying it using a [json path](https://datatracker.ietf.org/doc/rfc9535/) expression.
 
 For instance, given an existing array like this:
 
