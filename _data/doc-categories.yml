@@ -64,6 +64,11 @@ protocols:
     - jwt
     - https
 
+integrations:
+  title: Integrations
+  pages:
+    - spring-boot
+
 configuration:
   title: Advanced use-cases
   pages:
