@@ -22,7 +22,7 @@ java:
   pages:
     - junit-jupiter
     - junit-extensions
-    - spring-boot
+    - spring-boot-integration
     - java-usage
     - configuration
     - running-without-http-server
@@ -63,6 +63,11 @@ protocols:
     - solutions/graphql
     - jwt
     - https
+
+integrations:
+  title: Integrations
+  pages:
+    - spring-boot
 
 configuration:
   title: Advanced use-cases

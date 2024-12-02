@@ -2,61 +2,32 @@
 layout: solution
 title: "Using WireMock with Spring Boot"
 meta_title: Running WireMock with Spring Boot | WireMock
-toc_rank: 116
 description: The team behind Spring Cloud Contract have created a library to support running WireMock using the “ambient” HTTP server
 redirect_from:
 - "/docs/spring-boot.html"
 logo: /images/logos/technology/spring.svg
+hide-disclaimer: true
 ---
 
 <div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-solutionspringboot&utm_id=cloud-callouts&utm_term=cloud-callouts-solutionspringboot" target="_BLANK">Centralize and scale your API mocks with WireMock Cloud.</a></div>
 
-<div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-solutionsspringboot&utm_id=cloud-callouts&utm_term=cloud-callouts-solutionsspringboot" target="_BLANK">Centralize and scale your API mocks with WireMock Cloud.</a></div>
-
 ## WireMock Spring Boot
 
-[WireMock Spring Boot](https://github.com/wiremock/wiremock-spring-boot)
-simplifies testing HTTP clients in Spring Boot & Junit 5 based integration tests.
-It includes fully declarative WireMock setup,
-supports multiple `WireMockServer` instances,
-automatically sets Spring environment properties,
+WireMock's official Spring Boot integration library is the simplest way to configure Spring Boot, Junit 5 and WireMock to work together.
+
+
+It includes fully declarative WireMock setup, supports multiple `WireMockServer` instances, automatically sets Spring environment properties,
 and does not pollute Spring application context with extra beans.
 
-Example:
+See [WireMock Spring Boot Integration](/docs/spring-boot/) for details on installation and usage.
 
-```java
-@SpringBootTest
-@EnableWireMock
-class DefaultInstanceTest {
-
-    @Value("${wiremock.server.baseUrl}")
-    private String wiremockUrl;
-
-    @Test
-    void returnsTodos() {
-        WireMock.stubFor(get("/ping")
-            .willReturn(aResponse()
-                .withStatus(200)));
-
-        RestAssured
-        .when()
-            .get(this.wiremockUrl + "/ping")
-        .then()
-            .statusCode(200);
-    }
-}
-```
+You can contribute or log an issue in the [GitHub project](https://github.com/wiremock/wiremock-spring-boot).
 
 ## Spring Cloud Contract
 
-The team behind Spring Cloud Contract have created a library to support running WireMock using the "ambient" HTTP server.
-It also simplifies some aspects of configuration and eliminates some common issues that occur when running Spring Boot and WireMock together.
+WireMock provides the mocking capabilities for the Spring Cloud Contract project (a consumer-driven contract testing tool).
 
 See [Spring Cloud Contract WireMock](https://docs.spring.io/spring-cloud-contract/docs/current/reference/html/project-features.html#features-wiremock) for details.
-
-The article [Faking OAuth2 Single Sign-on in Spring](https://engineering.pivotal.io/post/faking_oauth_sso/)
-from Pivotal's blog shows how WireMock can be used to test Spring apps that use 3rd party OAuth2 login.
-
 
 ## Jetty version issues when running WireMock and Spring together.
 
