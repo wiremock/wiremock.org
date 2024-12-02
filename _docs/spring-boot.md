@@ -66,7 +66,8 @@ These property names can be changed as follows:
 @EnableWireMock(
     @ConfigureWireMock(
         baseUrlProperties = { "customUrl", "sameCustomUrl" },
-        portProperties = "customPort"))
+        portProperties = "customPort"
+))
 class CustomPropertiesTest {
 
  @Value("${customUrl}")
@@ -77,6 +78,9 @@ class CustomPropertiesTest {
 
  @Value("${customPort}")
  private String customPort;
+
+ // ...
+}
 ```
 
 
