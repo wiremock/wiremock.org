@@ -14,13 +14,13 @@ Maven:
 <dependency>
     <groupId>org.wiremock.integrations</groupId>
     <artifactId>wiremock-spring-boot</artifactId>
-    <version>{{ site.spring_boot_extension_version }}</version>
+    <version>{{ site.spring_boot_integration_version }}</version>
 </dependency>
 ```
 
 Gradle:
 ```groovy
-implementation 'org.wiremock.integrations:wiremock-spring-boot:{{ site.spring_boot_extension_version }}'
+implementation 'org.wiremock.integrations:wiremock-spring-boot:{{ site.spring_boot_integration_version }}'
 ```
 
 ## Basic usage
