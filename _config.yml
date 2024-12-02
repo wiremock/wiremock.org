@@ -238,7 +238,7 @@ wiremock_version: 3.10.0
 wiremock_baseline: 3.x
 pageEditPrefix: https://github.com/wiremock/wiremock.org/edit/main/
 
-grpc_extension_version: 0.8.1
+grpc_extension_version: 0.9.0
 spring_boot_integration_version: 3.3.0
 
 community_slack:
