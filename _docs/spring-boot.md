@@ -1,6 +1,6 @@
 ---
 layout: docs
-title: "Spring Boot Integration"
+title: "WireMock Spring Boot Integration"
 meta_title: Using WireMock's Spring Boot + JUnit 5 integration | WireMock
 description: Integrating WireMock, Spring Boot and JUnit 5 via the official integration library.
 ---
