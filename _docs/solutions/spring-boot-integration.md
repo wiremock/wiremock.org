@@ -4,7 +4,8 @@ title: "Using WireMock with Spring Boot"
 meta_title: Running WireMock with Spring Boot | WireMock
 description: The team behind Spring Cloud Contract have created a library to support running WireMock using the “ambient” HTTP server
 redirect_from:
-- "/docs/spring-boot.html"
+- "/docs/solutions/spring-boot.html"
+- "/docs/solutions/spring-boot/"
 logo: /images/logos/technology/spring.svg
 hide-disclaimer: true
 ---
