@@ -807,25 +807,25 @@ Given these two objects:
 
 ```handlebars
 {{#assign 'object1'}}
-    {
+{
     "id": 456,
     "forename": "Robert",
     "surname": "Smith",
     "address": {
-    "number": "12"
+        "number": "12"
     },
     "hobbies": [ "chess", "football" ]
-    }
+}
 {{/assign}}
 {{#assign 'object2'}}
-    {
+{
     "forename": "Robert",
     "nickname": "Bob",
     "address": {
-    "street": "High Street"
+        "street": "High Street"
     },
     "hobbies": [ "rugby" ]
-    }
+}
 {{/assign}}
 ```
 
