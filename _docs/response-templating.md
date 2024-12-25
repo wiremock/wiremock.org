@@ -510,7 +510,7 @@ The input XML can alternatively be supplied inline, or as a variable:
 {% raw %}
 
 ```handlebars
-{{formatXml '{"foo":true,"bar":{"baz":false}}'}}
+{{formatXml ' <foo>  <bar>wh</bar>  </foo> '}}
 
 {{#assign 'someXml'}} <foo>  <bar>wh</bar>  </foo> {{/assign}}
 {{formatXml someXml format='compact'}}
