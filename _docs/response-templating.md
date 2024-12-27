@@ -510,7 +510,7 @@ The input XML can alternatively be supplied inline, or as a variable:
 {% raw %}
 
 ```handlebars
-{{formatXml '{"foo":true,"bar":{"baz":false}}'}}
+{{formatXml ' <foo>  <bar>wh</bar>  </foo> '}}
 
 {{#assign 'someXml'}} <foo>  <bar>wh</bar>  </foo> {{/assign}}
 {{formatXml someXml format='compact'}}
@@ -807,25 +807,25 @@ Given these two objects:
 
 ```handlebars
 {{#assign 'object1'}}
-    {
+{
     "id": 456,
     "forename": "Robert",
     "surname": "Smith",
     "address": {
-    "number": "12"
+        "number": "12"
     },
     "hobbies": [ "chess", "football" ]
-    }
+}
 {{/assign}}
 {{#assign 'object2'}}
-    {
+{
     "forename": "Robert",
     "nickname": "Bob",
     "address": {
-    "street": "High Street"
+        "street": "High Street"
     },
     "hobbies": [ "rugby" ]
-    }
+}
 {{/assign}}
 ```
 
