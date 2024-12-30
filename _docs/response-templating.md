@@ -510,7 +510,7 @@ The input XML can alternatively be supplied inline, or as a variable:
 {% raw %}
 
 ```handlebars
-{{formatXml '{"foo":true,"bar":{"baz":false}}'}}
+{{formatXml ' <foo>  <bar>wh</bar>  </foo> '}}
 
 {{#assign 'someXml'}} <foo>  <bar>wh</bar>  </foo> {{/assign}}
 {{formatXml someXml format='compact'}}
@@ -795,6 +795,210 @@ It may be convenient to default the array to an empty array if it does not exist
 
 {% endraw %}
 
+
+The number of items in the array can be limited by using the `maxItems` parameter:
+
+{% raw %}
+
+```handlebars
+{{#assign 'existingArray'}}
+[
+    {
+        "id": 123,
+        "name": "alice"
+    },
+    {
+        "id": 321,
+        "name": "sam"
+    }
+]
+{{/assign}}
+
+{{#jsonArrayAdd existingArray maxItems=2}}
+{
+    "id": 456,
+    "name": "bob"
+}
+{{/jsonArrayAdd}}
+```
+
+{% endraw %}
+
+The above template will produce the following JSON.  The first item in the array has been removed to maintain the
+number of items in the array as specified by the `maxItems` parameter:
+
+{% raw %}
+
+```json
+[
+  {
+    "id": 321,
+    "name": "sam"
+  },
+  {
+    "id": 456,
+    "name": "bob"
+  }
+]
+```
+
+{% endraw %}
+
+
+You can add arrays to the existing json array using this helper:
+
+{% raw %}
+
+```handlebars
+{{#assign 'existingArray'}}
+[
+    {
+        "id": 123,
+        "name": "alice"
+    },
+    {
+        "id": 321,
+        "name": "sam"
+    }
+]
+{{/assign}}
+
+{{#jsonArrayAdd existingArray}}
+[
+    {
+        "id": 456,
+        "name": "bob"
+    }
+]
+{{/jsonArrayAdd}}
+```
+
+{% endraw %}
+
+The above template will produce the following JSON:
+
+{% raw %}
+
+```json
+[
+  {
+    "id": 123,
+    "name": "alice"
+  },
+  {
+    "id": 321,
+    "name": "sam"
+  },
+  [
+    {
+      "id": 456,
+      "name": "bob"
+    }
+  ]
+]
+```
+
+{% endraw %}
+
+If you want the end result to be a single json array, you can use the `flatten` attribute:
+
+
+{% raw %}
+
+```handlebars
+{{#assign 'existingArray'}}
+[
+    {
+        "id": 123,
+        "name": "alice"
+    },
+    {
+        "id": 321,
+        "name": "sam"
+    }
+]
+{{/assign}}
+
+{{#jsonArrayAdd existingArray flatten=true}}
+[
+    {
+        "id": 456,
+        "name": "bob"
+    }
+]
+{{/jsonArrayAdd}}
+```
+
+{% endraw %}
+
+The above template will produce the following JSON:
+
+{% raw %}
+
+```json
+[
+  {
+    "id": 123,
+    "name": "alice"
+  },
+  {
+    "id": 321,
+    "name": "sam"
+  },
+  {
+    "id": 456,
+    "name": "bob"
+  }
+]
+```
+
+{% endraw %}
+
+You can use the `jsonArrayAdd` helper to add items to a nested array.  This is achieved using the `jsonPath` property
+and referencing the array you want to add an item to:
+
+{% raw %}
+
+```handlebars
+{{#assign 'existingArray'}}
+[
+    {
+        "id": 123,
+        "names":["alice", "sam"]
+    },
+    {
+        "id": 321,
+        "names":["fred", "neil"]
+    }
+]
+{{/assign}}
+
+{{#assign 'itemToAdd'}}"bob"{{/assign}}
+
+{{jsonArrayAdd existingArray itemToAdd jsonPath='$[0].names'}}
+```
+
+{% endraw %}
+
+The above template will produce the following JSON:
+
+{% raw %}
+
+```json
+[
+  {
+    "id": 123,
+    "names": [ "alice", "sam", "bob" ]
+  },
+  {
+    "id": 321,
+    "names": [ "fred", "neil" ]
+  }
+]
+```
+
+{% endraw %}
+
 ## Merging JSON objects
 
 Introduced in WireMock version `3.10.0`, the `jsonMerge` helper allows you to merge two json objects.
@@ -807,25 +1011,25 @@ Given these two objects:
 
 ```handlebars
 {{#assign 'object1'}}
-    {
+{
     "id": 456,
     "forename": "Robert",
     "surname": "Smith",
     "address": {
-    "number": "12"
+        "number": "12"
     },
     "hobbies": [ "chess", "football" ]
-    }
+}
 {{/assign}}
 {{#assign 'object2'}}
-    {
+{
     "forename": "Robert",
     "nickname": "Bob",
     "address": {
-    "street": "High Street"
+        "street": "High Street"
     },
     "hobbies": [ "rugby" ]
-    }
+}
 {{/assign}}
 ```
 

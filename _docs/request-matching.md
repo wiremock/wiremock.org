@@ -241,8 +241,7 @@ JSON:
 {
   "request": {
     "urlPathTemplate": "/contacts/{contactId}/addresses/{addressId}"
-    "method" : "GET",
-
+    "method" : "GET"
   },
   "response" : {
     "status" : 200
@@ -1682,11 +1681,11 @@ stubFor(get(urlPathEqualTo("/things"))
 
 ```java
 // There must be 3 values of id exactly whose values conform to the match expressions
-    stubFor(get(urlPathEqualTo("/things"))
+stubFor(get(urlPathEqualTo("/things"))
     .withQueryParam("id", havingExactly(
-    equalTo("1"),
-    containing("2"),
-    notContaining("3")
+        equalTo("1"),
+        containing("2"),
+        notContaining("3")
     )).willReturn(ok()));
 ```
 
@@ -1761,9 +1760,9 @@ stubFor(get(urlPathEqualTo("/things"))
 //values of id must conform to the match expressions
 stubFor(get(urlPathEqualTo("/things"))
     .withQueryParam("id", including(
-    equalTo("1"),
-    containing("2"),
-    notContaining("3")
+        equalTo("1"),
+        containing("2"),
+        notContaining("3")
     )).willReturn(ok()));
 ```
 
