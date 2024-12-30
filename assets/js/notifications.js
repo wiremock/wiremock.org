@@ -1,21 +1,7 @@
 var wiremock_notification_shown = localStorage.getItem(
   "wiremock_notification_shown",
 );
-var notifications = [
-  {
-  content: {
-    title:
-    "Learn the basics of our new stateful mocking at WireMock Live on August 22" +
-    "<a href='https://info.wiremock.io/wiremock-live-demos-24-08?utm_source=oss-wmlive&utm_medium=oss-wmlive&utm_campaign=oss-wmlive&utm_id=oss-wmlive&utm_term=oss-wmlive' target='_blank'>Register now.</a>",
-  },
-  layout: {
-    style: "wiremock_notification_with_link",
-    position: "top",
-    className: "info",
-    autoHide: false,
-  },
-  },
-];
+var notifications = [];
 
 if (wiremock_notification_shown == null) {
   localStorage.setItem("wiremock_notification_shown", true);
