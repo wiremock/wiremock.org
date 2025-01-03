@@ -108,7 +108,7 @@ public class ProgrammaticWireMockTest {
     static WireMockExtension wm2 = WireMockExtension.newInstance()
             .options(wireMockConfig()
                      .dynamicPort()
-                     .extensions(new ResponseTemplateTransformer(true)))
+                     .extensions(new ResponseTemplateTransformer(templateEngine, global, files, templateModelDataProviders)))
             .build();
 
     @Test
