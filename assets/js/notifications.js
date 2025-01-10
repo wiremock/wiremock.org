@@ -1,7 +1,21 @@
 var wiremock_notification_shown = localStorage.getItem(
   "wiremock_notification_shown",
 );
-var notifications = [];
+var notifications = [
+  {
+    content: {
+      title:
+          "Learn abount OpenAPI functionality in WireMock Cloud including API validation & contract testing at WireMock Live on January 30 " +
+          "<a href='https://info.wiremock.io/wiremock-live-demos-25-01?utm_source=source%3Dwiremock.org&utm_medium=referral&utm_campaign=top-banner' target='_blank'>Register now.</a>",
+    },
+    layout: {
+      style: "wiremock_notification_with_link",
+      position: "top",
+      className: "info",
+      autoHide: false,
+    },
+  },
+];
 
 if (wiremock_notification_shown == null) {
   localStorage.setItem("wiremock_notification_shown", true);
