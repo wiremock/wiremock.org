@@ -3,8 +3,6 @@ layout: docs
 title: Custom Request Matching
 meta_title: Adding custom request matchers
 description: Adding custom request matchers via extensions
-redirect_from:
-  - "/docs/extensibility/custom-matching/"
 ---
 
 If WireMock's standard set of request matching strategies isn't
