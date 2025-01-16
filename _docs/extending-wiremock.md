@@ -19,8 +19,7 @@ At present, the following extension interfaces are available:
 * `ResponseTransformerV2`: Modify the response served to the client. See [Transforming responses](../extensibility/transforming-responses/).
 * `ServeEventListener`: Listen for events at various points in the request processing lifecycle. See [Listening for Serve Events](../extensibility/listening-for-serve-events/).
 * `AdminApiExtension`: Add admin API functions. See [Admin API Extensions](../extensibility/extending-the-admin-api/).
-* `RequestMatcherExtension`: Implement custom request matching logic. See [Custom Request Matching](../extensibility/custom-request-matching/).
-* `ContentPatternExtension`: Implement custom content matching logic. See [Custom Content Matching](../extensibility/custom-content-matching/).
+* `RequestMatcherExtension`: Implement custom request matching logic. See [Custom matching](../extensibility/custom-matching/).
 * `GlobalSettingsListener`: Listen for changes to the settings object. See [Listening for Settings Changes](../extensibility/listening-for-settings-changes/).
 * `StubLifecycleListener`: Listen for changes to the stub mappings. See [Listening for Stub Changes](../extensibility/listening-for-stub-changes/).
 * `TemplateHelperProviderExtension`: Provide custom Handlebars helpers to the template engine. See [Adding Template Helpers](../extensibility/adding-template-helpers/).
@@ -36,35 +35,18 @@ initialisation or cleanup tasks.
 
 ## Registering Extensions
 
-You can directly register the extension programmatically via its class name, class or an instance.
+You can directly register the extension programmatically via its class name,
+class or an instance:
 
-Server:
 ```java
 new WireMockServer(wireMockConfig()
-  .extensions("com.mycorp.ClassNameOne", "com.mycorp.ClassNameTwo")
-  .extensions(ClassOne.class, ClassTwo.class)
-  .extensions(new InstanceOne(), new InstanceTwo()));
-```
+  .extensions("com.mycorp.BodyContentTransformer", "com.mycorp.HeaderMangler"));
 
-Client:
-```java
-// Only need to register extensions that change how a mapping is parsed/written (i.e. ContentPatternExtension).
-WireMock.create()
-  .extensions("com.mycorp.ClassNameOne", "com.mycorp.ClassNameTwo")
-  .extensions(ClassOne.class, ClassTwo.class)
-  .extensions(new InstanceOne(), new InstanceTwo())
-  .build();
-```
+new WireMockServer(wireMockConfig()
+  .extensions(BodyContentTransformer.class, HeaderMangler.class));
 
-Extension:
-```java
-@RegisterExtension
-static WireMockExtension wm = WireMockExtension.newInstance()
-  .options(wireMockConfig()
-    .extensions("com.mycorp.ClassNameOne", "com.mycorp.ClassNameTwo")
-    .extensions(ClassOne.class, ClassTwo.class)
-    .extensions(new InstanceOne(), new InstanceTwo()))
-  .build();
+new WireMockServer(wireMockConfig()
+  .extensions(new BodyContentTransformer(), new HeaderMangler()));
 ```
 
 See [Running as a Standalone Process](../running-standalone/) for details on running with extensions from the command line.
@@ -94,41 +76,10 @@ Services currently available to extension factories are:
 * `Extensions`: the service for creating and providing extension implementations.
 * `TemplateEngine`: the Handlebars template engine.
 
-For factories that register extensions that change how a mapping is parsed/written (i.e. ContentPatternExtension), must implement `ExtensionFactory#createForClient()`
-to return those extension.
-
 ## Extension registration via service loading
 
 Extensions that are packaged with the relevant [Java service loader framework](https://docs.oracle.com/javase/8/docs/api/java/util/ServiceLoader.html) metadata
 will be loaded automatically if they are placed on the classpath.
-
-Server:
-```java
-new WireMockServer(wireMockConfig().extensionScanningEnabled(true));
-```
-
-Client:
-```java
-WireMock.create()
-  .extensionScanningEnabled(true)
-  .build();
-```
-
-Extension:
-```java
-@RegisterExtension
-static WireMockExtension wm = WireMockExtension.newInstance()
-  .options(wireMockConfig()
-  .extensionScanningEnabled(true))
-  .build();
-
-// or
-
-@WireMockTest(extensionScanningEnabled = true)
-public class MyTest {
-  ...
-}
-```
 
 See [https://github.com/wiremock/wiremock/tree/master/test-extension](https://github.com/wiremock/wiremock/tree/master/test-extension) for an example of such an extension.
 
