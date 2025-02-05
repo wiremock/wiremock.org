@@ -5,8 +5,8 @@ var notifications = [
   {
     content: {
       title:
-          "WireMock Live! session on January 30: OpenAPI tools, contract testing, and API validation. " +
-          "<a href='https://info.wiremock.io/wiremock-live-demos-25-01?utm_source=source%3Dwiremock.org&utm_medium=referral&utm_campaign=top-banner' target='_blank'>Register</a>",
+          "Stateful Mocking Workshop: See Tom and Dan implement three stateful use cases with WireMock Cloud. " +
+          "<a href='https://info.wiremock.io/stateful-mocking-workshop?utm_source=source%3Dwiremock.org&utm_medium=referral&utm_campaign=top-banner' target='_blank'>Attend Live</a>",
     },
     layout: {
       style: "wiremock_notification_with_link",
