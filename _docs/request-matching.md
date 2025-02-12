@@ -1108,6 +1108,7 @@ The full list of comparison types used by default is as follows:
 `SCHEMA_LOCATION`
 `NO_NAMESPACE_SCHEMA_LOCATION`
 `NODE_TYPE`
+`NAMESPACE_PREFIX`
 `NAMESPACE_URI`
 `TEXT_VALUE`
 `PROCESSING_INSTRUCTION_TARGET`
@@ -1166,6 +1167,56 @@ and
 </body>
 ```
 If third argument is passed as `false` then first xml will not match the stub
+
+#### Namespace awareness
+
+To configure how [XML namespaces](https://www.w3schools.com/xml/xml_namespaces.asp) are handled, the
+`namespaceAwareness` property can be set.
+
+{% codetabs %}
+
+{% codetab Java %}
+```java
+    .withRequestBody(equalToXml("<body>" +
+            "   <entry>1</entry>" +
+            "   <entry>2</entry>" +
+            "</body>").withNamespaceAwareness(EqualToXmlPattern.NamespaceAwareness.STRICT))
+```
+{% endcodetab %}
+
+{% codetab JSON %}
+```json
+{
+  "request": {
+    ...
+    "bodyPatterns" : [ {
+      "equalToXml" : "<body><entry>1</entry><entry>2</entry></body>",
+      "namespaceAwareness": "STRICT"
+    } ]
+    ...
+  },
+  ...
+}
+```
+{% endcodetab %}
+
+{% endcodetabs %}
+
+The available options for namespace awareness behaviour are `STRICT`, `NONE` and `LEGACY`.
+
+`STRICT` adheres to strict XML namespace comparison.
+Namespace prefixes must be bound to a namespace URI.
+Namespace prefixes as well as namespace URIs must match (for both elements and attributes), unless explicitly excluded
+by the `exemptedComparisons` parameter.
+
+`NONE` does not consider XML namespaces when reading and comparing XML documents.
+Namespace prefixes do not need to be bound to a namespace URI and are not considered a separate part of an
+element/attribute name (i.e. the entire element/attribute name must match, not just the local name, regardless of
+the `exemptedComparisons` parameter).
+`xmlns` namespaced attributes are treated no differently to any other attribute.
+
+`LEGACY` is not recommended and is only kept as an option for backwards compatibility.
+
 ### XPath
 
 Deems a match if the attribute value is valid XML and matches the XPath expression supplied. An XML document will be considered to match if any elements are returned by the XPath evaluation. WireMock delegates to Java's in-built XPath engine (via XMLUnit), therefore up to (at least) Java 8 it supports XPath version 1.0.
