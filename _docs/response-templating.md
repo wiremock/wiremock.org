@@ -1083,8 +1083,8 @@ Like the `jsonArrayAdd` helper, the second object can be provided as a block:
 {% endraw %}
 
 ### Removing attributes
-The `jsonMerge` helper has an optional `removeNulls` parameter which, when set to true will remove any attributes from the resulting JSON that
-have null values in the second JSON document.
+Starting with WireMock version `3.12.0`, the `jsonMerge` helper has an optional `removeNulls` parameter which, when 
+set to true will remove any attributes from the resulting JSON that have null values in the second JSON document.
 
 So for instance, given the following template:
 
