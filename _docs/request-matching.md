@@ -1170,8 +1170,8 @@ If third argument is passed as `false` then first xml will not match the stub
 
 #### Namespace awareness
 
-To configure how [XML namespaces](https://www.w3schools.com/xml/xml_namespaces.asp) are handled, the
-`namespaceAwareness` property can be set.
+To configure how [XML namespaces](https://www.w3schools.com/xml/xml_namespaces.asp) are handled, as of WireMock 
+`3.12.0`, the `namespaceAwareness` property can be set.
 
 {% codetabs %}
 
