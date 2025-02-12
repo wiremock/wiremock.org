@@ -1082,6 +1082,43 @@ Like the `jsonArrayAdd` helper, the second object can be provided as a block:
 
 {% endraw %}
 
+### Removing attributes
+The `jsonMerge` helper has an optional `removeNulls` parameter which, when set to true will remove any attributes from the resulting JSON that
+have null values in the second JSON document.
+
+So for instance, given the following template:
+
+{% raw %}
+
+```handlebars
+{{#assign 'object1'}}
+{
+    "keepMe": 1,
+    "removeMe": 2
+}
+{{/assign}}
+
+{{#jsonMerge object1 removeNulls=true}}
+{
+    "removeMe": null
+}
+{{/jsonMerge}}
+```
+
+{% endraw %}
+
+The resulting JSON would be:
+
+{% raw %}
+
+```json
+{
+    "keepMe": 1
+}
+```
+
+{% endraw %}
+
 ## Removing from a JSON Array or Object
 
 The `jsonRemove` helper was introduced in WireMock `3.10.0` and allows you to remove an element from an existing json 
