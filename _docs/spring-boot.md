@@ -91,7 +91,7 @@ A number of WireMock's common configuration values can be overridden via the `@C
 @EnableWireMock({
   @ConfigureWireMock(
       name = "my-mock",
-      port = 8888
+      port = 8888)
 })
 ```
 
