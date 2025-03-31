@@ -137,7 +137,7 @@ public class ProgrammaticWireMockTest {
 ### Static vs. instance
 
 In the above example, as with the declarative form, each WireMock server will be started before the first test method in the test class and stopped after the
-last test method has completed, with a call to reset before each test method.
+last test method has completed, and by default, with a call to reset before each test method.
 
 However, if the extension fields are declared at the instance scope (without the `static` modifier) each WireMock server will
 be created and started before each test method and stopped after the end of the test method.
@@ -170,6 +170,13 @@ public class AutomaticStaticDslConfigTest {
     }
 }
 ```
+
+## Resetting before each test method
+By default WireMock will be reset before each tests method.  This will reset the stubs and any requests that have been 
+made.  
+
+Most of the time this is the desired behaviour but this behavior can be changed by calling `.resetOnEachTest(false)` on
+the extension builder when using the programmatic form.
 
 ## Unmatched request behaviour
 
