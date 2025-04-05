@@ -42,6 +42,7 @@ stubFor(any(urlPathEqualTo("/everything"))
   		.withHeader("Content-Type", containing("charset"))
   		.withBody(equalToJson("{}"))
   )
+  .withClientIp(equalTo("127.0.0.1"))
   .willReturn(aResponse()));
 ```
 {% endcodetab %}
@@ -96,6 +97,9 @@ stubFor(any(urlPathEqualTo("/everything"))
         "basicAuthCredentials": {
             "username": "jeff@example.com",
             "password": "jeffteenjefftyjeff"
+        },
+        "clientIp": {
+            "equalTo": "127.0.0.1"
         }
     },
     "response": {
