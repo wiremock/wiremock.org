@@ -25,13 +25,17 @@ WireMock plus all its dependencies.
 Most of the standalone JAR's dependencies are shaded i.e. they are hidden in alternative packages. This allows WireMock to be used in projects with
 conflicting versions of its dependencies. The standalone JAR is also runnable (see [Running as a Standalone Process](../running-standalone/)).
 
-## Test dependencies
+WireMock currently has two releases available.  The `3.x` release (below) and the new `4.x` beta releases.
+
+## 3.x Release Downloads
+
+### Test dependencies
 
 <div class="downloads-wrapper">
     {% include downloads.html %}
 </div>
 
-## Standalone Service
+### Standalone Service
 
 Run the following in a terminal:
 
@@ -71,8 +75,71 @@ testImplementation "org.wiremock:wiremock-standalone:{{ site.wiremock_version }}
 
 Learn more in the [Docker guide](../docker).
 
-### Direct download
+#### Direct download
 
 If you want to run WireMock as a standalone process you can
 <a id="wiremock-standalone-download" href="https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/{{ site.wiremock_version }}/wiremock-standalone-{{ site.wiremock_version }}.jar">download the standalone JAR from
+here</a>
+
+## 4.x Beta Release Downloads
+
+The `4.x` release of WireMock is currently in beta.  This release is stable and we recommend you try it out.  We would love 
+to hear your feedback over on the community slack - https://slack.wiremock.org/ 
+
+We have given this release a beta label due to the fact that as we move forwards with the `4.x` release there will be 
+breaking changes.  These are the current updates to the `4.x` release:
+
+* Java 17 is now the baseline java version
+* Jetty 12 is shipped by default so there is no longer a specific jetty 12 release of `4.x`
+
+### Test dependencies
+
+<div class="downloads-wrapper">
+    {% include downloads-v4.html %}
+</div>
+
+### Standalone Service
+
+Run the following in a terminal:
+
+{% codetabs %}
+
+{% codetab Docker %}
+
+```bash
+docker run -it --rm -p 8080:8080 --name wiremock \
+  wiremock/wiremock:{{ site.wiremock_4_version }}
+```
+
+{% endcodetab %}
+
+{% codetab Maven %}
+
+```xml
+<dependency>
+    <groupId>org.wiremock</groupId>
+    <artifactId>wiremock-standalone</artifactId>
+    <version>{{ site.wiremock_4_version }}</version>
+    <scope>test</scope>
+</dependency>
+```
+
+{% endcodetab %}
+
+{% codetab Gradle %}
+
+```groovy
+testImplementation "org.wiremock:wiremock-standalone:{{ site.wiremock_4_version }}"
+```
+
+{% endcodetab %}
+
+{% endcodetabs %}
+
+Learn more in the [Docker guide](../docker).
+
+### Direct download
+
+If you want to run WireMock as a standalone process you can
+<a id="wiremock-standalone-download" href="https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/{{ site.wiremock_4_version }}/wiremock-standalone-{{ site.wiremock_4_version }}.jar">download the standalone JAR from
 here</a>
