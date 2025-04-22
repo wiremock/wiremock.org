@@ -1,0 +1,131 @@
+<!-- Lists WireMock download options -->
+<style>
+  
+.codeTabDescription {
+    margin: 0px;
+    padding: 0px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: #000;
+}
+
+.code-tabs-main-example {
+  padding: 12px;
+}
+
+.code-tabs-main-example .highlight {
+  background: #F0F5FF;
+  border: 1px solid #D2DFF9;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.codeSnippet {
+  display: none;
+  width: 100%;
+  position: relative;
+}
+
+.codeSnippet.activeCodeSnippet {
+  display: block;
+}
+
+.code-tabs-main {
+  width: 1018px;
+}
+
+@media (max-width:670px) {
+  .code-tabs-main {
+    width: 100% !important;
+  }
+}
+</style>
+
+<div id="open-source-v4-get-started" class="container code-tabs-wrapper">
+    <div class="code-tabs-row">
+      <div class="code-tabs-sidebar-wrapper">
+        <div class="code-tabs-sidebar">
+          <div class="code-tabs-example-card">
+            <img src="{{ '/images/maven.png' | absolute_url }}" alt="Maven" />
+          </div>
+          <div class="code-tabs-example-card">
+            <img src="{{ '/images/elephantIcon.png' | absolute_url }}" alt="Gradle"/>
+          </div>
+          <div class="code-tabs-example-card">
+            <img src="{{ '/images/kotlin.png' | absolute_url }}" alt="Kotlin" />
+          </div>
+          <div class="code-tabs-example-card">
+            <img src="{{ '/images/sbt.png ' | absolute_url }}" alt="SBT"/>
+          </div>
+          {% if include.show_standalone %}
+          <div class="code-tabs-example-card">
+            <img src="{{ '/images/java.png ' | absolute_url }}" alt="Java"/>
+          </div>
+          <div class="code-tabs-example-card">
+            <img src="{{ '/images/docker.png ' | absolute_url }}" alt="Docker"/>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="code-tabs-main">
+        <div class="code-tabs-main-wrapper">
+          <ul>
+            <li class="active-tab-example">Maven</li>
+            <li>Gradle Groovy</li>
+            <li>Gradle Kotlin</li>
+            <li>Scala SBT</li>
+            {% if include.show_standalone %}
+            <li>Standalone</li>
+            <li>Docker</li>
+            {% endif %}
+          </ul>
+          <div class="code-tabs-main-example">
+            <div class="codeSnippet activeCodeSnippet" data-snippettab="maven">
+              <p class="codeTabDescription">Add the following to your project's <strong>pom.xml</strong> dependencies:</p>
+{% highlight xml %}
+<dependency>
+  <groupId>org.wiremock</groupId>
+  <artifactId>wiremock</artifactId>
+  <version>{{ site.wiremock_4_version }}</version>
+  <scope>test</scope>
+</dependency>
+{% endhighlight %}
+            <p class="codeTabDescription" style="margin-top:2rem;">Then follow the next steps for <a href="{{ '/docs/junit-jupiter/' | absolute_url }}">JUnit 5+</a> or <a href="{{ '/docs/java-usage/' | absolute_url }}">plain Java</a>.</p>
+          </div>
+          <div class="codeSnippet" data-snippettab="gradle groovy">
+            <p class="codeTabDescription">Add the following to your project's <strong>build.gradle</strong>:</p>
+{% highlight groovy %}
+testImplementation "org.wiremock:wiremock:{{ site.wiremock_4_version }}"
+{% endhighlight %}
+            <p class="codeTabDescription" style="margin-top:2rem;">Then follow the next steps for <a href="{{ '/docs/junit-jupiter/' | absolute_url }}">JUnit 5+</a> or <a href="{{ '/docs/java-usage/' | absolute_url }}">plain Java</a>.</p>
+          </div>
+          <div class="codeSnippet" data-snippettab="gradle kotlin">
+            <p class="codeTabDescription">Add the following to your project's <strong>build.gradle.kts</strong>:</p>
+{% highlight kotlin %}
+testImplementation("org.wiremock:wiremock:{{ site.wiremock_4_version }}")
+{% endhighlight %}
+            <p class="codeTabDescription" style="margin-top:2rem;">Then follow the next steps for <a href="{{ '/docs/junit-jupiter/' | absolute_url }}">JUnit 5+</a> or <a href="{{ 'docs/java-usage/' | absolute_url }}">plain Java</a>.</p>
+          </div>
+          <div class="codeSnippet" data-snippettab="scala sbt">
+            <p class="codeTabDescription">Add the following to your project’s <strong>build.sbt</strong>:</p>
+{% highlight scala %}
+libraryDependencies +=
+  "org.wiremock" % "wiremock" % "{{ site.wiremock_version }}" % Test
+{% endhighlight %}
+          </div>
+          <div class="codeSnippet" data-snippettab="standalone">
+            <p class="codeTabDescription">
+              Download the <a id="wiremock-standalone-download" href="https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/{{ site.wiremock_4_version }}/wiremock-standalone-{{ site.wiremock_4_version }}.jar">latest standalone JAR</a>
+              then run the following in a terminal:
+            </p>
+{% highlight bash %}
+java -jar wiremock-standalone-{{ site.wiremock_4_version }}.jar
+{% endhighlight %}
+            <p class="codeTabDescription" style="margin-top:2rem;">Learn more in the <a href="{{ 'docs/running-standalone/' | absolute_url }}">running standalone guide.</a></p>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+</div>
