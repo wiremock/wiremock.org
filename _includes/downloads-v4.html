@@ -124,16 +124,6 @@ java -jar wiremock-standalone-{{ site.wiremock_4_version }}.jar
 {% endhighlight %}
             <p class="codeTabDescription" style="margin-top:2rem;">Learn more in the <a href="{{ 'docs/running-standalone/' | absolute_url }}">running standalone guide.</a></p>
           </div>
-          <div class="codeSnippet" data-snippettab="docker">
-            <p class="codeTabDescription">Run the following in a terminal:</p>
-{% highlight bash %}
-docker run -it --rm \
-  -p 8080:8080 \
-  --name wiremock \
-  wiremock/wiremock:{{ site.wiremock_4_version }}
-{% endhighlight %}
-            <p class="codeTabDescription" style="margin-top:2rem;">Learn more in the <a href="{{ '/docs/docker/ ' | absolute_url }}">Docker guide.</a></p>
-          </div>
         </div>
         </div>
       </div>
