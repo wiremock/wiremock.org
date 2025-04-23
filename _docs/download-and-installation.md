@@ -84,7 +84,7 @@ here</a>
 ## 4.x Beta Release Downloads
 
 The `4.x` release of WireMock is currently in beta.  This release is stable and we recommend you try it out.  We would love 
-to hear your feedback over on the community slack - https://slack.wiremock.org/ 
+to hear your feedback over on the community slack - [https://slack.wiremock.org/](https://slack.wiremock.org/)
 
 We have given this release a beta label due to the fact that as we move forwards with the `4.x` release there will be 
 breaking changes.  These are the current updates to the `4.x` release:
