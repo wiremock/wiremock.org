@@ -11,7 +11,7 @@ redirect_from:
 hide-disclaimer: true
 ---
 
-<div class="cloud-callout"><a href="https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-solutiongraphql&utm_id=cloud-callouts&utm_term=cloud-callouts-solutiongraphql" target="_BLANK">Centralize and scale your API mocks with WireMock Cloud.</a></div>
+<div class="cloud-callout"><a href="https://www.wiremock.io/post/graphql-mocking-in-wiremock-cloud-beta?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-solutiongraphql&utm_id=cloud-callouts&utm_term=cloud-callouts-solutiongraphql" target="_BLANK">Mock your GraphQL endpoints in WireMock Cloud with instant mock data and federated supergraph</a></div>
 
 ## WireMock Extension
 
