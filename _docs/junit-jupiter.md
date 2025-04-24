@@ -176,7 +176,7 @@ By default WireMock will be reset before each tests method.  This will reset the
 made.  
 
 Most of the time this is the desired behaviour but this behavior can be changed by calling `.resetOnEachTest(false)` on
-the extension builder when using the programmatic form.
+the extension builder when using the programmatic form.  This option is available as of WireMock version `3.13.0`
 
 ## Unmatched request behaviour
 
