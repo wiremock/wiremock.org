@@ -75,7 +75,7 @@ testImplementation "org.wiremock:wiremock-standalone:{{ site.wiremock_version }}
 
 Learn more in the [Docker guide](../docker).
 
-#### Direct download
+### Direct download
 
 If you want to run WireMock as a standalone process you can
 <a id="wiremock-standalone-download" href="https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/{{ site.wiremock_version }}/wiremock-standalone-{{ site.wiremock_version }}.jar">download the standalone JAR from
@@ -83,14 +83,14 @@ here</a>
 
 ## 4.x Beta Release Downloads
 
-The `4.x` release of WireMock is currently in beta.  This release is stable and we recommend you try it out.  We would love 
+The `4.x` release of WireMock is currently in beta.  These releases are under active development and we recommend you try it out.  We would love 
 to hear your feedback over on the community slack - [https://slack.wiremock.org/](https://slack.wiremock.org/)
 
-We have given this release a beta label due to the fact that as we move forwards with the `4.x` release there will be 
-breaking changes.  These are the current updates to the `4.x` release:
+We have given these releases a beta label due to the fact that as we move forwards with the `4.x` release there **will be 
+breaking changes**.  These are the current updates to the `4.x` release:
 
 * Java 17 is now the baseline java version
-* Jetty 12 is shipped by default so there is no longer a specific jetty 12 release of `4.x`
+* Jetty 12 is shipped by default so there is no longer a specific jetty 12 release of `4.x` and Jetty 11 is no longer supported
 
 ### Test dependencies
 
