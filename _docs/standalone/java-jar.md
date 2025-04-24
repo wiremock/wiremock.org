@@ -223,6 +223,7 @@ Note: introduced in [3.0.0-beta-8](https://github.com/wiremock/wiremock/releases
 
 `--version` : Prints wiremock version information and exits
 
+`--webhook-threadpool-size`: The number of threads created for processing webhook requests.  This option is available as of WireMock version `3.13.0`. Defaults to 10
 
 `--help`: Show command line help
 

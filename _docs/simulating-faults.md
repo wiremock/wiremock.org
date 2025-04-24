@@ -110,17 +110,23 @@ You can set a random delay globally with
 ### Lognormal delay
 
 A lognormal distribution is a pretty good approximation of long tailed
-latencies centered on the 50th percentile. It takes two parameters:
+latencies centered on the 50th percentile. It takes two mandatory parameters
+plus an optional third:
 
 -   median - The 50th percentile of latencies.
--   sigma - Standard deviation. The larger the value, the longer
-    the tail.
+-   sigma - Standard deviation of the underlying normal distribution. The larger the 
+    value, the longer the tail.
+-   maxValue - (Optional) The maximum value to return. If this value is specified, it 
+    must greater than or equal to the median otherwise an `IllegalArgumentException` will 
+    be thrown. If a value greater than this value is generated, it will be resampled. 
+    This is useful for shortening potential long tails that might otherwise cause timeouts
+    in calling clients. This option is only available from WireMock version `3.13.0`
 
 [Try different
 values](https://www.wolframalpha.com/input/?i=lognormaldistribution%28log%2890%29%2C+0.4%29)
 to find a good approximation.
 
-To use, instantiate a `new LogNormal(median, sigma)`, or via JSON:
+To use, instantiate a `new LogNormal(median, sigma)` or `new LogNormal(median, sigma, maxValue)`, or via JSON:
 
 ```json
 "delayDistribution": {
@@ -129,6 +135,18 @@ To use, instantiate a `new LogNormal(median, sigma)`, or via JSON:
         "sigma": 0.4
 }
 ```
+
+or with a maximum value:
+
+```json
+"delayDistribution": {
+        "type": "lognormal",
+        "median": 80,
+        "sigma": 0.4,
+        "maxValue": 100
+}
+```
+
 
 ### Uniform delay
 

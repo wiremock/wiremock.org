@@ -595,6 +595,14 @@ To fetch them via the HTTP API send a `GET` to `http://<host>:<port>/__admin/map
 Optionally limit and offset parameters can be specified to constrain the set returned e.g.
 `GET http://localhost:8080/__admin/mappings?limit=10&offset=50`
 
+## Unmatched stub mappings
+
+As of WireMock version `3.13.0`, stub mappings that haven't matched any requests in the [the journal](../verifying#querying-the-request-journal) can be retrieved in Java by calling `WireMock.findUnmatchedStubs()`.
+
+This can be useful when combined with [record and playback](../record-playback/) to prune unused stub mappings.
+
+Via the HTTP API, send a `GET` or `DELETE` request to `http://<host>:<port>/__admin/mappings/unmatched` to fetch or remove them, respectively. Note that a `DELETE` request will not remove any associated body files under the `__files` directory.
+
 ## Getting a single stub mapping by ID
 
 A single stub mapping can be retrieved by ID in Java by calling `WireMock.getSingleStubMapping(id)` where `id` is the

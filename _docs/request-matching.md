@@ -19,6 +19,7 @@ WireMock enables flexible definition of a [mock API](/) by supporting rich match
 - Cookies
 - Request body
 - Multipart/form-data
+- Client IP (as of WireMock version `3.13.0`)
 
 Here's an example showing all attributes being matched using WireMock's in-built match operators. It is also possible to write [custom matching logic](../extending-wiremock#custom-request-matchers) if
 you need more precise control:
@@ -42,6 +43,7 @@ stubFor(any(urlPathEqualTo("/everything"))
   		.withHeader("Content-Type", containing("charset"))
   		.withBody(equalToJson("{}"))
   )
+  .withClientIp(equalTo("127.0.0.1"))
   .willReturn(aResponse()));
 ```
 {% endcodetab %}
@@ -96,6 +98,9 @@ stubFor(any(urlPathEqualTo("/everything"))
         "basicAuthCredentials": {
             "username": "jeff@example.com",
             "password": "jeffteenjefftyjeff"
+        },
+        "clientIp": {
+            "equalTo": "127.0.0.1"
         }
     },
     "response": {
