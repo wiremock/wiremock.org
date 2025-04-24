@@ -322,7 +322,7 @@ If you want to increase the proxying performance of wiremock you can enable Conn
 
 The default webhook thread pool size is 10.  This is more than enough for normal mocking with callbacks but if you are
 running performance tests using WireMock with callbacks, you might need to tweak the size of the threadpool used to 
-process webhook requests. 
+process webhook requests. This option is available as of WireMock version `3.13.0`
 
 ```java
 // The number of threads created for processing webhook requests. Defaults to 10
