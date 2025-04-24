@@ -120,7 +120,7 @@ plus an optional third:
     must greater than or equal to the median otherwise an `IllegalArgumentException` will 
     be thrown. If a value greater than this value is generated, it will be resampled. 
     This is useful for shortening potential long tails that might otherwise cause timeouts
-    in calling clients. 
+    in calling clients. This option is only available from WireMock version `3.13.0`
 
 [Try different
 values](https://www.wolframalpha.com/input/?i=lognormaldistribution%28log%2890%29%2C+0.4%29)

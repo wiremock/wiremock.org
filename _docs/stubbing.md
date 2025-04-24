@@ -597,7 +597,7 @@ Optionally limit and offset parameters can be specified to constrain the set ret
 
 ## Unmatched stub mappings
 
-Stub mappings that haven't matched any requests in the [the journal](../verifying#querying-the-request-journal) can be retrieved in Java by calling `WireMock.findUnmatchedStubs()`.
+As of WireMock version `3.13.0`, stub mappings that haven't matched any requests in the [the journal](../verifying#querying-the-request-journal) can be retrieved in Java by calling `WireMock.findUnmatchedStubs()`.
 
 This can be useful when combined with [record and playback](../record-playback/) to prune unused stub mappings.
 
