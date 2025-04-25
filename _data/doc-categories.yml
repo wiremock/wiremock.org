@@ -93,6 +93,10 @@ extensibility:
     - extensibility/adding-mappings-loader
     - stub-metadata
 
+v4:
+  title: WireMock v4
+  link: /docs/v4/
+
 reference:
   title: Reference
   pages:
