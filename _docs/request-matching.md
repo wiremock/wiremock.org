@@ -2093,3 +2093,37 @@ stubFor(get(urlPathEqualTo("/things"))
 {% endcodetab %}
 
 {% endcodetabs %}
+
+## Logical NOT - negating matchers
+You can negate any matcher using the logical NOT matcher.
+
+{% codetabs %}
+
+{% codetab Java %}
+```java
+stubFor(
+    get(urlPathEqualTo("/not"))
+      .withHeader("X-Some-Value", not(matching("[a-z]+")))
+      .willReturn(ok()));
+```
+{% endcodetab %}
+
+{% codetab JSON %}
+```json
+{
+    "request": {
+        "urlPath": "/and",
+        "method": "GET",
+        "headers": {
+            "X-Some-Value": {
+                "not": {
+                  "matches": "[a-z]+"
+                }
+            }
+        }
+    }
+}
+```
+{% endcodetab %}
+
+{% endcodetabs %}
