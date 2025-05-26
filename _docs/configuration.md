@@ -309,7 +309,7 @@ and for example add it to your acceptance test's output,
 you can use the `CollectingNetworkTrafficListener`.
 
 ## HTTP Client
-If you want to increase the proxying performance of wiremock you can enable Connection reuse and increse max Connections
+If you want to increase the proxying performance of WireMock you can enable connection reuse and increase the maximum number of connections:
 
 ```java
 // Maximum connections for Http Client
