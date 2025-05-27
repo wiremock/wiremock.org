@@ -140,6 +140,74 @@ JSON:
 >
 > Webhook templates currently do not support system or environment variables.
 
+## Using data from the original response
+
+Similar to using the data from original request, we can use data from the original response in the webhooks.
+
+The original response data is available in base64 encoded format, which is named as `originalResponse`.
+
+Supposing we wanted to capture the message ID from the original response and insert it into the JSON request
+body sent by the webhook call.
+
+Java:
+
+{% raw %}
+
+```java
+wm.stubFor(post(urlPathEqualTo("/templating"))
+      .willReturn(ok("{\n"
+                        + "\"eventId\": \"7412\",\n"
+                        + "\"messageId\": \"2318\",\n"
+                        + "\"status\": \"success\"\n"
+                        + "}"))
+      .withServeEventListener("webhook", webhook()
+          .withMethod(POST)
+          .withUrl("http://my-target-host/callback")
+          .withHeader("Content-Type", "application/json")
+          .withBody("{ \"message\": \"success\", \"messageId\": \"{{jsonPath (base64 originalResponse.body decode=true) '$.messageId'}}\" }")
+  );
+```
+
+{% endraw %}
+
+JSON:
+
+{% raw %}
+
+```json
+{
+    "request": {
+        "urlPath": "/templating",
+        "method": "POST"
+    },
+    "response": {
+        "status": 200,
+        "jsonBody": {
+            "eventId": "{{randomValue type='UUID'}}",
+            "messageId": "{{randomValue type='UUID'}}",
+            "status": "success"
+        }
+    },
+    "serveEventListeners": [
+        {
+            "name": "webhook",
+            "parameters": {
+                "method": "POST",
+                "url": "http://my-target-host/callback",
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": "{ \"message\": \"success\", \"messageId\": \"{{jsonPath (base64 originalResponse.body decode=true) '$.messageId'}}\" }"
+            }
+        }
+    ]
+}
+```
+
+{% endraw %}
+
+
+
 ## Implementing a callback using templating
 
 To implement the callback pattern, where the original request contains the target to be called on completion of a long-running task,
