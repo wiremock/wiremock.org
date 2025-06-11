@@ -234,13 +234,13 @@ compress_html:
     ignore:
         envs: development
 
-wiremock_version: 3.13.0
-wiremock_4_version: 4.0.0-beta.2
+wiremock_version: 3.13.1
+wiremock_4_version: 4.0.0-beta.10
 wiremock_baseline: 3.x
 pageEditPrefix: https://github.com/wiremock/wiremock.org/edit/main/
 
-grpc_extension_version: 0.10.0
-spring_boot_integration_version: 3.6.0
+grpc_extension_version: 0.11.0
+spring_boot_integration_version: 3.10.0
 
 community_slack:
   join_url: https://slack.wiremock.org/
