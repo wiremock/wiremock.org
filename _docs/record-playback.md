@@ -6,6 +6,10 @@ redirect_from: "/record-playback.html"
 description: WireMock can create stub mappings from requests it has received. Combined with its proxying feature this allows you to “record” stub mappings from interaction with existing APIs.
 ---
 
+<div class="cloud-callout">
+  <a href="https://docs.wiremock.io/cli/recording?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-record-playback&utm_id=cloud-callouts" target="_BLANK">WireMock Cloud CLI</a> supports simultaneous <strong>multi-API recording</strong> with <strong>advanced customisation</strong> of recorded stubs.
+</div>
+
 WireMock can create stub mappings from requests it has received. Combined with its proxying feature this allows you to "record"
 stub mappings from interaction with existing APIs.
 
