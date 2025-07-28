@@ -23,7 +23,7 @@ that connects to a standalone WireMock server.
 This project is a part of WireMock's GitHub organization.
 
 - [Documentation](https://wiremock.readthedocs.io/en/latest/)
-- [Official Repository](https://github.com/platinummonkey/python-wiremock.git)
+- [Official Repository](https://github.com/wiremock/python-wiremock/)
 
 ## Robot Framework Library
 
