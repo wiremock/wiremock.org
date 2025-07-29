@@ -29,22 +29,25 @@ properties:
     description: The HTTP request method e.g. GET
   url:
     type: string
-    description: The path and query to match exactly against. Only one of url, urlPattern, urlPath or urlPathPattern may be specified.
+    description: The path and query to match exactly against. Only one of url, urlPattern, urlPath, urlPathPattern or urlPathTemplate may be specified.
   urlPath:
     type: string
-    description: The path to match exactly against. Only one of url, urlPattern, urlPath or urlPathPattern may be specified.
+    description: The path to match exactly against. Only one of url, urlPattern, urlPath, urlPathPattern or urlPathTemplate may be specified.
   urlPathPattern:
     type: string
-    description: The path regex to match against. Only one of url, urlPattern, urlPath or urlPathPattern may be specified.
+    description: The path regex to match against. Only one of url, urlPattern, urlPath, urlPathPattern or urlPathTemplate may be specified.
   urlPattern:
     type: string
-    description: The path and query regex to match against. Only one of url, urlPattern, urlPath or urlPathPattern may be specified.
+    description: The path and query regex to match against. Only one of url, urlPattern, urlPath, urlPathPattern or urlPathTemplate may be specified.
+  urlPathTemplate:
+    type: string
+    description: A Level 1 URI Template as specified in https://datatracker.ietf.org/doc/html/rfc6570. Only one of url, urlPattern, urlPath, urlPathPattern or urlPathTemplate may be specified.
 
   pathParameters:
     type: object
     description: |
       Path parameter patterns to match against in the <key>: { "<predicate>": "<value>" } form. Can only
-      be used when the urlPathPattern URL match type is in use and all keys must be present as variables
+      be used when the urlPathTemplate URL match type is in use and all keys must be present as variables
       in the path template.
     additionalProperties:
       $ref: "content-pattern.yaml"
