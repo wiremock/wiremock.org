@@ -81,7 +81,7 @@ public class HttpsFixedPortDeclarativeWireMockTest {
 
 ### Enabling Extension Scanning
 
-When [extending WireMock via service loading](extending-wiremock.md#extension-registration-via-service-loading), it may
+When [extending WireMock via service loading](https://wiremock.org/docs/extending-wiremock/#extension-registration-via-service-loading), it may
 be helpful to have WireMock scan for extensions automatically via the `extensionScanningEnabled` parameter.
 
 ```java
