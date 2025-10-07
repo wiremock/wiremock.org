@@ -53,7 +53,7 @@ def get_mkdocs_header():
           </a>
 
           <a
-            href="https://docs.wiremock.io/getting-started/?utm_source=wiremock.org&amp;utm_medium=masthead_doc-links&amp;utm_campaign=2022_baseline"
+            href="https://docs.wiremock.io/overview/?utm_source=wiremock.org&amp;utm_medium=masthead_doc-links&amp;utm_campaign=2022_baseline"
             target="_blank"
           >
             WireMock Cloud

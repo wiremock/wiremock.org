@@ -311,7 +311,7 @@ The primary customization involves the `header.html` file. This file contains th
           </a>
 
           <a
-            href="https://docs.wiremock.io/getting-started/?utm_source=wiremock.org&amp;utm_medium=masthead_doc-links&amp;utm_campaign=2022_baseline"
+            href="https://docs.wiremock.io/overview/?utm_source=wiremock.org&amp;utm_medium=masthead_doc-links&amp;utm_campaign=2022_baseline"
           >
             WireMock Cloud
           </a>
