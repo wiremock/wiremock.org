@@ -197,7 +197,7 @@
     />
     Android
   </a>
-  <a class="card" href="solutions/dotnet/">
+  <a class="card" href="/dotnet/">
     <img
       class="card-image"
       src="assets/images/logos/technology/dotnet.svg"
