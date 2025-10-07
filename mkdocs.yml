@@ -78,7 +78,7 @@ extra:
   2x_docs_path: site/2x
   analytics:
     provider: custom
-    property: G-KN208QTJLZ
+    property: G-6G6E8F439F
 
 extra_css:
   - assets/stylesheets/extra.css
