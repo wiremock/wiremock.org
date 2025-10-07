@@ -1,5 +1,6 @@
 INHERIT: nav.yml
 site_name: WireMock
+site_url: https://wiremock.org
 
 site_description: WireMock is a flexible API mocking tool for fast, robust and comprehensive testing.
 site_author: Tom Akehurst
