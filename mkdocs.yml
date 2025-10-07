@@ -75,6 +75,9 @@ extra:
   wiremock_4_version: 4.0.0-beta.10
   grpc_extension_version: 0.11.0
   spring_boot_integration_version: 3.10.0
+  analytics:
+    provider: google
+    property: G-KN208QTJLZ
 
 extra_css:
   - assets/stylesheets/extra.css
