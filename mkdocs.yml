@@ -26,7 +26,7 @@ theme:
     - navigation.tabs
     - navigation.tabs.sticky
 
-
+use_directory_urls: true
 
 markdown_extensions:
   - md_in_html
