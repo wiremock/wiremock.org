@@ -48,6 +48,7 @@ markdown_extensions:
       alternate_style: true
 
 plugins:
+  - redoc-tag
   - monorepo
   - search
   - macros

@@ -5,3 +5,4 @@ mkdocs-breadcrumbs-plugin
 mkdocs-macros-plugin
 mkdocs-redirects
 mkdocs-linkcheck
+mkdocs-redoc-tag
