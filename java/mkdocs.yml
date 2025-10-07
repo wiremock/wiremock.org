@@ -1,0 +1,73 @@
+site_name: docs
+docs_dir: ./docs
+
+nav:
+  - WireMock Java: index.md
+  - v4 Beta: v4.md
+  - Getting started:
+    - Overview: overview.md
+    - Quick Start API Mocking with Java and JUnit 4: quickstart/java-junit.md
+    - Download and Install: download-and-installation.md
+    - WireMock Tutorials: getting-started.md
+    - Frequently Asked Questions: faq.md
+
+  - Running Wiremock: 
+    - Overview: standalone.md
+    - Running in Docker: standalone/docker.md
+    - Running as a standalone process: standalone/java-jar.md
+    - Administration API: standalone/administration.md
+
+  - Java Usage:
+    - JUnit 5+ Jupiter: junit-jupiter.md
+    - JUnit 4 and Vintage: junit-extensions.md
+    - Plain Java: java-usage.md
+    - Java configuration: configuration.md
+    - Running without the HTTP Server: running-without-http-server.md
+    - Using WireMock with Jetty 12: jetty-12.md
+
+  - Stubbing and Verifying:
+    - Stubbing: stubbing.md
+    - Request Matching: request-matching.md
+    - Response Templating: response-templating.md
+    - Simulating Faults: simulating-faults.md
+    - Stateful Behaviour: stateful-behaviour.md
+    - Proxying: proxying.md
+    - Verifying: verifying.md
+
+  - Mock API Templates Library:
+    - WireMock API Templates Library: mock-api-templates/index.md
+    - Using Mock API Templates: mock-api-templates/usage.md
+
+  - Record and Playback:
+    - Record and Playback: record-playback.md
+
+  - Protocols:
+    - Webhooks and Callbacks: webhooks-and-callbacks.md
+    - Mocking gRPC services: grpc.md
+    - JSON Web Tokens (JWT): jwt.md
+    - Serving HTTPS: https.md
+
+  - Integrations:
+    - WireMock Spring Boot Integration: spring-boot.md
+
+  - Advanced use-cases:
+    - Multi-domain Mocking: multi-domain-mocking.md
+    - Deploying into a servlet container: advanced/deploy-to-servlet-container.md
+    - WireMock on Java 1.7: advanced/java7.md
+
+  - Extensibility:
+    - Extending WireMock: extending-wiremock.md
+    - Filtering and Modifying Requests: extensibility/filtering-requests.md
+    - Transforming Responses: extensibility/transforming-responses.md
+    - Custom Matching: extensibility/custom-matching.md
+    - Listening for Serve Events: extensibility/listening-for-serve-events.md
+    - Admin API Extensions: extensibility/admin-api-extensions.md
+    - Adding Template Helpers: extensibility/adding-template-helpers.md
+    - Adding Template Model Data: extensibility/adding-template-model-data.md
+    - Listening for Stub Changes: extensibility/listening-for-stub-changes.md
+    - Listening for Settings Changes: extensibility/listening-for-settings-changes.md
+    - Mappings Loader Extensions: extensibility/adding-mappings-loader.md
+    - Stub Metadata: extensibility/stub-metadata.md
+
+  - Reference:
+    - Admin API: standalone/admin-api-reference.md

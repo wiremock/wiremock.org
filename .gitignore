@@ -23,5 +23,11 @@ main.css
 /_site-docs/
 /_build/
 .cache
+venv/
+site/
+*.zip
+CLAUDE.md
+
+__pycache__/
 
 wiremock-org-amplify.zip

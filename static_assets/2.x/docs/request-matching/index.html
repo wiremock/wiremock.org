@@ -1,0 +1,3068 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+<meta charset="utf-8">
+
+
+<!-- begin SEO -->
+
+
+
+<!--  -->
+
+
+
+
+
+
+
+<title>Matching and filtering HTTP requests in WireMock | WireMock</title>
+
+
+
+
+
+
+
+<meta name="description" content="WireMock supports matching of requests to stubs and verification queries using the following attributes.">
+
+<meta property="og:locale" content="en-US">
+<meta property="og:site_name" content="WireMock">
+<meta property="og:title" content="Request Matching">
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="WireMock" />
+<meta name="twitter:description" content="WireMock supports matching of requests to stubs and verification queries using the following attributes.">
+
+
+  <link rel="canonical" href="/2.x/docs/request-matching/">
+  <meta property="og:url" content="/2.x/docs/request-matching/">
+
+
+
+  <meta property="og:description" content="WireMock supports matching of requests to stubs and verification queries using the following attributes.">
+
+
+
+  <meta name="twitter:site" content="@wiremockorg">
+  <meta name="twitter:title" content="Request Matching">
+  <meta name="twitter:description" content="WireMock supports matching of requests to stubs and verification queries using the following attributes.">
+  <meta name="twitter:url" content="/2.x/docs/request-matching/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="/2.x/images/opengraphs/default.png">
+    
+  
+
+  
+
+
+
+
+
+  <meta name="image" property="og:image" content="/2.x/images/opengraphs/default.png">
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2025-09-19T09:56:34-04:00">
+  
+    <link rel="next" href="/2.x/docs/response-templating/" title="Response Templating">
+  
+  
+    <link rel="prev" href="/2.x/docs/record-playback/" title="Record and Playback">
+  
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "https://wiremock.org",
+      "logo": "/2.x/images/opengraphs/default.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Organization",
+      "name" : "WireMock",
+      "url" : "https://wiremock.org",
+      "sameAs" : ["https://twitter.com/wiremockorg","https://fosstodon.org/@wiremock","https://www.youtube.com/@WireMockTV"]
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+
+
+
+<link href="https://wiremock.org/feed.xml" type="application/atom+xml" rel="alternate" title="WireMock Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<link href="https://fonts.googleapis.com/css?family=Lato|Source+Code+Pro|Cairo" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700;800&family=Roboto:wght@400;500;700&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/2.x/assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+
+<link rel="shortcut icon" type="image/x-icon" href="/2.x/images/favicon.svg">
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- MkDocs Material CSS -->
+  <link rel="stylesheet" href="/assets/stylesheets/main.e53b48f4.min.css">
+  <link rel="stylesheet" href="/assets/stylesheets/palette.06af60db.min.css">
+  <link rel="stylesheet" href="/assets/stylesheets/extra.css">
+  
+  <!-- Custom 2x styling -->
+  <style>
+    /* 2x Badge styling */
+    .version-badge {
+      background: #1976d2;
+      color: white;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.7em;
+      margin-left: 8px;
+      font-weight: 500;
+    }
+    
+    /* Header layout fixes */
+    .md-header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 0 1rem;
+      height: 64px;
+    }
+    
+    .md-header__title {
+      flex: 1;
+      margin-right: 16px;
+    }
+    
+    .header__links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-left: auto;
+      height: 100%;
+    }
+    
+    .header__links .dropdown {
+      position: relative;
+      display: inline-block;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+    
+    .header__links .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: white;
+      min-width: 200px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1000;
+      border-radius: 4px;
+      padding: 8px 0;
+      top: 100%;
+      left: 0;
+    }
+    
+    .header__links .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    
+    .header__links .dropdown-content a {
+      color: #333;
+      padding: 8px 16px;
+      text-decoration: none;
+      display: block;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .header__links .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+    
+    .header__links .dropdown-content a:last-child {
+      border-bottom: none;
+    }
+    
+    .header__link {
+      color: #333;
+      text-decoration: none;
+      padding: 8px 16px;
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+      height: 100%;
+    }
+    
+    .header__link:hover {
+      color: #1976d2;
+    }
+    
+    /* Button alignment fix - ensure proper vertical alignment */
+    .masthead__cta {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+    
+    .btn.t-6 {
+      background: #1976d2;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 14px;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: auto;
+      line-height: 1.2;
+    }
+    
+    .btn.t-6:hover {
+      background: #1565c0;
+      color: white;
+    }
+    
+    /* Fix the floating "free forever" text - move it inside header */
+    .wiremock-cloud-logo-note {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 12px;
+      color: #666;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 4px 8px;
+      border-radius: 4px;
+      z-index: 100;
+      white-space: nowrap;
+      margin-top: 2px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    /* Make sure header has relative positioning for absolute child */
+    .md-header {
+      position: relative;
+    }
+    
+    /* Alternative: hide the floating text if it's problematic */
+    @media (max-width: 1024px) {
+      .wiremock-cloud-logo-note {
+        display: none;
+      }
+    }
+    
+    /* Hide mobile hamburger for now */
+    .md-header__button.md-icon[for="__drawer"] {
+      display: none;
+    }
+    
+    /* REMOVE ORIGINAL FOOTER AND PAGE ACTION BUTTONS */
+    .page__footer {
+      display: none !important;
+    }
+    
+    .page__meta-title {
+      display: none !important;
+    }
+    
+    /* SIMPLE NEW FOOTER - JavaScript positioned at content bottom */
+    .simple-footer {
+      position: absolute;
+      left: 0;
+      right: 0;
+      width: 100%;
+      background: #333;
+      color: white;
+      padding: 12px 0;
+      text-align: center;
+      font-size: 14px;
+      z-index: 1000;
+      margin-top: 2rem;
+    }
+    
+    .simple-footer a {
+      color: #87ceeb;
+      text-decoration: none;
+    }
+    
+    .simple-footer a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .header__links {
+        gap: 8px;
+      }
+      
+      .header__link {
+        padding: 6px 12px;
+        font-size: 14px;
+      }
+      
+      .btn.t-6 {
+        padding: 8px 16px;
+        font-size: 13px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .header__links {
+        display: none;
+      }
+      
+      .md-header__button.md-icon[for="__drawer"] {
+        display: block;
+      }
+      
+      .md-header__title {
+        flex: 1;
+        margin: 0 1rem;
+      }
+    }
+  </style>
+  
+  
+  
+  
+  
+  <script>
+  // Smart footer: only show when scrolled near bottom
+  window.addEventListener('scroll', function() {
+    const footer = document.querySelector('.page__footer');
+    if (!footer) return;
+    
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    
+    // Show footer when within 200px of bottom
+    if (scrollTop + windowHeight >= documentHeight - 200) {
+      footer.style.display = 'block';
+    } else {
+      footer.style.display = 'none';
+    }
+  });
+  
+  // Also check on load
+  document.addEventListener('DOMContentLoaded', function() {
+    window.dispatchEvent(new Event('scroll'));
+  });
+  </script>
+</head>
+
+  <body>
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    
+<style>
+  .navlink {
+    position: relative !important;
+    color: #7d93bd;
+    padding-bottom: 0;
+    cursor: pointer;
+    font-family: "Ubuntu";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+  }
+
+  .navlink a {
+    padding: 0 !important;
+    margin: 0 0 5px 0;
+    width: fit-content !important;
+    height: 32px;
+  }
+
+  .navlink-image {
+    width: 20px;
+    filter: invert(47%);
+    vertical-align: middle;
+  }
+
+  .divSubNav {
+    position: relative;
+    cursor: default;
+    padding: 10px 15px;
+    display: none;
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 32px;
+    width: fit-content;
+    background: #FFFFFF;
+    box-shadow: 0px -5px 20px rgba(210, 223, 249, 0.5);
+  }
+
+  .divSubNav::before {
+    position: absolute;
+    content: "";
+    left: 15px;
+    width: 0; 
+    height: 0; 
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 7px solid #fff;
+    top: -7px;
+  }
+
+  .divSubNav a {
+    padding: 0 !important;
+    margin: 0 0 5px 0;
+    width: fit-content !important;
+  }
+
+  .divSubNav a:last-child {
+    margin-bottom: 0;
+  }
+
+  .divSubNav a::before {
+    background: none !important;
+  }
+
+  .navlink:hover > .divSubNav {
+    display: block;
+  }
+
+  .navHover::before {
+    background: unset !important;
+  }
+
+  .navlink::before {
+    background: unset !important;
+  }
+
+  .navlink a::before {
+    background: unset !important;
+  }
+
+  .wiremock-cloud-logo-navbar-item {
+    padding-left: 20px;
+    padding-top: 0;
+  }
+
+  .wiremock-cloud-logo-navbar-item div span {
+    text-align: right;
+  }
+  
+  .wiremock-cloud-logo-navbar {
+    margin: 0;
+    background: unset !important;
+  }
+
+  .wiremock-cloud-logo-navbar div {
+    border-color: #0FB2EF;
+    background-color: #E4F0F7;
+    border-style: solid;
+    border-radius: 8px;
+    border-width: 4px;
+    align-items: center;
+    justify-content: center;
+    margin: 0;    
+    height: 45px;
+    position: relative;
+  }
+
+  .wiremock-cloud-logo-navbar div img {
+    vertical-align: middle;
+    width: 100%;
+    background-color: #E4F0F7;
+    height: 36px;
+    padding: 4px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .wiremock-cloud-logo-navbar div div {
+    font-size: x-small;
+    font-weight: bold;
+    position: absolute;
+    bottom: 2px;
+    left: 4px;
+    border-style: none;
+    height: fit-content;
+  }
+
+  .wiremock-cloud-logo-note {
+    margin-left: auto;
+    margin-right: 4em;
+    float: right;
+    font-size: small;
+  }
+
+  @media (max-width: 1023px) {
+    .wiremock-cloud-logo-note {
+      display: none;
+    }
+  }
+</style>
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <!-- Link to home -->
+    <a
+      href="/"
+      title="WireMock"
+      class="md-header__button md-logo"
+      aria-label="WireMock"
+      data-md-component="logo"
+    >
+      <img src="/assets/images/wiremock-oss-logo.png" alt="logo">
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Header title with 2x badge -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis"> WireMock </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            2.x Documentation
+            <span class="version-badge">2x</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="header__links">
+      <div class="dropdown">
+        <a href="/docs/" class="header__link"> Docs </a>
+        <div class="dropdown-content">
+          <a href="/docs/"> WireMock </a>
+
+          <a href="/docs/mock-api-templates/">
+            Mock API Templates
+          </a>
+
+          <a
+            href="https://docs.wiremock.io/getting-started/?utm_source=wiremock.org&amp;utm_medium=masthead_doc-links&amp;utm_campaign=2022_baseline"
+            target="_blank"
+          >
+            WireMock Cloud
+          </a>
+
+          <a href="/2.x/docs/"> WireMock 2.x (Archive) </a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <a href="/docs/support/" class="header__link">
+          Need Help?
+        </a>
+        <div class="dropdown-content">
+          <a href="https://slack.wiremock.org/" target="_blank"> Q&amp;A on Slack </a>
+
+          <a href="https://stackoverflow.com/questions/tagged/wiremock" target="_blank">
+            StackOverflow
+          </a>
+
+          <a href="/docs/commercial/">
+            Commercial Options
+          </a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <a href="https://wiremock.org/participate" class="header__link" target="_blank">
+          Participate
+        </a>
+        <div class="dropdown-content">
+          <a href="https://slack.wiremock.org/" target="_blank"> Community Slack </a>
+
+          <a
+            href="https://github.com/wiremock/community/blob/main/contributing/README.md"
+            target="_blank"
+          >
+            Contributor Guide
+          </a>
+
+          <a href="https://github.com/wiremock/" target="_blank"> Our GitHub </a>
+
+          <a href="https://github.com/wiremock/wiremock.org" target="_blank"> This Website </a>
+
+          <a
+            href="https://github.com/wiremock/.github/blob/main/CODE_OF_CONDUCT.md"
+            target="_blank"
+          >
+            Code of Conduct
+          </a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <a href="/external-resources/" class="header__link">
+          Resources
+        </a>
+        <div class="dropdown-content">
+          <a href="https://library.wiremock.org/" target="_blank">
+            Mock API Templates Library
+          </a>
+
+          <a href="https://github.com/wiremock/ecosystem" target="_blank">
+            WireMock Ecosystem
+          </a>
+
+          <a href="https://twitter.com/wiremockorg" target="_blank"> Twitter </a>
+
+          <a href="https://fosstodon.org/@wiremock" target="_blank"> Mastodon </a>
+
+          <a href="https://community.wiremock.io/" target="_blank"> Slack Archive </a>
+
+          <a href="/external-resources/">
+            External Resources
+          </a>
+        </div>
+      </div>
+
+      <div class="header__link">
+        <div class="masthead__cta">
+          <a
+            href="https://wiremock.io/product?utm_source=wiremock.org&amp;utm_medium=masthead&amp;utm_campaign=homepage_2022_baseline"
+            title="WireMock Cloud"
+            class="btn t-6"
+            target="_blank"
+          >
+            Try WireMock Cloud
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+</div>
+
+<div class="wiremock-cloud-logo-note">* Free forever. No credit card needed</div>
+
+
+    <div id="main" class="custom-doc-wrapper" role="main">
+
+  
+    
+<style>
+  .slack-help-box {
+    background-color: #f2f2f2;
+    border: #c8c8c8 1px solid;
+    padding: 8px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    display: inline;
+    margin-bottom: 1cm;
+  }
+
+  .slack-help-box a {
+      font-size: normal;
+      width: max-content;
+      height: max-content;
+      color: black;
+      text-decoration: none !important; 
+  }
+
+  .slack-help-box a div {
+    display: inline;
+    padding-right: 10px;
+    color: inherit;
+  }
+
+  .slack-help-box a div img {
+    vertical-align: sub;
+    height: 22px;
+    width: 22px;
+  };
+</style>
+
+<div class="sidebar">
+  <div class="slack-help-box">
+    <a href="https://slack.wiremock.org/">
+      <div>
+        <img src="/2.x/images/slack-logo-medium.png" alt="Slack logo"/>
+      </div>
+      <div>
+        Need help?
+      </div>
+    </a>
+  </div>
+  <nav class="nav__list">
+    <ul class="doc-categories">
+      
+      
+        <li class="doc-category">
+          <span class="doc-category__li">
+            
+              <a href="/2.x/docs/overview">Getting started</a>
+            
+          </span>
+          <ul class="
+          doc-category__sub-nav
+          
+          ">
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/overview/">Overview</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/quickstart/java-junit/">Quick Start: API Mocking with Java and JUnit 4</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/download-and-installation/">Download and Installation</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/getting-started/">WireMock Tutorials</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+      
+        <li class="doc-category">
+          <span class="doc-category__li">
+            
+              <a href="/2.x/docs/standalone">WireMock Standalone</a>
+            
+          </span>
+          <ul class="
+          doc-category__sub-nav
+          
+          ">
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/standalone/docker/">Running in Docker</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/standalone/java-jar/">Running as a Standalone Process</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/standalone/administration/">Administration API</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+      
+        <li class="doc-category">
+          <span class="doc-category__li">
+            
+              <a href="/2.x/docs/solutions/jvm/">Java Usage</a>
+            
+          </span>
+          <ul class="
+          doc-category__sub-nav
+          
+          ">
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/junit-jupiter/">JUnit 5+ Jupiter</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/junit-extensions/">JUnit 4 and Vintage</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href=""></a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/java-usage/">Plain Java</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/configuration/">Java configuration</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/running-without-http-server/">Running without the HTTP Server</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href=""></a>
+              </li>
+            
+          </ul>
+        </li>
+      
+      
+        <li class="doc-category">
+          <span class="doc-category__li">
+            
+              <a href="/2.x/docs/stubbing">Stubbing & Verifying</a>
+            
+          </span>
+          <ul class="
+          doc-category__sub-nav
+          doc-category__sub-nav--active
+          ">
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/stubbing/">Stubbing</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li doc-category__li--selected">
+                <a href="/2.x/docs/request-matching/">Request Matching</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/response-templating/">Response Templating</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/simulating-faults/">Simulating Faults</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/stateful-behaviour/">Stateful Behaviour</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/proxying/">Proxying</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/verifying/">Verifying</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+      
+        <li class="doc-category">
+          <span class="doc-category__li">
+            
+              <a href="/2.x/docs/mock-api-templates">Templating</a>
+            
+          </span>
+          <ul class="
+          doc-category__sub-nav
+          
+          ">
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/mock-api-templates/">WireMock API Templates Library</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/mock-api-templates/usage/">Using Mock API Templates</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+      
+        <li class="doc-category">
+          <span class="doc-category__li">
+            
+              <a href="/2.x/docs/record-playback/">Record & Playback</a>
+            
+          </span>
+          <ul class="
+          doc-category__sub-nav
+          
+          ">
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/record-playback/">Record and Playback</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+      
+        <li class="doc-category">
+          <span class="doc-category__li">
+            
+              Advanced use-cases
+            
+          </span>
+          <ul class="
+          doc-category__sub-nav
+          
+          ">
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/https/">Serving HTTPs</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/multi-domain-mocking/">Multi-domain Mocking</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/advanced/deploy-to-servlet-container/">Deploying into a servlet container</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/advanced/java7/">WireMock on Java 1.7</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+      
+        <li class="doc-category">
+          <span class="doc-category__li">
+            
+              <a href="/2.x/docs/extending-wiremock/">Extensibility</a>
+            
+          </span>
+          <ul class="
+          doc-category__sub-nav
+          
+          ">
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/extending-wiremock/">Extending WireMock</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/stub-metadata/">Stub Metadata</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/webhooks-and-callbacks/">Webhooks and Callbacks</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+      
+        <li class="doc-category">
+          <span class="doc-category__li">
+            
+              Reference
+            
+          </span>
+          <ul class="
+          doc-category__sub-nav
+          
+          ">
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/standalone/admin-api-reference/">Admin API </a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/mock-api-templates/">WireMock API Templates Library</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+    </ul>
+
+  </nav>
+</div>
+
+  
+
+  <style>
+    .anchor {
+     color: #888;
+      content: url('/images/logos/doc-sections/link.svg');
+      width: 24px;
+      vertical-align: middle;
+      visibility: hidden;
+    }
+
+    h1:hover .anchor,
+    h2:hover .anchor,
+    h3:hover .anchor,
+    h4:hover .anchor,
+    h5:hover .anchor,
+    h6:hover .anchor {
+      color: #3D598B;
+      visibility: visible;
+    }
+
+  </style>
+  
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <meta itemprop="description" content="WireMock enables flexible definition of a mock API by supporting rich matching of incoming requests. Stub matching and verification queries can use the following request attributes:">
+    <meta itemprop="datePublished" content="September 19, 2025">
+    
+
+    <div class="breadcrumbs-bar">
+      <nav class="breadcrumbs bootstrap hidden-sm-down">
+   <ol class="breadcrumb list-unstyled" vocab="http://schema.org/" typeof="BreadcrumbList">
+
+       
+         
+            
+            
+            
+            <li class="breadcrumb-item breadcrumb-item-icon" property="itemListElement" typeof="ListItem">
+               <a property="item" typeof="WebPage" href="/">
+                  
+                  <img class="icon" src="/2.x/images/logos/doc-sections/home.svg"/>
+                  
+                  <meta property="position" content="1" />
+               </a>
+            </li>
+          
+          
+      
+      <li class="breadcrumb-item" property="itemListElement" typeof="ListItem">
+         <a property="item" typeof="WebPage" href="/docs/">
+            <span property="name">Documentation</span>
+            <meta property="position" content="2" />
+         </a>
+      </li>
+       
+          
+      
+      <li class="breadcrumb-item" property="itemListElement" typeof="ListItem">
+         <span property="name">Request Matching</span>
+         <meta property="position" content="3" />
+      </li>
+      
+
+   </ol>
+</nav>
+
+<style>
+   nav.breadcrumbs.bootstrap {
+      /* from Twitter Bootstrap 4 */
+      /* If you already use Twitter, you do not need these css lines above, cause they already in Twitter Bootstrap */
+      /* Additions: image integration */
+   }
+
+   nav.breadcrumbs.bootstrap ol {
+      margin-left: 0
+   }
+
+   nav.breadcrumbs.bootstrap .breadcrumb {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      list-style: none;
+      border-radius: 0.25rem;
+   }
+
+   nav.breadcrumbs.bootstrap .breadcrumb::after {
+      content: "";
+      display: table;
+      clear: both;
+   }
+
+   nav.breadcrumbs.bootstrap .breadcrumb-item {
+      float: left;
+   }
+
+   nav.breadcrumbs.bootstrap .breadcrumb-item+.breadcrumb-item::before {
+      display: inline-block;
+      padding-right: 0.5rem;
+      padding-left: 0.5rem;
+      color: #818a91;
+      content: "/";
+   }
+
+   nav.breadcrumbs.bootstrap .breadcrumb-item+.breadcrumb-item:hover::before {
+      text-decoration: underline;
+   }
+
+   nav.breadcrumbs.bootstrap .breadcrumb-item+.breadcrumb-item:hover::before {
+      text-decoration: none;
+   }
+
+   nav.breadcrumbs.bootstrap .breadcrumb-item-active {
+      color: #818a91;
+   }
+
+   nav.breadcrumbs.bootstrap .breadcrumb .icon {
+      display: inline-block;
+   }
+
+   nav.breadcrumbs.bootstrap .breadcrumb .icon svg {
+      height: 0.8rem;
+      width: 0.8rem;
+   }
+</style>
+    </div>
+
+
+
+    <div class="page__inner-wrap">
+      <header>
+        <h1 class="page__title" itemprop="headline">Request Matching
+</h1>
+      </header>
+
+      
+        
+        <div style="background-color: #f2f2f2;border: #c8c8c8 1px solid;padding: 8px;margin-bottom:32px;">
+          <b>WARNING: </b>
+          This document is for an old WireMock 2.x baseline.
+          See the documentation for the current WireMock 3.x baseline
+          <a href="/2.x/docs/request-matching/">here</a>
+        </div>
+          
+      
+
+      <section class="page__content" itemprop="text">
+        <!--TODO: use beforeHeading="true"  before mastering the negative indenting magic-->
+        <p>WireMock enables flexible definition of a <a href="/">mock API</a> by supporting rich matching of incoming requests. Stub matching and verification queries can use the following request attributes:</p>
+
+<ul>
+  <li>URL</li>
+  <li>HTTP Method</li>
+  <li>Query parameters</li>
+  <li>Headers</li>
+  <li>Basic authentication (a special case of header matching)</li>
+  <li>Cookies</li>
+  <li>Request body</li>
+  <li>Multipart/form-data</li>
+</ul>
+
+<p>Here’s an example showing all attributes being matched using WireMock’s in-built match operators. It is also possible to write <a href="/2.x/extending-wiremock#custom-request-matchers">custom matching logic</a> if
+you need more precise control:</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stubFor</span><span class="o">(</span><span class="n">any</span><span class="o">(</span><span class="n">urlPathEqualTo</span><span class="o">(</span><span class="s">"/everything"</span><span class="o">))</span>
+  <span class="o">.</span><span class="na">withHeader</span><span class="o">(</span><span class="s">"Accept"</span><span class="o">,</span> <span class="n">containing</span><span class="o">(</span><span class="s">"xml"</span><span class="o">))</span>
+  <span class="o">.</span><span class="na">withCookie</span><span class="o">(</span><span class="s">"session"</span><span class="o">,</span> <span class="n">matching</span><span class="o">(</span><span class="s">".*12345.*"</span><span class="o">))</span>
+  <span class="o">.</span><span class="na">withQueryParam</span><span class="o">(</span><span class="s">"search_term"</span><span class="o">,</span> <span class="n">equalTo</span><span class="o">(</span><span class="s">"WireMock"</span><span class="o">))</span>
+  <span class="o">.</span><span class="na">withBasicAuth</span><span class="o">(</span><span class="s">"jeff@example.com"</span><span class="o">,</span> <span class="s">"jeffteenjefftyjeff"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">withRequestBody</span><span class="o">(</span><span class="n">equalToXml</span><span class="o">(</span><span class="s">"&lt;search-results /&gt;"</span><span class="o">))</span>
+  <span class="o">.</span><span class="na">withRequestBody</span><span class="o">(</span><span class="n">matchingXPath</span><span class="o">(</span><span class="s">"//search-results"</span><span class="o">))</span>
+  <span class="o">.</span><span class="na">withMultipartRequestBody</span><span class="o">(</span>
+  	<span class="n">aMultipart</span><span class="o">()</span>
+  		<span class="o">.</span><span class="na">withName</span><span class="o">(</span><span class="s">"info"</span><span class="o">)</span>
+  		<span class="o">.</span><span class="na">withHeader</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span> <span class="n">containing</span><span class="o">(</span><span class="s">"charset"</span><span class="o">))</span>
+  		<span class="o">.</span><span class="na">withBody</span><span class="o">(</span><span class="n">equalToJson</span><span class="o">(</span><span class="s">"{}"</span><span class="o">))</span>
+  <span class="o">)</span>
+  <span class="o">.</span><span class="na">willReturn</span><span class="o">(</span><span class="n">aResponse</span><span class="o">()));</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"urlPath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/everything"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ANY"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"Accept"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"contains"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xml"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"queryParameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"search_term"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"equalTo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WireMock"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"cookies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"session"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"matches"</span><span class="p">:</span><span class="w"> </span><span class="s2">".*12345.*"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"bodyPatterns"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"equalToXml"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;search-results /&gt;"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"matchesXPath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"//search-results"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nl">"multipartPatterns"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"matchingType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ANY"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"Content-Disposition"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"contains"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name=</span><span class="se">\"</span><span class="s2">info</span><span class="se">\"</span><span class="s2">"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="nl">"Content-Type"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"contains"</span><span class="p">:</span><span class="w"> </span><span class="s2">"charset"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nl">"bodyPatterns"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"equalToJson"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{}"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nl">"basicAuthCredentials"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jeff@example.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jeffteenjefftyjeff"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The following sections describe each type of matching strategy in detail.</p>
+<h2 id="url-matching">
+  
+  
+    URL matching <a href="#url-matching" class="anchor">#</a>
+  
+  
+</h2>
+    
+
+<p>URLs can be matched either by equality or by regular expression. You also have a choice of whether to match just the path part of the URL or the path and query together.</p>
+
+<p>It is usually preferable to match on path only if you want to match multiple query parameters in an order invariant manner.</p>
+<h3 id="equality-matching-on-path-and-query">
+  
+  
+    Equality matching on path and query <a href="#equality-matching-on-path-and-query" class="anchor">#</a>
+  
+  
+</h3>
+    
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">urlEqualTo</span><span class="o">(</span><span class="s">"/your/url?and=query"</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/your/url?and=query"</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h3 id="regex-matching-on-path-and-query">
+  
+  
+    Regex matching on path and query <a href="#regex-matching-on-path-and-query" class="anchor">#</a>
+  
+  
+</h3>
+    
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">urlMatching</span><span class="o">(</span><span class="s">"/your/([a-z]*)\\?and=query"</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"urlPattern"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/your/([a-z]*)</span><span class="se">\\</span><span class="s2">?and=query"</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h3 id="equality-matching-on-the-path-only">
+  
+  
+    Equality matching on the path only <a href="#equality-matching-on-the-path-only" class="anchor">#</a>
+  
+  
+</h3>
+    
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">urlPathEqualTo</span><span class="o">(</span><span class="s">"/your/url"</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"urlPath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/your/url"</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h3 id="regex-matching-on-the-path-only">
+  
+  
+    Regex matching on the path only <a href="#regex-matching-on-the-path-only" class="anchor">#</a>
+  
+  
+</h3>
+    
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">urlPathMatching</span><span class="o">(</span><span class="s">"/your/([a-z]*)"</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"urlPathPattern"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/your/([a-z]*)"</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h2 id="matching-other-attributes">
+  
+  
+    Matching other attributes <a href="#matching-other-attributes" class="anchor">#</a>
+  
+  
+</h2>
+    
+
+<p>All request attributes other than the URL can be matched using the following set of operators.</p>
+<h3 id="equality">
+  
+  
+    Equality <a href="#equality" class="anchor">#</a>
+  
+  
+</h3>
+    
+
+<p>Deems a match if the entire attribute value equals the expected value.</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="na">withHeader</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span> <span class="n">equalTo</span><span class="o">(</span><span class="s">"application/json"</span><span class="o">))</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="nl">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"Content-Type"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"equalTo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/json"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h3 id="case-insensitive-equality">
+  
+  
+    Case-insensitive equality <a href="#case-insensitive-equality" class="anchor">#</a>
+  
+  
+</h3>
+    
+
+<p>Deems a match if the entire attribute value equals the expected value, ignoring case.</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="na">withHeader</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span> <span class="n">equalToIgnoreCase</span><span class="o">(</span><span class="s">"application/json"</span><span class="o">))</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="nl">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"Content-Type"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"equalTo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/json"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"caseInsensitive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h3 id="binary-equality">
+  
+  
+    Binary Equality <a href="#binary-equality" class="anchor">#</a>
+  
+  
+</h3>
+    
+
+<p>Deems a match if the entire binary attribute value equals the expected value. Unlike the above equalTo operator, this compares byte arrays (or their equivalent base64 representation).</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Specifying the expected value as a byte array</span>
+<span class="o">.</span><span class="na">withRequestBody</span><span class="o">(</span><span class="n">binaryEqualTo</span><span class="o">(</span><span class="k">new</span> <span class="kt">byte</span><span class="o">[]</span> <span class="o">{</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span> <span class="o">}))</span>
+
+<span class="c1">// Specifying the expected value as a base64 String</span>
+<span class="o">.</span><span class="na">withRequestBody</span><span class="o">(</span><span class="n">binaryEqualTo</span><span class="o">(</span><span class="s">"AQID"</span><span class="o">))</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="nl">"bodyPatterns"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="nl">"binaryEqualTo"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AQID"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">Base</span><span class="w"> </span><span class="mi">64</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h3 id="substring-contains">
+  
+  
+    Substring (contains) <a href="#substring-contains" class="anchor">#</a>
+  
+  
+</h3>
+    
+
+<p>Deems a match if the a portion of the attribute value equals the expected value.</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="na">withCookie</span><span class="o">(</span><span class="s">"my_profile"</span><span class="o">,</span> <span class="n">containing</span><span class="o">(</span><span class="s">"johnsmith@example.com"</span><span class="o">))</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="nl">"cookies"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"my_profile"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"contains"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"johnsmith@example.com"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h3 id="negative-substring-does-not-contain">
+  
+  
+    Negative substring (does not contain) <a href="#negative-substring-does-not-contain" class="anchor">#</a>
+  
+  
+</h3>
+    
+
+<p>Deems a match if the attribute value does not contain the expected value.</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="na">withCookie</span><span class="o">(</span><span class="s">"my_profile"</span><span class="o">,</span> <span class="n">notContaining</span><span class="o">(</span><span class="s">"johnsmith@example.com"</span><span class="o">))</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="nl">"cookies"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"my_profile"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"doesNotContain"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"johnsmith@example.com"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h3 id="regular-expression">
+  
+  
+    Regular expression <a href="#regular-expression" class="anchor">#</a>
+  
+  
+</h3>
+    
+
+<p>Deems a match if the entire attribute value matched the expected regular expression.</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="na">withQueryParam</span><span class="o">(</span><span class="s">"search_term"</span><span class="o">,</span> <span class="n">matching</span><span class="o">(</span><span class="s">"^(.*)wiremock([A-Za-z]+)$"</span><span class="o">))</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="nl">"queryParameters"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"search_term"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"matches"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"^(.*)wiremock([A-Za-z]+)$"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>It is also possible to perform a negative match i.e. the match succeeds when the attribute value does not match the regex:</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="na">withQueryParam</span><span class="o">(</span><span class="s">"search_term"</span><span class="o">,</span> <span class="n">notMatching</span><span class="o">(</span><span class="s">"^(.*)wiremock([A-Za-z]+)$"</span><span class="o">))</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="nl">"queryParameters"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"search_term"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"doesNotMatch"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"^(.*)wiremock([A-Za-z]+)$"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h3 id="json-equality">
+  
+  
+    JSON equality <a href="#json-equality" class="anchor">#</a>
+  
+  
+</h3>
+    
+
+<p>Deems a match if the attribute (most likely the request body in practice) is valid JSON and is a semantic match for the expected value.</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="na">withRequestBody</span><span class="o">(</span><span class="n">equalToJson</span><span class="o">(</span><span class="s">"{ \"total_results\": 4 }"</span><span class="o">))</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="nl">"bodyPatterns"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"equalToJson"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"total_results"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>JSON with string literal:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="nl">"bodyPatterns"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"equalToJson"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"{ </span><span class="se">\"</span><span class="s2">total_results</span><span class="se">\"</span><span class="s2">: 4 }"</span><span class="w">
+    </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h4 id="less-strict-matching">
+  
+  
+    Less strict matching <a href="#less-strict-matching" class="anchor">#</a>
+  
+  
+</h4>
+    
+
+<p>By default different array orderings and additional object attributes will trigger a non-match. However, both of these conditions can be disabled individually.</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="na">withRequestBody</span><span class="o">(</span><span class="n">equalToJson</span><span class="o">(</span><span class="s">"{ \"total_results\": 4  }"</span><span class="o">,</span> <span class="kc">true</span><span class="o">,</span> <span class="kc">true</span><span class="o">))</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="nl">"bodyPatterns"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"equalToJson"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"{ </span><span class="se">\"</span><span class="s2">total_results</span><span class="se">\"</span><span class="s2">: 4  }"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"ignoreArrayOrder"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"ignoreExtraElements"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h4 id="placeholders">
+  
+  
+    Placeholders <a href="#placeholders" class="anchor">#</a>
+  
+  
+</h4>
+    
+
+<p>JSON equality matching is based on <a href="https://github.com/lukas-krecan/JsonUnit">JsonUnit</a> and therefore supports placeholders.
+This allows specific attributes to be treated as wildcards, rather than an exactly value being required for a match.</p>
+
+<p>For instance, the following:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w"> </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${json-unit.any-string}"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>would match a request with a JSON body of:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w"> </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc123"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>It’s also possible to use placeholders that constrain the expected value by type or regular expression.
+See <a href="https://github.com/lukas-krecan/JsonUnit#typeplc">the JsonUnit placeholders documentation</a> for the full syntax.</p>
+
+<blockquote>
+  <p><strong>note</strong></p>
+
+  <p>Placeholders are only available in the <code class="language-plaintext highlighter-rouge">jre8</code> WireMock JARs, as the JsonUnit library requires at least Java 8.</p>
+</blockquote>
+<h3 id="json-path">
+  
+  
+    JSON Path <a href="#json-path" class="anchor">#</a>
+  
+  
+</h3>
+    
+
+<p>Deems a match if the attribute value is valid JSON and matches the <a href="http://goessner.net/articles/JsonPath/">JSON Path</a> expression supplied. A JSON body will be considered to match a path expression if the expression returns either a non-null single value (string, integer etc.), or a non-empty object or array.</p>
+<h4 id="presence-matching">
+  
+  
+    Presence matching <a href="#presence-matching" class="anchor">#</a>
+  
+  
+</h4>
+    
+
+<p>Deems a match if the attribute value is present in the JSON.</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="na">withRequestBody</span><span class="o">(</span><span class="n">matchingJsonPath</span><span class="o">(</span><span class="s">"$.name"</span><span class="o">))</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="nl">"bodyPatterns"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"matchesJsonPath"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"$.name"</span><span class="w">
+    </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Request body example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// matching
+{ "name": "Wiremock" }
+// not matching
+{ "price": 15 }
+</code></pre></div></div>
+<h4 id="equality-matching">
+  
+  
+    Equality matching <a href="#equality-matching" class="anchor">#</a>
+  
+  
+</h4>
+    
+
+<p>Deems a match if the attribute value equals the expected value.</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="na">withRequestBody</span><span class="o">(</span><span class="n">matchingJsonPath</span><span class="o">(</span><span class="s">"$.things[?(@.name == 'RequiredThing')]"</span><span class="o">))</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="nl">"bodyPatterns"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"matchesJsonPath"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"$.things[?(@.name == 'RequiredThing')]"</span><span class="w">
+    </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Request body example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// matching
+{ "things": { "name": "RequiredThing" } }
+{ "things": [ { "name": "RequiredThing" }, { "name": "Wiremock" } ] }
+// not matching
+{ "price": 15 }
+{ "things": { "name": "Wiremock" } }
+</code></pre></div></div>
+<h4 id="regex-matching">
+  
+  
+    Regex matching <a href="#regex-matching" class="anchor">#</a>
+  
+  
+</h4>
+    
+
+<p>Deems a match if the attribute value matches the regex expected value.</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="na">withRequestBody</span><span class="o">(</span><span class="n">matchingJsonPath</span><span class="o">(</span><span class="s">"$.things[?(@.name =~ /Required.*/i)]"</span><span class="o">))</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="nl">"bodyPatterns"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"matchesJsonPath"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"$.things[?(@.name =~ /Required.*/i)]"</span><span class="w">
+    </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Request body example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// matching
+{ "things": { "name": "RequiredThing" } }
+{ "things": [ { "name": "Required" }, { "name": "Wiremock" } ] }
+// not matching
+{ "price": 15 }
+{ "things": { "name": "Wiremock" } }
+{ "things": [ { "name": "Thing" }, { "name": "Wiremock" } ] }
+</code></pre></div></div>
+<h4 id="size-matching">
+  
+  
+    Size matching <a href="#size-matching" class="anchor">#</a>
+  
+  
+</h4>
+    
+
+<p>Deems a match if the attribute size matches the expected size.</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="na">withRequestBody</span><span class="o">(</span><span class="n">matchingJsonPath</span><span class="o">(</span><span class="s">"$[?(@.things.size() == 2)]"</span><span class="o">))</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="nl">"bodyPatterns"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"matchesJsonPath"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"$[?(@.things.size() == 2)]"</span><span class="w">
+    </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Request body example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// matching
+{ "things": [ { "name": "RequiredThing" }, { "name": "Wiremock" } ] }
+// not matching
+{ "things": [ { "name": "RequiredThing" } ] }
+</code></pre></div></div>
+<h4 id="nested-value-matching">
+  
+  
+    Nested value matching <a href="#nested-value-matching" class="anchor">#</a>
+  
+  
+</h4>
+    
+
+<p>The JSONPath matcher can be combined with another matcher, such that the value returned from the JSONPath query is evaluated against it:</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="na">withRequestBody</span><span class="o">(</span><span class="n">matchingJsonPath</span><span class="o">(</span><span class="s">"$..todoItem"</span><span class="o">,</span> <span class="n">containing</span><span class="o">(</span><span class="s">"wash"</span><span class="o">)))</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="nl">"bodyPatterns"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"matchesJsonPath"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+         </span><span class="nl">"expression"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$..todoItem"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"contains"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wash"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Since WireMock’s matching operators all work on strings, the value selected by the JSONPath expression will be coerced to a string before the match is evaluated. This true even if the returned value
+is an object or array. A benefit of this is that this allows a sub-document to be selected using JSONPath, then matched using the <code class="language-plaintext highlighter-rouge">equalToJson</code> operator. E.g. for the following request body:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"outer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"inner"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The following will match:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="na">withRequestBody</span><span class="o">(</span><span class="n">matchingJsonPath</span><span class="o">(</span><span class="s">"$.outer"</span><span class="o">,</span> <span class="n">equalToJson</span><span class="o">(</span><span class="s">"{                \n"</span> <span class="o">+</span>
+                                                         <span class="s">"   \"inner\": 42 \n"</span> <span class="o">+</span>
+                                                         <span class="s">"}"</span><span class="o">)))</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="nl">"bodyPatterns"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"matchesJsonPath"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+         </span><span class="nl">"expression"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.outer"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"equalToJson"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{ </span><span class="se">\"</span><span class="s2">inner</span><span class="se">\"</span><span class="s2">: 42 }"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h3 id="xml-equality">
+  
+  
+    XML equality <a href="#xml-equality" class="anchor">#</a>
+  
+  
+</h3>
+    
+
+<p>Deems a match if the attribute value is valid XML and is semantically equal to the expected XML document. The underlying engine for determining XML equality is <a href="http://www.xmlunit.org/">XMLUnit</a>.</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="na">withRequestBody</span><span class="o">(</span><span class="n">equalToXml</span><span class="o">(</span><span class="s">"&lt;thing&gt;Hello&lt;/thing&gt;"</span><span class="o">))</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="nl">"bodyPatterns"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"equalToXml"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;thing&gt;Hello&lt;/thing&gt;"</span><span class="w">
+    </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h4 id="use-of-placeholders">
+  
+  
+    Use of placeholders <a href="#use-of-placeholders" class="anchor">#</a>
+  
+  
+</h4>
+    
+
+<p>The XMLUnit <a href="https://github.com/xmlunit/user-guide/wiki/Placeholders">placeholders</a> feature is supported in WireMock. For example, when comparing the XML documents, you can ignore some text nodes.</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="na">withRequestBody</span><span class="o">(</span>
+    <span class="n">equalToXml</span><span class="o">(</span><span class="s">"&lt;message&gt;&lt;id&gt;${xmlunit.ignore}&lt;/id&gt;&lt;content&gt;Hello&lt;/content&gt;&lt;/message&gt;"</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
+<span class="o">)</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="nl">"bodyPatterns"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"equalToXml"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;message&gt;&lt;id&gt;${xmlunit.ignore}&lt;/id&gt;&lt;content&gt;Hello&lt;/content&gt;&lt;/message&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"enablePlaceholders"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>When the actual request body is <code class="language-plaintext highlighter-rouge">&lt;message&gt;&lt;id&gt;123456&lt;/id&gt;&lt;content&gt;Hello&lt;/content&gt;&lt;/message&gt;</code>, it will be deemed a match.</p>
+
+<p>If the default placeholder delimiters <code class="language-plaintext highlighter-rouge">${</code> and <code class="language-plaintext highlighter-rouge">}</code> can not be used, you can specify custom delimiters (using regular expressions). For example</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="na">withRequestBody</span><span class="o">(</span>
+    <span class="n">equalToXml</span><span class="o">(</span><span class="s">"&lt;message&gt;&lt;id&gt;[[xmlunit.ignore]]&lt;/id&gt;&lt;content&gt;Hello&lt;/content&gt;&lt;/message&gt;"</span><span class="o">,</span>
+               <span class="kc">true</span><span class="o">,</span>
+               <span class="s">"\\[\\["</span><span class="o">,</span>
+               <span class="s">"]]"</span>
+    <span class="o">)</span>
+<span class="o">)</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="nl">"bodyPatterns"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"equalToXml"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;message&gt;&lt;id&gt;[[xmlunit.ignore]]&lt;/id&gt;&lt;content&gt;Hello&lt;/content&gt;&lt;/message&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"enablePlaceholders"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"placeholderOpeningDelimiterRegex"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">["</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"placeholderClosingDelimiterRegex"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"]]"</span><span class="w">
+    </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h4 id="excluding-specific-types-of-comparison">
+  
+  
+    Excluding specific types of comparison <a href="#excluding-specific-types-of-comparison" class="anchor">#</a>
+  
+  
+</h4>
+    
+
+<p>You can further tune how XML documents are compared for equality by disabling specific <a href="https://www.xmlunit.org/api/java/2.7.0/org/xmlunit/diff/ComparisonType.html">XMLUnit comparison types</a>.</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">xmlunit</span><span class="o">.</span><span class="na">diff</span><span class="o">.</span><span class="na">ComparisonType</span><span class="o">.*;</span>
+
+<span class="o">...</span>
+
+<span class="o">.</span><span class="na">withRequestBody</span><span class="o">(</span><span class="n">equalToXml</span><span class="o">(</span><span class="s">"&lt;thing&gt;Hello&lt;/thing&gt;"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">exemptingComparisons</span><span class="o">(</span><span class="no">NAMESPACE_URI</span><span class="o">,</span> <span class="no">ELEMENT_TAG_NAME</span><span class="o">)</span>
+<span class="o">)</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="nl">"bodyPatterns"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"equalToXml"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;thing&gt;Hello&lt;/thing&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"exemptedComparisons"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"NAMESPACE_URI"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ELEMENT_TAG_NAME"</span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The full list of comparison types used by default is as follows:</p>
+
+<p><code class="language-plaintext highlighter-rouge">ELEMENT_TAG_NAME</code>
+<code class="language-plaintext highlighter-rouge">SCHEMA_LOCATION</code>
+<code class="language-plaintext highlighter-rouge">NO_NAMESPACE_SCHEMA_LOCATION</code>
+<code class="language-plaintext highlighter-rouge">NODE_TYPE</code>
+<code class="language-plaintext highlighter-rouge">NAMESPACE_URI</code>
+<code class="language-plaintext highlighter-rouge">TEXT_VALUE</code>
+<code class="language-plaintext highlighter-rouge">PROCESSING_INSTRUCTION_TARGET</code>
+<code class="language-plaintext highlighter-rouge">PROCESSING_INSTRUCTION_DATA</code>
+<code class="language-plaintext highlighter-rouge">ELEMENT_NUM_ATTRIBUTES</code>
+<code class="language-plaintext highlighter-rouge">ATTR_VALUE</code>
+<code class="language-plaintext highlighter-rouge">CHILD_NODELIST_LENGTH</code>
+<code class="language-plaintext highlighter-rouge">CHILD_LOOKUP</code>
+<code class="language-plaintext highlighter-rouge">ATTR_NAME_LOOKUP</code></p>
+<h3 id="xpath">
+  
+  
+    XPath <a href="#xpath" class="anchor">#</a>
+  
+  
+</h3>
+    
+
+<p>Deems a match if the attribute value is valid XML and matches the XPath expression supplied. An XML document will be considered to match if any elements are returned by the XPath evaluation. WireMock delegates to Java’s in-built XPath engine (via XMLUnit), therefore up to (at least) Java 8 it supports XPath version 1.0.</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="na">withRequestBody</span><span class="o">(</span><span class="n">matchingXPath</span><span class="o">(</span><span class="s">"/todo-list[count(todo-item) = 3]"</span><span class="o">))</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="nl">"bodyPatterns"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"matchesXPath"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"/todo-list[count(todo-item) = 3]"</span><span class="w">
+    </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The above example will select elements based on their local name if used with a namespaced XML document.</p>
+
+<p>If you need to be able to select elements based on their namespace in addition to their name you can declare the prefix
+to namespace URI mappings and use them in your XPath expression:</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="na">withRequestBody</span><span class="o">(</span><span class="n">matchingXPath</span><span class="o">(</span><span class="s">"/stuff:outer/more:inner[.=111]"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">withXPathNamespace</span><span class="o">(</span><span class="s">"stuff"</span><span class="o">,</span> <span class="s">"http://stuff.example.com"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">withXPathNamespace</span><span class="o">(</span><span class="s">"more"</span><span class="o">,</span> <span class="s">"http://more.example.com"</span><span class="o">))</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="nl">"bodyPatterns"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"matchesXPath"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"/stuff:outer/more:inner[.=111]"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"xPathNamespaces"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"stuff"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"http://stuff.example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"more"</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="s2">"http://more.example.com"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h4 id="nested-value-matching-1">
+  
+  
+    Nested value matching <a href="#nested-value-matching-1" class="anchor">#</a>
+  
+  
+</h4>
+    
+
+<p>The XPath matcher described above can be combined with another matcher, such that the value returned from the XPath query is evaluated against it:</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="na">withRequestBody</span><span class="o">(</span><span class="n">matchingXPath</span><span class="o">(</span><span class="s">"//todo-item/text()"</span><span class="o">,</span> <span class="n">containing</span><span class="o">(</span><span class="s">"wash"</span><span class="o">)))</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="nl">"bodyPatterns"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"matchesXPath"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+         </span><span class="nl">"expression"</span><span class="p">:</span><span class="w"> </span><span class="s2">"//todo-item/text()"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"contains"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wash"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>If multiple nodes are returned from the XPath query, all will be evaluated and the returned match will be the one with the shortest distance.</p>
+
+<p>If the XPath expression returns an XML element rather than a value, this will be rendered as an XML string before it is passed to the value matcher.
+This can be usefully combined with the <code class="language-plaintext highlighter-rouge">equalToXml</code> matcher e.g.</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="na">withRequestBody</span><span class="o">(</span><span class="n">matchingXPath</span><span class="o">(</span><span class="s">"//todo-item"</span><span class="o">,</span> <span class="n">equalToXml</span><span class="o">(</span><span class="s">"&lt;todo-item&gt;Do the washing&lt;/todo-item&gt;"</span><span class="o">)))</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="nl">"bodyPatterns"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"matchesXPath"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+         </span><span class="nl">"expression"</span><span class="p">:</span><span class="w"> </span><span class="s2">"//todo-item"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"equalToXml"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;todo-item&gt;Do the washing&lt;/todo-item&gt;"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h3 id="absence">
+  
+  
+    Absence <a href="#absence" class="anchor">#</a>
+  
+  
+</h3>
+    
+
+<p>Deems a match if the attribute specified is absent from the request.</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="na">withCookie</span><span class="o">(</span><span class="s">"session"</span><span class="o">,</span> <span class="n">absent</span><span class="o">())</span>
+<span class="o">.</span><span class="na">withQueryParam</span><span class="o">(</span><span class="s">"search_term"</span><span class="o">,</span> <span class="n">absent</span><span class="o">())</span>
+<span class="o">.</span><span class="na">withHeader</span><span class="o">(</span><span class="s">"X-Absent"</span><span class="o">,</span> <span class="n">absent</span><span class="o">())</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="nl">"headers"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"X-Absent"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"absent"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"queryParameters"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"search_term"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"absent"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"cookies"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"session"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"absent"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h2 id="multipartform-data">
+  
+  
+    Multipart/form-data <a href="#multipartform-data" class="anchor">#</a>
+  
+  
+</h2>
+    
+
+<p>Deems a match if a multipart value is valid and matches any or all the multipart pattern matchers supplied. As a Multipart is a ‘mini’ HTTP request in itself all existing Header and Body content matchers can by applied to a Multipart pattern.
+A Multipart pattern can be defined as matching <code class="language-plaintext highlighter-rouge">ANY</code> request multiparts or <code class="language-plaintext highlighter-rouge">ALL</code>. The default matching type is <code class="language-plaintext highlighter-rouge">ANY</code>.</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stubFor</span><span class="o">(...)</span>
+  <span class="o">...</span>
+  <span class="o">.</span><span class="na">withMultipartRequestBody</span><span class="o">(</span>
+  	<span class="n">aMultipart</span><span class="o">()</span>
+  		<span class="o">.</span><span class="na">withName</span><span class="o">(</span><span class="s">"info"</span><span class="o">)</span>
+  		<span class="o">.</span><span class="na">withHeader</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span> <span class="n">containing</span><span class="o">(</span><span class="s">"charset"</span><span class="o">))</span>
+  		<span class="o">.</span><span class="na">withMultipartBody</span><span class="o">(</span><span class="n">equalToJson</span><span class="o">(</span><span class="s">"{}"</span><span class="o">))</span>
+  <span class="o">)</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="nl">"multipartPatterns"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"matchingType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"ANY"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"headers"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"Content-Disposition"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"contains"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"name=</span><span class="se">\"</span><span class="s2">info</span><span class="se">\"</span><span class="s2">"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"Content-Type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"contains"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"charset"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"bodyPatterns"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"equalToJson"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"{}"</span><span class="w">
+      </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h2 id="basic-authentication">
+  
+  
+    Basic Authentication <a href="#basic-authentication" class="anchor">#</a>
+  
+  
+</h2>
+    
+
+<p>Although matching on HTTP basic authentication could be supported via a
+correctly encoded <code class="language-plaintext highlighter-rouge">Authorization</code> header, you can also do this more simply
+via the API.</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stubFor</span><span class="o">(</span><span class="n">get</span><span class="o">(</span><span class="n">urlEqualTo</span><span class="o">(</span><span class="s">"/basic-auth"</span><span class="o">)).</span><span class="na">withBasicAuth</span><span class="o">(</span><span class="s">"user"</span><span class="o">,</span> <span class="s">"pass"</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/basic-auth"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"basicAuth"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pass"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h2 id="dates-and-times">
+  
+  
+    Dates and times <a href="#dates-and-times" class="anchor">#</a>
+  
+  
+</h2>
+    
+
+<p>Dates and times can be matched in several ways. Three comparison operators are available: <code class="language-plaintext highlighter-rouge">before</code>, <code class="language-plaintext highlighter-rouge">after</code> and
+<code class="language-plaintext highlighter-rouge">equalToDateTime</code>, all of which have the same set of parameters.</p>
+
+<p>Additionally, the expected value can be either literal (fixed) or an offset from the current date. Both the expected and
+actual dates can be truncated in various ways.</p>
+<h3 id="literal-datetimes">
+  
+  
+    Literal date/times <a href="#literal-datetimes" class="anchor">#</a>
+  
+  
+</h3>
+    
+
+<p>You can match an incoming date/time against a fixed value e.g. “match if the X-Munged-Date request header is after x”:</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stubFor</span><span class="o">(</span><span class="n">post</span><span class="o">(</span><span class="s">"/dates"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">withHeader</span><span class="o">(</span><span class="s">"X-Munged-Date"</span><span class="o">,</span> <span class="n">after</span><span class="o">(</span><span class="s">"2021-05-01T00:00:00Z"</span><span class="o">))</span>
+  <span class="o">.</span><span class="na">willReturn</span><span class="o">(</span><span class="n">ok</span><span class="o">()));</span>
+
+<span class="c1">// You can also use a ZonedDateTime or LocalDateTime object</span>
+<span class="n">stubFor</span><span class="o">(</span><span class="n">post</span><span class="o">(</span><span class="s">"/dates"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">withHeader</span><span class="o">(</span><span class="s">"X-Munged-Date"</span><span class="o">,</span> <span class="n">after</span><span class="o">(</span><span class="nc">ZonedDateTime</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">"2021-05-01T00:00:00Z"</span><span class="o">)))</span>
+  <span class="o">.</span><span class="na">willReturn</span><span class="o">(</span><span class="n">ok</span><span class="o">()));</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/dates"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"X-Munged-Date"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"after"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-01T00:00:00Z"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h3 id="offset">
+  
+  
+    Offset <a href="#offset" class="anchor">#</a>
+  
+  
+</h3>
+    
+
+<p>You can also match in incoming value against the current date/time or an offset from it:</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stubFor</span><span class="o">(</span><span class="n">post</span><span class="o">(</span><span class="s">"/dates"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">withHeader</span><span class="o">(</span><span class="s">"X-Munged-Date"</span><span class="o">,</span> <span class="n">beforeNow</span><span class="o">().</span><span class="na">expectedOffset</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="nc">DateTimeUnit</span><span class="o">.</span><span class="na">DAYS</span><span class="o">))</span>
+  <span class="o">.</span><span class="na">withHeader</span><span class="o">(</span><span class="s">"X-Finalised-Date"</span><span class="o">,</span> <span class="n">before</span><span class="o">(</span><span class="s">"now +2 months"</span><span class="o">))</span> <span class="c1">// This form and beforeNow() are equivalent</span>
+  <span class="o">.</span><span class="na">willReturn</span><span class="o">(</span><span class="n">ok</span><span class="o">()));</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/dates"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"X-Munged-Date"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"before"</span><span class="p">:</span><span class="w"> </span><span class="s2">"now +3 days"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"X-Finalised-Date"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="err">//</span><span class="w"> </span><span class="err">This</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">equivalent</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="s2">"now +2 months"</span><span class="w">
+                </span><span class="nl">"before"</span><span class="p">:</span><span class="w"> </span><span class="s2">"now"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"expectedOffset"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"expectedOffsetUnit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"months"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h3 id="local-vs-zoned">
+  
+  
+    Local vs. Zoned <a href="#local-vs-zoned" class="anchor">#</a>
+  
+  
+</h3>
+    
+
+<p>Both the expected and actual date/time values can either have timezone information or not. For instance a
+date in ISO8601 format could be zoned: <code class="language-plaintext highlighter-rouge">2021-06-24T13:40:27+01:00</code> or <code class="language-plaintext highlighter-rouge">2021-06-24T12:40:27Z</code>, or local: <code class="language-plaintext highlighter-rouge">2021-06-24T12:40:27</code>.</p>
+
+<p>Likewise a date/time in RFC 1123 (HTTP standard) format is also zoned: <code class="language-plaintext highlighter-rouge">Tue, 01 Jun 2021 15:16:17 GMT</code>.</p>
+
+<p>Whether the expected and actual values are zoned or not affects whether they can be matched and how. Generally, the best
+approach is to try to ensure you’re using the same on both sides - if you’re expected a zoned actual date, then use one
+as the expected date also, plus the equivalent for local dates.</p>
+
+<p>If the expected date is zoned and the actual is local, the actual date will assume the system timezone before the
+comparison is attempted.</p>
+
+<p>If the expected date is local and the actual is zoned, the timezone will be stripped from the actual value before the
+comparison is attempted.</p>
+<h3 id="date-formats">
+  
+  
+    Date formats <a href="#date-formats" class="anchor">#</a>
+  
+  
+</h3>
+    
+
+<p>By default these matchers will attempt to parse date/times in ISO8601 format, plus the three standard formats defined by
+HTTP RFCs 1123, 1036 and asctime (taken from C but also valid for specifying HTTP dates).</p>
+
+<p>It is also possible to specify your own format using
+<a href="https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#patterns">Java’s date format strings</a>.</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stubFor</span><span class="o">(</span><span class="n">post</span><span class="o">(</span><span class="s">"/dates"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">withHeader</span><span class="o">(</span><span class="s">"X-Munged-Date"</span><span class="o">,</span>
+    <span class="n">equalToDateTime</span><span class="o">(</span><span class="s">"2021-06-24T00:00:00"</span><span class="o">).</span><span class="na">actualFormat</span><span class="o">(</span><span class="s">"dd/MM/yyyy"</span><span class="o">))</span>
+  <span class="o">.</span><span class="na">willReturn</span><span class="o">(</span><span class="n">ok</span><span class="o">()));</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/dates"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"X-Munged-Date"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"equalToDateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-24T00:00:00"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"actualFormat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dd/MM/yyyy"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h3 id="truncation">
+  
+  
+    Truncation <a href="#truncation" class="anchor">#</a>
+  
+  
+</h3>
+    
+
+<p>Both the expected and actual date/times can be truncated in various ways e.g. to the first hour of the day. When using
+offset from now as the expected date with truncation, the truncation will be applied first followed by the offsetting.</p>
+
+<p>Truncation is useful if you want to create expressions like “before the end of this month” or “equal to the current hour”.</p>
+
+<p>It can usefully be combined with offsetting so e.g. if the match required is “after the 15th of this month” we could do
+as follows.</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stubFor</span><span class="o">(</span><span class="n">post</span><span class="o">(</span><span class="s">"/dates"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">withRequestBody</span><span class="o">(</span><span class="n">matchingJsonPath</span><span class="o">(</span>
+      <span class="s">"$.completedDate"</span><span class="o">,</span>
+      <span class="n">after</span><span class="o">(</span><span class="s">"now +15 days"</span><span class="o">).</span><span class="na">truncateExpected</span><span class="o">(</span><span class="no">FIRST_DAY_OF_MONTH</span><span class="o">))</span>
+  <span class="o">)</span>
+  <span class="o">.</span><span class="na">willReturn</span><span class="o">(</span><span class="n">ok</span><span class="o">()));</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/dates"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"bodyPatterns"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"matchesJsonPath"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"expression"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.completedDate"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"after"</span><span class="p">:</span><span class="w"> </span><span class="s2">"now +15 days"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"truncateExpected"</span><span class="p">:</span><span class="w"> </span><span class="s2">"first day of month"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Truncating the actual value can be useful when checking for equality with literal date/times e.g. to say “is in March 2020”:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stubFor</span><span class="o">(</span><span class="n">post</span><span class="o">(</span><span class="s">"/dates"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">withRequestBody</span><span class="o">(</span><span class="n">matchingJsonPath</span><span class="o">(</span>
+    <span class="s">"$.completedDate"</span><span class="o">,</span>
+    <span class="n">equalToDateTime</span><span class="o">(</span><span class="s">"2020-03-01T00:00:00Z"</span><span class="o">).</span><span class="na">truncateActual</span><span class="o">(</span><span class="no">FIRST_DAY_OF_MONTH</span><span class="o">))</span>
+  <span class="o">)</span>
+  <span class="o">.</span><span class="na">willReturn</span><span class="o">(</span><span class="n">ok</span><span class="o">()));</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/dates"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"bodyPatterns"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"matchesJsonPath"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"expression"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.completedDate"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"equalToDateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-03-01T00:00:00Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"truncateActual"</span><span class="p">:</span><span class="w"> </span><span class="s2">"first day of month"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<div id="all-truncations"></div>
+<p>The full list of available truncations is:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">first minute of hour</code></li>
+  <li><code class="language-plaintext highlighter-rouge">first hour of day</code></li>
+  <li><code class="language-plaintext highlighter-rouge">first day of month</code></li>
+  <li><code class="language-plaintext highlighter-rouge">first day of next month</code></li>
+  <li><code class="language-plaintext highlighter-rouge">last day of month</code></li>
+  <li><code class="language-plaintext highlighter-rouge">first day of year</code></li>
+  <li><code class="language-plaintext highlighter-rouge">first day of next year</code></li>
+  <li><code class="language-plaintext highlighter-rouge">last day of year</code></li>
+</ul>
+<h2 id="logical-and-and-or">
+  
+  
+    Logical AND and OR <a href="#logical-and-and-or" class="anchor">#</a>
+  
+  
+</h2>
+    
+
+<p>You can combine two or more matchers in an AND expression.</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Both statements are equivalent</span>
+
+<span class="n">stubFor</span><span class="o">(</span><span class="n">get</span><span class="o">(</span><span class="n">urlPathEqualTo</span><span class="o">(</span><span class="s">"/and"</span><span class="o">))</span>
+    <span class="o">.</span><span class="na">withHeader</span><span class="o">(</span><span class="s">"X-Some-Value"</span><span class="o">,</span> <span class="n">and</span><span class="o">(</span>
+        <span class="n">matching</span><span class="o">(</span><span class="s">"[a-z]+"</span><span class="o">),</span>
+        <span class="n">containing</span><span class="o">(</span><span class="s">"magicvalue"</span><span class="o">))</span>
+    <span class="o">)</span>
+    <span class="o">.</span><span class="na">willReturn</span><span class="o">(</span><span class="n">ok</span><span class="o">()));</span>
+
+<span class="n">stubFor</span><span class="o">(</span><span class="n">get</span><span class="o">(</span><span class="n">urlPathEqualTo</span><span class="o">(</span><span class="s">"/and"</span><span class="o">))</span>
+    <span class="o">.</span><span class="na">withHeader</span><span class="o">(</span><span class="s">"X-Some-Value"</span><span class="o">,</span> <span class="n">matching</span><span class="o">(</span><span class="s">"[a-z]+"</span><span class="o">).</span><span class="na">and</span><span class="o">(</span><span class="n">containing</span><span class="o">(</span><span class="s">"magicvalue"</span><span class="o">)))</span>
+    <span class="o">.</span><span class="na">willReturn</span><span class="o">(</span><span class="n">ok</span><span class="o">()));</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"urlPath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/and"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"X-Some-Value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"and"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"matches"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[a-z]+"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"contains"</span><span class="p">:</span><span class="w"> </span><span class="s2">"magicvalue"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Similarly you can also construct an OR expression.</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Both statements are equivalent</span>
+
+<span class="n">stubFor</span><span class="o">(</span><span class="n">get</span><span class="o">(</span><span class="n">urlPathEqualTo</span><span class="o">(</span><span class="s">"/or"</span><span class="o">))</span>
+  <span class="o">.</span><span class="na">withQueryParam</span><span class="o">(</span><span class="s">"search"</span><span class="o">,</span> <span class="n">or</span><span class="o">(</span>
+        <span class="n">matching</span><span class="o">(</span><span class="s">"[a-z]+"</span><span class="o">),</span>
+        <span class="n">absent</span><span class="o">())</span>
+  <span class="o">)</span>
+  <span class="o">.</span><span class="na">willReturn</span><span class="o">(</span><span class="n">ok</span><span class="o">()));</span>
+
+<span class="n">stubFor</span><span class="o">(</span><span class="n">get</span><span class="o">(</span><span class="n">urlPathEqualTo</span><span class="o">(</span><span class="s">"/or"</span><span class="o">))</span>
+    <span class="o">.</span><span class="na">withQueryParam</span><span class="o">(</span><span class="s">"search"</span><span class="o">,</span> <span class="n">matching</span><span class="o">(</span><span class="s">"[a-z]+"</span><span class="o">).</span><span class="na">or</span><span class="o">(</span><span class="n">absent</span><span class="o">()))</span>
+    <span class="o">.</span><span class="na">willReturn</span><span class="o">(</span><span class="n">ok</span><span class="o">()));</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"urlPath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/or"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"queryParameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"search"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"or"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"matches"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[a-z]+"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"absent"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h3 id="combining-date-matchers-as-jsonpathxpath-sub-matchers">
+  
+  
+    Combining date matchers as JSONPath/XPath sub-matchers <a href="#combining-date-matchers-as-jsonpathxpath-sub-matchers" class="anchor">#</a>
+  
+  
+</h3>
+    
+
+<p>As an example of how various matchers can be combined, suppose we want to match if a field named <code class="language-plaintext highlighter-rouge">date</code> in a JSON request body
+is a date/time between two points.</p>
+
+<p>We can do this by extracting the field using <code class="language-plaintext highlighter-rouge">matchesJsonPath</code> then matching the result
+of this against the <code class="language-plaintext highlighter-rouge">before</code> and <code class="language-plaintext highlighter-rouge">after</code> matchers AND’d together.</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stubFor</span><span class="o">(</span><span class="n">post</span><span class="o">(</span><span class="s">"/date-range"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">withRequestBody</span><span class="o">(</span><span class="n">matchingJsonPath</span><span class="o">(</span><span class="s">"$.date"</span><span class="o">,</span>
+        <span class="n">before</span><span class="o">(</span><span class="s">"2022-01-01T00:00:00"</span><span class="o">).</span><span class="na">and</span><span class="o">(</span>
+        <span class="n">after</span><span class="o">(</span><span class="s">"2020-01-01T00:00:00"</span><span class="o">))))</span>
+    <span class="o">.</span><span class="na">willReturn</span><span class="o">(</span><span class="n">ok</span><span class="o">()));</span>
+</code></pre></div></div>
+
+<p>JSON:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/date-range"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"bodyPatterns"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"matchesJsonPath"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"expression"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$.date"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"and"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"before"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-01T00:00:00"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"after"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-01T00:00:00"</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">]</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This would match the following JSON request body:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-01-01T00:00:00"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h3 id="matching-headerquery-parameter-containing-multiple-values">
+  
+  
+    Matching Header/Query parameter containing multiple values <a href="#matching-headerquery-parameter-containing-multiple-values" class="anchor">#</a>
+  
+  
+</h3>
+    
+
+<p>You can match multiple values of a query parameter or header using the <code class="language-plaintext highlighter-rouge">Includes</code> matcher, which matches multiple values or patterns specified and may contain other values as well.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// The values of id must include 1, 2, and 3.</span>
+<span class="n">stubFor</span><span class="o">(</span><span class="n">get</span><span class="o">(</span><span class="n">urlPathEqualTo</span><span class="o">(</span><span class="s">"/things"</span><span class="o">))</span>
+      <span class="o">.</span><span class="na">withQueryParam</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="n">including</span><span class="o">(</span><span class="s">"1"</span><span class="o">,</span> <span class="s">"2"</span><span class="o">,</span> <span class="s">"3"</span><span class="o">))</span> 
+      <span class="o">.</span><span class="na">willReturn</span><span class="o">(</span><span class="n">ok</span><span class="o">()));</span>
+</code></pre></div></div>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"mapping"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"request"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"urlPath"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"/things"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"method"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"queryParameters"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"includes"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"equalTo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"equalTo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"equalTo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"response"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//values of id must conform to the match expressions</span>
+<span class="n">stubFor</span><span class="o">(</span><span class="n">get</span><span class="o">(</span><span class="n">urlPathEqualTo</span><span class="o">(</span><span class="s">"/things"</span><span class="o">))</span>
+    <span class="o">.</span><span class="na">withQueryParam</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="n">including</span><span class="o">(</span>
+    <span class="n">equalTo</span><span class="o">(</span><span class="s">"1"</span><span class="o">),</span>
+    <span class="n">containing</span><span class="o">(</span><span class="s">"2"</span><span class="o">),</span>
+    <span class="n">notContaining</span><span class="o">(</span><span class="s">"3"</span><span class="o">)</span>
+    <span class="o">)).</span><span class="na">willReturn</span><span class="o">(</span><span class="n">ok</span><span class="o">()));</span>
+</code></pre></div></div>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"mapping"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"request"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"urlPath"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"/things"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"method"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"queryParameters"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"includes"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"equalTo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"contains"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"doesNotContain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"response"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        <a class="page__meta-title" href="https://github.com/wiremock/wiremock.org/edit/main/_docs/request-matching.md" target="_blank">
+            <img width="16px" src= "/images/logos/doc-sections/edit.svg" />
+            Improve this page
+        </a>
+        <a class="page__meta-title" href="https://github.com/wiremock/wiremock.org/issues/new?labels=bug&template=3-bug.yml&page=/docs/request-matching/&title=Issue on Request Matching" target="_blank">
+            <img width="16px" src= "/images/logos/doc-sections/bug.svg" />
+            Report an issue
+        </a>
+        <a class="page__meta-title" href="http://slack.wiremock.org/" target="_blank">
+            <img width="16px" src= "/images/logos/doc-sections/slack.svg" />
+            Ask on Slack
+        </a>
+        
+        
+
+
+
+      </footer>
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        
+<div class="page__footer-copyright">
+  <img src="/2.x/images/shortLogo.png" class="short-logo"/>
+
+  <span class="footer-copyright-description">&copy; 2025</span>
+
+  <ul class="footer-social-links">
+      <li>
+    <a href="http://github.com/wiremock" target="_blank">
+      <img src="/2.x/images/githubIcon.svg" />
+    </a>
+  </li>
+
+  </ul>
+</div>
+
+<script src="/2.x/assets/js/mobile-navbar.js"></script>
+<script src="/2.x/assets/js/codeTab.js"></script>
+<script src="/2.x/assets/js/sidebar-docs.js"></script>
+<script src="/2.x/assets/js/tracking-events.js"></script>
+<script src="/2.x/assets/js/faq.js"></script>
+
+      </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw=" crossorigin="anonymous"></script>
+    <!-- <script src="/2.x/assets/js/main.min.js"></script> -->
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  <script>
+  // Position footer at actual bottom of page content
+  function positionFooter() {
+    const footer = document.querySelector('.simple-footer');
+    if (!footer) return;
+    
+    const body = document.body;
+    const html = document.documentElement;
+    
+    // Get the actual height of all content
+    const contentHeight = Math.max(
+      body.scrollHeight,
+      body.offsetHeight,
+      html.clientHeight,
+      html.scrollHeight,
+      html.offsetHeight
+    );
+    
+    // Position footer at the bottom of all content
+    footer.style.top = (contentHeight - footer.offsetHeight) + 'px';
+  }
+  
+  // Position footer when page loads and on resize
+  document.addEventListener('DOMContentLoaded', positionFooter);
+  window.addEventListener('resize', positionFooter);
+  window.addEventListener('load', positionFooter);
+  </script>
+
+  <!-- Simple Footer HTML -->
+  <div class="simple-footer">
+    © 2025 WireMock Inc. | <a href="https://wiremock.org">WireMock</a> | <a href="https://github.com/wiremock/wiremock">GitHub</a>
+  </div>
+  
+  <script>
+  // Position footer at actual bottom of page content
+  function positionFooter() {
+    const footer = document.querySelector('.simple-footer');
+    if (!footer) return;
+    
+    const body = document.body;
+    const html = document.documentElement;
+    
+    // Get the actual height of all content
+    const contentHeight = Math.max(
+      body.scrollHeight,
+      body.offsetHeight,
+      html.clientHeight,
+      html.scrollHeight,
+      html.offsetHeight
+    );
+    
+    // Position footer at the bottom of all content
+    footer.style.top = (contentHeight - footer.offsetHeight) + 'px';
+  }
+  
+  // Position footer when page loads and on resize
+  document.addEventListener('DOMContentLoaded', positionFooter);
+  window.addEventListener('resize', positionFooter);
+  window.addEventListener('load', positionFooter);
+  </script>
+</body>
+</html>
+

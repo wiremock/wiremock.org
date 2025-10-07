@@ -1,0 +1,1893 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+<meta charset="utf-8">
+
+
+<!-- begin SEO -->
+
+
+
+<!--  -->
+
+
+
+
+
+
+
+<title>Record and Playback an API to Create a Mock | WireMock</title>
+
+
+
+
+
+
+
+<meta name="description" content="WireMock can create stub mappings from requests it has received. Combined with its proxying feature this allows you to “record” stub mappings from interaction with existing APIs.">
+
+<meta property="og:locale" content="en-US">
+<meta property="og:site_name" content="WireMock">
+<meta property="og:title" content="Record and Playback">
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="WireMock" />
+<meta name="twitter:description" content="WireMock can create stub mappings from requests it has received. Combined with its proxying feature this allows you to “record” stub mappings from interaction with existing APIs.">
+
+
+  <link rel="canonical" href="/2.x/docs/record-playback/">
+  <meta property="og:url" content="/2.x/docs/record-playback/">
+
+
+
+  <meta property="og:description" content="WireMock can create stub mappings from requests it has received. Combined with its proxying feature this allows you to “record” stub mappings from interaction with existing APIs.">
+
+
+
+  <meta name="twitter:site" content="@wiremockorg">
+  <meta name="twitter:title" content="Record and Playback">
+  <meta name="twitter:description" content="WireMock can create stub mappings from requests it has received. Combined with its proxying feature this allows you to “record” stub mappings from interaction with existing APIs.">
+  <meta name="twitter:url" content="/2.x/docs/record-playback/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="/2.x/images/opengraphs/default.png">
+    
+  
+
+  
+
+
+
+
+
+  <meta name="image" property="og:image" content="/2.x/images/opengraphs/default.png">
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2025-09-19T09:56:34-04:00">
+  
+    <link rel="next" href="/2.x/docs/request-matching/" title="Request Matching">
+  
+  
+    <link rel="prev" href="/2.x/docs/record-playback-legacy/" title="Record and Playback (Legacy)">
+  
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "https://wiremock.org",
+      "logo": "/2.x/images/opengraphs/default.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Organization",
+      "name" : "WireMock",
+      "url" : "https://wiremock.org",
+      "sameAs" : ["https://twitter.com/wiremockorg","https://fosstodon.org/@wiremock","https://www.youtube.com/@WireMockTV"]
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+
+
+
+<link href="https://wiremock.org/feed.xml" type="application/atom+xml" rel="alternate" title="WireMock Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<link href="https://fonts.googleapis.com/css?family=Lato|Source+Code+Pro|Cairo" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700;800&family=Roboto:wght@400;500;700&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/2.x/assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+
+<link rel="shortcut icon" type="image/x-icon" href="/2.x/images/favicon.svg">
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- MkDocs Material CSS -->
+  <link rel="stylesheet" href="/assets/stylesheets/main.e53b48f4.min.css">
+  <link rel="stylesheet" href="/assets/stylesheets/palette.06af60db.min.css">
+  <link rel="stylesheet" href="/assets/stylesheets/extra.css">
+  
+  <!-- Custom 2x styling -->
+  <style>
+    /* 2x Badge styling */
+    .version-badge {
+      background: #1976d2;
+      color: white;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.7em;
+      margin-left: 8px;
+      font-weight: 500;
+    }
+    
+    /* Header layout fixes */
+    .md-header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 0 1rem;
+      height: 64px;
+    }
+    
+    .md-header__title {
+      flex: 1;
+      margin-right: 16px;
+    }
+    
+    .header__links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-left: auto;
+      height: 100%;
+    }
+    
+    .header__links .dropdown {
+      position: relative;
+      display: inline-block;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+    
+    .header__links .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: white;
+      min-width: 200px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1000;
+      border-radius: 4px;
+      padding: 8px 0;
+      top: 100%;
+      left: 0;
+    }
+    
+    .header__links .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    
+    .header__links .dropdown-content a {
+      color: #333;
+      padding: 8px 16px;
+      text-decoration: none;
+      display: block;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .header__links .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+    
+    .header__links .dropdown-content a:last-child {
+      border-bottom: none;
+    }
+    
+    .header__link {
+      color: #333;
+      text-decoration: none;
+      padding: 8px 16px;
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+      height: 100%;
+    }
+    
+    .header__link:hover {
+      color: #1976d2;
+    }
+    
+    /* Button alignment fix - ensure proper vertical alignment */
+    .masthead__cta {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+    
+    .btn.t-6 {
+      background: #1976d2;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 14px;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: auto;
+      line-height: 1.2;
+    }
+    
+    .btn.t-6:hover {
+      background: #1565c0;
+      color: white;
+    }
+    
+    /* Fix the floating "free forever" text - move it inside header */
+    .wiremock-cloud-logo-note {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 12px;
+      color: #666;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 4px 8px;
+      border-radius: 4px;
+      z-index: 100;
+      white-space: nowrap;
+      margin-top: 2px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    /* Make sure header has relative positioning for absolute child */
+    .md-header {
+      position: relative;
+    }
+    
+    /* Alternative: hide the floating text if it's problematic */
+    @media (max-width: 1024px) {
+      .wiremock-cloud-logo-note {
+        display: none;
+      }
+    }
+    
+    /* Hide mobile hamburger for now */
+    .md-header__button.md-icon[for="__drawer"] {
+      display: none;
+    }
+    
+    /* REMOVE ORIGINAL FOOTER AND PAGE ACTION BUTTONS */
+    .page__footer {
+      display: none !important;
+    }
+    
+    .page__meta-title {
+      display: none !important;
+    }
+    
+    /* SIMPLE NEW FOOTER - JavaScript positioned at content bottom */
+    .simple-footer {
+      position: absolute;
+      left: 0;
+      right: 0;
+      width: 100%;
+      background: #333;
+      color: white;
+      padding: 12px 0;
+      text-align: center;
+      font-size: 14px;
+      z-index: 1000;
+      margin-top: 2rem;
+    }
+    
+    .simple-footer a {
+      color: #87ceeb;
+      text-decoration: none;
+    }
+    
+    .simple-footer a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .header__links {
+        gap: 8px;
+      }
+      
+      .header__link {
+        padding: 6px 12px;
+        font-size: 14px;
+      }
+      
+      .btn.t-6 {
+        padding: 8px 16px;
+        font-size: 13px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .header__links {
+        display: none;
+      }
+      
+      .md-header__button.md-icon[for="__drawer"] {
+        display: block;
+      }
+      
+      .md-header__title {
+        flex: 1;
+        margin: 0 1rem;
+      }
+    }
+  </style>
+  
+  
+  
+  
+  
+  <script>
+  // Smart footer: only show when scrolled near bottom
+  window.addEventListener('scroll', function() {
+    const footer = document.querySelector('.page__footer');
+    if (!footer) return;
+    
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    
+    // Show footer when within 200px of bottom
+    if (scrollTop + windowHeight >= documentHeight - 200) {
+      footer.style.display = 'block';
+    } else {
+      footer.style.display = 'none';
+    }
+  });
+  
+  // Also check on load
+  document.addEventListener('DOMContentLoaded', function() {
+    window.dispatchEvent(new Event('scroll'));
+  });
+  </script>
+</head>
+
+  <body>
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    
+<style>
+  .navlink {
+    position: relative !important;
+    color: #7d93bd;
+    padding-bottom: 0;
+    cursor: pointer;
+    font-family: "Ubuntu";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+  }
+
+  .navlink a {
+    padding: 0 !important;
+    margin: 0 0 5px 0;
+    width: fit-content !important;
+    height: 32px;
+  }
+
+  .navlink-image {
+    width: 20px;
+    filter: invert(47%);
+    vertical-align: middle;
+  }
+
+  .divSubNav {
+    position: relative;
+    cursor: default;
+    padding: 10px 15px;
+    display: none;
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 32px;
+    width: fit-content;
+    background: #FFFFFF;
+    box-shadow: 0px -5px 20px rgba(210, 223, 249, 0.5);
+  }
+
+  .divSubNav::before {
+    position: absolute;
+    content: "";
+    left: 15px;
+    width: 0; 
+    height: 0; 
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 7px solid #fff;
+    top: -7px;
+  }
+
+  .divSubNav a {
+    padding: 0 !important;
+    margin: 0 0 5px 0;
+    width: fit-content !important;
+  }
+
+  .divSubNav a:last-child {
+    margin-bottom: 0;
+  }
+
+  .divSubNav a::before {
+    background: none !important;
+  }
+
+  .navlink:hover > .divSubNav {
+    display: block;
+  }
+
+  .navHover::before {
+    background: unset !important;
+  }
+
+  .navlink::before {
+    background: unset !important;
+  }
+
+  .navlink a::before {
+    background: unset !important;
+  }
+
+  .wiremock-cloud-logo-navbar-item {
+    padding-left: 20px;
+    padding-top: 0;
+  }
+
+  .wiremock-cloud-logo-navbar-item div span {
+    text-align: right;
+  }
+  
+  .wiremock-cloud-logo-navbar {
+    margin: 0;
+    background: unset !important;
+  }
+
+  .wiremock-cloud-logo-navbar div {
+    border-color: #0FB2EF;
+    background-color: #E4F0F7;
+    border-style: solid;
+    border-radius: 8px;
+    border-width: 4px;
+    align-items: center;
+    justify-content: center;
+    margin: 0;    
+    height: 45px;
+    position: relative;
+  }
+
+  .wiremock-cloud-logo-navbar div img {
+    vertical-align: middle;
+    width: 100%;
+    background-color: #E4F0F7;
+    height: 36px;
+    padding: 4px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .wiremock-cloud-logo-navbar div div {
+    font-size: x-small;
+    font-weight: bold;
+    position: absolute;
+    bottom: 2px;
+    left: 4px;
+    border-style: none;
+    height: fit-content;
+  }
+
+  .wiremock-cloud-logo-note {
+    margin-left: auto;
+    margin-right: 4em;
+    float: right;
+    font-size: small;
+  }
+
+  @media (max-width: 1023px) {
+    .wiremock-cloud-logo-note {
+      display: none;
+    }
+  }
+</style>
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <!-- Link to home -->
+    <a
+      href="/"
+      title="WireMock"
+      class="md-header__button md-logo"
+      aria-label="WireMock"
+      data-md-component="logo"
+    >
+      <img src="/assets/images/wiremock-oss-logo.png" alt="logo">
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Header title with 2x badge -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis"> WireMock </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            2.x Documentation
+            <span class="version-badge">2x</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="header__links">
+      <div class="dropdown">
+        <a href="/docs/" class="header__link"> Docs </a>
+        <div class="dropdown-content">
+          <a href="/docs/"> WireMock </a>
+
+          <a href="/docs/mock-api-templates/">
+            Mock API Templates
+          </a>
+
+          <a
+            href="https://docs.wiremock.io/getting-started/?utm_source=wiremock.org&amp;utm_medium=masthead_doc-links&amp;utm_campaign=2022_baseline"
+            target="_blank"
+          >
+            WireMock Cloud
+          </a>
+
+          <a href="/2.x/docs/"> WireMock 2.x (Archive) </a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <a href="/docs/support/" class="header__link">
+          Need Help?
+        </a>
+        <div class="dropdown-content">
+          <a href="https://slack.wiremock.org/" target="_blank"> Q&amp;A on Slack </a>
+
+          <a href="https://stackoverflow.com/questions/tagged/wiremock" target="_blank">
+            StackOverflow
+          </a>
+
+          <a href="/docs/commercial/">
+            Commercial Options
+          </a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <a href="https://wiremock.org/participate" class="header__link" target="_blank">
+          Participate
+        </a>
+        <div class="dropdown-content">
+          <a href="https://slack.wiremock.org/" target="_blank"> Community Slack </a>
+
+          <a
+            href="https://github.com/wiremock/community/blob/main/contributing/README.md"
+            target="_blank"
+          >
+            Contributor Guide
+          </a>
+
+          <a href="https://github.com/wiremock/" target="_blank"> Our GitHub </a>
+
+          <a href="https://github.com/wiremock/wiremock.org" target="_blank"> This Website </a>
+
+          <a
+            href="https://github.com/wiremock/.github/blob/main/CODE_OF_CONDUCT.md"
+            target="_blank"
+          >
+            Code of Conduct
+          </a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <a href="/external-resources/" class="header__link">
+          Resources
+        </a>
+        <div class="dropdown-content">
+          <a href="https://library.wiremock.org/" target="_blank">
+            Mock API Templates Library
+          </a>
+
+          <a href="https://github.com/wiremock/ecosystem" target="_blank">
+            WireMock Ecosystem
+          </a>
+
+          <a href="https://twitter.com/wiremockorg" target="_blank"> Twitter </a>
+
+          <a href="https://fosstodon.org/@wiremock" target="_blank"> Mastodon </a>
+
+          <a href="https://community.wiremock.io/" target="_blank"> Slack Archive </a>
+
+          <a href="/external-resources/">
+            External Resources
+          </a>
+        </div>
+      </div>
+
+      <div class="header__link">
+        <div class="masthead__cta">
+          <a
+            href="https://wiremock.io/product?utm_source=wiremock.org&amp;utm_medium=masthead&amp;utm_campaign=homepage_2022_baseline"
+            title="WireMock Cloud"
+            class="btn t-6"
+            target="_blank"
+          >
+            Try WireMock Cloud
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+</div>
+
+<div class="wiremock-cloud-logo-note">* Free forever. No credit card needed</div>
+
+
+    <div id="main" class="custom-doc-wrapper" role="main">
+
+  
+    
+<style>
+  .slack-help-box {
+    background-color: #f2f2f2;
+    border: #c8c8c8 1px solid;
+    padding: 8px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    display: inline;
+    margin-bottom: 1cm;
+  }
+
+  .slack-help-box a {
+      font-size: normal;
+      width: max-content;
+      height: max-content;
+      color: black;
+      text-decoration: none !important; 
+  }
+
+  .slack-help-box a div {
+    display: inline;
+    padding-right: 10px;
+    color: inherit;
+  }
+
+  .slack-help-box a div img {
+    vertical-align: sub;
+    height: 22px;
+    width: 22px;
+  };
+</style>
+
+<div class="sidebar">
+  <div class="slack-help-box">
+    <a href="https://slack.wiremock.org/">
+      <div>
+        <img src="/2.x/images/slack-logo-medium.png" alt="Slack logo"/>
+      </div>
+      <div>
+        Need help?
+      </div>
+    </a>
+  </div>
+  <nav class="nav__list">
+    <ul class="doc-categories">
+      
+      
+        <li class="doc-category">
+          <span class="doc-category__li">
+            
+              <a href="/2.x/docs/overview">Getting started</a>
+            
+          </span>
+          <ul class="
+          doc-category__sub-nav
+          
+          ">
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/overview/">Overview</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/quickstart/java-junit/">Quick Start: API Mocking with Java and JUnit 4</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/download-and-installation/">Download and Installation</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/getting-started/">WireMock Tutorials</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+      
+        <li class="doc-category">
+          <span class="doc-category__li">
+            
+              <a href="/2.x/docs/standalone">WireMock Standalone</a>
+            
+          </span>
+          <ul class="
+          doc-category__sub-nav
+          
+          ">
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/standalone/docker/">Running in Docker</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/standalone/java-jar/">Running as a Standalone Process</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/standalone/administration/">Administration API</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+      
+        <li class="doc-category">
+          <span class="doc-category__li">
+            
+              <a href="/2.x/docs/solutions/jvm/">Java Usage</a>
+            
+          </span>
+          <ul class="
+          doc-category__sub-nav
+          
+          ">
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/junit-jupiter/">JUnit 5+ Jupiter</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/junit-extensions/">JUnit 4 and Vintage</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href=""></a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/java-usage/">Plain Java</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/configuration/">Java configuration</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/running-without-http-server/">Running without the HTTP Server</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href=""></a>
+              </li>
+            
+          </ul>
+        </li>
+      
+      
+        <li class="doc-category">
+          <span class="doc-category__li">
+            
+              <a href="/2.x/docs/stubbing">Stubbing & Verifying</a>
+            
+          </span>
+          <ul class="
+          doc-category__sub-nav
+          
+          ">
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/stubbing/">Stubbing</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/request-matching/">Request Matching</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/response-templating/">Response Templating</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/simulating-faults/">Simulating Faults</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/stateful-behaviour/">Stateful Behaviour</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/proxying/">Proxying</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/verifying/">Verifying</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+      
+        <li class="doc-category">
+          <span class="doc-category__li">
+            
+              <a href="/2.x/docs/mock-api-templates">Templating</a>
+            
+          </span>
+          <ul class="
+          doc-category__sub-nav
+          
+          ">
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/mock-api-templates/">WireMock API Templates Library</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/mock-api-templates/usage/">Using Mock API Templates</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+      
+        <li class="doc-category">
+          <span class="doc-category__li">
+            
+              <a href="/2.x/docs/record-playback/">Record & Playback</a>
+            
+          </span>
+          <ul class="
+          doc-category__sub-nav
+          doc-category__sub-nav--active
+          ">
+            
+              
+              
+              
+              
+              <li class="doc-category__li doc-category__li--selected">
+                <a href="/2.x/docs/record-playback/">Record and Playback</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+      
+        <li class="doc-category">
+          <span class="doc-category__li">
+            
+              Advanced use-cases
+            
+          </span>
+          <ul class="
+          doc-category__sub-nav
+          
+          ">
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/https/">Serving HTTPs</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/multi-domain-mocking/">Multi-domain Mocking</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/advanced/deploy-to-servlet-container/">Deploying into a servlet container</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/advanced/java7/">WireMock on Java 1.7</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+      
+        <li class="doc-category">
+          <span class="doc-category__li">
+            
+              <a href="/2.x/docs/extending-wiremock/">Extensibility</a>
+            
+          </span>
+          <ul class="
+          doc-category__sub-nav
+          
+          ">
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/extending-wiremock/">Extending WireMock</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/stub-metadata/">Stub Metadata</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/webhooks-and-callbacks/">Webhooks and Callbacks</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+      
+        <li class="doc-category">
+          <span class="doc-category__li">
+            
+              Reference
+            
+          </span>
+          <ul class="
+          doc-category__sub-nav
+          
+          ">
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/standalone/admin-api-reference/">Admin API </a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/mock-api-templates/">WireMock API Templates Library</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+    </ul>
+
+  </nav>
+</div>
+
+  
+
+  <style>
+    .anchor {
+     color: #888;
+      content: url('/images/logos/doc-sections/link.svg');
+      width: 24px;
+      vertical-align: middle;
+      visibility: hidden;
+    }
+
+    h1:hover .anchor,
+    h2:hover .anchor,
+    h3:hover .anchor,
+    h4:hover .anchor,
+    h5:hover .anchor,
+    h6:hover .anchor {
+      color: #3D598B;
+      visibility: visible;
+    }
+
+  </style>
+  
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <meta itemprop="description" content="WireMock can create stub mappings from requests it has received. Combined with its proxying feature this allows you to “record”stub mappings from interaction with existing APIs.">
+    <meta itemprop="datePublished" content="September 19, 2025">
+    
+
+    <div class="breadcrumbs-bar">
+      <nav class="breadcrumbs bootstrap hidden-sm-down">
+   <ol class="breadcrumb list-unstyled" vocab="http://schema.org/" typeof="BreadcrumbList">
+
+       
+         
+            
+            
+            
+            <li class="breadcrumb-item breadcrumb-item-icon" property="itemListElement" typeof="ListItem">
+               <a property="item" typeof="WebPage" href="/">
+                  
+                  <img class="icon" src="/2.x/images/logos/doc-sections/home.svg"/>
+                  
+                  <meta property="position" content="1" />
+               </a>
+            </li>
+          
+          
+      
+      <li class="breadcrumb-item" property="itemListElement" typeof="ListItem">
+         <a property="item" typeof="WebPage" href="/docs/">
+            <span property="name">Documentation</span>
+            <meta property="position" content="2" />
+         </a>
+      </li>
+       
+          
+      
+      <li class="breadcrumb-item" property="itemListElement" typeof="ListItem">
+         <span property="name">Record and Playback</span>
+         <meta property="position" content="3" />
+      </li>
+      
+
+   </ol>
+</nav>
+
+<style>
+   nav.breadcrumbs.bootstrap {
+      /* from Twitter Bootstrap 4 */
+      /* If you already use Twitter, you do not need these css lines above, cause they already in Twitter Bootstrap */
+      /* Additions: image integration */
+   }
+
+   nav.breadcrumbs.bootstrap ol {
+      margin-left: 0
+   }
+
+   nav.breadcrumbs.bootstrap .breadcrumb {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      list-style: none;
+      border-radius: 0.25rem;
+   }
+
+   nav.breadcrumbs.bootstrap .breadcrumb::after {
+      content: "";
+      display: table;
+      clear: both;
+   }
+
+   nav.breadcrumbs.bootstrap .breadcrumb-item {
+      float: left;
+   }
+
+   nav.breadcrumbs.bootstrap .breadcrumb-item+.breadcrumb-item::before {
+      display: inline-block;
+      padding-right: 0.5rem;
+      padding-left: 0.5rem;
+      color: #818a91;
+      content: "/";
+   }
+
+   nav.breadcrumbs.bootstrap .breadcrumb-item+.breadcrumb-item:hover::before {
+      text-decoration: underline;
+   }
+
+   nav.breadcrumbs.bootstrap .breadcrumb-item+.breadcrumb-item:hover::before {
+      text-decoration: none;
+   }
+
+   nav.breadcrumbs.bootstrap .breadcrumb-item-active {
+      color: #818a91;
+   }
+
+   nav.breadcrumbs.bootstrap .breadcrumb .icon {
+      display: inline-block;
+   }
+
+   nav.breadcrumbs.bootstrap .breadcrumb .icon svg {
+      height: 0.8rem;
+      width: 0.8rem;
+   }
+</style>
+    </div>
+
+
+
+    <div class="page__inner-wrap">
+      <header>
+        <h1 class="page__title" itemprop="headline">Record and Playback
+</h1>
+      </header>
+
+      
+        
+        <div style="background-color: #f2f2f2;border: #c8c8c8 1px solid;padding: 8px;margin-bottom:32px;">
+          <b>WARNING: </b>
+          This document is for an old WireMock 2.x baseline.
+          See the documentation for the current WireMock 3.x baseline
+          <a href="/2.x/docs/record-playback/">here</a>
+        </div>
+          
+      
+
+      <section class="page__content" itemprop="text">
+        <!--TODO: use beforeHeading="true"  before mastering the negative indenting magic-->
+        <p>WireMock can create stub mappings from requests it has received. Combined with its proxying feature this allows you to “record”
+stub mappings from interaction with existing APIs.</p>
+
+<p>Two approaches are available: Recording or snapshotting. The same results can be achieved with either, so which you choose should depend on whatever
+fits best with your workflow. If you’re new to WireMock, recording is probably the simplest option for getting started.</p>
+
+<p>Both approaches are described in more detail below.</p>
+<h2 id="quick-start">
+  
+  
+    Quick start <a href="#quick-start" class="anchor">#</a>
+  
+  
+</h2>
+    
+
+<p>The fastest way to get started with WireMock’s recorder is to use the simple web UI provided.</p>
+
+<p>First, start an instance of <a href="/2.x/running-standalone">WireMock running standalone</a>.
+Once that’s running visit the recorder UI page at <a href="http://localhost:8080/__admin/recorder">http://localhost:8080/__admin/recorder</a>
+(assuming you started WireMock on the default port of 8080).</p>
+
+<p><img src="/2.x/images/recorder-screenshot.png" alt="Recorder UI" /></p>
+
+<p>Enter the URL you wish to record from in the target URL field and click the Record button. You can use <code class="language-plaintext highlighter-rouge">http://examples.wiremockapi.cloud/</code> to try it out.</p>
+
+<p>Now you need to make a request through WireMock to the target API so that it can be recorded. If you’re using the example URL, you can generate a request using curl:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl http://localhost:8080/recordables/123
+</code></pre></div></div>
+
+<p>Now click stop. You should see a message indicating that one stub was captured.</p>
+
+<p>You should also see that a file has been created called something like <code class="language-plaintext highlighter-rouge">recordables_123-40a93c4a-d378-4e07-8321-6158d5dbcb29.json</code>
+under the <code class="language-plaintext highlighter-rouge">mappings</code> directory created when WireMock started up, and that a new mapping has appeared at <a href="http://localhost:8080/__admin/mappings">http://localhost:8080/__admin/mappings</a>.</p>
+
+<p>Requesting the same URL again (possibly disabling your wifi first if you want firm proof) will now serve the recorded result:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ curl http://localhost:8080/recordables/123
+
+{
+  "message": "Congratulations on your first recording!"
+}
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>note</strong></p>
+
+  <p>Stub mappings will only be created at the point that the recording is stopped.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>note</strong></p>
+
+  <p>“Playback” doesn’t require any explicit action. Recorded stubs will start being served immediately after recording is stopped.</p>
+</blockquote>
+<h2 id="recording">
+  
+  
+    Recording <a href="#recording" class="anchor">#</a>
+  
+  
+</h2>
+    
+
+<p>Recording can also be started and stopped via WireMock’s JSON API and Java DSL.</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Static DSL</span>
+<span class="nc">WireMock</span><span class="o">.</span><span class="na">startRecording</span><span class="o">(</span><span class="s">"http://examples.wiremockapi.cloud/"</span><span class="o">);</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">StubMapping</span><span class="o">&gt;</span> <span class="n">recordedMappings</span> <span class="o">=</span> <span class="nc">WireMock</span><span class="o">.</span><span class="na">stopRecording</span><span class="o">();</span>
+
+<span class="c1">// Client instance</span>
+<span class="nc">WireMock</span> <span class="n">wireMockClient</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">WireMock</span><span class="o">(</span><span class="mi">8080</span><span class="o">);</span>
+<span class="n">wireMockClient</span><span class="o">.</span><span class="na">startStubRecording</span><span class="o">(</span><span class="s">"http://examples.wiremockapi.cloud/"</span><span class="o">);</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">StubMapping</span><span class="o">&gt;</span> <span class="n">recordedMappings</span> <span class="o">=</span> <span class="n">wireMockClient</span><span class="o">.</span><span class="na">stopStubRecording</span><span class="o">();</span>
+
+<span class="c1">// Directly</span>
+<span class="nc">WireMockServer</span> <span class="n">wireMockServer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">WireMockServer</span><span class="o">();</span>
+<span class="n">wireMockServer</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+<span class="n">wireMockServer</span><span class="o">.</span><span class="na">startRecording</span><span class="o">(</span><span class="s">"http://examples.wiremockapi.cloud/"</span><span class="o">);</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">StubMapping</span><span class="o">&gt;</span> <span class="n">recordedMappings</span> <span class="o">=</span> <span class="n">wireMockServer</span><span class="o">.</span><span class="na">stopRecording</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p>API:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">POST</span><span class="w"> </span><span class="err">/__admin/recordings/start</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"targetBaseUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://examples.wiremockapi.cloud/"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>POST /__admin/recordings/stop
+</code></pre></div></div>
+<h2 id="snapshotting">
+  
+  
+    Snapshotting <a href="#snapshotting" class="anchor">#</a>
+  
+  
+</h2>
+    
+
+<p>Snapshotting is effectively “recording after the fact”. Rather than starting recording at a specific point, snapshotting allows you to convert requests already received by WireMock
+into stub mappings.</p>
+
+<p>An implication of this order of events is that if you want to record an external API, you’ll need to have configured proxying before you start generating traffic.
+See <a href="/2.x/proxying">Proxying</a> for details on proxy configuration, but in summary this can be achieved by creating a proxy mapping via the API or Java DSL:</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stubFor</span><span class="o">(</span><span class="n">proxyAllTo</span><span class="o">(</span><span class="s">"http://examples.wiremockapi.cloud/"</span><span class="o">).</span><span class="na">atPriority</span><span class="o">(</span><span class="mi">1</span><span class="o">));</span>
+</code></pre></div></div>
+
+<p>API:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">POST</span><span class="w"> </span><span class="err">/__admin/mappings</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ANY"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"proxyBaseUrl"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"http://examples.wiremockapi.cloud/"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<blockquote>
+  <p><strong>note</strong></p>
+
+  <p>You can still take snapshots without a proxy stub configured.
+You might want to do this e.g. if you want to capture requests made by your application under test that you can then modify by hand to provide the appropriate responses.</p>
+</blockquote>
+
+<p>Once you have made some requests through WireMock (which you can view under http://localhost:8080/__admin/requests) you can trigger a snapshot to generate stub mappings:</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Static DSL</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">StubMapping</span><span class="o">&gt;</span> <span class="n">recordedMappings</span> <span class="o">=</span> <span class="nc">WireMock</span><span class="o">.</span><span class="na">snapshotRecord</span><span class="o">();</span>
+
+<span class="c1">// Client instance</span>
+<span class="nc">WireMock</span> <span class="n">wireMockClient</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">WireMock</span><span class="o">(</span><span class="mi">8080</span><span class="o">);</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">StubMapping</span><span class="o">&gt;</span> <span class="n">recordedMappings</span> <span class="o">=</span> <span class="n">wireMockClient</span><span class="o">.</span><span class="na">takeSnapshotRecording</span><span class="o">();</span>
+
+<span class="c1">// Directly</span>
+<span class="nc">WireMockServer</span> <span class="n">wireMockServer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">WireMockServer</span><span class="o">();</span>
+<span class="n">wireMockServer</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">StubMapping</span><span class="o">&gt;</span> <span class="n">recordedMappings</span> <span class="o">=</span> <span class="n">wireMockServer</span><span class="o">.</span><span class="na">snapshotRecord</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p>API:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>POST /__admin/recordings/snapshot
+{}
+</code></pre></div></div>
+<h2 id="customising-your-recordings">
+  
+  
+    Customising your recordings <a href="#customising-your-recordings" class="anchor">#</a>
+  
+  
+</h2>
+    
+
+<p>The default recording behaviour can be tweaked in a number of ways by passing a “record spec” to the record or snapshot actions.</p>
+
+<p>In Java this achieved using the DSL:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">startRecording</span><span class="o">(</span>
+      <span class="n">recordSpec</span><span class="o">()</span>
+          <span class="o">.</span><span class="na">forTarget</span><span class="o">(</span><span class="s">"http://examples.wiremockapi.cloud/"</span><span class="o">)</span>
+          <span class="o">.</span><span class="na">onlyRequestsMatching</span><span class="o">(</span><span class="n">getRequestedFor</span><span class="o">(</span><span class="n">urlPathMatching</span><span class="o">(</span><span class="s">"/api/.*"</span><span class="o">)))</span>
+          <span class="o">.</span><span class="na">captureHeader</span><span class="o">(</span><span class="s">"Accept"</span><span class="o">)</span>
+          <span class="o">.</span><span class="na">captureHeader</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
+          <span class="o">.</span><span class="na">extractBinaryBodiesOver</span><span class="o">(</span><span class="mi">10240</span><span class="o">)</span>
+          <span class="o">.</span><span class="na">extractTextBodiesOver</span><span class="o">(</span><span class="mi">2048</span><span class="o">)</span>
+          <span class="o">.</span><span class="na">makeStubsPersistent</span><span class="o">(</span><span class="kc">false</span><span class="o">)</span>
+          <span class="o">.</span><span class="na">ignoreRepeatRequests</span><span class="o">()</span>
+          <span class="o">.</span><span class="na">transformers</span><span class="o">(</span><span class="s">"modify-response-header"</span><span class="o">)</span>
+          <span class="o">.</span><span class="na">transformerParameters</span><span class="o">(</span><span class="nc">Parameters</span><span class="o">.</span><span class="na">one</span><span class="o">(</span><span class="s">"headerValue"</span><span class="o">,</span> <span class="s">"123"</span><span class="o">))</span>
+          <span class="o">.</span><span class="na">matchRequestBodyWithEqualToJson</span><span class="o">(</span><span class="kc">false</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
+  <span class="o">);</span>
+</code></pre></div></div>
+
+<p>And via the API:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">POST</span><span class="w"> </span><span class="err">/__admin/recordings/start</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"targetBaseUrl"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"http://examples.wiremockapi.cloud/"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"filters"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"urlPathPattern"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/.*"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"method"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"allowNonProxied"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"captureHeaders"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"Accept"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"Content-Type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"caseInsensitive"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"requestBodyPattern"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"matcher"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"equalToJson"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ignoreArrayOrder"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ignoreExtraElements"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"extractBodyCriteria"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"textSizeThreshold"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2048"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"binarySizeThreshold"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"10240"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"persist"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"repeatsAsScenarios"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"transformers"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"modify-response-header"</span><span class="w"> </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"transformerParameters"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"headerValue"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The same specification can also be passed when snapshotting:</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">snapshotRecord</span><span class="o">(</span>
+      <span class="n">recordSpec</span><span class="o">()</span>
+          <span class="o">.</span><span class="na">onlyRequestsMatching</span><span class="o">(</span><span class="n">getRequestedFor</span><span class="o">(</span><span class="n">urlPathMatching</span><span class="o">(</span><span class="s">"/api/.*"</span><span class="o">)))</span>
+          <span class="o">.</span><span class="na">onlyRequestIds</span><span class="o">(</span><span class="n">singletonList</span><span class="o">(</span><span class="no">UUID</span><span class="o">.</span><span class="na">fromString</span><span class="o">(</span><span class="s">"40a93c4a-d378-4e07-8321-6158d5dbcb29"</span><span class="o">)))</span>
+          <span class="o">.</span><span class="na">allowNonProxied</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+          <span class="o">.</span><span class="na">captureHeader</span><span class="o">(</span><span class="s">"Accept"</span><span class="o">)</span>
+          <span class="o">.</span><span class="na">captureHeader</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
+          <span class="o">.</span><span class="na">extractBinaryBodiesOver</span><span class="o">(</span><span class="mi">10240</span><span class="o">)</span>
+          <span class="o">.</span><span class="na">extractTextBodiesOver</span><span class="o">(</span><span class="mi">2048</span><span class="o">)</span>
+          <span class="o">.</span><span class="na">makeStubsPersistent</span><span class="o">(</span><span class="kc">false</span><span class="o">)</span>
+          <span class="o">.</span><span class="na">ignoreRepeatRequests</span><span class="o">()</span>
+          <span class="o">.</span><span class="na">transformers</span><span class="o">(</span><span class="s">"modify-response-header"</span><span class="o">)</span>
+          <span class="o">.</span><span class="na">transformerParameters</span><span class="o">(</span><span class="nc">Parameters</span><span class="o">.</span><span class="na">one</span><span class="o">(</span><span class="s">"headerValue"</span><span class="o">,</span> <span class="s">"123"</span><span class="o">))</span>
+          <span class="o">.</span><span class="na">chooseBodyMatchTypeAutomatically</span><span class="o">()</span>
+  <span class="o">);</span>
+</code></pre></div></div>
+
+<p>API:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">POST</span><span class="w"> </span><span class="err">/__admin/recordings/snapshot</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"filters"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"urlPathPattern"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/.*"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"method"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ids"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"40a93c4a-d378-4e07-8321-6158d5dbcb29"</span><span class="w"> </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"captureHeaders"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"Accept"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"Content-Type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"caseInsensitive"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"requestBodyPattern"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"matcher"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"equalToJson"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ignoreArrayOrder"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ignoreExtraElements"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"extractBodyCriteria"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"textSizeThreshold"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2 kb"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"binarySizeThreshold"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1 Mb"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"outputFormat"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"FULL"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"persist"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"repeatsAsScenarios"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"transformers"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"modify-response-header"</span><span class="w"> </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"transformerParameters"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"headerValue"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The following sections will detail each parameter in turn:</p>
+<h3 id="filtering">
+  
+  
+    Filtering <a href="#filtering" class="anchor">#</a>
+  
+  
+</h3>
+    
+
+<p><code class="language-plaintext highlighter-rouge">filters</code> supports selection of requests to be recorded according to the same <a href="/2.x/request-matching">request matcher</a> format used elsewhere in WireMock.</p>
+
+<p>Additionally, when snapshotting the <code class="language-plaintext highlighter-rouge">ids</code> parameter allows specific serve events to be selected by ID.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">allowNonProxied</code> attribute, when set to <code class="language-plaintext highlighter-rouge">true</code> will cause requests that did not get proxied to a target service to be recorded/snapshotted. This is useful if
+you wish to “teach” WireMock your API by feeding it requests from your app that initially don’t match a stub, then snapshotting to generate the correct stubs.</p>
+<h3 id="capturing-request-headers">
+  
+  
+    Capturing request headers <a href="#capturing-request-headers" class="anchor">#</a>
+  
+  
+</h3>
+    
+
+<p>You may want your recorded stub mappings to match on one or more specific request headers.
+For instance if you’re intending to record from an API that supports both XML and JSON responses via content negotiation,
+then you will need to capture the value of the <code class="language-plaintext highlighter-rouge">Accept</code> header sent in each request.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">captureHeaders</code> attribute allows you to specify a map of header names to match parameter objects. Currently the only parameter
+available is <code class="language-plaintext highlighter-rouge">caseInsensitive</code>, which defaults to false if absent.</p>
+<h3 id="body-files-extraction-size-criteria">
+  
+  
+    Body files extraction size criteria <a href="#body-files-extraction-size-criteria" class="anchor">#</a>
+  
+  
+</h3>
+    
+
+<p>By default, recorded response bodies will be included directly in the stub mapping response part, via the <code class="language-plaintext highlighter-rouge">body</code> attribute for text or <code class="language-plaintext highlighter-rouge">base64Body</code> for binary content.</p>
+
+<p>However, this can be overridden by setting the <code class="language-plaintext highlighter-rouge">textSizeThreshold</code> and <code class="language-plaintext highlighter-rouge">binarySizeThreshold</code> values under <code class="language-plaintext highlighter-rouge">extractBodyCriteria</code>.
+The size values are of type string, and support friendly syntax for specifying the order of magnitude e.g.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"56 kb"
+"10 Mb"
+"18.2 GB"
+"255" // bytes when no magnitude specified
+</code></pre></div></div>
+
+<p>In the Java DSL these values are specified as a <code class="language-plaintext highlighter-rouge">long</code> number of bytes:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">recordSpec</span><span class="o">().</span><span class="na">extractBinaryBodiesOver</span><span class="o">(</span><span class="mi">204800</span><span class="o">)</span>
+</code></pre></div></div>
+<h3 id="output-format">
+  
+  
+    Output format <a href="#output-format" class="anchor">#</a>
+  
+  
+</h3>
+    
+
+<p>By default the stop recording and snapshot API calls will return the full JSON of all mappings captured.
+If you only require the IDs of captured stubs you can specify:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"outputFormat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDS"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h3 id="persist-stubs">
+  
+  
+    Persist stubs <a href="#persist-stubs" class="anchor">#</a>
+  
+  
+</h3>
+    
+
+<p>By default generated stubs will be set to persistent, meaning that they will be saved to the file system
+(or other back-end if you’ve implemented your own <code class="language-plaintext highlighter-rouge">MappingsSource</code>) and will survive calls to reset mappings to default.</p>
+
+<p>Setting <code class="language-plaintext highlighter-rouge">persist</code> to <code class="language-plaintext highlighter-rouge">false</code> means that stubs will not be saved and will be deleted on the next reset.</p>
+<h3 id="repeats-as-scenarios">
+  
+  
+    Repeats as scenarios <a href="#repeats-as-scenarios" class="anchor">#</a>
+  
+  
+</h3>
+    
+
+<p>What happens when the recorder sees two identical requests that produce different results?</p>
+
+<p>There are two ways to handle this. Setting <code class="language-plaintext highlighter-rouge">repeatsAsScenarios</code> to <code class="language-plaintext highlighter-rouge">false</code> means that after the first request, subsequent identical ones will be ignored.</p>
+
+<p>However, when set to <code class="language-plaintext highlighter-rouge">true</code> (which is the default if omitted), multiple identical requests will be added to a <a href="/2.x/stateful-behaviour">Scenario</a>, meaning that when
+playing back, a series of requests matching this stub will yield the same series of responses captured during recording. If more requests are made after the end of the series
+is reached, the last response will continue to be returned.</p>
+<h3 id="transforming-generated-stubs">
+  
+  
+    Transforming generated stubs <a href="#transforming-generated-stubs" class="anchor">#</a>
+  
+  
+</h3>
+    
+
+<p>If you need even more control over how your recorded stubs are generated, you can write one or more custom transformers that will be applied to stubs as they are captured.</p>
+
+<p>A transformer is an implementations of <code class="language-plaintext highlighter-rouge">StubMappingTransformer</code> and needs to be registered when starting WireMock as described in <a href="/2.x/extending-wiremock">Extending WireMock</a>.</p>
+
+<p>Transformer implementations supply a name, and this is used to identify them in the <code class="language-plaintext highlighter-rouge">transformers</code> parameter e.g.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"transformers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"transformer-one"</span><span class="p">,</span><span class="w"> </span><span class="s2">"transformer-two"</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<p>As with other types of WireMock extension, parameters can be supplied. The exact parameters required depend on the specifics of the transformer (or it may not require any).</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"transformerParameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"simpleParam1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"One"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"arrayParam2"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">],</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h3 id="request-body-matching">
+  
+  
+    Request body matching <a href="#request-body-matching" class="anchor">#</a>
+  
+  
+</h3>
+    
+
+<p>By default, the body match operator for a recorded stub is based on the <code class="language-plaintext highlighter-rouge">Content-Type</code> header of the request. For MIME types containing the string “json”, the operator will be <code class="language-plaintext highlighter-rouge">equalToJson</code> with both the <code class="language-plaintext highlighter-rouge">ignoreArrayOrder</code> and <code class="language-plaintext highlighter-rouge">ignoreExtraElements</code> options set to <code class="language-plaintext highlighter-rouge">true</code>. For MIME types containing <code class="language-plaintext highlighter-rouge">xml</code>, it will use <code class="language-plaintext highlighter-rouge">equalToXml</code>. Otherwise, it will use <code class="language-plaintext highlighter-rouge">equalTo</code> with the <code class="language-plaintext highlighter-rouge">caseInsensitive</code> option set to <code class="language-plaintext highlighter-rouge">false</code>.</p>
+
+<p>This behavior can be customized via the <code class="language-plaintext highlighter-rouge">requestBodyPattern</code> parameter, which accepts a <code class="language-plaintext highlighter-rouge">matcher</code> (either <code class="language-plaintext highlighter-rouge">equalTo</code>, <code class="language-plaintext highlighter-rouge">equalToJson</code>, <code class="language-plaintext highlighter-rouge">equalToXml</code>, or <code class="language-plaintext highlighter-rouge">auto</code>) and any relevant matcher options (<code class="language-plaintext highlighter-rouge">ignoreArrayOrder</code>, <code class="language-plaintext highlighter-rouge">ignoreExtraElements</code>, or <code class="language-plaintext highlighter-rouge">caseInsensitive</code>). For example, here’s how to preserve the default behavior, but set <code class="language-plaintext highlighter-rouge">ignoreArrayOrder</code> to <code class="language-plaintext highlighter-rouge">false</code> when <code class="language-plaintext highlighter-rouge">equalToJson</code> is used:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"requestBodyPattern"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"matcher"</span><span class="p">:</span><span class="w"> </span><span class="s2">"auto"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ignoreArrayOrder"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>If you want to always match request bodies with <code class="language-plaintext highlighter-rouge">equalTo</code> case-insensitively, regardless of the MIME type, use:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"requestBodyPattern"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"matcher"</span><span class="p">:</span><span class="w"> </span><span class="s2">"equalTo"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"caseInsensitive"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<blockquote>
+  <p><strong>note</strong></p>
+
+  <p>The <code class="language-plaintext highlighter-rouge">targetBaseUrl</code> parameter will be ignored when snapshotting and the <code class="language-plaintext highlighter-rouge">filters/ids</code> parameter will be ignored when recording.</p>
+</blockquote>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        <a class="page__meta-title" href="https://github.com/wiremock/wiremock.org/edit/main/_docs/record-playback.md" target="_blank">
+            <img width="16px" src= "/images/logos/doc-sections/edit.svg" />
+            Improve this page
+        </a>
+        <a class="page__meta-title" href="https://github.com/wiremock/wiremock.org/issues/new?labels=bug&template=3-bug.yml&page=/docs/record-playback/&title=Issue on Record and Playback" target="_blank">
+            <img width="16px" src= "/images/logos/doc-sections/bug.svg" />
+            Report an issue
+        </a>
+        <a class="page__meta-title" href="http://slack.wiremock.org/" target="_blank">
+            <img width="16px" src= "/images/logos/doc-sections/slack.svg" />
+            Ask on Slack
+        </a>
+        
+        
+
+
+
+      </footer>
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        
+<div class="page__footer-copyright">
+  <img src="/2.x/images/shortLogo.png" class="short-logo"/>
+
+  <span class="footer-copyright-description">&copy; 2025</span>
+
+  <ul class="footer-social-links">
+      <li>
+    <a href="http://github.com/wiremock" target="_blank">
+      <img src="/2.x/images/githubIcon.svg" />
+    </a>
+  </li>
+
+  </ul>
+</div>
+
+<script src="/2.x/assets/js/mobile-navbar.js"></script>
+<script src="/2.x/assets/js/codeTab.js"></script>
+<script src="/2.x/assets/js/sidebar-docs.js"></script>
+<script src="/2.x/assets/js/tracking-events.js"></script>
+<script src="/2.x/assets/js/faq.js"></script>
+
+      </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw=" crossorigin="anonymous"></script>
+    <!-- <script src="/2.x/assets/js/main.min.js"></script> -->
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  <script>
+  // Position footer at actual bottom of page content
+  function positionFooter() {
+    const footer = document.querySelector('.simple-footer');
+    if (!footer) return;
+    
+    const body = document.body;
+    const html = document.documentElement;
+    
+    // Get the actual height of all content
+    const contentHeight = Math.max(
+      body.scrollHeight,
+      body.offsetHeight,
+      html.clientHeight,
+      html.scrollHeight,
+      html.offsetHeight
+    );
+    
+    // Position footer at the bottom of all content
+    footer.style.top = (contentHeight - footer.offsetHeight) + 'px';
+  }
+  
+  // Position footer when page loads and on resize
+  document.addEventListener('DOMContentLoaded', positionFooter);
+  window.addEventListener('resize', positionFooter);
+  window.addEventListener('load', positionFooter);
+  </script>
+
+  <!-- Simple Footer HTML -->
+  <div class="simple-footer">
+    © 2025 WireMock Inc. | <a href="https://wiremock.org">WireMock</a> | <a href="https://github.com/wiremock/wiremock">GitHub</a>
+  </div>
+  
+  <script>
+  // Position footer at actual bottom of page content
+  function positionFooter() {
+    const footer = document.querySelector('.simple-footer');
+    if (!footer) return;
+    
+    const body = document.body;
+    const html = document.documentElement;
+    
+    // Get the actual height of all content
+    const contentHeight = Math.max(
+      body.scrollHeight,
+      body.offsetHeight,
+      html.clientHeight,
+      html.scrollHeight,
+      html.offsetHeight
+    );
+    
+    // Position footer at the bottom of all content
+    footer.style.top = (contentHeight - footer.offsetHeight) + 'px';
+  }
+  
+  // Position footer when page loads and on resize
+  document.addEventListener('DOMContentLoaded', positionFooter);
+  window.addEventListener('resize', positionFooter);
+  window.addEventListener('load', positionFooter);
+  </script>
+</body>
+</html>
+

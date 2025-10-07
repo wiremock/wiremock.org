@@ -1,0 +1,57 @@
+site_name: dotnet
+docs_dir: ./docs
+
+nav:
+  - WireMock .NET: index.md
+  - What is WireMock.Net: What-Is-WireMock.Net.md
+  - WireMock.Org: WireMock.Org.md
+  - References: References.md
+  - Settings: Settings.md
+  - Admin REST API:
+    - Admin API Reference: Admin-API-Reference.md
+    - Mapping: Mapping.md
+    - Compatibility WireMock.org: Compatibility-WireMock.org.md
+  - Proxying: Proxying.md
+  - Stubbing: Stubbing.md
+  - Webhook: Webhook.md
+  - WireMock commandline parameters: WireMock-commandline-parameters.md
+  - Request Matching:
+    - Request Matching: Request-Matching.md
+    - Request Matchers: Request-Matchers.md
+    - Request Matching Tips: Request-Matching-Tips.md
+    - Request Matcher FormUrlEncodedMatcher: Request-Matcher-FormUrlEncodedMatcher.md
+    - Request Matching CSharpCode: Request-Matching-CSharpCode.md
+    - Request Matching GraphQLMatcher: Request-Matching-GraphQLMatcher.md
+    - Request Matching JsonMatcher: Request-Matching-JsonMatcher.md
+    - Request Matching JsonPartialMatcher: Request-Matching-JsonPartialMatcher.md
+    - Request Matching JsonPartialWildcardMatcher: Request-Matching-JsonPartialWildcardMatcher.md
+    - Request Matching JsonPathMatcher: Request-Matching-JsonPathMatcher.md
+    - Request Matching MimePartMatcher: Request-Matching-MimePartMatcher.md
+    - Request Matching ProtoBuf: Request-Matching-ProtoBuf.md
+
+  - Response Templating: Response-Templating.md
+  - Unit Testing:
+    - Using WireMock in UnitTests: Using-WireMock-in-UnitTests.md
+    - Using WireMock.Net.Testcontainers: Using-WireMock.Net.Testcontainers.md
+    - Using WireMock.Net.Aspire: Using-WireMock.Net.Aspire.md
+    - FluentAssertions: FluentAssertions.md
+  - Using WireMock:
+    - WireMock as dotnet tool: WireMock-as-dotnet-tool.md
+    - WireMock as a standalone process: WireMock-as-a-standalone-process.md
+    - WireMock as a (Azure) Web App: WireMock-as-a-(Azure)-Web-App.md
+    - WireMock as a Windows Service: WireMock-as-a-Windows-Service.md
+  - Advanced:
+    - Scenarios and States: Scenarios-and-States.md
+    - Pact: Pact.md
+    - Faults: Faults.md
+    - Using HTTPS (SSL): Using-HTTPS-(SSL).md
+    - Cors: Cors.md
+    - KestrelServerOptions: KestrelServerOptions.md
+    - RegexExtended: RegexExtended.md
+    - MyGet preview versions: MyGet-preview-versions.md
+    - Development Information: Development-Information.md
+  - Errors:
+    - Xamarin---Could-not-load-file-or-assembly: Xamarin---Could-not-load-file-or-assembly.md
+    - Conflict-on-Microsoft.CodeAnalysis.CSharp: Conflict-on-Microsoft.CodeAnalysis.CSharp.md
+    - Could not load file or assembly RestEase: Could-not-load-file-or-assembly-RestEase.md
+    - MimeKit and MimeKitLite: MimeKit-and-MimeKitLite.md

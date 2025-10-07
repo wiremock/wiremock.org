@@ -1,6 +1,0 @@
-url: "https://wiremock.org/2.x"
-destination: "./tmp/site_2x"
-wiremock_version: 2.35.1
-wiremock_archive_site: true
-wiremock_baseline: 2.x
-pageEditPrefix: https://github.com/wiremock/wiremock.org/edit/2.x/

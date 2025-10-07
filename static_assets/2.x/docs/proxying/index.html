@@ -1,0 +1,1833 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+<meta charset="utf-8">
+
+
+<!-- begin SEO -->
+
+
+
+<!--  -->
+
+
+
+
+
+
+
+<title>Proxying and proxy stub mappings | WireMock</title>
+
+
+
+
+
+
+
+<meta name="description" content="Proxy responses are defined in exactly the same manner as stubs, meaning that the same request matching criteria can be used.">
+
+<meta property="og:locale" content="en-US">
+<meta property="og:site_name" content="WireMock">
+<meta property="og:title" content="Proxying">
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="WireMock" />
+<meta name="twitter:description" content="Proxy responses are defined in exactly the same manner as stubs, meaning that the same request matching criteria can be used.">
+
+
+  <link rel="canonical" href="/2.x/docs/proxying/">
+  <meta property="og:url" content="/2.x/docs/proxying/">
+
+
+
+  <meta property="og:description" content="Proxy responses are defined in exactly the same manner as stubs, meaning that the same request matching criteria can be used.">
+
+
+
+  <meta name="twitter:site" content="@wiremockorg">
+  <meta name="twitter:title" content="Proxying">
+  <meta name="twitter:description" content="Proxy responses are defined in exactly the same manner as stubs, meaning that the same request matching criteria can be used.">
+  <meta name="twitter:url" content="/2.x/docs/proxying/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="/2.x/images/opengraphs/default.png">
+    
+  
+
+  
+
+
+
+
+
+  <meta name="image" property="og:image" content="/2.x/images/opengraphs/default.png">
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2025-09-19T09:56:34-04:00">
+  
+    <link rel="next" href="/2.x/docs/quickstart/java-junit/" title="Quick Start: API Mocking with Java and JUnit 4">
+  
+  
+    <link rel="prev" href="/2.x/docs/participate/" title="Participate in WireMock">
+  
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "https://wiremock.org",
+      "logo": "/2.x/images/opengraphs/default.png"
+    }
+  </script>
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Organization",
+      "name" : "WireMock",
+      "url" : "https://wiremock.org",
+      "sameAs" : ["https://twitter.com/wiremockorg","https://fosstodon.org/@wiremock","https://www.youtube.com/@WireMockTV"]
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+
+
+
+<link href="https://wiremock.org/feed.xml" type="application/atom+xml" rel="alternate" title="WireMock Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<link href="https://fonts.googleapis.com/css?family=Lato|Source+Code+Pro|Cairo" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700;800&family=Roboto:wght@400;500;700&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/2.x/assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+
+<link rel="shortcut icon" type="image/x-icon" href="/2.x/images/favicon.svg">
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- MkDocs Material CSS -->
+  <link rel="stylesheet" href="/assets/stylesheets/main.e53b48f4.min.css">
+  <link rel="stylesheet" href="/assets/stylesheets/palette.06af60db.min.css">
+  <link rel="stylesheet" href="/assets/stylesheets/extra.css">
+  
+  <!-- Custom 2x styling -->
+  <style>
+    /* 2x Badge styling */
+    .version-badge {
+      background: #1976d2;
+      color: white;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.7em;
+      margin-left: 8px;
+      font-weight: 500;
+    }
+    
+    /* Header layout fixes */
+    .md-header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 0 1rem;
+      height: 64px;
+    }
+    
+    .md-header__title {
+      flex: 1;
+      margin-right: 16px;
+    }
+    
+    .header__links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-left: auto;
+      height: 100%;
+    }
+    
+    .header__links .dropdown {
+      position: relative;
+      display: inline-block;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+    
+    .header__links .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: white;
+      min-width: 200px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1000;
+      border-radius: 4px;
+      padding: 8px 0;
+      top: 100%;
+      left: 0;
+    }
+    
+    .header__links .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    
+    .header__links .dropdown-content a {
+      color: #333;
+      padding: 8px 16px;
+      text-decoration: none;
+      display: block;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .header__links .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+    
+    .header__links .dropdown-content a:last-child {
+      border-bottom: none;
+    }
+    
+    .header__link {
+      color: #333;
+      text-decoration: none;
+      padding: 8px 16px;
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+      height: 100%;
+    }
+    
+    .header__link:hover {
+      color: #1976d2;
+    }
+    
+    /* Button alignment fix - ensure proper vertical alignment */
+    .masthead__cta {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+    
+    .btn.t-6 {
+      background: #1976d2;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 14px;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: auto;
+      line-height: 1.2;
+    }
+    
+    .btn.t-6:hover {
+      background: #1565c0;
+      color: white;
+    }
+    
+    /* Fix the floating "free forever" text - move it inside header */
+    .wiremock-cloud-logo-note {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 12px;
+      color: #666;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 4px 8px;
+      border-radius: 4px;
+      z-index: 100;
+      white-space: nowrap;
+      margin-top: 2px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    /* Make sure header has relative positioning for absolute child */
+    .md-header {
+      position: relative;
+    }
+    
+    /* Alternative: hide the floating text if it's problematic */
+    @media (max-width: 1024px) {
+      .wiremock-cloud-logo-note {
+        display: none;
+      }
+    }
+    
+    /* Hide mobile hamburger for now */
+    .md-header__button.md-icon[for="__drawer"] {
+      display: none;
+    }
+    
+    /* REMOVE ORIGINAL FOOTER AND PAGE ACTION BUTTONS */
+    .page__footer {
+      display: none !important;
+    }
+    
+    .page__meta-title {
+      display: none !important;
+    }
+    
+    /* SIMPLE NEW FOOTER - JavaScript positioned at content bottom */
+    .simple-footer {
+      position: absolute;
+      left: 0;
+      right: 0;
+      width: 100%;
+      background: #333;
+      color: white;
+      padding: 12px 0;
+      text-align: center;
+      font-size: 14px;
+      z-index: 1000;
+      margin-top: 2rem;
+    }
+    
+    .simple-footer a {
+      color: #87ceeb;
+      text-decoration: none;
+    }
+    
+    .simple-footer a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .header__links {
+        gap: 8px;
+      }
+      
+      .header__link {
+        padding: 6px 12px;
+        font-size: 14px;
+      }
+      
+      .btn.t-6 {
+        padding: 8px 16px;
+        font-size: 13px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .header__links {
+        display: none;
+      }
+      
+      .md-header__button.md-icon[for="__drawer"] {
+        display: block;
+      }
+      
+      .md-header__title {
+        flex: 1;
+        margin: 0 1rem;
+      }
+    }
+  </style>
+  
+  
+  
+  
+  
+  <script>
+  // Smart footer: only show when scrolled near bottom
+  window.addEventListener('scroll', function() {
+    const footer = document.querySelector('.page__footer');
+    if (!footer) return;
+    
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    
+    // Show footer when within 200px of bottom
+    if (scrollTop + windowHeight >= documentHeight - 200) {
+      footer.style.display = 'block';
+    } else {
+      footer.style.display = 'none';
+    }
+  });
+  
+  // Also check on load
+  document.addEventListener('DOMContentLoaded', function() {
+    window.dispatchEvent(new Event('scroll'));
+  });
+  </script>
+</head>
+
+  <body>
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    
+<style>
+  .navlink {
+    position: relative !important;
+    color: #7d93bd;
+    padding-bottom: 0;
+    cursor: pointer;
+    font-family: "Ubuntu";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+  }
+
+  .navlink a {
+    padding: 0 !important;
+    margin: 0 0 5px 0;
+    width: fit-content !important;
+    height: 32px;
+  }
+
+  .navlink-image {
+    width: 20px;
+    filter: invert(47%);
+    vertical-align: middle;
+  }
+
+  .divSubNav {
+    position: relative;
+    cursor: default;
+    padding: 10px 15px;
+    display: none;
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 32px;
+    width: fit-content;
+    background: #FFFFFF;
+    box-shadow: 0px -5px 20px rgba(210, 223, 249, 0.5);
+  }
+
+  .divSubNav::before {
+    position: absolute;
+    content: "";
+    left: 15px;
+    width: 0; 
+    height: 0; 
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 7px solid #fff;
+    top: -7px;
+  }
+
+  .divSubNav a {
+    padding: 0 !important;
+    margin: 0 0 5px 0;
+    width: fit-content !important;
+  }
+
+  .divSubNav a:last-child {
+    margin-bottom: 0;
+  }
+
+  .divSubNav a::before {
+    background: none !important;
+  }
+
+  .navlink:hover > .divSubNav {
+    display: block;
+  }
+
+  .navHover::before {
+    background: unset !important;
+  }
+
+  .navlink::before {
+    background: unset !important;
+  }
+
+  .navlink a::before {
+    background: unset !important;
+  }
+
+  .wiremock-cloud-logo-navbar-item {
+    padding-left: 20px;
+    padding-top: 0;
+  }
+
+  .wiremock-cloud-logo-navbar-item div span {
+    text-align: right;
+  }
+  
+  .wiremock-cloud-logo-navbar {
+    margin: 0;
+    background: unset !important;
+  }
+
+  .wiremock-cloud-logo-navbar div {
+    border-color: #0FB2EF;
+    background-color: #E4F0F7;
+    border-style: solid;
+    border-radius: 8px;
+    border-width: 4px;
+    align-items: center;
+    justify-content: center;
+    margin: 0;    
+    height: 45px;
+    position: relative;
+  }
+
+  .wiremock-cloud-logo-navbar div img {
+    vertical-align: middle;
+    width: 100%;
+    background-color: #E4F0F7;
+    height: 36px;
+    padding: 4px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .wiremock-cloud-logo-navbar div div {
+    font-size: x-small;
+    font-weight: bold;
+    position: absolute;
+    bottom: 2px;
+    left: 4px;
+    border-style: none;
+    height: fit-content;
+  }
+
+  .wiremock-cloud-logo-note {
+    margin-left: auto;
+    margin-right: 4em;
+    float: right;
+    font-size: small;
+  }
+
+  @media (max-width: 1023px) {
+    .wiremock-cloud-logo-note {
+      display: none;
+    }
+  }
+</style>
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <!-- Link to home -->
+    <a
+      href="/"
+      title="WireMock"
+      class="md-header__button md-logo"
+      aria-label="WireMock"
+      data-md-component="logo"
+    >
+      <img src="/assets/images/wiremock-oss-logo.png" alt="logo">
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Header title with 2x badge -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis"> WireMock </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            2.x Documentation
+            <span class="version-badge">2x</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="header__links">
+      <div class="dropdown">
+        <a href="/docs/" class="header__link"> Docs </a>
+        <div class="dropdown-content">
+          <a href="/docs/"> WireMock </a>
+
+          <a href="/docs/mock-api-templates/">
+            Mock API Templates
+          </a>
+
+          <a
+            href="https://docs.wiremock.io/getting-started/?utm_source=wiremock.org&amp;utm_medium=masthead_doc-links&amp;utm_campaign=2022_baseline"
+            target="_blank"
+          >
+            WireMock Cloud
+          </a>
+
+          <a href="/2.x/docs/"> WireMock 2.x (Archive) </a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <a href="/docs/support/" class="header__link">
+          Need Help?
+        </a>
+        <div class="dropdown-content">
+          <a href="https://slack.wiremock.org/" target="_blank"> Q&amp;A on Slack </a>
+
+          <a href="https://stackoverflow.com/questions/tagged/wiremock" target="_blank">
+            StackOverflow
+          </a>
+
+          <a href="/docs/commercial/">
+            Commercial Options
+          </a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <a href="https://wiremock.org/participate" class="header__link" target="_blank">
+          Participate
+        </a>
+        <div class="dropdown-content">
+          <a href="https://slack.wiremock.org/" target="_blank"> Community Slack </a>
+
+          <a
+            href="https://github.com/wiremock/community/blob/main/contributing/README.md"
+            target="_blank"
+          >
+            Contributor Guide
+          </a>
+
+          <a href="https://github.com/wiremock/" target="_blank"> Our GitHub </a>
+
+          <a href="https://github.com/wiremock/wiremock.org" target="_blank"> This Website </a>
+
+          <a
+            href="https://github.com/wiremock/.github/blob/main/CODE_OF_CONDUCT.md"
+            target="_blank"
+          >
+            Code of Conduct
+          </a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <a href="/external-resources/" class="header__link">
+          Resources
+        </a>
+        <div class="dropdown-content">
+          <a href="https://library.wiremock.org/" target="_blank">
+            Mock API Templates Library
+          </a>
+
+          <a href="https://github.com/wiremock/ecosystem" target="_blank">
+            WireMock Ecosystem
+          </a>
+
+          <a href="https://twitter.com/wiremockorg" target="_blank"> Twitter </a>
+
+          <a href="https://fosstodon.org/@wiremock" target="_blank"> Mastodon </a>
+
+          <a href="https://community.wiremock.io/" target="_blank"> Slack Archive </a>
+
+          <a href="/external-resources/">
+            External Resources
+          </a>
+        </div>
+      </div>
+
+      <div class="header__link">
+        <div class="masthead__cta">
+          <a
+            href="https://wiremock.io/product?utm_source=wiremock.org&amp;utm_medium=masthead&amp;utm_campaign=homepage_2022_baseline"
+            title="WireMock Cloud"
+            class="btn t-6"
+            target="_blank"
+          >
+            Try WireMock Cloud
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+</div>
+
+<div class="wiremock-cloud-logo-note">* Free forever. No credit card needed</div>
+
+
+    <div id="main" class="custom-doc-wrapper" role="main">
+
+  
+    
+<style>
+  .slack-help-box {
+    background-color: #f2f2f2;
+    border: #c8c8c8 1px solid;
+    padding: 8px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    display: inline;
+    margin-bottom: 1cm;
+  }
+
+  .slack-help-box a {
+      font-size: normal;
+      width: max-content;
+      height: max-content;
+      color: black;
+      text-decoration: none !important; 
+  }
+
+  .slack-help-box a div {
+    display: inline;
+    padding-right: 10px;
+    color: inherit;
+  }
+
+  .slack-help-box a div img {
+    vertical-align: sub;
+    height: 22px;
+    width: 22px;
+  };
+</style>
+
+<div class="sidebar">
+  <div class="slack-help-box">
+    <a href="https://slack.wiremock.org/">
+      <div>
+        <img src="/2.x/images/slack-logo-medium.png" alt="Slack logo"/>
+      </div>
+      <div>
+        Need help?
+      </div>
+    </a>
+  </div>
+  <nav class="nav__list">
+    <ul class="doc-categories">
+      
+      
+        <li class="doc-category">
+          <span class="doc-category__li">
+            
+              <a href="/2.x/docs/overview">Getting started</a>
+            
+          </span>
+          <ul class="
+          doc-category__sub-nav
+          
+          ">
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/overview/">Overview</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/quickstart/java-junit/">Quick Start: API Mocking with Java and JUnit 4</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/download-and-installation/">Download and Installation</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/getting-started/">WireMock Tutorials</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+      
+        <li class="doc-category">
+          <span class="doc-category__li">
+            
+              <a href="/2.x/docs/standalone">WireMock Standalone</a>
+            
+          </span>
+          <ul class="
+          doc-category__sub-nav
+          
+          ">
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/standalone/docker/">Running in Docker</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/standalone/java-jar/">Running as a Standalone Process</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/standalone/administration/">Administration API</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+      
+        <li class="doc-category">
+          <span class="doc-category__li">
+            
+              <a href="/2.x/docs/solutions/jvm/">Java Usage</a>
+            
+          </span>
+          <ul class="
+          doc-category__sub-nav
+          
+          ">
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/junit-jupiter/">JUnit 5+ Jupiter</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/junit-extensions/">JUnit 4 and Vintage</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href=""></a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/java-usage/">Plain Java</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/configuration/">Java configuration</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/running-without-http-server/">Running without the HTTP Server</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href=""></a>
+              </li>
+            
+          </ul>
+        </li>
+      
+      
+        <li class="doc-category">
+          <span class="doc-category__li">
+            
+              <a href="/2.x/docs/stubbing">Stubbing & Verifying</a>
+            
+          </span>
+          <ul class="
+          doc-category__sub-nav
+          doc-category__sub-nav--active
+          ">
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/stubbing/">Stubbing</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/request-matching/">Request Matching</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/response-templating/">Response Templating</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/simulating-faults/">Simulating Faults</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/stateful-behaviour/">Stateful Behaviour</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li doc-category__li--selected">
+                <a href="/2.x/docs/proxying/">Proxying</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/verifying/">Verifying</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+      
+        <li class="doc-category">
+          <span class="doc-category__li">
+            
+              <a href="/2.x/docs/mock-api-templates">Templating</a>
+            
+          </span>
+          <ul class="
+          doc-category__sub-nav
+          
+          ">
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/mock-api-templates/">WireMock API Templates Library</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/mock-api-templates/usage/">Using Mock API Templates</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+      
+        <li class="doc-category">
+          <span class="doc-category__li">
+            
+              <a href="/2.x/docs/record-playback/">Record & Playback</a>
+            
+          </span>
+          <ul class="
+          doc-category__sub-nav
+          
+          ">
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/record-playback/">Record and Playback</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+      
+        <li class="doc-category">
+          <span class="doc-category__li">
+            
+              Advanced use-cases
+            
+          </span>
+          <ul class="
+          doc-category__sub-nav
+          
+          ">
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/https/">Serving HTTPs</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/multi-domain-mocking/">Multi-domain Mocking</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/advanced/deploy-to-servlet-container/">Deploying into a servlet container</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/advanced/java7/">WireMock on Java 1.7</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+      
+        <li class="doc-category">
+          <span class="doc-category__li">
+            
+              <a href="/2.x/docs/extending-wiremock/">Extensibility</a>
+            
+          </span>
+          <ul class="
+          doc-category__sub-nav
+          
+          ">
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/extending-wiremock/">Extending WireMock</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/stub-metadata/">Stub Metadata</a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/webhooks-and-callbacks/">Webhooks and Callbacks</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+      
+        <li class="doc-category">
+          <span class="doc-category__li">
+            
+              Reference
+            
+          </span>
+          <ul class="
+          doc-category__sub-nav
+          
+          ">
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/standalone/admin-api-reference/">Admin API </a>
+              </li>
+            
+              
+              
+              
+              
+              <li class="doc-category__li">
+                <a href="/2.x/docs/mock-api-templates/">WireMock API Templates Library</a>
+              </li>
+            
+          </ul>
+        </li>
+      
+    </ul>
+
+  </nav>
+</div>
+
+  
+
+  <style>
+    .anchor {
+     color: #888;
+      content: url('/images/logos/doc-sections/link.svg');
+      width: 24px;
+      vertical-align: middle;
+      visibility: hidden;
+    }
+
+    h1:hover .anchor,
+    h2:hover .anchor,
+    h3:hover .anchor,
+    h4:hover .anchor,
+    h5:hover .anchor,
+    h6:hover .anchor {
+      color: #3D598B;
+      visibility: visible;
+    }
+
+  </style>
+  
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <meta itemprop="description" content="WireMock has the ability to selectively proxy requests through toother hosts. This supports a proxy/intercept setup where requests are bydefault proxied to another (possibly real, live) service, but wherespecific stubs are configured these are returned in place of the remoteservice’s response. Responses that the live service can’t be forced togenerate on demand can thus be injected for testing. Proxying alsosupports record and playback.">
+    <meta itemprop="datePublished" content="September 19, 2025">
+    
+
+    <div class="breadcrumbs-bar">
+      <nav class="breadcrumbs bootstrap hidden-sm-down">
+   <ol class="breadcrumb list-unstyled" vocab="http://schema.org/" typeof="BreadcrumbList">
+
+       
+         
+            
+            
+            
+            <li class="breadcrumb-item breadcrumb-item-icon" property="itemListElement" typeof="ListItem">
+               <a property="item" typeof="WebPage" href="/">
+                  
+                  <img class="icon" src="/2.x/images/logos/doc-sections/home.svg"/>
+                  
+                  <meta property="position" content="1" />
+               </a>
+            </li>
+          
+          
+      
+      <li class="breadcrumb-item" property="itemListElement" typeof="ListItem">
+         <a property="item" typeof="WebPage" href="/docs/">
+            <span property="name">Documentation</span>
+            <meta property="position" content="2" />
+         </a>
+      </li>
+       
+          
+      
+      <li class="breadcrumb-item" property="itemListElement" typeof="ListItem">
+         <span property="name">Proxying</span>
+         <meta property="position" content="3" />
+      </li>
+      
+
+   </ol>
+</nav>
+
+<style>
+   nav.breadcrumbs.bootstrap {
+      /* from Twitter Bootstrap 4 */
+      /* If you already use Twitter, you do not need these css lines above, cause they already in Twitter Bootstrap */
+      /* Additions: image integration */
+   }
+
+   nav.breadcrumbs.bootstrap ol {
+      margin-left: 0
+   }
+
+   nav.breadcrumbs.bootstrap .breadcrumb {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      list-style: none;
+      border-radius: 0.25rem;
+   }
+
+   nav.breadcrumbs.bootstrap .breadcrumb::after {
+      content: "";
+      display: table;
+      clear: both;
+   }
+
+   nav.breadcrumbs.bootstrap .breadcrumb-item {
+      float: left;
+   }
+
+   nav.breadcrumbs.bootstrap .breadcrumb-item+.breadcrumb-item::before {
+      display: inline-block;
+      padding-right: 0.5rem;
+      padding-left: 0.5rem;
+      color: #818a91;
+      content: "/";
+   }
+
+   nav.breadcrumbs.bootstrap .breadcrumb-item+.breadcrumb-item:hover::before {
+      text-decoration: underline;
+   }
+
+   nav.breadcrumbs.bootstrap .breadcrumb-item+.breadcrumb-item:hover::before {
+      text-decoration: none;
+   }
+
+   nav.breadcrumbs.bootstrap .breadcrumb-item-active {
+      color: #818a91;
+   }
+
+   nav.breadcrumbs.bootstrap .breadcrumb .icon {
+      display: inline-block;
+   }
+
+   nav.breadcrumbs.bootstrap .breadcrumb .icon svg {
+      height: 0.8rem;
+      width: 0.8rem;
+   }
+</style>
+    </div>
+
+
+
+    <div class="page__inner-wrap">
+      <header>
+        <h1 class="page__title" itemprop="headline">Proxying
+</h1>
+      </header>
+
+      
+        
+        <div style="background-color: #f2f2f2;border: #c8c8c8 1px solid;padding: 8px;margin-bottom:32px;">
+          <b>WARNING: </b>
+          This document is for an old WireMock 2.x baseline.
+          See the documentation for the current WireMock 3.x baseline
+          <a href="/2.x/docs/proxying/">here</a>
+        </div>
+          
+      
+
+      <section class="page__content" itemprop="text">
+        <!--TODO: use beforeHeading="true"  before mastering the negative indenting magic-->
+        <p>WireMock has the ability to selectively proxy requests through to
+other hosts. This supports a proxy/intercept setup where requests are by
+default proxied to another (possibly real, live) service, but where
+specific stubs are configured these are returned in place of the remote
+service’s response. Responses that the live service can’t be forced to
+generate on demand can thus be injected for testing. Proxying also
+supports <a href="/2.x/record-playback/">record and playback</a>.</p>
+<h1 id="proxy-stub-mappings">
+  
+  
+    Proxy stub mappings <a href="#proxy-stub-mappings" class="anchor">#</a>
+  
+  
+</h1>
+    
+
+<p>Proxy responses are defined in exactly the same manner as stubs, meaning
+that the same request matching criteria can be used.</p>
+
+<p>The following code will proxy all GET requests made to
+<code class="language-plaintext highlighter-rouge">http://&lt;host&gt;:&lt;port&gt;/other/service/.*</code> to
+<code class="language-plaintext highlighter-rouge">http://otherservice.com/approot</code>, e.g. when running WireMock locally a
+request to <code class="language-plaintext highlighter-rouge">http://localhost:8080/other/service/doc/123</code> would be
+forwarded to <code class="language-plaintext highlighter-rouge">http://otherservice.com/approot/other/service/doc/123</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stubFor</span><span class="o">(</span><span class="n">get</span><span class="o">(</span><span class="n">urlMatching</span><span class="o">(</span><span class="s">"/other/service/.*"</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">willReturn</span><span class="o">(</span><span class="n">aResponse</span><span class="o">().</span><span class="na">proxiedFrom</span><span class="o">(</span><span class="s">"http://otherhost.com/approot"</span><span class="o">)));</span>
+</code></pre></div></div>
+
+<p>The JSON equivalent would be:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"urlPattern"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/other/service/.*"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"proxyBaseUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://otherhost.com/approot"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h1 id="proxyintercept">
+  
+  
+    Proxy/intercept <a href="#proxyintercept" class="anchor">#</a>
+  
+  
+</h1>
+    
+
+<p>The proxy/intercept pattern described above is achieved by adding a low
+priority proxy mapping with a broad URL match and any number of higher
+priority stub mappings e.g.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Low priority catch-all proxies to otherhost.com by default</span>
+<span class="n">stubFor</span><span class="o">(</span><span class="n">get</span><span class="o">(</span><span class="n">urlMatching</span><span class="o">(</span><span class="s">".*"</span><span class="o">)).</span><span class="na">atPriority</span><span class="o">(</span><span class="mi">10</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">willReturn</span><span class="o">(</span><span class="n">aResponse</span><span class="o">().</span><span class="na">proxiedFrom</span><span class="o">(</span><span class="s">"http://otherhost.com"</span><span class="o">)));</span>
+
+
+<span class="c1">// High priority stub will send a Service Unavailable response</span>
+<span class="c1">// if the specified URL is requested</span>
+<span class="n">stubFor</span><span class="o">(</span><span class="n">get</span><span class="o">(</span><span class="n">urlEqualTo</span><span class="o">(</span><span class="s">"/api/override/123"</span><span class="o">)).</span><span class="na">atPriority</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">willReturn</span><span class="o">(</span><span class="n">aResponse</span><span class="o">().</span><span class="na">withStatus</span><span class="o">(</span><span class="mi">503</span><span class="o">)));</span>
+</code></pre></div></div>
+<h1 id="remove-path-prefix">
+  
+  
+    Remove path prefix <a href="#remove-path-prefix" class="anchor">#</a>
+  
+  
+</h1>
+    
+
+<p>The prefix of a request path can be removed before proxying the request:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stubFor</span><span class="o">(</span><span class="n">get</span><span class="o">(</span><span class="n">urlEqualTo</span><span class="o">(</span><span class="s">"/other/service/doc/123"</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">willReturn</span><span class="o">(</span><span class="n">aResponse</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">proxiedFrom</span><span class="o">(</span><span class="s">"http://otherhost.com/approot"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">withProxyUrlPrefixToRemove</span><span class="o">(</span><span class="s">"/other/service"</span><span class="o">)));</span>
+</code></pre></div></div>
+
+<p>or</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/other/service/doc/123"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"proxyBaseUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://otherhost.com/approot"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"proxyUrlPrefixToRemove"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/other/service"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Requests using the above path will be forwarded
+to <code class="language-plaintext highlighter-rouge">http://otherhost.com/approot/doc/123</code></p>
+<h1 id="additional-headers">
+  
+  
+    Additional headers <a href="#additional-headers" class="anchor">#</a>
+  
+  
+</h1>
+    
+
+<p>It is possible to configure the proxy to add headers before forwarding
+the request to the destination:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Inject user agent to trigger rendering of mobile version of website</span>
+<span class="n">stubFor</span><span class="o">(</span><span class="n">get</span><span class="o">(</span><span class="n">urlMatching</span><span class="o">(</span><span class="s">".*"</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">willReturn</span><span class="o">(</span><span class="n">aResponse</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">proxiedFrom</span><span class="o">(</span><span class="s">"http://otherhost.com"</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">withAdditionalRequestHeader</span><span class="o">(</span><span class="s">"User-Agent"</span><span class="o">,</span> <span class="s">"Mozilla/5.0 (iPhone; U; CPU iPhone)"</span><span class="o">));</span>
+</code></pre></div></div>
+
+<p>or</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"urlPattern"</span><span class="p">:</span><span class="w"> </span><span class="s2">".*"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"proxyBaseUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://otherhost.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"additionalProxyRequestHeaders"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"User-Agent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mozilla/5.0 (iPhone; U; CPU iPhone)"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>You can also add response headers via the same method as for non-proxy responses (see <a href="/2.x/stubbing/">Stubbing</a>).</p>
+<h2 id="standalone-shortcut">
+  
+  
+    Standalone shortcut <a href="#standalone-shortcut" class="anchor">#</a>
+  
+  
+</h2>
+    
+
+<p>It is possible to start the standalone running with the catch-all stub
+already configured:</p>
+
+<p>Then it’s simply a case of adding your stub mapping <code class="language-plaintext highlighter-rouge">.json</code> files under <code class="language-plaintext highlighter-rouge">mappings</code> as usual (see <a href="/2.x/stubbing/">Stubbing</a>).</p>
+<h2 id="running-as-a-browser-proxy">
+  
+  
+    Running as a browser proxy <a href="#running-as-a-browser-proxy" class="anchor">#</a>
+  
+  
+</h2>
+    
+
+<p>WireMock can be made to work as a forward (browser) proxy.</p>
+
+<p>One benefit of this is that it supports a website-based variant of the proxy/intercept pattern described above, allowing
+you to modify specific AJAX requests or swap out CSS/Javascript files.</p>
+
+<p>To configure your browser to proxy via WireMock, first start WireMock with browser proxying enabled:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>java <span class="nt">-jar</span> wiremock-standalone-2.35.0.jar <span class="nt">--enable-browser-proxying</span> <span class="nt">--port</span> 9999
+</code></pre></div></div>
+
+<p>Then open your browser’s proxy settings and point them to the running server:
+<img src="/2.x/images/firefox-proxy-screenshot.png" alt="Firefox proxy screenshot" style="width: 50%; height: auto; margin-top: 1em;" /></p>
+
+<p>After that, you can configure stubs as described in <a href="/2.x/running-standalone#configuring-wiremock-using-the-java-client">Running Standalone</a> and then browse to a website. Any resources fetched whose requests are matched by stubs you have configured will be overridden by the stub’s response.</p>
+
+<p>So for instance, say you’re visiting
+a web page that fetches a user profile via an AJAX call to <code class="language-plaintext highlighter-rouge">/users/12345.json</code> and you wanted to test how it responded to a server unavailable response. You could create a stub like this and the response from the server would be swapped for a 503 response:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stubFor</span><span class="o">(</span><span class="n">get</span><span class="o">(</span><span class="n">urlEqualTo</span><span class="o">(</span><span class="s">"/users/12345.json"</span><span class="o">))</span>
+  <span class="o">.</span><span class="na">willReturn</span><span class="o">(</span><span class="n">aResponse</span><span class="o">()</span>
+  <span class="o">.</span><span class="na">withStatus</span><span class="o">(</span><span class="mi">503</span><span class="o">)));</span>
+</code></pre></div></div>
+
+<p>Also, we can enable/disable pass through unmatched requests to the target indicated by the original requests by enabling/disabling proxyPassThrough flag. By default, flag is set to true.</p>
+
+<p>This flag can be enabled/disabled at startup either by passing CLI option while running jar as described in <a href="/2.x/running-standalone#command-line-options">Running Standalone</a> or by passing as options in Java client as shown below.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">WireMockServer</span> <span class="n">wireMockServer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">WireMockServer</span><span class="o">(</span><span class="n">options</span><span class="o">().</span><span class="na">proxyPassThrough</span><span class="o">(</span><span class="kc">false</span><span class="o">));</span>
+</code></pre></div></div>
+
+<p>We can also update this flag without WireMock restart either by using Admin API as described in <a href="/2.x/api/#tag/System/paths/~1__admin~1settings/post">API section</a> if we are running as standalone or by updating the global settings in Java client.</p>
+
+<p>Json payload to update via admin API</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+  </span><span class="nl">"proxyPassThrough"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">WireMock</span><span class="o">.</span><span class="na">updateSettings</span><span class="o">(</span><span class="nc">WireMock</span><span class="o">.</span><span class="na">getSettings</span><span class="o">().</span><span class="na">copy</span><span class="o">().</span><span class="na">proxyPassThrough</span><span class="o">(</span><span class="kc">false</span><span class="o">).</span><span class="na">build</span><span class="o">());</span>
+</code></pre></div></div>
+<h3 id="browser-proxying-of-https">
+  
+  
+    Browser proxying of HTTPS <a href="#browser-proxying-of-https" class="anchor">#</a>
+  
+  
+</h3>
+    
+
+<p>wiremock-jre8 allows forward proxying, stubbing &amp; recording of HTTPS traffic.</p>
+
+<p>This happens automatically when browser proxying is enabled.</p>
+
+<p><em>We strongly recommend using WireMock over HTTP to proxy HTTPS</em>; there are no associated security concerns, and proxying HTTPS over HTTPS is poorly supported by many clients.</p>
+
+<p>Note that when clients / operating systems distinguish between HTTP &amp; HTTPS proxies they are often referring to the scheme of the target server, not the scheme the proxy server is listening on.</p>
+<h4 id="getting-your-client-to-trust-the-certificate-presented-by-wiremock">
+  
+  
+    Getting your client to trust the certificate presented by WireMock <a href="#getting-your-client-to-trust-the-certificate-presented-by-wiremock" class="anchor">#</a>
+  
+  
+</h4>
+    
+
+<p>Normally when proxying HTTPS the proxy creates a TCP tunnel between the client and the target server, so the HTTPS session is between the client and the target server.
+While the proxy passes the bytes back and forward, it cannot understand them because there is end-to-end encryption between the client and the target.</p>
+
+<p>WireMock needs to decrypt the traffic in order to record or replace it with stubs.
+Consequently, there have to be two separate HTTPS sessions - one between WireMock and the target server, and one between the client and WireMock.
+This means that when you request https://www.example.com proxied via WireMock the HTTPS certificate will be presented by WireMock, not www.example.com.
+Inevitably it cannot be trusted by default - otherwise no internet traffic would be secure.</p>
+
+<p>WireMock uses a root Certificate Authority private key to sign a certificate for each host that it proxies.
+By default, WireMock will use a CA key store at <code class="language-plaintext highlighter-rouge">$HOME/.wiremock/ca-keystore.jks</code>.
+If this key store does not exist, WireMock will generate it with a new secure private key which should be entirely private to the system on which WireMock is running.
+You can provide a key store containing such a private key &amp; certificate yourself using the <code class="language-plaintext highlighter-rouge">--ca-keystore</code>, <code class="language-plaintext highlighter-rouge">--ca-keystore-password</code> &amp; <code class="language-plaintext highlighter-rouge">--ca-keystore-type</code> options.</p>
+
+<blockquote>
+  <p>See <a href="https://github.com/tomakehurst/wiremock/blob/master/scripts/create-ca-keystore.sh">this script</a>
+for an example of how to build a key &amp; valid self-signed root certificate called
+ca-cert.crt already imported into a keystore called ca-cert.jks.</p>
+</blockquote>
+
+<p>This CA certificate can be downloaded from WireMock: <a href="http://localhost:8080/__admin/certs/wiremock-ca.crt">http://localhost:8080/__admin/certs/wiremock-ca.crt</a>.
+There’s a link to the certificate on the recorder UI page at <a href="http://localhost:8080/__admin/recorder">http://localhost:8080/__admin/recorder</a>.
+Trusting this certificate will trust all certificates generated by it, allowing you to browse without client warnings.</p>
+
+<blockquote>
+  <p>On OS/X a certificate can be trusted by dragging ca-cert.crt onto Keychain Access,
+double clicking on the certificate and setting SSL to “always trust”.</p>
+</blockquote>
+
+<p>A few caveats:</p>
+
+<ul>
+  <li>This depends on internal sun classes; it works with OpenJDK 1.8 -&gt; 14, but may
+stop working in future versions or on other runtimes</li>
+  <li>It’s your responsibility to keep the private key &amp; keystore secure - if you
+add it to your trusted certs then anyone getting hold of it could potentially
+get access to any service you use on the web.</li>
+</ul>
+<h4 id="trusting-targets-with-invalid-https-certificates">
+  
+  
+    Trusting targets with invalid HTTPS certificates <a href="#trusting-targets-with-invalid-https-certificates" class="anchor">#</a>
+  
+  
+</h4>
+    
+
+<p>For convenience when acting as a <em>reverse</em> proxy WireMock ignores HTTPS certificate problems from the target such as untrusted certificates or incorrect hostnames on the certificate.
+When browser proxying, however, it is normal to proxy all traffic, often for the entire operating system.
+This would present a substantial security risk, so by default WireMock will verify the target certificates when browser proxying.
+You can trust specific hosts as follows:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>java <span class="nt">-jar</span> wiremock-jre8-standalone-2.35.0.jar <span class="nt">--enable-browser-proxying</span> <span class="nt">--trust-proxy-target</span> localhost <span class="nt">--trust-proxy-target</span> dev.mycorp.com
+</code></pre></div></div>
+
+<p>or if you’re not interested in security you can trust all hosts:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>java <span class="nt">-jar</span> wiremock-jre8-standalone-2.35.0.jar <span class="nt">--enable-browser-proxying</span> <span class="nt">--trust-all-proxy-targets</span>
+</code></pre></div></div>
+
+<p>Additional trusted public certificates can also be added to the keystore
+specified via the <code class="language-plaintext highlighter-rouge">--https-truststore</code>, and WireMock will then trust them without
+needing the <code class="language-plaintext highlighter-rouge">--trust-proxy-target</code> parameter (so long as they match the
+requested host).</p>
+<h4 id="proxying-https-on-the-https-endpoint">
+  
+  
+    Proxying HTTPS on the HTTPS endpoint <a href="#proxying-https-on-the-https-endpoint" class="anchor">#</a>
+  
+  
+</h4>
+    
+
+<p>The only use case we can think of for this is if you are using WireMock to test
+a generic HTTPS client, and want that HTTPS client to support proxying HTTPS over
+HTTPS. It has several problems. However, if you really must, there is limited support
+for doing so.</p>
+
+<p>Please be aware that many clients do not work very well with this
+configuration. For instance:</p>
+
+<p>Postman seems not to cope with an HTTPS proxy even to proxy HTTP traffic.</p>
+
+<p>Older versions of curl fail trying to do the CONNECT call because they try to do so
+over HTTP/2 (newer versions only offer HTTP/1.1 for the CONNECT call). At time
+of writing it works using <code class="language-plaintext highlighter-rouge">curl 7.64.1 (x86_64-apple-darwin19.0) libcurl/7.64.1 (SecureTransport) LibreSSL/2.8.3 zlib/1.2.11 nghttp2/1.39.2</code> as so:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">--proxy-insecure</span> <span class="nt">-x</span> https://localhost:8443 <span class="nt">-k</span> <span class="s1">'https://www.example.com/'</span>
+</code></pre></div></div>
+
+<p>You can force HTTP/1.1 in curl as so:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">--http1</span>.1 <span class="nt">--proxy-insecure</span> <span class="nt">-x</span> https://localhost:8443 <span class="nt">-k</span> <span class="s1">'https://www.example.com/'</span>
+</code></pre></div></div>
+
+<p>Please check your client’s behaviour proxying via another https proxy such as
+https://hub.docker.com/r/wernight/spdyproxy to see if it is a client problem before asking for help:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">--rm</span> <span class="nt">-it</span> <span class="nt">-p</span> 44300:44300 wernight/spdyproxy
+curl <span class="nt">--proxy-insecure</span> <span class="nt">-x</span> https://localhost:44300 <span class="nt">-k</span> <span class="s1">'https://www.example.com/'</span>
+</code></pre></div></div>
+<h4 id="security-concerns">
+  
+  
+    Security concerns <a href="#security-concerns" class="anchor">#</a>
+  
+  
+</h4>
+    
+
+<p>Acting as a man in the middle for HTTPS traffic has to be done at your own risk.
+Whilst best efforts have been taken to reduce your risk, you should be aware you are granting WireMock unencrypted access to all HTTPS traffic proxied via WireMock,
+and that as part of its normal operation WireMock may store that traffic, in memory or on the file system, or print it to the console.
+If you choose to trust the root CA certificate WireMock is using, or you choose to bypass HTTPS verification for some or all target servers,
+you should understand the risk involved.</p>
+<h2 id="proxying-via-another-proxy-server">
+  
+  
+    Proxying via another proxy server <a href="#proxying-via-another-proxy-server" class="anchor">#</a>
+  
+  
+</h2>
+    
+
+<p>If you’re inside a network that only permits HTTP traffic out to the
+internet via an opaque proxy you might wish to set up proxy mappings
+that route via this server. This can be configured programmatically by
+passing a configuration object to the constructor of <code class="language-plaintext highlighter-rouge">WireMockServer</code> or
+the JUnit rules like this:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">WireMockServer</span> <span class="n">wireMockServer</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">WireMockServer</span><span class="o">(</span><span class="n">options</span><span class="o">()</span>
+  <span class="o">.</span><span class="na">proxyVia</span><span class="o">(</span><span class="s">"proxy.mycorp.com"</span><span class="o">,</span> <span class="mi">8080</span><span class="o">)</span>
+<span class="o">);</span>
+</code></pre></div></div>
+<h2 id="proxying-to-a-target-server-that-requires-client-certificate-authentication">
+  
+  
+    Proxying to a target server that requires client certificate authentication <a href="#proxying-to-a-target-server-that-requires-client-certificate-authentication" class="anchor">#</a>
+  
+  
+</h2>
+    
+
+<p>WireMock’s proxy client will send a client certificate if the target
+service requires it and a trust store containing the certificate is
+configured:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Rule</span>
+<span class="kd">public</span> <span class="nc">WireMockRule</span> <span class="n">wireMockRule</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">WireMockRule</span><span class="o">(</span><span class="n">wireMockConfig</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">trustStorePath</span><span class="o">(</span><span class="s">"/path/to/truststore.jks"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">trustStorePassword</span><span class="o">(</span><span class="s">"mostsecret"</span><span class="o">));</span> <span class="c1">// Defaults to "password" if omitted</span>
+</code></pre></div></div>
+
+<p>See <a href="/2.x/running-standalone/">Running as a Standalone Process</a> for command line equivalent.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        <a class="page__meta-title" href="https://github.com/wiremock/wiremock.org/edit/main/_docs/proxying.md" target="_blank">
+            <img width="16px" src= "/images/logos/doc-sections/edit.svg" />
+            Improve this page
+        </a>
+        <a class="page__meta-title" href="https://github.com/wiremock/wiremock.org/issues/new?labels=bug&template=3-bug.yml&page=/docs/proxying/&title=Issue on Proxying" target="_blank">
+            <img width="16px" src= "/images/logos/doc-sections/bug.svg" />
+            Report an issue
+        </a>
+        <a class="page__meta-title" href="http://slack.wiremock.org/" target="_blank">
+            <img width="16px" src= "/images/logos/doc-sections/slack.svg" />
+            Ask on Slack
+        </a>
+        
+        
+
+
+
+      </footer>
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        
+<div class="page__footer-copyright">
+  <img src="/2.x/images/shortLogo.png" class="short-logo"/>
+
+  <span class="footer-copyright-description">&copy; 2025</span>
+
+  <ul class="footer-social-links">
+      <li>
+    <a href="http://github.com/wiremock" target="_blank">
+      <img src="/2.x/images/githubIcon.svg" />
+    </a>
+  </li>
+
+  </ul>
+</div>
+
+<script src="/2.x/assets/js/mobile-navbar.js"></script>
+<script src="/2.x/assets/js/codeTab.js"></script>
+<script src="/2.x/assets/js/sidebar-docs.js"></script>
+<script src="/2.x/assets/js/tracking-events.js"></script>
+<script src="/2.x/assets/js/faq.js"></script>
+
+      </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw=" crossorigin="anonymous"></script>
+    <!-- <script src="/2.x/assets/js/main.min.js"></script> -->
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  <script>
+  // Position footer at actual bottom of page content
+  function positionFooter() {
+    const footer = document.querySelector('.simple-footer');
+    if (!footer) return;
+    
+    const body = document.body;
+    const html = document.documentElement;
+    
+    // Get the actual height of all content
+    const contentHeight = Math.max(
+      body.scrollHeight,
+      body.offsetHeight,
+      html.clientHeight,
+      html.scrollHeight,
+      html.offsetHeight
+    );
+    
+    // Position footer at the bottom of all content
+    footer.style.top = (contentHeight - footer.offsetHeight) + 'px';
+  }
+  
+  // Position footer when page loads and on resize
+  document.addEventListener('DOMContentLoaded', positionFooter);
+  window.addEventListener('resize', positionFooter);
+  window.addEventListener('load', positionFooter);
+  </script>
+
+  <!-- Simple Footer HTML -->
+  <div class="simple-footer">
+    © 2025 WireMock Inc. | <a href="https://wiremock.org">WireMock</a> | <a href="https://github.com/wiremock/wiremock">GitHub</a>
+  </div>
+  
+  <script>
+  // Position footer at actual bottom of page content
+  function positionFooter() {
+    const footer = document.querySelector('.simple-footer');
+    if (!footer) return;
+    
+    const body = document.body;
+    const html = document.documentElement;
+    
+    // Get the actual height of all content
+    const contentHeight = Math.max(
+      body.scrollHeight,
+      body.offsetHeight,
+      html.clientHeight,
+      html.scrollHeight,
+      html.offsetHeight
+    );
+    
+    // Position footer at the bottom of all content
+    footer.style.top = (contentHeight - footer.offsetHeight) + 'px';
+  }
+  
+  // Position footer when page loads and on resize
+  document.addEventListener('DOMContentLoaded', positionFooter);
+  window.addEventListener('resize', positionFooter);
+  window.addEventListener('load', positionFooter);
+  </script>
+</body>
+</html>
+
