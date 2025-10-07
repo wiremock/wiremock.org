@@ -43,6 +43,10 @@ jobs:
       - name: Build the docs site
         run: mkdocs build
 
+      - name: Update Amplify redirects
+        run: |
+          aws amplify update-app --app-id d1rkup1qsf4ckf --custom-rules "$(cat amplify-redirects.json)"
+
       - name: Deploy to Amplify
         run: |
           bash -x ./deploy-amplify.sh    
