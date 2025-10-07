@@ -30,12 +30,6 @@
         "condition": null
     },
     {
-        "source": "/docs/spring-boot",
-        "target": "/docs/solutions/spring-boot",
-        "status": "301",
-        "condition": null
-    },
-    {
         "source": "/docs/api",
         "target": "/docs/standalone/admin-api-reference",
         "status": "301",
@@ -275,6 +269,11 @@
     {
         "source": "/docs/junit-5.html",
         "target": "/docs/junit-jupiter",
+        "status": "301"
+    },
+    {
+        "source": "/external-resources",
+        "target": "/docs/external-resources/",
         "status": "301"
     }
 ]
