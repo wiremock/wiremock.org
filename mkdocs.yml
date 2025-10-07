@@ -75,8 +75,9 @@ extra:
   wiremock_4_version: 4.0.0-beta.10
   grpc_extension_version: 0.11.0
   spring_boot_integration_version: 3.10.0
+  2x_docs_path: site/2x
   analytics:
-    provider: google
+    provider: custom
     property: G-KN208QTJLZ
 
 extra_css:
@@ -92,7 +93,3 @@ hooks:
 watch:
   - docs
   - overrides
-
-# Copy 2.x static files to the built site
-extra:
-  2x_docs_path: site/2x
