@@ -14,6 +14,7 @@ def on_post_build(config, **kwargs):
     copy_file('static_assets/html/index.html', os.path.join(site_dir, 'index.html'))
     copy_directory('static_assets/svg', os.path.join(site_dir, 'assets/svg'))
     copy_directory('static_assets/images', os.path.join(site_dir, 'images'))
+    copy_file('static_assets/robots.txt', os.path.join(site_dir, 'robots.txt'))
 
 def copy_directory(source_path, target_path):
     if os.path.exists(source_path) and os.path.isdir(source_path):
