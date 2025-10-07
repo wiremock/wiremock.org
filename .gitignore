@@ -27,6 +27,7 @@ venv/
 site/
 *.zip
 CLAUDE.md
+.claude
 
 __pycache__/
 

@@ -10,7 +10,7 @@
 <h2>Getting Started</h2>
 
 <div class="grid-container">
-  <a class="card" href="What-Is-WireMock.Net/">
+  <a class="card" href="what-is-wiremock-net/">
     <img src="assets/images/logos/doc-sections/summary.svg" />
     Overview
   </a>
@@ -52,11 +52,11 @@
     <img src="assets/images/logos/doc-sections/cloud.svg" />
     Windows Service
   </a>
-  <a class="card" href="WireMock-as-a-(Azure)-Web-App/">
+  <a class="card" href="wiremock-as-a-azure-web-app/">
     <img src="assets/images/logos/doc-sections/cloud.svg" />
     Azure Web App
   </a>
-  <a class="card" href="Using-WireMock.Net.Testcontainers/">
+  <a class="card" href="using-wiremock-net-testcontainers/">
     <img src="assets/images/logos/technology/docker.svg" />
     Testcontainers
   </a>
