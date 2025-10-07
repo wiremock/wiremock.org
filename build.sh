@@ -14,6 +14,8 @@ fi
 # Activate virtual environment
 source venv/bin/activate
 
+mkdocs --version
+
 # Build the site
 mkdocs build
 

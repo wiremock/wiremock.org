@@ -41,7 +41,7 @@ jobs:
         run: pip install -r requirements.txt
   
       - name: Build the docs site
-        run: mkdocs build -c -v
+        run: bash -x ./build.sh
 
       - name: Deploy to Amplify
         run: |
