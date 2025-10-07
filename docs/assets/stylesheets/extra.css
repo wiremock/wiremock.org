@@ -746,6 +746,7 @@ header .md-search__input::placeholder {
 .md-nav__search-simple input,
 .md-nav__search-simple input::before,
 .md-nav__search-simple input::after {
+  height: auto !important;
   border-radius: var(--radius-sm) !important;
   box-shadow: none !important;
   background-color: var(--color-white) !important;
@@ -829,12 +830,12 @@ header .md-search__input::placeholder {
 .md-nav__search-simple .md-search__icon {
   position: absolute;
   right: var(--space-3);
-  top: 25%;
-  transform: translateY(-25%);
+  top: 50%;
+  transform: translateY(-50%);
   color: var(--color-text-tertiary);
   cursor: pointer;
-  width: 16px;
-  height: 16px;
+  width: 24px !important;
+  height: 24px !important;
   pointer-events: none;
   z-index: 2;
 }
