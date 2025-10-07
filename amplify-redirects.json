@@ -258,5 +258,20 @@
         "source": "/external-resources",
         "target": "/docs/external-resources/",
         "status": "301"
+    },
+    {
+        "source": "/quickstart",
+        "target": "/docs/quickstart/java-junit/",
+        "status": "301"
+    },
+    {
+        "source": "/docs/quickstart",
+        "target": "/docs/quickstart/java-junit/",
+        "status": "301"
+    },
+    {
+        "source": "/docs/solutions",
+        "target": "/docs/",
+        "status": "301"
     }
 ]
