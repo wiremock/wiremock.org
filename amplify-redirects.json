@@ -2,104 +2,87 @@
     {
         "source": "/docs/android",
         "target": "/docs/solutions/android",
-        "status": "301",
-        "condition": null
+        "status": "301"
     },
     {
         "source": "/docs/go",
         "target": "/docs/solutions/golang",
-        "status": "301",
-        "condition": null
+        "status": "301"
     },
     {
         "source": "/docs/solutions/go",
         "target": "/docs/solutions/golang",
-        "status": "301",
-        "condition": null
+        "status": "301"
     },
     {
         "source": "/docs/graphql",
         "target": "/docs/solutions/graphql",
-        "status": "301",
-        "condition": null
+        "status": "301"
     },
     {
         "source": "/docs/testcontainers",
         "target": "/docs/solutions/testcontainers",
-        "status": "301",
-        "condition": null
+        "status": "301"
     },
     {
         "source": "/docs/api",
         "target": "/docs/standalone/admin-api-reference",
-        "status": "301",
-        "condition": null
+        "status": "301"
     },
     {
         "source": "/docs/download",
         "target": "/docs/download-and-installation",
-        "status": "301",
-        "condition": null
+        "status": "301"
     },
     {
         "source": "/docs/tutorials",
         "target": "/docs/getting-started",
-        "status": "301",
-        "condition": null
+        "status": "301"
     },
     {
         "source": "/docs/plain-java",
         "target": "/docs/java-usage",
-        "status": "301",
-        "condition": null
+        "status": "301"
     },
     {
         "source": "/docs/junit-rule",
         "target": "/docs/junit-extensions",
-        "status": "301",
-        "condition": null
+        "status": "301"
     },
     {
         "source": "/docs/junit-4",
         "target": "/docs/junit-extensions",
-        "status": "301",
-        "condition": null
+        "status": "301"
     },
     {
         "source": "/docs/junit-5",
         "target": "/docs/junit-jupiter",
-        "status": "301",
-        "condition": null
+        "status": "301"
     },
     {
         "source": "/docs/docker",
         "target": "/docs/standalone/docker",
-        "status": "301",
-        "condition": null
+        "status": "301"
     },
     {
         "source": "/docs/solutions/docker",
         "target": "/docs/standalone/docker",
-        "status": "301",
-        "condition": null
+        "status": "301"
     },
     {
         "source": "/docs/running-standalone",
         "target": "/docs/standalone/java-jar",
-        "status": "301",
-        "condition": null
+        "status": "301"
     },
     {
         "source": "/docs/support",
         "target": "/docs/../support",
-        "status": "301",
-        "condition": null
+        "status": "301"
     },
     {
         "source": "/docs/solutions",
         "target": "/docs/README",
-        "status": "301",
-        "condition": null
+        "status": "301"
     },
     {
         "source": "/docs/stateful-behaviour.html",
