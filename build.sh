@@ -16,7 +16,10 @@ source venv/bin/activate
 
 mkdocs --version
 
+# Clean up
+rm -rf site/
+
 # Build the site
-mkdocs build
+mkdocs build -c
 
 echo "✅ Build complete! Site built to 'site/' directory"
