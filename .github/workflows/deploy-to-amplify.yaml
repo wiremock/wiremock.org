@@ -41,12 +41,12 @@ jobs:
         run: pip install -r requirements.txt
   
       - name: Build the docs site
-        run: mkdocs build
-
-      - name: Update Amplify redirects
-        run: |
-          aws amplify update-app --app-id d1rkup1qsf4ckf --custom-rules "$(cat amplify-redirects.json)"
+        run: mkdocs build -c -v
 
       - name: Deploy to Amplify
         run: |
           bash -x ./deploy-amplify.sh    
+
+      - name: Update Amplify redirects
+        run: |
+          aws amplify update-app --app-id d1rkup1qsf4ckf --custom-rules "$(cat amplify-redirects.json)"
