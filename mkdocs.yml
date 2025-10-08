@@ -88,8 +88,8 @@ extra_javascript:
   - assets/javascripts/sidebar-search.js
 
 hooks:
-  - copy_2x_docs.py
-  - copy_static_assets.py
+  - hooks/copy_2x_docs.py
+  - hooks/copy_static_assets.py
 
 watch:
   - docs

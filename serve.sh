@@ -28,4 +28,4 @@ echo "🔄 Files will be watched for changes and automatically reloaded"
 echo ""
 echo "Press Ctrl+C to stop the server"
 
-mkdocs serve
+mkdocs serve -q --watch-theme

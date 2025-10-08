@@ -339,7 +339,7 @@ The repo includes a few convenience scripts to help setup and run the project in
 This script simply installs all dependencies in the `requirements.txt`
 
 ```bash
-./dev/setup_env.sh
+./init.sh
 ```
 
 - Serve
@@ -349,7 +349,7 @@ This script starts the mkdocs live preview server so you can preview as you writ
 > Note: If you make changes to the config files the server will have to be restarted manually for the changes to be reflected
 
 ```bash
-./dev/serve.sh
+./serve.sh
 ```
 
 - Build
@@ -357,7 +357,7 @@ This script starts the mkdocs live preview server so you can preview as you writ
 This builds the mkdocs documentation which generates a `site` folder with the rendered HTML documents.
 
 ```bash
-./dev/build.sh
+./build.sh
 ```
 
 Mkdocs provides [additional options](https://www.mkdocs.org/user-guide/cli/) for the commandline interface if needed.

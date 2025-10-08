@@ -38,7 +38,7 @@ jobs:
           python-version: "3.13"
 
       - name: Init venv
-        run: ./dev/init.sh
+        run: ./init.sh
   
       - name: Build the docs site
         run: bash -x ./build.sh
