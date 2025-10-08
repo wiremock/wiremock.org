@@ -1154,6 +1154,7 @@ header .md-search__input::placeholder {
 /* Ensure search icon and input are properly separated */
 .md-search[data-md-state="active"] .md-search__form > * {
   position: relative !important;
+  top: 0;
 }
 
 /* Override any Material theme positioning that might place icon inside input */
