@@ -332,7 +332,9 @@ The primary customization involves the `header.html` file. This file contains th
 
 ## Build and Serve
 
-The repo includes a few convenience scripts to help setup and run the project in the `dev` directory. 
+The repo includes convenience scripts to help setup and run the project.
+
+### Unix/Linux/macOS
 
 - Setup
 
@@ -344,7 +346,7 @@ This script simply installs all dependencies in the `requirements.txt`
 
 - Serve
 
-This script starts the mkdocs live preview server so you can preview as you write your documentation. The server will automatically rebuild the site upon saving. 
+This script starts the mkdocs live preview server so you can preview as you write your documentation. The server will automatically rebuild the site upon saving.
 
 > Note: If you make changes to the config files the server will have to be restarted manually for the changes to be reflected
 
@@ -358,6 +360,34 @@ This builds the mkdocs documentation which generates a `site` folder with the re
 
 ```bash
 ./build.sh
+```
+
+### Windows
+
+- Setup
+
+This script installs all dependencies in the `requirements.txt`
+
+```cmd
+init.bat
+```
+
+- Serve
+
+This script starts the mkdocs live preview server so you can preview as you write your documentation. The server will automatically rebuild the site upon saving.
+
+> Note: If you make changes to the config files the server will have to be restarted manually for the changes to be reflected
+
+```cmd
+serve.bat
+```
+
+- Build
+
+This builds the mkdocs documentation which generates a `site` folder with the rendered HTML documents.
+
+```cmd
+build.bat
 ```
 
 Mkdocs provides [additional options](https://www.mkdocs.org/user-guide/cli/) for the commandline interface if needed.
