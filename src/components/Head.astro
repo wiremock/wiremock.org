@@ -1,9 +1,25 @@
 ---
 // Custom Head component for WireMock to add Google Analytics
+// IMPORTANT: This extends Starlight's default Head to preserve SEO metadata
 import type { Props } from '@astrojs/starlight/props';
+
+// Get Starlight's default head content (includes title, meta description, OG tags, canonical, etc.)
+const { head } = Astro.locals.starlightRoute;
 ---
 
-<meta charset="utf-8" />
+<!-- Starlight's default head content - DO NOT REMOVE -->
+<!-- This includes: title, meta description, canonical URL, Open Graph tags, language tags, etc. -->
+{head.map(({ tag: Tag, attrs, content }) => <Tag {...attrs} set:html={content} />)}
+
+<!-- Custom WireMock additions below -->
+
+<!-- Default OG Image for social sharing -->
+<meta property="og:image" content="https://wiremock.org/images/opengraphs/default.png" />
+<meta property="og:image:width" content="960" />
+<meta property="og:image:height" content="540" />
+<meta property="og:image:alt" content="WireMock - API Mocking for Testing and Development" />
+<meta name="twitter:image" content="https://wiremock.org/images/opengraphs/default.png" />
+<meta name="twitter:image:alt" content="WireMock - API Mocking for Testing and Development" />
 
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6G6E8F439F"></script>
