@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightSidebarTopics from 'starlight-sidebar-topics';
+import starlightLlmsTxt from 'starlight-llms-txt';
 import { staticIndexHtmlMiddleware } from './vite-plugins/static-index-html-middleware.js';
 import { copyStaticHomepage } from './integrations/copy-static-homepage.js';
 
@@ -35,6 +36,7 @@ export default defineConfig({
                 './src/styles/custom.css',
             ],
             plugins: [
+                starlightLlmsTxt(),
                 starlightSidebarTopics([
                     {
                         id: 'java',
