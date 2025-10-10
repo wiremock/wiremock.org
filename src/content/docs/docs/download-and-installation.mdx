@@ -2,20 +2,14 @@
 title: "Download and Installation"
 ---
 
-import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { Tabs, TabItem, Aside, Card, LinkButton, Icon } from '@astrojs/starlight/components';
+import CloudCallout from '../../../components/CloudCallout.astro';
 
-{/* TODO: Review and update relative links for Starlight structure */}
 
+<CloudCallout title="Try WireMock Cloud" icon="rocket">
+    Create publicly hosted mock APIs without anything to install. <br/>[**Explore mocking in the Cloud >**](https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-install&utm_id=cloud-callouts&utm_term=cloud-callouts-install)
+</CloudCallout>
 
-<br />
-
-:::note[WireMock Cloud]
-
-    [To create publicly hosted mock APIs without anything to install, learn more about WireMock Cloud.](https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-install&utm_id=cloud-callouts&utm_term=cloud-callouts-install)
-
-:::
-
-## Download options
 
 WireMock Java is distributed in two flavours - a standard JAR containing just WireMock, and a standalone uber JAR containing
 WireMock plus all its dependencies.
@@ -31,9 +25,6 @@ WireMock currently has two releases available.  The `3.x` release (below) and th
 
 ### Test dependencies
 
-
-
-!!! Test ""
 
 <Tabs>
 <TabItem label="Maven">
