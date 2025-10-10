@@ -3,7 +3,6 @@ title: "WireMock Spring Boot Integration"
 ---
 
 
-<br>
 
 WireMock's Spring Boot integration provides a simple, declarative way to configure and run one or more WireMock instances their JUnit tests.
 

@@ -2,10 +2,7 @@
 title: "Frequently Asked Questions"
 ---
 
-<!-- TODO: Review and update relative links for Starlight structure -->
 
-
-<br>
 
 Here, you can find information about what API mocking and WireMock are, as well as recommendations and best practices for different challenges in various areas of WireMock.
 

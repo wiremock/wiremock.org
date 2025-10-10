@@ -3,7 +3,6 @@ title: "Listening for Serve Events"
 ---
 
 
-<br>
 
 Serve event listeners are intended for use when you wish to take an action at a specific point in the request processing flow, without affecting processing in any way. For instance a serve event listener would be the most suitable extension point to use for exporting telemetry data to a monitoring/observability tool.
 

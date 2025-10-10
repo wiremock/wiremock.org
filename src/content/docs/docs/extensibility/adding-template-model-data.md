@@ -3,7 +3,6 @@ title: "Adding Template Model Data"
 ---
 
 
-<br>
 
 Extensions that implement the `TemplateModelDataProviderExtension` interface provide additional model elements to the templating system:
 

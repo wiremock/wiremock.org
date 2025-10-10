@@ -3,8 +3,6 @@ title: "WireMock Java - API Mocking for Java and JVM"
 description: "WireMock is a popular open-source tool for API mock testing with over 5 million downloads per month."
 ---
 
-<!-- TODO: Convert HTML grid to Starlight Card/CardGrid components -->
-<!-- TODO: Review and update relative links for Starlight structure -->
 
 # Welcome to WireMock Java
 

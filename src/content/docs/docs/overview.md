@@ -2,10 +2,7 @@
 title: "Overview"
 ---
 
-<!-- TODO: Review and update relative links for Starlight structure -->
 
-
-<br>
 
 **WireMock** is a popular open-source tool for API mock testing
 with over 5 million downloads per month.

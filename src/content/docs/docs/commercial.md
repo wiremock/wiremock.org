@@ -3,7 +3,6 @@ title: "Commercial Support"
 ---
 
 
-<br>
 
 WireMock is an open source project.
 In accordance with the [Apache License 2.0](https://github.com/wiremock/wiremock/blob/master/LICENSE.txt),

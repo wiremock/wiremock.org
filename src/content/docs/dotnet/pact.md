@@ -2,8 +2,6 @@
 title: Pact
 ---
 
-<!-- TODO: Review and update relative links for Starlight structure -->
-
 # Pact(flow)
 
 **Pactflow.** Contract testing for teams.

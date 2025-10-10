@@ -3,7 +3,6 @@ title: "JSON Web Tokens (JWT)"
 ---
 
 
-<br>
 
 The JWT extension provides support for generating JWTs and corresponding JSON Web Key Sets (JWKS) in stub responses via response templating.
 

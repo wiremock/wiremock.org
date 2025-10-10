@@ -3,7 +3,6 @@ title: "WireMock on Java 1.7"
 ---
 
 
-<br>
 
 
 > **WARNING:** Recent WireMock versions do not support Java 1.7, but you can run older versions to achieve that.

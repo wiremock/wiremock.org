@@ -7,7 +7,6 @@ The following commandline arguments can be defined for:
 - [[WireMock as a standalone process]]
 - [WireMock.Net running as Docker](https://github.com/WireMock-Net/WireMock.Net-docker)
 
-<br>
 
 ### Settings
 | Argument Name| Value Type | Default | Description |

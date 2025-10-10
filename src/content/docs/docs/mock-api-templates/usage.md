@@ -2,10 +2,7 @@
 title: "Using Mock API Templates"
 ---
 
-<!-- TODO: Review and update relative links for Starlight structure -->
 
-
-<br>
 
 This guide explains how to run an API template after you've downloaded the JSON file from the library page.
 

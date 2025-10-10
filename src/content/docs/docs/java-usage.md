@@ -2,10 +2,7 @@
 title: "Plain Java"
 ---
 
-<!-- TODO: Review and update relative links for Starlight structure -->
 
-
-<br>
 
 If you're not using JUnit or neither of the WireMock rules manage its
 lifecycle in a suitable way you can construct and start the server

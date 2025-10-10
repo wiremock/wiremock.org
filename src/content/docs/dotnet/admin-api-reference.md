@@ -109,8 +109,7 @@ The mappings defined in the mock service.
 * `GET    /__admin/mappings/{guid}` --> Get a single stub mapping
 * `PUT    /__admin/mappings/{guid}` --> Update a stub mapping
 * `DELETE /__admin/mappings/{guid}` --> Delete a single stub mapping
-* `POST   /__admin/mappings/save` --> Save all persistent stub mappings to the disk<br>
-  (by default this is \bin\{x}\__admin\mappings_. Where {x} is the platform + build configuration)
+* `POST   /__admin/mappings/save` --> Save all persistent stub mappings to the disk  (by default this is \bin\{x}\__admin\mappings_. Where {x} is the platform + build configuration)
 
 ## /admin/files
 The files which can be used in the mappings.

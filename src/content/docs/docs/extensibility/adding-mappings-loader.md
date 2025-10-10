@@ -3,7 +3,6 @@ title: "Mappings Loader Extensions"
 ---
 
 
-<br>
 
 Additional source to load the stub mappings can be configured by implementing `MappingsLoaderExtension`.
 

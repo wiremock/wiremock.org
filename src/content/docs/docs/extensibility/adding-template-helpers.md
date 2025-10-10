@@ -3,7 +3,6 @@ title: "Adding Template Helpers"
 ---
 
 
-<br>
 
 Extensions that implement the `TemplateHelperProviderExtension` interface provide additional Handlebars helpers to the templating system:
 

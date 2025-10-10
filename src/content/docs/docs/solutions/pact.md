@@ -2,10 +2,7 @@
 title: "Using WireMock with Pact"
 ---
 
-<!-- TODO: Review and update relative links for Starlight structure -->
 
-
-<br>
 
 ## WireMock Pact
 

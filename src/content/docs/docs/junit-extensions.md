@@ -2,10 +2,7 @@
 title: "JUnit 4 and Vintage"
 ---
 
-<!-- TODO: Review and update relative links for Starlight structure -->
 
-
-<br>
 
 WireMock includes a JUnit rule, compatible with JUnit 4.x and JUnit 5 Vintage.
 This provides a convenient way to manage one or more WireMock instances in your

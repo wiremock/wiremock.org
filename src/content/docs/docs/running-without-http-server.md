@@ -2,10 +2,7 @@
 title: "Running without the HTTP Server"
 ---
 
-<!-- TODO: Review and update relative links for Starlight structure -->
 
-
-<br>
 
 If you want to run Wiremock inside another process, such as wrapping it in a serverless function such as on AWS Lambda, or using it as part of an application's integration tests, you previously would need to resort to [Running as a Standalone Process](../standalone/).
 

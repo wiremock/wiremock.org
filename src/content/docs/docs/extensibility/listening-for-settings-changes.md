@@ -3,7 +3,6 @@ title: "Listening for Settings Changes"
 ---
 
 
-<br>
 
 You can listen for changes to the global settings object.
 

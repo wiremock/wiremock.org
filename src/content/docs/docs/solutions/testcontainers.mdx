@@ -3,8 +3,7 @@ title: "WireMock and Testcontainers"
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
-
-{/* TODO: Review and update relative links for Starlight structure */}
+import CloudCallout from '../../../../components/CloudCallout.astro';
 
 
 <br />
@@ -17,11 +16,10 @@ import { Tabs, TabItem } from '@astrojs/starlight/components';
     </div>
 </div>
 
-:::note[WireMock Cloud]
-
-    [Centralize and scale your API mocks with WireMock Cloud.](https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-solutiontestcontainer&utm_id=cloud-callouts&utm_term=cloud-callouts-solutiontestcontainer)
-
-:::
+<CloudCallout title="WireMock Cloud" icon="rocket">
+    Centralize and scale your API mocks with WireMock Cloud.
+    [**Try WireMock Cloud >**](https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-solutiontestcontainer&utm_id=cloud-callouts&utm_term=cloud-callouts-solutiontestcontainer)
+</CloudCallout>
 
 The WireMock community provides modules for [Testcontainers](https://testcontainers.com/).
 They allow provisioning the WireMock server as a standalone container within your tests,

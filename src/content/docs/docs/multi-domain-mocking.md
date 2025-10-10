@@ -2,10 +2,7 @@
 title: "Multi-domain Mocking"
 ---
 
-<!-- TODO: Review and update relative links for Starlight structure -->
 
-
-<br>
 
 A typical usage pattern is to run a WireMock instance per API you need to mock and configure your app to treat these instances
 as endpoints.

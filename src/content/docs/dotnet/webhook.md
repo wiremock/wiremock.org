@@ -2,7 +2,6 @@
 title: Webhook
 ---
 
-<br>
 
 It's also possible to define a Webhook (or multiple Webhooks) for a mapping. 
 

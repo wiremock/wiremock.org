@@ -3,7 +3,6 @@ title: "Serving HTTPS"
 ---
 
 
-<br>
 
 WireMock can optionally accept requests over HTTPs. By default it will serve its own self-signed TLS certificate, but this can be
 overridden if required by providing a keystore containing another certificate.

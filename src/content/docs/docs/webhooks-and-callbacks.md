@@ -2,10 +2,7 @@
 title: "Webhooks and Callbacks"
 ---
 
-<!-- TODO: Review and update relative links for Starlight structure -->
 
-
-<br>
 
 WireMock can make asynchronous outbound HTTP calls when an incoming request is matched to a specific stub. This pattern
 is commonly referred to as webhooks or callbacks and is a common design in APIs that need to proactively notify their clients

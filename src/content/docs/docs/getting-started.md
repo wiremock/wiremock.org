@@ -2,10 +2,7 @@
 title: "WireMock Tutorials"
 ---
 
-<!-- TODO: Review and update relative links for Starlight structure -->
 
-
-<br>
 
 Getting Started with WireMock in your project?
 Check out the guidelines below.

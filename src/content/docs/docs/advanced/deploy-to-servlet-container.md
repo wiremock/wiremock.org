@@ -4,7 +4,6 @@ title: "Deploying into a servlet container"
 
 
 
-<br>
 
 
 WireMock can be packaged up as a WAR and deployed into a servlet
