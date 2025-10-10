@@ -17,6 +17,15 @@ export function copyStaticHomepage() {
 					fs.copyFileSync(sourceFile, destFile);
 					console.log('✓ Copied static homepage to build output');
 				}
+
+				// Copy robots.txt to the root of the build output
+				const robotsSource = path.join(process.cwd(), 'public', 'robots.txt');
+				const robotsDest = path.join(dir.pathname, 'robots.txt');
+
+				if (fs.existsSync(robotsSource)) {
+					fs.copyFileSync(robotsSource, robotsDest);
+					console.log('✓ Copied robots.txt to build output');
+				}
 			}
 		}
 	};
