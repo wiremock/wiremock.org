@@ -1,0 +1,21 @@
+---
+const { title, description, actionText, href } = Astro.props;
+---
+
+<div class="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition-colors">
+    <div class="flex items-center mb-3">
+        <slot name="svg" />
+        <div>
+            <h3 class="text-lg font-semibold dark:text-gray-300 text-gray-900">{title}</h3>
+            <p class="text-sm dark:text-gray-300 text-gray-600">{description}</p>
+        </div>
+    </div>
+    <a href={href} data-slot="button" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm disabled:pointer-events-none disabled:opacity-50 shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive h-9 px-4 py-2 w-full bg-blue-600 hover:bg-blue-700 !text-white font-medium shadow-md hover:shadow-lg transform transition-all duration-200">
+        {actionText}
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right ml-2 h-4 w-4">
+            <path d="M5 12h14"></path>
+            <path d="m12 5 7 7-7 7"></path>
+        </svg>
+    </a>
+</div>

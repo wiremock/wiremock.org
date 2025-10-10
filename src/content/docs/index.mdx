@@ -1,0 +1,59 @@
+---
+title: Starlight 🌟 Build documentation sites with Astro
+head:
+  - tag: title
+    content: Starlight 🌟 Build documentation sites with Astro
+description: Starlight helps you build beautiful, high-performance documentation websites with Astro.
+template: splash
+editUrl: false
+lastUpdated: false
+hero:
+  title: Mock APIs. Ship Faster.
+  tagline: WireMock is the industry standard for scalable API mocking. Test your applications without dependencies, simulate edge cases, and enable teams to develop in parallel.
+  image:
+    file: ../../assets/images/wm-concept-01.svg
+---
+import { CardGrid } from '@astrojs/starlight/components';
+import Card from '../../components/Card.astro';
+import SmallerCard from '../../components/SmallCard.astro';
+import Why from '../../components/Why.astro';
+import Community from '../../components/Community.astro';
+import CloudHero from '../../components/CloudHero.astro';
+
+<div class="not-content">
+    <CardGrid>
+        <Card title="Open Source" description="Self-hosted API mocking for your development workflow">
+            <SmallerCard title="Java and Standalone" description="Original JVM library" actionText="Get started" href="/docs/">
+                <svg class="h-6 w-6 text-blue-600 mr-3" viewBox="0 0 24 24" fill="currentColor" slot="svg">
+                    <path d="M8.851 18.56s-.917.534.653.714c1.902.218 2.874.187 4.969-.211 0 0 .552.346 1.321.646-4.699 2.013-10.633-.118-6.943-1.149M8.276 15.933s-1.028.761.542.924c2.032.209 3.636.227 6.413-.308 0 0 .384.389.987.602-5.679 1.661-12.007.13-7.942-1.218M13.116 11.475c1.158 1.333-.304 2.533-.304 2.533s2.939-1.518 1.589-3.418c-1.261-1.772-2.228-2.652 3.007-5.688 0-.001-8.216 2.051-4.292 6.573M19.33 20.504s.679.559-.747.991c-2.712.822-11.288 1.069-13.669.033-.856-.373.75-.89 1.254-.998.527-.114.828-.093.828-.093-.953-.671-6.156 1.317-2.643 1.887 9.58 1.553 17.462-.7 14.977-1.82M9.292 13.21s-4.362 1.036-1.544 1.412c1.189.159 3.561.123 5.77-.062 1.806-.152 3.618-.477 3.618-.477s-.637.272-1.098.587c-4.429 1.165-12.986.623-10.522-.568 2.082-1.006 3.776-.892 3.776-.892M17.116 17.584c4.503-2.34 2.421-4.589.968-4.285-.355.074-.515.138-.515.138s.132-.207.385-.297c2.875-1.011 5.086 2.981-.928 4.562 0-.001.07-.062.09-.118M14.401 0s2.494 2.494-2.365 6.33c-3.896 3.077-.888 4.832-.001 6.836-2.274-2.053-3.943-3.858-2.824-5.539 1.644-2.469 6.197-3.665 5.19-7.627M9.734 23.924c4.322.277 10.959-.153 11.116-2.198 0 0-.302.775-3.572 1.391-3.688.694-8.239.613-10.937.168 0-.001.553.457 3.393.639">
+                    </path>
+                </svg>
+            </SmallerCard>
+            <SmallerCard title=".NET" description="Native .NET implementation" actionText="Get started" href="/dotnet/">
+                <svg class="h-6 w-6 text-blue-600 mr-3" viewBox="0 0 24 24" fill="currentColor" slot="svg">
+                    <path d="M24 8.77h-2.468v7.565h-1.425V8.77h-2.462V7.53H24zm-6.852 7.565h-4.821V7.53h4.63v1.24h-3.205v2.494h2.953v1.234h-2.953v2.604h3.396zm-6.708 0H8.882L4.78 9.863a2.896 2.896 0 0 1-.258-.51h-.036c.032.189.048.592.048 1.21v5.772H3.157V7.53h1.659l3.965 6.32c.167.261.275.442.323.54h.024c-.04-.233-.06-.629-.06-1.185V7.529h1.372zm-8.703-.693a.868.868 0 0 1-.869.693.868.868 0 0 1-.868-.693.868.868 0 0 1 .868-.692.868.868 0 0 1 .869.692z">
+                    </path>
+                </svg>
+            </SmallerCard>
+        </Card>
+        <Card title="Cloud" description="Hosted platform with team collaboration and AI features">
+            <SmallerCard title="Run Anywhere" description="Record and run mock APIs locally, in-cluster, or as part of CI/CD" actionText="Start With WireMock Cloud Runner" href="https://wiremock.io/">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-terminal h-6 w-6 text-blue-600 mr-3" slot="svg">
+                    <polyline points="4 17 10 11 4 5"></polyline>
+                    <line x1="12" x2="20" y1="19" y2="19"></line>
+                </svg>
+            </SmallerCard>
+            <SmallerCard title="Web" description="Browser-based UI and collaboration" actionText="Start With Web" href="">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-globe h-6 w-6 text-blue-600 mr-3" slot="svg">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                    <path d="M2 12h20"></path>
+                </svg>
+            </SmallerCard>
+        </Card>
+    </CardGrid>
+
+    <Why />
+    <Community />
+    <CloudHero />
+</div>
