@@ -1,5 +1,0 @@
-site_name:  Beta
-docs_dir: ./docs
-
-nav:
-  - WireMock Beta: index.md

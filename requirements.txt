@@ -1,8 +1,0 @@
-mkdocs==1.6.1
-mkdocs-material
-mkdocs-monorepo-plugin
-mkdocs-breadcrumbs-plugin
-mkdocs-macros-plugin
-mkdocs-redirects
-mkdocs-linkcheck
-mkdocs-redoc-tag

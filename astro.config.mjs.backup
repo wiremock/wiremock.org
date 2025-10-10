@@ -1,0 +1,229 @@
+// @ts-check
+import { defineConfig } from 'astro/config';
+import starlight from '@astrojs/starlight';
+
+// https://astro.build/config
+export default defineConfig({
+	site: 'https://wiremock.org',
+	integrations: [
+		starlight({
+			title: 'WireMock',
+			description: 'WireMock is a flexible API mocking tool for fast, robust and comprehensive testing.',
+			logo: {
+				src: './src/assets/wiremock-oss-logo.png',
+			},
+			social: [
+				{
+					label: 'GitHub',
+					icon: 'github',
+					href: 'https://github.com/wiremock/wiremock',
+				},
+			],
+			customCss: [
+				'./src/styles/custom.css',
+			],
+			sidebar: {
+				'/java/': [
+					{
+					label: 'WireMock Java',
+					items: [
+						{ label: 'Overview', slug: 'java' },
+						{ label: 'v4 Beta', slug: 'java/v4' },
+						{
+							label: 'Getting started',
+							items: [
+								{ label: 'Overview', slug: 'java/overview' },
+								{ label: 'Quick Start API Mocking with Java and JUnit 4', slug: 'java/quickstart/java-junit' },
+								{ label: 'Download and Install', slug: 'java/download-and-installation' },
+								{ label: 'WireMock Tutorials', slug: 'java/getting-started' },
+								{ label: 'Frequently Asked Questions', slug: 'java/faq' },
+							],
+						},
+						{
+							label: 'Running Wiremock',
+							items: [
+								{ label: 'Overview', slug: 'java/standalone' },
+								{ label: 'Running in Docker', slug: 'java/standalone/docker' },
+								{ label: 'Running as a standalone process', slug: 'java/standalone/java-jar' },
+								{ label: 'Administration API', slug: 'java/standalone/administration' },
+							],
+						},
+						{
+							label: 'Java Usage',
+							items: [
+								{ label: 'JUnit 5+ Jupiter', slug: 'java/junit-jupiter' },
+								{ label: 'JUnit 4 and Vintage', slug: 'java/junit-extensions' },
+								{ label: 'Plain Java', slug: 'java/java-usage' },
+								{ label: 'Java configuration', slug: 'java/configuration' },
+								{ label: 'Running without the HTTP Server', slug: 'java/running-without-http-server' },
+								{ label: 'Using WireMock with Jetty 12', slug: 'java/jetty-12' },
+							],
+						},
+						{
+							label: 'Stubbing and Verifying',
+							items: [
+								{ label: 'Stubbing', slug: 'java/stubbing' },
+								{ label: 'Request Matching', slug: 'java/request-matching' },
+								{ label: 'Response Templating', slug: 'java/response-templating' },
+								{ label: 'Simulating Faults', slug: 'java/simulating-faults' },
+								{ label: 'Stateful Behaviour', slug: 'java/stateful-behaviour' },
+								{ label: 'Proxying', slug: 'java/proxying' },
+								{ label: 'Verifying', slug: 'java/verifying' },
+							],
+						},
+						{
+							label: 'Mock API Templates Library',
+							items: [
+								{ label: 'WireMock API Templates Library', slug: 'java/mock-api-templates' },
+								{ label: 'Using Mock API Templates', slug: 'java/mock-api-templates/usage' },
+							],
+						},
+						{
+							label: 'Record and Playback',
+							items: [
+								{ label: 'Record and Playback', slug: 'java/record-playback' },
+							],
+						},
+						{
+							label: 'Protocols',
+							items: [
+								{ label: 'Webhooks and Callbacks', slug: 'java/webhooks-and-callbacks' },
+								{ label: 'Mocking gRPC services', slug: 'java/grpc' },
+								{ label: 'JSON Web Tokens (JWT)', slug: 'java/jwt' },
+								{ label: 'Serving HTTPS', slug: 'java/https' },
+							],
+						},
+						{
+							label: 'Integrations',
+							items: [
+								{ label: 'WireMock Spring Boot Integration', slug: 'java/spring-boot' },
+							],
+						},
+						{
+							label: 'Advanced use-cases',
+							items: [
+								{ label: 'Multi-domain Mocking', slug: 'java/multi-domain-mocking' },
+								{ label: 'Deploying into a servlet container', slug: 'java/advanced/deploy-to-servlet-container' },
+								{ label: 'WireMock on Java 1.7', slug: 'java/advanced/java7' },
+							],
+						},
+						{
+							label: 'Extensibility',
+							items: [
+								{ label: 'Extending WireMock', slug: 'java/extending-wiremock' },
+								{ label: 'Filtering and Modifying Requests', slug: 'java/extensibility/filtering-requests' },
+								{ label: 'Transforming Responses', slug: 'java/extensibility/transforming-responses' },
+								{ label: 'Custom Matching', slug: 'java/extensibility/custom-matching' },
+								{ label: 'Listening for Serve Events', slug: 'java/extensibility/listening-for-serve-events' },
+								{ label: 'Admin API Extensions', slug: 'java/extensibility/admin-api-extensions' },
+								{ label: 'Adding Template Helpers', slug: 'java/extensibility/adding-template-helpers' },
+								{ label: 'Adding Template Model Data', slug: 'java/extensibility/adding-template-model-data' },
+								{ label: 'Listening for Stub Changes', slug: 'java/extensibility/listening-for-stub-changes' },
+								{ label: 'Listening for Settings Changes', slug: 'java/extensibility/listening-for-settings-changes' },
+								{ label: 'Mappings Loader Extensions', slug: 'java/extensibility/adding-mappings-loader' },
+								{ label: 'Stub Metadata', slug: 'java/extensibility/stub-metadata' },
+							],
+						},
+						{
+							label: 'Reference',
+							items: [
+								{ label: 'Admin API', slug: 'java/standalone/admin-api-reference' },
+							],
+						},
+					],
+				},
+				{
+					label: 'WireMock .NET',
+					items: [
+						{ label: 'WireMock.NET', slug: 'dotnet' },
+						{ label: 'What is WireMock.Net', slug: 'dotnet/what-is-wiremock-net' },
+						{ label: 'WireMock Java Compatibility', slug: 'dotnet/wiremock-java-compatibility' },
+						{ label: 'References', slug: 'dotnet/references' },
+						{ label: 'Settings', slug: 'dotnet/settings' },
+						{
+							label: 'Admin REST API',
+							items: [
+								{ label: 'Admin API Reference', slug: 'dotnet/admin-api-reference' },
+								{ label: 'Mapping', slug: 'dotnet/mapping' },
+							],
+						},
+						{ label: 'Proxying', slug: 'dotnet/proxying' },
+						{ label: 'Stubbing', slug: 'dotnet/stubbing' },
+						{ label: 'Webhook', slug: 'dotnet/webhook' },
+						{ label: 'WireMock commandline parameters', slug: 'dotnet/wiremock-commandline-parameters' },
+						{
+							label: 'Request Matching',
+							items: [
+								{ label: 'Request Matching', slug: 'dotnet/request-matching' },
+								{ label: 'Request Matchers', slug: 'dotnet/request-matchers' },
+								{ label: 'Request Matching Tips', slug: 'dotnet/request-matching-tips' },
+								{ label: 'Request Matcher FormUrlEncodedMatcher', slug: 'dotnet/request-matcher-formurlencodedmatcher' },
+								{ label: 'Request Matching CSharpCode', slug: 'dotnet/request-matching-csharpcode' },
+								{ label: 'Request Matching GraphQLMatcher', slug: 'dotnet/request-matching-graphqlmatcher' },
+								{ label: 'Request Matching JsonMatcher', slug: 'dotnet/request-matching-jsonmatcher' },
+								{ label: 'Request Matching JsonPartialMatcher', slug: 'dotnet/request-matching-jsonpartialmatcher' },
+								{ label: 'Request Matching JsonPartialWildcardMatcher', slug: 'dotnet/request-matching-jsonpartialwildcardmatcher' },
+								{ label: 'Request Matching JsonPathMatcher', slug: 'dotnet/request-matching-jsonpathmatcher' },
+								{ label: 'Request Matching MimePartMatcher', slug: 'dotnet/request-matching-mimepartmatcher' },
+								{ label: 'Request Matching ProtoBuf', slug: 'dotnet/request-matching-protobuf' },
+							],
+						},
+						{ label: 'Response Templating', slug: 'dotnet/response-templating' },
+						{
+							label: 'Unit Testing',
+							items: [
+								{ label: 'Using WireMock in UnitTests', slug: 'dotnet/using-wiremock-in-unittests' },
+								{ label: 'Using WireMock.Net.Testcontainers', slug: 'dotnet/using-wiremock-net-testcontainers' },
+								{ label: 'Using WireMock.Net.Aspire', slug: 'dotnet/using-wiremock-net-aspire' },
+								{ label: 'FluentAssertions', slug: 'dotnet/fluentassertions' },
+							],
+						},
+						{
+							label: 'Using WireMock',
+							items: [
+								{ label: 'WireMock as dotnet tool', slug: 'dotnet/wiremock-as-dotnet-tool' },
+								{ label: 'WireMock as a standalone process', slug: 'dotnet/wiremock-as-a-standalone-process' },
+								{ label: 'WireMock as a (Azure) Web App', slug: 'dotnet/wiremock-as-a-azure-web-app' },
+								{ label: 'WireMock as a Windows Service', slug: 'dotnet/wiremock-as-a-windows-service' },
+							],
+						},
+						{
+							label: 'Advanced',
+							items: [
+								{ label: 'Scenarios and States', slug: 'dotnet/scenarios-and-states' },
+								{ label: 'Pact', slug: 'dotnet/pact' },
+								{ label: 'Faults', slug: 'dotnet/faults' },
+								{ label: 'Using HTTPS (SSL)', slug: 'dotnet/using-https-ssl' },
+								{ label: 'Cors', slug: 'dotnet/cors' },
+								{ label: 'KestrelServerOptions', slug: 'dotnet/kestrelserveroptions' },
+								{ label: 'RegexExtended', slug: 'dotnet/regexextended' },
+								{ label: 'MyGet preview versions', slug: 'dotnet/myget-preview-versions' },
+								{ label: 'Development Information', slug: 'dotnet/development-information' },
+							],
+						},
+						{
+							label: 'Errors',
+							items: [
+								{ label: 'Xamarin - Could not load file or assembly', slug: 'dotnet/xamarin-could-not-load-file-or-assembly' },
+								{ label: 'Conflict on Microsoft.CodeAnalysis.CSharp', slug: 'dotnet/conflict-on-microsoft-codeanalysis-csharp' },
+								{ label: 'Could not load file or assembly RestEase', slug: 'dotnet/could-not-load-file-or-assembly-restease' },
+								{ label: 'MimeKit and MimeKitLite', slug: 'dotnet/mimekit-and-mimekitlite' },
+							],
+						},
+					],
+				},
+			],
+			components: {
+				Head: './src/components/Head.astro',
+			},
+		}),
+	],
+	redirects: {
+		'/docs/quickstart': '/java/quickstart/java-junit',
+		'/docs/advanced': '/java/multi-domain-mocking',
+		'/docs/extensibility': '/java/extending-wiremock',
+		'/docs/stubbing_and_verifying': '/java/stubbing',
+		'/external-resources': '/java/external-resources',
+		'/docs/solutions': '/java',
+	},
+});

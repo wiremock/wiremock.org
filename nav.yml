@@ -1,6 +1,0 @@
-nav:
-  - WireMock Java: "!include ./java/mkdocs.yml" 
-  
-  - WireMock .NET: "!include ./dotnet/mkdocs.yml"
-
-

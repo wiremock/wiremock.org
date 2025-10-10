@@ -1,34 +1,21 @@
-*.sublime-project
-*.sublime-workspace
-.DS_Store
-.jekyll-metadata
-.jekyll-cache
-.sass-cache
-_asset_bundler_cache
-codekit-config.json
-node_modules
+# build output
+dist/
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
 npm-debug.log*
-notes.txt
-main.min.js
-main.css
-.idea/
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
-/vendor
-/tmp
 
-**/.DS_Store
+# environment variables
+.env
+.env.production
 
-# MkDocs
-/temp_dir/
-/_site-docs/
-/_build/
-.cache
-venv/
-site/
-*.zip
-CLAUDE.md
-.claude
-
-__pycache__/
-
-wiremock-org-amplify.zip
+# macOS-specific files
+.DS_Store

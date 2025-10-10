@@ -1,0 +1,18 @@
+---
+// Custom Head component for WireMock to add Google Analytics
+import type { Props } from '@astrojs/starlight/props';
+---
+
+<meta charset="utf-8" />
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6G6E8F439F"></script>
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6G6E8F439F');
+</script>
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />

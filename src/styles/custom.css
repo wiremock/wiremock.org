@@ -1,0 +1,166 @@
+/* WireMock custom styles for Starlight */
+
+:root {
+  /* WireMock brand colors */
+  --color-wiremock-primary: #0fb2ef;
+  --color-wiremock-primary-hover: #0a9dd4;
+  --color-wiremock-secondary: #7c47fc;
+  --color-wiremock-accent: #ff9505;
+
+  /* Override Starlight theme colors */
+  --sl-color-accent: var(--color-wiremock-primary);
+  --sl-color-accent-high: var(--color-wiremock-primary-hover);
+  --sl-color-accent-low: rgba(15, 178, 239, 0.2);
+
+  /* Custom spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+}
+
+/* Grid card styles for homepage-style layouts */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10.5rem, 1fr));
+  gap: 1rem;
+  margin: 2rem auto;
+  max-width: 100%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border: 2px solid var(--sl-color-gray-5);
+  border-radius: 0.75rem;
+  text-align: center;
+  transition: all 0.2s ease;
+  background: var(--sl-color-bg);
+  min-height: 5.5rem;
+  text-decoration: none !important;
+  color: var(--sl-color-text);
+}
+
+.card:hover {
+  border-color: var(--sl-color-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(15, 178, 239, 0.2);
+  text-decoration: none !important;
+}
+
+.card img {
+  width: 2rem;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+.card-use-case {
+  min-height: 7rem;
+}
+
+/* WireMock Cloud callout styling */
+.sl-markdown-content :global(.starlight-aside--note) {
+  border-color: var(--color-wiremock-accent);
+  background: linear-gradient(135deg, rgba(255, 149, 5, 0.1) 0%, rgba(255, 149, 5, 0.05) 100%);
+}
+
+/* Code block enhancements */
+.sl-markdown-content pre {
+  border-radius: 0.5rem;
+  border: 1px solid var(--sl-color-gray-5);
+}
+
+/* Enhanced link styles */
+.sl-markdown-content a {
+  color: var(--color-wiremock-primary);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.sl-markdown-content a:hover {
+  border-bottom-color: var(--color-wiremock-primary);
+}
+
+/* Solution block styling */
+.solution-block {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: var(--sl-color-bg-nav);
+  border-radius: 0.75rem;
+  border: 1px solid var(--sl-color-gray-5);
+}
+
+.solution-header {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 4rem;
+  padding: 1rem;
+  background: var(--sl-color-bg);
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.solution-header img {
+  height: 4.5rem;
+  width: auto;
+}
+
+/* Custom tabs styling (for non-Starlight tab content) */
+.custom-tabs {
+  margin: 2rem 0;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.custom-tab-nav {
+  display: flex;
+  background: var(--sl-color-bg-nav);
+  border-bottom: 1px solid var(--sl-color-gray-5);
+}
+
+.custom-tab-button {
+  flex: 1;
+  padding: 1rem;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  font-weight: 500;
+  color: var(--sl-color-text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.custom-tab-button:hover {
+  background: var(--sl-color-bg);
+  color: var(--sl-color-accent);
+}
+
+.custom-tab-button.active {
+  border-bottom-color: var(--sl-color-accent);
+  color: var(--sl-color-accent);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+    gap: 0.75rem;
+  }
+
+  .card {
+    min-height: 5rem;
+    padding: 0.75rem;
+    font-size: 0.875rem;
+  }
+}

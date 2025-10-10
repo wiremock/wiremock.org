@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charSet="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preload" href="/_next/static/media/028c0d39d2e8f589-s.p.woff2" as="font" crossorigin=""
+        type="font/woff2" />
+    <link rel="preload" href="/_next/static/media/5b01f339abf2f1a5.p.woff2" as="font" crossorigin=""
+        type="font/woff2" />
+    <link rel="stylesheet" href="/_next/static/css/6ad9841b43ad2bc9.css" data-precedence="next" />
+    <link rel="stylesheet" href="/_next/static/css/81dcc137d6fdea6c.css" data-precedence="next" />
+    <link rel="preload" as="script" fetchPriority="low" href="/_next/static/chunks/webpack-8cf5d14c2d260efe.js" />
+    <script src="/_next/static/chunks/4bd1b696-923d1d841f07dec7.js" async=""></script>
+    <script src="/_next/static/chunks/684-8b726803d7864a98.js" async=""></script>
+    <script src="/_next/static/chunks/main-app-c9779a9cf3f89b5e.js" async=""></script>
+    <script src="/_next/static/chunks/app/layout-434602b2039211df.js" async=""></script>
+    <script src="/_next/static/chunks/660-5a6ce1784d616335.js" async=""></script>
+    <script src="/_next/static/chunks/app/page-203bda26898c7404.js" async=""></script>
+    <meta name="next-size-adjust" content="" />
+    <title>WireMock - flexible, open source API mocking | WireMock</title>
+    <meta name="description" content="Created with v0" />
+    <meta name="generator" content="v0.app" />
+    <script src="/_next/static/chunks/polyfills-42372ed130431b0a.js" noModule=""></script>
+</head>
+
+
+<body class="font-sans __variable_fb8f2c __variable_f910ec">
+    <div class="min-h-screen bg-white">
+        <header class="header astro-2se5cdc3"><div class="header sl-flex astro-3ef6ksr2"> <!-- Left section: Logo and Site title --> <div class="title-wrapper sl-flex astro-3ef6ksr2"> <a href="/" class="site-title sl-flex astro-6l5hkrja">  <img class="astro-6l5hkrja" alt="" src="/@fs/Users/tomakehurst/dev/wiremock/oss-doc-sites/wiremock.org-starlight/src/assets/wiremock-oss-logo.png?origWidth=812&amp;origHeight=176&amp;origFormat=png" width="812" height="176">  <span class="sr-only astro-6l5hkrja" translate="no"> WireMock </span> </a>  </div> <!-- Center section: Navigation links and CTA --> <div class="header__links astro-3ef6ksr2"> <!-- Docs Dropdown --> <div class="dropdown astro-3ef6ksr2" style="margin-left: 80px;"> <a href="/docs/" class="header__link astro-3ef6ksr2">
+Docs
+<svg class="header__link-icon astro-3ef6ksr2" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="astro-3ef6ksr2"></path> </svg> </a> <div class="dropdown-content astro-3ef6ksr2"> <a href="/docs/" class="astro-3ef6ksr2">WireMock Java</a> <a href="/dotnet/" class="astro-3ef6ksr2">WireMock.Net</a> <a href="/docs/mock-api-templates/" class="astro-3ef6ksr2">Mock API Templates</a> <a href="https://docs.wiremock.io/overview?utm_source=wiremock.org&amp;utm_medium=masthead_doc-links&amp;utm_campaign=2022_baseline" target="_blank" class="astro-3ef6ksr2">WireMock Cloud</a> <a href="/2.x/docs/" class="astro-3ef6ksr2">WireMock 2.x (Archive)</a> </div> </div> <!-- Need Help Dropdown --> <div class="dropdown astro-3ef6ksr2"> <a href="/docs/support/" class="header__link astro-3ef6ksr2">
+Need Help?
+<svg class="header__link-icon astro-3ef6ksr2" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="astro-3ef6ksr2"></path> </svg> </a> <div class="dropdown-content astro-3ef6ksr2"> <a href="https://slack.wiremock.org/" target="_blank" class="astro-3ef6ksr2">Q&amp;A on Slack</a> <a href="https://stackoverflow.com/questions/tagged/wiremock" target="_blank" class="astro-3ef6ksr2">StackOverflow</a> <a href="/docs/commercial/" class="astro-3ef6ksr2">Commercial Options</a> </div> </div> <!-- Participate Dropdown --> <div class="dropdown astro-3ef6ksr2"> <a href="#" class="header__link astro-3ef6ksr2" target="_blank">
+Participate
+<svg class="header__link-icon astro-3ef6ksr2" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="astro-3ef6ksr2"></path> </svg> </a> <div class="dropdown-content astro-3ef6ksr2"> <a href="https://slack.wiremock.org/" target="_blank" class="astro-3ef6ksr2">Community Slack</a> <a href="https://github.com/wiremock/community/blob/main/contributing/README.md" target="_blank" class="astro-3ef6ksr2">Contributor Guide</a> <a href="https://github.com/wiremock/" target="_blank" class="astro-3ef6ksr2">Our GitHub</a> <a href="https://github.com/wiremock/wiremock.org" target="_blank" class="astro-3ef6ksr2">This Website</a> <a href="https://github.com/wiremock/.github/blob/main/CODE_OF_CONDUCT.md" target="_blank" class="astro-3ef6ksr2">Code of Conduct</a> </div> </div> <!-- Resources Dropdown --> <div class="dropdown astro-3ef6ksr2"> <a href="/docs/external-resources/" class="header__link astro-3ef6ksr2">
+Resources
+<svg class="header__link-icon astro-3ef6ksr2" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="astro-3ef6ksr2"></path> </svg> </a> <div class="dropdown-content astro-3ef6ksr2"> <a href="https://library.wiremock.org/" target="_blank" class="astro-3ef6ksr2">Mock API Templates Library</a> <a href="https://github.com/wiremock/ecosystem" target="_blank" class="astro-3ef6ksr2">WireMock Ecosystem</a> <a href="https://twitter.com/wiremockorg" target="_blank" class="astro-3ef6ksr2">Twitter</a> <a href="https://fosstodon.org/@wiremock" target="_blank" class="astro-3ef6ksr2">Mastodon</a> <a href="https://community.wiremock.io/" target="_blank" class="astro-3ef6ksr2">Slack Archive</a> <a href="/docs/external-resources/" class="astro-3ef6ksr2">External Resources</a> </div> </div> <!-- Try WireMock Cloud CTA --> <div class="masthead__cta astro-3ef6ksr2"> <a href="https://wiremock.io/product?utm_source=wiremock.org&amp;utm_medium=masthead&amp;utm_campaign=homepage_2025_update_1" class="header__button header__button--contained astro-3ef6ksr2" target="_blank">
+Try WireMock Cloud
+</a> </div> </div> <!-- Search --> <div class="sl-flex print:hidden astro-3ef6ksr2"> <site-search class="astro-3ef6ksr2 astro-6ltqn4rm" data-translations="{&quot;placeholder&quot;:&quot;Search&quot;}"> <button data-open-modal="" aria-label="Search" aria-keyshortcuts="Meta+K" class="astro-6ltqn4rm"> <svg aria-hidden="true" class="astro-6ltqn4rm astro-l33uvetg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"></path></svg> <span class="sl-hidden md:sl-block astro-6ltqn4rm" aria-hidden="true">Search</span> <kbd class="sl-hidden md:sl-flex astro-6ltqn4rm" style=""> <kbd class="astro-6ltqn4rm">⌘</kbd><kbd class="astro-6ltqn4rm">K</kbd> </kbd> </button> <dialog style="padding:0" aria-label="Search" class="astro-6ltqn4rm"> <div class="dialog-frame sl-flex astro-6ltqn4rm">  <button data-close-modal="" class="sl-flex md:sl-hidden astro-6ltqn4rm"> Cancel </button> <div style="margin: auto; text-align: center; white-space: pre-line;" dir="ltr" class="astro-6ltqn4rm"> <p class="astro-6ltqn4rm">Search is only available in production builds. 
+Try building and previewing the site to test it out locally.</p> </div> </div> </dialog> </site-search>  <script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script> <script type="module" src="/node_modules/.pnpm/@astrojs+starlight@0.36.0_astro@5.14.1_@types+node@24.7.0_rollup@4.52.4_typescript@5.9.3_/node_modules/@astrojs/starlight/components/Search.astro?v=9a7f3979&amp;astro&amp;type=script&amp;index=0&amp;lang.ts"></script>   </div> <!-- Right section: Social links, Theme toggle, Language selector --> <div class="sl-hidden md:sl-flex print:hidden right-group astro-3ef6ksr2"> <div class="sl-flex social-icons astro-3ef6ksr2"> <a href="https://github.com/wiremock/wiremock" rel="me" class="sl-flex astro-w2hup6nt"><span class="sr-only astro-w2hup6nt">GitHub</span><svg aria-hidden="true" class="astro-w2hup6nt astro-l33uvetg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"></path></svg></a> </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-tfecrsub"> <span class="sr-only astro-tfecrsub">Select theme</span> <svg aria-hidden="true" class="icon label-icon astro-tfecrsub astro-l33uvetg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"></path></svg> <select autocomplete="off" class="astro-tfecrsub"> <option value="dark" class="astro-tfecrsub">Dark</option><option value="light" class="astro-tfecrsub">Light</option><option value="auto" selected="" class="astro-tfecrsub">Auto</option> </select> <svg aria-hidden="true" class="icon caret astro-tfecrsub astro-l33uvetg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"></path></svg> </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script> <script type="module" src="/node_modules/.pnpm/@astrojs+starlight@0.36.0_astro@5.14.1_@types+node@24.7.0_rollup@4.52.4_typescript@5.9.3_/node_modules/@astrojs/starlight/components/ThemeSelect.astro?v=9a7f3979&amp;astro&amp;type=script&amp;index=0&amp;lang.ts"></script> <script type="module" src="/node_modules/.pnpm/@astrojs+starlight@0.36.0_astro@5.14.1_@types+node@24.7.0_rollup@4.52.4_typescript@5.9.3_/node_modules/@astrojs/starlight/components/LanguageSelect.astro?v=9a7f3979&amp;astro&amp;type=script&amp;index=0&amp;lang.ts"></script> </div> </div> </header>
+    
+
+
+        <div class="fixed top-[40%] right-4 z-50 animate-in slide-in-from-right-5 duration-500" style="display:none">
+            <div class="bg-white border-2 border-gray-300 rounded-lg shadow-xl p-4 w-72 relative"><button
+                    class="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+                    aria-label="Dismiss notification"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-x h-4 w-4">
+                        <path d="M18 6 6 18"></path>
+                        <path d="m6 6 12 12"></path>
+                    </svg></button>
+                <div class="flex items-start space-x-3">
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center space-x-2 mb-1"><span data-slot="badge"
+                                class="inline-flex items-center justify-center rounded-md border px-2 py-0.5 font-medium w-fit whitespace-nowrap shrink-0 [&amp;&gt;svg]:size-3 gap-1 [&amp;&gt;svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent [a&amp;]:hover:bg-primary/90 bg-green-100 text-green-800 text-xs">NEW</span>
+                        </div>
+                        <p class="text-sm font-medium text-gray-900 mb-1">JetBrains Plugin</p>
+                        <p class="text-xs text-gray-600 mb-3">Create mocks directly in your IDE</p><button
+                            data-slot="button"
+                            class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*=&#x27;size-&#x27;])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary text-primary-foreground hover:bg-primary/90 h-8 rounded-md gap-1.5 px-3 has-[&gt;svg]:px-2.5 w-full">Try
+                            Plugin</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="relative bg-gradient-to-br from-blue-50 via-white to-orange-50 py-20 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    
+                    <h1 class="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">Mock APIs.<br /><span
+                            class="text-blue-600">Ship Faster.</span></h1>
+                    <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">WireMock is the industry
+                        standard for scalable API mocking. Test your applications without dependencies, simulate edge
+                        cases, and enable teams to develop in parallel.</p>
+                </div>
+                <div>
+                    <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                        <div data-slot="card"
+                            class="text-card-foreground flex flex-col gap-6 rounded-xl py-6 shadow-sm transition-all duration-200 hover:shadow-lg hover:-translate-y-1 bg-white/80 backdrop-blur-sm border-2">
+                            <div data-slot="card-header"
+                                class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6 pb-4 text-center">
+                                <div class="flex items-center justify-center mb-4"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide lucide-code h-10 w-10 text-blue-600">
+                                        <polyline points="16 18 22 12 16 6"></polyline>
+                                        <polyline points="8 6 2 12 8 18"></polyline>
+                                    </svg></div>
+                                <div data-slot="card-title" class="font-semibold text-2xl">Open Source</div>
+                                <p class="text-gray-600 text-sm">Self-hosted API mocking for your development workflow
+                                </p>
+                            </div>
+                            <div data-slot="card-content" class="px-6 pt-0">
+                                <div class="space-y-4">
+                                    <div
+                                        class="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition-colors">
+                                        <div class="flex items-center mb-3"><svg class="h-6 w-6 text-blue-600 mr-3"
+                                                viewBox="0 0 24 24" fill="currentColor">
+                                                <path
+                                                    d="M8.851 18.56s-.917.534.653.714c1.902.218 2.874.187 4.969-.211 0 0 .552.346 1.321.646-4.699 2.013-10.633-.118-6.943-1.149M8.276 15.933s-1.028.761.542.924c2.032.209 3.636.227 6.413-.308 0 0 .384.389.987.602-5.679 1.661-12.007.13-7.942-1.218M13.116 11.475c1.158 1.333-.304 2.533-.304 2.533s2.939-1.518 1.589-3.418c-1.261-1.772-2.228-2.652 3.007-5.688 0-.001-8.216 2.051-4.292 6.573M19.33 20.504s.679.559-.747.991c-2.712.822-11.288 1.069-13.669.033-.856-.373.75-.89 1.254-.998.527-.114.828-.093.828-.093-.953-.671-6.156 1.317-2.643 1.887 9.58 1.553 17.462-.7 14.977-1.82M9.292 13.21s-4.362 1.036-1.544 1.412c1.189.159 3.561.123 5.77-.062 1.806-.152 3.618-.477 3.618-.477s-.637.272-1.098.587c-4.429 1.165-12.986.623-10.522-.568 2.082-1.006 3.776-.892 3.776-.892M17.116 17.584c4.503-2.34 2.421-4.589.968-4.285-.355.074-.515.138-.515.138s.132-.207.385-.297c2.875-1.011 5.086 2.981-.928 4.562 0-.001.07-.062.09-.118M14.401 0s2.494 2.494-2.365 6.33c-3.896 3.077-.888 4.832-.001 6.836-2.274-2.053-3.943-3.858-2.824-5.539 1.644-2.469 6.197-3.665 5.19-7.627M9.734 23.924c4.322.277 10.959-.153 11.116-2.198 0 0-.302.775-3.572 1.391-3.688.694-8.239.613-10.937.168 0-.001.553.457 3.393.639">
+                                                </path>
+                                            </svg>
+                                            <div>
+                                                <h3 class="font-semibold text-gray-900">Java and Standalone</h3>
+                                                <p class="text-sm text-gray-600">Original JVM library</p>
+                                            </div>
+                                        </div><button data-slot="button"
+                                            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*=&#x27;size-&#x27;])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive h-9 px-4 py-2 has-[&gt;svg]:px-3 w-full bg-blue-600 hover:bg-blue-700 text-white font-medium shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200">Get
+                                            Started<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-arrow-right ml-2 h-4 w-4">
+                                                <path d="M5 12h14"></path>
+                                                <path d="m12 5 7 7-7 7"></path>
+                                            </svg></button>
+                                    </div>
+                                    <div
+                                        class="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition-colors">
+                                        <div class="flex items-center mb-3"><svg class="h-6 w-6 text-blue-600 mr-3"
+                                                viewBox="0 0 24 24" fill="currentColor">
+                                                <path
+                                                    d="M24 8.77h-2.468v7.565h-1.425V8.77h-2.462V7.53H24zm-6.852 7.565h-4.821V7.53h4.63v1.24h-3.205v2.494h2.953v1.234h-2.953v2.604h3.396zm-6.708 0H8.882L4.78 9.863a2.896 2.896 0 0 1-.258-.51h-.036c.032.189.048.592.048 1.21v5.772H3.157V7.53h1.659l3.965 6.32c.167.261.275.442.323.54h.024c-.04-.233-.06-.629-.06-1.185V7.529h1.372zm-8.703-.693a.868.868 0 0 1-.869.693.868.868 0 0 1-.868-.693.868.868 0 0 1 .868-.692.868.868 0 0 1 .869.692z">
+                                                </path>
+                                            </svg>
+                                            <div>
+                                                <h3 class="font-semibold text-gray-900">.NET</h3>
+                                                <p class="text-sm text-gray-600">Native .NET implementation</p>
+                                            </div>
+                                        </div><button data-slot="button"
+                                            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*=&#x27;size-&#x27;])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive h-9 px-4 py-2 has-[&gt;svg]:px-3 w-full bg-blue-600 hover:bg-blue-700 text-white font-medium shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200">Get
+                                            Started<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-arrow-right ml-2 h-4 w-4">
+                                                <path d="M5 12h14"></path>
+                                                <path d="m12 5 7 7-7 7"></path>
+                                            </svg></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-slot="card"
+                            class="text-card-foreground flex flex-col gap-6 rounded-xl py-6 shadow-sm transition-all duration-200 hover:shadow-lg hover:-translate-y-1 bg-white/80 backdrop-blur-sm border-2">
+                            <div data-slot="card-header"
+                                class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6 pb-4 text-center">
+                                <div class="flex items-center justify-center mb-4"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide lucide-globe h-10 w-10 text-blue-600">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                                        <path d="M2 12h20"></path>
+                                    </svg></div>
+                                <div data-slot="card-title" class="font-semibold text-2xl">Cloud</div>
+                                <p class="text-gray-600 text-sm">Hosted platform with team collaboration and AI features
+                                </p>
+                            </div>
+                            <div data-slot="card-content" class="px-6 pt-0">
+                                <div class="space-y-4">
+                                    <div
+                                        class="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition-colors">
+                                        <div class="flex items-center mb-3"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-terminal h-6 w-6 text-blue-600 mr-3">
+                                                <polyline points="4 17 10 11 4 5"></polyline>
+                                                <line x1="12" x2="20" y1="19" y2="19"></line>
+                                            </svg>
+                                            <div>
+                                                <h3 class="font-semibold text-gray-900">Run Anywhere</h3>
+                                                <p class="text-sm text-gray-600">Record and run mock APIs locally,
+                                                    in-cluster, or as part of CI/CD</p>
+                                            </div>
+                                        </div><button data-slot="button"
+                                            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*=&#x27;size-&#x27;])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive h-9 px-4 py-2 has-[&gt;svg]:px-3 w-full bg-blue-600 hover:bg-blue-700 text-white font-medium shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200">Start
+                                            With WireMock Cloud Runner<svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-arrow-right ml-2 h-4 w-4">
+                                                <path d="M5 12h14"></path>
+                                                <path d="m12 5 7 7-7 7"></path>
+                                            </svg></button>
+                                    </div>
+                                    <div
+                                        class="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition-colors">
+                                        <div class="flex items-center mb-3"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-globe h-6 w-6 text-blue-600 mr-3">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                                                <path d="M2 12h20"></path>
+                                            </svg>
+                                            <div>
+                                                <h3 class="font-semibold text-gray-900">Web</h3>
+                                                <p class="text-sm text-gray-600">Browser-based UI and collaboration</p>
+                                            </div>
+                                        </div><button data-slot="button"
+                                            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*=&#x27;size-&#x27;])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive h-9 px-4 py-2 has-[&gt;svg]:px-3 w-full bg-blue-600 hover:bg-blue-700 text-white font-medium shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200">Start
+                                            With Web<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-arrow-right ml-2 h-4 w-4">
+                                                <path d="M5 12h14"></path>
+                                                <path d="m12 5 7 7-7 7"></path>
+                                            </svg></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Why Developers Choose WireMock</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Powerful features that help you build better
+                        software faster</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div data-slot="card"
+                        class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl py-6 border-0 shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <div data-slot="card-content" class="p-6"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-zap h-8 w-8 text-blue-600 mb-4">
+                                <path
+                                    d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z">
+                                </path>
+                            </svg>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">HTTP Mocking &amp; Matching</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Stub HTTP responses and match requests
+                                using URL patterns, headers, query parameters, cookies and request body content.</p>
+                        </div>
+                    </div>
+                    <div data-slot="card"
+                        class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl py-6 border-0 shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <div data-slot="card-content" class="p-6"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-code-xml h-8 w-8 text-blue-600 mb-4">
+                                <path d="m18 16 4-4-4-4"></path>
+                                <path d="m6 8-4 4 4 4"></path>
+                                <path d="m14.5 4-5 16"></path>
+                            </svg>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Dynamic Response Templating</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Generate dynamic responses using Handlebars
+                                templating with request data, random values, and custom helpers.</p>
+                        </div>
+                    </div>
+                    <div data-slot="card"
+                        class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl py-6 border-0 shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <div data-slot="card-content" class="p-6"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-play h-8 w-8 text-blue-600 mb-4">
+                                <polygon points="6 3 20 12 6 21 6 3"></polygon>
+                            </svg>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Record &amp; Playback</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Record interactions with real services and
+                                play them back during testing for realistic scenarios.</p>
+                        </div>
+                    </div>
+                    <div data-slot="card"
+                        class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl py-6 border-0 shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <div data-slot="card-content" class="p-6"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-triangle-alert h-8 w-8 text-blue-600 mb-4">
+                                <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3">
+                                </path>
+                                <path d="M12 9v4"></path>
+                                <path d="M12 17h.01"></path>
+                            </svg>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Fault Simulation</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Simulate network faults, delays, and
+                                malformed responses to test your application&#x27;s resilience.</p>
+                        </div>
+                    </div>
+                    <div data-slot="card"
+                        class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl py-6 border-0 shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <div data-slot="card-content" class="p-6"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-file-text h-8 w-8 text-blue-600 mb-4">
+                                <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
+                                <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+                                <path d="M10 9H8"></path>
+                                <path d="M16 13H8"></path>
+                                <path d="M16 17H8"></path>
+                            </svg>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Request Verification</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Verify that your application made the
+                                expected requests with the correct parameters and timing.</p>
+                        </div>
+                    </div>
+                    <div data-slot="card"
+                        class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl py-6 border-0 shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <div data-slot="card-content" class="p-6"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-puzzle h-8 w-8 text-blue-600 mb-4">
+                                <path
+                                    d="M19.439 7.85c-.049.322.059.648.289.878l1.568 1.568c.47.47.706 1.087.706 1.704s-.235 1.233-.706 1.704l-1.611 1.611a.98.98 0 0 1-.837.276c-.47-.07-.802-.48-.968-.925a2.501 2.501 0 1 0-3.214 3.214c.446.166.855.497.925.968a.979.979 0 0 1-.276.837l-1.61 1.61a2.404 2.404 0 0 1-1.705.707 2.402 2.402 0 0 1-1.704-.706l-1.568-1.568a1.026 1.026 0 0 0-.877-.29c-.493.074-.84.504-1.02.968a2.5 2.5 0 1 1-3.237-3.237c.464-.18.894-.527.967-1.02a1.026 1.026 0 0 0-.289-.877l-1.568-1.568A2.402 2.402 0 0 1 1.998 12c0-.617.236-1.234.706-1.704L4.23 8.77c.24-.24.581-.353.917-.303.515.077.877.528 1.073 1.01a2.5 2.5 0 1 0 3.259-3.259c-.482-.196-.933-.558-1.01-1.073-.05-.336.062-.676.303-.917l1.525-1.525A2.402 2.402 0 0 1 12 1.998c.617 0 1.234.236 1.704.706l1.568 1.568c.23.23.556.338.877.29.493-.074.84-.504 1.02-.968a2.5 2.5 0 1 1 3.237 3.237c-.464.18-.894.527-.967 1.02Z">
+                                </path>
+                            </svg>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Extensible</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Extend WireMock with custom request
+                                matchers, response transformers, and admin API extensions.</p>
+                        </div>
+                    </div>
+                    <div data-slot="card"
+                        class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl py-6 border-0 shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <div data-slot="card-content" class="p-6"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-server h-8 w-8 text-blue-600 mb-4">
+                                <rect width="20" height="8" x="2" y="2" rx="2" ry="2"></rect>
+                                <rect width="20" height="8" x="2" y="14" rx="2" ry="2"></rect>
+                                <line x1="6" x2="6.01" y1="6" y2="6"></line>
+                                <line x1="6" x2="6.01" y1="18" y2="18"></line>
+                            </svg>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Standalone Server</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Run as a standalone process, embedded in
+                                tests, or deployed as a service in any environment.</p>
+                        </div>
+                    </div>
+                    <div data-slot="card"
+                        class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl py-6 border-0 shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <div data-slot="card-content" class="p-6"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-test-tube-diagonal h-8 w-8 text-blue-600 mb-4">
+                                <path d="M21 7 6.82 21.18a2.83 2.83 0 0 1-3.99-.01a2.83 2.83 0 0 1 0-4L17 3"></path>
+                                <path d="m16 2 6 6"></path>
+                                <path d="M12 16H4"></path>
+                            </svg>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">JUnit Integration</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Seamless integration with JUnit and other
+                                testing frameworks for easy test automation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Join Our Thriving Community</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Connect with thousands of developers, get help,
+                        and contribute to the future of API mocking</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div data-slot="card"
+                        class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl py-6 shadow-sm border-2 border-purple-200 hover:border-purple-300 transition-colors h-full">
+                        <div data-slot="card-content" class="p-8 flex flex-col h-full">
+                            <div class="flex items-center mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                    height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="lucide lucide-message-square h-8 w-8 text-purple-600 mr-3">
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                </svg><span data-slot="badge"
+                                    class="inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&amp;&gt;svg]:size-3 gap-1 [&amp;&gt;svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent [a&amp;]:hover:bg-primary/90 bg-gray-100 text-gray-800">Community</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Slack Community</h3>
+                            <p class="text-gray-600 mb-6 flex-grow">Join thousands of developers in our active Slack
+                                workspace. Get real-time help, share best practices, and connect with the core team.</p>
+                            <button data-slot="button"
+                                class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*=&#x27;size-&#x27;])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive text-primary-foreground h-9 px-4 py-2 has-[&gt;svg]:px-3 w-full bg-purple-600 hover:bg-purple-700 mt-auto">Join
+                                Community<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="lucide lucide-external-link ml-2 h-4 w-4">
+                                    <path d="M15 3h6v6"></path>
+                                    <path d="M10 14 21 3"></path>
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                </svg></button>
+                        </div>
+                    </div>
+                    <div data-slot="card"
+                        class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl py-6 shadow-sm border-2 border-gray-200 hover:border-gray-300 transition-colors h-full">
+                        <div data-slot="card-content" class="p-8 flex flex-col h-full">
+                            <div class="flex items-center mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                    height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="lucide lucide-github h-8 w-8 text-gray-900 mr-3">
+                                    <path
+                                        d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4">
+                                    </path>
+                                    <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                                </svg><span data-slot="badge"
+                                    class="inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&amp;&gt;svg]:size-3 gap-1 [&amp;&gt;svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent [a&amp;]:hover:bg-primary/90 bg-gray-100 text-gray-800">Open
+                                    Source</span></div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">GitHub Repository</h3>
+                            <p class="text-gray-600 mb-6 flex-grow">Contribute to the project, report issues, and help
+                                shape the future of WireMock. All contributions welcome!</p>
+                            <div class="grid grid-cols-2 gap-4 mb-6">
+                                <div class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-star h-4 w-4 text-yellow-500 mr-2">
+                                        <path
+                                            d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z">
+                                        </path>
+                                    </svg><span class="text-sm"><strong>6.3k</strong> Stars</span></div>
+                                <div class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-git-fork h-4 w-4 text-gray-600 mr-2">
+                                        <circle cx="12" cy="18" r="3"></circle>
+                                        <circle cx="6" cy="6" r="3"></circle>
+                                        <circle cx="18" cy="6" r="3"></circle>
+                                        <path d="M18 9v2c0 .6-.4 1-1 1H7c-.6 0-1-.4-1-1V9"></path>
+                                        <path d="M12 12v3"></path>
+                                    </svg><span class="text-sm"><strong>1.5k</strong> Forks</span></div>
+                                <div class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-download h-4 w-4 text-green-600 mr-2">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="7 10 12 15 17 10"></polyline>
+                                        <line x1="12" x2="12" y1="15" y2="3"></line>
+                                    </svg><span class="text-sm"><strong>5M+</strong> Downloads</span></div>
+                                <div class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-users h-4 w-4 text-blue-600 mr-2">
+                                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="9" cy="7" r="4"></circle>
+                                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                    </svg><span class="text-sm"><strong>279</strong> Contributors</span></div>
+                            </div><button data-slot="button"
+                                class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*=&#x27;size-&#x27;])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive text-primary-foreground h-9 px-4 py-2 has-[&gt;svg]:px-3 w-full bg-gray-900 hover:bg-gray-800 mt-auto">View
+                                Repository<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="lucide lucide-external-link ml-2 h-4 w-4">
+                                    <path d="M15 3h6v6"></path>
+                                    <path d="M10 14 21 3"></path>
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                </svg></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 rounded-lg p-8">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4 text-center">Quick Community Links</h3>
+                    <div class="flex flex-wrap justify-center gap-4"><button data-slot="button"
+                            class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*=&#x27;size-&#x27;])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-8 rounded-md gap-1.5 px-3 has-[&gt;svg]:px-2.5">📚
+                            Docs</button><button data-slot="button"
+                            class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*=&#x27;size-&#x27;])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-8 rounded-md gap-1.5 px-3 has-[&gt;svg]:px-2.5">💬
+                            Slack</button><button data-slot="button"
+                            class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*=&#x27;size-&#x27;])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-8 rounded-md gap-1.5 px-3 has-[&gt;svg]:px-2.5">🐙
+                            GitHub</button><button data-slot="button"
+                            class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*=&#x27;size-&#x27;])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-8 rounded-md gap-1.5 px-3 has-[&gt;svg]:px-2.5">🐛
+                            Raise An Issue</button></div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-600 to-blue-700">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-12">
+                    <div
+                        class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-white/20 text-white hover:bg-white/20 mb-4">
+                        Enterprise Ready</div>
+                    <h2 class="text-4xl font-bold text-white mb-4">WireMock Cloud</h2>
+                    <p class="text-xl text-blue-100 max-w-3xl mx-auto">The complete API simulation platform for teams -
+                        now with AI-native features that help you unlock the full power of WireMock, faster.</p>
+                </div>
+                <div class="rounded-lg text-card-foreground border-0 shadow-xl bg-white/95 backdrop-blur">
+                    <div class="p-8">
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h3 class="text-2xl font-semibold mb-6 text-gray-900">Key Features</h3>
+                                <div class="space-y-4 mb-6">
+                                    <div class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-check h-5 w-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0">
+                                            <path d="M20 6 9 17l-5-5"></path>
+                                        </svg><span class="text-gray-700 leading-relaxed">Intuitive web interface for
+                                            creating and managing API mocks</span></div>
+                                    <div class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-check h-5 w-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0">
+                                            <path d="M20 6 9 17l-5-5"></path>
+                                        </svg><span class="text-gray-700 leading-relaxed">Real-time team collaboration
+                                            with shared workspaces</span></div>
+                                    <div class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-check h-5 w-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0">
+                                            <path d="M20 6 9 17l-5-5"></path>
+                                        </svg><span class="text-gray-700 leading-relaxed">Import from OpenAPI/Swagger
+                                            specs for rapid prototyping</span></div>
+                                </div><button
+                                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 text-primary-foreground h-10 px-4 py-2 w-full bg-blue-600 hover:bg-blue-700">Start
+                                    For Free<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-arrow-right ml-2 h-4 w-4">
+                                        <path d="M5 12h14"></path>
+                                        <path d="m12 5 7 7-7 7"></path>
+                                    </svg></button>
+                                <p class="text-sm text-gray-500 mt-2 text-center">Free forever. No credit card needed
+                                </p>
+                            </div>
+                            <div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div
+                                        class="rounded-lg p-4 bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100">
+                                        <div class="flex items-center mb-2"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-file-json h-5 w-5 mr-2 text-blue-600">
+                                                <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z">
+                                                </path>
+                                                <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+                                                <path
+                                                    d="M10 12a1 1 0 0 0-1 1v1a1 1 0 0 1-1 1 1 1 0 0 1 1 1v1a1 1 0 0 0 1 1">
+                                                </path>
+                                                <path
+                                                    d="M14 18a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1 1 1 0 0 1-1-1v-1a1 1 0 0 0-1-1">
+                                                </path>
+                                            </svg>
+                                            <h4 class="text-sm font-medium text-blue-800">OpenAPI Integration</h4>
+                                        </div>
+                                        <p class="text-xs text-blue-700">Import OpenAPI/Swagger specs for instant
+                                            mocking</p>
+                                    </div>
+                                    <div
+                                        class="rounded-lg p-4 bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100">
+                                        <div class="flex items-center mb-2"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-globe h-5 w-5 mr-2 text-blue-600">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                                                <path d="M2 12h20"></path>
+                                            </svg>
+                                            <h4 class="text-sm font-medium text-blue-800">Multi-Protocol Support</h4>
+                                        </div>
+                                        <p class="text-xs text-blue-700">Support for REST, gRPC, and GraphQL APIs</p>
+                                    </div>
+                                    <div
+                                        class="rounded-lg p-4 bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100">
+                                        <div class="flex items-center mb-2"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-workflow h-5 w-5 mr-2 text-blue-600">
+                                                <rect width="8" height="8" x="3" y="3" rx="2"></rect>
+                                                <path d="M7 11v4a2 2 0 0 0 2 2h4"></path>
+                                                <rect width="8" height="8" x="13" y="13" rx="2"></rect>
+                                            </svg>
+                                            <h4 class="text-sm font-medium text-blue-800">Rapid Prototyping</h4>
+                                        </div>
+                                        <p class="text-xs text-blue-700">Quickly prototype and test API designs</p>
+                                    </div>
+                                    <div class="rounded-lg p-4 bg-gray-50 border border-gray-100">
+                                        <div class="flex items-center mb-2"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-shield h-5 w-5 mr-2 text-gray-700">
+                                                <path
+                                                    d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z">
+                                                </path>
+                                            </svg>
+                                            <h4 class="text-sm font-medium text-gray-900">Enterprise Security</h4>
+                                        </div>
+                                        <p class="text-xs text-gray-600">Role-based access control and SSO</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <footer class="bg-gray-50 border-t border-gray-200 py-12 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-sm text-gray-600 mb-4 md:mb-0">© 2025 WireMock Contributors. Licensed under<!-- -->
+                        <a href="#" class="text-blue-600 hover:text-blue-700">Apache License 2.0</a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div><!--$!--><template data-dgst="BAILOUT_TO_CLIENT_SIDE_RENDERING"></template><!--/$-->
+    
+</body>
+
+</html>

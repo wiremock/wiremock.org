@@ -1,0 +1,292 @@
+---
+import type { Props } from '@astrojs/starlight/props';
+import config from 'virtual:starlight/user-config';
+
+import LanguageSelect from 'virtual:starlight/components/LanguageSelect';
+import Search from 'virtual:starlight/components/Search';
+import SiteTitle from 'virtual:starlight/components/SiteTitle';
+import SocialIcons from 'virtual:starlight/components/SocialIcons';
+import ThemeSelect from 'virtual:starlight/components/ThemeSelect';
+
+const { hasSidebar } = Astro.props;
+
+/**
+ * Render the `Search` component if Pagefind is enabled or the default search component has been overridden.
+ */
+const shouldRenderSearch =
+	config.pagefind || config.components.Search !== '@astrojs/starlight/components/Search.astro';
+---
+
+<div class="header sl-flex">
+	<!-- Left section: Logo and Site title -->
+	<div class="title-wrapper sl-flex">
+		<SiteTitle />
+	</div>
+
+	<!-- Center section: Navigation links and CTA -->
+	<div class="header__links">
+		<!-- Docs Dropdown -->
+		<div class="dropdown" style="margin-left: 80px;">
+			<a href="/docs/" class="header__link">
+				Docs
+				<svg class="header__link-icon" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+			</a>
+			<div class="dropdown-content">
+				<a href="/docs/">WireMock Java</a>
+				<a href="/dotnet/">WireMock.Net</a>
+				<a href="/docs/mock-api-templates/">Mock API Templates</a>
+				<a href="https://docs.wiremock.io/overview?utm_source=wiremock.org&utm_medium=masthead_doc-links&utm_campaign=2022_baseline" target="_blank">WireMock Cloud</a>
+				<a href="/2.x/docs/">WireMock 2.x (Archive)</a>
+			</div>
+		</div>
+
+		<!-- Need Help Dropdown -->
+		<div class="dropdown">
+			<a href="/docs/support/" class="header__link">
+				Need Help?
+				<svg class="header__link-icon" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+			</a>
+			<div class="dropdown-content">
+				<a href="https://slack.wiremock.org/" target="_blank">Q&A on Slack</a>
+				<a href="https://stackoverflow.com/questions/tagged/wiremock" target="_blank">StackOverflow</a>
+				<a href="/docs/commercial/">Commercial Options</a>
+			</div>
+		</div>
+
+		<!-- Participate Dropdown -->
+		<div class="dropdown">
+			<a href="#" class="header__link" target="_blank">
+				Participate
+				<svg class="header__link-icon" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+			</a>
+			<div class="dropdown-content">
+				<a href="https://slack.wiremock.org/" target="_blank">Community Slack</a>
+				<a href="https://github.com/wiremock/community/blob/main/contributing/README.md" target="_blank">Contributor Guide</a>
+				<a href="https://github.com/wiremock/" target="_blank">Our GitHub</a>
+				<a href="https://github.com/wiremock/wiremock.org" target="_blank">This Website</a>
+				<a href="https://github.com/wiremock/.github/blob/main/CODE_OF_CONDUCT.md" target="_blank">Code of Conduct</a>
+			</div>
+		</div>
+
+		<!-- Resources Dropdown -->
+		<div class="dropdown">
+			<a href="/docs/external-resources/" class="header__link">
+				Resources
+				<svg class="header__link-icon" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+			</a>
+			<div class="dropdown-content">
+				<a href="https://library.wiremock.org/" target="_blank">Mock API Templates Library</a>
+				<a href="https://github.com/wiremock/ecosystem" target="_blank">WireMock Ecosystem</a>
+				<a href="https://twitter.com/wiremockorg" target="_blank">Twitter</a>
+				<a href="https://fosstodon.org/@wiremock" target="_blank">Mastodon</a>
+				<a href="https://community.wiremock.io/" target="_blank">Slack Archive</a>
+				<a href="/docs/external-resources/">External Resources</a>
+			</div>
+		</div>
+
+		<!-- Try WireMock Cloud CTA -->
+		<div class="masthead__cta">
+			<a href="https://wiremock.io/product?utm_source=wiremock.org&utm_medium=masthead&utm_campaign=homepage_2025_update_1" class="header__button header__button--contained" target="_blank">
+				Try WireMock Cloud
+			</a>
+		</div>
+	</div>
+
+	<!-- Search -->
+	<div class="sl-flex print:hidden">
+		{shouldRenderSearch && <Search />}
+	</div>
+
+	<!-- Right section: Social links, Theme toggle, Language selector -->
+	<div class="sl-hidden md:sl-flex print:hidden right-group">
+		<div class="sl-flex social-icons">
+			<SocialIcons />
+		</div>
+		<ThemeSelect />
+		<LanguageSelect />
+	</div>
+</div>
+
+<style>
+	.header {
+		gap: var(--sl-nav-gap);
+		justify-content: space-between;
+		align-items: center;
+		height: 100%;
+		width: 100%;
+	}
+
+	.title-wrapper {
+		/* Prevent long titles overflowing and covering the search and menu buttons on narrow viewports. */
+		overflow: clip;
+		/* Avoid clipping focus ring around link inside title wrapper. */
+		padding: 0.25rem;
+		margin: -0.25rem;
+		min-width: 0;
+	}
+
+	.right-group,
+	.social-icons {
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.social-icons::after {
+		content: '';
+		height: 2rem;
+		border-inline-end: 1px solid var(--sl-color-gray-5);
+	}
+
+	.header__links {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+		height: 100%;
+		min-height: 72px;
+		flex: 1;
+		justify-content: center;
+	}
+
+	.header__links a {
+		color: var(--sl-color-gray-1);
+		text-decoration: none;
+	}
+
+	.header__links a:hover {
+		color: var(--sl-color-text-accent);
+	}
+
+	@media (max-width: 1219px) {
+		.header__links {
+			display: none;
+		}
+	}
+
+	.header__link {
+		font-weight: 700;
+		line-height: 1.5;
+		color: var(--sl-color-gray-2);
+		display: flex;
+		align-items: center;
+		text-decoration: none;
+		transition: color 0.2s ease;
+		height: 100%;
+		min-height: 72px;
+		padding: 0 0.5rem;
+	}
+
+	.header__link:hover {
+		color: #0fb2ef;
+	}
+
+	.header__link-icon {
+		margin-left: 8px;
+	}
+
+	.header__button {
+		font-family: "Inter", "Source Sans Pro", sans-serif;
+		font-weight: 500;
+		line-height: 1.2;
+		color: #0fb2ef;
+		white-space: nowrap;
+		text-align: center;
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 4px;
+		padding: 0.25rem 0.5rem;
+		margin-left: 0.5rem;
+		transition: all 0.2s ease;
+		letter-spacing: -0.01em;
+		height: 24px;
+		max-height: 24px;
+		min-height: 24px;
+		text-decoration: none;
+	}
+
+	.header__button--contained {
+		background: #7c47fc;
+		border: 2px solid #7c47fc;
+		color: #ffffff;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+	}
+
+	.header__button--contained:hover {
+		background: #9a70ff;
+		border: 2px solid #9a70ff;
+		transform: translateY(-1px);
+		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+			0 2px 4px -1px rgba(0, 0, 0, 0.06);
+		color: #ffffff;
+	}
+
+	.masthead__cta {
+		margin-left: 100px;
+	}
+
+	.masthead__cta > a {
+		font-weight: bold;
+		color: white;
+		padding: 15px;
+	}
+
+	/* Dropdown Styles */
+	.dropdown {
+		position: relative;
+		display: inline-block;
+		height: 100%;
+		display: flex;
+		align-items: center;
+	}
+
+	.dropdown-content {
+		display: none;
+		position: absolute;
+		padding: 1rem 1.25rem;
+		width: max-content;
+		background: var(--sl-color-bg);
+		box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+			0 10px 10px -5px rgba(0, 0, 0, 0.04);
+		border-radius: 12px;
+		border: 1px solid var(--sl-color-gray-5);
+		z-index: 1000;
+		backdrop-filter: blur(8px);
+		top: 100%;
+		left: 0;
+		margin-top: -0.5rem;
+	}
+
+	.dropdown:hover .dropdown-content {
+		display: block;
+	}
+
+	.dropdown-content a {
+		display: block;
+		text-decoration: none;
+		margin: 0 0 5px 0;
+		font-weight: 400;
+		font-size: 16px;
+		line-height: 24px;
+		color: var(--sl-color-text);
+	}
+
+	.dropdown-content a:hover {
+		color: #0fb2ef;
+	}
+
+	.dropdown a {
+		text-decoration: none;
+	}
+
+	.dropdown a:hover {
+		color: #0fb2ef;
+	}
+</style>
