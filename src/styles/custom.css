@@ -12,6 +12,8 @@
   --sl-color-accent-high: var(--color-wiremock-primary-hover);
   --sl-color-accent-low: rgba(15, 178, 239, 0.2);
 
+  --sl-content-width: 55rem;
+
   /* Custom spacing */
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
