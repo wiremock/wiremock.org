@@ -1,5 +1,10 @@
 [
     {
+        "source": "https://www.wiremock.org",
+        "status": "302",
+        "target": "https://wiremock.org"
+    },
+    {
         "source": "/docs/android",
         "target": "/docs/solutions/android",
         "status": "301"
