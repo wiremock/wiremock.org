@@ -1619,13 +1619,13 @@ textarea {
    ========================================================================== */
 @font-face {
   font-family: "DMSans";
-  src: url("/web/20250901000958im_/https://wiremock.org/assets/fonts/DMSans-Regular.ttf") format("truetype");
+  src: url("/fonts/DMSans-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "DMSans";
-  src: url("/web/20250901000958im_/https://wiremock.org/assets/fonts/DMSans-Medium.ttf") format("truetype");
+  src: url("/fonts/DMSans-Medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
 }
