@@ -1,5 +1,6 @@
 ---
 import { Badge } from '@astrojs/starlight/components'
+import ThemeSelect from 'virtual:starlight/components/ThemeSelect'
 import JavaIcon from '../assets/images/java.svg?raw'
 import DotNetIcon from '../assets/images/dotnet.svg?raw'
 
@@ -11,6 +12,10 @@ const getCustomIcon = (iconName: string | undefined) => {
   return null
 }
 ---
+
+<div class="theme-select-wrapper">
+  <ThemeSelect />
+</div>
 
 <ul class="starlight-sidebar-topics">
   {
@@ -36,6 +41,14 @@ const getCustomIcon = (iconName: string | undefined) => {
 </ul>
 
 <style>
+  .theme-select-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    padding: 0.5rem 0.5rem 0.1rem 0.5rem;
+    border-bottom: 1px solid var(--sl-color-hairline-light);
+    margin-top: -20px;
+  }
+
   ul {
     list-style: none;
     padding: 0;
