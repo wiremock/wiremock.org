@@ -67,6 +67,6 @@ var server = WireMockServer.Start(settings);
 See also [WireMock.Net.StandAlone.NETCoreApp/Program.cs](https://github.com/WireMock-Net/WireMock.Net/blob/master/examples/WireMock.Net.StandAlone.NETCoreApp/Program.cs#L39).
 
 
-# :books: References
+# 📚 References
 - https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSMissingAllowOrigin
 - https://stackoverflow.com/questions/31942037/how-to-enable-cors-in-asp-net-core

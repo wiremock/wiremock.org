@@ -43,5 +43,5 @@ namespace MyNamespace
 
 The code should build now without getting the error.
 
-## :books: References
+## 📚 References
 - https://github.com/WireMock-Net/WireMock.Net/issues/990

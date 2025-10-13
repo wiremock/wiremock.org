@@ -64,6 +64,6 @@ server.Given(
 }
 ```
 
-### :memo: Notes
+### 📝 Notes
 - You can also use `IgnoreCase`
 - And you can also use wildcards like: `name=John*`

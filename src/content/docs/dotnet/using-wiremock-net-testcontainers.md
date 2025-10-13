@@ -7,9 +7,9 @@ WireMock.Net.Testcontainers uses [Testcontainers for .NET](https://dotnet.testco
 
 This options requires docker service running locally.
 
-Both the [Linux](https://hub.docker.com/repository/docker/sheyenrath/wiremock.net) and the [Windows](https://hub.docker.com/repository/docker/sheyenrath/wiremock.net-windows/general) version from WireMock.Net are supported <sup>:memo:</sup>.
+Both the [Linux](https://hub.docker.com/repository/docker/sheyenrath/wiremock.net) and the [Windows](https://hub.docker.com/repository/docker/sheyenrath/wiremock.net-windows/general) version from WireMock.Net are supported <sup>📝</sup>.
 
-:memo: It's not needed to specify the version, this is determined automatically. (So if you are running Docker on a Windows Host, the Windows Docker image is used, else the Linux Docker image is used. 
+📝 It's not needed to specify the version, this is determined automatically. (So if you are running Docker on a Windows Host, the Windows Docker image is used, else the Linux Docker image is used. 
 
 ## Usage
 ### Build and Start

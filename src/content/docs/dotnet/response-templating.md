@@ -121,7 +121,7 @@ The model of the request is supplied to the header and body templates. The follo
 * `request.bodyAsJson` - Request body as dynamic Json Object. Note that the request **must** contain the header `Content-Type` with value `application/json`!
 
 ## Transform the content from a referenced file
-:memo:
+📝
 By default, only the response (headers, statuscode, body) are transformed when the  `.WithTransformer()` or `UseTransformer` are defined.
 
 ⭐ In case you also want to transform the contents from a referenced file (via `BodyAsFile`), an additional parameter need to added. Like `.WithTransformer(bool)` or `UseTransformerForBodyAsFile = true`. ([#386](https://github.com/WireMock-Net/WireMock.Net/issues/386) and [#1106](https://github.com/WireMock-Net/WireMock.Net/issues/1106))
@@ -161,7 +161,7 @@ server
     );
 ```
 
-:warning:
+⚠️
 When returning a more complex Json Body like this:
 ``` json
 {

@@ -2,7 +2,7 @@
 title: Request Matching
 ---
 
-# :one: Request Matching
+# 1️⃣ Request Matching
 WireMock.Net supports matching of requests to stubs and verification queries using the following parts:
 
 * [Path](#path)
@@ -142,5 +142,5 @@ Note that when you want to match on a missing header, you need to use this mappi
 ```
 This means that when the header-key `api-key` (ignoring the casing) is missing the header mapping will match because `RejectOnMatch` is `true`.
 
-# :two: Matchers
+# 2️⃣ Matchers
 Content moved to [Request Matchers](https://github.com/WireMock-Net/WireMock.Net/wiki/Request-Matchers).
