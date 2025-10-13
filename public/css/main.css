@@ -18,7 +18,7 @@
 /* sans serif typefaces */
 /* serif typefaces */
 /* type scale */
-@import url("https://web.archive.org/web/20250901000958cs_/https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap");
 .t-2 {
   --font-size: 2.441em;
   font-size: 2.441em;
@@ -3505,7 +3505,7 @@ schedule-demo-nav-mobile {
    ========================================================================== */
 @font-face {
   font-family: SF_Pro;
-  src: url(/web/20250901000958im_/https://wiremock.org/assets/fonts/SF_Pro.ttf);
+  src: url(/SF_Pro.ttf);
 }
 .page__footer {
   clear: both;
@@ -6746,8 +6746,8 @@ a:hover .archive__item-title {
  * -------------------------- */
 @font-face {
   font-family: "FontAwesome";
-  src: url("/web/20250901000958im_/https://wiremock.org/assets/fonts/fontawesome-webfont.eot?v=4.6.1");
-  src: url("/web/20250901000958im_/https://wiremock.org/assets/fonts/fontawesome-webfont.eot#iefix&v=4.6.1") format("embedded-opentype"), url("/web/20250901000958im_/https://wiremock.org/assets/fonts/fontawesome-webfont.woff2?v=4.6.1") format("woff2"), url("/web/20250901000958im_/https://wiremock.org/assets/fonts/fontawesome-webfont.woff?v=4.6.1") format("woff"), url("/web/20250901000958im_/https://wiremock.org/assets/fonts/fontawesome-webfont.ttf?v=4.6.1") format("truetype"), url("/web/20250901000958im_/https://wiremock.org/assets/fonts/fontawesome-webfont.svg?v=4.6.1#fontawesomeregular") format("svg");
+  src: url("/fonts/fontawesome-webfont.eot?v=4.6.1");
+  src: url("/fonts/fontawesome-webfont.eot#iefix&v=4.6.1") format("embedded-opentype"), url("/fonts/fontawesome-webfont.woff2?v=4.6.1") format("woff2"), url("/fonts/fontawesome-webfont.woff?v=4.6.1") format("woff"), url("/fonts/fontawesome-webfont.ttf?v=4.6.1") format("truetype"), url("/fonts/fontawesome-webfont.svg?v=4.6.1#fontawesomeregular") format("svg");
   font-weight: normal;
   font-style: normal;
 }
