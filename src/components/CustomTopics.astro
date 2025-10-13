@@ -1,0 +1,108 @@
+---
+import { Badge } from '@astrojs/starlight/components'
+import JavaIcon from '../assets/images/java.svg?raw'
+import DotNetIcon from '../assets/images/dotnet.svg?raw'
+
+const { topics } = Astro.locals.starlightSidebarTopics
+
+const getCustomIcon = (iconName: string | undefined) => {
+  if (iconName === 'java') return JavaIcon
+  if (iconName === 'dotnet') return DotNetIcon
+  return null
+}
+---
+
+<ul class="starlight-sidebar-topics">
+  {
+    topics.map((topic) => {
+      const customIcon = getCustomIcon(topic.icon)
+      return (
+        <li>
+          <a href={topic.link} class:list={{ 'starlight-sidebar-topics-current': topic.isCurrent }}>
+            {customIcon && (
+              <div class="starlight-sidebar-topics-icon" set:html={customIcon} />
+            )}
+            <div>
+              {topic.label}
+              {topic.badge && (
+                <Badge class="starlight-sidebar-topics-badge" text={topic.badge.text} variant={topic.badge.variant} />
+              )}
+            </div>
+          </a>
+        </li>
+      )
+    })
+  }
+</ul>
+
+<style>
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  ul::after {
+    content: '';
+    display: block;
+    margin-top: 1rem;
+    height: 1px;
+    border-top: 1px solid var(--sl-color-hairline-light);
+  }
+
+  li {
+    overflow-wrap: anywhere;
+  }
+
+  li + li {
+    margin-top: 0.25rem;
+  }
+
+  a {
+    align-items: center;
+    color: var(--sl-color-white);
+    display: flex;
+    font-size: var(--sl-text-base);
+    font-weight: 600;
+    gap: 0.5rem;
+    line-height: 1.5;
+    padding: 0.3em 0.5rem;
+    text-decoration: none;
+  }
+
+  a:is(.starlight-sidebar-topics-current, :hover, :focus-visible) {
+    color: var(--sl-color-accent-high);
+  }
+
+  :global([data-theme='light']) a.starlight-sidebar-topics-current {
+    color: var(--sl-color-accent);
+  }
+
+  .starlight-sidebar-topics-icon {
+    align-items: center;
+    border-radius: 0.25rem;
+    border: 1px solid var(--sl-color-gray-4);
+    display: flex;
+    justify-content: center;
+    padding: 0.1875rem;
+    padding: 0.25rem;
+    width: 2rem;
+    height: 2rem;
+    flex-shrink: 0;
+  }
+
+  .starlight-sidebar-topics-icon :global(svg) {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  a:is(.starlight-sidebar-topics-current, :hover, :focus-visible) .starlight-sidebar-topics-icon {
+    background-color: var(--sl-color-text-accent);
+    border-color: var(--sl-color-text-accent);
+    color: var(--sl-color-text-invert);
+  }
+
+  .starlight-sidebar-topics-badge {
+    margin-inline-start: 0.25em;
+  }
+</style>

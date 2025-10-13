@@ -42,7 +42,7 @@ export default defineConfig({
                         id: 'java',
                         label: 'Java',
                         link: '/docs/',
-                        icon: 'seti:java',
+                        icon: 'java',
                         items: [
                             { label: 'Overview', slug: 'docs' },
                             { label: 'v4 Beta', slug: 'docs/v4' },
@@ -181,7 +181,7 @@ export default defineConfig({
                     {
                         label: '.NET',
                         link: '/dotnet/',
-                        icon: 'seti:json',
+                        icon: 'dotnet',
                         items: [
                             { label: 'WireMock.NET', slug: 'dotnet' },
                             { label: 'What is WireMock.Net', slug: 'dotnet/what-is-wiremock-net' },
@@ -266,6 +266,7 @@ export default defineConfig({
             components: {
                 Head: './src/components/Head.astro',
                 Header: './src/components/Header.astro',
+                Sidebar: './src/components/Sidebar.astro',
             },
         }),
     ],

@@ -1,0 +1,10 @@
+---
+import Default from '@astrojs/starlight/components/Sidebar.astro'
+import CustomTopics from './CustomTopics.astro'
+
+const { hasSidebar } = Astro.locals.starlightRoute
+const { isPageWithTopic } = Astro.locals.starlightSidebarTopics
+---
+
+{hasSidebar && isPageWithTopic && <CustomTopics />}
+<Default><slot /></Default>
