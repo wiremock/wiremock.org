@@ -28,7 +28,7 @@ export default defineConfig({
                 {
                     label: 'GitHub',
                     icon: 'github',
-                    href: 'https://github.com/wiremock/wiremock',
+                    href: 'https://github.com/wiremock',
                 },
             ],
             customCss: [
