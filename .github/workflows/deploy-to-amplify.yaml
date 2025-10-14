@@ -3,7 +3,7 @@ name: Deploy to AWS Amplify
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ["starlight-replatform"]
+    branches: ["main"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
