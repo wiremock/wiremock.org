@@ -82,6 +82,7 @@ export default defineConfig({
                                     { label: 'Stubbing', slug: 'docs/stubbing' },
                                     { label: 'Request Matching', slug: 'docs/request-matching' },
                                     { label: 'Response Templating', slug: 'docs/response-templating' },
+                                    { label: 'Faker Extension', slug: 'docs/faker-extension' },
                                     { label: 'Simulating Faults', slug: 'docs/simulating-faults' },
                                     { label: 'Stateful Behaviour', slug: 'docs/stateful-behaviour' },
                                     { label: 'Proxying', slug: 'docs/proxying' },
@@ -105,9 +106,9 @@ export default defineConfig({
                                 label: 'Protocols',
                                 items: [
                                     { label: 'Webhooks and Callbacks', slug: 'docs/webhooks-and-callbacks' },
-                                    { label: 'Mocking gRPC services', slug: 'docs/grpc' },
+                                    { label: 'gRPC', slug: 'docs/grpc' },
                                     { label: 'JSON Web Tokens (JWT)', slug: 'docs/jwt' },
-                                    { label: 'Serving HTTPS', slug: 'docs/https' },
+                                    { label: 'HTTPS', slug: 'docs/https' },
                                 ],
                             },
                             {
