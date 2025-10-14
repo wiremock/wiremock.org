@@ -3,10 +3,10 @@ name: "Updatecli"
 
 on:
   workflow_dispatch:
-  schedule:
-    # * is a special character in YAML so you have to quote this string
-    # trigger every hour the following pipeline
-    - cron: '0 * * * *'
+  # schedule:
+  #   # * is a special character in YAML so you have to quote this string
+  #   # trigger every hour the following pipeline
+  #   - cron: '0 * * * *'
 
 permissions:
   contents: write
