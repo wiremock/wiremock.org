@@ -1,0 +1,198 @@
+---
+title: "GraphQL Extension"
+description: Test GraphQL APIs with WireMock using semantic request matching. Match GraphQL queries and variables while ignoring field order and whitespace differences.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import CloudCallout from '../../../components/CloudCallout.astro';
+
+<CloudCallout title="WireMock Cloud" icon="rocket">
+    WireMock Cloud provides rapid GraphQL mocking with advanced features like dynamic state and federation support.<br/>
+    [**Try WireMock Cloud >**](https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-graphql&utm_id=cloud-callouts&utm_term=cloud-callouts-graphql)
+</CloudCallout>
+
+The WireMock GraphQL Extension provides semantic verification of GraphQL requests, allowing you to match queries based on their meaning rather than exact text matching. This extension normalizes and sorts queries, handles whitespace differences, and compares variables intelligently.
+
+## Overview
+
+The GraphQL extension offers:
+
+- **Semantic query matching** - Queries are normalized and sorted, so field order doesn't matter
+- **Variable comparison** - Compares GraphQL variables using JSON matching logic
+- **Whitespace handling** - Ignores formatting differences in queries
+- **GraphQL parsing** - Uses the `graphql-java` library for accurate parsing and normalization
+
+> **note**
+>
+> This extension requires WireMock 3.x. WireMock 2.x is not supported from version 0.6.0 onwards.
+
+## Installation
+
+Add the GraphQL extension to your project using Maven or Gradle:
+
+<Tabs>
+  <TabItem label="Maven">
+    ```xml
+    <dependency>
+        <groupId>io.github.nilwurtz</groupId>
+        <artifactId>wiremock-graphql-extension</artifactId>
+        <version>0.9.0</version>
+        <scope>test</scope>
+    </dependency>
+    ```
+  </TabItem>
+  <TabItem label="Gradle">
+    ```groovy
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        testImplementation 'io.github.nilwurtz:wiremock-graphql-extension:0.9.0'
+    }
+    ```
+  </TabItem>
+</Tabs>
+
+## Basic usage
+
+The extension provides the `GraphqlBodyMatcher` for matching GraphQL requests. You can specify the expected query and optionally the expected variables:
+
+<Tabs>
+  <TabItem label="Java">
+    ```java
+    import com.github.tomakehurst.wiremock.client.WireMock;
+    import io.github.nilwurtz.GraphqlBodyMatcher;
+    import java.util.Map;
+
+    var expectedQuery = """
+        query HeroInfo($id: Int) {
+            hero(id: $id) {
+                name
+            }
+        }
+        """;
+    var expectedVariables = Map.of("id", 1);
+
+    WireMock.stubFor(WireMock.post(WireMock.urlEqualTo("/graphql"))
+        .andMatching(GraphqlBodyMatcher.extensionName,
+                     GraphqlBodyMatcher.parameters(expectedQuery, expectedVariables))
+        .willReturn(WireMock.okJson("""
+            {
+                "data": {
+                    "hero": {
+                        "name": "Luke Skywalker"
+                    }
+                }
+            }""")));
+    ```
+  </TabItem>
+  <TabItem label="Kotlin">
+    ```kotlin
+    import com.github.tomakehurst.wiremock.client.WireMock
+    import io.github.nilwurtz.GraphqlBodyMatcher
+
+    val expectedQuery = """
+        query HeroInfo(${'$'}id: Int) {
+            hero(id: ${'$'}id) {
+                name
+            }
+        }
+    """.trimIndent()
+    val expectedVariables = mapOf("id" to 1)
+
+    WireMock.stubFor(
+        WireMock.post(WireMock.urlEqualTo("/graphql"))
+            .andMatching(GraphqlBodyMatcher.extensionName,
+                         GraphqlBodyMatcher.parameters(expectedQuery, expectedVariables))
+            .willReturn(
+                WireMock.okJson("""
+                    {
+                        "data": {
+                            "hero": {
+                                "name": "Luke Skywalker"
+                            }
+                        }
+                    }
+                """.trimIndent())
+            )
+    )
+    ```
+  </TabItem>
+</Tabs>
+
+## Using with standalone WireMock
+
+When running WireMock as a standalone server (e.g., in Docker), you need to include the extension JAR file and register it.
+
+### Docker setup
+
+Download `wiremock-graphql-extension-x.y.z-jar-with-dependencies.jar` from the [releases page](https://github.com/wiremock/wiremock-graphql-extension/releases).
+
+<Tabs>
+  <TabItem label="docker run">
+    ```bash
+    docker run -it --rm \
+      -p 8080:8080 \
+      --name wiremock \
+      -v /path/to/wiremock-graphql-extension-0.9.0-jar-with-dependencies.jar:/var/wiremock/extensions/wiremock-graphql-extension-0.9.0-jar-with-dependencies.jar \
+      wiremock/wiremock \
+      --extensions io.github.nilwurtz.GraphqlBodyMatcher
+    ```
+  </TabItem>
+  <TabItem label="Dockerfile">
+    ```dockerfile
+    FROM wiremock/wiremock:latest
+    COPY ./wiremock-graphql-extension-0.9.0-jar-with-dependencies.jar \
+         /var/wiremock/extensions/wiremock-graphql-extension-0.9.0-jar-with-dependencies.jar
+    ```
+  </TabItem>
+</Tabs>
+
+### Registering stubs with a remote server
+
+When using a remote WireMock server, you can register stubs programmatically:
+
+<Tabs>
+  <TabItem label="Java">
+    ```java
+    import com.github.tomakehurst.wiremock.client.WireMock;
+    import io.github.nilwurtz.GraphqlBodyMatcher;
+    import static com.github.tomakehurst.wiremock.client.WireMock.*;
+
+    public void registerGraphQLWiremock(String query, String response) {
+        WireMock wireMock = new WireMock(8080);
+        wireMock.register(
+            post(urlPathEqualTo("/graphql"))
+                .andMatching(GraphqlBodyMatcher.extensionName,
+                             GraphqlBodyMatcher.parameters(query))
+                .willReturn(okJson(response))
+        );
+    }
+    ```
+  </TabItem>
+  <TabItem label="Kotlin">
+    ```kotlin
+    import com.github.tomakehurst.wiremock.client.WireMock
+    import com.github.tomakehurst.wiremock.client.WireMock.*
+    import io.github.nilwurtz.GraphqlBodyMatcher
+
+    fun registerGraphQLWiremock(query: String, response: String) {
+        val wireMock = WireMock(8080)
+        wireMock.register(
+            post(urlPathEqualTo("/graphql"))
+                .andMatching(GraphqlBodyMatcher.extensionName,
+                             GraphqlBodyMatcher.parameters(query))
+                .willReturn(okJson(response))
+        )
+    }
+    ```
+  </TabItem>
+</Tabs>
+
+## See also
+
+- [Request Matching](../request-matching/) - Learn about other request matching techniques
+- [Extending WireMock](../extending-wiremock/) - Create your own custom matchers
+- [GraphQL Extension GitHub Repository](https://github.com/wiremock/wiremock-graphql-extension) - Source code and additional documentation
+- [graphql-java](https://www.graphql-java.com/) - The underlying GraphQL parsing library
