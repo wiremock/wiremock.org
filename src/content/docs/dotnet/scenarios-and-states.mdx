@@ -2,6 +2,13 @@
 title: Scenarios And States
 ---
 
+import CloudCallout from '../../../components/CloudCallout.astro';
+
+<CloudCallout title="WireMock Cloud" icon="rocket">
+    Build fully stateful mock API behaviour using templates in WireMock Cloud<br/>
+    [**Read the docs >**](https://docs.wiremock.io/dynamic-state/overview?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-stateful&utm_id=cloud-callouts&utm_term=cloud-callouts-stateful)
+</CloudCallout>
+
 # Using Scenarios
 
 WireMock.Net supports _State_ via the notion of _scenarios_. A scenario is essentially a state machine whose states can be arbitrarily assigned. Stub mappings can be configured to match on scenario state, such that stub A can be returned initially, then stub B once the next scenario state has been triggered.

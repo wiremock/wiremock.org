@@ -2,6 +2,13 @@
 title: Response Templating
 ---
 
+import CloudCallout from '../../../components/CloudCallout.astro';
+
+<CloudCallout title="WireMock Cloud" icon="rocket">
+    WireMock Cloud's web-based editor with embedded test tool makes response template development easy<br/>
+    [**Learn more >**](https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-response-templating&utm_id=cloud-callouts&utm_term=cloud-callouts-response-templating)
+</CloudCallout>
+
 Response headers and bodies can optionally be rendered (templated) with:
 
 - [Handlebars.Net](https://github.com/rexm/Handlebars.Net)
@@ -93,7 +100,7 @@ For using Scriban as templating engine, just provide the type:
 
 # Note
 Scriban and Handlebars.Net are supported, however some functionality from Scriban cannot not (yet) be used in WireMock.Net, these topics are:
-- DOT notation for accessing this {{request.PathSegments.[0]}} does not work
+- DOT notation for accessing this `\{\{request.PathSegments.[0]\}\}` does not work
 - WireMockList is not supported by Scriban
 
 So the examples and explication below is mostly targeted to Handlebars.Net
