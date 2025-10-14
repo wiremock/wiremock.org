@@ -2,13 +2,14 @@
 title: "WireMock Spring Boot Integration"
 ---
 
-
+import { Tabs, TabItem } from '@astrojs/starlight/components';
 
 WireMock's Spring Boot integration provides a simple, declarative way to configure and run one or more WireMock instances their JUnit tests.
 
 ## Installation
 
-Maven:
+<Tabs>
+<TabItem label="Maven">
 ```xml
 <dependency>
     <groupId>org.wiremock.integrations</groupId>
@@ -17,10 +18,13 @@ Maven:
 </dependency>
 ```
 
-Gradle:
+</TabItem>
+<TabItem label="Gradle Groovy">
 ```groovy
 implementation 'org.wiremock.integrations:wiremock-spring-boot:3.10.0'
 ```
+</TabItem>
+</Tabs>
 
 ## Basic usage
 
