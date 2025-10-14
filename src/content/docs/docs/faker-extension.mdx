@@ -1,0 +1,292 @@
+---
+title: "Faker Extension"
+description: Generate realistic random data in WireMock response templates using the Faker extension. Create mock responses with fake names, addresses, emails, and more.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import CloudCallout from '../../../components/CloudCallout.astro';
+
+<CloudCallout title="WireMock Cloud" icon="rocket">
+    Create dynamic, realistic mock responses with WireMock Cloud's powerful templating capabilities.<br/>
+    [**Learn more >**](https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-faker&utm_id=cloud-callouts&utm_term=cloud-callouts-faker)
+</CloudCallout>
+
+The WireMock Faker Extension uses the [Data Faker library](https://github.com/datafaker-net/datafaker) to generate random, realistic fake data for use in WireMock response templates. This is particularly useful for creating test data that looks authentic without hardcoding values.
+
+## Installation
+
+The Faker extension is packaged separately from the core WireMock library. Add it to your project using Maven or Gradle:
+
+<Tabs>
+  <TabItem label="Maven">
+    ```xml
+    <dependency>
+        <groupId>org.wiremock.extensions</groupId>
+        <artifactId>wiremock-faker-extension</artifactId>
+        <version>0.2.0</version>
+    </dependency>
+    ```
+  </TabItem>
+  <TabItem label="Gradle">
+    ```groovy
+    dependencies {
+        implementation 'org.wiremock.extensions:wiremock-faker-extension-standalone:0.2.0'
+    }
+    ```
+  </TabItem>
+</Tabs>
+
+> **note**
+>
+> The extension includes `net.datafaker:datafaker` as a transitive dependency. If you encounter build conflicts with this library, you may need to exclude it from other dependencies in your project.
+
+## Registering the extension
+
+To use the Faker extension, you need to register it with your WireMock server:
+
+<Tabs>
+  <TabItem label="Java">
+    ```java
+    import org.wiremock.extensions.RandomExtension;
+
+    WireMockServer wireMockServer = new WireMockServer(
+        wireMockConfig()
+            .extensions(RandomExtension.class)
+    );
+    ```
+  </TabItem>
+  <TabItem label="Standalone">
+    When running WireMock standalone, register the extension via the command line:
+    ```bash
+    java -jar wiremock-standalone.jar --extensions org.wiremock.extensions.RandomExtension
+    ```
+  </TabItem>
+</Tabs>
+
+## Using the random helper
+
+Once the extension is registered, you can use the `random` Handlebars helper in your response templates. The helper takes a single parameter specifying the type of fake data to generate, in the format `Category.Key`.
+
+### Basic usage
+
+<Tabs>
+  <TabItem label="JSON">
+    ```json
+    {
+      "request": {
+        "method": "GET",
+        "url": "/api/user"
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "firstName": "{{random 'Name.first_name'}}",
+          "lastName": "{{random 'Name.last_name'}}",
+          "email": "{{random 'Internet.email_address'}}"
+        },
+        "transformers": ["response-template"]
+      }
+    }
+    ```
+  </TabItem>
+  <TabItem label="Java">
+    ```java
+    stubFor(get(urlEqualTo("/api/user"))
+        .willReturn(aResponse()
+            .withStatus(200)
+            .withHeader("Content-Type", "application/json")
+            .withBody("{\n" +
+                "  \"firstName\": \"{{random 'Name.first_name'}}\",\n" +
+                "  \"lastName\": \"{{random 'Name.last_name'}}\",\n" +
+                "  \"email\": \"{{random 'Internet.email_address'}}\"\n" +
+                "}")
+            .withTransformers("response-template")));
+    ```
+  </TabItem>
+</Tabs>
+
+Each request will generate different random values, for example:
+
+```json
+{
+  "firstName": "John",
+  "lastName": "Smith",
+  "email": "john.smith@example.com"
+}
+```
+
+### Practical examples
+
+#### Creating a realistic user profile
+
+```json
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/api/users/[0-9]+"
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "id": "{{request.pathSegments.[2]}}",
+      "firstName": "{{random 'Name.first_name'}}",
+      "lastName": "{{random 'Name.last_name'}}",
+      "email": "{{random 'Internet.email_address'}}",
+      "phone": "{{random 'PhoneNumber.phone_number'}}",
+      "address": {
+        "street": "{{random 'Address.street_address'}}",
+        "city": "{{random 'Address.city'}}",
+        "state": "{{random 'Address.state'}}",
+        "zipCode": "{{random 'Address.zip_code'}}"
+      },
+      "company": "{{random 'Company.name'}}",
+      "jobTitle": "{{random 'Job.title'}}"
+    },
+    "transformers": ["response-template"]
+  }
+}
+```
+
+#### Generating product data
+
+```json
+{
+  "request": {
+    "method": "GET",
+    "url": "/api/products"
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": [
+      {
+        "id": 1,
+        "name": "{{random 'Commerce.product_name'}}",
+        "price": "{{random 'Commerce.price'}}",
+        "category": "{{random 'Commerce.department'}}",
+        "color": "{{random 'Color.name'}}",
+        "material": "{{random 'Commerce.material'}}"
+      }
+    ],
+    "transformers": ["response-template"]
+  }
+}
+```
+
+## Available fake data types
+
+The Faker extension supports a wide variety of data types across multiple categories. Here are some commonly used ones:
+
+### Personal Information
+- `Name.first_name` - First name
+- `Name.last_name` - Last name
+- `Name.full_name` - Full name
+- `Name.name_with_middle` - Name with middle name
+- `Name.prefix` - Name prefix (Mr., Mrs., etc.)
+- `Name.suffix` - Name suffix (Jr., Sr., etc.)
+
+### Contact Information
+- `Internet.email_address` - Email address
+- `Internet.safe_email_address` - Safe email address
+- `PhoneNumber.phone_number` - Phone number
+- `PhoneNumber.cell_phone` - Cell phone number
+
+### Address Information
+- `Address.street_address` - Street address
+- `Address.city` - City name
+- `Address.state` - State name
+- `Address.state_abbr` - State abbreviation
+- `Address.zip_code` - ZIP code
+- `Address.country` - Country name
+
+### Business & Work
+- `Company.name` - Company name
+- `Company.industry` - Industry
+- `Job.title` - Job title
+- `Job.field` - Job field
+- `Commerce.department` - Department name
+- `Commerce.product_name` - Product name
+- `Commerce.price` - Price
+
+### Internet & Technology
+- `Internet.url` - URL
+- `Internet.domain_name` - Domain name
+- `Internet.ip_v4_address` - IPv4 address
+- `Internet.ip_v6_address` - IPv6 address
+- `Internet.mac_address` - MAC address
+- `Internet.uuid` - UUID
+
+### Dates & Times
+- `DateAndTime.birthday` - Birthday
+- `DateAndTime.future` - Future date
+
+### Text & Content
+- `Lorem.characters` - Random characters
+- `Lorem.word` - Random word
+- `Lorem.sentence` - Random sentence
+- `Lorem.paragraph` - Random paragraph
+
+### Food & Beverage
+- `Food.ingredient` - Food ingredient
+- `Food.spice` - Spice name
+- `Beer.name` - Beer name
+- `Coffee.blend_name` - Coffee blend
+
+### Entertainment
+- `Book.title` - Book title
+- `Book.author` - Book author
+- `Music.genre` - Music genre
+- `Movie.title` - Movie title
+
+### Finance
+- `Finance.credit_card` - Credit card number
+- `Finance.iban` - IBAN
+- `Finance.bic` - BIC/SWIFT code
+
+### Regional Data
+- `Address.postcode_by_state.AL` - Postcode for Alabama
+- (Similar patterns for other US states)
+
+For a complete reference of all available data types, see the [Faker Extension Reference Documentation](https://github.com/wiremock/wiremock-faker-extension/blob/main/docs/reference.md).
+
+## Locale support
+
+By default, the Faker extension generates data in the `en-US` locale. The generated data will follow American conventions for names, addresses, phone numbers, and other locale-specific formats.
+
+## Combining with other helpers
+
+The `random` helper works seamlessly with other WireMock template helpers:
+
+```handlebars
+{{!-- Capitalize a random first name --}}
+{{capitalize (random 'Name.first_name')}}
+
+{{!-- Create an email from random name parts --}}
+{{toLowerCase (random 'Name.first_name')}}.{{toLowerCase (random 'Name.last_name')}}@example.com
+
+{{!-- Format output with random data --}}
+Hello {{random 'Name.first_name'}}, your order #{{randomValue type='NUMERIC' length=8}} has shipped!
+```
+
+## Best practices
+
+1. **Use with response templating**: Always enable response templating when using the Faker extension by adding `"transformers": ["response-template"]` to your stub.
+
+2. **Combine with request data**: Mix random data with request parameters for more realistic responses:
+   ```handlebars
+   {
+     "userId": "{{request.pathSegments.[2]}}",
+     "userName": "{{random 'Name.full_name'}}",
+     "timestamp": "{{now}}"
+   }
+   ```
+
+3. **Choose appropriate types**: Select faker types that match your domain. For example, use `Job.title` for employee data rather than generic `Lorem.word`.
+
+4. **Test data consistency**: Remember that the faker generates new random values on each request. If you need consistent data across requests, consider using [stateful behaviour](../stateful-behaviour/) or storing values in [scenarios](../stateful-behaviour/#scenarios).
+
+## See also
+
+- [Response Templating](../response-templating/) - Learn about all available template helpers
+- [Extending WireMock](../extending-wiremock/) - Create your own custom extensions
+- [Adding Template Helpers](../extensibility/adding-template-helpers/) - Build custom Handlebars helpers
+- [Data Faker Documentation](https://github.com/datafaker-net/datafaker) - Full documentation for the underlying library
