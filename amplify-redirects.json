@@ -279,4 +279,10 @@
         "target": "/docs/",
         "status": "301"
     }
+    ,
+    {
+        "source": "/docs/graphql-extension/",
+        "target": "/docs/graphql/",
+        "status": "301"
+    }
 ]

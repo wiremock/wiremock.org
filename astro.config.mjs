@@ -106,7 +106,7 @@ export default defineConfig({
                                 label: 'Protocols',
                                 items: [
                                     { label: 'Webhooks and Callbacks', slug: 'docs/webhooks-and-callbacks' },
-                                    { label: 'GraphQL', slug: 'docs/graphql-extension' },
+                                    { label: 'GraphQL', slug: 'docs/graphql' },
                                     { label: 'gRPC', slug: 'docs/grpc' },
                                     { label: 'JSON Web Tokens (JWT)', slug: 'docs/jwt' },
                                     { label: 'HTTPS', slug: 'docs/https' },
