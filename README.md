@@ -10,6 +10,10 @@ This site is build on Starlight - a static documentation site builder based on A
 
 We welcome contributions to improve the WireMock documentation! Here's how to get started:
 
+### Prerequisites
+
+This project uses [pnpm](https://pnpm.io/) as its package manager. If you don't have pnpm installed, follow the [installation instructions](https://pnpm.io/installation).
+
 ### Running the Dev Server Locally
 
 1. **Install dependencies:**
