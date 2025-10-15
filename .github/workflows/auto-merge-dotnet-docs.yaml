@@ -1,0 +1,126 @@
+name: Auto-merge .NET docs PRs
+
+on:
+  pull_request_review:
+    types: [submitted]
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v45
+        with:
+          base_sha: ${{ github.event.pull_request.base.sha }}
+          sha: ${{ github.event.pull_request.head.sha }}
+
+      - name: Check if PR only affects dotnet docs
+        id: check-files
+        run: |
+          echo "Checking if all changed files are under src/content/docs/dotnet/"
+          ALL_DOTNET=true
+
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            echo "Checking file: $file"
+            if [[ ! "$file" =~ ^src/content/docs/dotnet/ ]]; then
+              echo "File $file is outside dotnet docs directory"
+              ALL_DOTNET=false
+              break
+            fi
+          done
+
+          echo "all_dotnet_docs=$ALL_DOTNET" >> $GITHUB_OUTPUT
+
+          if [ "$ALL_DOTNET" = "true" ]; then
+            echo "✅ All changed files are in src/content/docs/dotnet/"
+          else
+            echo "❌ Some files are outside src/content/docs/dotnet/"
+          fi
+
+      - name: Check for StefH approval
+        id: check-approval
+        if: steps.check-files.outputs.all_dotnet_docs == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const reviews = await github.rest.pulls.listReviews({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+            });
+
+            const stefhApproval = reviews.data.some(review =>
+              review.user.login === 'StefH' &&
+              review.state === 'APPROVED'
+            );
+
+            console.log(`StefH approval: ${stefhApproval}`);
+            return stefhApproval;
+
+      - name: Enable auto-merge
+        if: |
+          steps.check-files.outputs.all_dotnet_docs == 'true' &&
+          steps.check-approval.outputs.result == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.pulls.merge({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+              merge_method: 'squash',
+            });
+
+            console.log('✅ PR auto-merged successfully!');
+
+      - name: Add comment on success
+        if: |
+          steps.check-files.outputs.all_dotnet_docs == 'true' &&
+          steps.check-approval.outputs.result == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              body: '✅ Auto-merged: This PR only affects .NET documentation files and was approved by @StefH.'
+            });
+
+      - name: Add comment if not eligible
+        if: |
+          steps.check-files.outputs.all_dotnet_docs == 'false' ||
+          steps.check-approval.outputs.result == 'false'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            let reason = '';
+            if ('${{ steps.check-files.outputs.all_dotnet_docs }}' !== 'true') {
+              reason = '❌ This PR includes files outside of `src/content/docs/dotnet/` and cannot be auto-merged.';
+            } else if ('${{ steps.check-approval.outputs.result }}' !== 'true') {
+              reason = '⏳ Waiting for approval from @StefH for auto-merge.';
+            }
+
+            if (reason) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.pull_request.number,
+                body: reason
+              });
+            }
