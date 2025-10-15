@@ -1,44 +1,49 @@
-# WireMock Documentation - Astro Starlight
+# WireMock OSS Documentation
 
 [![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
 
-Official documentation site for WireMock, migrated from MkDocs Material to Astro Starlight.
+This is the source project for the official WireMock OSS documentation, now hosting both the Java and .Net edition docs.
 
-## 🎉 Migration Complete
+This site is build on Starlight - a static documentation site builder based on Astro.
 
-This site has been successfully migrated from MkDocs to Astro Starlight with:
-- ✅ 114 documentation files (68 Java + 46 .NET)
-- ✅ Exact URL structure preservation (`/java/*`, `/dotnet/*`)
-- ✅ All images and assets
-- ✅ Full navigation structure
-- ✅ Analytics configured
-- ✅ Custom styling
+## Contributing to these docs
 
-See [MIGRATION_SUMMARY.md](../MIGRATION_SUMMARY.md) for full details.
+We welcome contributions to improve the WireMock documentation! Here's how to get started:
 
-## 🚀 Project Structure
+### Running the Dev Server Locally
 
-```
-wiremock.org-starlight/
-├── public/
-│   └── images/              # All site images (292 files)
-├── src/
-│   ├── assets/
-│   │   └── wiremock-oss-logo.png
-│   ├── components/
-│   │   └── Head.astro      # Google Analytics
-│   ├── content/
-│   │   └── docs/
-│   │       ├── index.mdx   # Homepage
-│   │       ├── java/       # Java docs (68 files)
-│   │       └── dotnet/     # .NET docs (46 files)
-│   ├── styles/
-│   │   └── custom.css      # WireMock brand styling
-│   └── content.config.ts
-├── astro.config.mjs         # Site configuration
-├── STARLIGHT_PATTERNS.md    # Quick reference guide
-└── package.json
-```
+1. **Install dependencies:**
+   ```bash
+   pnpm install
+   ```
+
+2. **Start the development server:**
+   ```bash
+   pnpm dev
+   ```
+
+   The site will be available at `http://localhost:4321`
+
+3. **Make your changes:**
+   - Edit markdown files in `src/content/docs/`
+   - The dev server will automatically reload as you save changes
+
+4. **Preview your changes:**
+   - Check your changes in the browser to ensure they look correct
+   - Test any links or navigation you've modified
+
+### Submitting Your Contribution
+
+Once you're happy with your changes:
+
+1. Commit your changes with a descriptive commit message
+2. Push your changes to your fork (or create a new branch if you have write access)
+3. Open a Pull Request against the `main` branch
+4. Provide a clear description of what you've changed and why
+
+Your PR will be reviewed by the maintainers. Thank you for contributing to WireMock!
+
+
 
 ## 🧞 Commands
 
@@ -59,103 +64,13 @@ All commands are run from the root of the project (`wiremock.org-starlight/`):
 2. Use `.md` for standard pages, `.mdx` for pages with components
 3. Add entries to sidebar in `astro.config.mjs` if needed
 
-### Quick Reference
 
-See [STARLIGHT_PATTERNS.md](./STARLIGHT_PATTERNS.md) for:
-- Admonitions/callouts syntax
-- Tabs conversion
-- Card grids
-- Links and images
-- Common patterns
-
-### Key Differences from MkDocs
-
-| MkDocs | Starlight |
-|--------|-----------|
-| `!!! note` | `:::note` |
-| `=== "Tab"` | `<TabItem label="Tab">` |
-| `{{ variable }}` | Static value or import |
-| Tabs at top | Sidebar navigation |
-
-## ⚠️ Manual Review Needed
-
-Some files marked with `TODO:` comments need attention:
-
-```bash
-# Find all files needing review
-grep -r "TODO:" src/content/docs/
-```
-
-Common items:
-- Convert `===` tabs to `<Tabs>` component
-- Update complex HTML grids to Card components
-- Verify relative links
-
-## 🎨 Styling
-
-Custom styles in `src/styles/custom.css`:
-- WireMock brand colors
-- Grid containers for homepage layouts
-- Card styling
-- Custom admonitions
-
-## 🔗 URL Structure
-
-URLs are preserved exactly:
-
-- Homepage: `/`
-- Java docs: `/java/*` (e.g., `/java/quickstart/java-junit/`)
-- .NET docs: `/dotnet/*` (e.g., `/dotnet/request-matching/`)
-
-## 📊 Analytics
-
-Google Analytics configured in `src/components/Head.astro`:
-- Property ID: `G-6G6E8F439F`
-
-## 🚢 Deployment
-
-Build the site:
-
-```bash
-pnpm build
-```
-
-The `dist/` folder contains the static site ready for deployment to any static host (Netlify, Vercel, GitHub Pages, etc.).
-
-## 📚 Documentation
+## 📚 Further reading
 
 - [Starlight Documentation](https://starlight.astro.build/)
 - [Astro Documentation](https://docs.astro.build)
-- [Migration Summary](../MIGRATION_SUMMARY.md)
-- [Pattern Guide](./STARLIGHT_PATTERNS.md)
-
-## 🐛 Troubleshooting
-
-### Images not loading
-- Ensure images are in `/public/images/`
-- Use absolute paths: `/images/logo.svg`
-
-### Build errors
-- Check for syntax errors in frontmatter
-- Verify imports in `.mdx` files
-- Ensure all referenced images exist
-
-### Dev server slow
-- Large number of files may cause slower builds
-- Consider using `astro dev --host` for network access
-
-## 📝 Contributing
-
-When adding new content:
-
-1. Add markdown file to appropriate section
-2. Update sidebar in `astro.config.mjs` if needed
-3. Use correct frontmatter format
-4. Follow patterns in `STARLIGHT_PATTERNS.md`
-5. Test locally before committing
 
 ## 🙋 Support
 
 - WireMock Slack: https://slack.wiremock.org/
-- GitHub Issues: https://github.com/wiremock/wiremock
 - Starlight Discord: https://astro.build/chat
