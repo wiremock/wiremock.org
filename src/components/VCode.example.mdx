@@ -1,0 +1,111 @@
+---
+title: "VCode Component Examples"
+description: "Examples of using the VCode component for version-managed code blocks"
+---
+
+import VCode from '../../../components/VCode.astro';
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+# VCode Component Examples
+
+The `VCode` component works exactly like Starlight's built-in `Code` component, but automatically
+substitutes template variables in the format `{{VARIABLE_NAME}}`.
+
+## Basic Usage
+
+### Maven Dependency (Slot Syntax)
+
+<VCode lang="xml">
+<dependency>
+    <groupId>org.wiremock</groupId>
+    <artifactId>wiremock</artifactId>
+    <version>{{WIREMOCK_STABLE}}</version>
+    <scope>test</scope>
+</dependency>
+</VCode>
+
+### Docker Command (Prop Syntax)
+
+<VCode lang="bash" code={`docker run -it --rm \\
+  -p 8080:8080 \\
+  --name wiremock \\
+  wiremock/wiremock:{{DOCKER_STABLE}}`} />
+
+### Gradle Dependency (Prop Syntax)
+
+<VCode lang="groovy" code={`testImplementation "org.wiremock:wiremock:{{WIREMOCK_STABLE}}"`} />
+
+## With Tabs
+
+<Tabs>
+<TabItem label="Maven">
+
+<VCode lang="xml">
+<dependency>
+    <groupId>org.wiremock</groupId>
+    <artifactId>wiremock</artifactId>
+    <version>{{WIREMOCK_STABLE}}</version>
+</dependency>
+</VCode>
+
+</TabItem>
+<TabItem label="Gradle">
+
+<VCode lang="groovy">
+testImplementation "org.wiremock:wiremock:{{WIREMOCK_STABLE}}"
+</VCode>
+
+</TabItem>
+</Tabs>
+
+## Beta Version Example
+
+<VCode lang="xml" code={`<dependency>
+    <groupId>org.wiremock</groupId>
+    <artifactId>wiremock</artifactId>
+    <version>{{WIREMOCK_BETA}}</version>
+</dependency>`} />
+
+## With Title and Highlighting
+
+<VCode
+  lang="xml"
+  title="pom.xml"
+  mark={["version"]}
+  code={`<dependency>
+    <groupId>org.wiremock</groupId>
+    <artifactId>wiremock</artifactId>
+    <version>{{WIREMOCK_STABLE}}</version>
+    <scope>test</scope>
+</dependency>`}
+/>
+
+## Multiple Variables
+
+<VCode lang="xml" code={`<dependencies>
+    <dependency>
+        <groupId>org.wiremock</groupId>
+        <artifactId>wiremock</artifactId>
+        <version>{{WIREMOCK_STABLE}}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.assertj</groupId>
+        <artifactId>assertj-core</artifactId>
+        <version>{{ASSERTJ}}</version>
+    </dependency>
+</dependencies>`} />
+
+## Available Variables
+
+All variables from `src/config/versions.ts` are available:
+
+- `{{WIREMOCK_STABLE}}` - Current stable version
+- `{{WIREMOCK_BETA}}` - Current beta version
+- `{{WIREMOCK_LEGACY}}` - Legacy version (for migration docs)
+- `{{WEBHOOKS_EXTENSION}}` - Webhooks extension version
+- `{{DOCKER_STABLE}}` - Docker image stable tag
+- `{{DOCKER_LATEST}}` - Docker image latest tag
+- `{{ASSERTJ}}` - AssertJ version for Maven
+- `{{ASSERTJ_GRADLE}}` - AssertJ version for Gradle
+- `{{MAVEN_GROUP_ID}}` - Maven group ID (org.wiremock)
+- `{{DOCKER_IMAGE}}` - Docker image name (wiremock/wiremock)

@@ -182,20 +182,54 @@ hero:
 
 ## Variables / Constants
 
-MkDocs macros like `{{ wiremock_version }}` have been replaced with static values.
+MkDocs macros like `{{ wiremock_version }}` can be replaced using the VCode component.
 
-To add new variables, create a constants file:
+### Version Configuration
 
-```js
-// src/constants.ts
-export const WIREMOCK_VERSION = '3.13.1';
+All version numbers are managed in `src/config/versions.ts`:
+
+```typescript
+export const VERSIONS = {
+  WIREMOCK_STABLE: '3.13.1',
+  WIREMOCK_BETA: '4.0.0-beta.15',
+  // ... more versions
+};
 ```
 
-Then import in MDX:
-```mdx
-import { WIREMOCK_VERSION } from '../../constants';
+### For Code Blocks (Recommended)
 
-Version: {WIREMOCK_VERSION}
+Use the `VCode` component with `{{VARIABLE}}` template syntax.
+
+**Slot syntax (recommended for longer code):**
+```mdx
+import VCode from '../../../components/VCode.astro';
+
+<VCode lang="xml">
+<dependency>
+    <groupId>org.wiremock</groupId>
+    <artifactId>wiremock</artifactId>
+    <version>{{WIREMOCK_STABLE}}</version>
+</dependency>
+</VCode>
+```
+
+**Prop syntax (good for short snippets):**
+```mdx
+<VCode lang="xml" code={`<version>{{WIREMOCK_STABLE}}</version>`} />
+```
+
+**Note:** Standard triple-backtick code blocks do NOT support variable interpolation.
+You must use `<VCode>` or the standard `<Code>` component with string substitution.
+
+### For Regular Text
+
+Import and use variables directly in text content:
+
+```mdx
+import { VERSIONS } from '../../../config/versions';
+
+The latest version is {VERSIONS.WIREMOCK_STABLE}.
+Download from [here](/path/to/{VERSIONS.WIREMOCK_STABLE}/file.jar).
 ```
 
 ## Asides (Highlighted Boxes)

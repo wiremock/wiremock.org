@@ -1,0 +1,50 @@
+---
+/**
+ * DockerCommand Component
+ *
+ * Displays WireMock Docker run command with automatic version substitution.
+ *
+ * Usage:
+ *   <DockerCommand />
+ *   <DockerCommand version="beta" />
+ *   <DockerCommand port={8443} />
+ */
+
+import VCode from './VCode.astro';
+import { VERSIONS } from '../config/versions';
+
+interface Props {
+  version?: 'stable' | 'beta' | 'latest';
+  port?: number;
+  httpsPort?: number;
+  extraArgs?: string;
+}
+
+const {
+  version = 'stable',
+  port = 8080,
+  httpsPort,
+  extraArgs = ''
+} = Astro.props;
+
+let dockerTag: string;
+if (version === 'latest') {
+  dockerTag = VERSIONS.DOCKER_LATEST;
+} else if (version === 'beta') {
+  dockerTag = VERSIONS.WIREMOCK_BETA;
+} else {
+  dockerTag = VERSIONS.DOCKER_STABLE;
+}
+
+let portArgs = `-p ${port}:8080`;
+if (httpsPort) {
+  portArgs += ` -p ${httpsPort}:8443`;
+}
+
+const code = `docker run -it --rm \\
+  ${portArgs} \\
+  --name wiremock \\
+  wiremock/wiremock:${dockerTag}${extraArgs ? ' \\\n  ' + extraArgs : ''}`;
+---
+
+<VCode lang="bash" code={code} />

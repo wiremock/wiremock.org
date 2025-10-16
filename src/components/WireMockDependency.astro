@@ -1,0 +1,63 @@
+---
+/**
+ * WireMockDependency Component
+ *
+ * Displays WireMock Maven/Gradle dependencies with automatic version substitution.
+ *
+ * Usage:
+ *   <WireMockDependency />
+ *   <WireMockDependency artifact="wiremock-standalone" />
+ *   <WireMockDependency version="beta" />
+ */
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import VCode from './VCode.astro';
+import { VERSIONS } from '../config/versions';
+
+interface Props {
+  artifact?: string;
+  version?: 'stable' | 'beta';
+  showTabs?: boolean;
+}
+
+const {
+  artifact = 'wiremock',
+  version = 'stable',
+  showTabs = true
+} = Astro.props;
+
+const ver = version === 'beta' ? VERSIONS.WIREMOCK_BETA : VERSIONS.WIREMOCK_STABLE;
+
+const mavenCode = `<dependency>
+    <groupId>org.wiremock</groupId>
+    <artifactId>${artifact}</artifactId>
+    <version>${ver}</version>
+    <scope>test</scope>
+</dependency>`;
+
+const gradleGroovyCode = `testImplementation "org.wiremock:${artifact}:${ver}"`;
+
+const gradleKotlinCode = `testImplementation("org.wiremock:${artifact}:${ver}")`;
+
+const scalaCode = `libraryDependencies +=
+"org.wiremock" % "${artifact}" % "${ver}" % Test`;
+---
+
+{showTabs ? (
+  <Tabs>
+    <TabItem label="Maven">
+      <VCode lang="xml" code={mavenCode} />
+    </TabItem>
+    <TabItem label="Gradle Groovy">
+      <VCode lang="groovy" code={gradleGroovyCode} />
+    </TabItem>
+    <TabItem label="Gradle Kotlin">
+      <VCode lang="kotlin" code={gradleKotlinCode} />
+    </TabItem>
+    <TabItem label="Scala SBT">
+      <VCode lang="scala" code={scalaCode} />
+    </TabItem>
+  </Tabs>
+) : (
+  <VCode lang="xml" code={mavenCode} />
+)}

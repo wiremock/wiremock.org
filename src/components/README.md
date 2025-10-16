@@ -1,5 +1,24 @@
 # Custom Components
 
+## VCode
+
+**Purpose:** Code blocks with automatic version variable substitution
+
+The `VCode` component wraps Starlight's `<Code>` component and automatically replaces template variables like `{{WIREMOCK_STABLE}}` with their actual values from `src/config/versions.ts`.
+
+**Usage:**
+```mdx
+import VCode from '../../../components/VCode.astro';
+
+<VCode lang="xml" code={`
+<version>{{WIREMOCK_STABLE}}</version>
+`} />
+```
+
+See [VCode.README.md](./VCode.README.md) for full documentation and [VCode.example.mdx](./VCode.example.mdx) for examples.
+
+---
+
 ## CloudCallout
 
 A custom callout component based on Starlight's built-in Card component, designed specifically for highlighting WireMock Cloud features.
