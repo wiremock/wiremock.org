@@ -7,92 +7,17 @@ import CloudCallout from '../../../components/CloudCallout.astro';
 import VCode from '../../../components/VCode.astro';
 import WireMockDependency from '../../../components/WireMockDependency.astro';
 import DockerCommand from '../../../components/DockerCommand.astro';
-import VERSIONS from '../../../config/versions.ts';
+import { VERSIONS } from '../../../config/versions';
 
 
 <CloudCallout title="Try WireMock Cloud" icon="rocket">
     Create publicly hosted mock APIs without anything to install. <br/>[**Explore mocking in the Cloud >**](https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-install&utm_id=cloud-callouts&utm_term=cloud-callouts-install)
 </CloudCallout>
-
-
-WireMock Java is distributed in two flavours - a standard JAR containing just WireMock, and a standalone uber JAR containing
-WireMock plus all its dependencies.
-
-Most of the standalone JAR's dependencies are shaded i.e. they are hidden in alternative packages. This allows WireMock to be used in projects with
-conflicting versions of its dependencies. The standalone JAR is also runnable (see [Running as a Standalone Process](../standalone/)).
-
-WireMock currently has two releases available.  The `3.x` release (below) and the new `4.x` beta releases.
-
-## 3.x Release Downloads
-
-
-
-### Test dependencies
-
-<WireMockDependency />
-
-Then follow the next steps for [JUnit 5+](../junit-jupiter/) or [plain Java](../java-usage//).
-
-### Standalone Service
-
-Run the following in a terminal:
-
-<Tabs>
-<TabItem label="Docker">
-
-<DockerCommand />
-
-</TabItem>
-<TabItem label="Maven/Gradle">
-
 <VCode lang="xml">
-<dependency>
+{`<dependency>
     <groupId>org.wiremock</groupId>
     <artifactId>wiremock</artifactId>
-    <version>{VERSIONS.WIREMOCK_STABLE}</version>
+    <version>${VERSIONS.WIREMOCK_STABLE}</version>
     <scope>test</scope>
-</dependency>
+</dependency>`}
 </VCode>
-
-</TabItem>
-</Tabs>
-
-
-Learn more in the [Docker guide](../../docs/standalone/docker/).
-
-### Direct download
-
-If you want to run WireMock as a standalone process you can
-<a id="wiremock-standalone-download" href="https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/3.13.1/wiremock-standalone-3.13.1.jar">download the standalone JAR from
-here</a>
-
-## 4.x Beta Release Downloads
-
-The `4.x` release of WireMock is currently in beta.  These releases are under active development and we recommend you try it out.  We would love
-to hear your feedback over on the community slack - [https://slack.wiremock.org/](https://slack.wiremock.org/)
-
-We have given these releases a beta label due to the fact that as we move forwards with the `4.x` release there **will be
-breaking changes**.  These are the current updates to the `4.x` release:
-
-* Java 17 is now the baseline java version
-* Jetty 12 is shipped by default so there is no longer a specific jetty 12 release of `4.x` and Jetty 11 is no longer supported
-
-### Test dependencies
-
-<WireMockDependency version="beta" />
-
-Then follow the next steps for [JUnit 5+](../junit-jupiter/) or [plain Java](../java-usage//).
-
-
-### Standalone Service
-
-Run the following in a terminal:
-
-<WireMockDependency artifact="wiremock-standalone" version="beta" />
-
-
-### Direct download
-
-If you want to run WireMock as a standalone process you can
-<a id="wiremock-standalone-download" href="https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/4.0.0-beta.15/wiremock-standalone-4.0.0-beta.15.jar">download the standalone JAR from
-here</a>
