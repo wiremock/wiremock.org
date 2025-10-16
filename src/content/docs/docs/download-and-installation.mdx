@@ -4,7 +4,10 @@ title: "Download and Installation"
 
 import { Tabs, TabItem, Aside, Card, LinkButton, Icon } from '@astrojs/starlight/components';
 import CloudCallout from '../../../components/CloudCallout.astro';
-
+import VCode from '../../../components/VCode.astro';
+import { VERSIONS } from '../../../config/versions.ts';
+export const STABLE_DOWNLOAD_URL = `https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/${VERSIONS.WIREMOCK_STABLE}/wiremock-standalone-${VERSIONS.WIREMOCK_STABLE}.jar`
+export const BETA_DOWNLOAD_URL = `https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/${VERSIONS.WIREMOCK_BETA}/wiremock-standalone-${VERSIONS.WIREMOCK_BETA}.jar`
 
 <CloudCallout title="Try WireMock Cloud" icon="rocket">
     Create publicly hosted mock APIs without anything to install. <br/>[**Explore mocking in the Cloud >**](https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-install&utm_id=cloud-callouts&utm_term=cloud-callouts-install)
@@ -31,14 +34,16 @@ WireMock currently has two releases available.  The `3.x` release (below) and th
 
 Add the following to your project's pom.xml dependencies:
 
-```xml
+<VCode lang="xml">
+{`
     <dependency>
         <groupId>org.wiremock</groupId>
         <artifactId>wiremock</artifactId>
-        <version>3.13.1</version>
+        <version>${VERSIONS.WIREMOCK_STABLE}</version>
         <scope>test</scope>
     </dependency>
-```
+`}
+</VCode>
 Then follow the next steps for [JUnit 5+](../junit-jupiter/) or [plain Java](../java-usage//).
 
 </TabItem>
@@ -46,9 +51,11 @@ Then follow the next steps for [JUnit 5+](../junit-jupiter/) or [plain Java](../
 
 Add the following to your project's build.gradle:
 
-``` groovy
-testImplementation "org.wiremock:3.13.1"
-```
+<VCode lang="groovy">
+{`
+testImplementation "org.wiremock:${VERSIONS.WIREMOCK_STABLE}"
+`}
+</VCode>
 
 Then follow the next steps for [JUnit 5+](../junit-jupiter/) or [plain Java](../java-usage//).
 
@@ -57,9 +64,11 @@ Then follow the next steps for [JUnit 5+](../junit-jupiter/) or [plain Java](../
 
 Add the following to your project's build.gradle:
 
-``` kotlin
-testImplementation("org.wiremock:wiremock:3.13.1")
-```
+<VCode lang="kotlin">
+{`
+testImplementation("org.wiremock:wiremock:${VERSIONS.WIREMOCK_STABLE}")
+`}
+</VCode>
 
 Then follow the next steps for [JUnit 5+](../junit-jupiter/) or [plain Java](../java-usage//).
 
@@ -68,10 +77,12 @@ Then follow the next steps for [JUnit 5+](../junit-jupiter/) or [plain Java](../
 
 Add the following to your project's build.gradle:
 
-``` scala
+<VCode lang="scala">
+{`
 libraryDependencies +=
-"org.wiremock" % "wiremock" % "3.13.1" % Test
-```
+"org.wiremock" % "wiremock" % "${VERSIONS.WIREMOCK_STABLE}" % Test
+`}
+</VCode>
 
 Then follow the next steps for [JUnit 5+](../junit-jupiter/) or [plain Java](../java-usage//).
 
@@ -85,29 +96,35 @@ Run the following in a terminal:
 <Tabs>
 <TabItem label="Docker">
 
-```bash
+<VCode lang="bash">
+{`
 docker run -it --rm -p 8080:8080 --name wiremock \
-wiremock/wiremock:3.13.1
-```
+wiremock/wiremock:${VERSIONS.WIREMOCK_STABLE}
+`}
+</VCode>
 
 </TabItem>
 <TabItem label="Maven">
 
-```xml
+<VCode lang="xml">
+{`
 <dependency>
     <groupId>org.wiremock</groupId>
     <artifactId>wiremock-standalone</artifactId>
-    <version>3.13.1</version>
+    <version>${VERSIONS.WIREMOCK_STABLE}</version>
     <scope>test</scope>
 </dependency>
-```
+`}
+</VCode>
 
 </TabItem>
 <TabItem label="Gradle">
 
-```groovy
-testImplementation "org.wiremock:wiremock-standalone:3.13.1}"
-```
+<VCode lang="groovy">
+{`
+testImplementation "org.wiremock:wiremock-standalone:${VERSIONS.WIREMOCK_STABLE}"
+`}
+</VCode>
 
 </TabItem>
 </Tabs>
@@ -118,7 +135,7 @@ Learn more in the [Docker guide](../../docs/standalone/docker/).
 ### Direct download
 
 If you want to run WireMock as a standalone process you can
-<a id="wiremock-standalone-download" href="https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/3.13.1/wiremock-standalone-3.13.1.jar">download the standalone JAR from
+<a id="wiremock-standalone-download" href={STABLE_DOWNLOAD_URL}>download the standalone JAR from
 here</a>
 
 ## 4.x Beta Release Downloads
@@ -139,14 +156,16 @@ breaking changes**.  These are the current updates to the `4.x` release:
 
 Add the following to your project's pom.xml dependencies:
 
-```xml
+<VCode lang="xml">
+{`
     <dependency>
         <groupId>org.wiremock</groupId>
         <artifactId>wiremock</artifactId>
-        <version>4.0.0-beta.15</version>
+        <version>${VERSIONS.WIREMOCK_BETA}</version>
         <scope>test</scope>
     </dependency>
-```
+`}
+</VCode>
 Then follow the next steps for [JUnit 5+](../junit-jupiter/) or [plain Java](../java-usage//).
 
 </TabItem>
@@ -154,9 +173,11 @@ Then follow the next steps for [JUnit 5+](../junit-jupiter/) or [plain Java](../
 
 Add the following to your project's build.gradle:
 
-``` groovy
-testImplementation "org.wiremock:4.0.0-beta.15"
-```
+<VCode lang="groovy">
+{`
+testImplementation "org.wiremock:${VERSIONS.WIREMOCK_BETA}"
+`}
+</VCode>
 
 Then follow the next steps for [JUnit 5+](../junit-jupiter/) or [plain Java](../java-usage//).
 
@@ -165,9 +186,11 @@ Then follow the next steps for [JUnit 5+](../junit-jupiter/) or [plain Java](../
 
 Add the following to your project's build.gradle:
 
-``` kotlin
-testImplementation("org.wiremock:wiremock:4.0.0-beta.15")
-```
+<VCode lang="kotlin">
+{`
+testImplementation("org.wiremock:wiremock:${VERSIONS.WIREMOCK_BETA}")
+`}
+</VCode>
 
 Then follow the next steps for [JUnit 5+](../junit-jupiter/) or [plain Java](../java-usage//).
 
@@ -176,10 +199,12 @@ Then follow the next steps for [JUnit 5+](../junit-jupiter/) or [plain Java](../
 
 Add the following to your project's build.gradle:
 
-``` scala
+<VCode lang="scala">
+{`
 libraryDependencies +=
-"org.wiremock" % "wiremock" % "4.0.0-beta.15" % Test
-```
+"org.wiremock" % "wiremock" % "${VERSIONS.WIREMOCK_BETA}" % Test
+`}
+</VCode>
 
 Then follow the next steps for [JUnit 5+](../junit-jupiter/) or [plain Java](../java-usage//).
 
@@ -194,21 +219,25 @@ Run the following in a terminal:
 <Tabs>
 <TabItem label="Maven">
 
-```xml
+<VCode lang="xml">
+{`
 <dependency>
     <groupId>org.wiremock</groupId>
     <artifactId>wiremock-standalone</artifactId>
-    <version>4.0.0-beta.15</version>
+    <version>${VERSIONS.WIREMOCK_BETA}</version>
     <scope>test</scope>
 </dependency>
-```
+`}
+</VCode>
 
 </TabItem>
 <TabItem label="Gradle">
 
-```groovy
-testImplementation "org.wiremock:wiremock-standalone:4.0.0-beta.15"
-```
+<VCode lang="groovy">
+{`
+testImplementation "org.wiremock:wiremock-standalone:${VERSIONS.WIREMOCK_BETA}"
+`}
+</VCode>
 
 </TabItem>
 </Tabs>
@@ -217,5 +246,5 @@ testImplementation "org.wiremock:wiremock-standalone:4.0.0-beta.15"
 ### Direct download
 
 If you want to run WireMock as a standalone process you can
-<a id="wiremock-standalone-download" href="https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/4.0.0-beta.15/wiremock-standalone-4.0.0-beta.15.jar">download the standalone JAR from
+<a id="wiremock-standalone-download" href={BETA_DOWNLOAD_URL}>download the standalone JAR from
 here</a>

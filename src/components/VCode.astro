@@ -1,0 +1,107 @@
+---
+/**
+ * VCode (Versioned Code) Component
+ *
+ * A wrapper around Starlight's Code component that supports template variable substitution.
+ *
+ * Usage in MDX (two ways):
+ *
+ * 1. As attribute (good for short code):
+ *   <VCode lang="xml" code={`<version>{{WIREMOCK_STABLE}}</version>`} />
+ *
+ * 2. As slot content (better for longer code - write code naturally!):
+ *   <VCode lang="xml">
+ *   <dependency>
+ *       <groupId>org.wiremock</groupId>
+ *       <artifactId>wiremock</artifactId>
+ *       <version>{{WIREMOCK_STABLE}}</version>
+ *   </dependency>
+ *   </VCode>
+ *
+ * Variables like {{WIREMOCK_STABLE}} will be automatically replaced with their values
+ * from src/config/versions.ts
+ */
+
+import { Code } from '@astrojs/starlight/components';
+
+interface Props {
+  code?: string;
+  lang: string;
+  title?: string;
+  mark?: string[] | string;
+  ins?: string[] | string;
+  del?: string[] | string;
+  frame?: 'none' | 'terminal' | 'code' | 'auto';
+  [key: string]: any; // Allow passing through any other props to Code component
+}
+
+const { code: codeProp, lang, title, mark, ins, del, frame, ...rest } = Astro.props;
+
+/**
+ * Clean up slot content by:
+ * 1. Stripping HTML tags (from MDX rendering)
+ * 2. Removing extra indentation
+ * 3. Trimming whitespace
+ */
+function cleanSlotContent(html: string): string {
+  // Remove HTML tags
+  let text = html.replace(/<[^>]*>/g, '');
+
+  // Decode HTML entities
+  text = text
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'");
+
+  // Split into lines
+  const lines = text.split('\n');
+
+  // Remove empty first/last lines
+  while (lines.length > 0 && lines[0].trim() === '') {
+    lines.shift();
+  }
+  while (lines.length > 0 && lines[lines.length - 1].trim() === '') {
+    lines.pop();
+  }
+
+  if (lines.length === 0) return '';
+
+  // Find minimum indentation (excluding empty lines)
+  const indents = lines
+    .filter(line => line.trim().length > 0)
+    .map(line => line.match(/^\s*/)?.[0].length || 0);
+
+  const minIndent = Math.min(...indents);
+
+  // Remove common indentation
+  const dedented = lines.map(line =>
+    line.length > minIndent ? line.substring(minIndent) : line
+  );
+
+  return dedented.join('\n');
+}
+
+// Get code from either prop or slot
+let rawCode: string;
+if (codeProp) {
+  rawCode = codeProp;
+} else {
+  const slotContent = await Astro.slots.render('default');
+  rawCode = cleanSlotContent(slotContent);
+}
+
+const processedCode = rawCode;
+---
+
+<Code
+  code={rawCode}
+  lang={lang}
+  title={title}
+  mark={mark}
+  ins={ins}
+  del={del}
+  frame={frame}
+  {...rest}
+/>
