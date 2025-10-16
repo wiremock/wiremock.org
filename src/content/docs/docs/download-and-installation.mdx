@@ -4,8 +4,10 @@ title: "Download and Installation"
 
 import { Tabs, TabItem, Aside, Card, LinkButton, Icon } from '@astrojs/starlight/components';
 import CloudCallout from '../../../components/CloudCallout.astro';
+import VCode from '../../../components/VCode.astro';
 import WireMockDependency from '../../../components/WireMockDependency.astro';
 import DockerCommand from '../../../components/DockerCommand.astro';
+import VERSIONS from '../../../config/versions.ts';
 
 
 <CloudCallout title="Try WireMock Cloud" icon="rocket">
@@ -43,7 +45,14 @@ Run the following in a terminal:
 </TabItem>
 <TabItem label="Maven/Gradle">
 
-<WireMockDependency artifact="wiremock-standalone" />
+<VCode lang="xml">
+<dependency>
+    <groupId>org.wiremock</groupId>
+    <artifactId>wiremock</artifactId>
+    <version>{VERSIONS.WIREMOCK_STABLE}</version>
+    <scope>test</scope>
+</dependency>
+</VCode>
 
 </TabItem>
 </Tabs>
