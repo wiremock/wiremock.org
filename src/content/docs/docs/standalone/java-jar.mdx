@@ -3,6 +3,8 @@ title: "Running as a Standalone Process"
 ---
 
 import CloudCallout from '../../../../components/CloudCallout.astro';
+import VCode from '../../../../components/VCode.astro';
+import { VERSIONS } from '../../../../config/versions.ts';
 
 
 
@@ -16,9 +18,9 @@ the Java API, JSON over HTTP or JSON files.
 
 Once you have [downloaded the standalone JAR](../../download-and-installation/) you can run it simply by doing this:
 
-```bash
-$ java -jar wiremock-standalone-3.13.1.jar
-```
+<VCode lang="bash">
+{`$ java -jar wiremock-standalone-${VERSIONS.WIREMOCK_STABLE}.jar`}
+</VCode>
 
 ## Command line options
 

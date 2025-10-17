@@ -4,6 +4,8 @@ title: "Quick Start: API Mocking with Java and JUnit 4"
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
 import CloudCallout from '../../../../components/CloudCallout.astro';
+import VCode from '../../../../components/VCode.astro';
+import { VERSIONS } from '../../../../config/versions.ts';
 
 <CloudCallout title="WireMock Cloud" icon="rocket">
     Centralize and scale your API mocks with WireMock Cloud.
@@ -32,11 +34,11 @@ like [Apache HttpClient](https://hc.apache.org/httpcomponents-client-5.2.x/#).
 <Tabs>
 <TabItem label="Maven">
 
-```xml
-<dependency>
+<VCode lang="xml">
+{`<dependency>
     <groupId>org.wiremock</groupId>
     <artifactId>wiremock</artifactId>
-    <version>3.13.1</version>
+    <version>${VERSIONS.WIREMOCK_STABLE}</version>
     <scope>test</scope>
 </dependency>
 <dependency>
@@ -44,16 +46,16 @@ like [Apache HttpClient](https://hc.apache.org/httpcomponents-client-5.2.x/#).
     <artifactId>assertj-core</artifactId>
     <version>3.26.3</version>
     <scope>test</scope>
-</dependency>
-```
+</dependency>`}
+</VCode>
 
 </TabItem>
 <TabItem label="Gradle">
 
-```groovy
-testImplementation "org.wiremock:wiremock:3.13.1"
-testImplementation "org.assertj:assertj-core:3.24.2"
-```
+<VCode lang="groovy">
+{`testImplementation "org.wiremock:wiremock:${VERSIONS.WIREMOCK_STABLE}"
+testImplementation "org.assertj:assertj-core:3.24.2"`}
+</VCode>
 
 </TabItem>
 </Tabs>

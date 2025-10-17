@@ -3,6 +3,8 @@ title: "Using WireMock with Jetty 12"
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
+import VCode from '../../../components/VCode.astro';
+import { VERSIONS } from '../../../config/versions.ts';
 
 <br />
 
@@ -19,21 +21,21 @@ WireMock ships with Jetty 11 by default but fully supports Jetty 12 as well with
 <Tabs>
 <TabItem label="Maven">
 
-```xml
-<dependency>
+<VCode lang="xml">
+{`<dependency>
     <groupId>org.wiremock</groupId>
     <artifactId>wiremock-jetty12</artifactId>
-    <version>3.13.1</version>
+    <version>${VERSIONS.WIREMOCK_STABLE}</version>
     <scope>test</scope>
-</dependency>
-```
+</dependency>`}
+</VCode>
 
 </TabItem>
 <TabItem label="Gradle">
 
-```groovy
-testImplementation "org.wiremock:wiremock-jetty12:3.13.1"
-```
+<VCode lang="groovy">
+{`testImplementation "org.wiremock:wiremock-jetty12:${VERSIONS.WIREMOCK_STABLE}"`}
+</VCode>
 
 </TabItem>
 </Tabs>

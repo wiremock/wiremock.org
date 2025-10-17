@@ -3,6 +3,8 @@ title: "Running in Docker"
 ---
 
 import CloudCallout from '../../../../components/CloudCallout.astro';
+import VCode from '../../../../components/VCode.astro';
+import { VERSIONS } from '../../../../config/versions.ts';
 
 
 <CloudCallout title="WireMock Cloud" icon="rocket">
@@ -16,12 +18,12 @@ From version 2.31.0 WireMock has an [official Docker image](https://hub.docker.c
 
 ### Start a single WireWock container with default configuration
 
-```sh
-docker run -it --rm \
-  -p 8080:8080 \
-  --name wiremock \
-  wiremock/wiremock:3.13.1
-```
+<VCode lang="sh">
+{`docker run -it --rm \\
+  -p 8080:8080 \\
+  --name wiremock \\
+  wiremock/wiremock:${VERSIONS.WIREMOCK_STABLE}`}
+</VCode>
 
 > Access [http://localhost:8080/\_\_admin/mappings](http://localhost:8080/__admin/mappings) to display the mappings (empty set)
 
@@ -30,26 +32,26 @@ docker run -it --rm \
 The Docker image supports exactly the same set of command line arguments as the [standalone version](../../standalone/#command-line-options).
 These can be passed to the container by appending them to the end of the command e.g.:
 
-```sh
-docker run -it --rm \
-  -p 8443:8443 \
-  --name wiremock \
-  wiremock/wiremock:3.13.1 \
-  --https-port 8443 --verbose
-```
+<VCode lang="sh">
+{`docker run -it --rm \\
+  -p 8443:8443 \\
+  --name wiremock \\
+  wiremock/wiremock:${VERSIONS.WIREMOCK_STABLE} \\
+  --https-port 8443 --verbose`}
+</VCode>
 
 #### Passing command line arguments as environment variable
 
 Starting from `3.2.0-2`, the Docker image supports passing command line arguments [standalone version](../../standalone/#command-line-options) as the environment variable.
 Environment variable `WIREMOCK_OPTIONS` can be passed to container consisting of all command line arguments e.g.:
 
-```sh
-docker run -it --rm \
-  -e WIREMOCK_OPTIONS='--https-port 8443 --verbose' \
-  -p 8443:8443 \
-  --name wiremock \
-  wiremock/wiremock:3.13.1
-```
+<VCode lang="sh">
+{`docker run -it --rm \\
+  -e WIREMOCK_OPTIONS='--https-port 8443 --verbose' \\
+  -p 8443:8443 \\
+  --name wiremock \\
+  wiremock/wiremock:${VERSIONS.WIREMOCK_STABLE}`}
+</VCode>
 
 ### Mounting stub mapping files
 
@@ -58,13 +60,13 @@ This means you can mount a directory containing these from your host machine int
 
 To mount the current directory use `-v $PWD:/home/wiremock` e.g.:
 
-```sh
-docker run -it --rm \
-  -p 8080:8080 \
-  --name wiremock \
-  -v $PWD:/home/wiremock \
-  wiremock/wiremock:3.13.1
-```
+<VCode lang="sh">
+{`docker run -it --rm \\
+  -p 8080:8080 \\
+  --name wiremock \\
+  -v $PWD:/home/wiremock \\
+  wiremock/wiremock:${VERSIONS.WIREMOCK_STABLE}`}
+</VCode>
 
 ### Running with extensions
 

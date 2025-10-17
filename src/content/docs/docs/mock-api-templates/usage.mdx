@@ -2,6 +2,9 @@
 title: "Using Mock API Templates"
 ---
 
+import VCode from '../../../../components/VCode.astro';
+import { VERSIONS } from '../../../../config/versions.ts';
+
 
 
 This guide explains how to run an API template after you've downloaded the JSON file from the library page.
@@ -12,9 +15,9 @@ This guide explains how to run an API template after you've downloaded the JSON 
 2. Copy the downloaded JSON file into the `mappings` directory then  e.g.
 3. The JSON will be automatically loaded at startup, via the command line
 
-```bash
-java -jar wiremock-jre8-standalone-3.13.1.jar
-```
+<VCode lang="bash">
+{`java -jar wiremock-jre8-standalone-${VERSIONS.WIREMOCK_STABLE}.jar`}
+</VCode>
 
 See [this page](../../standalone/) for general details on running WireMock standalone.
 
@@ -24,13 +27,13 @@ See [this page](../../standalone/) for general details on running WireMock stand
 2. Copy the JSON file into the `mappings` folder.
 3. Start the Docker container, mounting the parent folder e.g. assuming the current directory contains `mappings`:
 
-```bash
-docker run -it --rm \
-  -p 8080:8080 \
-  --name wiremock \
-  -v $PWD:/home/wiremock \
-  wiremock/wiremock:3.13.1
-```
+<VCode lang="bash">
+{`docker run -it --rm \\
+  -p 8080:8080 \\
+  --name wiremock \\
+  -v $PWD:/home/wiremock \\
+  wiremock/wiremock:${VERSIONS.WIREMOCK_STABLE}`}
+</VCode>
 
 See [this page](../../standalone/) for general details on running WireMock Docker.
 

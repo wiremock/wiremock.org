@@ -4,6 +4,8 @@ description: Configure WireMock as a conditional proxy to forward requests to re
 ---
 
 import CloudCallout from '../../../components/CloudCallout.astro';
+import VCode from '../../../components/VCode.astro';
+import { VERSIONS } from '../../../config/versions.ts';
 
 
 <CloudCallout title="WireMock Cloud" icon="rocket">
@@ -173,9 +175,9 @@ you to modify specific AJAX requests or swap out CSS/Javascript files.
 
 To configure your browser to proxy via WireMock, first start WireMock with browser proxying enabled:
 
-```bash
-$ java -jar wiremock-standalone-3.13.1.jar --enable-browser-proxying --port 9999
-```
+<VCode lang="bash">
+{`$ java -jar wiremock-standalone-${VERSIONS.WIREMOCK_STABLE}.jar --enable-browser-proxying --port 9999`}
+</VCode>
 
 Then open your browser's proxy settings and point them to the running server:
 
@@ -265,15 +267,15 @@ When browser proxying, however, it is normal to proxy all traffic, often for the
 This would present a substantial security risk, so by default WireMock will verify the target certificates when browser proxying.
 You can trust specific hosts as follows:
 
-```bash
-$ java -jar wiremock-standalone-3.13.1.jar --enable-browser-proxying --trust-proxy-target localhost --trust-proxy-target dev.mycorp.com
-```
+<VCode lang="bash">
+{`$ java -jar wiremock-standalone-${VERSIONS.WIREMOCK_STABLE}.jar --enable-browser-proxying --trust-proxy-target localhost --trust-proxy-target dev.mycorp.com`}
+</VCode>
 
 or if you're not interested in security you can trust all hosts:
 
-```bash
-$ java -jar wiremock-standalone-3.13.1.jar --enable-browser-proxying --trust-all-proxy-targets
-```
+<VCode lang="bash">
+{`$ java -jar wiremock-standalone-${VERSIONS.WIREMOCK_STABLE}.jar --enable-browser-proxying --trust-all-proxy-targets`}
+</VCode>
 
 Additional trusted public certificates can also be added to the keystore
 specified via the `--https-truststore`, and WireMock will then trust them without
