@@ -21,7 +21,3 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
-
-# Visual Studio Code settings
-/.vs/*
-/.vs/*.*
