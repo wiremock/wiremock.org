@@ -26,7 +26,7 @@ description: "WireMock.NET is a powerful .NET library for API mock testing with 
     Quick Start
   </a>
   <a class="card" href="https://www.nuget.org/packages/WireMock.Net/" target="_blank">
-    <img src="/images/logos/technology/npm.svg" />
+    <img src="/images/logos/technology/nuget.svg" />
     NuGet Package
   </a>
   <a class="card" href="references/">
@@ -64,7 +64,7 @@ description: "WireMock.NET is a powerful .NET library for API mock testing with 
     Azure Web App
   </a>
   <a class="card" href="using-wiremock-net-testcontainers/">
-    <img src="/images/logos/technology/docker.svg" />
+    <img src="/images/logos/technology/testcontainers.png" />
     Testcontainers
   </a>
 </div>
