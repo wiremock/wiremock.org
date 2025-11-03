@@ -177,19 +177,11 @@ jobs:
         if: |
           steps.check-files.outputs.all_dotnet_docs == 'true' &&
           fromJson(steps.check-approval.outputs.result).approved == true
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const prNumber = ${{ fromJson(steps.pr-details.outputs.result).number }};
-
-            await github.rest.pulls.merge({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: prNumber,
-              merge_method: 'squash',
-            });
-
-            console.log('✅ PR auto-merged successfully!');
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr merge ${{ fromJson(steps.pr-details.outputs.result).number }} --squash --auto
+          echo '✅ Auto-merge enabled successfully!'
 
       - name: Add comment on success
         if: |
@@ -206,7 +198,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: prNumber,
-              body: `✅ Auto-merged: This PR only affects .NET-related paths and was approved by @${approver} with a 👍 comment.`
+              body: `✅ Auto-merge enabled: This PR only affects .NET-related paths and was approved by @${approver} with a 👍 comment. The PR will be merged automatically once all checks pass.`
             });
 
       - name: Add comment if not eligible
