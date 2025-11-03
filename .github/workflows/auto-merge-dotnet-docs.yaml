@@ -29,16 +29,42 @@ jobs:
           base_sha: ${{ github.event.pull_request.base.sha }}
           sha: ${{ github.event.pull_request.head.sha }}
 
-      - name: Check if PR only affects dotnet docs
+      - name: Check if PR only affects dotnet paths
         id: check-files
         run: |
-          echo "Checking if all changed files are under src/content/docs/dotnet/"
+          echo "Extracting dotnet-related paths from CODEOWNERS"
+
+          # Get all paths from CODEOWNERS that contain 'dotnet' (excluding the default owner line)
+          DOTNET_PATHS=$(grep -E '^\s*/.*dotnet.*/' .github/CODEOWNERS | awk '{print $1}')
+
+          echo "Dotnet paths found in CODEOWNERS:"
+          echo "$DOTNET_PATHS"
+
+          echo "Checking if all changed files match dotnet paths..."
           ALL_DOTNET=true
+          MATCHED_PATHS=""
 
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             echo "Checking file: $file"
-            if [[ ! "$file" =~ ^src/content/docs/dotnet/ ]]; then
-              echo "File $file is outside dotnet docs directory"
+            FILE_MATCHED=false
+
+            # Check if file matches any dotnet path
+            while IFS= read -r path; do
+              # Remove leading slash and trailing slash for pattern matching
+              pattern="${path#/}"
+              if [[ "$file" =~ ^${pattern} ]]; then
+                echo "  ✓ Matches path: $path"
+                FILE_MATCHED=true
+                # Add to matched paths if not already there
+                if [[ ! "$MATCHED_PATHS" =~ "$path" ]]; then
+                  MATCHED_PATHS="$MATCHED_PATHS$path"$'\n'
+                fi
+                break
+              fi
+            done <<< "$DOTNET_PATHS"
+
+            if [ "$FILE_MATCHED" = "false" ]; then
+              echo "  ✗ File $file does not match any dotnet path"
               ALL_DOTNET=false
               break
             fi
@@ -47,30 +73,61 @@ jobs:
           echo "all_dotnet_docs=$ALL_DOTNET" >> $GITHUB_OUTPUT
 
           if [ "$ALL_DOTNET" = "true" ]; then
-            echo "✅ All changed files are in src/content/docs/dotnet/"
+            echo "✅ All changed files match dotnet paths"
+            echo "Matched paths:"
+            echo "$MATCHED_PATHS"
+
+            # Extract all unique code owners from matched paths
+            ALL_OWNERS=""
+            while IFS= read -r path; do
+              if [ -n "$path" ]; then
+                # Get owners for this specific path
+                OWNERS=$(grep "^$path" .github/CODEOWNERS | sed "s|^$path||" | sed 's/@//g')
+                ALL_OWNERS="$ALL_OWNERS $OWNERS"
+              fi
+            done <<< "$MATCHED_PATHS"
+
+            # Remove duplicates and convert to JSON array
+            UNIQUE_OWNERS=$(echo "$ALL_OWNERS" | tr ' ' '\n' | grep -v '^$' | sort -u)
+            OWNERS_JSON=$(echo "$UNIQUE_OWNERS" | jq -R -s -c 'split("\n") | map(select(length > 0))')
+
+            echo "Code owners: $OWNERS_JSON"
+            echo "owners=$OWNERS_JSON" >> $GITHUB_OUTPUT
           else
-            echo "❌ Some files are outside src/content/docs/dotnet/"
+            echo "❌ Some files are outside dotnet paths"
           fi
 
-      - name: Check for StefH approval
+      - name: Check for code owner approval
         id: check-approval
         if: steps.check-files.outputs.all_dotnet_docs == 'true'
         uses: actions/github-script@v7
         with:
           script: |
+            const codeOwners = ${{ steps.check-files.outputs.owners }};
+            console.log(`Code owners for affected dotnet paths: ${codeOwners.join(', ')}`);
+
             const reviews = await github.rest.pulls.listReviews({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: context.payload.pull_request.number,
             });
 
-            const stefhApproval = reviews.data.some(review =>
-              review.user.login === 'StefH' &&
+            const approvedByCodeOwner = reviews.data.some(review =>
+              codeOwners.includes(review.user.login) &&
               review.state === 'APPROVED'
             );
 
-            console.log(`StefH approval: ${stefhApproval}`);
-            return stefhApproval;
+            if (approvedByCodeOwner) {
+              const approver = reviews.data.find(review =>
+                codeOwners.includes(review.user.login) &&
+                review.state === 'APPROVED'
+              ).user.login;
+              console.log(`✅ Approved by code owner: ${approver}`);
+            } else {
+              console.log(`⏳ No approval from code owners yet. Waiting for approval from: ${codeOwners.join(', ')}`);
+            }
+
+            return approvedByCodeOwner;
 
       - name: Enable auto-merge
         if: |
@@ -95,11 +152,24 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
+            const codeOwners = ${{ steps.check-files.outputs.owners }};
+
+            const reviews = await github.rest.pulls.listReviews({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+            });
+
+            const approver = reviews.data.find(review =>
+              codeOwners.includes(review.user.login) &&
+              review.state === 'APPROVED'
+            ).user.login;
+
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.payload.pull_request.number,
-              body: '✅ Auto-merged: This PR only affects .NET documentation files and was approved by @StefH.'
+              body: `✅ Auto-merged: This PR only affects .NET-related paths and was approved by @${approver}.`
             });
 
       - name: Add comment if not eligible
@@ -111,9 +181,11 @@ jobs:
           script: |
             let reason = '';
             if ('${{ steps.check-files.outputs.all_dotnet_docs }}' !== 'true') {
-              reason = '❌ This PR includes files outside of `src/content/docs/dotnet/` and cannot be auto-merged.';
+              reason = '❌ This PR includes files outside of .NET-related paths and cannot be auto-merged.';
             } else if ('${{ steps.check-approval.outputs.result }}' !== 'true') {
-              reason = '⏳ Waiting for approval from @StefH for auto-merge.';
+              const codeOwners = ${{ steps.check-files.outputs.owners }};
+              const ownerMentions = codeOwners.map(owner => `@${owner}`).join(', ');
+              reason = `⏳ Waiting for approval from a code owner (${ownerMentions}) for auto-merge.`;
             }
 
             if (reason) {
