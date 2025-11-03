@@ -53,7 +53,7 @@ It is important that our expectations are correct otherwise those tests can be f
 
 # Summary of what WireMock.Net Offers
 1. Configure the response returned by the HTTP API when it receives a specific request.
-2. Capture the incoming HTTP requests and write assertions for that requests.
+2. Capture the incoming HTTP requests and write assertions for that requests
 3. Identify the stubbed or captured HTTP requests by using request matching
 4. Configure request matchers by comparing the request
 5. URL, path, request method, request headers, cookies and request body
