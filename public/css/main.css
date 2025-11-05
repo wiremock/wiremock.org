@@ -1617,25 +1617,6 @@ textarea {
 /* ==========================================================================
    BASE ELEMENTS
    ========================================================================== */
-@font-face {
-  font-family: "DMSans";
-  src: url("/fonts/DMSans-Regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: "DMSans";
-  src: url("/fonts/DMSans-Medium.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal;
-}
-body {
-  margin: 0;
-  padding: 0;
-  color: #0f0f0f;
-  font-family: "DMSans", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
-  line-height: 1.5;
-}
 body.overflow--hidden {
   /* when primary navigation is visible, the content in the background won't scroll */
   overflow: hidden;
@@ -1749,11 +1730,6 @@ pre {
   font-family: "Source Code Pro", Monaco, Consolas, "Lucida Console", monospace;
   text-wrap: balance;
   overflow-wrap: anywhere;
-}
-
-pre {
-  padding: 24px;
-  overflow-x: auto;
 }
 
 p > code,
