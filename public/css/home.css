@@ -81,8 +81,14 @@ body {
     margin-bottom: 20px;
     letter-spacing: -2px;
     font-weight: 300;
-    font-size: 40px;
+    font-size: 30px;
     text-align: center;
+}
+
+@media only screen and (min-width: 992px) {
+    .section__title {
+        font-size: 40px;
+    }
 }
 
 .section__intro {
@@ -129,6 +135,10 @@ body {
 }
 
 @media only screen and (min-width: 992px) {
+    .tabs__list-container {
+        overflow: auto;
+    }
+
     .tabs-list {
         width: 100%;
     }
@@ -202,7 +212,13 @@ body {
 }
 
 .home__title h1 {
-    font-size: 58px;
+    font-size: 46px;
+}
+
+@media only screen and (min-width: 992px) {
+    .home__title h1 {
+        font-size: 58px;
+    }
 }
 
 .home__title p {
@@ -340,8 +356,8 @@ body {
 }
 
 .home__simulation-title {
-    margin-bottom: 24px;
-    font-size: 32px;
+    margin-bottom: 18px;
+    font-size: 24px;
 }
 
 .home__simulation-image {
@@ -354,6 +370,11 @@ body {
 }
 
 @media only screen and (min-width: 992px) {
+    .home__simulation-title {
+        font-size: 32px;
+        margin-bottom: 24px;
+    }
+
     .home__simulation-image {
         position: relative;
         display: inline-block;
