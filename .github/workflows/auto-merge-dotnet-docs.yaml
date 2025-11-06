@@ -204,7 +204,7 @@ jobs:
       - name: Add comment if not eligible
         if: |
           steps.check-files.outputs.all_dotnet_docs == 'false' ||
-          fromJson(steps.check-approval.outputs.result).approved == false
+          (steps.check-files.outputs.all_dotnet_docs == 'true' && fromJson(steps.check-approval.outputs.result).approved == false)
         uses: actions/github-script@v7
         with:
           script: |
