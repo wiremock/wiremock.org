@@ -1,0 +1,390 @@
+/*
+    Reset and base styles
+ */
+@font-face {
+    font-family: "DMSans";
+    src: url("/fonts/DMSans-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "DMSans";
+    src: url("/fonts/DMSans-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    color: #0f0f0f;
+    font-family: "DMSans", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
+    line-height: 1.5;
+}
+
+
+/*
+    Components
+ */
+.box {
+    position: relative;
+    display: grid;
+    border-radius: 30px;
+    padding: 30px;
+    background: #F4F7FF;
+    overflow: hidden;
+}
+
+.box--darker {
+    color: white;
+    background: linear-gradient(135deg, #3500FF 0%, #47CDFF 100%);
+    box-shadow: inset 2px 2px 10px rgba(255,255,255,0.2), inset 0 0 6px rgba(71, 205, 255, 1);
+}
+
+.box--darker a:not(.button) {
+    color: white;
+    text-decoration: underline;
+}
+
+.box__image {
+    margin-bottom: 30px;
+}
+
+.box__cta {
+    margin-top: 30px;
+    align-self: flex-end;
+}
+
+.box__title {
+    font-size: 24px;
+}
+
+.list-grid {
+    display: grid;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+@media only screen and (min-width: 992px) {
+    .list-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.section {
+    margin-bottom: 90px;
+}
+
+.section__title {
+    margin-bottom: 20px;
+    letter-spacing: -2px;
+    font-weight: 300;
+    font-size: 30px;
+    text-align: center;
+}
+
+@media only screen and (min-width: 992px) {
+    .section__title {
+        font-size: 40px;
+    }
+}
+
+.section__intro {
+    margin-bottom: 40px;
+    font-size: 20px;
+}
+
+.button {
+    padding: 12px 24px;
+    background: #2D69F6;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.button--light {
+    background: white;
+    color: #2D69F6;
+}
+
+.badge {
+    margin-bottom: 20px;
+    font-size: 14px;
+    padding: 2px 20px;
+    border-radius: 4px;
+    background: #FF9507;
+    color: white;
+}
+
+.tabs__list-container {
+    overflow: scroll;
+    margin: 0 0 24px 0;
+}
+
+.tabs-list {
+    position: relative;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    gap: 30px;
+    border-bottom: 1px solid rgba(24, 37, 61, 0.5);
+    width: max-content;
+}
+
+@media only screen and (min-width: 992px) {
+    .tabs__list-container {
+        overflow: auto;
+    }
+
+    .tabs-list {
+        width: 100%;
+    }
+}
+
+.tabs-list li {
+    margin: 0;
+    padding: 0;
+    flex: 1 0 auto;
+}
+
+.tabs-list a {
+    position: relative;
+    padding: 6px 12px;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.tabs-list a:after {
+    position: absolute;
+    content: '';
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.tabs-list a.active:after {
+    border-bottom-color: #2D69F6;
+}
+
+.tab-content {
+    text-align: left;
+}
+
+.tab-content--hidden {
+    display: none;
+}
+
+.home .hljs {
+    background: none;
+}
+
+.home {
+    padding: 0 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: #18253D;
+    line-height: 150%;
+    font-size: 16px;
+}
+
+.home__footer {
+    padding: 45px 0;
+    background: #F5F5F5;
+}
+
+.home section p {
+    max-width: 70ch;
+}
+
+
+/*
+    Heading section
+ */
+.home__title {
+    margin-top: 60px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.home__title h1 {
+    font-size: 46px;
+}
+
+@media only screen and (min-width: 992px) {
+    .home__title h1 {
+        font-size: 58px;
+    }
+}
+
+.home__title p {
+    font-size: 20px;
+}
+
+
+/*
+    Target section
+ */
+.home__target-dev .box__cta  {
+    font-size: 18px;
+}
+
+.home__target-dev .box__cta a:first-of-type:after  {
+    content: '|';
+    display: inline-block;
+    margin: 0 12px;
+    color: #0f0f0f;
+}
+
+
+/*
+    What section
+ */
+.home__what {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+
+/*
+    Features
+ */
+
+.home__features h3 {
+    margin-bottom: 60px;
+    text-align: center;
+    font-size: 32px;
+    letter-spacing: -2px;
+    font-weight: 300;
+}
+
+.home__features h4 {
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.home__features ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 24px;
+    grid-auto-rows: auto;
+}
+
+@media only screen and (min-width: 992px) {
+    .home__features {
+        padding: 20px 50px;
+    }
+
+    .home__features ul {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 60px;
+    }
+}
+
+.home__features li {
+    text-align: left;
+}
+
+.home__features li img {
+    margin-bottom: 20px;
+}
+
+
+/*
+    New features
+*/
+.home__new {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 60px 10%;
+}
+
+.home__new-title {
+    font-size: 32px;
+}
+
+.home__new p:last-child {
+    margin-top: 40px;
+}
+
+
+/*
+    Get started
+ */
+.home__get-started {
+    text-align: center;
+}
+
+/*
+    Community
+ */
+.home__community {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home__community-github-stars {
+    position: absolute;
+    right: 30px;
+    top: 40px;
+}
+
+@media only screen and (min-width: 992px) {
+    .home__community {
+        padding: 0 50px;
+    }
+}
+
+
+/*
+    Simulation
+ */
+.home__simulation .box {
+    position: relative;
+}
+
+.home__simulation-title {
+    margin-bottom: 18px;
+    font-size: 24px;
+}
+
+.home__simulation-image {
+    display: none;
+    right: -52px;
+}
+
+.home__simulation-content ul {
+    margin-bottom: 48px;
+}
+
+@media only screen and (min-width: 992px) {
+    .home__simulation-title {
+        font-size: 32px;
+        margin-bottom: 24px;
+    }
+
+    .home__simulation-image {
+        position: relative;
+        display: inline-block;
+    }
+
+    .home__simulation-content {
+        padding: 80px 50px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
