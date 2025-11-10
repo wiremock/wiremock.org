@@ -285,7 +285,7 @@
         "status": "301"
     },
     {
-        "source": "/participate",
+        "source": "/participate/",
         "target": "https://github.com/wiremock/community/blob/main/contributing/README.md",
         "status": "301"
     }
