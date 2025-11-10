@@ -278,11 +278,15 @@
         "source": "/docs/solutions",
         "target": "/docs/",
         "status": "301"
-    }
-    ,
+    },
     {
         "source": "/docs/graphql-extension/",
         "target": "/docs/graphql/",
+        "status": "301"
+    },
+    {
+        "source": "/participate",
+        "target": "https://github.com/wiremock/community/blob/main/contributing/README.md",
         "status": "301"
     }
 ]
