@@ -7,8 +7,8 @@
 
 export const VERSIONS = {
   // WireMock Java versions
-  WIREMOCK_STABLE: '3.13.1',
-  WIREMOCK_BETA: '4.0.0-beta.15',
+  WIREMOCK_STABLE: '3.13.2',
+  WIREMOCK_BETA: '4.0.0-beta.17',
   WIREMOCK_LEGACY: '2.31.0',
 
   GRPC_EXTENSION: '0.11.0'
