@@ -363,7 +363,7 @@
                         class="langauge-xml">&lt;dependency&gt;
   &lt;groupId&gt;org.wiremock&lt;/groupId&gt;
   &lt;artifactId&gt;wiremock&lt;/artifactId&gt;
-  &lt;version&gt;3.13.1&lt;/version&gt;
+  &lt;version&gt;3.13.2&lt;/version&gt;
   &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;</code></pre>
                 <p>Then follow the next steps for <a href="/docs/junit-jupiter/">JUnit 5+</a> or <a href="/docs/java-usage/">plain Java</a>.</p>
@@ -371,25 +371,25 @@
             <div id="gradle-groovy" class="tab-content">
                 <p>Add the following to your project's build.gradle:</p>
                 <pre class="box"><code
-                        class="langauge-groovy">testImplementation "org.wiremock:wiremock:3.13.1"</code></pre>
+                        class="langauge-groovy">testImplementation "org.wiremock:wiremock:3.13.2"</code></pre>
                 <p>Then follow the next steps for <a href="/docs/junit-jupiter/">JUnit 5+</a> or <a href="/docs/java-usage/">plain Java</a>.</p>
             </div>
             <div id="gradle-kotlin" class="tab-content">
                 <p>Add the following to your project's build.gradle.kts:</p>
                 <pre class="box"><code
-                        class="language-kotlin">testImplementation("org.wiremock:wiremock:3.13.1")</code></pre>
+                        class="language-kotlin">testImplementation("org.wiremock:wiremock:3.13.2")</code></pre>
                 <p>Then follow the next steps for <a href="/docs/junit-jupiter/">JUnit 5+</a> or <a href="/docs/java-usage/">plain Java</a>.</p>
             </div>
             <div id="scala" class="tab-content">
                 <p>Add the following to your project’s build.sbt:</p>
 <pre class="box"><code class="language-scala">libraryDependencies +=
-"org.wiremock" % "wiremock" % "3.13.1" % Test</code></pre>
+"org.wiremock" % "wiremock" % "3.13.2" % Test</code></pre>
             </div>
             <div id="standalone" class="tab-content">
                 <p>
-                    Download the <a id="wiremock-standalone-download" href="https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/3.13.1/wiremock-standalone-3.13.1.jar">latest
+                    Download the <a id="wiremock-standalone-download" href="https://repo1.maven.org/maven2/org/wiremock/wiremock-standalone/3.13.2/wiremock-standalone-3.13.2.jar">latest
                     standalone JAR</a> then run the following in a terminal:</p>
-<pre class="box"><code class="language-java">java -jar wiremock-standalone-3.13.1.jar</code></pre>
+<pre class="box"><code class="language-java">java -jar wiremock-standalone-3.13.2.jar</code></pre>
                 <p>Learn more in the <a href="/docs/standalone/java-jar/">running standalone
                     guide.</a></p>
             </div>
@@ -398,7 +398,7 @@
 <pre class="box"><code class="language-bash">docker run -it --rm \
 -p 8080:8080 \
 --name wiremock \
-wiremock/wiremock:3.13.1</code></pre>
+wiremock/wiremock:3.13.2</code></pre>
                 <p>Learn more in the <a href="/docs/standalone/docker/">Docker guide.</a></p>
             </div>
         </div>

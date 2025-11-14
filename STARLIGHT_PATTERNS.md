@@ -188,7 +188,7 @@ To add new variables, create a constants file:
 
 ```js
 // src/constants.ts
-export const WIREMOCK_VERSION = '3.13.1';
+export const WIREMOCK_VERSION = '3.13.2';
 ```
 
 Then import in MDX:
