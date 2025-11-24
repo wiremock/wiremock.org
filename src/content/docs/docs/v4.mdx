@@ -14,7 +14,9 @@ We have given these releases a beta label due to the fact that as we move forwar
 breaking changes**.  These are the current updates to the `4.x` release:
 
 * Java 17 is now the baseline java version
-* Jetty 12 is shipped by default so there is no longer a specific jetty 12 release of `4.x` and Jetty 11 is no longer supported
+* Jetty 12.1 is shipped by default, so there is no longer a specific jetty 12 release of `4.x` and Jetty 11 is no longer supported
+    * Jetty now normalises the `Content-Type` header so that e.g. `application/json; charset=UTF-8` becomes `application/json;charset=utf-8`.
+    * We have upgraded to EE11 support in Jetty 12.1 - EE11 is the highest version of the standard Jetty 12.1 supports and is backwards compatible with EE10
 
 ## Breaking changes and how to migrate
 
