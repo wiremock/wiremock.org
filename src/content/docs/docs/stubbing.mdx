@@ -96,7 +96,7 @@ you can replace `stubFor` with `givenThat`.
 
 Some common request and response patterns can be expressed in Java in abbreviated forms.
 
-Requests matching an exact URL plus one of the most common HTTP methods (GET, POST, PUT, DELETE) can be stubbed like this:
+Requests matching an exact URL plus one of the most common HTTP methods (GET, POST, PUT, DELETE, QUERY) can be stubbed like this:
 
 ```java
 stubFor(get("/some/thing")
@@ -129,7 +129,7 @@ stubFor(put("/status-only")
 More DSL examples [can be found here](https://github.com/tomakehurst/wiremock/tree/master/src/test/java/ignored/Examples.java#374).
 
 HTTP methods currently supported are:
-`GET, POST, PUT, DELETE, HEAD, TRACE, OPTIONS, GET_OR_HEAD`. You can specify `ANY` if
+`GET, POST, PUT, QUERY, DELETE, HEAD, TRACE, OPTIONS, GET_OR_HEAD`. You can specify `ANY` if
 you want the stub mapping to match on any request method. `GET_OR_HEAD` is a special
 method that could be used to match incoming requests for both `GET` or `HEAD` http
 method. A ```HEAD``` request will result in the same behaviour expected from a web server i.e.
