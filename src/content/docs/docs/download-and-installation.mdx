@@ -127,6 +127,15 @@ testImplementation "org.wiremock:wiremock-standalone:${VERSIONS.WIREMOCK_STABLE}
 </VCode>
 
 </TabItem>
+<TabItem label="Gradle Kotlin">
+
+<VCode lang="kotlin">
+{`
+testImplementation("org.wiremock:wiremock-standalone:${VERSIONS.WIREMOCK_STABLE}")
+`}
+</VCode>
+
+</TabItem>
 </Tabs>
 
 
@@ -146,68 +155,99 @@ to hear your feedback over on the community slack - [https://slack.wiremock.org/
 We have given these releases a beta label due to the fact that as we move forwards with the `4.x` release there **will be
 breaking changes**.  See the [version 4](/docs/v4) page for details on the current updates to the `4.x` release.
 
+The version 4 codebase has been refactored to break out the core of WireMock from the various dependencies on external libraries.
+This means that you can now choose which dependencies you want to include in your project.
+
 ### Test dependencies
 
 <Tabs>
 <TabItem label="Maven">
 
-Add the following to your project's pom.xml dependencies:
+Add the following to your project's pom.xml dependencies.  If JUnit 4 is used instead of JUnit 5 then replace `wiremock-junit5`
+with `wiremock-junit4`.
 
 <VCode lang="xml">
 {`
     <dependency>
         <groupId>org.wiremock</groupId>
-        <artifactId>wiremock</artifactId>
+        <artifactId>wiremock-core</artifactId>
+        <version>${VERSIONS.WIREMOCK_BETA}</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.wiremock</groupId>
+        <artifactId>wiremock-jetty</artifactId>
+        <version>${VERSIONS.WIREMOCK_BETA}</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.wiremock</groupId>
+        <artifactId>wiremock-junit5</artifactId>
+        <version>${VERSIONS.WIREMOCK_BETA}</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.wiremock</groupId>
+        <artifactId>wiremock-httpclient-apache5</artifactId>
         <version>${VERSIONS.WIREMOCK_BETA}</version>
         <scope>test</scope>
     </dependency>
 `}
 </VCode>
-Then follow the next steps for [JUnit 5+](../junit-jupiter/) or [plain Java](../java-usage//).
 
 </TabItem>
 <TabItem label="Gradle Groovy">
 
-Add the following to your project's build.gradle:
+Add the following to your project's build.gradle.  If JUnit 4 is used instead of JUnit 5 then replace `wiremock-junit5`
+    with `wiremock-junit4`.
 
 <VCode lang="groovy">
 {`
-testImplementation "org.wiremock:${VERSIONS.WIREMOCK_BETA}"
+testImplementation "org.wiremock:wiremock-core:${VERSIONS.WIREMOCK_BETA}"
+testImplementation "org.wiremock:wiremock-jetty:${VERSIONS.WIREMOCK_BETA}"
+testImplementation "org.wiremock:wiremock-junit5:${VERSIONS.WIREMOCK_BETA}"
+testImplementation "org.wiremock:wiremock-httpclient-apache5:${VERSIONS.WIREMOCK_BETA}"
 `}
 </VCode>
-
-Then follow the next steps for [JUnit 5+](../junit-jupiter/) or [plain Java](../java-usage//).
 
 </TabItem>
 <TabItem label="Gradle Kotlin">
 
-Add the following to your project's build.gradle:
+Add the following to your project's build.gradle.kts.  If JUnit 4 is used instead of JUnit 5 then replace `wiremock-junit5`
+    with `wiremock-junit4`.
 
 <VCode lang="kotlin">
 {`
-testImplementation("org.wiremock:wiremock:${VERSIONS.WIREMOCK_BETA}")
+testImplementation("org.wiremock:wiremock-core:${VERSIONS.WIREMOCK_BETA}")
+testImplementation("org.wiremock:wiremock-jetty:${VERSIONS.WIREMOCK_BETA}")
+testImplementation("org.wiremock:wiremock-junit5:${VERSIONS.WIREMOCK_BETA}")
+testImplementation("org.wiremock:wiremock-httpclient-apache5:${VERSIONS.WIREMOCK_BETA}")
 `}
 </VCode>
-
-Then follow the next steps for [JUnit 5+](../junit-jupiter/) or [plain Java](../java-usage//).
 
 </TabItem>
 <TabItem label="Scala SBT">
 
-Add the following to your project's build.gradle:
+Add the following to your project's build.sbt.  If JUnit 4 is used instead of JUnit 5 then replace `wiremock-junit5`
+    with `wiremock-junit4`.
 
 <VCode lang="scala">
 {`
 libraryDependencies +=
-"org.wiremock" % "wiremock" % "${VERSIONS.WIREMOCK_BETA}" % Test
+"org.wiremock" % "wiremock-core" % "${VERSIONS.WIREMOCK_BETA}" % Test
+libraryDependencies +=
+"org.wiremock" % "wiremock-jetty" % "${VERSIONS.WIREMOCK_BETA}" % Test
+libraryDependencies +=
+"org.wiremock" % "wiremock-junit5" % "${VERSIONS.WIREMOCK_BETA}" % Test
+libraryDependencies +=
+"org.wiremock" % "wiremock-httpclient-apache5" % "${VERSIONS.WIREMOCK_BETA}" % Test
 `}
 </VCode>
-
-Then follow the next steps for [JUnit 5+](../junit-jupiter/) or [plain Java](../java-usage//).
 
 </TabItem>
 </Tabs>
 
+Then follow the next steps for [JUnit 5+](../junit-jupiter/) or [plain Java](../java-usage//).
 
 ### Standalone Service
 
@@ -233,6 +273,15 @@ Run the following in a terminal:
 <VCode lang="groovy">
 {`
 testImplementation "org.wiremock:wiremock-standalone:${VERSIONS.WIREMOCK_BETA}"
+`}
+</VCode>
+
+</TabItem>
+<TabItem label="Gradle Kotlin">
+
+<VCode lang="kotlin">
+{`
+testImplementation("org.wiremock:wiremock-standalone:${VERSIONS.WIREMOCK_BETA}")
 `}
 </VCode>
 
