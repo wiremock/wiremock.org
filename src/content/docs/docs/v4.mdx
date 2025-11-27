@@ -17,6 +17,8 @@ breaking changes**.  These are the current updates to the `4.x` release:
 * Jetty 12.1 is shipped by default, so there is no longer a specific jetty 12 release of `4.x` and Jetty 11 is no longer supported
     * Jetty now normalises the `Content-Type` header so that e.g. `application/json; charset=UTF-8` becomes `application/json;charset=utf-8`.
     * We have upgraded to EE11 support in Jetty 12.1 - EE11 is the highest version of the standard Jetty 12.1 supports and is backwards compatible with EE10
+* The version 4 codebase has been refactored to break out the core library from the various dependencies on external libraries. 
+This means that you can now choose which dependencies you want to include in your project. See the [Download and Installation](docs/download-and-installation/) page for details.
 
 ## Breaking changes and how to migrate
 
