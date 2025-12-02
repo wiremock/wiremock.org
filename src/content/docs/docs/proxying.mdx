@@ -51,6 +51,51 @@ The JSON equivalent would be:
 }
 ```
 
+## Hostname rewriting
+
+Often API responses contain absolute links and other content that refers to the 
+domain name of the API's origin. When proxying to another API this can be undesirable 
+as the domain running WireMock is different from the proxy target and thus a client 
+following such a link would make its next request directly to the proxy target rather 
+than to WireMock.
+
+To remedy this issue, as of WireMock `4.0.0-beta.20`, we can enable hostname rewriting, 
+which will replace any instances of the proxy target's domain name in the response 
+headers or body with the domain name where WireMock is running.
+
+For instance, if WireMock was running on `http://localhost:8081` to a proxy target 
+of `https://api.github.com` and a proxied response body contained 
+`"self": "https://api.github.com/users/123"`, with hostname rewriting enabled this 
+would be changed to `"self": "https://localhost:8081/users/123"`.
+
+To enable hostname rewriting, we can add a transformer to the response definition:
+
+```java
+stubFor(any(anyUrl())
+        .willReturn(aResponse()
+                .withTransformers("proxied-hostname-rewrite")
+                .proxiedFrom("https://api.github.com")
+    )
+);
+```
+
+The JSON equivalent would be:
+
+```json
+{
+    "request": {
+        "method": "ANY"
+    },
+    "response": {
+        "transformers": ["proxied-hostname-rewrite"],
+        "proxyBaseUrl": "https://api.github.com"
+    }
+}
+```
+
+The `proxied-hostname-rewrite` transformer also supports host name rewriting within
+response bodies that are gzipped.
+
 ## Proxy/intercept
 
 The proxy/intercept pattern described above is achieved by adding a low
