@@ -11,6 +11,7 @@
   --sl-color-accent: var(--color-wiremock-primary);
   --sl-color-accent-high: var(--color-wiremock-primary-hover);
   --sl-color-accent-low: rgba(15, 178, 239, 0.2);
+  --sl-color-text-invert: --sl-color-gray-2;
 
   --sl-content-width: 55rem;
 
