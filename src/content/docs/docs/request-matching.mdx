@@ -2005,3 +2005,51 @@ stubFor(
 ```
 </TabItem>
 </Tabs>
+
+# Numbers
+
+You can match numbers in their String representation using `equalTo`. For matching based on their numeric value, use `equalToNumber`, `greaterThanNumber`, `greaterThanEqualNumber`, `lessThanNumber` and `lessThanEqualNumber`.
+
+The matchers always report inputs that cannot be parsed to a number as not matching. It can be used for matching both strings and numbers.
+<Tabs>
+<TabItem label="Java">
+```java
+        stubFor(get(urlPathEqualTo("/things"))
+        .withQueryParam("id", greaterThanNumber(1))
+        .willReturn(ok()));
+```
+</TabItem>
+<TabItem label="JSON">
+```json
+{
+    "request" : {
+        "urlPath" : "/things",
+        "method" : "GET",
+        "queryParameters" : {
+            "id" : {
+                "greaterThanNumber": "1"
+            }
+        }
+    },
+    "response" : {
+        "status" : 200
+    }
+}
+
+{
+    "request" : {
+        "urlPath" : "/things",
+        "method" : "GET",
+        "queryParameters" : {
+            "id" : {
+                "greaterThanNumber": 1
+            }
+        }
+    },
+    "response" : {
+        "status" : 200
+    }
+}
+```
+</TabItem>
+</Tabs>
