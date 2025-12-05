@@ -2010,7 +2010,7 @@ stubFor(
 
 You can match numbers in their String representation using `equalTo`. For matching based on their numeric value, use `equalToNumber`, `greaterThanNumber`, `greaterThanEqualNumber`, `lessThanNumber` and `lessThanEqualNumber`.
 
-If non-number values are provided either as expected or actual, the matcher report these as not matching. It can be used for matching both strings and numbers.
+The matchers always report inputs that cannot be parsed to a number as not matching. It can be used for matching both strings and numbers.
 <Tabs>
 <TabItem label="Java">
 ```java
