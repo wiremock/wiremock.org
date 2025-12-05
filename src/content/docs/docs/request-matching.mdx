@@ -2015,10 +2015,7 @@ If non-number values are provided either as expected or actual, the matcher repo
 <TabItem label="Java">
 ```java
         stubFor(get(urlPathEqualTo("/things"))
-        .withQueryParam("id", greaterThan("1"))
-        .willReturn(ok()));
-        stubFor(get(urlPathEqualTo("/things"))
-        .withQueryParam("id", greaterThan(1))
+        .withQueryParam("id", greaterThanNumber(1))
         .willReturn(ok()));
 ```
 </TabItem>
