@@ -2006,7 +2006,7 @@ stubFor(
 </TabItem>
 </Tabs>
 
-# Numbers
+## Numbers
 
 You can match numbers in their String representation using `equalTo`. For matching based on their numeric value, use `equalToNumber`, `greaterThanNumber`, `greaterThanEqualNumber`, `lessThanNumber` and `lessThanEqualNumber`.
 
@@ -2014,9 +2014,9 @@ The matchers always report inputs that cannot be parsed to a number as not match
 <Tabs>
 <TabItem label="Java">
 ```java
-        stubFor(get(urlPathEqualTo("/things"))
-        .withQueryParam("id", greaterThanNumber(1))
-        .willReturn(ok()));
+stubFor(get(urlPathEqualTo("/things"))
+    .withQueryParam("id", greaterThanNumber(1))
+    .willReturn(ok()));
 ```
 </TabItem>
 <TabItem label="JSON">
