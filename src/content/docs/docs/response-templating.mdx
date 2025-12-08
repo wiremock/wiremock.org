@@ -1197,7 +1197,203 @@ will return this object:
 { "id": 456 }
 ```
 
+## Sorting JSON Arrays
 
+As of WireMock version `4.0.0-beta.21` a new `jsonSort` helper has been introduced.  This allows you to specify a field
+within an JSON array to sort by. The field is referenced using a JSON path expression, and all sort field values must be 
+of the same comparable type (Number, String, or Boolean).  For example:
+
+```handlebars
+{{#assign 'jsonArray'}}
+[
+    {
+        "id": 123,
+        "name": "sam"
+    },
+    {
+        "id": 321,
+        "name": "alice"
+    }
+]
+{{/assign}}
+
+{{jsonSort jsonArray '$[*].name'}}
+```
+
+The above template will produce the following JSON:
+
+```json
+[
+  {
+    "id": 321,
+    "name": "alice"
+  },
+  {
+    "id": 123,
+    "name": "sam"
+  }
+]
+```
+
+The order of the sorting is `ascending (asc)` by default.  This can be changed by supplying `desc` for the `order` parameter.
+For example:
+
+```handlebars
+{{#assign 'jsonArray'}}
+[
+    {
+        "id": 123,
+        "name": "sam"
+    },
+    {
+        "id": 321,
+        "name": "alice"
+    }
+]
+{{/assign}}
+
+{{jsonSort jsonArray '$[*].id' order='desc'}}
+```
+
+The above template will produce the following JSON:
+
+```json
+[
+  {
+    "id": 321,
+    "name": "alice"
+  },
+  {
+    "id": 123,
+    "name": "sam"
+  }
+]
+```
+
+The array being referenced in the JSON path expression must be an array, but it doesn't have to be a top-level array.
+For example:
+
+```handlebars
+{{#assign 'jsonArray'}}
+{"users":[{"name":"fred"},{"name":"bob"}]}
+{{/assign}}
+
+{{jsonSort jsonArray '$.users[*].name'}}
+```
+
+The above template will produce the following JSON:
+
+```json
+{"users":[{"name":"bob"},{"name":"fred"}]}
+```
+
+Even though all sort field values must be of the same comparable type (Number, String, or Boolean), this equally works for 
+dates where they can be compared as strings. For example:
+
+```handlebars
+{{#assign 'jsonArray'}}
+[{"id":1,"created":"2025-03-15T14:30:00Z"},{"id":2,"created":"2025-01-10T09:15:00Z"},{"id":3,"created":"2025-12-01T18:45:00Z"}]
+{{/assign}}
+
+{{jsonSort jsonArray '$[*].created'}}
+```
+
+The above template will produce the following JSON:
+
+```json
+ [{"id":2,"created":"2025-01-10T09:15:00Z"},{"id":1,"created":"2025-03-15T14:30:00Z"},{"id":3,"created":"2025-12-01T18:45:00Z"}]
+```
+
+Simple arrays can also be sorted using the `jsonSort` helper:
+
+```handlebars
+{{#assign 'jsonArray'}}
+["charlie","alice","bob"]
+{{/assign}}
+
+{{jsonSort jsonArray '$[*]'}}
+```
+
+The above template will produce the following JSON:
+
+```json
+["alice","bob","charlie"]
+```
+
+You can also refernece arrays in a specific index position using the `jsonPath` parameter:
+
+```handlebars
+{{#assign 'jsonArray'}}
+[{"items":[{"price":30},{"price":10},{"price":20}]},{"items":[{"price":100},{"price":50}]}]
+{{/assign}}
+
+{{jsonSort jsonArray '$[0].items[*].price'}}
+```
+
+The above template will produce the following JSON:
+
+```json
+[{"items":[{"price":10},{"price":20},{"price":30}]},{"items":[{"price":100},{"price":50}]}]
+```
+
+### Handling null when sorting
+
+The `jsonSort` helper allows you to sort on a field that can be missing or null. When sorting, missing fields are  
+treated as null.  By default, nulls are added to the beginning of the sorted array:
+
+```handlebars
+{{#assign 'jsonArray'}}
+[{"id":1,"name":"alice"},{"id":2},{"id":3,"name":"bob"}]
+{{/assign}}
+
+{{jsonSort jsonArray '$[*].name'}}
+```
+
+The above template will produce the following JSON:
+
+```json
+[{"id":2},{"id":1,"name":"alice"},{"id":3,"name":"bob"}]
+```
+
+This can be changed by supplying a `nulls` parameter and setting the value to `last` - `nulls='last'`.  This will 
+move nulls to the end of the sorted array:
+
+```handlebars
+{{#assign 'jsonArray'}}
+[{"id":1,"name":"alice"},{"id":2},{"id":3,"name":"bob"}]
+{{/assign}}
+
+{{jsonSort jsonArray '$[*].name' nulls='last'}}
+```
+
+The above template will produce the following JSON:
+
+```json
+[{"id":1,"name":"alice"},{"id":3,"name":"bob"},{"id":2}]
+```
+
+The `nulls` parameter can also be set to `first` or `last`.
+
+### Stable Sorting
+
+The `jsonSort` helper provides a 'stable' sort where the order of equal values are preserved. For example, sorting on
+a field that contains duplicate values will maintain the order within the array.  This is demonstrated in the following
+example:
+
+
+```handlebars
+{{#assign 'jsonArray'}}
+[{"id":"a","score":100},{"id":"b","score":50},{"id":"c","score":50},{"id":"d","score":25},{"id":"e","score":50}]""";
+{{/assign}}
+
+{{jsonSort jsonArray '$[*].score'}}
+```
+
+The above template will produce the following JSON where the order of the duplicate items is preserved:
+
+```json
+[{"id":"d","score":25},{"id":"b","score":50},{"id":"c","score":50},{"id":"e","score":50},{"id":"a","score":100}]
+```
 
 ## Date and time helpers
 
