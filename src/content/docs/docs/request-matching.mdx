@@ -2035,21 +2035,6 @@ stubFor(get(urlPathEqualTo("/things"))
         "status" : 200
     }
 }
-
-{
-    "request" : {
-        "urlPath" : "/things",
-        "method" : "GET",
-        "queryParameters" : {
-            "id" : {
-                "greaterThanNumber": 1
-            }
-        }
-    },
-    "response" : {
-        "status" : 200
-    }
-}
 ```
 </TabItem>
 </Tabs>
