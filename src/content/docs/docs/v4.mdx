@@ -54,3 +54,29 @@ The following transitive dependencies have been replaced and may require changes
 * org.eclipse.jetty.http2:http2-common -> org.eclipse.jetty.http2:jetty-http2-common
 * org.eclipse.jetty.http2:http2-hpack -> org.eclipse.jetty.http2:jetty-http2-hpack
 * org.eclipse.jetty.http2:http2-server -> org.eclipse.jetty.http2:jetty-http2-server
+
+### Immutable data classes
+
+Several of the core data classes in WireMock are now immutable, and can only be transformed via their respective builder classes.
+This decision was made to reduce the likelihood of bugs due to reliance on in-place mutation of objects,
+especially objects within in-memory stores, and to increase code clarity.
+
+#### Usage
+
+Previously, a `StubMapping` instance's request pattern could be mutated via the `setRequest` method on the `StubMapping` class, like so:
+``` java
+stubMapping.setRequest(newRequestPattern);
+```
+Now, the `transform` method on the `StubMapping` class can be used to copy the existing instance and return a new instance with an updated request pattern, like so:
+``` java
+StubMapping newStubMapping =
+    oldStubMapping.transform(builder -> builder.setRequest(newRequestPattern));
+```
+
+The following data classes have all been updated to be immutable and use the builder pattern:
+* `com.github.tomakehurst.wiremock.stubbing.StubMapping`
+* `com.github.tomakehurst.wiremock.common.Metadata`
+* `com.github.tomakehurst.wiremock.extension.Parameters`
+* `com.github.tomakehurst.wiremock.global.GlobalSettings`
+* `com.github.tomakehurst.wiremock.http.ResponseDefinition`
+* `com.github.tomakehurst.wiremock.matching.RequestPattern`
