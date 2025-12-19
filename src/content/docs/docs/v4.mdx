@@ -80,30 +80,3 @@ The following data classes have all been updated to be immutable and use the bui
 * `com.github.tomakehurst.wiremock.global.GlobalSettings`
 * `com.github.tomakehurst.wiremock.http.ResponseDefinition`
 * `com.github.tomakehurst.wiremock.matching.RequestPattern`
-
-### Fluent WireMockServer methods
-
-The `start` and `stop` methods of `com.github.tomakehurst.wiremock.WireMockServer`, as well as the `shutdown` method of `com.github.tomakehurst.wiremock.core.Container` are now fluent (i.e. they return the `this` object, rather than `void`).
-This change allows more conciseness when using these classes, such as in your JUnit tests:
-```java
-class JUnit5AndWireMockTest {
-    @AutoClose("stop")
-    WireMockServer server = new WireMockServer(options().dynamicPort()).start();
-
-    @Test
-    void getProducts() {
-        server.stubFor(
-            get(urlPathEqualTo("/api/products"))
-        ...
-    }
-}
-```
-This removes the need for starting the server in a separate setup step:
-```java
-@BeforeEach
-void setUp() {
-    server.start();
-}
-```
-
-Existing implementations of `Container` or extensions of `WireMockServer` that override these methods will need to upgrade their methods to account for this change.
