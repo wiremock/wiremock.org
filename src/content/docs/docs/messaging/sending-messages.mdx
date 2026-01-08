@@ -380,9 +380,8 @@ MessageStubMapping notification = MessageStubMapping.builder()
     .triggeredByHttpRequest(
         newRequestPattern().withMethod(POST).withUrl("/api/orders"))
     .triggersAction(
-        SendMessageAction.toMatchingChannels(
-            "{\"type\": \"order_created\", \"orderId\": \"123\"}",
-            newRequestPattern().withUrl("/notifications")))
+        sendMessage("{\"type\": \"order_created\", \"orderId\": \"123\"}")
+            .onChannelsMatching(newRequestPattern().withUrl("/notifications")))
     .build();
 
 wireMockServer.addMessageStubMapping(notification);

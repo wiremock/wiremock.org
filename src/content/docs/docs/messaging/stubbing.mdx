@@ -782,7 +782,7 @@ public class PrefixingMessageActionTransformer implements MessageActionTransform
     public MessageAction transform(MessageAction action, MessageActionContext context) {
         if (action instanceof SendMessageAction sendAction) {
             String originalBody = getBody(sendAction);
-            return SendMessageAction.toOriginatingChannel("[PREFIX] " + originalBody);
+            return sendMessage("[PREFIX] " + originalBody).onOriginatingChannel();
         }
         return action;
     }
@@ -850,9 +850,9 @@ MessageStubMapping stub = MessageStubMapping.builder()
             .withMethod(POST)
             .withUrl("/api/notify"))
     .triggersAction(
-        SendMessageAction.toMatchingChannels(
-            "New notification!",
-            newRequestPattern().withUrl(urlPathMatching("/notifications/.*"))))
+        sendMessage("New notification!")
+            .onChannelsMatching(
+                newRequestPattern().withUrl(urlPathMatching("/notifications/.*"))))
     .build();
 
 wireMockServer.addMessageStubMapping(stub);
@@ -911,9 +911,8 @@ MessageStubMapping notification = MessageStubMapping.builder()
     .withName("Order notification")
     .triggeredByHttpStub(orderId)
     .triggersAction(
-        SendMessageAction.toMatchingChannels(
-            "{\"type\": \"order_created\", \"orderId\": \"12345\"}",
-            newRequestPattern().withUrl("/order-updates")))
+        sendMessage("{\"type\": \"order_created\", \"orderId\": \"12345\"}")
+            .onChannelsMatching(newRequestPattern().withUrl("/order-updates")))
     .build();
 
 wireMockServer.addMessageStubMapping(notification);
@@ -923,7 +922,7 @@ MessageStubMapping anotherNotification = MessageStubMapping.builder()
     .withName("Another notification")
     .triggeredByHttpStub("11111111-1111-1111-1111-111111111111")
     .triggersAction(
-        SendMessageAction.toOriginatingChannel("triggered!"))
+        sendMessage("triggered!").onOriginatingChannel())
     .build();
 ```
 </TabItem>
