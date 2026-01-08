@@ -1,0 +1,131 @@
+---
+title: "Messaging Framework Overview"
+description: WireMock's messaging framework provides a unified approach to mocking message-based protocols like WebSockets, enabling stubbing, verification, and message sending.
+---
+
+import { Tabs, TabItem, Aside } from '@astrojs/starlight/components';
+
+<Aside type="caution" title="4.x Beta Feature">
+  Message-based mocking (including WebSockets) is currently available only in WireMock 4.x beta releases.
+  See the [v4 Beta documentation](../../v4/) and [download page](../../download-and-installation/#4x-beta-release-downloads) for installation instructions.
+</Aside>
+
+WireMock's messaging framework provides a protocol-agnostic approach to mocking message-based, asynchronous communication protocols. This framework enables you to:
+
+- **Stub message responses**: Define how WireMock should respond when specific messages are received
+- **Verify messages**: Assert that expected messages were received during tests
+- **Send messages programmatically**: Push messages to connected clients via the Admin API or Java DSL
+
+## Core Concepts
+
+### Message Channels
+A message channel represents a communication connection.
+
+There will eventually be multiple types of channel, but for now there is only one: HTTP request initiated.
+
+#### Request-initiated channels
+This is a temporary channel that is created by a particular type of HTTP request. Currently the only implementation is
+websockets, but server-sent events is another future use case for this.
+
+When an initiating request is received (a `Connection: Upgrade` request in the case of websockets), a channel is created and the
+initiating request's details are stored with it so that this can be used to locate the channel for later actions.
+
+### Message Stub Mappings
+
+Message stub mappings define the relationship between incoming messages and the actions that should be triggered. Each mapping consists of:
+
+- **Trigger**: Specifies when the stub should activate (e.g., when a message matching a pattern is received)
+- **Actions**: Defines what should happen when triggered (e.g., send a response message)
+- **Priority**: Determines which stub takes precedence when multiple stubs match
+- **Metadata**: Custom key-value pairs for organizing and filtering stubs
+
+### Message Actions
+
+Actions define what happens when a stub is triggered. The primary action type is `SendMessageAction`, which sends a message to:
+
+- **Originating channel**: The channel that sent the triggering message
+- **Matching channels**: Channels matching a request pattern
+
+### Message Journal
+
+The message journal records all received messages and their matching status, similar to the HTTP request journal. This enables verification of message traffic during tests.
+
+## Supported Protocols
+
+Currently, WireMock's messaging framework supports:
+
+- **[WebSockets](./websockets/)**: Full-duplex communication over a single TCP connection
+
+In future we intend to add support for Server-Sent Events, gRPC streaming (in the gRPC extension) and more flexible webhooks via this framework.
+
+## Quick Example
+
+Here's a simple example of stubbing a WebSocket echo response:
+
+<Tabs>
+<TabItem label="Java">
+```java
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
+
+// Create a message stub that echoes back messages
+messageStubFor(
+    message()
+        .withName("Echo stub")
+        .willTriggerActions(
+            sendMessage("Echo: {{message.body}}")
+                .onOriginatingChannel()));
+```
+</TabItem>
+<TabItem label="JSON">
+```json
+{
+  "name": "Echo stub",
+  "trigger": {
+    "type": "message"
+  },
+  "actions": [
+    {
+      "type": "send",
+      "channelTarget": {
+        "type": "originating"
+      },
+      "message": {
+        "body": {
+          "data": "Echo: {{message.body}}"
+        }
+      }
+    }
+  ]
+}
+```
+</TabItem>
+</Tabs>
+
+## Architecture Overview
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                         WireMock Server                             │
+│                                                                     │
+│  ┌──────────────┐    ┌──────────────────┐    ┌──────────────────┐   │
+│  │   Message    │    │  Message Stub    │    │    Message       │   │
+│  │   Channels   │───▶│    Mappings      │───▶│    Actions       │   │
+│  │  (WebSocket) │    │   (Matching)     │    │ (Send Response)  │   │
+│  └──────────────┘    └──────────────────┘    └──────────────────┘   │
+│         │                                            │              │
+│         ▼                                            ▼              │
+│  ┌──────────────┐                            ┌──────────────────┐   │
+│  │   Message    │                            │     Channel      │   │
+│  │   Journal    │                            │     Targets      │   │
+│  │  (Logging)   │                            │    (Routing)     │   │
+│  └──────────────┘                            └──────────────────┘   │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+## Next Steps
+
+- [WebSockets Overview](../websockets/): Learn about WebSocket-specific features
+- [Stubbing](../stubbing/): Create message stub mappings
+- [Verification](../verification/): Verify received messages
+- [Sending Messages](../sending-messages/): Push messages to clients via the Admin API

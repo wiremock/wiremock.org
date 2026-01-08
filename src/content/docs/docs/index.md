@@ -151,6 +151,11 @@ description: "WireMock is a popular open-source tool for API mock testing with o
 </p>
 
 <div class="grid-container">
+  <a class="card" href="websockets/">
+    <span class="beta-badge">BETA</span>
+    <img src="/images/logos/technology/websocket.svg" />
+    WebSockets
+  </a>
   <a class="card" href="webhooks-and-callbacks/">
     <img src="/images/logos/technology/webhooks.svg" />
     Webhooks and Callbacks
@@ -335,6 +340,19 @@ description: "WireMock is a popular open-source tool for API mock testing with o
 
   .md-content a {
     color: #18253d !important;
+  }
+
+  .beta-badge {
+    position: absolute;
+    top: 0.25rem;
+    right: 0.25rem;
+    background-color: #f59e0b;
+    color: white;
+    font-size: 0.5rem;
+    font-weight: 700;
+    padding: 0.1rem 0.3rem;
+    border-radius: 0.25rem;
+    letter-spacing: 0.02em;
   }
 
 </style>

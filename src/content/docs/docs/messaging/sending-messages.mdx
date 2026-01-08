@@ -1,0 +1,436 @@
+---
+title: "Sending Messages via Admin API"
+description: Push messages to connected WebSocket clients programmatically using WireMock's Admin API.
+---
+
+import { Tabs, TabItem, Aside } from '@astrojs/starlight/components';
+
+<Aside type="caution" title="4.x Beta Feature">
+  Sending messages via the Admin API is currently available only in WireMock 4.x beta releases.
+  See the [v4 Beta documentation](../../v4/) and [download page](../../download-and-installation/#4x-beta-release-downloads) for installation instructions.
+</Aside>
+
+In addition to stub-triggered responses, WireMock allows you to proactively send messages to connected clients via the Admin API. This is useful for simulating server-initiated events like notifications, broadcasts, or push updates.
+
+## Sending to Channels
+
+### Send to Matching Channels
+
+Send a message to all WebSocket channels matching a request pattern:
+
+<Tabs>
+<TabItem label="Java">
+```java
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static com.github.tomakehurst.wiremock.matching.RequestPatternBuilder.newRequestPattern;
+
+// Send to all channels on a specific path
+SendChannelMessageResult result = wireMockServer.sendChannelMessage(
+    ChannelType.WEBSOCKET,
+    newRequestPattern().withUrl("/notifications").build(),
+    new StringEntityDefinition("Server notification!"));
+
+System.out.println("Sent to " + result.getSentCount() + " channels");
+```
+</TabItem>
+<TabItem label="API">
+```bash
+curl -X POST http://localhost:8080/__admin/channels/send \
+  -H "Content-Type: application/json" \
+  -d '{
+    "type": "websocket",
+    "initiatingRequest": {
+      "url": "/notifications"
+    },
+    "message": {
+      "body": {
+        "data": "Server notification!"
+      }
+    }
+  }'
+```
+</TabItem>
+</Tabs>
+
+### Send to All Channels on a Path Pattern
+
+<Tabs>
+<TabItem label="Java">
+```java
+// Broadcast to all channels matching a URL pattern
+SendChannelMessageResult result = wireMockServer.sendChannelMessage(
+    ChannelType.WEBSOCKET,
+    newRequestPattern()
+        .withUrl(urlPathMatching("/users/.*/updates"))
+        .build(),
+    new StringEntityDefinition("{\"type\": \"refresh\"}"));
+```
+</TabItem>
+<TabItem label="API">
+```bash
+curl -X POST http://localhost:8080/__admin/channels/send \
+  -H "Content-Type: application/json" \
+  -d '{
+    "type": "websocket",
+    "initiatingRequest": {
+      "urlPathPattern": "/users/.*/updates"
+    },
+    "message": {
+      "body": {
+        "data": "{\"type\": \"refresh\"}"
+      }
+    }
+  }'
+```
+</TabItem>
+</Tabs>
+
+### Send Based on Headers
+
+Target channels based on the headers of the initiating request:
+
+<Tabs>
+<TabItem label="Java">
+```java
+// Send to authenticated user channels
+SendChannelMessageResult result = wireMockServer.sendChannelMessage(
+    ChannelType.WEBSOCKET,
+    newRequestPattern()
+        .withUrl("/ws")
+        .withHeader("X-User-ID", matching("admin-.*"))
+        .build(),
+    new StringEntityDefinition("Admin broadcast"));
+```
+</TabItem>
+<TabItem label="API">
+```bash
+curl -X POST http://localhost:8080/__admin/channels/send \
+  -H "Content-Type: application/json" \
+  -d '{
+    "type": "websocket",
+    "initiatingRequest": {
+      "url": "/ws",
+      "headers": {
+        "X-User-ID": {
+          "matches": "admin-.*"
+        }
+      }
+    },
+    "message": {
+      "body": {
+        "data": "Admin broadcast"
+      }
+    }
+  }'
+```
+</TabItem>
+</Tabs>
+
+## Listing Active Channels
+
+Before sending messages, you may want to see which channels are currently connected:
+
+<Tabs>
+<TabItem label="Java">
+```java
+ListMessageChannelsResult result = listAllMessageChannels();
+
+for (MessageChannel channel : result.getChannels()) {
+    System.out.println("Channel ID: " + channel.getId());
+    System.out.println("Type: " + channel.getType());
+    System.out.println("Path: " + channel.getInitiatingRequest().getUrl());
+}
+```
+</TabItem>
+<TabItem label="API">
+```bash
+curl http://localhost:8080/__admin/channels
+```
+
+Response:
+```json
+{
+  "channels": [
+    {
+      "id": "abc123",
+      "type": "websocket",
+      "initiatingRequest": {
+        "url": "/notifications",
+        "method": "GET",
+        "headers": {
+          "Upgrade": "websocket",
+          "Connection": "Upgrade"
+        }
+      }
+    },
+    {
+      "id": "def456",
+      "type": "websocket",
+      "initiatingRequest": {
+        "url": "/users/42/updates",
+        "method": "GET"
+      }
+    }
+  ]
+}
+```
+</TabItem>
+</Tabs>
+
+## Message Content Options
+
+### Plain Text
+
+<Tabs>
+<TabItem label="Java">
+```java
+wireMockServer.sendChannelMessage(
+    ChannelType.WEBSOCKET,
+    newRequestPattern().withUrl("/chat").build(),
+    new StringEntityDefinition("Hello, World!"));
+```
+</TabItem>
+<TabItem label="JSON">
+```json
+{
+  "message": {
+    "body": {
+      "data": "Hello, World!"
+    }
+  }
+}
+```
+</TabItem>
+</Tabs>
+
+### JSON Content
+
+<Tabs>
+<TabItem label="Java">
+```java
+String jsonMessage = """
+    {
+        "type": "notification",
+        "payload": {
+            "title": "New message",
+            "content": "You have a new message"
+        }
+    }
+    """;
+
+wireMockServer.sendChannelMessage(
+    ChannelType.WEBSOCKET,
+    newRequestPattern().withUrl("/notifications").build(),
+    new StringEntityDefinition(jsonMessage));
+```
+</TabItem>
+<TabItem label="JSON">
+```json
+{
+  "message": {
+    "body": {
+      "data": "{\"type\": \"notification\", \"payload\": {\"title\": \"New message\", \"content\": \"You have a new message\"}}"
+    }
+  }
+}
+```
+</TabItem>
+</Tabs>
+
+### From File
+
+<Tabs>
+<TabItem label="Java">
+```java
+SendMessageActionBuilder builder = sendMessage()
+    .withBodyFromFile("__files/notification.json");
+
+// Use in a stub
+messageStubFor(
+    message()
+        .triggeredByHttpRequest(
+            newRequestPattern().withMethod(POST).withUrl("/trigger"))
+        .willTriggerActions(
+            builder.onChannelsMatching(
+                newRequestPattern().withUrl("/notifications"))));
+```
+</TabItem>
+<TabItem label="JSON">
+```json
+{
+  "message": {
+    "body": {
+      "filePath": "__files/notification.json"
+    }
+  }
+}
+```
+</TabItem>
+</Tabs>
+
+## Use Cases
+
+### Server-Initiated Notifications
+
+Simulate a server pushing notifications to clients:
+
+```java
+@Test
+void serverPushNotification() {
+    // Connect a client
+    WebSocketClient client = new WebSocketClient();
+    client.connect("ws://localhost:" + wireMockServer.port() + "/notifications");
+
+    // Wait for connection
+    await().until(client::isConnected);
+
+    // Server sends a notification
+    wireMockServer.sendChannelMessage(
+        ChannelType.WEBSOCKET,
+        newRequestPattern().withUrl("/notifications").build(),
+        new StringEntityDefinition("{\"alert\": \"New data available\"}"));
+
+    // Verify client received the message
+    await().until(() -> client.getMessages().contains("{\"alert\": \"New data available\"}"));
+}
+```
+
+### Broadcasting to Multiple Clients
+
+Send a message to all connected clients:
+
+```java
+@Test
+void broadcastToAllClients() {
+    // Connect multiple clients
+    WebSocketClient client1 = new WebSocketClient();
+    WebSocketClient client2 = new WebSocketClient();
+    WebSocketClient client3 = new WebSocketClient();
+
+    client1.connect("ws://localhost:" + wm.port() + "/broadcast/user1");
+    client2.connect("ws://localhost:" + wm.port() + "/broadcast/user2");
+    client3.connect("ws://localhost:" + wm.port() + "/broadcast/user3");
+
+    // Wait for all connections
+    await().until(() ->
+        client1.isConnected() && client2.isConnected() && client3.isConnected());
+
+    // Broadcast to all /broadcast/* channels
+    SendChannelMessageResult result = wireMockServer.sendChannelMessage(
+        ChannelType.WEBSOCKET,
+        newRequestPattern()
+            .withUrl(urlPathMatching("/broadcast/.*"))
+            .build(),
+        new StringEntityDefinition("System announcement"));
+
+    assertThat(result.getSentCount(), is(3));
+
+    // Verify all clients received the message
+    await().until(() ->
+        client1.getMessages().contains("System announcement") &&
+        client2.getMessages().contains("System announcement") &&
+        client3.getMessages().contains("System announcement"));
+}
+```
+
+### Simulating Real-Time Updates
+
+Simulate periodic server updates:
+
+```java
+@Test
+void simulateStockPriceUpdates() {
+    WebSocketClient client = new WebSocketClient();
+    client.connect("ws://localhost:" + wm.port() + "/stocks/AAPL");
+
+    await().until(client::isConnected);
+
+    // Simulate multiple price updates
+    for (int i = 0; i < 5; i++) {
+        String priceUpdate = String.format(
+            "{\"symbol\": \"AAPL\", \"price\": %.2f, \"timestamp\": %d}",
+            150.00 + Math.random() * 10,
+            System.currentTimeMillis());
+
+        wireMockServer.sendChannelMessage(
+            ChannelType.WEBSOCKET,
+            newRequestPattern().withUrl("/stocks/AAPL").build(),
+            new StringEntityDefinition(priceUpdate));
+
+        Thread.sleep(100); // Simulate update interval
+    }
+
+    // Verify client received multiple updates
+    await().until(() -> client.getMessages().size() >= 5);
+}
+```
+
+### HTTP-Triggered WebSocket Notifications
+
+Use HTTP stubs to trigger WebSocket messages:
+
+```java
+// HTTP endpoint that triggers a WebSocket notification
+stubFor(post("/api/orders")
+    .willReturn(ok("{\"orderId\": \"123\"}")));
+
+// Message stub triggered by the HTTP request
+MessageStubMapping notification = MessageStubMapping.builder()
+    .withName("Order notification")
+    .triggeredByHttpRequest(
+        newRequestPattern().withMethod(POST).withUrl("/api/orders"))
+    .triggersAction(
+        SendMessageAction.toMatchingChannels(
+            "{\"type\": \"order_created\", \"orderId\": \"123\"}",
+            newRequestPattern().withUrl("/notifications")))
+    .build();
+
+wireMockServer.addMessageStubMapping(notification);
+
+// Now when POST /api/orders is called, a WebSocket message is sent
+```
+
+## Admin API Endpoints Reference
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/__admin/channels` | GET | List all active message channels |
+| `/__admin/channels/send` | POST | Send message to matching channels |
+
+### Send Channel Message Request Format
+
+```json
+{
+  "type": "websocket",
+  "initiatingRequest": {
+    "url": "/path",
+    "urlPath": "/exact-path",
+    "urlPattern": "/path/.*",
+    "urlPathPattern": "/path/.*",
+    "method": "GET",
+    "headers": {
+      "Header-Name": {
+        "equalTo": "value",
+        "matches": "pattern.*",
+        "contains": "substring"
+      }
+    }
+  },
+  "message": {
+    "body": {
+      "data": "message content",
+      "filePath": "__files/message.json"
+    }
+  }
+}
+```
+
+### Send Channel Message Response Format
+
+```json
+{
+  "sentCount": 3
+}
+```
+
+The `sentCount` indicates how many channels the message was sent to.

@@ -1,0 +1,259 @@
+---
+title: "WebSockets Overview"
+description: Mock WebSocket connections in WireMock for testing real-time, bidirectional communication between clients and servers.
+---
+
+import { Tabs, TabItem, Aside } from '@astrojs/starlight/components';
+
+<Aside type="caution" title="4.x Beta Feature">
+  WebSocket mocking is currently available only in WireMock 4.x beta releases.
+  See the [v4 Beta documentation](../../v4/) and [download page](../../download-and-installation/#4x-beta-release-downloads) for installation instructions.
+</Aside>
+
+WireMock provides built-in support for mocking WebSocket connections, enabling you to test real-time, bidirectional communication in your applications without requiring a real WebSocket server.
+
+## How WebSockets Work in WireMock
+
+WebSocket support in WireMock works as follows:
+
+1. **Connection**: Clients connect to WireMock using the WebSocket protocol (`ws://` or `wss://`) on any URL path
+2. **Channel creation**: Each connection creates a message channel, identified by the initiating HTTP upgrade request
+3. **Message handling**: Incoming messages are matched against message stub mappings
+4. **Response delivery**: When a stub matches, configured actions (like sending responses) are executed
+5. **Journaling**: All messages are recorded in the message journal for verification
+
+## Connecting to WebSocket Endpoints
+
+WebSocket clients can connect to any path on the WireMock server:
+
+```java
+// Example WebSocket client connection
+WebSocketClient client = new WebSocketClient();
+client.connect("ws://localhost:8080/my-websocket-endpoint");
+```
+
+The URL path used for the connection can be matched in your stubs, allowing you to create different behaviors for different endpoints.
+
+## Channel Identification
+
+Channels are identified by the HTTP request that initiated the WebSocket upgrade. This allows you to:
+
+- Match stubs to specific WebSocket endpoints based on URL patterns
+- Match based on headers or other request attributes
+- Broadcast messages to channels matching specific criteria
+
+<Tabs>
+<TabItem label="Java">
+```java
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static com.github.tomakehurst.wiremock.matching.RequestPatternBuilder.newRequestPattern;
+
+// Stub that only applies to a specific WebSocket path
+messageStubFor(
+    message()
+        .withName("VIP channel stub")
+        .onWebsocketChannelFromRequestMatching(
+            newRequestPattern().withUrl("/vip-channel"))
+        .withBody(equalTo("request"))
+        .willTriggerActions(
+            sendMessage("VIP response").onOriginatingChannel()));
+```
+</TabItem>
+<TabItem label="JSON">
+```json
+{
+  "name": "VIP channel stub",
+  "trigger": {
+    "type": "message",
+    "channel": {
+      "type": "websocket",
+      "initiatingRequestPattern": {
+        "url": "/vip-channel"
+      }
+    },
+    "message": {
+      "body": {
+        "equalTo": "request"
+      }
+    }
+  },
+  "actions": [
+    {
+      "type": "send",
+      "channelTarget": {
+        "type": "originating"
+      },
+      "message": {
+        "body": {
+          "data": "VIP response"
+        }
+      }
+    }
+  ]
+}
+```
+</TabItem>
+</Tabs>
+
+## Message Types
+
+WireMock WebSocket support handles both text and binary messages:
+
+### Text Messages
+
+Most WebSocket communication uses text messages, typically JSON-formatted:
+
+```java
+messageStubFor(
+    message()
+        .withBody(matchingJsonPath("$.action", equalTo("subscribe")))
+        .willTriggerActions(
+            sendMessage("{\"status\": \"subscribed\"}")
+                .onOriginatingChannel()));
+```
+
+### Binary Messages
+
+Binary messages are also supported for protocols that require binary data transfer.
+
+## Broadcasting to Multiple Clients
+
+One of the powerful features of WebSocket mocking is the ability to broadcast messages to multiple connected clients:
+
+<Tabs>
+<TabItem label="Java">
+```java
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static com.github.tomakehurst.wiremock.matching.RequestPatternBuilder.newRequestPattern;
+
+// When any client sends "broadcast", send a message to all clients
+// connected to paths matching /broadcast/*
+messageStubFor(
+    message()
+        .withName("Broadcast stub")
+        .withBody(equalTo("broadcast"))
+        .willTriggerActions(
+            sendMessage("broadcast message")
+                .onChannelsMatching(
+                    newRequestPattern()
+                        .withUrl(urlPathMatching("/broadcast/.*")))));
+```
+</TabItem>
+<TabItem label="JSON">
+```json
+{
+  "name": "Broadcast stub",
+  "trigger": {
+    "type": "message",
+    "message": {
+      "body": {
+        "equalTo": "broadcast"
+      }
+    }
+  },
+  "actions": [
+    {
+      "type": "send",
+      "channelTarget": {
+        "type": "request-initiated",
+        "channelType": "websocket",
+        "requestPattern": {
+          "urlPathPattern": "/broadcast/.*"
+        }
+      },
+      "message": {
+        "body": {
+          "data": "broadcast message"
+        }
+      }
+    }
+  ]
+}
+```
+</TabItem>
+</Tabs>
+
+## Configuration Options
+
+WebSocket connections can be tuned via configuration options:
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `webSocketIdleTimeout` | 300000ms (5 min) | Idle timeout before connection is closed |
+| `webSocketMaxTextMessageSize` | 10485760 bytes (10MB) | Maximum size of text messages |
+| `webSocketMaxBinaryMessageSize` | 10485760 bytes (10MB) | Maximum size of binary messages |
+
+See [Configuration](../configuration/) for details on setting these options.
+
+## Connection Lifecycle
+
+### Connection Events
+
+WireMock manages WebSocket connection lifecycle automatically:
+
+1. **Connect**: Client initiates WebSocket handshake
+2. **Open**: Connection established, channel created
+3. **Messages**: Bidirectional message exchange
+4. **Close**: Connection terminated, channel removed
+
+### Listing Active Channels
+
+You can list all active WebSocket channels via the Admin API:
+
+```bash
+curl http://localhost:8080/__admin/channels
+```
+
+Response:
+```json
+{
+  "channels": [
+    {
+      "id": "abc123",
+      "type": "websocket",
+      "initiatingRequest": {
+        "url": "/my-websocket",
+        "method": "GET"
+      }
+    }
+  ]
+}
+```
+
+## Testing with WebSockets
+
+Here's a complete example of testing WebSocket communication:
+
+```java
+@Test
+void testWebSocketEcho() {
+    // Set up the stub
+    messageStubFor(
+        message()
+            .withName("Echo stub")
+            .withBody(matching(".*"))
+            .willTriggerActions(
+                sendMessage("Echo: {{message.body}}")
+                    .onOriginatingChannel()));
+
+    // Connect a WebSocket client
+    WebSocketClient client = new WebSocketClient();
+    client.connect("ws://localhost:" + wireMockServer.port() + "/echo");
+
+    // Send a message and verify the response
+    String response = client.sendMessageAndWaitForResponse("Hello, WebSocket!");
+    assertThat(response, is("Echo: Hello, WebSocket!"));
+
+    // Verify the message was received
+    verifyMessageEvent(
+        messagePattern()
+            .withBody(equalTo("Hello, WebSocket!"))
+            .build());
+}
+```
+
+## Next Steps
+
+- [Stubbing](./stubbing/): Learn how to create message stub mappings
+- [Verification](./verification/): Verify WebSocket messages in tests
+- [Sending Messages](./sending-messages/): Push messages to clients programmatically

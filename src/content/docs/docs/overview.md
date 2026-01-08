@@ -32,6 +32,7 @@ Finally, WireMock is easy to integrate into any workflow due to its numerous ext
 - Per-request conditional proxying
 - Browser proxying for request inspection and replacement
 - Stateful behaviour simulation
+- WebSocket mocking - stub responses, verify messages, and broadcast to connected clients
 
 All the features are configurable via a fluent Java API and JSON files,
 or via JSON over HTTP for the standalone service.

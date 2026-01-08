@@ -225,6 +225,12 @@ Note: introduced in [3.0.0-beta-8](https://github.com/wiremock/wiremock/releases
 
 `--webhook-threadpool-size`: The number of threads created for processing webhook requests.  This option is available as of WireMock version `3.13.0`. Defaults to 10
 
+`--websocket-idle-timeout`: Idle timeout in milliseconds for WebSocket connections. Connections that are idle for longer than this period will be closed. Defaults to 300000 (5 minutes).
+
+`--websocket-max-text-message-size`: Maximum size in bytes for WebSocket text messages. Defaults to 10485760 (10MB).
+
+`--websocket-max-binary-message-size`: Maximum size in bytes for WebSocket binary messages. Defaults to 10485760 (10MB).
+
 `--help`: Show command line help
 
 ## Configuring WireMock using the Java client

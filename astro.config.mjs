@@ -103,8 +103,19 @@ export default defineConfig({
                                 ],
                             },
                             {
+                                label: 'Message-Based Mocking',
+                                items: [
+                                    { label: 'Messaging Framework Overview', slug: 'docs/messaging/overview' },
+                                    { label: 'WebSockets Overview', slug: 'docs/messaging/websockets' },
+                                    { label: 'Stubbing', slug: 'docs/messaging/stubbing' },
+                                    { label: 'Verification', slug: 'docs/messaging/verification' },
+                                    { label: 'Sending Messages via Admin API', slug: 'docs/messaging/sending-messages' },
+                                ],
+                            },
+                            {
                                 label: 'Protocols',
                                 items: [
+                                    { label: 'WebSockets', slug: 'docs/websockets' },
                                     { label: 'Webhooks and Callbacks', slug: 'docs/webhooks-and-callbacks' },
                                     { label: 'GraphQL', slug: 'docs/graphql' },
                                     { label: 'gRPC', slug: 'docs/grpc' },

@@ -1,0 +1,209 @@
+---
+title: "WebSockets"
+description: Mock WebSocket connections for testing real-time bidirectional communication in WireMock.
+---
+
+import { Tabs, TabItem, Aside } from '@astrojs/starlight/components';
+
+<Aside type="caution" title="4.x Beta Feature">
+  WebSocket mocking is currently available only in WireMock 4.x beta releases.
+  See the [v4 Beta documentation](./v4/) and [download page](./download-and-installation/#4x-beta-release-downloads) for installation instructions.
+</Aside>
+
+WireMock provides native support for mocking WebSocket connections, enabling comprehensive testing of real-time, bidirectional communication in your applications.
+
+## Overview
+
+WebSocket mocking in WireMock allows you to:
+
+- **Accept WebSocket connections** on any URL path
+- **Stub message responses** based on incoming message content
+- **Broadcast messages** to multiple connected clients
+- **Verify messages** received during tests
+- **Send messages programmatically** via the Admin API
+
+It is based on WireMock's [message-based mocking framework](../messaging/overview/).
+
+## Quick Start
+
+### Enable WebSocket Support
+
+WebSocket support is enabled by default in WireMock. No additional configuration is required.
+
+### Create a Simple Echo Stub
+
+<Tabs>
+<TabItem label="Java">
+```java
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
+
+messageStubFor(
+    message()
+        .withName("Echo stub")
+        .withBody(matching(".*"))
+        .willTriggerActions(
+            sendMessage("Echo: {{message.body}}")
+                .onOriginatingChannel()));
+```
+</TabItem>
+<TabItem label="JSON">
+```json
+{
+  "name": "Echo stub",
+  "trigger": {
+    "type": "message",
+    "message": {
+      "body": {
+        "matches": ".*"
+      }
+    }
+  },
+  "actions": [
+    {
+      "type": "send",
+      "channelTarget": {
+        "type": "originating"
+      },
+      "message": {
+        "body": {
+          "data": "Echo: {{message.body}}"
+        }
+      }
+    }
+  ]
+}
+```
+</TabItem>
+</Tabs>
+
+### Connect and Test
+
+```java
+WebSocketClient client = new WebSocketClient();
+client.connect("ws://localhost:8080/echo");
+
+String response = client.sendMessageAndWaitForResponse("Hello!");
+// response = "Echo: Hello!"
+```
+
+## Key Features
+
+### Message Matching
+
+Match incoming messages using any of WireMock's powerful matchers:
+
+```java
+// Exact match
+message().withBody(equalTo("ping"))
+
+// Regex pattern
+message().withBody(matching("hello.*"))
+
+// JSON path
+message().withBody(matchingJsonPath("$.action", equalTo("subscribe")))
+```
+
+### Channel Targeting
+
+Control which channels receive response messages:
+
+```java
+// Send to the channel that sent the message
+sendMessage("response").onOriginatingChannel()
+
+// Broadcast to all channels matching a pattern
+sendMessage("notification")
+    .onChannelsMatching(newRequestPattern().withUrl(urlPathMatching("/broadcast/.*")))
+```
+
+### Response Templating
+
+Use Handlebars templates in message responses:
+
+```java
+sendMessage("Hello {{jsonPath message.body '$.name'}}, welcome!")
+    .onOriginatingChannel()
+```
+
+## Configuration
+
+Configure WebSocket behavior using these options:
+
+| Option | Java | CLI | Default |
+|--------|------|-----|---------|
+| Idle timeout | `.webSocketIdleTimeout(ms)` | `--websocket-idle-timeout` | 300000 (5 min) |
+| Max text message size | `.webSocketMaxTextMessageSize(bytes)` | `--websocket-max-text-message-size` | 10485760 (10MB) |
+| Max binary message size | `.webSocketMaxBinaryMessageSize(bytes)` | `--websocket-max-binary-message-size` | 10485760 (10MB) |
+
+Example:
+```java
+WireMockServer wm = new WireMockServer(
+    wireMockConfig()
+        .port(8080)
+        .webSocketIdleTimeout(600000)      // 10 minutes
+        .webSocketMaxTextMessageSize(1048576)); // 1MB
+```
+
+## Learn More
+
+For comprehensive documentation on WebSocket mocking, see the **Message-Based Mocking** section:
+
+- [Messaging Framework Overview](./messaging/overview/) - Core concepts and architecture
+- [WebSockets Overview](./messaging/websockets/) - WebSocket-specific features
+- [Stubbing](./messaging/stubbing/) - Create message stub mappings
+- [Verification](./messaging/verification/) - Verify received messages
+- [Sending Messages](./messaging/sending-messages/) - Push messages via Admin API
+
+## Admin API Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/__admin/message-mappings` | GET | List all message stubs |
+| `/__admin/message-mappings` | POST | Create a message stub |
+| `/__admin/message-mappings/{id}` | DELETE | Remove a message stub |
+| `/__admin/messages` | GET | Get all received messages |
+| `/__admin/messages` | DELETE | Clear message journal |
+| `/__admin/channels` | GET | List active channels |
+| `/__admin/channels/send` | POST | Send message to channels |
+
+## Example: Chat Room Simulation
+
+```java
+@Test
+void chatRoomSimulation() {
+    // Set up message stub for broadcasting
+    messageStubFor(
+        message()
+            .withName("Chat broadcast")
+            .onWebsocketChannelFromRequestMatching("/chat")
+            .withBody(matchingJsonPath("$.type", equalTo("message")))
+            .willTriggerActions(
+                sendMessage("{{message.body}}")
+                    .onChannelsMatching(
+                        newRequestPattern().withUrl("/chat"))));
+
+    // Connect two clients
+    WebSocketClient alice = new WebSocketClient();
+    WebSocketClient bob = new WebSocketClient();
+
+    alice.connect("ws://localhost:" + wm.port() + "/chat");
+    bob.connect("ws://localhost:" + wm.port() + "/chat");
+
+    // Wait for connections
+    await().until(() -> alice.isConnected() && bob.isConnected());
+
+    // Alice sends a message
+    alice.sendMessage("{\"type\": \"message\", \"from\": \"Alice\", \"text\": \"Hi Bob!\"}");
+
+    // Both Alice and Bob receive it (including sender)
+    await().until(() ->
+        alice.getMessages().stream().anyMatch(m -> m.contains("Hi Bob!")) &&
+        bob.getMessages().stream().anyMatch(m -> m.contains("Hi Bob!")));
+
+    // Verify message was recorded
+    verifyMessageEvent(
+        messagePattern()
+            .withBody(matchingJsonPath("$.from", equalTo("Alice")))
+            .build());
+}
+```

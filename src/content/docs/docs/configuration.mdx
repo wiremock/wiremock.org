@@ -326,7 +326,7 @@ If you want to increase the proxying performance of WireMock you can enable conn
 ## Webhook configuration
 
 The default webhook thread pool size is 10.  This is more than enough for normal mocking with callbacks but if you are
-running performance tests using WireMock with callbacks, you might need to tweak the size of the threadpool used to 
+running performance tests using WireMock with callbacks, you might need to tweak the size of the threadpool used to
 process webhook requests. This option is available as of WireMock version `3.13.0`
 
 ```java
@@ -334,4 +334,33 @@ process webhook requests. This option is available as of WireMock version `3.13.
 .withWebhookThreadPoolSize(100)
 
 ```
+
+## WebSocket configuration
+
+WireMock supports WebSocket connections for message-based mocking. The following options allow you to tune WebSocket behavior:
+
+```java
+// Set the idle timeout in milliseconds for WebSocket connections. Defaults to 300000 (5 minutes).
+// Connections that are idle for longer than this period will be closed.
+.webSocketIdleTimeout(600000)
+
+// Set the maximum size in bytes for WebSocket text messages. Defaults to 10485760 (10MB).
+.webSocketMaxTextMessageSize(1048576)
+
+// Set the maximum size in bytes for WebSocket binary messages. Defaults to 10485760 (10MB).
+.webSocketMaxBinaryMessageSize(1048576)
+```
+
+Example configuration:
+
+```java
+WireMockServer wm = new WireMockServer(
+    wireMockConfig()
+        .port(8080)
+        .webSocketIdleTimeout(600000)         // 10 minute idle timeout
+        .webSocketMaxTextMessageSize(2097152)  // 2MB max text message
+        .webSocketMaxBinaryMessageSize(5242880)); // 5MB max binary message
+```
+
+For details on using WebSocket mocking, see [WebSockets](./websockets/) and [Message-Based Mocking](./messaging/overview/).
 
