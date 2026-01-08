@@ -840,22 +840,21 @@ Message stubs can be triggered by HTTP requests matching a pattern, enabling sce
 <Tabs>
 <TabItem label="Java">
 ```java
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static com.github.tomakehurst.wiremock.matching.RequestPatternBuilder.newRequestPattern;
 
 // Send WebSocket message when HTTP endpoint is called
-MessageStubMapping stub = MessageStubMapping.builder()
-    .withName("HTTP-triggered notification")
-    .triggeredByHttpRequest(
-        newRequestPattern()
-            .withMethod(POST)
-            .withUrl("/api/notify"))
-    .triggersAction(
-        sendMessage("New notification!")
-            .onChannelsMatching(
-                newRequestPattern().withUrl(urlPathMatching("/notifications/.*"))))
-    .build();
-
-wireMockServer.addMessageStubMapping(stub);
+messageStubFor(
+    message()
+        .withName("HTTP-triggered notification")
+        .triggeredByHttpRequest(
+            newRequestPattern()
+                .withMethod(POST)
+                .withUrl("/api/notify"))
+        .willTriggerActions(
+            sendMessage("New notification!")
+                .onChannelsMatching(
+                    newRequestPattern().withUrl(urlPathMatching("/notifications/.*")))));
 ```
 </TabItem>
 <TabItem label="JSON">
@@ -898,6 +897,8 @@ Alternatively, you can trigger message actions when a specific HTTP stub is matc
 <Tabs>
 <TabItem label="Java">
 ```java
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static com.github.tomakehurst.wiremock.matching.RequestPatternBuilder.newRequestPattern;
 import java.util.UUID;
 
 // First, create an HTTP stub and capture its ID
@@ -907,23 +908,21 @@ stubFor(post("/api/orders")
     .willReturn(ok("{\"orderId\": \"12345\"}")));
 
 // Then, create a message stub triggered by that HTTP stub
-MessageStubMapping notification = MessageStubMapping.builder()
-    .withName("Order notification")
-    .triggeredByHttpStub(orderId)
-    .triggersAction(
-        sendMessage("{\"type\": \"order_created\", \"orderId\": \"12345\"}")
-            .onChannelsMatching(newRequestPattern().withUrl("/order-updates")))
-    .build();
-
-wireMockServer.addMessageStubMapping(notification);
+messageStubFor(
+    message()
+        .withName("Order notification")
+        .triggeredByHttpStub(orderId)
+        .willTriggerActions(
+            sendMessage("{\"type\": \"order_created\", \"orderId\": \"12345\"}")
+                .onChannelsMatching(newRequestPattern().withUrl("/order-updates"))));
 
 // You can also use the string form of the UUID
-MessageStubMapping anotherNotification = MessageStubMapping.builder()
-    .withName("Another notification")
-    .triggeredByHttpStub("11111111-1111-1111-1111-111111111111")
-    .triggersAction(
-        sendMessage("triggered!").onOriginatingChannel())
-    .build();
+messageStubFor(
+    message()
+        .withName("Another notification")
+        .triggeredByHttpStub("11111111-1111-1111-1111-111111111111")
+        .willTriggerActions(
+            sendMessage("triggered!").onOriginatingChannel()));
 ```
 </TabItem>
 <TabItem label="JSON">

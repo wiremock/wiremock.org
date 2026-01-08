@@ -370,21 +370,22 @@ void simulateStockPriceUpdates() {
 Use HTTP stubs to trigger WebSocket messages:
 
 ```java
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static com.github.tomakehurst.wiremock.matching.RequestPatternBuilder.newRequestPattern;
+
 // HTTP endpoint that triggers a WebSocket notification
 stubFor(post("/api/orders")
     .willReturn(ok("{\"orderId\": \"123\"}")));
 
 // Message stub triggered by the HTTP request
-MessageStubMapping notification = MessageStubMapping.builder()
-    .withName("Order notification")
-    .triggeredByHttpRequest(
-        newRequestPattern().withMethod(POST).withUrl("/api/orders"))
-    .triggersAction(
-        sendMessage("{\"type\": \"order_created\", \"orderId\": \"123\"}")
-            .onChannelsMatching(newRequestPattern().withUrl("/notifications")))
-    .build();
-
-wireMockServer.addMessageStubMapping(notification);
+messageStubFor(
+    message()
+        .withName("Order notification")
+        .triggeredByHttpRequest(
+            newRequestPattern().withMethod(POST).withUrl("/api/orders"))
+        .willTriggerActions(
+            sendMessage("{\"type\": \"order_created\", \"orderId\": \"123\"}")
+                .onChannelsMatching(newRequestPattern().withUrl("/notifications"))));
 
 // Now when POST /api/orders is called, a WebSocket message is sent
 ```
