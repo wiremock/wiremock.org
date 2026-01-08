@@ -1,0 +1,958 @@
+---
+title: "Message Stubbing"
+description: Create message stub mappings in WireMock to define responses for WebSocket and other message-based protocols.
+---
+
+import { Tabs, TabItem, Aside } from '@astrojs/starlight/components';
+
+<Aside type="caution" title="4.x Beta Feature">
+  Message stubbing is currently available only in WireMock 4.x beta releases.
+  See the [v4 Beta documentation](../../v4/) and [download page](../../download-and-installation/#4x-beta-release-downloads) for installation instructions.
+</Aside>
+
+Message stub mappings define how WireMock responds to incoming messages on message-based channels like WebSockets. This page covers how to create, manage, and configure message stubs.
+
+## Creating Message Stubs
+
+### Basic Stub
+
+The simplest message stub responds to any message:
+
+<Tabs>
+<TabItem label="Java">
+```java
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
+
+messageStubFor(
+    message()
+        .withName("Simple stub")
+        .willTriggerActions(
+            sendMessage("Hello!").onOriginatingChannel()));
+```
+</TabItem>
+<TabItem label="JSON">
+```json
+{
+  "name": "Simple stub",
+  "trigger": {
+    "type": "message"
+  },
+  "actions": [
+    {
+      "type": "send",
+      "channelTarget": {
+        "type": "originating"
+      },
+      "message": {
+        "body": {
+          "data": "Hello!"
+        }
+      }
+    }
+  ]
+}
+```
+</TabItem>
+</Tabs>
+
+### Matching Message Content
+
+Use body matchers to match specific message content:
+
+<Tabs>
+<TabItem label="Java">
+```java
+// Exact match
+messageStubFor(
+    message()
+        .withBody(equalTo("ping"))
+        .willTriggerActions(
+            sendMessage("pong").onOriginatingChannel()));
+
+// Regex match
+messageStubFor(
+    message()
+        .withBody(matching("hello.*"))
+        .willTriggerActions(
+            sendMessage("hi there!").onOriginatingChannel()));
+
+// JSON path match
+messageStubFor(
+    message()
+        .withBody(matchingJsonPath("$.action", equalTo("subscribe")))
+        .willTriggerActions(
+            sendMessage("{\"status\": \"subscribed\"}")
+                .onOriginatingChannel()));
+```
+</TabItem>
+<TabItem label="JSON">
+```json
+[
+  {
+    "name": "Exact match stub",
+    "trigger": {
+      "type": "message",
+      "message": {
+        "body": {
+          "equalTo": "ping"
+        }
+      }
+    },
+    "actions": [
+      {
+        "type": "send",
+        "channelTarget": { "type": "originating" },
+        "message": { "body": { "data": "pong" } }
+      }
+    ]
+  },
+  {
+    "name": "Regex match stub",
+    "trigger": {
+      "type": "message",
+      "message": {
+        "body": {
+          "matches": "hello.*"
+        }
+      }
+    },
+    "actions": [
+      {
+        "type": "send",
+        "channelTarget": { "type": "originating" },
+        "message": { "body": { "data": "hi there!" } }
+      }
+    ]
+  },
+  {
+    "name": "JSON path match stub",
+    "trigger": {
+      "type": "message",
+      "message": {
+        "body": {
+          "matchesJsonPath": {
+            "expression": "$.action",
+            "equalTo": "subscribe"
+          }
+        }
+      }
+    },
+    "actions": [
+      {
+        "type": "send",
+        "channelTarget": { "type": "originating" },
+        "message": { "body": { "data": "{\"status\": \"subscribed\"}" } }
+      }
+    ]
+  }
+]
+```
+</TabItem>
+</Tabs>
+
+### Matching by Channel
+
+Restrict stubs to specific WebSocket endpoints:
+
+<Tabs>
+<TabItem label="Java">
+```java
+import static com.github.tomakehurst.wiremock.matching.RequestPatternBuilder.newRequestPattern;
+
+// Match specific URL path
+messageStubFor(
+    message()
+        .onWebsocketChannelFromRequestMatching("/my-endpoint")
+        .withBody(equalTo("test"))
+        .willTriggerActions(
+            sendMessage("response").onOriginatingChannel()));
+
+// Match URL pattern
+messageStubFor(
+    message()
+        .onWebsocketChannelFromRequestMatching(
+            newRequestPattern().withUrl(urlPathMatching("/api/v[0-9]+/ws")))
+        .willTriggerActions(
+            sendMessage("API response").onOriginatingChannel()));
+
+// Match with headers
+messageStubFor(
+    message()
+        .onWebsocketChannelFromRequestMatching(
+            newRequestPattern()
+                .withUrl("/secure-ws")
+                .withHeader("Authorization", matching("Bearer .*")))
+        .willTriggerActions(
+            sendMessage("Authenticated!").onOriginatingChannel()));
+```
+</TabItem>
+<TabItem label="JSON">
+```json
+{
+  "name": "Channel pattern stub",
+  "trigger": {
+    "type": "message",
+    "channel": {
+      "type": "websocket",
+      "initiatingRequestPattern": {
+        "urlPathPattern": "/api/v[0-9]+/ws",
+        "headers": {
+          "Authorization": {
+            "matches": "Bearer .*"
+          }
+        }
+      }
+    },
+    "message": {
+      "body": {
+        "equalTo": "test"
+      }
+    }
+  },
+  "actions": [
+    {
+      "type": "send",
+      "channelTarget": { "type": "originating" },
+      "message": { "body": { "data": "response" } }
+    }
+  ]
+}
+```
+</TabItem>
+</Tabs>
+
+## Stub Priority
+
+When multiple stubs match an incoming message, the stub with the highest priority (lowest number) is selected. If priorities are equal, the most recently added stub takes precedence.
+
+<Tabs>
+<TabItem label="Java">
+```java
+// Low priority (will match as fallback)
+messageStubFor(
+    message()
+        .withName("Fallback stub")
+        .withPriority(10)
+        .willTriggerActions(
+            sendMessage("fallback response").onOriginatingChannel()));
+
+// High priority (will match first)
+messageStubFor(
+    message()
+        .withName("High priority stub")
+        .withPriority(1)
+        .withBody(equalTo("important"))
+        .willTriggerActions(
+            sendMessage("priority response").onOriginatingChannel()));
+```
+</TabItem>
+<TabItem label="JSON">
+```json
+{
+  "name": "High priority stub",
+  "priority": 1,
+  "trigger": {
+    "type": "message",
+    "message": {
+      "body": {
+        "equalTo": "important"
+      }
+    }
+  },
+  "actions": [
+    {
+      "type": "send",
+      "channelTarget": { "type": "originating" },
+      "message": { "body": { "data": "priority response" } }
+    }
+  ]
+}
+```
+</TabItem>
+</Tabs>
+
+## Multiple Actions
+
+A single stub can trigger multiple actions:
+
+<Tabs>
+<TabItem label="Java">
+```java
+messageStubFor(
+    message()
+        .withName("Multi-action stub")
+        .withBody(equalTo("trigger"))
+        .willTriggerActions(
+            sendMessage("response1").onOriginatingChannel(),
+            sendMessage("response2").onOriginatingChannel()));
+```
+</TabItem>
+<TabItem label="JSON">
+```json
+{
+  "name": "Multi-action stub",
+  "trigger": {
+    "type": "message",
+    "message": {
+      "body": {
+        "equalTo": "trigger"
+      }
+    }
+  },
+  "actions": [
+    {
+      "type": "send",
+      "channelTarget": { "type": "originating" },
+      "message": { "body": { "data": "response1" } }
+    },
+    {
+      "type": "send",
+      "channelTarget": { "type": "originating" },
+      "message": { "body": { "data": "response2" } }
+    }
+  ]
+}
+```
+</TabItem>
+</Tabs>
+
+## Broadcasting Messages
+
+Send messages to multiple channels matching a pattern:
+
+<Tabs>
+<TabItem label="Java">
+```java
+import static com.github.tomakehurst.wiremock.matching.RequestPatternBuilder.newRequestPattern;
+
+messageStubFor(
+    message()
+        .withName("Broadcast stub")
+        .onWebsocketChannelFromRequestMatching("/control")
+        .withBody(equalTo("notify-all"))
+        .willTriggerActions(
+            sendMessage("notification")
+                .onChannelsMatching(
+                    newRequestPattern()
+                        .withUrl(urlPathMatching("/subscribers/.*")))));
+```
+</TabItem>
+<TabItem label="JSON">
+```json
+{
+  "name": "Broadcast stub",
+  "trigger": {
+    "type": "message",
+    "channel": {
+      "type": "websocket",
+      "initiatingRequestPattern": {
+        "url": "/control"
+      }
+    },
+    "message": {
+      "body": {
+        "equalTo": "notify-all"
+      }
+    }
+  },
+  "actions": [
+    {
+      "type": "send",
+      "channelTarget": {
+        "type": "request-initiated",
+        "channelType": "websocket",
+        "requestPattern": {
+          "urlPathPattern": "/subscribers/.*"
+        }
+      },
+      "message": {
+        "body": {
+          "data": "notification"
+        }
+      }
+    }
+  ]
+}
+```
+</TabItem>
+</Tabs>
+
+## Message Body from File
+
+Instead of specifying message content inline, you can load the body from a file in the `__files` directory. This is useful for large payloads or when you want to manage message content separately from stub definitions.
+
+### Text Messages from File
+
+<Tabs>
+<TabItem label="Java">
+```java
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
+
+// Load text message body from __files/responses/welcome.json
+messageStubFor(
+    message()
+        .withName("File-based response")
+        .withBody(equalTo("connect"))
+        .willTriggerActions(
+            sendMessage()
+                .withBodyFromFile("responses/welcome.json")
+                .onOriginatingChannel()));
+```
+</TabItem>
+<TabItem label="JSON">
+```json
+{
+  "name": "File-based response",
+  "trigger": {
+    "type": "message",
+    "message": {
+      "body": {
+        "equalTo": "connect"
+      }
+    }
+  },
+  "actions": [
+    {
+      "type": "send",
+      "channelTarget": { "type": "originating" },
+      "message": {
+        "body": {
+          "filePath": "responses/welcome.json"
+        }
+      }
+    }
+  ]
+}
+```
+</TabItem>
+</Tabs>
+
+The file path is relative to the `__files` directory. For example, if your WireMock root directory contains `__files/responses/welcome.json`, use `"filePath": "responses/welcome.json"`.
+
+### Binary Messages from File
+
+For binary data (images, protobuf, etc.), specify the encoding as `BINARY`:
+
+<Tabs>
+<TabItem label="Java">
+```java
+import static com.github.tomakehurst.wiremock.common.entity.BinaryEntityDefinition.aBinaryMessage;
+
+// Load binary message body from __files/data/image.png
+messageStubFor(
+    message()
+        .withName("Binary file response")
+        .withBody(equalTo("get-image"))
+        .willTriggerActions(
+            sendMessage()
+                .toOriginatingChannel()
+                .withMessage(
+                    aBinaryMessage()
+                        .withFilePath("data/image.png"))));
+```
+</TabItem>
+<TabItem label="JSON">
+```json
+{
+  "name": "Binary file response",
+  "trigger": {
+    "type": "message",
+    "message": {
+      "body": {
+        "equalTo": "get-image"
+      }
+    }
+  },
+  "actions": [
+    {
+      "type": "send",
+      "channelTarget": { "type": "originating" },
+      "message": {
+        "body": {
+          "encoding": "binary",
+          "filePath": "data/image.png"
+        }
+      }
+    }
+  ]
+}
+```
+</TabItem>
+</Tabs>
+
+### Inline Binary Data
+
+You can also specify binary data inline using byte arrays in Java or Base64 in JSON:
+
+<Tabs>
+<TabItem label="Java">
+```java
+import static com.github.tomakehurst.wiremock.common.entity.BinaryEntityDefinition.aBinaryMessage;
+
+byte[] binaryData = new byte[] { 0x01, 0x02, 0x03, 0x04 };
+
+messageStubFor(
+    message()
+        .withName("Inline binary response")
+        .willTriggerActions(
+            sendMessage()
+                .toOriginatingChannel()
+                .withMessage(
+                    aBinaryMessage()
+                        .withBody(binaryData))));
+```
+</TabItem>
+<TabItem label="JSON">
+```json
+{
+  "name": "Inline binary response",
+  "trigger": {
+    "type": "message"
+  },
+  "actions": [
+    {
+      "type": "send",
+      "channelTarget": { "type": "originating" },
+      "message": {
+        "body": {
+          "encoding": "binary",
+          "data": "AQIDBA=="
+        }
+      }
+    }
+  ]
+}
+```
+</TabItem>
+</Tabs>
+
+## Response Templating
+
+Message responses support Handlebars templating, allowing dynamic content based on the incoming message or request data:
+
+<Tabs>
+<TabItem label="Java">
+```java
+// Echo the incoming message
+messageStubFor(
+    message()
+        .withBody(matching(".*"))
+        .willTriggerActions(
+            sendMessage("You said: {{message.body}}")
+                .onOriginatingChannel()));
+
+// Use JSON path on incoming message
+messageStubFor(
+    message()
+        .withBody(matchingJsonPath("$.name"))
+        .willTriggerActions(
+            sendMessage("Hello {{jsonPath message.body '$.name'}}!")
+                .onOriginatingChannel()));
+
+// Use data from the initiating request
+messageStubFor(
+    message()
+        .onWebsocketChannelFromRequestMatching(
+            newRequestPattern().withUrl(urlPathMatching("/users/.*")))
+        .willTriggerActions(
+            sendMessage("Connected to: {{request.path}}")
+                .onOriginatingChannel()));
+
+// Use template helpers
+messageStubFor(
+    message()
+        .willTriggerActions(
+            sendMessage("ID: {{randomValue length=8 type='ALPHANUMERIC'}}")
+                .onOriginatingChannel()));
+```
+</TabItem>
+<TabItem label="JSON">
+```json
+{
+  "name": "Templated response stub",
+  "trigger": {
+    "type": "message",
+    "message": {
+      "body": {
+        "matchesJsonPath": "$.name"
+      }
+    }
+  },
+  "actions": [
+    {
+      "type": "send",
+      "channelTarget": { "type": "originating" },
+      "message": {
+        "body": {
+          "data": "Hello {{jsonPath message.body '$.name'}}!"
+        }
+      }
+    }
+  ]
+}
+```
+</TabItem>
+</Tabs>
+
+### Available Template Variables
+
+One of the two following variables will be available in message action templates, depending how the stub was triggered:
+
+| Variable | Description |
+|----------|-------------|
+| `message.body` | The body of the incoming message that triggered this action |
+| `request` | The HTTP request that triggered this message action, same as the [model used in response templates](../../response-templating/#the-request-model)  |
+
+All standard [response templating helpers](../../response-templating/) are available.
+
+## Stub Metadata
+
+Add metadata to stubs for organization and filtering:
+
+<Tabs>
+<TabItem label="Java">
+```java
+import static com.github.tomakehurst.wiremock.common.Metadata.metadata;
+
+messageStubFor(
+    message()
+        .withName("Categorized stub")
+        .withMetadata(metadata()
+            .attr("category", "important")
+            .attr("version", "2"))
+        .willTriggerActions(
+            sendMessage("response").onOriginatingChannel()));
+
+// Find stubs by metadata
+List<MessageStubMapping> found = findMessageStubsByMetadata(
+    matchingJsonPath("$.category", equalTo("important")));
+
+// Remove stubs by metadata
+removeMessageStubsByMetadata(
+    equalToJson("{ \"category\": \"test\" }"));
+```
+</TabItem>
+<TabItem label="JSON">
+```json
+{
+  "name": "Categorized stub",
+  "metadata": {
+    "category": "important",
+    "version": "2"
+  },
+  "trigger": {
+    "type": "message"
+  },
+  "actions": [
+    {
+      "type": "send",
+      "channelTarget": { "type": "originating" },
+      "message": { "body": { "data": "response" } }
+    }
+  ]
+}
+```
+</TabItem>
+</Tabs>
+
+## Managing Stubs
+
+### Listing Stubs
+
+<Tabs>
+<TabItem label="Java">
+```java
+ListMessageStubMappingsResult result = listAllMessageStubMappings();
+List<MessageStubMapping> stubs = result.getMessageMappings();
+```
+</TabItem>
+<TabItem label="API">
+```bash
+curl http://localhost:8080/__admin/message-mappings
+```
+</TabItem>
+</Tabs>
+
+### Removing Stubs
+
+<Tabs>
+<TabItem label="Java">
+```java
+// Remove by ID
+wireMockServer.removeMessageStubMapping(stubId);
+
+// Remove all stubs
+wireMockServer.resetMessageStubMappings();
+
+// Remove by metadata
+removeMessageStubsByMetadata(
+    matchingJsonPath("$.toRemove", equalTo(true)));
+```
+</TabItem>
+<TabItem label="API">
+```bash
+# Remove single stub
+curl -X DELETE http://localhost:8080/__admin/message-mappings/{id}
+
+# Remove all stubs
+curl -X DELETE http://localhost:8080/__admin/message-mappings
+
+# Remove by metadata
+curl -X POST http://localhost:8080/__admin/message-mappings/remove-by-metadata \
+  -d '{"matchesJsonPath": {"expression": "$.toRemove", "equalTo": true}}'
+```
+</TabItem>
+</Tabs>
+
+## Loading Stubs from Files
+
+Message stubs can be loaded from JSON files in the `messages` directory (alongside the `mappings` directory for HTTP stubs).
+
+### Single Stub File
+
+`messages/echo-stub.json`:
+```json
+{
+  "name": "Echo stub",
+  "id": "11111111-1111-1111-1111-111111111111",
+  "trigger": {
+    "type": "message",
+    "channel": {
+      "type": "websocket",
+      "initiatingRequestPattern": {
+        "urlPath": "/echo"
+      }
+    }
+  },
+  "actions": [
+    {
+      "type": "send",
+      "channelTarget": { "type": "originating" },
+      "message": { "body": { "data": "{{message.body}}" } }
+    }
+  ]
+}
+```
+
+### Multiple Stubs File
+
+`messages/chat-stubs.json`:
+```json
+{
+  "messageMappings": [
+    {
+      "name": "Join stub",
+      "trigger": {
+        "type": "message",
+        "message": { "body": { "matchesJsonPath": "$.action", "equalTo": "join" } }
+      },
+      "actions": [
+        {
+          "type": "send",
+          "channelTarget": { "type": "originating" },
+          "message": { "body": { "data": "{\"status\": \"joined\"}" } }
+        }
+      ]
+    },
+    {
+      "name": "Leave stub",
+      "trigger": {
+        "type": "message",
+        "message": { "body": { "matchesJsonPath": "$.action", "equalTo": "leave" } }
+      },
+      "actions": [
+        {
+          "type": "send",
+          "channelTarget": { "type": "originating" },
+          "message": { "body": { "data": "{\"status\": \"left\"}" } }
+        }
+      ]
+    }
+  ]
+}
+```
+
+## Message Action Transformers
+
+Custom transformers can modify message actions before they are executed, similar to HTTP response transformers.
+
+```java
+public class PrefixingMessageActionTransformer implements MessageActionTransformer {
+    @Override
+    public MessageAction transform(MessageAction action, MessageActionContext context) {
+        if (action instanceof SendMessageAction sendAction) {
+            String originalBody = getBody(sendAction);
+            return sendMessage("[PREFIX] " + originalBody).onOriginatingChannel();
+        }
+        return action;
+    }
+
+    @Override
+    public String getName() {
+        return "prefixing";
+    }
+}
+
+// Register the transformer
+WireMockServer wm = new WireMockServer(
+    wireMockConfig()
+        .dynamicPort()
+        .extensions(new PrefixingMessageActionTransformer()));
+```
+
+Non-global transformers can be applied to specific stubs:
+
+<Tabs>
+<TabItem label="Java">
+```java
+messageStubFor(
+    message()
+        .willTriggerActions(
+            sendMessage("original")
+                .withTransformer("my-transformer")
+                .onOriginatingChannel()));
+```
+</TabItem>
+<TabItem label="JSON">
+```json
+{
+  "actions": [
+    {
+      "type": "send",
+      "transformers": ["my-transformer"],
+      "channelTarget": { "type": "originating" },
+      "message": { "body": { "data": "original" } }
+    }
+  ]
+}
+```
+</TabItem>
+</Tabs>
+
+## HTTP-Triggered Message Stubs
+
+There are two ways to trigger message actions from HTTP activity: by matching a request pattern, or by referencing a specific HTTP stub by its ID.
+
+### Triggered by Request Pattern
+
+Message stubs can be triggered by HTTP requests matching a pattern, enabling scenarios where an HTTP API call causes a WebSocket notification:
+
+<Tabs>
+<TabItem label="Java">
+```java
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static com.github.tomakehurst.wiremock.matching.RequestPatternBuilder.newRequestPattern;
+
+// Send WebSocket message when HTTP endpoint is called
+messageStubFor(
+    message()
+        .withName("HTTP-triggered notification")
+        .triggeredByHttpRequest(
+            newRequestPattern()
+                .withMethod(POST)
+                .withUrl("/api/notify"))
+        .willTriggerActions(
+            sendMessage("New notification!")
+                .onChannelsMatching(
+                    newRequestPattern().withUrl(urlPathMatching("/notifications/.*")))));
+```
+</TabItem>
+<TabItem label="JSON">
+```json
+{
+  "name": "HTTP-triggered notification",
+  "trigger": {
+    "type": "http-request",
+    "requestPattern": {
+      "method": "POST",
+      "url": "/api/notify"
+    }
+  },
+  "actions": [
+    {
+      "type": "send",
+      "channelTarget": {
+        "type": "request-initiated",
+        "channelType": "websocket",
+        "requestPattern": {
+          "urlPathPattern": "/notifications/.*"
+        }
+      },
+      "message": {
+        "body": {
+          "data": "New notification!"
+        }
+      }
+    }
+  ]
+}
+```
+</TabItem>
+</Tabs>
+
+### Triggered by Stub ID
+
+Alternatively, you can trigger message actions when a specific HTTP stub is matched by referencing its UUID. This approach is useful when you want to link message actions to existing HTTP stubs without duplicating request matching logic:
+
+<Tabs>
+<TabItem label="Java">
+```java
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static com.github.tomakehurst.wiremock.matching.RequestPatternBuilder.newRequestPattern;
+import java.util.UUID;
+
+// First, create an HTTP stub and capture its ID
+UUID orderId = UUID.randomUUID();
+stubFor(post("/api/orders")
+    .withId(orderId)
+    .willReturn(ok("{\"orderId\": \"12345\"}")));
+
+// Then, create a message stub triggered by that HTTP stub
+messageStubFor(
+    message()
+        .withName("Order notification")
+        .triggeredByHttpStub(orderId)
+        .willTriggerActions(
+            sendMessage("{\"type\": \"order_created\", \"orderId\": \"12345\"}")
+                .onChannelsMatching(newRequestPattern().withUrl("/order-updates"))));
+
+// You can also use the string form of the UUID
+messageStubFor(
+    message()
+        .withName("Another notification")
+        .triggeredByHttpStub("11111111-1111-1111-1111-111111111111")
+        .willTriggerActions(
+            sendMessage("triggered!").onOriginatingChannel()));
+```
+</TabItem>
+<TabItem label="JSON">
+```json
+{
+  "name": "Order notification",
+  "trigger": {
+    "type": "http-stub",
+    "stubId": "11111111-1111-1111-1111-111111111111"
+  },
+  "actions": [
+    {
+      "type": "send",
+      "channelTarget": {
+        "type": "request-initiated",
+        "channelType": "websocket",
+        "requestPattern": {
+          "url": "/order-updates"
+        }
+      },
+      "message": {
+        "body": {
+          "data": "{\"type\": \"order_created\", \"orderId\": \"12345\"}"
+        }
+      }
+    }
+  ]
+}
+```
+</TabItem>
+</Tabs>
+
+This approach separates concerns—the HTTP stub handles the request/response cycle, while the message stub handles the side-effect of pushing notifications to WebSocket clients. When the HTTP stub is matched and served, the associated message stub's actions are triggered.

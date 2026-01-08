@@ -1,0 +1,433 @@
+---
+title: "Message Verification"
+description: Verify that expected messages were received by WireMock during tests using the message journal and verification API.
+---
+
+import { Tabs, TabItem, Aside } from '@astrojs/starlight/components';
+
+<Aside type="caution" title="4.x Beta Feature">
+  Message verification is currently available only in WireMock 4.x beta releases.
+  See the [v4 Beta documentation](../../v4/) and [download page](../../download-and-installation/#4x-beta-release-downloads) for installation instructions.
+</Aside>
+
+WireMock records all incoming messages in a journal, enabling you to verify that expected messages were received during tests. This is analogous to HTTP request verification but for message-based protocols.
+
+## The Message Journal
+
+The message journal records every message received by WireMock, including:
+
+- The message content (body)
+- The channel that received the message
+- Whether the message matched a stub
+- The stub that was matched (if any)
+- Timestamp and other metadata
+
+## Basic Verification
+
+### Verify a Message Was Received
+
+<Tabs>
+<TabItem label="Java">
+```java
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static com.github.tomakehurst.wiremock.message.MessagePattern.messagePattern;
+
+// Verify at least one message with specific content was received
+verifyMessageEvent(
+    messagePattern()
+        .withBody(equalTo("expected message"))
+        .build());
+
+// Verify using regex
+verifyMessageEvent(
+    messagePattern()
+        .withBody(matching("hello.*"))
+        .build());
+```
+</TabItem>
+<TabItem label="API">
+```bash
+# Find messages matching a pattern
+curl -X POST http://localhost:8080/__admin/messages/find \
+  -H "Content-Type: application/json" \
+  -d '{
+    "body": {
+      "equalTo": "expected message"
+    }
+  }'
+```
+</TabItem>
+</Tabs>
+
+### Verify Message Count
+
+<Tabs>
+<TabItem label="Java">
+```java
+// Verify exactly 3 messages were received
+verifyMessageEvent(3,
+    messagePattern()
+        .withBody(matching("count-.*"))
+        .build());
+
+// Verify at least 2 messages
+verifyMessageEvent(moreThanOrExactly(2),
+    messagePattern()
+        .withBody(matching(".*"))
+        .build());
+
+// Verify fewer than 5 messages
+verifyMessageEvent(lessThan(5),
+    messagePattern()
+        .withBody(matching(".*"))
+        .build());
+
+// Verify exactly N messages
+verifyMessageEvent(exactly(3),
+    messagePattern()
+        .withBody(matching("test-.*"))
+        .build());
+```
+</TabItem>
+<TabItem label="API">
+```bash
+# Count messages matching a pattern
+curl -X POST http://localhost:8080/__admin/messages/count \
+  -H "Content-Type: application/json" \
+  -d '{
+    "body": {
+      "matches": "count-.*"
+    }
+  }'
+```
+</TabItem>
+</Tabs>
+
+## Finding Message Events
+
+### Find All Messages
+
+<Tabs>
+<TabItem label="Java">
+```java
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static com.github.tomakehurst.wiremock.message.MessagePattern.messagePattern;
+
+// Get all recorded messages
+List<MessageServeEvent> allEvents = getAllMessageServeEvents();
+
+// Find messages matching a pattern
+List<MessageServeEvent> matchingEvents = findAllMessageEvents(
+    messagePattern()
+        .withBody(matching("find-.*"))
+        .build());
+
+// Find messages by channel
+List<MessageServeEvent> channelEvents = findAllMessageEvents(
+    messagePattern()
+        .withChannelPattern(
+            newRequestPattern().withUrl("/my-websocket"))
+        .build());
+```
+</TabItem>
+<TabItem label="API">
+```bash
+# Get all messages
+curl http://localhost:8080/__admin/messages
+
+# Find messages matching criteria
+curl -X POST http://localhost:8080/__admin/messages/find \
+  -H "Content-Type: application/json" \
+  -d '{
+    "body": {
+      "matches": "find-.*"
+    }
+  }'
+```
+</TabItem>
+</Tabs>
+
+### Get Single Message Event
+
+<Tabs>
+<TabItem label="Java">
+```java
+// Get a message event by ID
+MessageServeEvent event = getMessageServeEvent(eventId);
+
+System.out.println("Message body: " + event.getMessage().getBodyAsString());
+System.out.println("Was matched: " + event.getWasMatched());
+if (event.getWasMatched()) {
+    System.out.println("Matched stub: " + event.getStubMapping().getName());
+}
+```
+</TabItem>
+<TabItem label="API">
+```bash
+curl http://localhost:8080/__admin/messages/{id}
+```
+</TabItem>
+</Tabs>
+
+## Message Event Properties
+
+Each `MessageServeEvent` contains:
+
+| Property | Description |
+|----------|-------------|
+| `id` | Unique identifier for the event |
+| `message` | The received message object |
+| `message.getBodyAsString()` | Message body as string |
+| `message.getBodyAsBytes()` | Message body as bytes |
+| `wasMatched` | Whether the message matched a stub |
+| `stubMapping` | The matched stub (if any) |
+| `channelRequest` | The HTTP request that initiated the channel |
+| `timestamp` | When the message was received |
+
+## Waiting for Messages
+
+When testing asynchronous scenarios, you may need to wait for messages to arrive:
+
+<Tabs>
+<TabItem label="Java">
+```java
+import java.time.Duration;
+
+// Wait for a single message (returns Optional)
+Optional<MessageServeEvent> event = waitForMessageEvent(
+    messagePattern()
+        .withBody(equalTo("expected"))
+        .build(),
+    Duration.ofSeconds(5));
+
+if (event.isPresent()) {
+    System.out.println("Message received: " + event.get().getMessage().getBodyAsString());
+} else {
+    System.out.println("Message not received within timeout");
+}
+
+// Wait for multiple messages
+List<MessageServeEvent> events = waitForMessageEvents(
+    messagePattern()
+        .withBody(matching("batch-.*"))
+        .build(),
+    3,  // expected count
+    Duration.ofSeconds(10));
+
+System.out.println("Received " + events.size() + " messages");
+```
+</TabItem>
+<TabItem label="API">
+```bash
+# Wait for a single message
+curl -X POST http://localhost:8080/__admin/messages/wait \
+  -H "Content-Type: application/json" \
+  -d '{
+    "pattern": {
+      "body": {
+        "equalTo": "expected"
+      }
+    },
+    "timeoutMillis": 5000
+  }'
+
+# Wait for multiple messages
+curl -X POST http://localhost:8080/__admin/messages/wait-for-count \
+  -H "Content-Type: application/json" \
+  -d '{
+    "pattern": {
+      "body": {
+        "matches": "batch-.*"
+      }
+    },
+    "expectedCount": 3,
+    "timeoutMillis": 10000
+  }'
+```
+</TabItem>
+</Tabs>
+
+## Verification Failures
+
+When verification fails, WireMock throws a `VerificationException` with details about what was expected vs. what was received:
+
+```java
+@Test
+void verificationFailureExample() {
+    // This will throw VerificationException if no matching messages found
+    assertThrows(VerificationException.class, () ->
+        verifyMessageEvent(
+            messagePattern()
+                .withBody(equalTo("non-existent-message"))
+                .build()));
+}
+```
+
+## Managing the Message Journal
+
+### Reset the Journal
+
+<Tabs>
+<TabItem label="Java">
+```java
+// Clear all recorded messages
+resetMessageJournal();
+```
+</TabItem>
+<TabItem label="API">
+```bash
+curl -X DELETE http://localhost:8080/__admin/messages
+```
+</TabItem>
+</Tabs>
+
+### Remove Specific Events
+
+<Tabs>
+<TabItem label="Java">
+```java
+// Remove a single event by ID
+removeMessageServeEvent(eventId);
+
+// Remove events matching a pattern
+RemoveMessageServeEventsResult result = removeMessageServeEventsMatching(
+    messagePattern()
+        .withBody(matching("remove-.*"))
+        .build());
+
+System.out.println("Removed " + result.getMessageServeEvents().size() + " events");
+
+// Remove events for stubs matching metadata
+removeMessageServeEventsForStubsMatchingMetadata(
+    matchingJsonPath("$.category", equalTo("test")));
+```
+</TabItem>
+<TabItem label="API">
+```bash
+# Remove single event
+curl -X DELETE http://localhost:8080/__admin/messages/{id}
+
+# Remove events matching pattern
+curl -X POST http://localhost:8080/__admin/messages/remove \
+  -H "Content-Type: application/json" \
+  -d '{
+    "body": {
+      "matches": "remove-.*"
+    }
+  }'
+
+# Remove events for stubs matching metadata
+curl -X POST http://localhost:8080/__admin/messages/remove-by-metadata \
+  -H "Content-Type: application/json" \
+  -d '{
+    "matchesJsonPath": {
+      "expression": "$.category",
+      "equalTo": "test"
+    }
+  }'
+```
+</TabItem>
+</Tabs>
+
+## Verifying Unmatched Messages
+
+You can verify whether messages matched any stubs:
+
+```java
+List<MessageServeEvent> allEvents = getAllMessageServeEvents();
+
+// Find unmatched messages
+List<MessageServeEvent> unmatchedEvents = allEvents.stream()
+    .filter(event -> !event.getWasMatched())
+    .collect(Collectors.toList());
+
+if (!unmatchedEvents.isEmpty()) {
+    System.out.println("Unmatched messages:");
+    for (MessageServeEvent event : unmatchedEvents) {
+        System.out.println("  - " + event.getMessage().getBodyAsString());
+    }
+}
+```
+
+## Complete Test Example
+
+Here's a complete test demonstrating message verification:
+
+```java
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static com.github.tomakehurst.wiremock.message.MessagePattern.messagePattern;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
+
+@Test
+void completeMessageVerificationExample() {
+    // Set up a message stub
+    messageStubFor(
+        message()
+            .withName("Test stub")
+            .withBody(matching("test-.*"))
+            .willTriggerActions(
+                sendMessage("acknowledged").onOriginatingChannel()));
+
+    // Reset the journal before the test
+    resetMessageJournal();
+
+    // Connect and send messages
+    WebSocketClient client = new WebSocketClient();
+    client.connect("ws://localhost:" + wireMockServer.port() + "/test");
+
+    client.sendMessage("test-1");
+    client.sendMessage("test-2");
+    client.sendMessage("other-message");
+
+    // Wait for messages to be processed
+    waitForMessageEvents(
+        messagePattern().build(), // Match any
+        3,
+        Duration.ofSeconds(5));
+
+    // Verify matched messages
+    verifyMessageEvent(2,
+        messagePattern()
+            .withBody(matching("test-.*"))
+            .build());
+
+    // Verify unmatched message
+    verifyMessageEvent(1,
+        messagePattern()
+            .withBody(equalTo("other-message"))
+            .build());
+
+    // Get all events and check match status
+    List<MessageServeEvent> events = getAllMessageServeEvents();
+    assertThat(events, hasSize(3));
+
+    long matchedCount = events.stream()
+        .filter(MessageServeEvent::getWasMatched)
+        .count();
+    assertThat(matchedCount, is(2L));
+
+    // Verify the matched stub name
+    events.stream()
+        .filter(MessageServeEvent::getWasMatched)
+        .forEach(event ->
+            assertThat(event.getStubMapping().getName(), is("Test stub")));
+
+    client.disconnect();
+}
+```
+
+## Verification Patterns Reference
+
+| Java Method | Description |
+|-------------|-------------|
+| `verifyMessageEvent(pattern)` | Verify at least one message matches |
+| `verifyMessageEvent(count, pattern)` | Verify exact count |
+| `verifyMessageEvent(exactly(n), pattern)` | Verify exactly n messages |
+| `verifyMessageEvent(moreThanOrExactly(n), pattern)` | Verify at least n messages |
+| `verifyMessageEvent(lessThan(n), pattern)` | Verify fewer than n messages |
+| `getAllMessageServeEvents()` | Get all recorded messages |
+| `findAllMessageEvents(pattern)` | Find messages matching pattern |
+| `getMessageServeEvent(id)` | Get single event by ID |
+| `waitForMessageEvent(pattern, timeout)` | Wait for one message |
+| `waitForMessageEvents(pattern, count, timeout)` | Wait for multiple messages |
