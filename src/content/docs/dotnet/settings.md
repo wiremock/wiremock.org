@@ -254,6 +254,30 @@ This is a Enum Flag with these values:
 - AllowAnyOrigin
 - AllowAll
 
+### ActivityTracingOptions
+Configure distributed tracing via `System.Diagnostics.Activity`. When set to a non-null value, WireMock.Net creates activity spans for each request.
+
+``` c#
+var server = WireMockServer.Start(new WireMockServerSettings
+{
+    ActivityTracingOptions = new ActivityTracingOptions
+    {
+        ExcludeAdminRequests = true,
+        RecordRequestBody = false,
+        RecordResponseBody = false,
+        RecordMatchDetails = true
+    }
+});
+```
+
+Where
+* `ExcludeAdminRequests` = Exclude `/__admin/*` requests from tracing (default: true).
+* `RecordRequestBody` = Include request body in trace attributes (default: false).
+* `RecordResponseBody` = Include response body in trace attributes (default: false).
+* `RecordMatchDetails` = Include mapping match details in trace attributes (default: true).
+
+To export traces via OpenTelemetry, see [OpenTelemetry Tracing](opentelemetry-tracing/).
+
 
 
 
