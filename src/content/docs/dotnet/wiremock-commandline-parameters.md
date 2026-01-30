@@ -32,3 +32,19 @@ See also [Proxy and Record Settings](https://github.com/WireMock-Net/WireMock.Ne
 | - | - | - | - |
 | `--ProxyUrl` | string | | The URL to use for proxying.
 | `--SaveMapping` | boolean| | Save the mapping for each request/response to the internal Mappings..
+
+### Activity Tracing Settings [Optional]
+| Argument Name| Value Type | Default | Description |
+| - | - | - | - |
+| `--ActivityTracingEnabled` | boolean | false | Enable activity tracing for requests. |
+| `--ActivityTracingExcludeAdminRequests` | boolean | true | Exclude `/__admin/*` requests from tracing. |
+| `--ActivityTracingRecordRequestBody` | boolean | false | Include request body in trace attributes. |
+| `--ActivityTracingRecordResponseBody` | boolean | false | Include response body in trace attributes. |
+| `--ActivityTracingRecordMatchDetails` | boolean | true | Include mapping match details in trace attributes. |
+
+### OpenTelemetry Settings [Optional]
+| Argument Name| Value Type | Default | Description |
+| - | - | - | - |
+| `--OpenTelemetryEnabled` | boolean | false | Enable OpenTelemetry export. |
+| `--OpenTelemetryOtlpExporterEndpoint` | string | | OTLP collector endpoint URL. Uses `OTEL_EXPORTER_OTLP_ENDPOINT` env var if not set. |
+| `--OpenTelemetryExcludeAdminRequests` | boolean | true | Exclude `/__admin/*` from ASP.NET Core instrumentation. |
