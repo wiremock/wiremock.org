@@ -276,7 +276,7 @@ Where
 * `RecordResponseBody` = Include response body in trace attributes (default: false).
 * `RecordMatchDetails` = Include mapping match details in trace attributes (default: true).
 
-To export traces via OpenTelemetry, see [OpenTelemetry Tracing](opentelemetry-tracing/).
+To export traces via OpenTelemetry, see [OpenTelemetry Tracing](opentelemetry-tracing).
 
 
 
