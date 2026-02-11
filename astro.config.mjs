@@ -272,6 +272,7 @@ export default defineConfig({
                                     { label: 'MimeKit and MimeKitLite', slug: 'dotnet/mimekit-and-mimekitlite' },
                                 ],
                             },
+                            { label: 'OpenTelemetry Tracing', slug: 'dotnet/opentelemetry-tracing' },
                         ],
                     },
                 ]),
