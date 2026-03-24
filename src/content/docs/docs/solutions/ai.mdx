@@ -1,0 +1,203 @@
+---
+title: "AI for WireMock"
+---
+
+import CloudCallout from '../../../../components/CloudCallout.astro';
+
+<CloudCallout title="WireMock Cloud AI" icon="star">
+    WireMock Cloud has native AI integration via the Model Context Protocol (MCP). Agents can create, manage, record, and validate mock APIs directly from your editor or terminal.
+    [**Learn more →**](https://docs.wiremock.io/ai-mcp/ai-101?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=ai-solutions-page)
+</CloudCallout>
+
+## Using AI with WireMock OSS
+
+WireMock OSS is extensively documented and well-represented in AI model training data. Tools like Claude, GitHub Copilot, and Cursor have working knowledge of WireMock's stub format, request matching DSL, response templating syntax, and Java API without any additional setup.
+
+The most effective workflow is pointing an AI assistant at your codebase and asking it to generate stubs for your external dependencies in a single pass. A capable model can identify your HTTP clients, infer request and response shapes, and produce ready-to-use stub mappings directly.
+
+**Example prompt:**
+```
+Scan this repository and generate WireMock 3.x JSON stub mappings for all
+outbound HTTP calls. Use request matching on method and URL. Where response
+bodies can be inferred from usage, include them.
+```
+
+**Example output:**
+```json
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/api/users/\\d+"
+      },
+      "response": {
+        "status": 200,
+        "headers": { "Content-Type": "application/json" },
+        "jsonBody": {
+          "id": 1,
+          "name": "Test User",
+          "email": "user@example.com",
+          "createdAt": "2024-01-01T00:00:00Z"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "urlPath": "/api/orders"
+      },
+      "response": {
+        "status": 201,
+        "headers": { "Content-Type": "application/json" },
+        "jsonBody": {
+          "orderId": "ord_abc123",
+          "status": "created"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "urlPath": "/api/products",
+        "queryParameters": {
+          "category": { "anything": true }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": { "Content-Type": "application/json" },
+        "jsonBody": {
+          "items": [],
+          "total": 0
+        }
+      }
+    }
+  ]
+}
+```
+
+AI assistants also work well for:
+
+- Generating stubs from an OpenAPI or Swagger spec
+- Writing [response templates](../../response-templating/) with Handlebars helpers
+- Building [stateful scenarios](../../stateful-behaviour/) from a description of the state machine
+- Bulk-converting static stubs to use response templating
+- Explaining or documenting existing stub configurations
+
+**Tips:**
+- Specify the WireMock version (2.x vs 3.x) — templating helpers and some syntax differ
+- Include existing stub examples as context so the model matches your conventions
+- For `matchesJsonPath` and `matchesXPath` matchers, always validate the generated expressions against real requests
+
+## WireMock Cloud AI
+
+WireMock Cloud is built for AI-assisted workflows. Agents can create, manage, record, and validate mock APIs as native tool calls — without leaving your editor or terminal. This works through two complementary layers: an MCP server that gives any compatible AI tool direct API access, and a library of agent skills that package common workflows into single invocable commands.
+
+Full documentation: [WireMock Cloud AI overview →](https://docs.wiremock.io/ai-mcp/ai-101?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=ai-solutions-page)
+
+**Supported tools:** Claude Code, Claude Desktop, Cursor, VS Code + GitHub Copilot, Windsurf, Augment
+
+### Installation
+
+**1. Install the WireMock CLI**
+
+```bash
+npm i -g @wiremock/cli
+```
+
+**2. Authenticate**
+
+```bash
+wiremock login
+```
+
+**3. Configure your AI tool**
+
+Claude Code:
+```bash
+claude mcp add wiremock -- wiremock mcp
+```
+
+VS Code (`settings.json`):
+```json
+{
+  "mcp": {
+    "servers": {
+      "WireMock": {
+        "type": "stdio",
+        "command": "wiremock",
+        "args": ["mcp"]
+      }
+    }
+  }
+}
+```
+
+Claude Desktop and Windsurf:
+```json
+{
+  "mcpServers": {
+    "wiremock": {
+      "command": "wiremock",
+      "args": ["mcp"]
+    }
+  }
+}
+```
+
+Verify by asking your agent: *"Am I logged into WireMock Cloud?"*
+
+- [Full installation guide](https://docs.wiremock.io/ai-mcp/installation?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=ai-solutions-page)
+
+### Agent skills
+
+Pre-built multi-step workflows the agent can invoke by name. Install all seven in Claude Code with:
+
+```bash
+claude plugin marketplace add wiremock-inc/skills
+claude plugin install wiremock-cloud@wiremock-inc-skills
+```
+
+Or from within a Claude Code session:
+
+```
+/plugin marketplace add wiremock-inc/skills
+/plugin install wiremock-cloud@wiremock-inc-skills
+```
+
+Verify with: `What skills are available?` — then invoke with e.g. `/build-api-simulation`.
+
+| Skill | What it does |
+|-------|-------------|
+| **Build API Simulation** | Generates a complete mock API from a description, OpenAPI spec, or codebase — stubs and spec included |
+| **Create Stubs** | Creates and imports stub mappings into a mock API |
+| **Convert to Stateful** | Transforms stubs to use the key-value state store |
+| **Convert to Data-Driven** | Adapts stubs to serve responses from CSV or database sources |
+| **Validate and Fix Stubs** | Checks stubs against an OpenAPI schema and patches mismatches |
+| **Author Response Templates** | Writes and debugs Handlebars response templates |
+| **Search Documentation** | Looks up WireMock Cloud documentation within the conversation |
+
+- [Agent skills reference](https://docs.wiremock.io/ai-mcp/agent-skills?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=ai-solutions-page)
+
+### MCP tools
+
+The MCP server exposes granular tools for direct API access:
+
+- **Mock API management** — create, search, clear, and delete mock APIs
+- **Stub management** — import, retrieve, update, and delete stub mappings
+- **API specifications** — fetch and push OpenAPI and GraphQL schema documents
+- **Recording** — start a session against a live service, capture traffic, stop to produce stubs
+- **Request journal** — query and reset logged requests
+- **Data sources** — manage CSV and database sources backing data-driven stubs
+- **HTTP client** — make authenticated HTTP calls from within the agent context
+
+- [MCP tools reference](https://docs.wiremock.io/ai-mcp/mcp-tools?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=ai-solutions-page)
+
+## Useful pages
+
+- [Stubbing](../../stubbing/)
+- [Response Templating](../../response-templating/)
+- [Stateful Behaviour](../../stateful-behaviour/)
+- [Record and Playback](../../record-playback/)
+- [WireMock Cloud](../../wiremock-cloud/)

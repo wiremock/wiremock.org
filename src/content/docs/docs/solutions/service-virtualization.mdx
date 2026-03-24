@@ -1,0 +1,215 @@
+---
+title: "Service Virtualization with WireMock"
+---
+
+import CloudCallout from '../../../../components/CloudCallout.astro';
+
+<CloudCallout title="WireMock Cloud" icon="rocket">
+    Hosted service virtualization with no infrastructure to manage — import any API spec, simulate production behaviour, and run chaos scenarios at scale.
+    [**Try WireMock Cloud >**](https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-solutionsv&utm_id=cloud-callouts&utm_term=cloud-callouts-solutionsv)
+</CloudCallout>
+
+Service virtualization replaces real upstream services — third-party APIs, internal dependencies, legacy systems — with a controlled simulation, so teams can develop and test without being blocked by availability, cost, or instability of those services.
+
+## Capabilities overview
+
+### Individual and small team — WireMock OSS
+
+WireMock OSS solves the core problem: your code depends on a service you don't control, and that service is unavailable, unreliable, or too expensive to hit in development and CI. OSS gives you everything needed to simulate it:
+
+- **Stub authoring** — define request matchers and canned responses in JSON or Java
+- **Recording** — proxy a real service once and replay it forever
+- **Dynamic responses** — Handlebars templating for responses that vary by request
+- **Basic statefulness** — scenario-based state machines for multi-step flows
+- **Fault simulation** — inject delays, timeouts, and error codes per stub
+- **Flexible deployment** — run as a JAR, Docker container, or in Kubernetes
+
+This covers the majority of service virtualization needs for a single developer or a small team working in a shared repo.
+
+### Team and enterprise scale — WireMock Cloud
+
+As teams grow and APIs multiply, the problems shift from simulation fidelity to coordination, consistency, and operations. WireMock Cloud is built for that layer:
+
+- **Shared infrastructure** — hosted mock APIs with stable URLs, no servers to provision or maintain
+- **Team collaboration** — shared workspaces with role-based access, so every developer, tester, and CI pipeline uses the same mocks
+- **OpenAPI integration** — import a spec and get a working virtual service in seconds; drift detection alerts you when reality diverges from the mock
+- **Advanced statefulness** — key-value state store shared across team and CI, not just per-process
+- **Chaos module** — structured failure injection across multiple modes, without custom stub scripting
+- **Audit and governance** — audit logs, API versioning, and SSO for teams with compliance requirements
+- **Hybrid deployment via WireMock Runner** — run Cloud-managed mocks locally, in private CI networks, or behind a firewall
+- **AI integration** — MCP server and Claude Code agent skill for agent-native mock management
+
+## WireMock OSS as a service virtualizer
+
+WireMock standalone is the most direct way to implement service virtualization with OSS. Run it as a persistent process in your development or CI environment and point your application at it instead of the real upstream service.
+
+**Start WireMock as a standalone virtual service:**
+
+```bash
+java -jar wiremock-standalone-3.13.2.jar --port 8080 --root-dir ./service-mocks
+```
+
+Place stub mappings under `./service-mocks/mappings/` and any static response body files under `./service-mocks/__files/`. WireMock serves them immediately without a restart.
+
+**Run in Docker:**
+
+```bash
+docker run -it --rm \
+  -p 8080:8080 \
+  --name wiremock \
+  -v $PWD/service-mocks:/home/wiremock \
+  wiremock/wiremock:3.13.2
+```
+
+The container reads `mappings/` and `__files/` from `/home/wiremock`, so mount your local `service-mocks/` directory there.
+
+### Recording a real service
+
+The fastest way to build an initial virtual service is to record a real one. WireMock acts as a proxy, captures all traffic, and writes stub mappings automatically:
+
+```bash
+java -jar wiremock-standalone-3.13.2.jar \
+  --proxy-all="https://api.example.com" \
+  --record-mappings \
+  --root-dir ./service-mocks
+```
+
+Run your application against `http://localhost:8080` and all interactions are captured as replayable stubs. See [Record and Playback](../../record-playback/) for full options.
+
+### Simulating realistic behaviour
+
+**Dynamic responses** via [response templating](../../response-templating/) — echo request values, generate random IDs, format dates, and build conditional payloads using Handlebars:
+
+```json
+{
+  "request": { "method": "GET", "urlPathPattern": "/orders/[0-9]+" },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "orderId": "{{request.pathSegments.[1]}}",
+      "createdAt": "{{now format='yyyy-MM-dd'}}",
+      "status": "PENDING"
+    },
+    "transformers": ["response-template"]
+  }
+}
+```
+
+**Stateful workflows** via [scenarios](../../stateful-behaviour/) — model multi-step sequences where the response changes based on previous interactions:
+
+```java
+stubFor(post("/cart/checkout")
+    .inScenario("Checkout")
+    .whenScenarioStateIs(STARTED)
+    .willReturn(ok().withBody("Processing"))
+    .willSetStateTo("Completed"));
+
+stubFor(get("/cart/status")
+    .inScenario("Checkout")
+    .whenScenarioStateIs("Completed")
+    .willReturn(ok().withBody("Order confirmed")));
+```
+
+**Fault and latency simulation** via [fault injection](../../simulating-faults/) — test application resilience against degraded dependencies:
+
+```java
+stubFor(get("/payments/process")
+    .willReturn(aResponse()
+        .withStatus(503)
+        .withFixedDelay(2000)
+        .withBody("Service temporarily unavailable")));
+```
+
+### Deploying across environments
+
+- **CI/CD** — start WireMock in a Docker container as a service dependency before your test suite, shut it down after
+- **Local development** — run alongside your application so developers never need access to real third-party sandboxes
+- **Kubernetes** — use the [WireMock Helm chart](https://wiremock.github.io/helm-charts/) to deploy virtual services into your cluster
+
+## WireMock Cloud for service virtualization
+
+Learn more about WireMock Cloud's approach to service virtualization: [wiremock.io/use-case/service-virtualization →](https://www.wiremock.io/use-case/service-virtualization?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=sv-solutions-page)
+
+WireMock Cloud removes the infrastructure overhead of service virtualization. Virtual services are centrally hosted, shared across the team, and accessible from any environment without network configuration.
+
+### Getting started
+
+**1. Create a free account**
+
+Sign up at [wiremock.io](https://www.wiremock.io/?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=sv-solutions-page) — no credit card required.
+
+**2. Create a mock API**
+
+From the dashboard, create a new mock API. You can:
+- Import an OpenAPI or Swagger spec to generate stubs immediately
+- Record traffic from a live service via the built-in proxy
+- Author stubs manually in the UI or push them via the CLI
+
+**3. Point your application at the mock URL**
+
+Each mock API gets a stable hosted URL. Replace your real service endpoint with it in your environment config — no VPN, no local process, no port forwarding.
+
+**Via the WireMock CLI:**
+
+```bash
+npm i -g @wiremock/cli
+wiremock login
+```
+
+Then use the CLI to push stubs, trigger recordings, and manage mock APIs from your terminal or CI pipeline. Full CLI reference: [docs.wiremock.io](https://docs.wiremock.io/overview?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=sv-solutions-page)
+
+### Stateful mocking
+
+Cloud's state store lets you model workflows that change over time — order progressions, payment flows, multi-step onboarding — with state shared across all team members and CI pipelines. Unlike OSS scenarios (which are per-process), Cloud state persists across requests from any client.
+
+Set up a stateful mock from the dashboard under **Mock API → Stubs → Add stateful behaviour**, or use the agent skill in Claude Code:
+
+```
+/convert-to-stateful
+```
+
+[Stateful mocking docs →](https://docs.wiremock.io/stateful-scenarios/key-value-store?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=sv-solutions-page)
+
+### Chaos testing
+
+Cloud's chaos module injects realistic failure conditions into your virtual services — latency spikes, partial outages, error rate percentages, and connection resets — without modifying individual stubs.
+
+Enable chaos on any mock API from the dashboard under **Mock API → Chaos**, or via the CLI:
+
+```bash
+wiremock chaos enable --mock-api <your-api-id> --mode latency --latency-ms 2000
+```
+
+[Chaos testing docs →](https://docs.wiremock.io/chaos-engineering/overview?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=sv-solutions-page)
+
+### AI Powered Service Virtualization
+
+WireMock Cloud's MCP server and Claude Code agent skill let you build and manage virtual services through natural language. From within Claude Code:
+
+Install the skill:
+```bash
+claude plugin marketplace add wiremock-inc/skills
+claude plugin install wiremock-cloud@wiremock-inc-skills
+```
+
+Then generate a complete virtual service from a description, spec, or codebase:
+```
+/build-api-simulation
+```
+
+The agent creates the mock API, generates stubs, and imports them — ready to use in seconds. See [AI for WireMock](./ai/) for the full picture.
+
+### WireMock Runner for hybrid environments
+
+[WireMock Runner](https://docs.wiremock.io/concepts/runner?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=sv-solutions-page) extends Cloud into environments where hosted endpoints aren't enough — running behind a firewall, in a private CI network, or alongside a local development server. Mocks are centrally managed in Cloud; Runner handles serving them locally.
+
+## Useful pages
+
+- [Running as a Standalone Process](../standalone/java-jar/)
+- [Running in Docker](../standalone/docker/)
+- [Record and Playback](../../record-playback/)
+- [Response Templating](../../response-templating/)
+- [Stateful Behaviour](../../stateful-behaviour/)
+- [Simulating Faults](../../simulating-faults/)
+- [WireMock and Kubernetes](./kubernetes/)
+- [WireMock Cloud](../../wiremock-cloud/)
