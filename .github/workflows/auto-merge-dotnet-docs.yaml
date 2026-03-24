@@ -214,9 +214,9 @@ jobs:
             if ('${{ steps.check-files.outputs.all_dotnet_docs }}' !== 'true') {
               reason = '❌ This PR includes files outside of .NET-related paths and cannot be auto-merged.';
             } else {
-              const approvalResult = ${{ steps.check-approval.outputs.result }};
+              const approvalResult = ${{ steps.check-approval.outputs.result || '{"approved":false,"approver":null}' }};
               if (!approvalResult.approved) {
-                const codeOwners = ${{ steps.check-files.outputs.owners }};
+                const codeOwners = ${{ steps.check-files.outputs.owners || '[]' }};
                 const ownerMentions = codeOwners.map(owner => `@${owner}`).join(', ');
                 reason = `⏳ Waiting for a 👍 comment from a code owner (${ownerMentions}) for auto-merge.`;
               }

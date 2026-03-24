@@ -49,3 +49,19 @@ For the JVM ecosystem, there are libraries for Spring Boot, Quarkus, Kotlin, Tes
 WireMock can also run on Android support, and soon to provide official gRPC and GraphQL adapters.
 
 You can learn more about [WireMock Ecosystem here](https://github.com/wiremock/ecosystem).
+
+## WireMock Cloud
+
+[WireMock Cloud](https://www.wiremock.io/comparison) expands WireMock OSS into a centralized platform that supports scaled collaboration, developer portals, higher-fidelity testing (including load and resilience), and environment decoupling, so organizations can move faster without being blocked by fragile, slow, or hard-to-access dependencies.
+
+- Designed for enterprises and large teams, providing centralized management, governance, and reusable virtualized services.
+
+- Adds collaboration through a modern UI plus RBAC and SSO for secure access and consistent operating models.
+
+- Unlocks advanced simulation capabilities like statefulness, external data sources, and chaos/fault injection and more.
+
+- Runs either fully in the cloud, hybrid use across environments and inside CI/CD via the WireMock Runner, and locally via CLI.
+
+- AI-native, with an MCP server and the ability to mock AI protocols.
+
+You can try [WireMock Cloud](https://www.wiremock.io/comparison) for free by creating an account.

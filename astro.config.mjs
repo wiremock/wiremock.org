@@ -90,13 +90,6 @@ export default defineConfig({
                                 ],
                             },
                             {
-                                label: 'Mock API Templates Library',
-                                items: [
-                                    { label: 'WireMock API Templates Library', slug: 'docs/mock-api-templates' },
-                                    { label: 'Using Mock API Templates', slug: 'docs/mock-api-templates/usage' },
-                                ],
-                            },
-                            {
                                 label: 'Record and Playback',
                                 items: [
                                     { label: 'Record and Playback', slug: 'docs/record-playback' },
@@ -272,6 +265,7 @@ export default defineConfig({
                                     { label: 'MimeKit and MimeKitLite', slug: 'dotnet/mimekit-and-mimekitlite' },
                                 ],
                             },
+                            { label: 'OpenTelemetry Tracing', slug: 'dotnet/opentelemetry-tracing' },
                         ],
                     },
                 ]),
