@@ -450,11 +450,12 @@ wiremock/wiremock:3.13.2</code></pre>
 </div>
 <footer class="home__footer">
     <div class="page__footer-copyright"><img src="/images/shortLogo.png" class="short-logo">
-        <span class="footer-copyright-description">© 2025</span>
+        <span class="footer-copyright-description">© <span id="copyright-year">2026</span></span>
         <ul class="footer-social-links">
             <li><a href="http://github.com/wiremock" target="_blank"> <img src="/images/githubIcon.svg"> </a></li>
         </ul>
     </div>
 </footer>
+<script>document.getElementById('copyright-year').textContent = String(new Date().getFullYear());</script>
 </body>
 </html>
