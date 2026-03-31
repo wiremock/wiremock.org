@@ -159,9 +159,12 @@ export default defineConfig({
                                     { label: 'Support', slug: 'docs/support' },
                                     { label: 'Commercial Options', slug: 'docs/commercial' },
                                     { label: 'External Resources', slug: 'docs/external-resources' },
+                                    { label: 'WireMock Cloud', slug: 'docs/wiremock-cloud' },
                                     {
                                         label: 'Solutions',
                                         items: [
+                                            { label: 'AI for WireMock', slug: 'docs/solutions/ai' },
+                                            { label: 'Service Virtualization for WireMock', slug: 'docs/solutions/service-virtualization' },
                                             { label: 'WireMock and Android', slug: 'docs/solutions/android' },
                                             { label: 'WireMock and C/C++', slug: 'docs/solutions/c_cpp' },
                                             { label: 'WireMock and .NET', slug: 'docs/solutions/dotnet' },
