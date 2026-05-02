@@ -32,8 +32,8 @@ dotnet dev-certs https --trust
 
 WireMock.Net will now use this self signed certificate [which can be overridden if you like](https://wiremock.org/docs/dotnet/settings#certificatesettings) to host https urls.
 
-### .NET 4.5.2 / .NET 4.6
-In case when using .NET 4.5.2 or .NET 4.6, you need a certificate registered on your box, properly associated with your application and the port number that will be used. This is not really specific to WireMock.Net, not very straightforward and hence the following StackOverflow thread might come handy: [Httplistener with https support](http://stackoverflow.com/questions/11403333/httplistener-with-https-support).
+### .NET 4.8
+In case when using .NET 4.8, you need a certificate registered on your box, properly associated with your application and the port number that will be used. This is not really specific to WireMock.Net, not very straightforward and hence the following StackOverflow thread might come handy: [Httplistener with https support](http://stackoverflow.com/questions/11403333/httplistener-with-https-support).
 
 
 ## Linux
