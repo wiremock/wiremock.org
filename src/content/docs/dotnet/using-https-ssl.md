@@ -21,7 +21,7 @@ WireMock.NET provides flexible support for SSL certificates through the followin
 - Loading a PFX certificate from the file system  
 - Utilizing an in-memory `X509Certificate2` instance
 
-See [WIKI : Settings - Certificate Settings](https://github.com/WireMock-Net/WireMock.Net/wiki/Settings#certificatesettings) for details.
+See [WIKI : Settings - Certificate Settings](https://wiremock.org/docs/dotnet/settings#certificatesettings) for details.
 
 ## Windows
 ### .NET Standard / .NET Core
@@ -30,7 +30,7 @@ In case you don't have a self-signed certificate yet, run the following command:
 dotnet dev-certs https --trust
 ```
 
-WireMock.Net will now use this self signed certificate [which can be overridden if you like](https://github.com/WireMock-Net/WireMock.Net/wiki/Settings#certificatesettings) to host https urls.
+WireMock.Net will now use this self signed certificate [which can be overridden if you like](https://wiremock.org/docs/dotnet/settings#certificatesettings) to host https urls.
 
 ### .NET 4.5.2 / .NET 4.6
 In case when using .NET 4.5.2 or .NET 4.6, you need a certificate registered on your box, properly associated with your application and the port number that will be used. This is not really specific to WireMock.Net, not very straightforward and hence the following StackOverflow thread might come handy: [Httplistener with https support](http://stackoverflow.com/questions/11403333/httplistener-with-https-support).

@@ -24,7 +24,7 @@ Watch the static mapping files + folder for changes when running.
 Allow the usage of CSharpCodeMatcher, default is not allowed because it can be dangerous to execute all C# code.
 
 ### CertificateSettings
-By default, the .NETStandard version from WireMock.Net can use the default .NET self-signed development certificate. See [HTTPS-SSL](https://github.com/WireMock-Net/WireMock.Net/wiki/Using-HTTPS-%28SSL%29#net-standard--net-core) for more info.
+By default, the .NETStandard version from WireMock.Net can use the default .NET self-signed development certificate. See [HTTPS-SSL](https://wiremock.org/docs/dotnet/using-https-%28ssl%29#net-standard--net-core) for more info.
 
 However, it's also possible to use your own certificate by configuring appropriate values for the `CertificateSettings`.
 The following methods are supported: 
@@ -215,7 +215,7 @@ Disable support for GZip and Deflate request body decompression. (default set to
 Handle all requests synchronously. This could solve some issues when running multiple unit tests using 1 WireMock.Net instance. (default set to false).
 
 ### ThrowExceptionWhenMatcherFails
-Throw an exception when a [Matcher](https://github.com/WireMock-Net/WireMock.Net/wiki/Request-Matching#matchers) fails because of invalid input. (default set to false).
+Throw an exception when a [Matcher](https://wiremock.org/docs/dotnet/request-matching#matchers) fails because of invalid input. (default set to false).
 
 ### PreWireMockMiddlewareInit
 Action which is called (with the IAppBuilder or IApplicationBuilder) before the internal WireMockMiddleware is initialized. [Optional]
