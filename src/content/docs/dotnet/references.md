@@ -7,6 +7,7 @@ title: References
 - [End-to-End Testing ASP.NET Core APIs (Part 2) by Hassan Habib](https://www.youtube.com/watch?v=ANqj9pldfso)
 - [Writing robust integration tests in .NET with WireMock.NET by Nick Chapsas](https://www.youtube.com/watch?v=YU3ohofu6UU)
 - [Wiremock .NET - .NET Meetup Vienna Feburary 2020 by DotNetDevs Austria](https://www.youtube.com/watch?v=IJa6DyJOxzk)
+- [WireMock.net, Fixture and xUnit in 10 minutes](https://www.youtube.com/watch?v=PUcEs98MqWU&t=235s)
 
 ## Execute Automation
 - [Execute Automation  #1 - Introduction to WireMock.NET](https://www.youtube.com/watch?v=SQRPqBWHeJs)
