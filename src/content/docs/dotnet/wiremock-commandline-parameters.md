@@ -3,8 +3,8 @@ title: Wiremock Commandline Parameters
 ---
 
 The following commandline arguments can be defined for:
-- [[WireMock as dotnet tool]]
-- [[WireMock as a standalone process]]
+- [WireMock as dotnet tool](https://wiremock.org/docs/dotnet/wiremock-as-dotnet-tool/)
+- [WireMock as a standalone process](https://wiremock.org/docs/dotnet/wiremock-as-a-standalone-process/)
 - [WireMock.Net running as Docker](https://github.com/WireMock-Net/WireMock.Net-docker)
 
 
