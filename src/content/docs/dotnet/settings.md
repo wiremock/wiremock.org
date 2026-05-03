@@ -11,6 +11,12 @@ The port to listen on.
 ### UseSSL
 Use SSL.
 
+### HostingScheme
+Defines on which scheme (`http` / `https`) to host. This overrides `UseSSL`.
+
+### UseHttp2
+Defines if HTTP/2 should be used (for example for gRPC).
+
 ### StartAdminInterface
 Defines to if the admin interface should be started.
 
@@ -20,11 +26,14 @@ Defines if the static mappings should be read at startup.
 ### WatchStaticMappings 
 Watch the static mapping files + folder for changes when running.
 
+### WatchStaticMappingsInSubdirectories
+Defines whether subdirectories within the static mappings path should be monitored.
+
 ### AllowCSharpCodeMatcher
 Allow the usage of CSharpCodeMatcher, default is not allowed because it can be dangerous to execute all C# code.
 
 ### CertificateSettings
-By default, the .NETStandard version from WireMock.Net can use the default .NET self-signed development certificate. See [HTTPS-SSL](https://github.com/WireMock-Net/WireMock.Net/wiki/Using-HTTPS-%28SSL%29#net-standard--net-core) for more info.
+By default, the .NETStandard version from WireMock.Net can use the default .NET self-signed development certificate. See [HTTPS-SSL](https://wiremock.org/docs/dotnet/using-https-%28ssl%29#net-standard--net-core) for more info.
 
 However, it's also possible to use your own certificate by configuring appropriate values for the `CertificateSettings`.
 The following methods are supported: 
@@ -180,12 +189,8 @@ Allow the usage of CSharpCodeMatcher (default is not allowed).
 ### AllowBodyForAllHttpMethods 
 Allow a Body for all HTTP Methods. (default set to false).
 
-### AllowAnyHttpStatusCodeInResponse 
-Allow any HttpStatusCode in the response. Also null, 0, empty or invalid. (default set to false).
-_Note : this will not work when hosting a Docker container in Azure_
-
-### AllowedCustomHandlebarHelpers
-Defines the allowed custom HandlebarHelpers which can be used. Possible values are `None`, `File` and `All`. By default it's `None`.
+### AllowOnlyDefinedHttpStatusCodeInResponse
+Allow only a defined HttpStatusCode in the response. (default set to false).
 
 ### AdminUsername 
 The username needed for __admin access.
@@ -196,7 +201,7 @@ The password needed for __admin access.
 ### AdminAzureADTenant
 The AzureAD Tenant needed for __admin access.
 
-### AdminAzureADTenant
+### AdminAzureADAudience
 The AzureAD Audience / Resource for __admin access.
 
 ### RequestLogExpirationDuration
@@ -211,11 +216,11 @@ Set to true to disable Json deserialization when processing requests. (default s
 ### DisableRequestBodyDecompressing
 Disable support for GZip and Deflate request body decompression. (default set to false).
 
+### DisableDeserializeFormUrlEncoded
+Set to true to disable FormUrlEncoded deserialization when processing requests. (default set to false).
+
 ### HandleRequestsSynchronously
 Handle all requests synchronously. This could solve some issues when running multiple unit tests using 1 WireMock.Net instance. (default set to false).
-
-### ThrowExceptionWhenMatcherFails
-Throw an exception when a [Matcher](https://github.com/WireMock-Net/WireMock.Net/wiki/Request-Matching#matchers) fails because of invalid input. (default set to false).
 
 ### PreWireMockMiddlewareInit
 Action which is called (with the IAppBuilder or IApplicationBuilder) before the internal WireMockMiddleware is initialized. [Optional]
@@ -245,6 +250,9 @@ By default this is implemented by the [LocalFileSystemHandler.cs](https://github
 
 Implementing your own version from this FileSystemHandler can be useful when running in Azure or Docker Containers.
 
+### ScenarioStateStore
+Store used to persist scenario state information. By default this is an in-memory implementation.
+
 ### CorsPolicyOptions
 Policies to use when using CORS. By default CORS is disabled. [Optional]
 This is a Enum Flag with these values:
@@ -253,6 +261,42 @@ This is a Enum Flag with these values:
 - AllowAnyMethod
 - AllowAnyOrigin
 - AllowAll
+
+### ClientCertificateMode
+Defines the client certificate mode for the server.
+
+### AcceptAnyClientCertificate
+Defines whether any client certificate should be accepted.
+
+### WebhookSettings
+Defines global webhook settings.
+
+### DoNotSaveDynamicResponseInLogEntry
+Do not save the response-string in `LogEntry` when dynamic response body functions are used. (default set to false).
+
+### QueryParameterMultipleValueSupport
+Defines how multiple query parameter values are handled. Default value is `All`.
+
+### CustomMatcherMappings
+Custom matcher mappings for static mappings.
+
+### JsonSerializerSettings
+The `JsonSerializerSettings` used when JSON responses are generated.
+
+### Culture
+The culture to use (for example for Handlebars transformations).
+
+### ProtoDefinitions
+A list of gRPC ProtoDefinitions which can be used.
+
+### GraphQLSchemas
+A list of GraphQL Schemas which can be used.
+
+### AdminPath
+The admin path to use for the Admin REST interface. If not set, `__/admin` is used.
+
+### HandlebarsSettings
+Defines additional Handlebars settings.
 
 ### ActivityTracingOptions
 Configure distributed tracing via `System.Diagnostics.Activity`. When set to a non-null value, WireMock.Net creates activity spans for each request.
@@ -278,10 +322,8 @@ Where
 
 To export traces via OpenTelemetry, see [OpenTelemetry Tracing](../opentelemetry-tracing/).
 
+### DefaultJsonSerializer
+Gets or sets the default JSON converter used for serialization.
 
-
-
-
-
-
-
+### WebSocketSettings
+Defines the WebSocket settings.
