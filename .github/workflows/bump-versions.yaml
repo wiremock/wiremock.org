@@ -1,0 +1,42 @@
+name: Bump WireMock Versions
+
+on:
+  workflow_dispatch:
+    inputs:
+      WIREMOCK_STABLE:
+        description: 'New stable version (leave blank to skip)'
+        required: false
+        default: ''
+      WIREMOCK_BETA:
+        description: 'New beta version (leave blank to skip)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  bump-versions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Bump stable version
+        if: inputs.WIREMOCK_STABLE != ''
+        run: |
+          sed -i "s/WIREMOCK_STABLE: '[^']*'/WIREMOCK_STABLE: '${{ inputs.WIREMOCK_STABLE }}'/" src/config/versions.ts
+
+      - name: Bump beta version
+        if: inputs.WIREMOCK_BETA != ''
+        run: |
+          sed -i "s/WIREMOCK_BETA: '[^']*'/WIREMOCK_BETA: '${{ inputs.WIREMOCK_BETA }}'/" src/config/versions.ts
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git diff --quiet && echo "No changes to commit" && exit 0
+          git add src/config/versions.ts
+          git commit -m "Bumped WireMock version(s)${{ inputs.WIREMOCK_STABLE != '' && format(' stable={0}', inputs.WIREMOCK_STABLE) || '' }}${{ inputs.WIREMOCK_BETA != '' && format(' beta={0}', inputs.WIREMOCK_BETA) || '' }}"
+          git push
