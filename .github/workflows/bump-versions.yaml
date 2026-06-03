@@ -14,6 +14,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 jobs:
   bump-versions:
@@ -33,10 +34,22 @@ jobs:
           sed -i "s/WIREMOCK_BETA: '[^']*'/WIREMOCK_BETA: '${{ inputs.WIREMOCK_BETA }}'/" src/config/versions.ts
 
       - name: Commit and push
+        id: commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git diff --quiet && echo "No changes to commit" && exit 0
-          git add src/config/versions.ts
-          git commit -m "Bumped WireMock version(s)${{ inputs.WIREMOCK_STABLE != '' && format(' stable={0}', inputs.WIREMOCK_STABLE) || '' }}${{ inputs.WIREMOCK_BETA != '' && format(' beta={0}', inputs.WIREMOCK_BETA) || '' }}"
-          git push
+          if git diff --quiet; then
+            echo "No changes to commit"
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            git add src/config/versions.ts
+            git commit -m "Bumped WireMock version(s)${{ inputs.WIREMOCK_STABLE != '' && format(' stable={0}', inputs.WIREMOCK_STABLE) || '' }}${{ inputs.WIREMOCK_BETA != '' && format(' beta={0}', inputs.WIREMOCK_BETA) || '' }}"
+            git push
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Trigger deploy
+        if: steps.commit.outputs.changed == 'true'
+        run: gh workflow run deploy-to-amplify.yaml --ref main
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
