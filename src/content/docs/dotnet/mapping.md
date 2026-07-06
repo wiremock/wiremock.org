@@ -10,8 +10,8 @@ WireMock.Net is controlled by mappings which define the **Request** and how this
 
 Adding or updating mappings can be done via the 
 
-- [REST Admin interface](https://wiremock.org/docs/dotnet/admin-api-reference) 
-- [Via C# code](https://wiremock.org/docs/dotnet/wiremock-as-a-standalone-process#option-3--coding-yourself)
+- [REST Admin interface](https://wiremock.org/dotnet/admin-api-reference) 
+- [Via C# code](https://wiremock.org/dotnet/wiremock-as-a-standalone-process#option-3--coding-yourself)
 - [Static Mappings](#StaticMappings)
 
 
@@ -20,6 +20,6 @@ It's also possible to copy the mapping files in a folder so that these will be p
 
 Place the .json mappings files in `__admin\mappings` folder.
 
-For example, see [this location](https://github.com/WireMock-Net/WireMock.Net/tree/master/examples/WireMock.Net.Console.NET5/__admin/mappings).
+For example, see [this location](https://github.com/WireMock-Net/WireMock.Net/tree/master/examples/WireMock.Net.Console.NET8/__admin/mappings).
 
-See also [the settings](https://wiremock.org/docs/dotnet/settings#readstaticmappings) for more information about how to define the settings.
+See also [the settings](https://wiremock.org/dotnet/settings#readstaticmappings) for more information about how to define the settings.

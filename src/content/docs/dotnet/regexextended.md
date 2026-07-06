@@ -4,7 +4,7 @@ title: Regexextended
 
 # Info
 
-The [RegexMatcher](https://wiremock.org/docs/dotnet/request-matching#regular-expression-matching-regexmatcher) can use:
+The [RegexMatcher](https://wiremock.org/dotnet/request-matching#regular-expression-matching-regexmatcher) can use:
 - [RegexExtended](https://github.com/WireMock-Net/WireMock.Net/blob/master/src/WireMock.Net/RegularExpressions/RegexExtended.cs) (default)
 - [Regex](https://docs.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.regex?view=net-6.0)
 

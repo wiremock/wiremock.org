@@ -33,7 +33,7 @@ Defines whether subdirectories within the static mappings path should be monitor
 Allow the usage of CSharpCodeMatcher, default is not allowed because it can be dangerous to execute all C# code.
 
 ### CertificateSettings
-By default, the .NETStandard version from WireMock.Net can use the default .NET self-signed development certificate. See [HTTPS-SSL](https://wiremock.org/docs/dotnet/using-https-%28ssl%29#net-standard--net-core) for more info.
+By default, the .NETStandard version from WireMock.Net can use the default .NET self-signed development certificate. See [HTTPS-SSL](https://wiremock.org/dotnet/using-https-%28ssl%29#net-standard--net-core) for more info.
 
 However, it's also possible to use your own certificate by configuring appropriate values for the `CertificateSettings`.
 The following methods are supported: 
