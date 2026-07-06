@@ -7,7 +7,7 @@ It's also possible to define a Webhook (or multiple Webhooks) for a mapping.
 
 With this you can send request to a specific URL after serving mocked response to a request.
 
-Note that [transformations/templating](https://wiremock.org/docs/dotnet/response-templating) is also supported for the `request` and `response` objects.
+Note that [transformations/templating](https://wiremock.org/dotnet/response-templating) is also supported for the `request` and `response` objects.
 
 # Examples
 ### C#

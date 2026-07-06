@@ -3,8 +3,8 @@ title: Wiremock Commandline Parameters
 ---
 
 The following commandline arguments can be defined for:
-- [WireMock as dotnet tool](https://wiremock.org/docs/dotnet/wiremock-as-dotnet-tool/)
-- [WireMock as a standalone process](https://wiremock.org/docs/dotnet/wiremock-as-a-standalone-process/)
+- [WireMock as dotnet tool](https://wiremock.org/dotnet/wiremock-as-dotnet-tool/)
+- [WireMock as a standalone process](https://wiremock.org/dotnet/wiremock-as-a-standalone-process/)
 - [WireMock.Net running as Docker](https://github.com/WireMock-Net/WireMock.Net-docker)
 
 
@@ -12,45 +12,45 @@ The following commandline arguments can be defined for:
 | Argument Name| Value Type | Default | Description |
 | - | - | - | - |
 | `--Help` | | | Show a link to this page. |
-| `--Port` | integer | | [settings-port](https://wiremock.org/docs/dotnet/settings#port) |
-| `--Urls` | string | `http://*:9091/` | [settings-urls](https://wiremock.org/docs/dotnet/settings#urls). Used when `--Port` is not set and no `--HostingScheme` is defined. |
+| `--Port` | integer | | [settings-port](https://wiremock.org/dotnet/settings#port) |
+| `--Urls` | string | `http://*:9091/` | [settings-urls](https://wiremock.org/dotnet/settings#urls). Used when `--Port` is not set and no `--HostingScheme` is defined. |
 | `--StartAdminInterface` | boolean | true | Defines whether to start admin interface. |
-| `--AdminPath` | string | `/__admin` | [settings-adminpath](https://wiremock.org/docs/dotnet/settings#adminpath) |
-| `--AdminUsername` | string | | [settings-adminusername](https://wiremock.org/docs/dotnet/settings#adminusername) |
-| `--AdminPassword` | string | | [settings-adminpassword](https://wiremock.org/docs/dotnet/settings#adminpassword) |
-| `--AdminAzureADTenant` | string | | [settings-adminazureadtenant](https://wiremock.org/docs/dotnet/settings#adminazureadtenant) |
-| `--AdminAzureADAudience` | string | | [settings-adminazureadaudience](https://wiremock.org/docs/dotnet/settings#adminazureadaudience) |
-| `--AllowPartialMapping` | boolean | false | [settings-allowpartialmapping](https://wiremock.org/docs/dotnet/settings#allowpartialmapping) |
-| `--AllowBodyForAllHttpMethods` | boolean | false | [settings-allowbodyforallhttpmethods](https://wiremock.org/docs/dotnet/settings#allowbodyforallhttpmethods) |
-| `--AllowCSharpCodeMatcher` | boolean | false | [settings-allowcsharpcodematcher](https://wiremock.org/docs/dotnet/settings#allowcsharpcodematcher) |
-| `--AllowOnlyDefinedHttpStatusCodeInResponse` | boolean | false | [settings-allowonlydefinedhttpstatuscodeinresponse](https://wiremock.org/docs/dotnet/settings#allowonlydefinedhttpstatuscodeinresponse) |
+| `--AdminPath` | string | `/__admin` | [settings-adminpath](https://wiremock.org/dotnet/settings#adminpath) |
+| `--AdminUsername` | string | | [settings-adminusername](https://wiremock.org/dotnet/settings#adminusername) |
+| `--AdminPassword` | string | | [settings-adminpassword](https://wiremock.org/dotnet/settings#adminpassword) |
+| `--AdminAzureADTenant` | string | | [settings-adminazureadtenant](https://wiremock.org/dotnet/settings#adminazureadtenant) |
+| `--AdminAzureADAudience` | string | | [settings-adminazureadaudience](https://wiremock.org/dotnet/settings#adminazureadaudience) |
+| `--AllowPartialMapping` | boolean | false | [settings-allowpartialmapping](https://wiremock.org/dotnet/settings#allowpartialmapping) |
+| `--AllowBodyForAllHttpMethods` | boolean | false | [settings-allowbodyforallhttpmethods](https://wiremock.org/dotnet/settings#allowbodyforallhttpmethods) |
+| `--AllowCSharpCodeMatcher` | boolean | false | [settings-allowcsharpcodematcher](https://wiremock.org/dotnet/settings#allowcsharpcodematcher) |
+| `--AllowOnlyDefinedHttpStatusCodeInResponse` | boolean | false | [settings-allowonlydefinedhttpstatuscodeinresponse](https://wiremock.org/dotnet/settings#allowonlydefinedhttpstatuscodeinresponse) |
 | `--ReadStaticMappings` | boolean | false | Defines if the static mappings should be read at startup. |
-| `--WatchStaticMappings` | boolean | false | [settings-watchstaticmappings](https://wiremock.org/docs/dotnet/settings#watchstaticmappings) |
-| `--WatchStaticMappingsInSubdirectories` | boolean | false | [settings-watchstaticmappingsinsubdirectories](https://wiremock.org/docs/dotnet/settings#watchstaticmappingsinsubdirectories) |
-| `--DisableJsonBodyParsing` | boolean | false | [settings-disablejsonbodyparsing](https://wiremock.org/docs/dotnet/settings#disablejsonbodyparsing) |
-| `--DisableRequestBodyDecompressing` | boolean | false | [settings-disablerequestbodydecompressing](https://wiremock.org/docs/dotnet/settings#disablerequestbodydecompressing) |
-| `--DisableDeserializeFormUrlEncoded` | boolean | false | [settings-disabledeserializeformurlencoded](https://wiremock.org/docs/dotnet/settings#disabledeserializeformurlencoded) |
-| `--HandleRequestsSynchronously` | boolean | false | [settings-handlerequestssynchronously](https://wiremock.org/docs/dotnet/settings#handlerequestssynchronously) |
-| `--DoNotSaveDynamicResponseInLogEntry` | boolean | false | [settings-donotsavedynamicresponseinlogentry](https://wiremock.org/docs/dotnet/settings#donotsavedynamicresponseinlogentry) |
-| `--SaveUnmatchedRequests` | boolean | false | [settings-saveunmatchedrequests](https://wiremock.org/docs/dotnet/settings#saveunmatchedrequests) |
-| `--MaxRequestLogCount` | integer | | [settings-maxrequestlogcount](https://wiremock.org/docs/dotnet/settings#maxrequestlogcount) |
-| `--RequestLogExpirationDuration` | integer | | [settings-requestlogexpirationduration](https://wiremock.org/docs/dotnet/settings#requestlogexpirationduration) |
-| `--StartTimeout` | integer | 10000 | [settings-starttimeout](https://wiremock.org/docs/dotnet/settings#starttimeout) |
-| `--HostingScheme` | enum | | [settings-hostingscheme](https://wiremock.org/docs/dotnet/settings#hostingscheme) |
-| `--UseHttp2` | boolean | false | [settings-usehttp2](https://wiremock.org/docs/dotnet/settings#usehttp2) |
-| `--UseRegexExtended` | boolean | true | [settings-useregexextended](https://wiremock.org/docs/dotnet/settings#useregexextended) |
-| `--QueryParameterMultipleValueSupport` | enum | All | [settings-queryparametermultiplevaluesupport](https://wiremock.org/docs/dotnet/settings#queryparametermultiplevaluesupport) |
-| `--Culture` | string | CurrentCulture | [settings-culture](https://wiremock.org/docs/dotnet/settings#culture) |
-| `--ProtoDefinitions` | json | | [settings-protodefinitions](https://wiremock.org/docs/dotnet/settings#protodefinitions) |
-| `--GraphQLSchemas` | json | | [settings-graphqlschemas](https://wiremock.org/docs/dotnet/settings#graphqlschemas) |
+| `--WatchStaticMappings` | boolean | false | [settings-watchstaticmappings](https://wiremock.org/dotnet/settings#watchstaticmappings) |
+| `--WatchStaticMappingsInSubdirectories` | boolean | false | [settings-watchstaticmappingsinsubdirectories](https://wiremock.org/dotnet/settings#watchstaticmappingsinsubdirectories) |
+| `--DisableJsonBodyParsing` | boolean | false | [settings-disablejsonbodyparsing](https://wiremock.org/dotnet/settings#disablejsonbodyparsing) |
+| `--DisableRequestBodyDecompressing` | boolean | false | [settings-disablerequestbodydecompressing](https://wiremock.org/dotnet/settings#disablerequestbodydecompressing) |
+| `--DisableDeserializeFormUrlEncoded` | boolean | false | [settings-disabledeserializeformurlencoded](https://wiremock.org/dotnet/settings#disabledeserializeformurlencoded) |
+| `--HandleRequestsSynchronously` | boolean | false | [settings-handlerequestssynchronously](https://wiremock.org/dotnet/settings#handlerequestssynchronously) |
+| `--DoNotSaveDynamicResponseInLogEntry` | boolean | false | [settings-donotsavedynamicresponseinlogentry](https://wiremock.org/dotnet/settings#donotsavedynamicresponseinlogentry) |
+| `--SaveUnmatchedRequests` | boolean | false | [settings-saveunmatchedrequests](https://wiremock.org/dotnet/settings#saveunmatchedrequests) |
+| `--MaxRequestLogCount` | integer | | [settings-maxrequestlogcount](https://wiremock.org/dotnet/settings#maxrequestlogcount) |
+| `--RequestLogExpirationDuration` | integer | | [settings-requestlogexpirationduration](https://wiremock.org/dotnet/settings#requestlogexpirationduration) |
+| `--StartTimeout` | integer | 10000 | [settings-starttimeout](https://wiremock.org/dotnet/settings#starttimeout) |
+| `--HostingScheme` | enum | | [settings-hostingscheme](https://wiremock.org/dotnet/settings#hostingscheme) |
+| `--UseHttp2` | boolean | false | [settings-usehttp2](https://wiremock.org/dotnet/settings#usehttp2) |
+| `--UseRegexExtended` | boolean | true | [settings-useregexextended](https://wiremock.org/dotnet/settings#useregexextended) |
+| `--QueryParameterMultipleValueSupport` | enum | All | [settings-queryparametermultiplevaluesupport](https://wiremock.org/dotnet/settings#queryparametermultiplevaluesupport) |
+| `--Culture` | string | CurrentCulture | [settings-culture](https://wiremock.org/dotnet/settings#culture) |
+| `--ProtoDefinitions` | json | | [settings-protodefinitions](https://wiremock.org/dotnet/settings#protodefinitions) |
+| `--GraphQLSchemas` | json | | [settings-graphqlschemas](https://wiremock.org/dotnet/settings#graphqlschemas) |
 | `--WireMockLogger` | string | `WireMockNullLogger` | You can also define `WireMockConsoleLogger`. |
-| `--X509StoreName`<br>`--X509StoreLocation`<br>`--X509StoreThumbprintOrSubjectName`<br>`--X509CertificateFilePath`<br>`--X509CertificatePassword` | string<br>string<br>string<br>string<br>string | | [settings-certificatesettings](https://wiremock.org/docs/dotnet/settings#certificatesettings) |
-| `--CorsPolicyOptions` | enum | None | [settings-corspolicyoptions](https://wiremock.org/docs/dotnet/settings#corspolicyoptions) |
-| `--ClientCertificateMode` | enum | NoCertificate | [settings-clientcertificatemode](https://wiremock.org/docs/dotnet/settings#clientcertificatemode) |
-| `--AcceptAnyClientCertificate` | boolean | false | [settings-acceptanyclientcertificate](https://wiremock.org/docs/dotnet/settings#acceptanyclientcertificate) |
+| `--X509StoreName`<br>`--X509StoreLocation`<br>`--X509StoreThumbprintOrSubjectName`<br>`--X509CertificateFilePath`<br>`--X509CertificatePassword` | string<br>string<br>string<br>string<br>string | | [settings-certificatesettings](https://wiremock.org/dotnet/settings#certificatesettings) |
+| `--CorsPolicyOptions` | enum | None | [settings-corspolicyoptions](https://wiremock.org/dotnet/settings#corspolicyoptions) |
+| `--ClientCertificateMode` | enum | NoCertificate | [settings-clientcertificatemode](https://wiremock.org/dotnet/settings#clientcertificatemode) |
+| `--AcceptAnyClientCertificate` | boolean | false | [settings-acceptanyclientcertificate](https://wiremock.org/dotnet/settings#acceptanyclientcertificate) |
 
 ### Proxy Settings [Optional]
-See also [Proxy and Record Settings](https://wiremock.org/docs/dotnet/settings#proxyandrecordsettings) for a complete list.
+See also [Proxy and Record Settings](https://wiremock.org/dotnet/settings#proxyandrecordsettings) for a complete list.
 
 | Argument Name| Value Type | Default | Description |
 | - | - | - | - |
