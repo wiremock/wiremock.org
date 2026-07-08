@@ -61,6 +61,37 @@ public static class ExampleTransformer implements ResponseDefinitionTransformerV
 Transformer classes must have a no-args constructor unless you only
 intend to register them via an instance as described below.
 
+### Registering the transformer
+
+To use the transformer, register it when you create the `WireMockServer`.
+If you are using a dynamic port, either use the instance DSL from the server itself
+or configure the static DSL after the server has started:
+
+```java
+WireMockServer wireMockServer = new WireMockServer(
+    wireMockConfig()
+        .dynamicPort()
+        .extensions(new ExampleTransformer()));
+
+wireMockServer.start();
+
+// Use the instance DSL directly with the dynamically assigned port.
+wireMockServer.stubFor(get(urlEqualTo("/transform"))
+    .willReturn(aResponse()
+        .withBody("Original body")
+        .withTransformers("example")));
+
+// Or configure the static DSL after startup if you prefer to use stubFor(...).
+WireMock.configureFor("localhost", wireMockServer.port());
+stubFor(get(urlEqualTo("/transform"))
+    .willReturn(aResponse()
+        .withBody("Original body")
+        .withTransformers("example")));
+```
+
+See [Extending WireMock](../extending-wiremock/) for the other registration options,
+including class-name registration and standalone usage.
+
 ### Supplying parameters
 
 Parameters are supplied on a per stub mapping basis:
