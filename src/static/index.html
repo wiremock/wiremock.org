@@ -40,7 +40,100 @@
             "https://fosstodon.org/@wiremock",
             "https://www.youtube.com/@WireMockTV"
         ]
-    } </script> <!-- end SEO --> <!-- Google Analytics --> <!-- gtag -->
+    } </script>
+    <script type="application/ld+json">
+    [
+        {
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": "Connect Claude Code to WireMock",
+            "description": "Install WireMock Agent Skills and connect the WireMock remote MCP server in Claude Code.",
+            "step": [
+                {
+                    "@type": "HowToStep",
+                    "position": 1,
+                    "name": "Install WireMock Agent Skills",
+                    "text": "In a Claude Code session, run /plugin marketplace add wiremock-inc/skills, then /plugin install wiremock-cloud@wiremock-inc-skills."
+                },
+                {
+                    "@type": "HowToStep",
+                    "position": 2,
+                    "name": "Connect the remote MCP server",
+                    "text": "Run claude mcp add --transport http wiremock https://mcp.wiremock.cloud/mcp."
+                }
+            ]
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": "Connect Cursor to WireMock",
+            "description": "Install WireMock Agent Skills and connect the WireMock remote MCP server in Cursor.",
+            "step": [
+                {
+                    "@type": "HowToStep",
+                    "position": 1,
+                    "name": "Install WireMock Agent Skills",
+                    "text": "In the Cursor chat, run /plugin marketplace add wiremock-inc/skills, /plugin install wiremock-cloud@wiremock-inc-skills, then /reload-plugins."
+                },
+                {
+                    "@type": "HowToStep",
+                    "position": 2,
+                    "name": "Add the remote MCP server",
+                    "text": "Add WireMock to mcp.json: { \"mcpServers\": { \"WireMock\": { \"url\": \"https://mcp.wiremock.cloud/mcp\" } } }."
+                }
+            ]
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": "Connect VS Code and GitHub Copilot to WireMock",
+            "description": "Add the WireMock remote MCP server to VS Code settings and install WireMock Agent Skills for GitHub Copilot.",
+            "step": [
+                {
+                    "@type": "HowToStep",
+                    "position": 1,
+                    "name": "Add the remote MCP server",
+                    "text": "Add WireMock to settings.json: { \"mcp\": { \"servers\": { \"WireMock\": { \"type\": \"http\", \"url\": \"https://mcp.wiremock.cloud/mcp\" } } } }."
+                },
+                {
+                    "@type": "HowToStep",
+                    "position": 2,
+                    "name": "Install WireMock Agent Skills",
+                    "text": "Clone https://github.com/wiremock-inc/skills.git and copy the copilot/skills folder into .github/skills."
+                }
+            ]
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": "Connect GitHub Copilot CLI to WireMock",
+            "description": "Install WireMock Agent Skills inside GitHub Copilot CLI.",
+            "step": [
+                {
+                    "@type": "HowToStep",
+                    "position": 1,
+                    "name": "Install WireMock Agent Skills",
+                    "text": "Inside Copilot CLI, run /plugin marketplace add wiremock-inc/skills, then /plugin install wiremock-cloud@wiremock-inc-skills."
+                }
+            ]
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": "Connect Codex CLI to WireMock",
+            "description": "Install the WireMock plugin marketplace in Codex CLI.",
+            "step": [
+                {
+                    "@type": "HowToStep",
+                    "position": 1,
+                    "name": "Install the plugin marketplace",
+                    "text": "Run codex plugin marketplace add wiremock-inc/skills, then select wiremock-cloud from the /plugins picker."
+                }
+            ]
+        }
+    ]
+    </script>
+    <!-- end SEO --> <!-- Google Analytics --> <!-- gtag -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KN208QTJLZ"></script>
     <script> window.dataLayer = window.dataLayer || [];
 
@@ -336,6 +429,100 @@
                 </li>
             </ul>
         </div>
+    </section>
+    <section class="section home__mcp">
+        <h2 class="section__title">Connect your AI coding agent in one command</h2>
+        <p class="section__intro">WireMock Agent Skills and the WireMock remote MCP server
+            (<code>https://mcp.wiremock.cloud/mcp</code>) expose every platform capability to your AI coding agent —
+            build mock APIs, create stubs, and simulate failures without leaving your editor. Pick your client below
+            for the exact install command.</p>
+
+        <div class="tabs home__mcp-tabs">
+            <div class="home__mcp-sidebar">
+                <ul class="tabs-list home__mcp-list">
+                    <li><a href="#mcp-claude-code" class="home__mcp-tab">
+                        <span class="home__mcp-tab-title">Claude Code</span>
+                        <span class="home__mcp-tab-subtitle">Plugin marketplace + remote MCP</span>
+                    </a></li>
+                    <li><a href="#mcp-cursor" class="home__mcp-tab">
+                        <span class="home__mcp-tab-title">Cursor</span>
+                        <span class="home__mcp-tab-subtitle">Plugin marketplace + mcp.json</span>
+                    </a></li>
+                    <li><a href="#mcp-vscode-copilot" class="home__mcp-tab">
+                        <span class="home__mcp-tab-title">VS Code + Copilot</span>
+                        <span class="home__mcp-tab-subtitle">settings.json + skills folder</span>
+                    </a></li>
+                    <li><a href="#mcp-copilot-cli" class="home__mcp-tab">
+                        <span class="home__mcp-tab-title">Copilot CLI</span>
+                        <span class="home__mcp-tab-subtitle">Plugin marketplace (interactive)</span>
+                    </a></li>
+                    <li><a href="#mcp-codex-cli" class="home__mcp-tab">
+                        <span class="home__mcp-tab-title">Codex CLI</span>
+                        <span class="home__mcp-tab-subtitle">Plugin marketplace + picker</span>
+                    </a></li>
+                </ul>
+            </div>
+            <div class="home__mcp-terminal">
+                <div class="home__mcp-terminal-bar">
+                    <span class="home__mcp-dot home__mcp-dot--red"></span>
+                    <span class="home__mcp-dot home__mcp-dot--yellow"></span>
+                    <span class="home__mcp-dot home__mcp-dot--green"></span>
+                    <span class="home__mcp-terminal-label">wiremock — zsh</span>
+                </div>
+                <div id="mcp-claude-code" class="tab-content home__mcp-panel">
+                    <pre><code class="nohighlight"><span class="home__mcp-comment"># Agent Skills — 8 skills for building &amp; managing mock APIs</span>
+<span class="home__mcp-comment"># (run inside a Claude Code session)</span>
+<span class="home__mcp-prompt">❯</span> /plugin marketplace add wiremock-inc/skills
+<span class="home__mcp-prompt">❯</span> /plugin install wiremock-cloud@wiremock-inc-skills
+<span class="home__mcp-success">✓ installed — try /build-api-simulation</span>
+
+<span class="home__mcp-comment"># Remote MCP — every capability, exposed as tools</span>
+<span class="home__mcp-prompt">❯</span> claude mcp add --transport http wiremock https://mcp.wiremock.cloud/mcp
+<span class="home__mcp-success">✓ connected</span></code></pre>
+                </div>
+                <div id="mcp-cursor" class="tab-content home__mcp-panel">
+                    <pre><code class="nohighlight"><span class="home__mcp-comment"># Agent Skills — run in the Cursor chat</span>
+<span class="home__mcp-prompt">❯</span> /plugin marketplace add wiremock-inc/skills
+<span class="home__mcp-prompt">❯</span> /plugin install wiremock-cloud@wiremock-inc-skills
+<span class="home__mcp-prompt">❯</span> /reload-plugins
+
+<span class="home__mcp-comment"># Remote MCP — add to mcp.json</span>
+{
+  "mcpServers": {
+    "WireMock": { "url": "https://mcp.wiremock.cloud/mcp" }
+  }
+}</code></pre>
+                </div>
+                <div id="mcp-vscode-copilot" class="tab-content home__mcp-panel">
+                    <pre><code class="nohighlight"><span class="home__mcp-comment"># Remote MCP — add to settings.json</span>
+{
+  "mcp": {
+    "servers": {
+      "WireMock": { "type": "http", "url": "https://mcp.wiremock.cloud/mcp" }
+    }
+  }
+}
+
+<span class="home__mcp-comment"># Agent Skills — copy into .github/skills</span>
+<span class="home__mcp-prompt">❯</span> git clone https://github.com/wiremock-inc/skills.git /tmp/wiremock-skills
+<span class="home__mcp-prompt">❯</span> cp -r /tmp/wiremock-skills/copilot/skills/* .github/skills/
+<span class="home__mcp-prompt">❯</span> rm -rf /tmp/wiremock-skills</code></pre>
+                </div>
+                <div id="mcp-copilot-cli" class="tab-content home__mcp-panel">
+                    <pre><code class="nohighlight"><span class="home__mcp-comment"># Agent Skills — run inside Copilot CLI</span>
+<span class="home__mcp-prompt">❯</span> /plugin marketplace add wiremock-inc/skills
+<span class="home__mcp-prompt">❯</span> /plugin install wiremock-cloud@wiremock-inc-skills
+<span class="home__mcp-success">✓ installed — try /build-api-simulation</span></code></pre>
+                </div>
+                <div id="mcp-codex-cli" class="tab-content home__mcp-panel">
+                    <pre><code class="nohighlight"><span class="home__mcp-comment"># Agent Skills — install the plugin marketplace</span>
+<span class="home__mcp-prompt">❯</span> codex plugin marketplace add wiremock-inc/skills
+<span class="home__mcp-success">✓ marketplace added — select wiremock-cloud from the /plugins picker</span></code></pre>
+                </div>
+            </div>
+        </div>
+
+        <p class="home__mcp-docs-link"><a href="https://docs.wiremock.io/ai-mcp/agent-skills?utm_source=wiremock.org&amp;utm_medium=referral&amp;utm_campaign=mcp-section">See every client and skill in the docs</a></p>
     </section>
     <section class="section box box--darker home__new">
         <p class="badge">NEW</p>

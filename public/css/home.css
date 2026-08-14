@@ -320,6 +320,166 @@ body {
 
 
 /*
+    MCP agent connect
+ */
+.home__mcp-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    text-align: left;
+}
+
+.home__mcp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: auto;
+    border-bottom: none;
+}
+
+.home__mcp-list li {
+    flex: none;
+}
+
+/* Specificity note: `.tabs-list a` (0,1,1) is reused only for home.js's selector contract (see setupTabs in
+   home.js) and already sets `display: inline-block`, which beats a bare `.home__mcp-tab` (0,1,0) class rule.
+   These rules are scoped as `.home__mcp-list .home__mcp-tab` (0,2,0) so the vertical layout below wins. */
+.home__mcp-list .home__mcp-tab {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px 16px;
+    border-left: 3px solid transparent;
+    border-radius: 4px;
+    color: #18253D;
+}
+
+/* Same reasoning: overrides `.tabs-list a.active:after`'s horizontal-tab bottom-border indicator, which
+   doesn't apply to this vertical sidebar. */
+.home__mcp-list a.active:after {
+    display: none;
+}
+
+.home__mcp-list .home__mcp-tab.active {
+    border-left-color: #FF9507;
+    background: #F4F7FF;
+}
+
+.home__mcp-tab.active .home__mcp-tab-title {
+    color: #2D69F6;
+}
+
+.home__mcp-tab-title {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.home__mcp-tab-subtitle {
+    font-size: 13px;
+    color: #6B7690;
+}
+
+.home__mcp-terminal {
+    border-radius: 16px;
+    padding: 24px;
+    background: #18253D;
+    overflow: hidden;
+}
+
+.home__mcp-terminal-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.home__mcp-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.home__mcp-dot--red {
+    background: #FF5F56;
+}
+
+.home__mcp-dot--yellow {
+    background: #FFBD2E;
+}
+
+.home__mcp-dot--green {
+    background: #27C93F;
+}
+
+.home__mcp-terminal-label {
+    margin-left: 8px;
+    font-size: 13px;
+    color: #8792AB;
+}
+
+.home__mcp-panel pre {
+    margin: 0;
+    background: none;
+    overflow-x: auto;
+}
+
+.home__mcp-panel code {
+    font-family: "Source Code Pro", Monaco, Consolas, "Lucida Console", monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #E4E9F5;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.home__mcp-comment {
+    color: #7A88AD;
+    font-style: italic;
+}
+
+.home__mcp-prompt {
+    color: #5B9CFF;
+}
+
+.home__mcp-success {
+    color: #2E9E6C;
+}
+
+.home__mcp-docs-link {
+    /* .home section p { max-width: 70ch } shrinks this box without auto margins, which left-anchors it;
+       margin-left/right: auto centers the (now-narrower) box itself so text-align: center has any effect. */
+    margin: 24px auto 0;
+    max-width: 70ch;
+    text-align: center;
+}
+
+@media only screen and (min-width: 992px) {
+    .home__mcp-tabs {
+        flex-direction: row;
+        align-items: stretch;
+        gap: 0;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(24, 37, 61, 0.1);
+    }
+
+    .home__mcp-sidebar {
+        flex: 0 0 280px;
+        padding: 24px 0;
+        background: #F9FAFF;
+    }
+
+    .home__mcp-tab {
+        border-radius: 0;
+    }
+
+    .home__mcp-terminal {
+        flex: 1 1 auto;
+        border-radius: 0;
+    }
+}
+
+/*
     Get started
  */
 .home__get-started {
