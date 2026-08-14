@@ -94,6 +94,7 @@ The following interfaces are supported:
 The global settings from the mock service.
 * `GET    /__admin/settings` --> Gets the current global settings
 * `POST   /__admin/settings` --> Updates the current global settings
+* `PUT    /__admin/settings` --> Updates the current global settings
 
 ## /__admin/health
 Get health status.
@@ -109,7 +110,13 @@ The mappings defined in the mock service.
 * `GET    /__admin/mappings/{guid}` --> Get a single stub mapping
 * `PUT    /__admin/mappings/{guid}` --> Update a stub mapping
 * `DELETE /__admin/mappings/{guid}` --> Delete a single stub mapping
+* `PUT    /__admin/mappings/{guid}/enable` --> Enable a single stub mapping
+* `PUT    /__admin/mappings/{guid}/disable` --> Disable a single stub mapping
+* `GET    /__admin/mappings/code` --> Get all mappings as C# code
+* `GET    /__admin/mappings/code/{guid}` --> Get a single mapping as C# code
+* `GET    /__admin/mappings/swagger` --> Get mappings as Swagger definition
 * `POST   /__admin/mappings/save` --> Save all persistent stub mappings to the disk  (by default this is \bin\{x}\__admin\mappings_. Where {x} is the platform + build configuration)
+* `POST   /__admin/mappings/reloadStaticMappings` --> Reload static mappings from disk
 
 ## /admin/files
 The files which can be used in the mappings.
@@ -124,327 +131,23 @@ Logged requests and responses received by the mock service.
 * `GET    /__admin/requests` --> Get received requests
 * `DELETE /__admin/requests` or `POST /__admin/requests/reset` --> Delete all received requests
 * `GET    /__admin/requests/{guid}` --> Get a single request
-* `POST   /__admin/requests/count` --> TODO
+* `DELETE /__admin/requests/{guid}` --> Delete a single request
 * `POST   /__admin/requests/find` --> Find requests
-* `GET    /__admin/requests/unmatched` --> TODO
-* `GET    /__admin/requests/unmatched/near-misses` --> TODO
+* `GET    /__admin/requests/find?mappingGuid={guid}` --> Find requests by mapping GUID
 
----
+## /__admin/scenarios
+Scenario state endpoints.
+* `GET    /__admin/scenarios` --> Get all scenarios and states
+* `DELETE /__admin/scenarios` or `POST /__admin/scenarios/reset` --> Reset all scenarios
+* `DELETE /__admin/scenarios/{scenario}` or `POST /__admin/scenarios/{scenario}/reset` --> Reset a single scenario
+* `PUT    /__admin/scenarios/{scenario}/state` --> Set scenario state
 
-### `POST   /__admin/requests/find`
-For example, this will return all requests that were performed to this specific path.
-``` cmd
-curl --location --request POST 'http://localhost:9999/__admin/requests/find' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "path": "/path/to/search/for"
-}
-```
+## /__admin/openapi
+OpenAPI conversion endpoints.
+* `POST   /__admin/openapi/convert` --> Convert OpenAPI definition to mappings
+* `POST   /__admin/openapi/save` --> Convert OpenAPI definition and save mappings
 
-***
-For some **example requests**, see this [PostMan Collection](https://www.getpostman.com/collections/b69dcea7ec19473bff1e)
-***
-
-## /__admin/mappings
-The mappings defined in the mock service.
-
-### `GET    /__admin/mappings`
-Gets all defined mappings.
-
-Example request:
-`GET http://localhost/__admin/mappings`
-
-Example response:
-```js
-[
-  {
-    "Guid": "be6e1db8-cb95-4a15-a836-dcd0092b34a0",
-    "Request": {
-      "Path": {
-        "Matchers": [
-          {
-            "Name": "WildcardMatcher",
-            "Pattern": "/data"
-          }
-        ]
-      },
-      "Methods": [
-        "get"
-      ],
-      "Headers": [
-        {
-          "Name": "Content-Type",
-          "Matchers": [
-            {
-              "Name": "WildcardMatcher",
-              "Pattern": "application/*"
-            }
-          ]
-        }
-      ],
-      "Cookies": [],
-      "Params": [
-        {
-          "Name": "start",
-          "Values": [ "1000", "1001" ]
-        }
-      ],
-      "Body": {}
-    },
-    "Response": {
-      "StatusCode": 200,
-      "Body": "{ \"result\": \"Contains x with FUNC 200\"}",
-      "UseTransformer": false,
-      "Headers": {
-        "Content-Type": "application/json"
-      }
-    }
-  },
-  {
-    "Guid": "90356dba-b36c-469a-a17e-669cd84f1f05",
-    "Request": {
-      "Path": {
-        "Matchers": [
-          {
-            "Name": "WildcardMatcher",
-            "Pattern": "/*"
-          }
-        ]
-      },
-      "Methods": [
-        "get"
-      ],
-      "Headers": [],
-      "Cookies": [],
-      "Params": [
-        {
-          "Name": "start",
-          "Values": []
-        }
-      ],
-      "Body": {}
-    },
-    "Response": {
-      "StatusCode": 200,
-      "Body": "{\"msg\": \"Hello world, {{request.path}}\"",
-      "UseTransformer": true,
-      "Headers": {
-        "Transformed-Postman-Token": "token is {{request.headers.Postman-Token}}",
-        "Content-Type": "application/json"
-      },
-      "Delay": 10
-    }
-  }
-]
-```
-
-### `POST   /__admin/mappings`
-Create a new stub mapping
-
-Example request:
-```js
-{
-    "Guid": "dae02a0d-8a33-46ed-aab0-afbecc8643e3",
-    "Request": {
-      "Path": "/testabc",
-      "Methods": [
-        "put"
-      ],
-      "Headers": [
-        {
-          "Name": "Content-Type",
-          "Matchers": [
-            {
-              "Name": "WildcardMatcher",
-              "Pattern": "application/*"
-            }
-          ]
-        }
-      ],
-      "Cookies": [],
-      "Params": [
-        {
-          "Name": "start",
-          "Values": [ "1000", "1001" ]
-        }
-      ],
-       "Body": {
-        "Matcher": {
-          "Name": "JsonPathMatcher",
-          "Pattern": "$.things[?(@.name == 'RequiredThing')]"
-        }
-      }
-    },
-    "Response": {
-      "UseTransformer": true,
-      "StatusCode": 205,
-      "BodyAsJson": { "result": "test - {{request.path}}" },
-      "Headers": {
-        "Content-Type": "application/json", "a" : "b"
-      },
-      "Delay": 10
-    }
-  }
-```
-
-Create a new stub mapping and save this to disk. Example request:
-```js
-{
-    "Guid": "dae02a0d-8a33-46ed-aab0-afbecc864344",
-    "SaveToFile": true,
-    "Title": "the_filename",
-    "Request": {
-      "Url": "/example",
-      "Methods": [
-        "get"
-      ]
-    },
-    "Response": {
-      "BodyAsJson": { "result": "ok" }
-    }
-  }
-```
-
-_Note_ : It's also possible to pre-load Mappings. This can be done by putting a file named `{guid}.json` in the `__admin\mapping` directory.
-
-Example : `11111110-a633-40e8-a244-5cb80bc0ab66.json`
-```json
-{
-    "Request": {
-        "Path": {
-            "Matchers": [
-                {
-                    "Name": "WildcardMatcher",
-                    "Pattern": "/static/mapping"
-                }
-            ]
-        },
-        "Methods": [
-            "get"
-        ]
-    },
-    "Response": {
-        "BodyAsJson": { "body": "static mapping" },
-        "Headers": {
-            "Content-Type": "application/json"
-        }
-    }
-}
-```
-
-### `DELETE /__admin/mappings`
-Delete all stub mappings. (If there is no request body).
-
-### `DELETE /__admin/mappings`
-Delete the stub mappings matched to the GUIDs in the request body.
-
-Example request:
-```js
-{
-    "Guid": "dae02a0d-8a33-46ed-aab0-afbecc8643e3",
-    "Request": {
-      "Url": "/testabc",
-      "Methods": [
-        "put"
-      ]
-    },
-    "Response": {
-      "Body": "Response Body",
-      "Headers": {
-        "Content-Type": "application/json"
-      }
-    }
-}
-```
-The only truly necessary piece of the body json is the Guid.
-So this is also valid syntax for the request (demonstrates multi-delete):
-```js
-[{
-    "Guid": "dae02a0d-8a33-46ed-aab0-afbecc8643e3"
-},
-{
-    "Guid": "c181c4f6-fe48-4712-8390-e1a4b358e278"
-}]
-```
-The most obvious application of DELETE with request body will be the ability to send identical requests to the __admin/mappings endpoint using POST and DELETE interchangeably. Additionally, this provides a useful "multi-delete" feature.
-
-### `GET    /__admin/mappings/{guid}`
-Get a single stub mapping
-
-### `PUT    /__admin/mappings/{guid}`
-Update a single stub mapping
-
-Example request
-```js
-{
-  "Request": {
-    "Path": {
-      "Matchers": []
-    },
-    "Methods": [
-      "get"
-    ],
-    "Headers": [],
-    "Cookies": [],
-    "Params": [
-      {
-        "Name": "start",
-        "Values": []
-      }
-    ],
-    "Body": {}
-  },
-  "Response": {
-    "StatusCode": 205,
-    "BodyAsJson": { "msg": "Hello world!!" },
-    "BodyAsJsonIndented": true,
-    "UseTransformer": true,
-    "Headers": {
-      "Transformed-Postman-Token": "token is {{request.headers.Postman-Token}}",
-      "Content-Type": "application/json"
-    }
-  }
-}
-```
-
-### `DELETE /__admin/mappings/{guid}`
-Delete a single stub mapping.
-
-### `POST /__admin/mappings/save`
-Save all persistent stub mappings to the backing store
-
-## /__admin/requests
-Logged requests and responses received by the mock service.
-
-### `GET /__admin/requests`
-Get received requests
-
-### `DELETE /__admin/requests`
-Delete all received requests
-
-### `GET /__admin/requests/{guid}`
-Get a single request.
-
-
-#### `POST /__admin/requests/count` --> TODO
-#### `POST /__admin/requests/find`
-Find requests based on a criteria.
-
-Example request:
-```js
-{
-  "Path": {
-        "Matchers": [
-          {
-            "Name": "WildcardMatcher",
-            "Pattern": "/testjson"
-          }
-        ]
-      }
-}
-```
-
-
-#### `GET /__admin/requests/unmatched` --> TODO
-#### `GET /__admin/requests/unmatched/near-misses` --> TODO
+## /__admin/protodefinitions
+Proto definition endpoints.
+* `POST   /__admin/protodefinitions/{id}` --> Add/update a proto definition by id
 

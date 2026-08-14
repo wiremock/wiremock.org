@@ -76,7 +76,7 @@ public static class Program
 }
 ```
 
-When you start the exe file in Visual Studio or from the commandline, the application will behave same like [WireMock-as a standalone process](https://github.com/WireMock-Net/WireMock.Net/wiki/WireMock-as-a-standalone-process).
+When you start the exe file in Visual Studio or from the commandline, the application will behave same like [WireMock-as a standalone process](https://wiremock.org/dotnet/wiremock-as-a-standalone-process).
 
 # Example
 For a full working example which also provides an **Installer** and batch-files to 

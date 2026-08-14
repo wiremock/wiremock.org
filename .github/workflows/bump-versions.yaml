@@ -1,0 +1,59 @@
+name: Bump WireMock Versions
+
+on:
+  workflow_dispatch:
+    inputs:
+      WIREMOCK_STABLE:
+        description: 'New stable version (leave blank to skip)'
+        required: false
+        default: ''
+      WIREMOCK_BETA:
+        description: 'New beta version (leave blank to skip)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  bump-versions:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Bump stable version
+        if: inputs.WIREMOCK_STABLE != ''
+        run: |
+          sed -i "s/WIREMOCK_STABLE: '[^']*'/WIREMOCK_STABLE: '${{ inputs.WIREMOCK_STABLE }}'/" src/config/versions.ts
+
+      - name: Bump beta version
+        if: inputs.WIREMOCK_BETA != ''
+        run: |
+          sed -i "s/WIREMOCK_BETA: '[^']*'/WIREMOCK_BETA: '${{ inputs.WIREMOCK_BETA }}'/" src/config/versions.ts
+
+      - name: Commit and push
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet; then
+            echo "No changes to commit"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git add src/config/versions.ts
+          git commit -m "Bumped WireMock version(s)${{ inputs.WIREMOCK_STABLE != '' && format(' stable={0}', inputs.WIREMOCK_STABLE) || '' }}${{ inputs.WIREMOCK_BETA != '' && format(' beta={0}', inputs.WIREMOCK_BETA) || '' }}"
+          git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+  deploy:
+    needs: bump-versions
+    if: needs.bump-versions.outputs.changed == 'true'
+    uses: ./.github/workflows/deploy-to-amplify.yaml
+    permissions:
+      contents: read
+      id-token: write

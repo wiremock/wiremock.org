@@ -34,7 +34,7 @@ The following builder methods are available for the `WireMockContainerBuilder`:
 | `WithImage` | `.WithImage("sheyenrath/wiremock.net-alpine:1.6.4")` | You can provide a specific image + tag.
 
 ### Create a Admin Client
-Use the following code to get a [RestEase Admin Client](https://github.com/WireMock-Net/WireMock.Net/wiki/Admin-API-Reference#client-api) for this running container instance.
+Use the following code to get a [RestEase Admin Client](https://wiremock.org/dotnet/admin-api-reference#client-api) for this running container instance.
 ``` c#
 var restEaseApiClient = container.CreateWireMockAdminClient();
 ```

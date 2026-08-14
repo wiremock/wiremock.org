@@ -20,7 +20,7 @@ class Program
 }
 ```
 
-See [[WireMock commandline parameters]] for all supported commandline arguments.
+See [WireMock commandline parameters](https://wiremock.org/dotnet/wiremock-commandline-parameters/) for all supported commandline arguments.
 
 ### Option 2 : using the WireMock.Net.StandAlone library using the settings object
 ```c#

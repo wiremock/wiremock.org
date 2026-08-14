@@ -20,4 +20,4 @@ Start the WireMock.Net server:
 dotnet-wiremock
 ```
 
-See [[WireMock commandline parameters]] for all supported commandline arguments.
+See [WireMock commandline parameters](https://wiremock.org/dotnet/wiremock-commandline-parameters/) for all supported commandline arguments.

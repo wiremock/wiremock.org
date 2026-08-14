@@ -6,7 +6,7 @@ title: Request Matching Tips
 In case you get a `404` back, but you expect a valid match-response on your request, use the the following tips.
 
 ## Get the request via the admin interface
-Do a GET call to [http://{{wm_hostname}}/__admin/requests](https://github.com/WireMock-Net/WireMock.Net/wiki/Admin-API-Reference#__adminrequests) to get information about the request you just sent.
+Do a GET call to [http://{{wm_hostname}}/__admin/requests](https://wiremock.org/dotnet/admin-api-reference#__adminrequests) to get information about the request you just sent.
 
 The example below shows:
 - The request is not matched and a `404` with "No matching mapping found" is returned

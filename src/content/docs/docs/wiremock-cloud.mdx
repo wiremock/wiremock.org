@@ -1,0 +1,78 @@
+---
+title: WireMock Cloud
+description: When to go beyond WireMock OSS — what WireMock Cloud adds for teams that need shared infrastructure, enterprise tooling, and managed hosting.
+---
+
+WireMock OSS is a powerful, battle-tested engine for API simulation. It runs anywhere, integrates with any test framework, and gives you complete control over how your mocks are configured. For solo developers and small teams it covers most use cases well.
+
+As teams scale, the requirements change. Stateful workflows become harder to coordinate across engineers. Chaos and resilience testing needs structure beyond ad-hoc fault flags. CI/CD pipelines need stable, shareable mock environments rather than per-developer processes. Hybrid working — local dev, cloud environments, and behind-the-firewall CI — demands flexible deployment that OSS alone doesn't provide. And enterprise requirements like SSO, audit logs, versioning, and access control require infrastructure that most teams shouldn't have to build themselves. That's the gap [WireMock Cloud](https://www.wiremock.io/?utm_source=wiremock.org&utm_medium=referral&utm_campaign=cloud-page) is built to fill.
+
+## When teams look beyond OSS
+
+**Stateful workflows get complex at scale**
+WireMock OSS supports basic stateful scenarios, but modelling multi-step workflows across many APIs — and keeping those scenarios consistent across a whole team — becomes difficult to manage in files and version control. Cloud provides a collaborative interface for building and managing stateful mocks with shared state that every team member and CI pipeline sees.
+
+**Chaos and resilience testing needs more structure**
+Simulating degraded upstream services is critical for production confidence, but configuring realistic fault scenarios — cascading failures, partial outages, latency spikes — requires custom scripting in OSS. Cloud's chaos testing module provides structured fault injection without code.
+
+**CI/CD pipelines need stable shared mock environments**
+Each CI job running its own WireMock process means duplicated configuration, inconsistent stub versions, and no shared visibility into what's being tested against what. Cloud gives every pipeline a stable, versioned mock endpoint it can rely on.
+
+**Teams working across hybrid environments hit friction**
+When engineers work locally, in cloud environments, and behind corporate firewalls, keeping mock configuration in sync is an ongoing maintenance burden. WireMock Runner extends Cloud into any environment — local, CI, or private network — so mocks are centrally managed regardless of where code runs.
+
+**Enterprise requirements land on your plate**
+SSO integration, audit logs, role-based access control, and API versioning aren't features most engineering teams want to build on top of self-hosted WireMock. Cloud handles all of it as part of the platform.
+
+**You're spending engineering time on infrastructure**
+Provisioning servers, managing scaling, debugging process failures — none of that is the product you're building. Cloud removes it entirely.
+
+## OSS vs. Cloud at a glance
+
+WireMock Cloud is built on the same core engine — every WireMock OSS capability is available in Cloud. The table below covers what Cloud adds on top.
+
+| Area | WireMock OSS | WireMock Cloud |
+|------|-------------|----------------|
+| **Deployment & maintenance** | Self-hosted, self-maintained | Fully managed — no servers to run or maintain |
+| **User interface** | Code and configuration files | Web UI for teams plus a powerful local CLI |
+| **Scalability** | Manual — you provision and scale | Elastic hosting, no scaling configuration needed |
+| **Team access** | Single-developer workflow | Shared workspaces with role-based access control |
+| **User management** | Not applicable | RBAC, SSO, and identity provider integration |
+| **Audit logs** | Not available | Full audit trail of changes across mock APIs |
+| **Versioning** | Bring your own (Git) | Built-in mock API versioning |
+| **Hybrid deployment** | Not available | WireMock Runner for local, CI, and behind-firewall use |
+| **Mock security** | No built-in auth on mock endpoints | Header match, HTTP Basic, and OpenID Connect |
+| **OpenAPI / Swagger import** | Manual stub authoring only | Native import from Swagger and OpenAPI specs |
+| **Chaos testing** | Not available | Multiple configurable fault injection modes |
+| **API drift detection** | Not available | Alerts when live API behaviour diverges from your mock |
+| **API prototyping** | Stub-first, no spec generation | Collaborative interface that outputs OpenAPI specs as you build |
+| **Stateful scenarios** | Supported | Supported, with shared state across team and CI |
+| **Mock processes** | One running process per API | Unlimited hosted mocks, no process management |
+| **Usage dashboards** | No metrics | Request counts, latency, and error visibility |
+| **Mock templates** | None | Public and private template library |
+| **Git integration** | Bring your own | Built in |
+| **CSV data sources** | Bring your own | Native CSV import to drive dynamic responses |
+| **AI integration** | No native AI integration | MCP server, Claude Code agent skill, and AI-powered stub generation |
+| **Support** | Community (Slack, GitHub Issues) | Enterprise support with guaranteed SLA |
+
+## What teams say
+
+<div style="border-left: 4px solid var(--sl-color-orange); padding: 0.75rem 1.25rem; margin: 1.5rem 0; background-color: var(--sl-color-gray-6); border-radius: 0 0.5rem 0.5rem 0;">
+  <p style="font-style: italic; margin: 0 0 0.75rem 0;">"We can save developer hours, not having to figure out hosting, protection, access controls, scaling, and maintenance."</p>
+  <p style="margin: 0; font-size: 0.875em; font-weight: 600;">Kosta Krauth</p>
+  <p style="margin: 0; font-size: 0.875em; color: var(--sl-color-gray-2);">Head of Engineering, Bilt Rewards</p>
+</div>
+
+<div style="border-left: 4px solid var(--sl-color-orange); padding: 0.75rem 1.25rem; margin: 1.5rem 0; background-color: var(--sl-color-gray-6); border-radius: 0 0.5rem 0.5rem 0;">
+  <p style="font-style: italic; margin: 0 0 0.75rem 0;">"Since it runs in the cloud, we don't need to invest in maintenance and infrastructure."</p>
+  <p style="margin: 0; font-size: 0.875em; font-weight: 600;">Sergio Rubio</p>
+  <p style="margin: 0; font-size: 0.875em; color: var(--sl-color-gray-2);">Quality Assurance Specialist, Agibank</p>
+</div>
+
+## Get started
+
+WireMock Cloud has a free tier — no credit card required. If you're hitting the limits of OSS, it's worth a look.
+
+[Try WireMock Cloud →](https://www.wiremock.io/?utm_source=wiremock.org&utm_medium=referral&utm_campaign=cloud-page)
+
+For a walkthrough of Cloud features, see the [WireMock Cloud docs](https://docs.wiremock.io/overview?utm_source=wiremock.org&utm_medium=referral&utm_campaign=cloud-page).
