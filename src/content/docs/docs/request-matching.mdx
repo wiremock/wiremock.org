@@ -24,6 +24,12 @@ WireMock enables flexible definition of a mock API by supporting rich matching o
 - Multipart/form-data
 - Client IP (as of WireMock version `3.13.0`)
 
+Most Java examples on this page use static imports from `WireMock`:
+
+```java
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
+```
+
 Here's an example showing all attributes being matched using WireMock's in-built match operators. It is also possible to write [custom matching logic](../extending-wiremock/#custom-request-matchers/) if
 you need more precise control:
 
