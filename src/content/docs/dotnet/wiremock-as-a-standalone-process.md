@@ -101,10 +101,3 @@ static void Main(string[] args)
     Console.ReadKey();
 }
 ```
-
-## Workaround for Microsoft.Owin.Host.HttpListener exception
-Note that when using WireMock in a **NET 4.5x**, **NET 4.6.x** project, you can get this exception when running your console application:
-
-> Unhandled Exception: System.Exception: Service start failed with error: The server factory could not be located for > the given input: Microsoft.Owin.Host.HttpListener ---> System.MissingMemberException: The server factory could not be located for the given input: Microsoft.Owin.Host.HttpListener
-
-The solution is to add the `Microsoft.Owin.Host.HttpListener` (version **4.0.0**) NuGet package to your hosting console application.

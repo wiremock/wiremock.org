@@ -327,3 +327,7 @@ Gets or sets the default JSON converter used for serialization.
 
 ### WebSocketSettings
 Defines the WebSocket settings.
+
+---
+
+📝 You need to provide a `Port` or `Urls` (with a port defined) in the `WireMockServerSettings` when starting the WireMock.Net server.
