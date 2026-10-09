@@ -50,7 +50,7 @@ export default defineConfig({
                                 label: 'Getting started',
                                 items: [
                                     { label: 'Overview', slug: 'docs/overview' },
-                                    { label: 'Quick Start API Mocking with Java and JUnit 4', slug: 'docs/quickstart/java-junit' },
+                                    { label: 'Quick Start API Mocking with Java and JUnit 5', slug: 'docs/quickstart/java-junit' },
                                     { label: 'Download and Install', slug: 'docs/download-and-installation' },
                                     { label: 'WireMock Tutorials', slug: 'docs/getting-started' },
                                     { label: 'Frequently Asked Questions', slug: 'docs/faq' },
