@@ -18,6 +18,18 @@ WireMock server, defaulting to a random port, HTTP only (no HTTPS).
 To get the running port number, base URL or a DSL instance you can declare a parameter of type `WireMockRuntimeInfo`
 in your test or lifecycle methods.
 
+If you want a copy-paste starting point, `@WireMockTest` and `WireMockRuntimeInfo` are imported from
+`com.github.tomakehurst.wiremock.junit5`:
+
+```java
+import com.github.tomakehurst.wiremock.client.WireMock;
+import com.github.tomakehurst.wiremock.junit5.WireMockRuntimeInfo;
+import com.github.tomakehurst.wiremock.junit5.WireMockTest;
+import org.junit.jupiter.api.Test;
+
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
+```
+
 ```java
 @WireMockTest
 public class DeclarativeWireMockTest {
