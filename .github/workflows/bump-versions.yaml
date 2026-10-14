@@ -21,6 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       changed: ${{ steps.commit.outputs.changed }}
+      sha: ${{ steps.commit.outputs.sha }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -49,11 +50,14 @@ jobs:
           git commit -m "Bumped WireMock version(s)${{ inputs.WIREMOCK_STABLE != '' && format(' stable={0}', inputs.WIREMOCK_STABLE) || '' }}${{ inputs.WIREMOCK_BETA != '' && format(' beta={0}', inputs.WIREMOCK_BETA) || '' }}"
           git push
           echo "changed=true" >> "$GITHUB_OUTPUT"
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
   deploy:
     needs: bump-versions
     if: needs.bump-versions.outputs.changed == 'true'
     uses: ./.github/workflows/deploy-to-amplify.yaml
+    with:
+      ref: ${{ needs.bump-versions.outputs.sha }}
     permissions:
       contents: read
       id-token: write

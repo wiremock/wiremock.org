@@ -10,6 +10,12 @@ on:
 
   # Allows other workflows to call this workflow
   workflow_call:
+    inputs:
+      ref:
+        description: 'Git ref or SHA to deploy (defaults to the triggering commit)'
+        required: false
+        type: string
+        default: ''
 
 permissions:
   contents: read
@@ -33,6 +39,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
+          ref: ${{ inputs.ref }}
           submodules: "true"
 
       - name: Setup Node.js
