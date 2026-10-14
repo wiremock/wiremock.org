@@ -80,3 +80,40 @@ The following data classes have all been updated to be immutable and use the bui
 * `com.github.tomakehurst.wiremock.global.GlobalSettings`
 * `com.github.tomakehurst.wiremock.http.ResponseDefinition`
 * `com.github.tomakehurst.wiremock.matching.RequestPattern`
+
+### Request and message journal store changes
+
+The `com.github.tomakehurst.wiremock.store.RequestJournalStore` and `com.github.tomakehurst.wiremock.store.MessageJournalStore`
+interfaces have had the same changes. This only affects you if you have written your own implementation of either
+interface or call the stores directly.
+
+#### `removeLast()` has been removed
+
+The `removeLast()` method has been removed from both interfaces. Previously, WireMock called `getAllKeys().count()` and
+`removeLast()` after every `add` to trim the journal down to the configured maximum number of entries. This took several
+calls across the journal-to-store boundary for every request, which is expensive for externalised stores.
+
+#### Stores are now responsible for enforcing the maximum number of entries
+
+The request and message journals no longer trim their stores. If a `RequestJournalStore` or `MessageJournalStore`
+implementation should enforce a maximum number of entries, it must now evict the oldest entries itself, by whatever
+means suits the implementation. See the `InMemoryRequestJournalStore` and `InMemoryMessageJournalStore` implementations
+for an example.
+
+For the built-in in-memory stores this is configured as before via `WireMockConfiguration.maxRequestJournalEntries(int)`
+or the `--max-request-journal-entries` command line option, which applies to both journals. The following constructors have changed accordingly:
+
+* `InMemoryRequestJournalStore` and `InMemoryMessageJournalStore` now have a constructor taking a `@Nullable Integer maxEntries`,
+  where `null` means unbounded.
+* `DefaultStores` has a new `DefaultStores(FileSource, @Nullable Integer maxRequestJournalEntries)` constructor.
+
+#### Migration
+
+If you have a custom `RequestJournalStore` or `MessageJournalStore`:
+
+1. Remove your `removeLast()` implementation.
+2. If you want your store to enforce a maximum number of entries, evict the oldest entries yourself and pass the
+   `maxRequestJournalEntries` value to the store when creating it, for example by constructing it in a custom `Stores`
+   implementation.
+
+If you construct `InMemoryRequestJournalStore` or `InMemoryMessageJournalStore` directly, pass a max-entries value (or `null`) to the constructor.
