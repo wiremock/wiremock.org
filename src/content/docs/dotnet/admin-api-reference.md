@@ -134,6 +134,10 @@ Logged requests and responses received by the mock service.
 * `DELETE /__admin/requests/{guid}` --> Delete a single request
 * `POST   /__admin/requests/find` --> Find requests
 * `GET    /__admin/requests/find?mappingGuid={guid}` --> Find requests by mapping GUID
+* `POST   /__admin/requests/count` --> Count requests matching a request filter
+* `GET    /__admin/requests/unmatched` --> Get requests which did not fully match any mapping
+* `GET    /__admin/requests/{guid}/near-misses?maxResults={number}` --> Get near misses for a logged request
+* `GET    /__admin/requests/unmatched/near-misses?maxResults={number}` --> Get near misses for all unmatched requests
 
 ## /__admin/scenarios
 Scenario state endpoints.
