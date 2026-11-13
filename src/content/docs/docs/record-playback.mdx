@@ -300,6 +300,31 @@ By default, WireMock only captures request headers explicitly specified using `c
 
 The `excludeHeaders` option allows you to omit specific headers from the generated request matchers. Header names in this list are matched case-insensitively.
 
+**Java DSL:**
+
+You can enable this behaviour using `captureAllHeaders()` and exclude specific headers using `excludeHeaders()`:
+
+```java
+startRecording(
+    recordSpec()
+        .forTarget("http://examples.wiremockapi.cloud/")
+        .captureAllHeaders()
+        .excludeHeaders("Host", "Content-Length", "Connection")
+);
+```
+
+The same options can be used when taking a snapshot:
+
+```java
+snapshotRecord(
+    recordSpec()
+        .captureAllHeaders()
+        .excludeHeaders("Host", "Content-Length", "Connection")
+);
+```
+
+**JSON API:**
+
 For example, the following recording specification captures all request headers except `Host`, `Content-Length`, and `Connection`:
 
 ```json
@@ -314,7 +339,9 @@ For example, the following recording specification captures all request headers 
 }
 ```
 
-The same options can be used when taking a snapshot.
+The same options can also be passed when taking a snapshot.
+
+`captureHeaders` and `captureAllHeaders` are mutually exclusive and cannot be used together.
 
 ### Body files extraction size criteria
 
