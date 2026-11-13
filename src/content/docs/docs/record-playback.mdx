@@ -294,6 +294,55 @@ then you will need to capture the value of the `Accept` header sent in each requ
 The `captureHeaders` attribute allows you to specify a map of header names to match parameter objects. Currently the only parameter
 available is `caseInsensitive`, which defaults to false if absent.
 
+### Capturing all request headers
+
+By default, WireMock only captures request headers explicitly specified using `captureHeaders`. You can instead capture all request headers by setting `captureAllHeaders` to `true`.
+
+The `excludeHeaders` option allows you to omit specific headers from the generated request matchers. Header names in this list are matched case-insensitively.
+
+**Java DSL:**
+
+You can enable this behaviour using `captureAllHeaders()` and exclude specific headers using `excludeHeaders()`:
+
+```java
+startRecording(
+    recordSpec()
+        .forTarget("http://examples.wiremockapi.cloud/")
+        .captureAllHeaders()
+        .excludeHeaders("Host", "Content-Length", "Connection")
+);
+```
+
+The same options can be used when taking a snapshot:
+
+```java
+snapshotRecord(
+    recordSpec()
+        .captureAllHeaders()
+        .excludeHeaders("Host", "Content-Length", "Connection")
+);
+```
+
+**JSON API:**
+
+For example, the following recording specification captures all request headers except `Host`, `Content-Length`, and `Connection`:
+
+```json
+{
+  "targetBaseUrl": "http://examples.wiremockapi.cloud/",
+  "captureAllHeaders": true,
+  "excludeHeaders": [
+    "Host",
+    "Content-Length",
+    "Connection"
+  ]
+}
+```
+
+The same options can also be passed when taking a snapshot.
+
+`captureHeaders` and `captureAllHeaders` are mutually exclusive and cannot be used together.
+
 ### Body files extraction size criteria
 
 By default, recorded response bodies will be included directly in the stub mapping response part, via the `body` attribute for text or `base64Body` for binary content.
