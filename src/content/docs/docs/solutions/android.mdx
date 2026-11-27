@@ -19,13 +19,34 @@ import CloudCallout from '../../../../components/CloudCallout.astro';
     [**Try WireMock Cloud >**](https://www.wiremock.io?utm_source=oss-docs&utm_medium=oss-docs&utm_campaign=cloud-callouts-solutionandroid&utm_id=cloud-callouts&utm_term=cloud-callouts-solutionandroid)
 </CloudCallout>
 
+## Compatibility status
+
+This page is historical guidance for older WireMock-on-Android setups, not a general setup guide
+for current releases.
+
+Before you adopt the blog post below, keep these caveats in mind:
+
+- The original article targets a WireMock 2.x-era setup from 2016.
+- WireMock 3.x is not currently a documented Android-compatible path. Recent users have reported
+  Android-specific runtime failures in the core project, including Jetty startup crashes and
+  `PathTemplate` regex initialization failures.
+- Even within 2.x, Android compatibility depends on the exact version and your app's Android API
+  level, so validate the specific version you plan to ship instead of assuming the latest release
+  will work unchanged.
+
+Relevant issues:
+
+- [wiremock/wiremock#1388](https://github.com/wiremock/wiremock/issues/1388) - Android crashes after newer Jetty upgrades
+- [wiremock/wiremock#2806](https://github.com/wiremock/wiremock/issues/2806) - `PathTemplate.SPECIAL_SYMBOL_REGEX` crash on Android in WireMock 3.8.0
+
 ## Guide by Sam Edwards
 
 As documented by Sam Edwards in 2016,
 with some effort it is now possible to run WireMock 2.x on Android.
 Please see
 [this blog post](https://handstandsam.com/2016/01/30/running-wiremock-on-android/) for instructions.
-This guide is likely no longer applicable to the recent versions.
+Treat it as a starting point for older 2.x-based experimentation rather than current-version
+documentation.
 
 References:
 
