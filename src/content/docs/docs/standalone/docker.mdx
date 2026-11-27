@@ -73,20 +73,17 @@ To mount the current directory use `-v $PWD:/home/wiremock` e.g.:
 [WireMock extensions](../../extending-wiremock/) are packaged as JAR files. In order to use them they need to be made
 available at runtime and WireMock must be configured to enable them.
 
-For example, to use the [Webhooks extension](../../webhooks-and-callbacks/) we would first download [wiremock-webhooks-extension-3.13.1.jar](https://repo1.maven.org/maven2/org/wiremock/wiremock-webhooks-extension/3.13.1/wiremock-webhooks-extension-3.13.1.jar)
-into the `extensions` directory under our working directory.
-
-Then when starting Docker we would mount the extensions directory to `/var/wiremock/extensions` and enable the webhooks extension
-via a CLI parameter:
+Bundled extensions such as [Webhooks](../../webhooks-and-callbacks/) are already included in WireMock `3.1.0+`, so they only need to be enabled via a CLI parameter:
 
 ```sh
 docker run -it --rm \
   -p 8080:8080 \
   --name wiremock \
-  -v $PWD/extensions:/var/wiremock/extensions \
   wiremock/wiremock \
     --extensions org.wiremock.webhooks.Webhooks
 ```
+
+For third-party or custom extensions, download the JAR into the `extensions` directory under your working directory, mount that directory to `/var/wiremock/extensions`, then enable the extension via `--extensions`. If you need the legacy standalone webhooks extension for WireMock `3.0.x` or `2.x`, refer to the [2.x webhooks documentation](https://wiremock.org/2.x/docs/webhooks-and-callbacks/).
 
 ### Building your own image
 
