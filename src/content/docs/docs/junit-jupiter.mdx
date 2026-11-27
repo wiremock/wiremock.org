@@ -106,13 +106,8 @@ public class ProgrammaticWireMockTest {
     static WireMockExtension wm2 = WireMockExtension.newInstance()
             .options(wireMockConfig()
                      .dynamicPort()
-                     .extensions(new ResponseTemplateTransformer(
-                          getTemplateEngine(),
-                          options.getResponseTemplatingGlobal(),
-                          getFiles(),
-                          templateModelProviders
-                        )
-                     )
+                     .templatingEnabled(true)
+                     .globalTemplating(true))
             .build();
 
     @Test
@@ -131,6 +126,9 @@ public class ProgrammaticWireMockTest {
     }
 }
 ```
+
+Use `templatingEnabled(true).globalTemplating(true)` to apply response templating to all stub responses in WireMock 3.x.
+Register custom extensions separately when you need extra template helpers or model data providers, not to enable global templating itself.
 
 ### Static vs. instance
 
