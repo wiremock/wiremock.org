@@ -11,7 +11,7 @@ Check out the guidelines below.
 
 At the moment, we provide the following quick starts for beginners:
 
-- [API Mocking with Java and JUnit 4](../quickstart/java-junit/)
+- [API Mocking with Java and JUnit 5](../quickstart/java-junit/)
 - [Downloading and Installing WireMock](../download-and-installation/)
 - [Using WireMock with Jetty 12](../jetty-12/)
 
